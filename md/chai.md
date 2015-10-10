@@ -1,20 +1,20 @@
 chai
 ----
 
-
-# to
-# be
-# been
-# is
-# that
-# and
-# has
-# have
-# with
-# at
-# of
-# same
-# not
+链式getter的列表如下所示：
+- to
+- be
+- been
+- is
+- that
+- and
+- has
+- have
+- with
+- at
+- of
+- same
+- not
 
 跟在链式调用后面的否定断言
 

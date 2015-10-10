@@ -2,36 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>chai</title>
+    <title>中文手册</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
 <div class="nav">
-<div class="logo">chai</div>
+<div class="logo">中文手册</div>
 <ul><li><a href="../index.html">Lua5.3</a></li><li class="active"><a href="../html/chai.html">chai</a></li><li><a href="../html/mocha.html">mocha</a></li></ul></div>
 
+
+<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
 <div class="warpper">
 
     <div class="page-toc">
-        <ul><li><a href="#chai">chai</a></li><li><a href="#to">to</a></li><li><a href="#be">be</a></li><li><a href="#been">been</a></li><li><a href="#is">is</a></li><li><a href="#that">that</a></li><li><a href="#and">and</a></li><li><a href="#has">has</a></li><li><a href="#have">have</a></li><li><a href="#with">with</a></li><li><a href="#at">at</a></li><li><a href="#of">of</a></li><li><a href="#same">same</a></li><li><a href="#not">not</a></li><li><a href="#deep">deep</a></li><li><a href="#a(type) .an(type)">a(type) .an(type)</a></li><li><a href="#.include(value) .contain(value)">.include(value) .contain(value)</a></li><li><a href="#.ok">.ok</a></li><li><a href="#.true .false">.true .false</a></li><li><a href="#.null">.null</a></li><li><a href="#.undefined">.undefined</a></li><li><a href="#* .exist">* .exist</a></li><li><a href="#.empty">.empty</a></li><li><a href="#.arguments">.arguments</a></li><li><a href="#.equal(value)">.equal(value)</a></li><li><a href="#.eql(value)">.eql(value)</a></li><li><a href="#.above(value)">.above(value)</a></li><li><a href="#.least(value)">.least(value)</a></li><li><a href="#.below(value)">.below(value)</a></li><li><a href="#.most(value)">.most(value)</a></li><li><a href="#.within(start, finish)">.within(start, finish)</a></li><li><a href="#.instanceof(constructor)">.instanceof(constructor)</a></li><li><a href="#.property(name, [value])">.property(name, [value])</a></li><li><a href="#.ownProperty(name)">.ownProperty(name)</a></li><li><a href="#.throw(constructor)">.throw(constructor)</a></li></ul>
+        <ul><li><a href="#chai">chai</a></li><li><a href="#deep">deep</a></li><li><a href="#a(type) .an(type)">a(type) .an(type)</a></li><li><a href="#.include(value) .contain(value)">.include(value) .contain(value)</a></li><li><a href="#.ok">.ok</a></li><li><a href="#.true .false">.true .false</a></li><li><a href="#.null">.null</a></li><li><a href="#.undefined">.undefined</a></li><li><a href="#* .exist">* .exist</a></li><li><a href="#.empty">.empty</a></li><li><a href="#.arguments">.arguments</a></li><li><a href="#.equal(value)">.equal(value)</a></li><li><a href="#.eql(value)">.eql(value)</a></li><li><a href="#.above(value)">.above(value)</a></li><li><a href="#.least(value)">.least(value)</a></li><li><a href="#.below(value)">.below(value)</a></li><li><a href="#.most(value)">.most(value)</a></li><li><a href="#.within(start, finish)">.within(start, finish)</a></li><li><a href="#.instanceof(constructor)">.instanceof(constructor)</a></li><li><a href="#.property(name, [value])">.property(name, [value])</a></li><li><a href="#.ownProperty(name)">.ownProperty(name)</a></li><li><a href="#.throw(constructor)">.throw(constructor)</a></li></ul>
     </div>
     
     <div class="content markdown-body">
         <h2 id="chai">chai <a href="#chai"> # </a></h2>
-<h1 id="to">to <a href="#to"> # </a></h1>
-<h1 id="be">be <a href="#be"> # </a></h1>
-<h1 id="been">been <a href="#been"> # </a></h1>
-<h1 id="is">is <a href="#is"> # </a></h1>
-<h1 id="that">that <a href="#that"> # </a></h1>
-<h1 id="and">and <a href="#and"> # </a></h1>
-<h1 id="has">has <a href="#has"> # </a></h1>
-<h1 id="have">have <a href="#have"> # </a></h1>
-<h1 id="with">with <a href="#with"> # </a></h1>
-<h1 id="at">at <a href="#at"> # </a></h1>
-<h1 id="of">of <a href="#of"> # </a></h1>
-<h1 id="same">same <a href="#same"> # </a></h1>
-<h1 id="not">not <a href="#not"> # </a></h1>
+<p>&#x94FE;&#x5F0F;getter&#x7684;&#x5217;&#x8868;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<ul>
+<li>to</li>
+<li>be</li>
+<li>been</li>
+<li>is</li>
+<li>that</li>
+<li>and</li>
+<li>has</li>
+<li>have</li>
+<li>with</li>
+<li>at</li>
+<li>of</li>
+<li>same</li>
+<li>not</li>
+</ul>
 <p>&#x8DDF;&#x5728;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x540E;&#x9762;&#x7684;&#x5426;&#x5B9A;&#x65AD;&#x8A00;</p>
 <pre><code class="lang-js">expect(foo).to.not.equal(<span class="hljs-string">&apos;bar&apos;</span>);  
 expect(goodFn).to.not.throw(<span class="hljs-built_in">Error</span>);  

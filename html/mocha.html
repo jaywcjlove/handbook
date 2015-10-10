@@ -2,109 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>chai</title>
+    <title>中文手册</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
 <div class="nav">
-<div class="logo">chai</div>
+<div class="logo">中文手册</div>
 <ul><li><a href="../index.html">Lua5.3</a></li><li><a href="../html/chai.html">chai</a></li><li class="active"><a href="../html/mocha.html">mocha</a></li></ul></div>
 
+
+<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
 <div class="warpper">
 
     <div class="page-toc">
-        <ul><li><a href="#Mocha">Mocha</a></li><li><a href="#start">start</a></li><li><a href="#describe（moduleName, function）">describe（moduleName, function）</a></li><li><a href="#it(info, function)">it(info, function)</a></li><li><a href="#assert.equal（exp1,exp2）">assert.equal（exp1,exp2）</a><ul><li><a href="#异步代码测试">异步代码测试</a></li></ul></li><li><a href="#before(), after(),beforeEach(),afterEach()">before(), after(),beforeEach(),afterEach()</a></li><li><a href="#Pending">Pending</a></li><li><a href="#only 和skip">only 和skip</a></li></ul>
+        <ul><li><a href="#Mocha">Mocha</a></li><li><a href="#如何安装">如何安装</a></li><li><a href="#断言">断言</a></li><li><a href="#同步执行的代码">同步执行的代码</a></li><li><a href="#异步执行的代码">异步执行的代码</a></li><li><a href="#挂起测试">挂起测试</a></li><li><a href="#独占测试">独占测试</a></li><li><a href="#包含测试">包含测试</a></li><li><a href="#差异检测">差异检测</a></li><li><a href="#命令行参数">命令行参数</a><ul><li><a href="#-w, --watch">-w, --watch</a></li><li><a href="#--compilers">--compilers</a></li><li><a href="#-b, --bail">-b, --bail</a></li><li><a href="#-d, --debug">-d, --debug</a></li><li><a href="#--globals ">--globals </a></li><li><a href="#--check-leaks">--check-leaks</a></li><li><a href="#-r, --require ">-r, --require </a></li><li><a href="#-u, --ui ">-u, --ui </a></li><li><a href="#-R, --reporter ">-R, --reporter </a></li><li><a href="#-t, --timeout ">-t, --timeout </a></li><li><a href="#-s, --slow ">-s, --slow </a></li><li><a href="#-g, --grep ">-g, --grep </a></li></ul></li></ul>
     </div>
     
     <div class="content markdown-body">
         <h2 id="Mocha">Mocha <a href="#Mocha"> # </a></h2>
-<p><a href="http://www.ifeenan.com/javascript/2015-02-26-Mocha%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97/">Mocha&#x4E2D;&#x6587;&#x6307;&#x5357;</a><br><a href="http://shouldjs.github.io/">should.js</a><br><a href="http://mochajs.org/">mocha&#x5B98;&#x65B9;&#x7F51;&#x7AD9;</a>  </p>
+<p><a href="http://www.ifeenan.com/javascript/2015-02-26-Mocha%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97/">Mocha&#x4E2D;&#x6587;&#x6307;&#x5357;</a><br><a href="http://shouldjs.github.io/">should.js</a><br><a href="http://mochajs.org/">mocha&#x5B98;&#x65B9;&#x7F51;&#x7AD9;</a><br><a href="http://poppinlp.com/mochacn/">&#x4E0B;&#x6587;&#x7FFB;&#x8BD1;&#x6765;&#x6E90;</a></p>
 <p><code>mocha</code>&#x662F;&#x4E00;&#x6B3E;&#x6BD4;&#x8F83;&#x6D41;&#x884C;&#x7684;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;,&#x51FA;&#x81EA;<code>TJ</code>&#x4E4B;&#x624B;,&#x8DDF;<code>jasmine</code>&#x76F8;&#x6BD4;,&#x5B83;&#x6709;&#x7075;&#x6D3B;&#x7684;&#x65AD;&#x8A00;&#x8BED;&#x6CD5;,&#x6D4B;&#x8BD5;&#x63D0;&#x793A;&#x4E5F;&#x6BD4;&#x8F83;&#x53CB;&#x597D;,&#x5176;&#x5B83;&#x65B9;&#x9762;&#x8DDF;<code>jasmine</code>&#x7C7B;&#x4F3C;.</p>
-<h1 id="start">start <a href="#start"> # </a></h1>
-<p>&#x8FD9;&#x662F;&#x5B98;&#x7F51;&#x4E0A;&#x7684;&#x4E00;&#x6BB5;&#x793A;&#x4F8B;&#x4EE3;&#x7801;</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> assert = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;assert&quot;</span>)
-describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        it(<span class="hljs-string">&apos;should return -1 when the value is not present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-            assert.equal(-<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].indexOf(<span class="hljs-number">5</span>));
-            assert.equal(-<span class="hljs-number">1</span>, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].indexOf(<span class="hljs-number">0</span>));
-        })
-    })
-})
+<h1 id="&#x5982;&#x4F55;&#x5B89;&#x88C5;">&#x5982;&#x4F55;&#x5B89;&#x88C5; <a href="#&#x5982;&#x4F55;&#x5B89;&#x88C5;"> # </a></h1>
+<p><code>$ npm install -g mocha</code> &#x901A;&#x8FC7;npm&#x6765;&#x5B89;&#x88C5;  </p>
+<p>&#x4E00;&#x8D77;&#x6765;Mocha!</p>
+<pre><code>$ npm install -g mocha
+$ mkdir test
+$ $EDITOR test/test.js
+
+var assert = require(&quot;assert&quot;);
+describe(&apos;Array&apos;, function() {
+    describe(&apos;#indexOf()&apos;, function() {
+        it(&apos;should return -1 when the value is not present&apos;, function() {
+            assert.equal(-1, [1,2,3].indexOf(5));
+            assert.equal(-1, [1,2,3].indexOf(0));
+        });
+    });
+});
+
+$  mocha
+
+.
+
+&#x2714; 1 test complete (1ms)
+</code></pre><h1 id="&#x65AD;&#x8A00;">&#x65AD;&#x8A00; <a href="#&#x65AD;&#x8A00;"> # </a></h1>
+<p>Mocha&#x5141;&#x8BB8;&#x4F60;&#x4F7F;&#x7528;&#x4EFB;&#x4F55;&#x4F60;&#x559C;&#x6B22;&#x7684;&#x7B2C;&#x4E09;&#x65B9;&#x65AD;&#x8A00;&#x5E93;&#xFF0C;&#x53EA;&#x8981;&#x5B83;&#x80FD;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x5C31;&#x80FD;&#x5DE5;&#x4F5C;&#xFF01;&#x4F8B;&#x5982;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;should.js&#x3001;node&#x81EA;&#x5E26;&#x7684;assert&#x7B49;&#x7B49;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x5E38;&#x89C1;node&#x6216;&#x8005;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x65AD;&#x8A00;&#x5E93;&#x5217;&#x8868;&#xFF1A; </p>
+<ul>
+<li><a href="https://github.com/visionmedia/should.js">should.js</a> BDD style shown throughout these docs  </li>
+<li><a href="https://github.com/LearnBoost/expect.js">expect.js</a> expect() style assertions  </li>
+<li><a href="http://chaijs.com/">chai</a> expect(), assert() and should style assertions  </li>
+<li><a href="https://github.com/visionmedia/better-assert">better-assert</a> c-style self-documenting assert()  </li>
+</ul>
+<h1 id="&#x540C;&#x6B65;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;">&#x540C;&#x6B65;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801; <a href="#&#x540C;&#x6B65;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;"> # </a></h1>
+<p>&#x5F53;&#x6D4B;&#x8BD5;&#x540C;&#x6B65;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;Mocha&#x4F1A;&#x81EA;&#x52A8;&#x7684;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x3002;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it(<span class="hljs-string">&apos;should return -1 when the value is not present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].indexOf(<span class="hljs-number">5</span>).should.equal(-<span class="hljs-number">1</span>);
+            [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].indexOf(<span class="hljs-number">0</span>).should.equal(-<span class="hljs-number">1</span>);
+        });
+    });
+});
 </code></pre>
-<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x7684;&#x6D4B;&#x8BD5;&#x6587;&#x4EF6;&#x540D;&#x5B57;&#x4E3A;test.js&#xFF0C;&#x8FD0;&#x884C;mocha&#x5C31;</p>
-<pre><code class="lang-shell">mocha test
+<h1 id="&#x5F02;&#x6B65;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;">&#x5F02;&#x6B65;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801; <a href="#&#x5F02;&#x6B65;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;"> # </a></h1>
+<p>&#x7528;Mocha&#x6765;&#x6D4B;&#x8BD5;&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x540C;&#x6837;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x4F60;&#x7684;&#x6D4B;&#x8BD5;&#x7ED3;&#x675F;&#x65F6;&#x8C03;&#x7528;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x5373;&#x53EF;&#x3002;&#x901A;&#x8FC7;&#x7ED9;it()&#x6DFB;&#x52A0;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF08;&#x901A;&#x5E38;&#x547D;&#x540D;&#x4E3A;done&#xFF09;&#x53EF;&#x4EE5;&#x544A;&#x77E5;Mocha&#x9700;&#x8981;&#x7B49;&#x5F85;&#x5F02;&#x6B65;&#x6D4B;&#x8BD5;&#x7ED3;&#x675F;&#x3002;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;User&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe(<span class="hljs-string">&apos;#save()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it(<span class="hljs-string">&apos;should save without error&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>) </span>{
+            <span class="hljs-keyword">var</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;Luna&apos;</span>);
+            user.save(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+                <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err;
+                done();
+            });
+        });
+    });
+});
 </code></pre>
-<p>&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6709;&#x4E09;&#x4E2A;&#x964C;&#x751F;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x6B63;&#x662F;&#x8FD9;&#x4E09;&#x4E2A;&#x57FA;&#x672C;&#x65B9;&#x6CD5;&#x6784;&#x6210;mocha&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x3002;</p>
-<h1 id="describe&#xFF08;moduleName, function&#xFF09;">describe&#xFF08;moduleName, function&#xFF09; <a href="#describe&#xFF08;moduleName, function&#xFF09;"> # </a></h1>
-<p>&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;&#x63CF;&#x8FF0;&#x4E00;&#x53E5;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;&#x9996;&#x5148;describe&#x662F;&#x53EF;&#x4EE5;&#x5D4C;&#x5957;&#x7684;&#xFF0C;&#x591A;&#x4E2A;describe&#x5D4C;&#x5957;&#x7684;&#x4F7F;&#x7528;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;&#x6A21;&#x5757;&#x4E0B;&#x7684;&#x5B50;&#x6A21;&#x5757;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x610F;&#x601D;&#x5C31;&#x662F;&#x6D4B;&#x8BD5;Array&#x8FD9;&#x4E2A;&#x7C7B;&#x4E0B;&#x9762;&#x7684;#indexOf()&#x65B9;&#x6CD5;, moduleName&#x662F;&#x53EF;&#x4EE5;&#x968F;&#x4FBF;&#x5B9A;&#x4E49;&#x7684;&#xFF0C;&#x5373;&#x662F;&#x662F;&#x4E2D;&#x6587;&#x4E5F;&#x53EF;&#x4EE5;&#x3002; &#x201C;#&#x201D;&#x7684;&#x4F7F;&#x7528;&#x4E5F;&#x662F;&#x4E00;&#x822C;&#x7EA6;&#x5B9A;&#xFF0C;&#x4E0D;&#x559C;&#x6B22;&#x4F60;&#x4E5F;&#x4F1A;&#x6362;&#x4E2A;&#x6216;&#x4E0D;&#x7528;&#x4E5F;&#x53EF;&#x4EE5;&#x3002;</p>
-<h1 id="it(info, function)">it(info, function) <a href="#it(info, function)"> # </a></h1>
-<p>&#x771F;&#x6B63;&#x7684;&#x6D4B;&#x8BD5;&#x8BED;&#x53E5;&#x662F;&#x5728;it&#x51FD;&#x6570;&#x7684;function&#x91CC;&#x9762;&#xFF0C;info&#x4E5F;&#x662F;&#x4E00;&#x53E5;&#x63CF;&#x8FF0;&#x6027;&#x7684;&#x8BF4;&#x660E;&#xFF0C;&#x770B;&#x5F97;&#x61C2;&#x5C31;&#x884C;&#x3002;function&#x91CC;&#x9762;&#x7684;&#x65AD;&#x8A00;&#x51B3;&#x5B9A;&#x8FD9;&#x6761;&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6B63;&#x786E;&#x3002;&#x5982;&#x679C;fail&#x7684;&#x8BDD;&#x63A7;&#x5236;&#x53F0;&#x4F1A;&#x628A;log&#x6253;&#x5370;&#x51FA;&#x6765;&#x3002;&#x4E00;&#x4E2A;it&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#xFF0C;&#x91CC;&#x9762;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x6761;&#x65AD;&#x8A00;&#x6216;&#x4E00;&#x6761;&#x65AD;&#x8A00;&#x3002;</p>
-<h1 id="assert.equal&#xFF08;exp1,exp2&#xFF09;">assert.equal&#xFF08;exp1,exp2&#xFF09; <a href="#assert.equal&#xFF08;exp1,exp2&#xFF09;"> # </a></h1>
-<p>mocha&#x7684;&#x65AD;&#x8A00;&#x8BED;&#x53E5;&#xFF0C;exp1&#x662F;&#x5426;&#x7B49;&#x4E8E;exp2. &#x5176;&#x4ED6;&#x66F4;&#x591A;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x67E5;&#x8003;mocha&#x7684;&#x6587;&#x6863;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x91CC;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;chai&#x6765;&#x4F5C;&#x4E3A;&#x65AD;&#x8A00;&#x5E93;&#x3002;&#x66F4;&#x52A0;&#x53CB;&#x597D;&#x7684;&#x5B9E;&#x73B0;&#x6211;&#x4EEC;&#x7684;&#x65AD;&#x8A00;&#x65B9;&#x5F0F;&#x3002;</p>
-<h2 id="&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x6D4B;&#x8BD5;">&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x6D4B;&#x8BD5; <a href="#&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x6D4B;&#x8BD5;"> # </a></h2>
-<p>&#x4E0A;&#x9762;&#x7684;&#x5B98;&#x65B9;&#x4F8B;&#x5B50;&#x662F;&#x540C;&#x6B65;&#x7684;&#x4EE3;&#x7801;&#x6D4B;&#x8BD5;&#xFF0C;&#x4E0B;&#x9762;&#x770B;&#x770B;&#x5F02;&#x6B65;&#x4EE3;&#x7801;&#x5982;&#x4F55;&#x6D4B;&#x8BD5;</p>
-<pre><code class="lang-js">describe(<span class="hljs-string">&apos;User&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    describe(<span class="hljs-string">&apos;#save()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        it(<span class="hljs-string">&apos;should save without error&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>)</span>{
+<p>&#x4E3A;&#x4E86;&#x66F4;&#x65B9;&#x4FBF;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x56DE;&#x8C03;&#x51FD;&#x6570;done()&#x652F;&#x6301;&#x63A5;&#x6536;&#x4E00;&#x4E2A;&#x9519;&#x8BEF;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8FD9;&#x6837;&#x6765;&#x4F7F;&#x7528;&#x5B83;&#xFF1A;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;User&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe(<span class="hljs-string">&apos;#save()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it(<span class="hljs-string">&apos;should save without error&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>) </span>{
             <span class="hljs-keyword">var</span> user = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;Luna&apos;</span>);
             user.save(done);
-        })
-    })
-})
+        });
+    });
+});
 </code></pre>
-<p><code>user.save()</code> &#x662F;&#x8981;&#x94FE;&#x63A5;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x662F;&#x4E2A;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x3002;</p>
-<p>&#x8DDF;&#x7B2C;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x4E0D;&#x540C;&#xFF0C;&#x4F7F;&#x7528;&#x4E86;done&#x3002;done&#x8868;&#x793A;&#x4F60;&#x56DE;&#x8C03;&#x7684;&#x6700;&#x6DF1;&#x5904;&#xFF0C;&#x4E5F;&#x662F;&#x5D4C;&#x5957;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x672B;&#x7AEF;&#x3002;done()&#x51FD;&#x6570;&#x5982;&#x679C;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;error&#x7684;callback&#xFF0C;&#x8FD9;&#x53E5;&#x6D4B;&#x8BD5;&#x4E3A;fail&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x4E00;&#x4E2A;it&#x91CC;&#x9762;&#x5E94;&#x8BE5;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;done&#xFF0C;&#x5982;&#x679C;&#x975E;&#x8981;&#x6709;&#x4E24;&#x4E2A;&#x5F02;&#x6B65;&#x5206;&#x53C9;&#xFF0C;&#x90A3;&#x5EFA;&#x8BAE;&#x7528;&#x4E24;&#x4E2A;it&#x3002;</p>
-<h1 id="before(), after(),beforeEach(),afterEach()">before(), after(),beforeEach(),afterEach() <a href="#before(), after(),beforeEach(),afterEach()"> # </a></h1>
-<p>&#x4ECB;&#x7ECD;&#x4E86;&#x5F02;&#x6B65;&#x7684;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5217;&#x65B9;&#x4FBF;&#x7684;&#x8F85;&#x52A9;&#x65B9;&#x6CD5;&#xFF0C;&#x65B9;&#x6CD5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x660E;&#x4E86;&#xFF0C;&#x6211;&#x8D34;&#x4E2A;&#x4EE3;&#x7801;&#x51FA;&#x6765;&#xFF0C;&#x5927;&#x5BB6;&#x770B;&#x770B;&#x5C31;&#x77E5;&#x9053;&#x4EC0;&#x4E48;&#x610F;&#x601D;&#x4E86;&#x3002;</p>
-<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Connection&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-keyword">var</span> db = <span class="hljs-keyword">new</span> Connection
-    ,tobi = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;tobi&apos;</span>)
-    ,loki = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;loki&apos;</span>)
-    ,jane = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;jane&apos;</span>);
-    beforeEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>)</span>{
-        db.clear(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>)</span>{
+<p>&#x6240;&#x6709;&#x7684;&#x94A9;&#x5B50;&#xFF08;before()&#x3001;after()&#x3001;beforeEach()&#x3001;afterEach()&#xFF09;&#x90FD;&#x540C;&#x65F6;&#x652F;&#x6301;&#x540C;&#x6B65;&#x548C;&#x5F02;&#x6B65;&#xFF0C;&#x884C;&#x4E3A;&#x8868;&#x73B0;&#x4E5F;&#x7C7B;&#x4F3C;&#x4E8E;&#x901A;&#x5E38;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x3002;&#x4F8B;&#x5982;&#x53EF;&#x4EE5;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x5728;&#x6BCF;&#x4E2A;&#x6D4B;&#x8BD5;&#x4E4B;&#x524D;&#x521D;&#x59CB;&#x5316;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x865A;&#x62DF;&#x6570;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Connection&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> db = <span class="hljs-keyword">new</span> Connection,
+        tobi = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;tobi&apos;</span>),
+        loki = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;loki&apos;</span>),
+        jane = <span class="hljs-keyword">new</span> User(<span class="hljs-string">&apos;jane&apos;</span>);
+
+    beforeEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>) </span>{
+        db.clear(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
             <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> done(err);
             db.save([tobi, loki, jane], done);
         });
-    })
+    });
 
-describe(<span class="hljs-string">&apos;#find()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    it(<span class="hljs-string">&apos;respond with matching records&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>)</span>{
-        db.find({ type: <span class="hljs-string">&apos;User&apos;</span> }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, res</span>)</span>{
-            <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> done(err);
+    describe(<span class="hljs-string">&apos;#find()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it(<span class="hljs-string">&apos;respond with matching records&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>) </span>{
+            db.find({ type: <span class="hljs-string">&apos;User&apos;</span> }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, res</span>) </span>{
+                <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> done(err);
                 res.should.have.length(<span class="hljs-number">3</span>);
                 done();
-            })
-        })
-    })
-})
-</code></pre>
-<h1 id="Pending">Pending <a href="#Pending"> # </a></h1>
-<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        it(<span class="hljs-string">&apos;should return -1 when the value is not present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        })
-    })
+            });
+        });
+    });
 });
 </code></pre>
-<p>&#x5C31;&#x662F;it&#x91CC;&#x9762;&#x7684;function&#x7559;&#x7A7A;&#x3002;mocha&#x9ED8;&#x8BA4;&#x4F1A;pass&#x8FD9;&#x6761;&#x6D4B;&#x8BD5;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x7528;&#x6CD5;&#x5176;&#x5B9E;&#x76F8;&#x5F53;&#x4E8E;&#xFF0C;&#x67D0;&#x9879;&#x76EE;&#x8D1F;&#x8D23;&#x4EBA;&#x5B9A;&#x4E49;&#x597D;&#x4E86;&#x8981;&#x6D4B;&#x8BD5;&#x4EC0;&#x4E48;&#x5185;&#x5BB9;&#xFF0C;&#x4E4B;&#x540E;&#x7531;&#x76F8;&#x5E94;&#x7684;&#x5F00;&#x53D1;&#x53BB;&#x5B9E;&#x73B0;&#x5177;&#x4F53;&#x3002;</p>
-<h1 id="only &#x548C;skip">only &#x548C;skip <a href="#only &#x548C;skip"> # </a></h1>
-<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        it.only(<span class="hljs-string">&apos;should return -1 unless present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+<p>&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;promise&#x6765;&#x4EE3;&#x66FF;&#x4F7F;&#x7528;&#x56DE;&#x8C03;&#x51FD;&#x6570;done()&#x3002;&#x5F53;&#x4F60;&#x6D4B;&#x8BD5;&#x7684;API&#x8FD4;&#x56DE;promise&#x800C;&#x4E0D;&#x662F;&#x6267;&#x884C;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x8FD9;&#x5C06;&#x4F1A;&#x975E;&#x5E38;&#x597D;&#x7528;&#x3002;</p>
+<pre><code class="lang-js">beforeEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> db.clear().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> db.save([tobi, loki, jane]);
+    });
+});
+
+describe(<span class="hljs-string">&apos;#find()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    it(<span class="hljs-string">&apos;respond with matching records&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> db.find({ type: <span class="hljs-string">&apos;User&apos;</span> }).should.eventually.have.length(<span class="hljs-number">3</span>);
+    });
+});
+</code></pre>
+<p>&#xFF08;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4F7F;&#x7528;&#x4E86;<a href="https://github.com/domenic/chai-as-promised/">Chai as Promised</a>&#x4F5C;&#x4E3A;promise&#x65AD;&#x8A00;&#x3002;&#xFF09;</p>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x610F;&#x6587;&#x4EF6;&#x4E2D;&#x52A0;&#x5165;&#x201C;&#x5168;&#x5C40;&#x201D;&#x7EA7;&#x522B;&#x7684;&#x94A9;&#x5B50;&#xFF0C;&#x4F8B;&#x5982;&#x5728;describe()&#x5916;&#x9762;&#x6DFB;&#x52A0;beforeEach()&#xFF0C;&#x8FD9;&#x6837;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x5C31;&#x4F1A;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x524D;&#x6267;&#x884C;&#x800C;&#x4E0D;&#x7BA1;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x662F;&#x5426;&#x5728;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x4EA7;&#x751F;&#x8FD9;&#x6837;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x56E0;&#x4E3A;Mocha&#x8FD0;&#x884C;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x5168;&#x5C40;&#x533F;&#x540D;Suite&#x4E2D;&#x3002;  </p>
+<h1 id="&#x6302;&#x8D77;&#x6D4B;&#x8BD5;">&#x6302;&#x8D77;&#x6D4B;&#x8BD5; <a href="#&#x6302;&#x8D77;&#x6D4B;&#x8BD5;"> # </a></h1>
+<p>&#x6302;&#x8D77;&#x7684;&#x6D4B;&#x8BD5;&#x662F;&#x6307;&#x90A3;&#x4E9B;&#x6CA1;&#x6709;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it(<span class="hljs-string">&apos;should return -1 when the value is not present&apos;</span>);
+    });
+});
+</code></pre>
+<h1 id="&#x72EC;&#x5360;&#x6D4B;&#x8BD5;">&#x72EC;&#x5360;&#x6D4B;&#x8BD5; <a href="#&#x72EC;&#x5360;&#x6D4B;&#x8BD5;"> # </a></h1>
+<p>&#x72EC;&#x5360;&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#x5141;&#x8BB8;&#x4F60;&#x50CF;&#x4E0B;&#x9762;&#x4F8B;&#x5B50;&#x90A3;&#x6837;&#x901A;&#x8FC7;&#x6DFB;&#x52A0;.only()&#x6765;&#x53EA;&#x6267;&#x884C;&#x6307;&#x5B9A;&#x7684;&#x6D4B;&#x8BD5;&#x573A;&#x666F;&#xFF1A;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe.only(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        ...
+    });
+});
+</code></pre>
+<p>&#x6216;&#x8005;&#x6307;&#x5B9A;&#x7684;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it.only(<span class="hljs-string">&apos;should return -1 unless present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
+        });
+
+        it(<span class="hljs-string">&apos;should return the index when present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
+        });
+    });
+});
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x76EE;&#x524D;&#x53EA;&#x8003;&#x8651;&#x4F7F;&#x7528;&#x6700;&#x591A;&#x4E00;&#x4E2A;.only()&#xFF0C;&#x8FD9;&#x80FD;&#x6709;&#x6548;&#x7684;&#x8FBE;&#x5230;--grep&#x7684;&#x6548;&#x679C;&#x3002;</p>
+<h1 id="&#x5305;&#x542B;&#x6D4B;&#x8BD5;">&#x5305;&#x542B;&#x6D4B;&#x8BD5; <a href="#&#x5305;&#x542B;&#x6D4B;&#x8BD5;"> # </a></h1>
+<p>&#x8FD9;&#x4E2A;&#x7279;&#x6027;&#x7C7B;&#x4F3C;&#x4E8E;.only&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6DFB;&#x52A0;.skip()&#x6765;&#x544A;&#x8BC9;Mocha&#x5FFD;&#x7565;&#x6389;&#x8FD9;&#x4E2A;&#x6D4B;&#x8BD5;&#x573A;&#x666F;&#x548C;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x3002;&#x8FD9;&#x4F1A;&#x8BA9;&#x5B83;&#x4EEC;&#x88AB;&#x6302;&#x8D77;&#xFF0C;&#x6709;&#x52A9;&#x4E8E;&#x5728;&#x4F60;&#x5FD8;&#x8BB0;&#x53BB;&#x6389;&#x6CE8;&#x91CA;&#x7684;&#x65F6;&#x5019;&#x8DF3;&#x8FC7;&#x90A3;&#x4E9B;&#x6D4B;&#x8BD5;&#x3002;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe.skip(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        ...
+    });
+});
+</code></pre>
+<p>&#x5BF9;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x540C;&#x6837;&#x9002;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&apos;Array&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    describe(<span class="hljs-string">&apos;#indexOf()&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        it.skip(<span class="hljs-string">&apos;should return -1 unless present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
         })
 
-        it(<span class="hljs-string">&apos;should return the index when present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        })
-    })
-})
+        it(<span class="hljs-string">&apos;should return the index when present&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
+        });
+    });
+});
 </code></pre>
-<p>&#x4F7F;&#x7528;&#x4E86;only&#x4E4B;&#x540E;&#xFF0C;&#x8FD9;&#x6761;descibe&#x5C31;&#x53EA;&#x6267;&#x884C;only&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x5FFD;&#x7565;&#x3002;skip&#x4F5C;&#x7528;&#x76F8;&#x53CD;&#xFF0C;&#x5176;&#x4ED6;&#x4F1A;&#x6267;&#x884C;&#xFF0C;&#x81EA;&#x5DF1;&#x4F1A;&#x88AB;&#x5FFD;&#x7565;&#x3002;&#x4E24;&#x8005;&#x4E00;&#x8D77;&#xFF0C;&#x81EA;&#x5DF1;&#x60F3;&#x60F3;&#x90FD;&#x77E5;&#x9053;&#x3002;  </p>
-<p>mocha&#x8FD9;&#x4E2A;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#x5927;&#x4F53;&#x90FD;&#x4ECB;&#x7ECD;&#x5F97;&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x6700;&#x540E;&#x4F60;&#x4F1A;&#x60CA;&#x5947;&#x7684;&#x53D1;&#x73B0;&#xFF01;&#xFF01;&#xFF01;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x7684;&#x5185;&#x5BB9;&#x597D;&#x4E11;&#x554A;&#xFF01;&#xFF01;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#x56E0;&#x4E3A;&#x4F60;&#x662F;&#x4E2A;&#x6CA1;&#x6709;Mac&#x7684;&#x6B7B;&#x7A77;&#x540A;&#xFF01;  </p>
-<p>&#x5982;&#x679C;&#x60F3;&#x8F93;&#x51FA;&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#x597D;&#x770B;&#x70B9;&#xFF0C;&#x53EF;&#x4EE5;-R &#x6307;&#x4EE4;&#x6765;&#x9009;&#x62E9;&#x4E00;&#x4E9B;&#x8F93;&#x51FA;&#x6837;&#x5F0F;&#x3002;&#x4E2A;&#x4EBA;&#x5EFA;&#x8BAE;&#x8FD9;&#x6837;&#x8FD0;&#x884C;&#x3010;mocha -R spec yourFile&#x3011;&#xFF08;&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x77E5;&#x9053;&#xFF1F;&#x4E0D;&#x8981;&#x8BF4;&#x4E86;&#xFF0C;&#x6CEA;&#x6C34;&#x554A;~~&#xFF09;  </p>
+<h1 id="&#x5DEE;&#x5F02;&#x68C0;&#x6D4B;">&#x5DEE;&#x5F02;&#x68C0;&#x6D4B; <a href="#&#x5DEE;&#x5F02;&#x68C0;&#x6D4B;"> # </a></h1>
+<p>&#x5F53;&#x9700;&#x8981;&#x5411;&#x5F00;&#x53D1;&#x8005;&#x5448;&#x73B0;&#x5DEE;&#x5F02;&#x7684;&#x65F6;&#x5019;&#xFF0C;Mocha&#x652F;&#x6301;err.expected&#x548C;err.actual&#x5C5E;&#x6027;&#x3002;&#x76EE;&#x524D;Mocha&#x63D0;&#x4F9B;&#x4E86;&#x5B57;&#x7B26;&#x4E32;&#x5DEE;&#x5F02;&#xFF0C;&#x4EE5;&#x540E;&#x4F1A;&#x63D0;&#x4F9B;&#x5BF9;&#x8C61;&#x5DEE;&#x5F02;&#x548C;&#x5176;&#x4ED6;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h1 id="&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;">&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570; <a href="#&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;"> # </a></h1>
+<pre><code>Usage: mocha [debug] [options] [files]
+
+Commands:
+
+init &lt;path&gt;
+initialize a client-side mocha setup at &lt;path&gt;
+
+Options:
+
+-h, --help                      &#x8F93;&#x51FA;&#x7528;&#x6CD5;&#x4FE1;&#x606F;
+-V, --version                   &#x8F93;&#x51FA;&#x7248;&#x672C;&#x53F7;
+-r, --require &lt;name&gt;            &#x52A0;&#x8F7D;&#x6307;&#x5B9A;&#x7684;&#x6A21;&#x5757;
+-R, --reporter &lt;name&gt;           &#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684;&#x76D1;&#x63A7;&#x5668;
+-u, --ui &lt;name&gt;                 &#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684;&#x63A5;&#x53E3;&#xFF08;bdd | tdd | exports&#xFF09;
+-g, --grep &lt;pattern&gt;            &#x53EA;&#x6267;&#x884C;&#x6EE1;&#x8DB3;&#x8DEF;&#x5F84;&#x6A21;&#x5F0F;&#x7684;&#x6D4B;&#x8BD5;&#x811A;&#x672C;
+-i, --invert                    inverts --grep matches
+-t, --timeout &lt;ms&gt;              &#x8BBE;&#x7F6E;&#x6D4B;&#x8BD5;&#x7528;&#x4F8B;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF0C;&#x5355;&#x4F4D;&#x6BEB;&#x79D2;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;2000
+-s, --slow &lt;ms&gt;                 &quot;slow&quot; test threshold in milliseconds [75]
+-w, --watch                     &#x76D1;&#x6D4B;&#x6709;&#x53D8;&#x5316;&#x7684;&#x6587;&#x4EF6;
+-c, --colors                    &#x5F3A;&#x5236;&#x4F7F;&#x7528;&#x6587;&#x672C;&#x989C;&#x8272;
+-C, --no-colors                 &#x5F3A;&#x5236;&#x5173;&#x95ED;&#x6587;&#x672C;&#x989C;&#x8272;
+-G, --growl                     enable growl notification support
+-d, --debug                     enable node&apos;s debugger, synonym for node --debug
+-b, --bail                      bail after first test failure
+-A, --async-only                force all tests to take a callback (async)
+--recursive                     &#x5305;&#x542B;&#x5B50;&#x6587;&#x4EF6;&#x5939;
+--debug-brk                     enable node&apos;s debugger breaking on the first line
+--globals &lt;names&gt;               allow the given comma-delimited global [names]
+--check-leaks                   check for global variable leaks
+--interfaces                    &#x663E;&#x793A;&#x53EF;&#x7528;&#x7684;&#x63A5;&#x53E3;&#x5217;&#x8868;
+--reporters                     &#x663E;&#x793A;&#x53EF;&#x7528;&#x7684;&#x76D1;&#x63A7;&#x5668;&#x5217;&#x8868;
+--compilers &lt;ext&gt;:&lt;module&gt;,...  use the given module(s) to compile files
+</code></pre><h2 id="-w, --watch">-w, --watch <a href="#-w, --watch"> # </a></h2>
+<p>&#x5728;&#x5F53;&#x524D;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E2D;&#x7684; Javascript &#x6587;&#x4EF6;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x7ACB;&#x5373;&#x6267;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x6D4B;&#x8BD5;&#x3002;</p>
+<h2 id="--compilers">--compilers <a href="#--compilers"> # </a></h2>
+<p>coffee-script is no longer supported out of the box. CS and similar transpilers may be used by mapping the file extensions (for use with --watch) and the module name. For example --compilers coffee:coffee-script with CoffeeScript 1.6- or --compilers coffee:coffee-script/register with CoffeeScript 1.7+.</p>
+<h2 id="-b, --bail">-b, --bail <a href="#-b, --bail"> # </a></h2>
+<p>Only interested in the first exception? use --bail !</p>
+<h2 id="-d, --debug">-d, --debug <a href="#-d, --debug"> # </a></h2>
+<p>Enables node&apos;s debugger support, this executes your script(s) with node debug <file ...=""> allowing you to step through code and break with the debugger statement. Note the difference between mocha debug and mocha --debug: mocha debug will fire up node&apos;s built-in debug client, mocha --debug will allow you to use a different interface &#x2014; such as the Blink Developer Tools.</file></p>
+<h2 id="--globals ">--globals  <a href="#--globals "> # </a></h2>
+<p>Accepts a comma-delimited list of accepted global variable names. For example, suppose your app deliberately exposes a global named app and YUI, you may want to add --globals app,YUI. It also accepts wildcards. You could do --globals &apos;<em>bar&apos; and it would match foobar, barbar, etc. You can also simply pass in &apos;</em>&apos; to ignore all globals.</p>
+<h2 id="--check-leaks">--check-leaks <a href="#--check-leaks"> # </a></h2>
+<p>By default Mocha will not check for global variables leaked while running tests, to enable this pass --check-leaks, to specify globals that are acceptable use --globals, for example --globals jQuery,MyLib.</p>
+<h2 id="-r, --require ">-r, --require  <a href="#-r, --require "> # </a></h2>
+<p>The --require option is useful for libraries such as should.js, so you may simply --require should instead of manually invoking require(&apos;should&apos;) within each test file. Note that this works well for should as it augments Object.prototype, however if you wish to access a module&apos;s exports you will have to require them, for example var should = require(&apos;should&apos;).</p>
+<h2 id="-u, --ui ">-u, --ui  <a href="#-u, --ui "> # </a></h2>
+<p>The --ui option lets you specify the interface to use, defaulting to &quot;bdd&quot;.</p>
+<h2 id="-R, --reporter ">-R, --reporter  <a href="#-R, --reporter "> # </a></h2>
+<p>The --reporter option allows you to specify the reporter that will be used, defaulting to &quot;dot&quot;. This flag may also be used to utilize third-party reporters. For example if you npm install mocha-lcov-reporter you may then do --reporter mocha-lcov-reporter.</p>
+<h2 id="-t, --timeout ">-t, --timeout  <a href="#-t, --timeout "> # </a></h2>
+<p>Specifies the test-case timeout, defaulting to 2 seconds. To override you may pass the timeout in milliseconds, or a value with the s suffix, ex: --timeout 2s or --timeout 2000 would be equivalent.</p>
+<h2 id="-s, --slow ">-s, --slow  <a href="#-s, --slow "> # </a></h2>
+<p>Specify the &quot;slow&quot; test threshold, defaulting to 75ms. Mocha uses this to highlight test-cases that are taking too long.</p>
+<h2 id="-g, --grep ">-g, --grep  <a href="#-g, --grep "> # </a></h2>
+<p>The --grep option when specified will trigger mocha to only run tests matching the given pattern which is internally compiled to a RegExp.</p>
+<p>Suppose for example you have &quot;api&quot; related tests, as well as &quot;app&quot; related tests, as shown in the following snippet; One could use --grep api or --grep app to run one or the other. The same goes for any other part of a suite or test-case title, --grep users would be valid as well, or even --grep GET.</p>
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
