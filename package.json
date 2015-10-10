@@ -1,0 +1,23 @@
+{
+    "name": "chai",
+    "version": "0.0.1",
+    "description": "",
+    "keywords": [
+        ""
+    ],
+    "homepage": "http://JSLite.io",
+    "author": "jaywcjlove <398188662@qq.com>",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "licenses": "MIT",
+    "idoc": {
+        "theme": "default",
+        "md": [
+            "Lua5.3.md",
+            "chai.md",
+            "mocha.md"
+        ]
+    }
+}

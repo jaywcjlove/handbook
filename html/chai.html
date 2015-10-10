@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chai</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+</head>
+<body>
+<div class="nav">
+<div class="logo">chai</div>
+<ul><li><a href="../index.html">Lua5.3</a></li><li class="active"><a href="../html/chai.html">chai</a></li><li><a href="../html/mocha.html">mocha</a></li></ul></div>
+
+
+<div class="warpper">
+
+    <div class="page-toc">
+        <ul><li><a href="#chai">chai</a></li><li><a href="#to">to</a></li><li><a href="#be">be</a></li><li><a href="#been">been</a></li><li><a href="#is">is</a></li><li><a href="#that">that</a></li><li><a href="#and">and</a></li><li><a href="#has">has</a></li><li><a href="#have">have</a></li><li><a href="#with">with</a></li><li><a href="#at">at</a></li><li><a href="#of">of</a></li><li><a href="#same">same</a></li><li><a href="#not">not</a></li><li><a href="#deep">deep</a></li><li><a href="#a(type) .an(type)">a(type) .an(type)</a></li><li><a href="#.include(value) .contain(value)">.include(value) .contain(value)</a></li><li><a href="#.ok">.ok</a></li><li><a href="#.true .false">.true .false</a></li><li><a href="#.null">.null</a></li><li><a href="#.undefined">.undefined</a></li><li><a href="#* .exist">* .exist</a></li><li><a href="#.empty">.empty</a></li><li><a href="#.arguments">.arguments</a></li><li><a href="#.equal(value)">.equal(value)</a></li><li><a href="#.eql(value)">.eql(value)</a></li><li><a href="#.above(value)">.above(value)</a></li><li><a href="#.least(value)">.least(value)</a></li><li><a href="#.below(value)">.below(value)</a></li><li><a href="#.most(value)">.most(value)</a></li><li><a href="#.within(start, finish)">.within(start, finish)</a></li><li><a href="#.instanceof(constructor)">.instanceof(constructor)</a></li><li><a href="#.property(name, [value])">.property(name, [value])</a></li><li><a href="#.ownProperty(name)">.ownProperty(name)</a></li><li><a href="#.throw(constructor)">.throw(constructor)</a></li></ul>
+    </div>
+    
+    <div class="content markdown-body">
+        <h2 id="chai">chai <a href="#chai"> # </a></h2>
+<h1 id="to">to <a href="#to"> # </a></h1>
+<h1 id="be">be <a href="#be"> # </a></h1>
+<h1 id="been">been <a href="#been"> # </a></h1>
+<h1 id="is">is <a href="#is"> # </a></h1>
+<h1 id="that">that <a href="#that"> # </a></h1>
+<h1 id="and">and <a href="#and"> # </a></h1>
+<h1 id="has">has <a href="#has"> # </a></h1>
+<h1 id="have">have <a href="#have"> # </a></h1>
+<h1 id="with">with <a href="#with"> # </a></h1>
+<h1 id="at">at <a href="#at"> # </a></h1>
+<h1 id="of">of <a href="#of"> # </a></h1>
+<h1 id="same">same <a href="#same"> # </a></h1>
+<h1 id="not">not <a href="#not"> # </a></h1>
+<p>&#x8DDF;&#x5728;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x540E;&#x9762;&#x7684;&#x5426;&#x5B9A;&#x65AD;&#x8A00;</p>
+<pre><code class="lang-js">expect(foo).to.not.equal(<span class="hljs-string">&apos;bar&apos;</span>);  
+expect(goodFn).to.not.throw(<span class="hljs-built_in">Error</span>);  
+expect({ foo: <span class="hljs-string">&apos;baz&apos;</span> }).to.have.property(<span class="hljs-string">&apos;foo&apos;</span>)  
+  .and.not.equal(<span class="hljs-string">&apos;bar&apos;</span>);
+</code></pre>
+<h1 id="deep">deep <a href="#deep"> # </a></h1>
+<p>&#x7528;&#x6765;&#x6DF1;&#x5EA6;&#x6BD4;&#x8F83;2&#x4E2A;&#x5BF9;&#x8C61;,&#x4E00;&#x822C;&#x7528;&#x5728;equal&#x548C;property&#x524D;&#x9762;</p>
+<pre><code class="lang-js">expect(foo).to.deep.equal({ bar: <span class="hljs-string">&apos;baz&apos;</span> });  
+expect({ foo: { bar: { baz: <span class="hljs-string">&apos;quux&apos;</span> } } })  
+  .to.have.deep.property(<span class="hljs-string">&apos;foo.bar.baz&apos;</span>, <span class="hljs-string">&apos;quux&apos;</span>);
+</code></pre>
+<h1 id="a(type) .an(type)">a(type) .an(type) <a href="#a(type) .an(type)"> # </a></h1>
+<p>&#x7528;&#x6765;&#x65AD;&#x8A00;&#x53D8;&#x91CF;&#x7C7B;&#x578B;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// typeof</span>
+expect(<span class="hljs-string">&apos;test&apos;</span>).to.be.a(<span class="hljs-string">&apos;string&apos;</span>);  
+expect({ foo: <span class="hljs-string">&apos;bar&apos;</span> }).to.be.an(<span class="hljs-string">&apos;object&apos;</span>);  
+expect(<span class="hljs-literal">null</span>).to.be.a(<span class="hljs-string">&apos;null&apos;</span>);  
+expect(<span class="hljs-literal">undefined</span>).to.be.an(<span class="hljs-string">&apos;undefined&apos;</span>);
+
+<span class="hljs-comment">// language chain</span>
+expect(foo).to.be.an.instanceof(Foo);
+</code></pre>
+<h1 id=".include(value) .contain(value)">.include(value) .contain(value) <a href="#.include(value) .contain(value)"> # </a></h1>
+<p>&#x7528;&#x6765;&#x65AD;&#x8A00;&#x5B57;&#x7B26;&#x4E32;&#x5305;&#x542B;&#x548C;&#x6570;&#x7EC4;&#x5305;&#x542B;,&#x5982;&#x679C;&#x7528;&#x5728;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x6D4B;&#x8BD5;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x5305;&#x542B;&#x67D0;key</p>
+<pre><code class="lang-js">expect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).to.include(<span class="hljs-number">2</span>);  
+expect(<span class="hljs-string">&apos;foobar&apos;</span>).to.contain(<span class="hljs-string">&apos;foo&apos;</span>);  
+expect({ foo: <span class="hljs-string">&apos;bar&apos;</span>, hello: <span class="hljs-string">&apos;universe&apos;</span> }).to.include.keys(<span class="hljs-string">&apos;foo&apos;</span>);
+</code></pre>
+<h1 id=".ok">.ok <a href="#.ok"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x662F;&#x5426;&#x4E3A;&#x771F;(&#x9690;&#x5F0F;&#x8F6C;&#x6362;)</p>
+<pre><code class="lang-js">expect(<span class="hljs-string">&apos;everthing&apos;</span>).to.be.ok;  
+expect(<span class="hljs-number">1</span>).to.be.ok;  
+expect(<span class="hljs-literal">false</span>).to.not.be.ok;  
+expect(<span class="hljs-literal">undefined</span>).to.not.be.ok;  
+expect(<span class="hljs-literal">null</span>).to.not.be.ok;
+</code></pre>
+<h1 id=".true .false">.true .false <a href="#.true .false"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x662F;&#x5426;&#x4E3A;&#x5E03;&#x5C14;&#x503C; <code>true</code> , <code>false</code></p>
+<pre><code class="lang-js">expect(<span class="hljs-literal">true</span>).to.be.true;  
+expect(<span class="hljs-number">1</span>).to.not.be.true;
+
+expect(<span class="hljs-literal">false</span>).to.be.false;  
+expect(<span class="hljs-number">0</span>).to.not.be.false;
+</code></pre>
+<h1 id=".null">.null <a href="#.null"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x4E3A; <code>null</code></p>
+<pre><code class="lang-js">expect(<span class="hljs-literal">null</span>).to.be.null;  
+expect(<span class="hljs-literal">undefined</span>).not.to.be.null;
+</code></pre>
+<h1 id=".undefined">.undefined <a href="#.undefined"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x4E3A; <code>undefined</code></p>
+<pre><code class="lang-js">expect(<span class="hljs-literal">undefined</span>).to.be.undefined;  
+expect(<span class="hljs-literal">null</span>).to.not.be.undefined;
+</code></pre>
+<h1 id="* .exist">* .exist <a href="#* .exist"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x65E2;&#x4E0D;&#x662F;null&#x4E5F;&#x4E0D;&#x662F; <code>undefined*</code></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">&apos;hi&apos;</span>  
+  , bar = <span class="hljs-literal">null</span>
+  , baz;
+
+expect(foo).to.exist;  
+expect(bar).to.not.exist;  
+expect(baz).to.not.exist;
+</code></pre>
+<h1 id=".empty">.empty <a href="#.empty"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x4E3A;&#x7A7A;,&#x6570;&#x7EC4;&#x4E00;&#x822C;&#x6307;&#x957F;&#x5EA6;&#x4E3A;0,&#x5B57;&#x7B26;&#x4E32;&#x4E3A;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;,JSON&#x5BF9;&#x8C61;&#x4E00;&#x822C;&#x6307;&#x7A7A;&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-js">expect([]).to.be.empty;  
+expect(<span class="hljs-string">&apos;&apos;</span>).to.be.empty;  
+expect({}).to.be.empty;
+</code></pre>
+<h1 id=".arguments">.arguments <a href="#.arguments"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x4E3A;&#x51FD;&#x6570;&#x7684;arguments&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span> (<span class="hljs-params"></span>) </span>{  
+    expect(<span class="hljs-built_in">arguments</span>).to.be.arguments;
+}
+</code></pre>
+<h1 id=".equal(value)">.equal(value) <a href="#.equal(value)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x7684;&#x4E25;&#x683C;&#x76F8;&#x7B49;(===&#x8FD0;&#x7B97;&#x7B26;),&#x5982;&#x679C;&#x524D;&#x9762;&#x6709;deep&#x94FE;&#x5F0F;&#x6807;&#x8BB0;,&#x8868;&#x793A;&#x76EE;&#x6807;&#x5185;&#x5BB9;&#x7684;&#x6DF1;&#x5EA6;&#x76F8;&#x7B49;</p>
+<pre><code class="lang-js">expect(<span class="hljs-string">&apos;hello&apos;</span>).to.equal(<span class="hljs-string">&apos;hello&apos;</span>);  
+expect(<span class="hljs-number">42</span>).to.equal(<span class="hljs-number">42</span>);  
+expect(<span class="hljs-number">1</span>).to.not.equal(<span class="hljs-literal">true</span>);  
+expect({ foo: <span class="hljs-string">&apos;bar&apos;</span> }).to.not.equal({ foo: <span class="hljs-string">&apos;bar&apos;</span> });  
+expect({ foo: <span class="hljs-string">&apos;bar&apos;</span> }).to.deep.equal({ foo: <span class="hljs-string">&apos;bar&apos;</span> });
+</code></pre>
+<h1 id=".eql(value)">.eql(value) <a href="#.eql(value)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x5185;&#x5BB9;&#x7684;&#x6DF1;&#x5EA6;&#x76F8;&#x7B49;,&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x524D;&#x9762;.deep.equal&#x7684;&#x7B80;&#x5199;&#x5F62;&#x5F0F;</p>
+<pre><code class="lang-js">expect({ foo: <span class="hljs-string">&apos;bar&apos;</span> }).to.eql({ foo: <span class="hljs-string">&apos;bar&apos;</span> });  
+expect([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]).to.eql([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]);
+</code></pre>
+<h1 id=".above(value)">.above(value) <a href="#.above(value)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x7684;&#x503C;&#x5927;&#x4E8E;&#x67D0;&#x4E2A;value&#xFF0C;&#x5982;&#x679C;&#x524D;&#x9762;&#x6709;length&#x7684;&#x94FE;&#x5F0F;&#x6807;&#x8BB0;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5224;&#x65AD;&#x6570;&#x7EC4;&#x957F;&#x5EA6;&#x6216;&#x8005;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;</p>
+<pre><code class="lang-js">expect(<span class="hljs-number">10</span>).to.be.above(<span class="hljs-number">5</span>);
+
+expect(<span class="hljs-string">&apos;foo&apos;</span>).to.have.length.above(<span class="hljs-number">2</span>);  
+expect([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]).to.have.length.above(<span class="hljs-number">2</span>);
+</code></pre>
+<h1 id=".least(value)">.least(value) <a href="#.least(value)"> # </a></h1>
+<p>&#x8868;&#x793A;&#x81F3;&#x5C11;(&#x5927;&#x4E8E;&#x6216;&#x7B49;&#x4E8E;) &#x7528;&#x6CD5;&#x4E0E;above&#x7C7B;&#x4F3C;</p>
+<h1 id=".below(value)">.below(value) <a href="#.below(value)"> # </a></h1>
+<p>&#x8868;&#x793A;&#x5C0F;&#x4E8E;&#xFF0C;&#x7528;&#x6CD5;&#x4E0E;above&#x7C7B;&#x4F3C;</p>
+<h1 id=".most(value)">.most(value) <a href="#.most(value)"> # </a></h1>
+<p>&#x8868;&#x793A;&#x81F3;&#x591A;(&#x5C0F;&#x4E8E;&#x6216;&#x7B49;&#x4E8E;)&#xFF0C;&#x7528;&#x6CD5;&#x4E0E;above&#x7C7B;&#x4F3C;</p>
+<h1 id=".within(start, finish)">.within(start, finish) <a href="#.within(start, finish)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x503C;&#x5728;&#x67D0;&#x4E2A;&#x8303;&#x56F4;&#x533A;&#x95F4;,&#x53EF;&#x4EE5;&#x4E0E;length&#x8FDE;&#x7528;</p>
+<pre><code class="lang-js">expect(<span class="hljs-number">7</span>).to.be.within(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>);  
+expect(<span class="hljs-string">&apos;foo&apos;</span>).to.have.length.within(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>);  
+expect([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]).to.have.length.within(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>);
+</code></pre>
+<h1 id=".instanceof(constructor)">.instanceof(constructor) <a href="#.instanceof(constructor)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x662F;&#x67D0;&#x4E2A;&#x6784;&#x9020;&#x5668;&#x4EA7;&#x751F;&#x7684;&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Tea = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name</span>) </span>{ <span class="hljs-keyword">this</span>.name = name; }  
+  , Chai = <span class="hljs-keyword">new</span> Tea(<span class="hljs-string">&apos;chai&apos;</span>);
+
+expect(Chai).to.be.an.instanceof(Tea);  
+expect([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ]).to.be.instanceof(<span class="hljs-built_in">Array</span>);
+</code></pre>
+<h1 id=".property(name, [value])">.property(name, [value]) <a href="#.property(name, [value])"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x6709;&#x4EE5;name&#x4E3A;key&#x7684;&#x5C5E;&#x6027;,&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;value&#x65AD;&#x8A00;&#x5C5E;&#x6027;&#x503C;&#x662F;&#x4E25;&#x683C;&#x76F8;&#x7B49;&#x7684;,&#x6B64;[value]&#x53C2;&#x6570;&#x4E3A;&#x53EF;&#x9009;,&#x5982;&#x679C;&#x4F7F;&#x7528;deep&#x94FE;&#x5F0F;&#x8C03;&#x7528;,&#x53EF;&#x4EE5;&#x5728;name&#x4E2D;&#x6307;&#x5B9A;&#x5BF9;&#x8C61;&#x6216;&#x6570;&#x7EC4;&#x7684;&#x5F15;&#x7528;&#x8868;&#x793A;&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// simple referencing</span>
+<span class="hljs-keyword">var</span> obj = { foo: <span class="hljs-string">&apos;bar&apos;</span> };  
+expect(obj).to.have.property(<span class="hljs-string">&apos;foo&apos;</span>);  
+expect(obj).to.have.property(<span class="hljs-string">&apos;foo&apos;</span>, <span class="hljs-string">&apos;bar&apos;</span>);
+
+<span class="hljs-comment">// deep referencing</span>
+<span class="hljs-keyword">var</span> deepObj = {  
+    green: { tea: <span class="hljs-string">&apos;matcha&apos;</span> }
+  , teas: [ <span class="hljs-string">&apos;chai&apos;</span>, <span class="hljs-string">&apos;matcha&apos;</span>, { tea: <span class="hljs-string">&apos;konacha&apos;</span> } ]
+};
+
+expect(deepObj).to.have.deep.property(<span class="hljs-string">&apos;green.tea&apos;</span>, <span class="hljs-string">&apos;matcha&apos;</span>);  
+expect(deepObj).to.have.deep.property(<span class="hljs-string">&apos;teas[1]&apos;</span>, <span class="hljs-string">&apos;matcha&apos;</span>);  
+expect(deepObj).to.have.deep.property(<span class="hljs-string">&apos;teas[2].tea&apos;</span>, <span class="hljs-string">&apos;konacha&apos;</span>);
+</code></pre>
+<h1 id=".ownProperty(name)">.ownProperty(name) <a href="#.ownProperty(name)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x62E5;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x975E;&#x7EE7;&#x627F;&#x94FE;</p>
+<pre><code class="lang-js">expect(<span class="hljs-string">&apos;test&apos;</span>).to.have.ownProperty(<span class="hljs-string">&apos;length&apos;</span>);
+</code></pre>
+<h1 id=".throw(constructor)">.throw(constructor) <a href="#.throw(constructor)"> # </a></h1>
+<p>&#x65AD;&#x8A00;&#x76EE;&#x6807;&#x4F1A;&#x629B;&#x51FA;&#x7279;&#x5B9A;&#x7684;&#x5F02;&#x5E38;,&#x53EF;&#x9009;&#x7684;&#x53EF;&#x4EE5;&#x7528;&#x6B63;&#x5219;&#x6765;&#x5339;&#x914D;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;&#x7684;message&#x5C5E;&#x6027;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> err = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ReferenceError</span>(<span class="hljs-string">&apos;This is a bad function.&apos;</span>);  
+<span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">throw</span> err; }  
+expect(fn).to.throw(<span class="hljs-built_in">ReferenceError</span>);  
+expect(fn).to.throw(<span class="hljs-built_in">Error</span>);  
+expect(fn).to.throw(<span class="hljs-regexp">/bad function/</span>);  
+expect(fn).to.not.throw(<span class="hljs-string">&apos;good function&apos;</span>);  
+expect(fn).to.throw(<span class="hljs-built_in">ReferenceError</span>, <span class="hljs-regexp">/bad function/</span>);  
+expect(fn).to.throw(err);  
+expect(fn).to.not.throw(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">&apos;Out of range.&apos;</span>));
+</code></pre>
+<p>&#x8BF7;&#x67E5;&#x770B;&#x5B98;&#x65B9;&#x6587;&#x6863;<a href="http://chaijs.com/api/bdd/">BDD API</a></p>
+
+        <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>
