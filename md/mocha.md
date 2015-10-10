@@ -1,6 +1,8 @@
 Mocha
 -----
 
+Mocha是一个基于node.js和浏览器的集合各种特性的Javascript测试框架，并且可以让异步测试也变的简单和有趣。Mocha的测试是连续的，在正确的测试条件中遇到未捕获的异常时，会给出灵活且准确的报告。Mocha托管在Github上。
+
 [Mocha中文指南](http://www.ifeenan.com/javascript/2015-02-26-Mocha%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97/)  
 [should.js](http://shouldjs.github.io/)  
 [mocha官方网站](http://mochajs.org/)  
@@ -301,3 +303,384 @@ Specify the "slow" test threshold, defaulting to 75ms. Mocha uses this to highli
 The --grep option when specified will trigger mocha to only run tests matching the given pattern which is internally compiled to a RegExp.
 
 Suppose for example you have "api" related tests, as well as "app" related tests, as shown in the following snippet; One could use --grep api or --grep app to run one or the other. The same goes for any other part of a suite or test-case title, --grep users would be valid as well, or even --grep GET.
+
+
+# 接口
+
+Mocha的接口系统提供了BDD、TDD和exports三种风格，并允许开发者选择使用。
+
+## BDD
+
+"BDD"接口提供了describe()、it()、before()、after()、beforeEach()和afterEach可使用。
+
+```js 
+describe('Array', function() {
+    before(function() {
+        // ...
+    });
+
+    describe('#indexOf()', function() {
+        it('should return -1 when not present', function() {
+            [1,2,3].indexOf(4).should.equal(-1);
+        });
+    });
+});
+```
+
+## TDD
+
+"TDD"接口提供了suite()、test()、setup()和teardown()可使用。
+
+```js
+suite('Array', function() {
+    setup(function() {
+        // ...
+    });
+
+    suite('#indexOf()', function() {
+        test('should return -1 when not present', function() {
+            assert.equal(-1, [1,2,3].indexOf(4));
+        });
+    });
+});
+```
+
+
+
+## Exports
+
+The "exports" interface is much like Mocha's predecessor expresso. The keys before, after, beforeEach, and afterEach are special-cased, object values are suites, and function values are test-cases.
+
+```js
+module.exports = {
+    before: function() {
+        // ...
+    },
+
+    'Array': {
+        '#indexOf()': {
+            'should return -1 when not present': function() {
+                [1,2,3].indexOf(4).should.equal(-1);
+            };
+        };
+    };
+};
+```
+
+## QUnit
+
+The qunit-inspired interface matches the "flat" look of QUnit where the test suite title is simply defined before the test-cases.
+
+```js
+function ok(expr, msg) {
+    if (!expr) throw new Error(msg);
+}
+
+suite('Array');
+
+test('#length', function() {
+    var arr = [1,2,3];
+    ok(arr.length == 3);
+});
+
+test('#indexOf()', function() {
+    var arr = [1,2,3];
+    ok(arr.indexOf(1) == 0);
+    ok(arr.indexOf(2) == 1);
+    ok(arr.indexOf(3) == 2);
+});
+
+suite('String');
+
+test('#length', function(){
+    ok('foo'.length == 3);
+});
+```
+
+
+Require
+
+The require interface allows you to require the describe and friend words directly using require and call them whatever you want. This interface is also useful if you want to avoid global variables in your tests.
+
+```js
+var testCase = require('mocha').describe;
+var pre = require('mocha').before;
+var assertions = require('mocha').assertions;
+var assert = require('assert');
+
+testCase('Array', function() {
+    pre(function() {
+        // ...
+    });
+
+    testCase('#indexOf()', function() {
+        assertions('should return -1 when not present', function() {
+        assert.equal([1,2,3].indexOf(4), -1);
+        });
+    });
+});
+```
+
+
+# 监控器
+
+Mocha 的监控器可以适应控制台窗口，并且当标准输入流不是和 tty 关联的时候，它总是会禁用 ansi-escape 着色。
+
+## Dot Matrix
+
+The "dot" matrix reporter is simply a series of dots that represent test cases, failures highlight in red, pending in blue, slow as yellow.
+
+## Spec
+
+The "spec" reporter outputs a hierarchical view nested just as the test cases are.
+
+## Nyan
+
+The "nyan" reporter is exactly what you might expect:
+
+
+## TAP
+
+The TAP reporter emits lines for a [Test-Anything-Protocol](http://en.wikipedia.org/wiki/Test_Anything_Protocol) consumer.
+
+## Landing Strip
+
+The Landing Strip reporter is a gimmicky test reporter simulating a plane landing :) unicode ftw
+
+## List
+
+The "List" reporter outputs a simple specifications list as test cases pass or fail, outputting the failure details at the bottom of the output.
+
+## Progress
+
+The progress reporter implements a simple progress-bar:
+
+## JSON
+
+The JSON reporter outputs a single large JSON object when the tests have completed (failures or not).
+
+## JSON Stream
+
+The JSON Stream reporter outputs newline-delimited JSON "events" as they occur, beginning with a "start" event, followed by test passes or failures, and then the final "end" event.
+
+## JSONCov
+
+The JSONCov reporter is similar to the JSON reporter, however when run against a library instrumented by [node-jscoverage](https://github.com/visionmedia/node-jscoverage) it will produce coverage output.
+
+
+## HTMLCov
+
+The HTMLCov reporter extends the JSONCov reporter. The library being tested should first be instrumented by [node-jscoverage](https://github.com/visionmedia/node-jscoverage), this allows Mocha to capture the coverage information necessary to produce a single-page HTML report.
+
+Click to view the current [Express test coverage](http://poppinlp.com/mochacn/coverage.html) report. For an integration example view the mocha test coverage support [commit](https://github.com/visionmedia/express/commit/b6ee5fafd0d6c79cf7df5560cb324ebee4fe3a7f) for Express.
+
+## Min
+
+The "min" reporter displays the summary only, while still outputting errors on failure. This reporter works great with --watch as it clears the terminal in order to keep your test summary at the top.
+
+## Doc
+
+The "doc" reporter outputs a hierarchical HTML body representation of your tests, wrap it with a header, footer, some styling and you have some fantastic documentation!
+
+
+For example suppose you have the following JavaScript:
+
+```js
+describe('Array', function() {
+    describe('#indexOf()', function() {
+        it('should return -1 when the value is not present', function() {
+            [1,2,3].indexOf(5).should.equal(-1);
+            [1,2,3].indexOf(0).should.equal(-1);
+        });
+    });
+});
+
+```
+
+The command mocha --reporter doc array would yield:
+
+```html
+<section class="suite">
+    <h1>Array</h1>
+    <dl>
+        <section class="suite">
+            <h1>#indexOf()</h1>
+            <dl>
+                <dt>should return -1 when the value is not present</dt>
+                <dd><pre><code>[1,2,3].indexOf(5).should.equal(-1); [1,2,3].indexOf(0).should.equal(-1);</code></pre></dd>
+            </dl>
+        </section>
+    </dl>
+</section>
+```
+
+The SuperAgent request library test documentation was generated with Mocha's doc reporter using this simple make target:
+
+```
+test-docs:
+make test REPORTER=doc \
+| cat docs/head.html - docs/tail.html \
+> docs/test.html
+```
+
+View the entire [Makefile](https://github.com/visionmedia/superagent/blob/master/Makefile) for reference.
+
+
+## XUnit
+
+Documentation needed.
+
+## TeamCity
+
+Documentation needed.
+
+## Markdown
+
+The "markdown" reporter generates a markdown TOC and body for your test suite. This is great if you want to use the tests as documentation within a Github wiki page, or a markdown file in the repository that Github can render. For example here is the Connect [test output](https://github.com/senchalabs/connect/blob/90a725343c2945aaee637e799b1cd11e065b2bff/tests.md).
+
+## HTML
+
+The HTML reporter is currently the only browser reporter supported by Mocha, and it looks like this:
+
+
+
+# 支持浏览器
+
+Mocha在浏览器中执行。每个Mocha的发行版会为浏览器生成新的./mocha.js和./mocha.css。只需要加载相应的script和stylesheet，并告诉Mocha你希望使用的接口，你就可以使用Mocha在浏览器中执行测试。下面是一个典型的使用Mocha的测试，在加载测试脚本前，我们调用mocha.setup('bdd')来使用BDD接口，然后通过mocha.run()在onload之后执行测试脚本。
+
+```html 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mocha Tests</title>
+        <link rel="stylesheet" href="mocha.css" />
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script src="jquery.js"></script>
+        <script src="expect.js"></script>
+        <script src="mocha.js"></script>
+        <script>mocha.setup('bdd')</script>
+        <script src="test.array.js"></script>
+        <script src="test.object.js"></script>
+        <script src="test.xhr.js"></script>
+        <script>
+            mocha.checkLeaks();
+            mocha.globals(['jQuery']);
+            mocha.run();
+        </script>
+    </body>
+</html>
+```
+
+## grep
+
+The client-side may utilize --grep as well, however you use the query-string, for example ?grep=api.
+
+
+# mocha.opts文件
+
+Mocha会尝试取加载./test/mocha.opts文件，并把它与process.argv联系起来，但命令行参数的优先级更高。例如你有下面这样的mocha.opts文件：
+
+```
+--require should
+--reporter dot
+--ui bdd
+```
+
+这会默认使用dot监控器、加载should库并使用bdd接口。与此同时，你也可以在调用mocha(1)的时候添加参数，比如下面这样会激活growl支持并将监控器设置为list：
+
+```sh
+$ mocha --reporter list --growl
+```
+
+# 指定方案超时时间
+
+方案级的超时时间会对整个测试方案生效，也可以通过this.timeout(0)来关闭。如果其内部的测试方案和测试用例不覆盖这个值，那么这个值将被继承。
+
+```js
+describe('a suite of tests', function() {
+    this.timeout(500);
+
+    it('should take less than 500ms', function(done) {
+        setTimeout(done, 300);
+    });
+
+    it('should take less than 500ms as well', function(done) {
+        setTimeout(done, 200);
+    });
+});
+```
+
+# 指定测试超时时间
+
+测试可以指定超时时间，也可以通过this.timeout(0)来关闭所有的超时时间：
+
+```
+it('should take less than 500ms', function(done) {
+    this.timeout(500);
+    setTimeout(done, 300);
+});
+```
+
+
+# 最佳实践
+
+## test/*
+
+mocha(1)默认会使用./test/*.js这个路径模式，这也通常是你放测试用例的好地方。
+
+## Makefiles
+
+对开发者友好，在Makefile中添加一个make test，不要让他们在你的文档中到处寻找如何运行测试用例：
+
+```
+test:
+./node_modules/.bin/mocha --reporter list
+
+.PHONY: test
+```
+
+
+# 编辑器
+
+下面是可用的编辑器相关的包列表：
+
+## TextMate bundle
+
+Mocha TextMate bundle 包含了让写测试更快更舒心的很多snippets。执行以下命令安装：
+
+```
+$ make tm
+```
+
+# 测试方案示例
+
+下面的测试方案是来自于真实的使用Mocha的项目，所以用它们做示例再好不过了：
+
+- [Express](https://github.com/visionmedia/express/tree/master/test)
+- [Connect](https://github.com/senchalabs/connect/tree/master/test)
+- [SuperAgent](https://github.com/visionmedia/superagent/tree/master/test/node)
+- [WebSocket.io](https://github.com/LearnBoost/websocket.io/tree/master/test)
+- [Mocha](https://github.com/visionmedia/mocha/tree/master/test)
+
+# 执行Mocha的测试
+
+执行测试：
+
+```sh
+$ make test
+```
+
+执行所有测试，包括接口：
+
+```sh
+$ make test-all
+```
+
+更改监控器：
+
+```sh
+$ make test REPORTER=list
+```
+
