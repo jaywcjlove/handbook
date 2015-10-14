@@ -1,7 +1,7 @@
 {
-    "name": "中文手册",
+    "name": "handbook",
     "version": "0.0.1",
-    "description": "中文手册",
+    "description": "",
     "keywords": [
         ""
     ],
@@ -9,7 +9,7 @@
     "author": "jaywcjlove <398188662@qq.com>",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jaywcjlove/handbook"
+        "url": ""
     },
     "licenses": "MIT",
     "idoc": {
@@ -17,7 +17,8 @@
         "md": [
             "Lua5.3.md",
             "chai.md",
-            "mocha.md"
+            "mocha.md",
+            "should.md"
         ]
     }
 }
