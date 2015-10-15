@@ -23,7 +23,8 @@
                     "mocha.md",
                     "should.md"
                 ]
-            }
+            },
+            "Backbone.js.md"
         ]
     }
 }

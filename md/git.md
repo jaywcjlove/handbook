@@ -6,7 +6,7 @@
 - [Git官网](http://git-scm.com/)
 - [**Github 15分钟学习Git**](https://try.github.io)
 
-##参考资料
+## 参考资料
 - [Git参考手册](http://gitref.org/zh/index.html)
 - [Git简明手册](http://www.mceiba.com/tool/git-cheat-sheet.html)
 - [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/)
