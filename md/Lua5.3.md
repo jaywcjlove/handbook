@@ -1,4 +1,5 @@
-[转载来源于](http://cloudwu.github.io/lua53doc/manual.html#3.3.1)
+[LuaRocks is the package manager for Lua modules.](https://luarocks.org/)  
+[下面翻译来源于](http://cloudwu.github.io/lua53doc/manual.html#3.3.1)  
 
 译者在翻译时，使用了一些尚未统一的中文术语译词，统一罗列如下：  
 
