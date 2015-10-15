@@ -16,9 +16,14 @@
         "theme": "default",
         "md": [
             "Lua5.3.md",
-            "chai.md",
-            "mocha.md",
-            "should.md"
+            "git.md",
+            {
+                "测试工具": [
+                    "chai.md",
+                    "mocha.md",
+                    "should.md"
+                ]
+            }
         ]
     }
 }
