@@ -12,8 +12,7 @@
 - [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/)
 - [Git Community Book 中文版](http://gitbook.liuhui998.com/index.html)
 - [Pro Git](http://git-scm.com/book/en/v2)
-- [图解Git](http://marklodato.github.io/visual-
-- git-guide/index-zh-cn.html)
+- [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
 - [git-简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
 - [learnGitBranching 在线学习工具](http://pcottle.github.io/learnGitBranching/)
 - [初级教程](http://rogerdudler.github.io/git-guide/index.zh.html) 

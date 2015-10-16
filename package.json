@@ -9,7 +9,7 @@
     "author": "jaywcjlove <398188662@qq.com>",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/jaywcjlove/handbook.git"
     },
     "licenses": "MIT",
     "idoc": {
@@ -24,7 +24,14 @@
                     "should.md"
                 ]
             },
-            "Backbone.js.md"
+            "Backbone.js.md",
+            {
+                "Shortcuts": [
+                    "bash.md",
+                    "Sketch.md",
+                    "sublime.md"
+                ]
+            }
         ]
     }
 }
