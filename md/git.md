@@ -129,30 +129,33 @@ $ git fetch -p
 
 只需要更改config文件里，那三个url的顺序即可，fetch-url会直接对应排行第一的那个utl连接。    
 
-##新建仓库
+## 新建仓库
 
-### init
+### 初始化
 `git init` #初始化  
 
-### status
+### 获取状态
 `git status` #获取状态  
 
-### add
+### 添加内容
+> 向索引中添加文件的内容
+
 `git add file` #.或*代表全部添加
 `git rm --cached <added_file_to_undo>` 在commit之前撤销git add操作
 `git reset head` 好像比上面`git rm --cached`更方便  
 
-### commit
+### 记录修改内容 
 `git commit -m "message"` #此处注意乱码
 
-### remote
+### 添加源
 `git remote add origin git@github.com:JSLite/test.git` #添加源
 
-### push
+### 提交内容
 `git push -u origin master` #push同事设置默认跟踪分支  
 `git push origin master`   
 
 ##从现有仓库克隆
+
 `git clone git://github.com/JSLite/JSLite.js.git `  
 `git clone git://github.com/JSLite/JSLite.js.git mypro` #克隆到自定义文件夹  
 `git clone [user@]example.com:path/to/repo.git/` #SSH协议还有另一种写法。  
@@ -175,15 +178,20 @@ $ git clone rsync://example.com/path/to/repo.git/
 
 ## submodule
 
+### 添加
 `git submodule add --force 仓库地址 路径`  
 其中，仓库地址是指子模块仓库地址，路径指将子模块放置在当前工程下的路径。   
 注意：路径不能以 / 结尾（会造成修改不生效）、不能是现有工程已有的目录（不能順利 Clone）  
+
+### 初始化
 `git submodule init` 初始化submodule   
 `git submodule update` 更新submodule(必须在根目录执行命令)
 
+### 更新
 当使用git clone下来的工程中带有submodule时，初始的时候，submodule的内容并不会自动下载下来的，此时，只需执行如下命令：  
 `git submodule update --init --recursive` 下载的工程带有submodule  
 
+### 拉代码
 `git submodule foreach git pull` submodule 里有其他的 submodule 一次更新
 `git submodule foreach git pull origin master` submodule更新
 
