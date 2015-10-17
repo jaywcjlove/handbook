@@ -31,7 +31,8 @@
                     "mocha.md",
                     "should.md"
                 ]
-            }
+            },
+            "gulp-book.md"
         ]
     }
 }
