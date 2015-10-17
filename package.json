@@ -9,27 +9,27 @@
     "author": "jaywcjlove <398188662@qq.com>",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jaywcjlove/handbook.git"
+        "url": ""
     },
     "licenses": "MIT",
     "idoc": {
         "theme": "default",
         "md": [
+            "Backbone.js.md",
             "Lua5.3.md",
+            {
+                "Shortcuts": [
+                    "Sketch.md",
+                    "bash.md",
+                    "sublime.md"
+                ]
+            },
             "git.md",
             {
                 "测试工具": [
                     "chai.md",
                     "mocha.md",
                     "should.md"
-                ]
-            },
-            "Backbone.js.md",
-            {
-                "Shortcuts": [
-                    "bash.md",
-                    "Sketch.md",
-                    "sublime.md"
                 ]
             }
         ]
