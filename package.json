@@ -32,7 +32,8 @@
                     "should.md"
                 ]
             },
-            "gulp-book.md"
+            "gulp-book.md",
+            "shell常用命令.md"
         ]
     }
 }
