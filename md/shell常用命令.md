@@ -46,10 +46,10 @@ rmdir -p 1/2/3
 # cp
 > 复制命令
 
-复制一个文件到另一目录：cp 1.txt ../test2
-复制一个文件到本目录并改名：cp 1.txt 2.txt
-复制一个文件夹a并改名为b：cp -r a b
- 
+- 复制一个文件到另一目录：`cp 1.txt ../test2`
+- 复制一个文件到本目录并改名：`cp 1.txt 2.txt`
+- 复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：`cp -r a b`
+- 同时拷贝多个文件，我们只需要将多个文件用空格隔开。`cp file_1.txt file_2.txt file_3.txt /home/pungki/office`
  
 # mv
 > 移动命令

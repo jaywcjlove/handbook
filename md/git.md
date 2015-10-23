@@ -159,6 +159,7 @@ $ git fetch -p
 `git clone git://github.com/JSLite/JSLite.js.git `  
 `git clone git://github.com/JSLite/JSLite.js.git mypro` #克隆到自定义文件夹  
 `git clone [user@]example.com:path/to/repo.git/` #SSH协议还有另一种写法。  
+`git clone --recursive git://github.com/MrRio/jsPDF.git` 递归 `clone`  
 
 git clone支持多种协议，除了HTTP(s)以外，还支持SSH、Git、本地文件协议等，下面是一些例子。`$ git clone <版本库的网址> <本地目录名>`  
 
@@ -177,6 +178,9 @@ $ git clone rsync://example.com/path/to/repo.git/
 
 
 ## submodule
+
+### 带有submodule克隆
+`git clone --recursive git://github.com/MrRio/jsPDF.git` 递归 `clone`  
 
 ### 添加
 `git submodule add --force 仓库地址 路径`  
