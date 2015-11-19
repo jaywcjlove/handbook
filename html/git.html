@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li><a href="../index.html">Backbone.js</a></li><li><a href="../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../html/Shortcuts/bash.html">bash</a></li><li><a href="../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li class="active"><a href="../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../html/测试工具/chai.html">chai</a></li><li><a href="../html/测试工具/mocha.html">mocha</a></li><li><a href="../html/测试工具/should.html">should</a></li></ul></li><li><a href="../html/gulp-book.html">gulp-book</a></li><li><a href="../html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../index.html">Backbone.js</a></li><li><a href="../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../html/Shortcuts/bash.html">bash</a></li><li><a href="../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li class="active"><a href="../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../html/测试工具/chai.html">chai</a></li><li><a href="../html/测试工具/mocha.html">mocha</a></li><li><a href="../html/测试工具/should.html">should</a></li></ul></li><li><a href="../html/gulp-book.html">gulp-book</a></li><li><a href="../html/shell常用命令.html">shell常用命令</a></li><li><a href="../html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0参考资料">参考资料</a></li><li><a href="#t1配置">配置</a></li><li><a href="#t2修改项目中的个人信息">修改项目中的个人信息</a><ul><li><a href="#t3config">config</a></li><li><a href="#t4help">help</a></li><li><a href="#t5配置自动换行（自动转换坑太大）">配置自动换行（自动转换坑太大）</a></li><li><a href="#t6配置密钥">配置密钥</a></li></ul></li><li><a href="#t7多账号ssh配置">多账号ssh配置</a><ul><li><a href="#t81.生成指定名字的密钥">1.生成指定名字的密钥</a></li><li><a href="#t92.密钥复制到托管平台上">2.密钥复制到托管平台上</a></li><li><a href="#t103.修改config文件">3.修改config文件</a></li><li><a href="#t114.测试">4.测试</a></li></ul></li><li><a href="#t12Git推向3个库">Git推向3个库</a><ul><li><a href="#t13增加3个远程库地址">增加3个远程库地址</a></li><li><a href="#t14删除其中一个 set-url 地址">删除其中一个 set-url 地址</a></li><li><a href="#t15push">push</a></li><li><a href="#t16pull">pull</a></li><li><a href="#t17更改pull">更改pull</a></li></ul></li><li><a href="#t18新建仓库">新建仓库</a><ul><li><a href="#t19初始化">初始化</a></li><li><a href="#t20获取状态">获取状态</a></li><li><a href="#t21添加内容">添加内容</a></li><li><a href="#t22记录修改内容">记录修改内容</a></li><li><a href="#t23添加源">添加源</a></li><li><a href="#t24提交内容">提交内容</a></li></ul></li><li><a href="#t25submodule">submodule</a><ul><li><a href="#t26带有submodule克隆">带有submodule克隆</a></li><li><a href="#t27添加">添加</a></li><li><a href="#t28初始化">初始化</a></li><li><a href="#t29更新">更新</a></li><li><a href="#t30拉代码">拉代码</a></li></ul></li><li><a href="#t31本地">本地</a><ul><li><a href="#t32add">add</a></li><li><a href="#t33rm">rm</a></li><li><a href="#t34commit">commit</a></li><li><a href="#t35reset">reset</a></li><li><a href="#t36revert">revert</a></li><li><a href="#t37checkout">checkout</a></li><li><a href="#t38diff">diff</a></li><li><a href="#t39stash">stash</a></li><li><a href="#t40merge">merge</a></li><li><a href="#t41cherry-pick">cherry-pick</a></li><li><a href="#t42rebase">rebase</a></li></ul></li><li><a href="#t43分支branch">分支branch</a><ul><li><a href="#t44删除">删除</a></li><li><a href="#t45提交">提交</a></li><li><a href="#t46拉取">拉取</a></li><li><a href="#t47分支合并">分支合并</a></li><li><a href="#t48重命名">重命名</a></li><li><a href="#t49查看">查看</a></li><li><a href="#t50新建">新建</a></li><li><a href="#t51连接">连接</a></li><li><a href="#t52分支切换">分支切换</a></li></ul></li><li><a href="#t53远端">远端</a><ul><li><a href="#t54撤销远程记录">撤销远程记录</a></li></ul></li><li><a href="#t55忽略文件">忽略文件</a></li><li><a href="#t56删除文件">删除文件</a></li><li><a href="#t57源remote">源remote</a></li><li><a href="#t58同步一个fork">同步一个fork</a><ul><li><a href="#t59设置">设置</a></li><li><a href="#t60同步">同步</a></li></ul></li><li><a href="#t61标签tag">标签tag</a></li><li><a href="#t62日志log">日志log</a></li><li><a href="#t63重写历史">重写历史</a></li><li><a href="#t64查看某个文件历史">查看某个文件历史</a></li><li><a href="#t65打造自己的git命令">打造自己的git命令</a></li><li><a href="#t66总结">总结</a></li><li><a href="#t67报错">报错</a></li></ul>
@@ -369,9 +390,10 @@ vim .git/config
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="../static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="../static/js/pagetoc.js"></script>
 </body>
 </html>

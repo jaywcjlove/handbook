@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../../html/测试工具/chai.html">chai</a></li><li><a href="../../html/测试工具/mocha.html">mocha</a></li><li class="active"><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../../html/测试工具/chai.html">chai</a></li><li><a href="../../html/测试工具/mocha.html">mocha</a></li><li class="active"><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li><li><a href="../../html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0should.js">should.js</a><ul><li><a href="#t1ok">ok</a></li><li><a href="#t2true | True">true | True</a></li><li><a href="#t3false | False">false | False</a></li><li><a href="#t4eql">eql</a></li><li><a href="#t5equal | exactly">equal | exactly</a></li><li><a href="#t6throw | throwError">throw | throwError</a></li><li><a href="#t7match">match</a></li><li><a href="#t8matchEach">matchEach</a></li><li><a href="#t9Infinity">Infinity</a></li><li><a href="#t10NaN">NaN</a></li><li><a href="#t11above | greaterThan">above | greaterThan</a></li><li><a href="#t12approximately">approximately</a></li><li><a href="#t13below | lessThan">below | lessThan</a></li><li><a href="#t14within">within</a></li><li><a href="#t15empty">empty</a></li><li><a href="#t16enumerable">enumerable</a></li><li><a href="#t17enumerables">enumerables</a></li><li><a href="#t18keys | key">keys | key</a></li><li><a href="#t19length | lengthOf">length | lengthOf</a></li><li><a href="#t20ownProperty">ownProperty</a></li><li><a href="#t21properties">properties</a></li><li><a href="#t22property">property</a></li><li><a href="#t23propertyByPath">propertyByPath</a></li><li><a href="#t24propertyWithDescriptor">propertyWithDescriptor</a></li><li><a href="#t25startWith">startWith</a></li><li><a href="#t26endWith">endWith</a></li><li><a href="#t27instanceof | instanceOf">instanceof | instanceOf</a></li><li><a href="#t28type">type</a></li><li><a href="#t29null | Null">null | Null</a></li><li><a href="#t30undefined | Undefined">undefined | Undefined</a></li></ul></li><li><a href="#t31异步处理与前后注入">异步处理与前后注入</a></li><li><a href="#t32禁用与开启测试">禁用与开启测试</a></li><li><a href="#t33自由切换模式">自由切换模式</a><ul><li><a href="#t34BDD">BDD</a></li><li><a href="#t35TDD">TDD</a></li><li><a href="#t36Exports">Exports</a></li></ul></li><li><a href="#t37自由切换输出风格">自由切换输出风格</a><ul><li><a href="#t38mocha细节问题">mocha细节问题</a></li></ul></li></ul>
@@ -419,9 +440,10 @@ describe(<span class="hljs-string">&apos;test should.js &apos;</span>, <span cla
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="../../static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="../../static/js/pagetoc.js"></script>
 </body>
 </html>

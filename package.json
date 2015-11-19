@@ -33,7 +33,8 @@
                 ]
             },
             "gulp-book.md",
-            "shell常用命令.md"
+            "shell常用命令.md",
+            "MySQL安装.md"
         ]
     }
 }

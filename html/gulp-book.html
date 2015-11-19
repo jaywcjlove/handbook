@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li><a href="../index.html">Backbone.js</a></li><li><a href="../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../html/Shortcuts/bash.html">bash</a></li><li><a href="../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../html/测试工具/chai.html">chai</a></li><li><a href="../html/测试工具/mocha.html">mocha</a></li><li><a href="../html/测试工具/should.html">should</a></li></ul></li><li class="active"><a href="../html/gulp-book.html">gulp-book</a></li><li><a href="../html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../index.html">Backbone.js</a></li><li><a href="../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../html/Shortcuts/bash.html">bash</a></li><li><a href="../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../html/测试工具/chai.html">chai</a></li><li><a href="../html/测试工具/mocha.html">mocha</a></li><li><a href="../html/测试工具/should.html">should</a></li></ul></li><li class="active"><a href="../html/gulp-book.html">gulp-book</a></li><li><a href="../html/shell常用命令.html">shell常用命令</a></li><li><a href="../html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0安装gulp">安装gulp</a><ul><li><a href="#t1使用终端/命令行">使用终端/命令行</a></li><li><a href="#t2命令行">命令行</a></li><li><a href="#t3终端(Mac)">终端(Mac)</a></li><li><a href="#t4查看 node 版本号">查看 node 版本号</a></li><li><a href="#t5跳转目录">跳转目录</a><ul><li><a href="#t6Windows">Windows</a></li><li><a href="#t7Mac">Mac</a></li></ul></li><li><a href="#t8退出运行状态">退出运行状态</a></li><li><a href="#t9npm 模块管理器">npm 模块管理器</a></li><li><a href="#t10安装 gulp">安装 gulp</a></li></ul></li><li><a href="#t11压缩JS">压缩JS</a><ul><li><a href="#t12操作步骤">操作步骤</a><ul><li><a href="#t13新建gulpfile.js文件">新建gulpfile.js文件</a></li><li><a href="#t14gulpfile.js 中编码">gulpfile.js 中编码</a></li><li><a href="#t15获取gulp-uglify组件">获取gulp-uglify组件</a></li><li><a href="#t16创建压缩任务">创建压缩任务</a></li><li><a href="#t17进入项目目录">进入项目目录</a></li><li><a href="#t18使用命令行运行任务">使用命令行运行任务</a></li><li><a href="#t19安装 gulp-uglify 模块">安装 gulp-uglify 模块</a></li><li><a href="#t20编写 js 文件">编写 js 文件</a></li><li><a href="#t21检测代码修改自动执行任务">检测代码修改自动执行任务</a></li><li><a href="#t22使用定义默认任务">使用定义默认任务</a></li></ul></li></ul></li><li><a href="#t23压缩 CSS">压缩 CSS</a><ul><li><a href="#t24操作步骤">操作步骤</a><ul><li><a href="#t25安装 gulp-minify-css">安装 gulp-minify-css</a></li><li><a href="#t26创建 gulpfile.js 文件">创建 gulpfile.js 文件</a></li><li><a href="#t27创建 css 文件">创建 css 文件</a></li><li><a href="#t28运行 gulp 查看效果">运行 gulp 查看效果</a></li></ul></li></ul></li><li><a href="#t29压缩图片">压缩图片</a><ul><li><a href="#t30操作步骤">操作步骤</a><ul><li><a href="#t31安装 gulp-imagemin">安装 gulp-imagemin</a></li><li><a href="#t32创建 gulpfile.js 文件">创建 gulpfile.js 文件</a></li><li><a href="#t33在 images/ 目录下存放图片">在 images/ 目录下存放图片</a></li><li><a href="#t34运行 gulp 查看效果">运行 gulp 查看效果</a></li></ul></li></ul></li><li><a href="#t35编译 LESS">编译 LESS</a><ul><li><a href="#t36安装">安装</a></li><li><a href="#t37基本用法">基本用法</a></li><li><a href="#t38编译后的对比">编译后的对比</a></li></ul></li><li><a href="#t39gulp 开发一个项目">gulp 开发一个项目</a><ul><li><a href="#t40package.json">package.json</a></li><li><a href="#t41安装依赖">安装依赖</a></li><li><a href="#t42设计目录结构">设计目录结构</a></li><li><a href="#t43让命令行输出的文字带颜色">让命令行输出的文字带颜色</a></li><li><a href="#t44配置 JS 任务">配置 JS 任务</a><ul><li><a href="#t45gulp-uglify">gulp-uglify</a></li><li><a href="#t46gulp-watch-path">gulp-watch-path</a></li><li><a href="#t47stream-combiner2">stream-combiner2</a></li><li><a href="#t48gulp-sourcemaps">gulp-sourcemaps</a></li></ul></li><li><a href="#t49配置 CSS 任务">配置 CSS 任务</a><ul><li><a href="#t50gulp-minify-css">gulp-minify-css</a></li><li><a href="#t51gulp-autoprefixer">gulp-autoprefixer</a></li></ul></li><li><a href="#t52配置 Less 任务">配置 Less 任务</a></li><li><a href="#t53配置 Sass 任务">配置 Sass 任务</a></li><li><a href="#t54配置 image 任务">配置 image 任务</a></li><li><a href="#t55配置文件复制任务">配置文件复制任务</a></li><li><a href="#t56结语">结语</a></li></ul></li></ul>
@@ -982,9 +1003,10 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, [<span class="hl
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="../static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="../static/js/pagetoc.js"></script>
 </body>
 </html>

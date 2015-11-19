@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../../html/测试工具/chai.html">chai</a></li><li class="active"><a href="../../html/测试工具/mocha.html">mocha</a></li><li><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../../html/测试工具/chai.html">chai</a></li><li class="active"><a href="../../html/测试工具/mocha.html">mocha</a></li><li><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li><li><a href="../../html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0Mocha">Mocha</a></li><li><a href="#t1如何安装">如何安装</a></li><li><a href="#t2断言">断言</a></li><li><a href="#t3同步执行的代码">同步执行的代码</a></li><li><a href="#t4异步执行的代码">异步执行的代码</a></li><li><a href="#t5挂起测试">挂起测试</a></li><li><a href="#t6独占测试">独占测试</a></li><li><a href="#t7包含测试">包含测试</a></li><li><a href="#t8差异检测">差异检测</a></li><li><a href="#t9命令行参数">命令行参数</a><ul><li><a href="#t10-w, --watch">-w, --watch</a></li><li><a href="#t11--compilers">--compilers</a></li><li><a href="#t12-b, --bail">-b, --bail</a></li><li><a href="#t13-d, --debug">-d, --debug</a></li><li><a href="#t14--globals ">--globals </a></li><li><a href="#t15--check-leaks">--check-leaks</a></li><li><a href="#t16-r, --require ">-r, --require </a></li><li><a href="#t17-u, --ui ">-u, --ui </a></li><li><a href="#t18-R, --reporter ">-R, --reporter </a></li><li><a href="#t19-t, --timeout ">-t, --timeout </a></li><li><a href="#t20-s, --slow ">-s, --slow </a></li><li><a href="#t21-g, --grep ">-g, --grep </a></li></ul></li><li><a href="#t22接口">接口</a><ul><li><a href="#t23BDD">BDD</a></li><li><a href="#t24TDD">TDD</a></li><li><a href="#t25Exports">Exports</a></li><li><a href="#t26QUnit">QUnit</a></li></ul></li><li><a href="#t27监控器">监控器</a><ul><li><a href="#t28Dot Matrix">Dot Matrix</a></li><li><a href="#t29Spec">Spec</a></li><li><a href="#t30Nyan">Nyan</a></li><li><a href="#t31TAP">TAP</a></li><li><a href="#t32Landing Strip">Landing Strip</a></li><li><a href="#t33List">List</a></li><li><a href="#t34Progress">Progress</a></li><li><a href="#t35JSON">JSON</a></li><li><a href="#t36JSON Stream">JSON Stream</a></li><li><a href="#t37JSONCov">JSONCov</a></li><li><a href="#t38HTMLCov">HTMLCov</a></li><li><a href="#t39Min">Min</a></li><li><a href="#t40Doc">Doc</a></li><li><a href="#t41XUnit">XUnit</a></li><li><a href="#t42TeamCity">TeamCity</a></li><li><a href="#t43Markdown">Markdown</a></li><li><a href="#t44HTML">HTML</a></li></ul></li><li><a href="#t45支持浏览器">支持浏览器</a><ul><li><a href="#t46grep">grep</a></li></ul></li><li><a href="#t47mocha.opts文件">mocha.opts文件</a></li><li><a href="#t48指定方案超时时间">指定方案超时时间</a></li><li><a href="#t49指定测试超时时间">指定测试超时时间</a></li><li><a href="#t50最佳实践">最佳实践</a><ul><li><a href="#t51test/*">test/*</a></li><li><a href="#t52Makefiles">Makefiles</a></li></ul></li><li><a href="#t53编辑器">编辑器</a><ul><li><a href="#t54TextMate bundle">TextMate bundle</a></li></ul></li><li><a href="#t55测试方案示例">测试方案示例</a></li><li><a href="#t56执行Mocha的测试">执行Mocha的测试</a></li></ul>
@@ -489,9 +510,10 @@ make test REPORTER=doc \
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="../../static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="../../static/js/pagetoc.js"></script>
 </body>
 </html>

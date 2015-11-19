@@ -7,6 +7,18 @@
 `sudo kill 443` 杀掉进程  
 
 
+# 给目录权限
+
+`sudo chmod -R 777 目录`
+
+# 搜索 
+
+`mdfind -name 文件名字`  
+`mdfind -name "Photo 1.PNG"`  比如你可以通过下面的命令寻找Photo 1.PNG文件  
+`mdfind -onlyin ~/Library plist` mdfind命令还可以通过-onlyin参数搜索特定文件夹内容  
+`find 文件路径 参数` find命令非常高效，并且使用简单  
+`find ~ -iname  "screen*"` 通过以下命令在用户文件夹中搜索名字中包含screen的文件  
+`find ~/Library/ -iname "com.apple.syncedpreferences.plist"` 特定的文件夹中寻找特定的文件
 
 # ls
 > 类似于dos下的dir命令

@@ -2,18 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li class="active"><a href="index.html">Backbone.js</a></li><li><a href="html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="html/Shortcuts/bash.html">bash</a></li><li><a href="html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="html/测试工具/chai.html">chai</a></li><li><a href="html/测试工具/mocha.html">mocha</a></li><li><a href="html/测试工具/should.html">should</a></li></ul></li><li><a href="html/gulp-book.html">gulp-book</a></li><li><a href="html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar ">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li class="active"><a href="index.html">Backbone.js</a></li><li><a href="html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="html/Shortcuts/bash.html">bash</a></li><li><a href="html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="html/测试工具/chai.html">chai</a></li><li><a href="html/测试工具/mocha.html">mocha</a></li><li><a href="html/测试工具/should.html">should</a></li></ul></li><li><a href="html/gulp-book.html">gulp-book</a></li><li><a href="html/shell常用命令.html">shell常用命令</a></li><li><a href="html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+<div class="bs-docs-header">
+    <div class="container">
+        <h1>handbook</h1>
+        <p></p>
+    </div>
+</div>
+
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0Backbone.js(1.1.2) ">Backbone.js(1.1.2) </a></li><li><a href="#t1文档声明：">文档声明：</a></li><li><a href="#t2介绍（Introduction）">介绍（Introduction）</a></li><li><a href="#t3升级到 1.1">升级到 1.1</a></li><li><a href="#t4Backbone.Events（事件）">Backbone.Events（事件）</a><ul><li><a href="#t5on">on</a></li><li><a href="#t6off">off</a></li><li><a href="#t7trigger">trigger</a></li><li><a href="#t8once">once</a></li><li><a href="#t9listenTo">listenTo</a></li><li><a href="#t10stopListening">stopListening</a></li><li><a href="#t11listenToOnce">listenToOnce</a></li><li><a href="#t12Catalog of Events（事件目录）">Catalog of Events（事件目录）</a></li></ul></li><li><a href="#t13Backbone.Model（模型）">Backbone.Model（模型）</a><ul><li><a href="#t14extend">extend</a></li><li><a href="#t15constructor / initializenew">constructor / initializenew</a></li><li><a href="#t16get">get</a></li><li><a href="#t17set">set</a></li><li><a href="#t18escape">escape</a></li><li><a href="#t19has">has</a></li><li><a href="#t20unset">unset</a></li><li><a href="#t21clear">clear</a></li><li><a href="#t22id">id</a></li><li><a href="#t23idAttribute">idAttribute</a></li><li><a href="#t24cid">cid</a></li><li><a href="#t25attributes">attributes</a></li><li><a href="#t26changed">changed</a></li><li><a href="#t27defaults">defaults</a></li><li><a href="#t28toJSON">toJSON</a></li><li><a href="#t29sync">sync</a></li><li><a href="#t30fetch">fetch</a></li><li><a href="#t31save">save</a></li><li><a href="#t32destroy">destroy</a></li></ul></li><li><a href="#t33Underscore 方法 (6)">Underscore 方法 (6)</a><ul><li><a href="#t34validate">validate</a></li><li><a href="#t35validationError">validationError</a></li><li><a href="#t36isValid">isValid</a></li><li><a href="#t37url">url</a></li><li><a href="#t38urlRoot">urlRoot</a></li><li><a href="#t39parse">parse</a></li><li><a href="#t40clone">clone</a></li><li><a href="#t41isNew">isNew</a></li><li><a href="#t42hasChanged">hasChanged</a></li><li><a href="#t43changedAttributes">changedAttributes</a></li><li><a href="#t44previous">previous</a></li><li><a href="#t45previousAttributes">previousAttributes</a></li></ul></li><li><a href="#t46Backbone.Collection（集合）">Backbone.Collection（集合）</a><ul><li><a href="#t47extend（集合）">extend（集合）</a></li><li><a href="#t48model（集合）">model（集合）</a></li><li><a href="#t49constructor / initialize">constructor / initialize</a></li><li><a href="#t50models">models</a></li><li><a href="#t51toJSON">toJSON</a></li><li><a href="#t52sync（集合）">sync（集合）</a></li><li><a href="#t53Underscore 方法 (32)">Underscore 方法 (32)</a></li><li><a href="#t54add（集合）">add（集合）</a></li><li><a href="#t55remove（集合）">remove（集合）</a></li><li><a href="#t56reset（集合）">reset（集合）</a></li><li><a href="#t57set（集合）">set（集合）</a></li><li><a href="#t58get（集合）">get（集合）</a></li><li><a href="#t59at（集合）">at（集合）</a></li><li><a href="#t60push（集合）">push（集合）</a></li><li><a href="#t61pop（集合）">pop（集合）</a></li><li><a href="#t62unshift（集合）">unshift（集合）</a></li><li><a href="#t63shift（集合）">shift（集合）</a></li><li><a href="#t64slice（集合）">slice（集合）</a></li><li><a href="#t65length（集合）">length（集合）</a></li><li><a href="#t66comparator（集合）">comparator（集合）</a></li><li><a href="#t67sort">sort</a></li><li><a href="#t68pluck">pluck</a></li><li><a href="#t69where">where</a></li><li><a href="#t70findWhere">findWhere</a></li><li><a href="#t71collection.url">collection.url</a></li><li><a href="#t72parse">parse</a></li><li><a href="#t73clone">clone</a></li><li><a href="#t74fetch">fetch</a></li><li><a href="#t75create">create</a></li></ul></li><li><a href="#t76Backbone.Router（路由）">Backbone.Router（路由）</a><ul><li><a href="#t77extend">extend</a></li><li><a href="#t78routes">routes</a></li><li><a href="#t79constructor / initialize">constructor / initialize</a></li><li><a href="#t80route">route</a></li><li><a href="#t81navigate">navigate</a></li><li><a href="#t82execute">execute</a></li></ul></li><li><a href="#t83Backbone.history">Backbone.history</a><ul><li><a href="#t84start">start</a></li></ul></li><li><a href="#t85Backbone.sync（同步）">Backbone.sync（同步）</a><ul><li><a href="#t86Backbone.sync">Backbone.sync</a></li><li><a href="#t87Backbone.ajax">Backbone.ajax</a><ul><li><a href="#t88emulateHTTP">emulateHTTP</a></li><li><a href="#t89emulateJSON">emulateJSON</a></li></ul></li></ul></li><li><a href="#t90Backbone.View（视图）">Backbone.View（视图）</a><ul><li><a href="#t91extend (View)">extend (View)</a></li><li><a href="#t92constructor / initialize(View)">constructor / initialize(View)</a></li><li><a href="#t93el(View)">el(View)</a></li><li><a href="#t94$el">$el</a></li><li><a href="#t95setElement">setElement</a></li><li><a href="#t96attributes(View)">attributes(View)</a></li><li><a href="#t97$(jQuery)">$(jQuery)</a></li><li><a href="#t98template">template</a></li><li><a href="#t99render">render</a></li><li><a href="#t100remove(View)">remove(View)</a></li><li><a href="#t101delegateEvents">delegateEvents</a></li><li><a href="#t102undelegateEvents">undelegateEvents</a></li></ul></li><li><a href="#t103Utility（实用功能）">Utility（实用功能）</a><ul><li><a href="#t104Backbone.noConflict">Backbone.noConflict</a></li><li><a href="#t105Backbone.$">Backbone.$</a></li></ul></li></ul>
@@ -1216,9 +1244,10 @@ listView.$el.append(itemView.el);
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="static/js/pagetoc.js"></script>
 </body>
 </html>

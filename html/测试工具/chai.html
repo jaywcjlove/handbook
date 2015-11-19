@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li class="active"><a href="../../html/测试工具/chai.html">chai</a></li><li><a href="../../html/测试工具/mocha.html">mocha</a></li><li><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li class="active"><a href="../../html/测试工具/chai.html">chai</a></li><li><a href="../../html/测试工具/mocha.html">mocha</a></li><li><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li><li><a href="../../html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0chai">chai</a></li><li><a href="#t1deep">deep</a></li><li><a href="#t2a(type) .an(type)">a(type) .an(type)</a></li><li><a href="#t3.include(value) .contain(value)">.include(value) .contain(value)</a></li><li><a href="#t4.ok">.ok</a></li><li><a href="#t5.true .false">.true .false</a></li><li><a href="#t6.null">.null</a></li><li><a href="#t7.undefined">.undefined</a></li><li><a href="#t8* .exist">* .exist</a></li><li><a href="#t9.empty">.empty</a></li><li><a href="#t10.arguments">.arguments</a></li><li><a href="#t11.equal(value)">.equal(value)</a></li><li><a href="#t12.eql(value)">.eql(value)</a></li><li><a href="#t13.above(value)">.above(value)</a></li><li><a href="#t14.least(value)">.least(value)</a></li><li><a href="#t15.below(value)">.below(value)</a></li><li><a href="#t16.most(value)">.most(value)</a></li><li><a href="#t17.within(start, finish)">.within(start, finish)</a></li><li><a href="#t18.instanceof(constructor)">.instanceof(constructor)</a></li><li><a href="#t19.property(name, [value])">.property(name, [value])</a></li><li><a href="#t20.ownProperty(name)">.ownProperty(name)</a></li><li><a href="#t21.throw(constructor)">.throw(constructor)</a></li></ul>
@@ -191,9 +212,10 @@ expect(fn).to.not.throw(<span class="hljs-keyword">new</span> <span class="hljs-
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="../../static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="../../static/js/pagetoc.js"></script>
 </body>
 </html>

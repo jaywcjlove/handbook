@@ -2,18 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>handbook</title>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+        
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
 </head>
 <body>
-<div class="nav">
-<div class="logo">handbook</div>
-<ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li class="active"><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../../html/测试工具/chai.html">chai</a></li><li><a href="../../html/测试工具/mocha.html">mocha</a></li><li><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li></ul></div>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                handbook
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../../index.html">Backbone.js</a></li><li><a href="../../html/Lua5.3.html">Lua5.3</a></li><li><a href="#"><span></span>Shortcuts</a><ul><li><a href="../../html/Shortcuts/Sketch.html">Sketch</a></li><li class="active"><a href="../../html/Shortcuts/bash.html">bash</a></li><li><a href="../../html/Shortcuts/sublime.html">sublime</a></li></ul></li><li><a href="../../html/git.html">git</a></li><li><a href="#"><span></span>测试工具</a><ul><li><a href="../../html/测试工具/chai.html">chai</a></li><li><a href="../../html/测试工具/mocha.html">mocha</a></li><li><a href="../../html/测试工具/should.html">should</a></li></ul></li><li><a href="../../html/gulp-book.html">gulp-book</a></li><li><a href="../../html/shell常用命令.html">shell常用命令</a></li><li><a href="../../html/MySQL安装.html">MySQL安装</a></li></ul>    
+        </div>
+        
+        
+        <div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook">fork on github</a></div>
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
 
 
-<div class="forkgithub"><a target="_blank" href="https://github.com/jaywcjlove/handbook"></a></div>
 
-<div class="warpper">
+
+<div class="container">
 
     <div class="page-toc">
         <ul><li><a href="#t0基础">基础</a></li><li><a href="#t1重新执行命令">重新执行命令</a></li><li><a href="#t2控制命令">控制命令</a></li><li><a href="#t3Bang (!) 命令">Bang (!) 命令</a></li><li><a href="#t4vi编辑器中快捷键">vi编辑器中快捷键</a><ul><li><a href="#t5其它命令">其它命令</a></li></ul></li></ul>
@@ -29,6 +50,7 @@
 <h1 id="t3Bang (!) &#x547D;&#x4EE4;">Bang (!) &#x547D;&#x4EE4; <a href="#t3Bang (!) &#x547D;&#x4EE4;"> # </a></h1>
 <p><code>!!</code>&#xFF1A;&#x6267;&#x884C;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;<br><code>!blah</code>&#xFF1A;&#x6267;&#x884C;&#x6700;&#x8FD1;&#x7684;&#x4EE5; blah &#x5F00;&#x5934;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5982; <code>!ls</code><br><code>!blah:p</code>&#xFF1A;&#x4EC5;&#x6253;&#x5370;&#x8F93;&#x51FA;&#xFF0C;&#x800C;&#x4E0D;&#x6267;&#x884C;<br><code>!$</code>&#xFF1A;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x4E0E; <code>Alt + .</code> &#x76F8;&#x540C;<br><code>!$:p</code>&#xFF1A;&#x6253;&#x5370;&#x8F93;&#x51FA; <code>!$</code> &#x7684;&#x5185;&#x5BB9;<br><code>!*</code>&#xFF1A;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x6240;&#x6709;&#x53C2;&#x6570;<br><code>!*:p</code>&#xFF1A;&#x6253;&#x5370;&#x8F93;&#x51FA; <code>!*</code> &#x7684;&#x5185;&#x5BB9;<br><code>^blah</code>&#xFF1A;&#x5220;&#x9664;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x4E2D;&#x7684; <code>blah</code><br><code>^blah^foo</code>&#xFF1A;&#x5C06;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x4E2D;&#x7684; <code>blah</code> &#x66FF;&#x6362;&#x4E3A; <code>foo</code><br><code>^blah^foo^</code>&#xFF1A;&#x5C06;&#x4E0A;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x4E2D;&#x6240;&#x6709;&#x7684; <code>blah</code> &#x90FD;&#x66FF;&#x6362;&#x4E3A; <code>foo</code>  </p>
 <h1 id="t4vi&#x7F16;&#x8F91;&#x5668;&#x4E2D;&#x5FEB;&#x6377;&#x952E;">vi&#x7F16;&#x8F91;&#x5668;&#x4E2D;&#x5FEB;&#x6377;&#x952E; <a href="#t4vi&#x7F16;&#x8F91;&#x5668;&#x4E2D;&#x5FEB;&#x6377;&#x952E;"> # </a></h1>
+<p><a href="http://www.iterm2.cn/">iterm2</a>  </p>
 <blockquote>
 <p>(&#x6CE8;&#x610F;&#x4E0B;&#x9762;&#x7684;&#x201D;&#x524D;&#x201D;&#x90FD;&#x662F;&#x6307;&#x201D;&#x5DE6;&#x201D;&#x6216;&#x201D;&#x4E0A;&#x201D;&#xFF0C;&#x201D;&#x540E;&#x201D;&#x662F;&#x201D;&#x53F3;&#x201D;&#x6216;&#x201D;&#x4E0B;; <code>&#x2303;</code> &#x8868;&#x793A; <code>ctrl</code> )</p>
 </blockquote>
@@ -42,9 +64,10 @@
 
         <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
     </div>
-    
+
 </div>
 
-
+<script type="text/javascript" src="../../static/js/jquery.2.1.4.min.js"></script>
+<script type="text/javascript" src="../../static/js/pagetoc.js"></script>
 </body>
 </html>
