@@ -34,7 +34,8 @@
             },
             "gulp-book.md",
             "shell常用命令.md",
-            "MySQL安装.md"
+            "MySQL安装.md",
+            "Vim理解.md"
         ]
     }
 }
