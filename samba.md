@@ -134,6 +134,42 @@ Failed to add entry for user wcj.
 `smbclient -L \\192.168.0.104 -U username`  
 `smbclient  //192.168.60.231/username` #登录Samba服务器  
 
+## 我的配置
+
+```
+[global]
+  workgroup=BIGCLOUD
+  netbios name=ZZSRV2
+  server string=Samba Server
+  #security=share
+  security=user
+  map to guest = Bad User
+
+  debuglevel = 100
+  log file = /etc/samba/long.%m
+
+  ;cups options = raw
+
+  load printers = no
+  printable = no
+  printing = bsd
+  printcap name = /dev/null
+  ;disable spoolss = yes
+[DEV]
+  path = /home/wangchuajiang/shared
+  ;available = Yes
+  browseable = Yes
+  public = Yes
+  guest ok = Yes
+  writable = Yes
+  write list = username
+  inherit permissions = Yes
+  ;validusers = username
+  ;create mask = 0777
+  ;directory mask = 0777
+  ;force create mode = 0777
+  ;force directory mode = 0777
+```
 
 ## session setup failed
 
@@ -148,12 +184,32 @@ printing = bsd
 printcap name = /dev/null
 ```
 
-
 ## 错误四
+
+security不再支持share  
+WARNING: Ignoring invalid value 'share' forparameter 'security'  
+
+## 错误五
 
 请检查服务器名称或 IP 地址，然后再试一次。如果问题持续发生，请联系系统管理员。
 
 解决办法：重启电脑
+
+## 错误六
+
+```bash
+# 解決方法：於smb.conf中加入以下設定 
+load printers = no 
+printing = bsd 
+printcap name = /dev/null 
+disable spoolss = yes 
+```
+
+[about:Unable to connect to CUPS server localhost:631 - Connection refused](http://blog.csdn.net/wzhwho/article/details/6275063)
+
+## 错误六
+
+STATUS=daemon 'smbd' finished starting up and ready to serve connections
 
 # 参考
 
@@ -162,3 +218,4 @@ printcap name = /dev/null
 [简单的配置 samba 共享](http://www.jianshu.com/p/a6d70f1fbfa1)  
 [Ubuntu下配置samba服务器](http://my.oschina.net/junn/blog/171388)  
 [linux6-samba服务器＆SSH工具](http://www.jianshu.com/p/a6d70f1fbfa1)  
+[CentOS7安装配置SAMBA服务器](http://www.cnblogs.com/kluan/p/4452684.html)  
