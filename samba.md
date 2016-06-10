@@ -138,37 +138,43 @@ Failed to add entry for user wcj.
 
 ```
 [global]
-  workgroup=BIGCLOUD
-  netbios name=ZZSRV2
-  server string=Samba Server
-  #security=share
-  security=user
-  map to guest = Bad User
+    workgroup = MYGROUP
+    server string = Samba Server Version %v
 
-  debuglevel = 100
-  log file = /etc/samba/long.%m
+    # log files split per-machine:
+    log file = /var/log/samba/log.%m
+    # maximum size of 50KB per log file, then rotate:
+    max log size = 50
 
-  ;cups options = raw
+    security = user
+    passdb backend = tdbsam
 
-  load printers = no
-  printable = no
-  printing = bsd
-  printcap name = /dev/null
-  ;disable spoolss = yes
-[DEV]
-  path = /home/wangchuajiang/shared
-  ;available = Yes
-  browseable = Yes
-  public = Yes
-  guest ok = Yes
-  writable = Yes
-  write list = username
-  inherit permissions = Yes
-  ;validusers = username
-  ;create mask = 0777
-  ;directory mask = 0777
-  ;force create mode = 0777
-  ;force directory mode = 0777
+    load printers = yes
+    cups options = raw
+
+    printcap name = /dev/null
+    ;printable = yes
+
+    directory mask =0777
+    force directorymode = 0777
+    directorysecurity mask = 0777
+    force directorysecurity mode = 0777
+    create mask =0777
+    force createmode = 0777
+    security mask =0777
+    force securitymode = 0777
+
+[homes]
+    comment = Home Directories
+    browseable = no
+    writable = yes
+;   valid users = %S
+;   valid users = MYDOMAIN\%S
+[dev]
+    path = /home/wangchuajiang/shared
+    writeable = yes
+    browseable = yes
+    write list = wangchujiang
 ```
 
 ## session setup failed
