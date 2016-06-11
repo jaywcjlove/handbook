@@ -145,6 +145,7 @@ $ yum install wget
 
 # 解压
 $ wget https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz
+       https://nodejs.org/dist/v4.4.5/node-v4.4.5-linux-x64.tar.xz
 
 # 测试安装
 # 没有用到`gzip`压缩去掉`z`参数
@@ -167,6 +168,7 @@ $ rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm
 ```
 
 下载并安装nginx
+
 ```
 $ yum install nginx
 ```
@@ -176,3 +178,15 @@ $ yum install nginx
 ```
 systemctl start nginx
 ```
+
+# yum错误
+
+yum错误：Cannot retrieve repository metadata (repomd.xml) for repository解决方法
+
+```
+# cd /etc/
+#ls
+```
+
+找到yum.repos.d这个目录，里面有个文件，以`.repo` 结尾的，例如`zl.repo`删除
+然后`#yum clean all`
