@@ -184,7 +184,7 @@ systemctl start nginx
 yum错误：Cannot retrieve repository metadata (repomd.xml) for repository解决方法
 
 ```
-# cd /etc/
+# cd /etc/yum.repos.d/
 #ls
 ```
 
