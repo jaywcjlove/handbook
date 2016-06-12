@@ -1,3 +1,8 @@
+
+#  官方安装教程
+
+[gitlab / gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
+
 1. Install and configure the necessary dependencies
 
 If you install Postfix to send email please select 'Internet Site' during setup. Instead of using Postfix you can also use Sendmail or configure a custom SMTP server and configure it as an SMTP server.
@@ -36,3 +41,9 @@ sudo gitlab-ctl reconfigure
 On your first visit, you'll be redirected to a password reset screen to provide the password for the initial administrator account. Enter your desired password and you'll be redirected back to the login screen.
 
 The default account's username is root. Provide the password you created earlier and login. After login you can change the username if you wish.
+
+
+＃ 解决官方无法安装的情况
+
+- [Gitlab Community Edition 镜像使用帮助](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
+- [在阿里云上通过Omnibus一键安装包安装Gitlab](https://github.com/hehongwei44/my-blog/issues/19)
