@@ -27,8 +27,8 @@ sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
 sudo /usr/local/mysql/bin/mysql -u root
 # 输入 Mac 系统用户密码后，
 # 直接敲回车进入 mysql 终端，输入：
-UPDATE mysql.user SET authentication_string=PASSWORD('新密码') WHERE User='root';
-FLUSH PRIVILEGES;
+mysql> FLUSH PRIVILEGES;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
 # 输入 \q 退出 mysql 终端
 \q
 ```
@@ -52,3 +52,9 @@ ps -ef | grep mysql
 sudo /usr/local/mysql/support-files/mysql.server start
 
 ```
+
+
+# 官网参考
+
+
+- [ How to Reset the Root Password](http://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)
