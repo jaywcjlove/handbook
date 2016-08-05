@@ -14,7 +14,7 @@ ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: Y
  `系统偏好设置` > `MySQL` > `Stop MySQL Server`
 
 
-## 终端，输入
+## 终端，输入进入安全模式
 
 ```
 sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
@@ -44,3 +44,11 @@ ps -ef | grep mysql
 通过`sudo kill 93`杀掉`mysql`进程  
 
 `系统偏好设置` > `MySQL` > `Start MySQL Server`
+
+
+更快捷的重启  
+
+```bash
+sudo /usr/local/mysql/support-files/mysql.server start
+
+```
