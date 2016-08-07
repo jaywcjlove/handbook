@@ -8,6 +8,7 @@ ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: N
 ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
 ```
 
+使用 `mysql -uroot -p` 登录进去。
 
 ## 停止 mysql server
 
