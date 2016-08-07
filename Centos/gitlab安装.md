@@ -1,10 +1,10 @@
 
 #  官方安装教程
 
-[gitlab / gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
-官网下载：https://www.gitlab.cc/downloads
-官网安装说明：https://doc.gitlab.cc/ce/install/requirements.html
-开源版本和企业版本对比：https://www.gitlab.cc/features/#enterprise
+- [gitlab / gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
+- 官网下载：https://www.gitlab.cc/downloads
+- 官网安装说明：https://doc.gitlab.cc/ce/install/requirements.html
+- 开源版本和企业版本对比：https://www.gitlab.cc/features/#enterprise
 
 1. Install and configure the necessary dependencies
 
