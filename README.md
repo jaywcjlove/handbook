@@ -1,5 +1,18 @@
 # 中文手册
 
+
+- Centos 
+    - [Centos安装](Centos/contos.md)
+    - [chmod说明](Centos/chmod.md)
+    - [Gitlab安装](Centos/gitlab安装.md)
+    - [Linux添加、删除用户和用户组](Centos/Linux添加、删除用户和用户组.md)
+    - [nginx安装搭建](Centos/nginx.md)
+    - [samba安装搭建使用](Centos/samba.md)
+
+- MySQL
+    - [mysql安装](MySQL/mysql安装.md)
+    - [Mac下重置Mysql的root密码](MySQL/Mac下重置Mysql的root密码.md)
+
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
 - [git](http://jaywcjlove.github.io/handbook/html/git.html)
