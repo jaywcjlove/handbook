@@ -10,8 +10,8 @@
     - [samba安装搭建使用](Centos/samba.md)
 
 - MySQL
-    - [mysql安装](MySQL/mysql安装.md)
-    - [Mac下重置Mysql的root密码](MySQL/Mac下重置Mysql的root密码.md)
+    - [MySQL安装](MySQL/mysql安装.md)
+    - [Mac下重置MySQL的root密码](MySQL/Mac下重置Mysql的root密码.md)
 
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
