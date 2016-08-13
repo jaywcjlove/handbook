@@ -9,6 +9,11 @@ Error: ER_TRUNCATED_WRONG_VALUE_FOR_FIELD: Incorrect string value: '\xF0\x9F\x91
 
 都快崩溃了，但是还好终于解决了这种鬼问题。资料显示原因是，MYSQL 5.5 之前， UTF8 编码只支持1-3个字节，只支持[BMP](http://en.wikipedia.org/wiki/Mapping_of_Unicode_characters)这部分的unicode编码区，而`emoji`图标恰好是4个字节的编码进行存储。从MYSQL5.5开始，可支持4个字节UTF编码`utf8mb4`，一个字符最多能有4字节，所以能支持更多的字符集。所以要解决问题，必需把数据库表字符编码全部改成`utf8mb4`。
 
+## 系统环境
+
+- MySQL 5.7.14  
+- Mac OSX 10.11.6
+
 
 ## 首先备份
 
