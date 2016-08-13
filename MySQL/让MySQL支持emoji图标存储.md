@@ -74,6 +74,8 @@ collation-server = utf8mb4_unicode_ci
 
 ## 重启MySQL
 
+重启步骤很重要，不然没有任何效果。
+
 1. 启动：`/usr/local/mysql/support-files/mysql.server start `
 2. 停止：`/usr/local/mysql/support-files/mysql.server stop `
 3. 重启：`/usr/local/mysql/support-files/mysql.server restart`
