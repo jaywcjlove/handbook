@@ -11,7 +11,8 @@
 
 - MySQL
     - [MySQL安装](MySQL/mysql安装.md)
-    - [Mac下重置MySQL的root密码](MySQL/Mac下重置Mysql的root密码.md)
+    - [Mac下重置MySQL的root密码](MySQL/Mac下重置MySQL的root密码.md)
+    - [让MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
 
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)

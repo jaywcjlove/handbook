@@ -125,6 +125,13 @@ mysqldump -u root -p123456 --databases dbname > mysql.dbname
 mysqlimport -u root -p123456 < mysql.dbname。
 ```
 
+登录数据库，在数据库中导入数据
+
+```
+source ~/sql/database.sql
+```
+
+
 3. 将文本数据导入数据库:
 
 文本数据的字段数据之间用tab键隔开。
