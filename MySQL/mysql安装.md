@@ -316,3 +316,10 @@ reboot
 ```
 
 如果能正常启动，说明修改成功。
+
+
+# 重启
+
+1. 启动：`/usr/local/mysql/support-files/mysql.server start `
+2. 停止：`/usr/local/mysql/support-files/mysql.server stop `
+3. 重启：`/usr/local/mysql/support-files/mysql.server restart`
