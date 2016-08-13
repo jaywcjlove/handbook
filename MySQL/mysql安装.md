@@ -217,7 +217,7 @@ mysqldump -u root 库名>xxx.data
 
 假设远程主机的IP为：110.110.110.110，用户名为root,密码为abcd123。则键入以下命令：
 
-```
+```bash
 mysql -h110.110.110.110 -uroot -pabcd123                       // 远程登录
 ```
 
@@ -226,11 +226,17 @@ mysql -h110.110.110.110 -uroot -pabcd123                       // 远程登录
 
 15: 显示当前用户
 
-```
+```bash
 SELECT USER();
 ```
 
 3、退出MYSQL命令： `exit (回车)`
+
+```bash
+mysql > exit;
+mysql > quit;
+mysql > \q;
+```
 
 # 更改MySQL目录
 
