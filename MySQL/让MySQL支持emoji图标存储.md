@@ -78,6 +78,7 @@ collation-server = utf8mb4_unicode_ci
 通过下面命令查询是否设置成功！
 
 ```bash
+# 登陆MySQL进行查询
 mysql> SHOW VARIABLES WHERE Variable_name LIKE 'character\_set\_%' OR Variable_name LIKE 'collation%';
 
 # 运行上面代码显示下面结果
@@ -95,6 +96,9 @@ mysql> SHOW VARIABLES WHERE Variable_name LIKE 'character\_set\_%' OR Variable_n
 # | collation_database       | utf8mb4_unicode_ci |
 # | collation_server         | utf8mb4_unicode_ci |
 # +--------------------------+--------------------+
+
+# 查看表的情况
+mysql>  SHOW FULL COLUMNS  FROM  users_profile;
 ```
 
 到这一步表示你成功了！恭喜你！~
