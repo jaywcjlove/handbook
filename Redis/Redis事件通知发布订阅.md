@@ -29,9 +29,9 @@ OK
 ```
 
 
-# 配置(Configuration) 
+## 开启通知
 
-键空间事件通知默认被禁用，因为这个特性消耗CPU电量不是很明智。使用redis.conf的otify-keyspace-events，或者通过CONFIG SET来开启通知。 
+键空间事件通知默认被禁用，因为这个特性消耗CPU电量不是很明智。使用`redis.conf`的`notify-keyspace-events`，或者通过`CONFIG SET`来开启通知。 
 
 ```bash 
 ## 设置配置开启通知功能

@@ -15,7 +15,8 @@
     - [让MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
 
 - Redis
-    - [Redis基本操作说明](Redis/Redis.md)
+    - [Redis配置说明](Redis/Redis配置说明.md)
+    - [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
 
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
