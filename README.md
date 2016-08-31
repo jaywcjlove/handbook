@@ -17,6 +17,7 @@
 - Redis
     - [Redis配置说明](Redis/Redis配置说明.md)
     - [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
+    - [Redis提供的原生监控](Redis/Redis提供的原生监控.md)
 
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
