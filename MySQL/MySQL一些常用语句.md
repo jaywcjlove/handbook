@@ -3,9 +3,9 @@
 
 ## SELECT
 
-> SELECT 语句用于从表中选取数据。
-> 语法：SELECT 列名称 FROM 表名称
-> 语法：SELECT * FROM 表名称
+> SELECT 语句用于从表中选取数据。  
+> 语法：`SELECT 列名称 FROM 表名称`  
+> 语法：`SELECT * FROM 表名称`  
 
 ```sql
 -- 表abc 两个 id  表abc中不包含 字段a=b 的 查询出来，只显示id
@@ -23,8 +23,8 @@ SELECT DISTINCT Company FROM Orders
 
 ## UPDATE
 
-> Update 语句用于修改表中的数据。
-> 语法：UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+> Update 语句用于修改表中的数据。  
+> 语法：`UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值`  
 
 ```sql 
 -- update语句设置字段值为另一个结果取出来的字段
@@ -35,9 +35,9 @@ where id = (select id from user2 where user2 .name='小苏')
 
 ## INSERT
 
-> INSERT INTO 语句用于向表格中插入新的行。
-> 语法：INSERT INTO 表名称 VALUES (值1, 值2,....)
-> 语法：INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+> INSERT INTO 语句用于向表格中插入新的行。  
+> 语法：`INSERT INTO 表名称 VALUES (值1, 值2,....)`  
+> 语法：`INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)`  
 
 ```sql
 -- 向表 Persons 插入一条字段 LastName = Wilson 字段 Address = shanghai
@@ -48,8 +48,8 @@ INSERT INTO meeting SET a=1,b=2;
 
 ## DELETE
 
-> DELETE 语句用于删除表中的行。
-> 语法：DELETE FROM 表名称 WHERE 列名称 = 值
+> DELETE 语句用于删除表中的行。  
+> 语法：`DELETE FROM 表名称 WHERE 列名称 = 值`  
 
 ```sql
 -- 在不删除table_name表的情况下删除所有的行。
@@ -66,8 +66,8 @@ DELETE from meeting where id in (2,3);
 
 # WHERE
 
-> WHERE 子句用于规定选择的标准。
-> 语法：`SELECT 列名称 FROM 表名称 WHERE 列 运算符 值`
+> WHERE 子句用于规定选择的标准。  
+> 语法：`SELECT 列名称 FROM 表名称 WHERE 列 运算符 值`  
 
 ```sql 
 -- 从表 Persons 中选出 Year 字段大于 1965 的数据
