@@ -180,6 +180,8 @@ ORDER BY Persons.LastName;
 SELECT COUNT (Store_Name) FROM Store_Information WHERE Store_Name IS NOT NULL; 
 -- 获取 Persons 表的总数
 SELECT COUNT(1) AS totals FROM Persons;
+-- 获取表 station 字段 user_id 相同的总数
+select user_id, count(*) as totals from station group by user_id;
 ```
 
 ## MAX
@@ -193,6 +195,12 @@ SELECT COUNT(1) AS totals FROM Persons;
 SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders
 ```
 
+# 其它相关
+
+- [让MySQL支持emoji图标存储](让MySQL支持emoji图标存储.md)
+- [Mac下重置MySQL的root密码](Mac下重置MySQL的root密码.md)
+- [MySQL安装](mysql安装.md)
+- [MySQL数据类型](MySQL数据类型.md)
 
 # 参考手册 
 

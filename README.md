@@ -12,8 +12,9 @@
 - MySQL
     - [MySQL安装](MySQL/mysql安装.md)
     - [Mac下重置MySQL的root密码](MySQL/Mac下重置MySQL的root密码.md)
-    - [让MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
+    - [MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
     - [MySQL一些常用语句](MySQL/MySQL一些常用语句.md)
+    - [MySQL数据类型](MySQL/MySQL数据类型.md)
 
 - Redis
     - [Redis配置说明](Redis/Redis配置说明.md)
