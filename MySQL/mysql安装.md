@@ -49,6 +49,14 @@ net start mysql
 mysql -u用户名 -p用户密码
 ```
 
+# 新建用户
+
+```sql
+-- 新建book用户，密码为book，允许book可以远程访问abc数据库，授权book对abc进行所有数据库
+GRANT ALL ON abc.* to book@'%' IDENTIFIED BY 'book';
+-- 允许book可以本地访问abc数据库，授权book对abc进行所有数据库操作
+GRANT ALL ON abc.* to book@localhost IDENTIFIED BY 'book';
+```
 
 # 操作数据库
 
