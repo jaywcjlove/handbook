@@ -1,6 +1,5 @@
 # 中文手册
 
-
 - Centos 
     - [Centos安装](Centos/contos.md)
     - [chmod说明](Centos/chmod.md)
@@ -8,19 +7,16 @@
     - [Linux添加、删除用户和用户组](Centos/Linux添加、删除用户和用户组.md)
     - [nginx安装搭建](Centos/nginx.md)
     - [samba安装搭建使用](Centos/samba.md)
-
 - MySQL
     - [MySQL安装](MySQL/mysql安装.md)
     - [Mac下重置MySQL的root密码](MySQL/Mac下重置MySQL的root密码.md)
     - [MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
     - [MySQL一些常用语句](MySQL/MySQL一些常用语句.md)
     - [MySQL数据类型](MySQL/MySQL数据类型.md)
-
 - Redis
     - [Redis配置说明](Redis/Redis配置说明.md)
     - [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
     - [Redis提供的原生监控](Redis/Redis提供的原生监控.md)
-
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
 - [git](http://jaywcjlove.github.io/handbook/html/git.html)
