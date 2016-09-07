@@ -157,25 +157,30 @@ $ sudo tar --strip-components 1 -xzvf node-v* -C /usr/local
 
 
 下载对应当前系统版本的nginx包(package)
+
 ```
 $ wget  http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 ```
 
 建立nginx的yum仓库
 
-```
+```bash
 $ rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm
 ```
 
 下载并安装nginx
 
-```
+```bash
+# 查看 nginx 版本
+$ yum list | grep nginx
+
+# 安装 nginx
 $ yum install nginx
 ```
 
 启动nginx服务
 
-```
+```bash
 systemctl start nginx
 ```
 
@@ -183,9 +188,9 @@ systemctl start nginx
 
 yum错误：Cannot retrieve repository metadata (repomd.xml) for repository解决方法
 
-```
-# cd /etc/yum.repos.d/
-#ls
+```bash
+cd /etc/yum.repos.d/
+ls
 ```
 
 找到yum.repos.d这个目录，里面有个文件，以`.repo` 结尾的，例如`zl.repo`删除

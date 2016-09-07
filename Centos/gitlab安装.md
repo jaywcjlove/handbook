@@ -133,3 +133,65 @@ server {
 # nginx 重新加载配置
 /usr/local/nginx-1.5.1/sbin/nginx -s reload
 ```
+
+
+# 运维 
+
+```bash
+# 启动所有 gitlab 组件：
+sudo gitlab-ctl start
+
+# 停止所有 gitlab 组件：
+sudo gitlab-ctl stop
+
+# 重启所有 gitlab 组件：
+sudo gitlab-ctl restart
+
+# 启动服务
+sudo gitlab-ctl reconfigure
+
+# 修改默认的配置文件
+sudo vim /etc/gitlab/gitlab.rb
+
+# 查看版本
+sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+```
+
+## 备份
+
+```bash
+/usr/bin/gitlab-rake gitlab:backup:create
+```
+
+## 恢复
+
+首先进入备份 gitlab 的目录，这个目录是配置文件中的 `gitlab_rails['backup_path']` ，默认为 `/var/opt/gitlab/backups` 。
+
+然后停止 unicorn 和 sidekiq ，保证数据库没有新的连接，不会有写数据情况。
+
+```bash
+sudo gitlab-ctl stop unicorn
+# ok: down: unicorn: 0s, normally up
+sudo gitlab-ctl stop sidekiq
+# ok: down: sidekiq: 0s, normally up
+
+# 然后恢复数据，1406691018为备份文件的时间戳
+gitlab-rake gitlab:backup:restore BACKUP=1406691018
+```
+
+
+
+
+# 错误处理
+
+```bash
+Error executing action `run` on resource 'bash[migrate gitlab-rails database]'
+```
+
+https://gitlab.com/gitlab-org/gitlab-ce/issues/2052#note_1667899
+
+
+
+```bash
+NameError: uninitialized constant Devise::Async
+```
