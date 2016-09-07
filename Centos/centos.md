@@ -70,7 +70,7 @@ password:安装时设置的密码
 `date 041217002007.00` 设置日期和时间 – 月日时分年.秒  
 `clock -w` 将时间修改保存到 BIOS  
 
-系统的关机、重启以及登出 
+## 系统的关机、重启以及登出 
 
 `shutdown -h now`关闭系统(1)   
 `init 0` 关闭系统(2)   
@@ -81,7 +81,7 @@ password:安装时设置的密码
 `reboot `重启  (2)   
 `logout` 注销  
 
-如何查看linux系统资源
+## 如何查看linux系统资源
 
 `free -m` 查看内存使用量和交换区使用量   
 `df -h` 查看各分区使用情况   
@@ -91,7 +91,7 @@ password:安装时设置的密码
 `uptime` 查看系统运行时间、用户数、负载   
 `cat /proc/loadavg` 查看系统负载  
 
-如何查看linux磁盘和分区
+## 如何查看linux磁盘和分区
 
 `mount | column -t` 查看挂接的分区状态   
 `fdisk -l` 查看所有分区   
@@ -99,7 +99,7 @@ password:安装时设置的密码
 `hdparm -i /dev/hda` 查看磁盘参数(仅适用于IDE设备)   
 `dmesg | grep IDE` 查看启动时IDE设备检测状况  
 
-查看网络配置的命令
+## 查看网络配置的命令
 
 `ifconfig` 查看所有网络接口的属性   
 `iptables -L` 查看防火墙设置   
@@ -108,12 +108,13 @@ password:安装时设置的密码
 `netstat -antp` 查看所有已经建立的连接   
 `netstat -s` 查看网络统计信息  
 
-查看linux进程
+## 查看linux进程
 
+`ps -aux | grep node` 查看`node`进程  
 `ps -ef` 查看所有进程   
 `top` 实时显示进程状态  
 
-查看用户的命令
+## 查看用户的命令
 
 `w` 查看活动用户   
 `id <用户名>` 查看指定用户信息   
@@ -122,16 +123,16 @@ password:安装时设置的密码
 `cut -d: -f1 /etc/group` 查看系统所有组   
 `crontab -l` 查看当前用户的计划任务  
 
-查看系统服务的命令
+## 查看系统服务的命令
 
 `chkconfig –list` 列出所有系统服务   
 `chkconfig –list | grep on` 列出所有启动的系统服务  
 
-安装程序的命令
+## 安装程序的命令
 
 `rpm -qa` 查看所有安装的软件包  
 
-获取帮助的命令
+## 获取帮助的命令
 
 `man <命令>` 获得命令帮助  
 
@@ -162,13 +163,13 @@ $ sudo tar --strip-components 1 -xzvf node-v* -C /usr/local
 $ wget  http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 ```
 
-建立nginx的yum仓库
+## 建立nginx的yum仓库
 
 ```bash
 $ rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm
 ```
 
-下载并安装nginx
+## 下载并安装nginx
 
 ```bash
 # 查看 nginx 版本
@@ -178,7 +179,7 @@ $ yum list | grep nginx
 $ yum install nginx
 ```
 
-启动nginx服务
+## 启动nginx服务
 
 ```bash
 systemctl start nginx
@@ -193,5 +194,5 @@ cd /etc/yum.repos.d/
 ls
 ```
 
-找到yum.repos.d这个目录，里面有个文件，以`.repo` 结尾的，例如`zl.repo`删除
-然后`#yum clean all`
+找到`yum.repos.d`这个目录，里面有个文件，以`.repo` 结尾的，例如`zl.repo`删除  
+然后`#yum clean all`  
