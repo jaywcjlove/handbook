@@ -51,7 +51,7 @@ yum list installed | grep mysql
 yum remove mysql-libs  
 
 # 安装 这个要更新源的前提
-yum install mysql
+yum install mysql-server
 ```
 
 
