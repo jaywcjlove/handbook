@@ -1,7 +1,7 @@
 # 中文手册
 
 - Centos 
-    - [Centos安装](Centos/contos.md)
+    - [Centos安装](Centos/centos.md)
     - [chmod说明](Centos/chmod.md)
     - [Gitlab安装](Centos/gitlab安装.md)
     - [Linux添加、删除用户和用户组](Centos/Linux添加、删除用户和用户组.md)
