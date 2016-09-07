@@ -7,6 +7,9 @@
 
 ```bash
 yum install mysql-server
+
+# 查看当前 mysql 版本
+rpm -qa | grep mysql
 ```
 
 安装完成后，使用 service 命令启动 mysql 服务：
@@ -41,6 +44,16 @@ mysql_secure_installation
 ```bash
 net stop mysql
 net start mysql
+```
+
+
+# MySQL数据库升级
+
+```
+wget http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm
+yum localinstall mysql57-community-release-el6-8.noarch.rpm
+yum install mysql-server
+mysqld --initialize --user=mysql
 ```
 
 # 登录
@@ -332,6 +345,25 @@ reboot
 
 如果能正常启动，说明修改成功。
 
+
+# 查看当前 mysql 版本
+
+```
+rpm -qa | grep mysql
+```
+
+# 卸载旧版MySQL
+
+```bash
+yum remove mysql mysql-*
+```
+
+
+# 卸载MySQL
+
+```bash
+yum remove mysql mysql-server mysql-libs compat-mysql51
+```
 
 # 重启
 

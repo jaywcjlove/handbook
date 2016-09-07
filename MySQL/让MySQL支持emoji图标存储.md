@@ -95,6 +95,14 @@ collation-server = utf8mb4_unicode_ci
 2. 停止：`/usr/local/mysql/support-files/mysql.server stop `
 3. 重启：`/usr/local/mysql/support-files/mysql.server restart`
 
+系统中可以以这种形式重启、停止或启动**
+
+```bash
+service mysqld stop
+service mysqld start
+service mysqld restart
+```
+
 
 ## 查看是否设置成功
 
