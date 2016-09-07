@@ -113,7 +113,7 @@ select * from 表名;
 
 # 导出和导入数据
 
-1. 导出数据：
+## 导出数据：
 
 ```
 mysqldump --opt test > mysql.test
@@ -127,7 +127,7 @@ mysqldump -u root -p123456 --databases dbname > mysql.dbname
 
 就是把数据库dbname导出到文件`mysql.dbname`中。
 
-2. 导入数据:
+## 导入数据:
 
 ```
 mysqlimport -u root -p123456 < mysql.dbname。
@@ -140,7 +140,7 @@ source ~/sql/database.sql
 ```
 
 
-3. 将文本数据导入数据库:
+## 将文本数据导入数据库:
 
 文本数据的字段数据之间用tab键隔开。
 
