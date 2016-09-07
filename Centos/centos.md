@@ -116,9 +116,9 @@ password:安装时设置的密码
 
 ## 杀进程
 
-`killall -9 websocket` 干掉`websocket`服务进程
+`killall -9 websocket` 干掉`websocket`服务进程  
 `ps aux | grep mysql` 查看mysql进程  
-`kill -9 35562` 根据进程号杀
+`kill -9 35562` 根据进程号杀  
 
 ## 查看用户的命令
 
