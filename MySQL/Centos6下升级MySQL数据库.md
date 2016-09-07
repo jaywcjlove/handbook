@@ -19,8 +19,25 @@ cp /etc/my.cnf my.cnf-5.1
 service mysqld stop
 ```
 
+# 方法一
 
-# 卸载旧版本的Mysql
+此方法下，我并未删除老的`MySQL`，然而我升级成功！不知有什么后遗症没有。
+
+```bash
+wget http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm
+yum localinstall mysql57-community-release-el6-8.noarch.rpm
+yum install mysql-server
+mysqld --initialize --user=mysql
+# 找到密码 vi /var/log/mysqld.log
+# 修改密码 mysqladmin -uroot -p password
+# 采用拷贝粘贴，输入旧密码，设定新密码
+chkconfig mysqld on
+# 重启
+reboot
+```
+
+
+# 方法二
 
 ```bash 
 # 卸载旧版本的Mysql
@@ -32,6 +49,9 @@ yum list installed | grep mysql
 
 # 如果有，并确认没用之后也可以删除。
 yum remove mysql-libs  
+
+# 安装 这个要更新源的前提
+yum install mysql
 ```
 
 
