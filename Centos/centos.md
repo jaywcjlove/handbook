@@ -114,6 +114,12 @@ password:安装时设置的密码
 `ps -ef` 查看所有进程   
 `top` 实时显示进程状态  
 
+## 杀进程
+
+`killall -9 websocket` 干掉`websocket`服务进程
+`ps aux | grep mysql` 查看mysql进程  
+`kill -9 35562` 根据进程号杀
+
 ## 查看用户的命令
 
 `w` 查看活动用户   
@@ -122,6 +128,15 @@ password:安装时设置的密码
 `cut -d: -f1 /etc/passwd` 查看系统所有用户   
 `cut -d: -f1 /etc/group` 查看系统所有组   
 `crontab -l` 查看当前用户的计划任务  
+
+## log日志查看
+
+```bash
+cat /var/log/messages # 查询日志的全部内容
+head -5 /var/log/messages # 查询日志的前5行
+tail -5 /var/log/messages # 查询日志的最新5行
+sed -n '5,10p' /var/log/messages # 查询日志的5到10行
+```
 
 ## 查看系统服务的命令
 
