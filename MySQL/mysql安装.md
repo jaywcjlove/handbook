@@ -49,11 +49,17 @@ net start mysql
 
 # MySQL数据库升级
 
-```
+```bash
 wget http://dev.mysql.com/get/mysql57-community-release-el6-8.noarch.rpm
 yum localinstall mysql57-community-release-el6-8.noarch.rpm
 yum install mysql-server
 mysqld --initialize --user=mysql
+# 找到密码 vi /var/log/mysqld.log
+# 修改密码 mysqladmin -uroot -p password
+# 采用拷贝粘贴，输入旧密码，设定新密码
+chkconfig mysqld on
+# 重启
+reboot
 ```
 
 # 登录
