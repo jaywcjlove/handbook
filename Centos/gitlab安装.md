@@ -51,6 +51,41 @@ The default account's username is root. Provide the password you created earlier
 - [Gitlab Community Edition 镜像使用帮助](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
 - [在阿里云上通过Omnibus一键安装包安装Gitlab](https://github.com/hehongwei44/my-blog/issues/19)
 
+## 编辑源
+
+[使用清华大学 TUNA 镜像源](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/) 打开网址将内容复制到`gitlab-ce.repo`文件中，编辑路径`vim /etc/yum.repos.d/gitlab-ce.repo`
+
+```bash
+[gitlab-ce]
+name=gitlab-ce
+baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6
+repo_gpgcheck=0
+gpgcheck=0
+enabled=1
+gpgkey=https://packages.gitlab.com/gpg.key
+```
+
+## 更新本地 YUM 缓存
+
+```bash 
+sudo yum makecache
+```
+
+## 安装 GitLab 社区版
+
+```bash
+sudo yum install gitlab-ce #(自动安装最新版)
+sudo yum install gitlab-ce-8.8.4-ce.0.el6 #(安装指定版本)
+```
+
+
+## 更改配置
+
+```bash
+ vim /etc/gitlab/gitlab.rb
+ # 找到 external_url 'http://000.00.00.00:8081'
+ # 修改成你的地址
+```
 
 # 配置并启动GitLab
 
@@ -147,6 +182,9 @@ sudo gitlab-ctl stop
 # 重启所有 gitlab 组件：
 sudo gitlab-ctl restart
 
+# 查看服务状态
+sudo gitlab-ctl status
+
 # 启动服务
 sudo gitlab-ctl reconfigure
 
@@ -155,28 +193,64 @@ sudo vim /etc/gitlab/gitlab.rb
 
 # 查看版本
 sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+
+# echo "vm.overcommit_memory=1" >> /etc/sysctl.conf
+# sysctl -p
+# echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+
+# 查看日志
+sudo gitlab-ctl tail
 ```
 
-## 备份
+## 备份恢复
+
+### Gitlab 创建备份
+
+使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单,用一条命令即可创建完整的Gitlab备份:
 
 ```bash
-/usr/bin/gitlab-rake gitlab:backup:create
+gitlab-rake gitlab:backup:create  
 ```
 
-## 恢复
+以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
+
+### Gitlab 修改备份文件默认目录
+
+修改`/etc/gitlab/gitlab.rb`来修改默认存放备份文件的目录:
+
+```bash
+gitlab_rails['backup_path'] = '/mnt/backups'  
+```
+
+修改后使用gitlab-ctl reconfigure命令重载配置文件。
+
+### 备份
+
+```bash
+0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
+0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create  
+```
+
+### 恢复
 
 首先进入备份 gitlab 的目录，这个目录是配置文件中的 `gitlab_rails['backup_path']` ，默认为 `/var/opt/gitlab/backups` 。
 
 然后停止 unicorn 和 sidekiq ，保证数据库没有新的连接，不会有写数据情况。
 
 ```bash
-sudo gitlab-ctl stop unicorn
+# 停止相关数据连接服务
 # ok: down: unicorn: 0s, normally up
-sudo gitlab-ctl stop sidekiq
+gitlab-ctl stop unicorn  
 # ok: down: sidekiq: 0s, normally up
+gitlab-ctl stop sidekiq
 
+# 从xxxxx编号备份中恢复
 # 然后恢复数据，1406691018为备份文件的时间戳
-gitlab-rake gitlab:backup:restore BACKUP=1406691018
+gitlab-rake gitlab:backup:restore BACKUP=xxxxxx
+
+# 启动Gitlab
+sudo gitlab-ctl start  
 ```
 
 
