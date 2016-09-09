@@ -287,6 +287,12 @@ SELECT * FROM mytable WHERE username like'admin%'; -- 而下句就不会使用�
 SELECT * FROM mytable WHEREt Name like'%admin'; -- 因此，在使用LIKE时应注意以上的区别。
 ```
 
+索引的注意事项
+
+- 索引不会包含有NULL值的列
+- 使用短索引
+- 不要在列上进行运算 索引会失效
+
 # 其它相关
 
 - [让MySQL支持emoji图标存储](让MySQL支持emoji图标存储.md)
