@@ -117,6 +117,7 @@ SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
 # IN
 
 > IN - 操作符允许我们在 WHERE 子句中规定多个值。  
+> IN - 操作符用来指定范围，范围中的每一条，都进行匹配。IN取值规律，由逗号分割，全部放置括号中。
 > 语法：`SELECT "字段名"FROM "表格名"WHERE "字段名" IN ('值一', '值二', ...);`
 
 ```sql 
@@ -124,9 +125,18 @@ SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
 SELECT * FROM Persons WHERE LastName IN ('Adams','Carter')
 ```
 
+# NOT
+
+> NOT - 操作符总是与其他操作符一起使用，用在要过滤的前面。
+
+```sql
+SELECT vend_id, prod_name FROM Products WHERE NOT vend_id = 'DLL01' ORDER BY prod_name;
+```
+
+
 # AS 
 
-> as - 可理解为：用作、当成，作为；  
+> as - 可理解为：用作、当成，作为；别名  
 > 一般是重命名列名或者表名。  
 > 语法：`select column_1 as 列1,column_2 as 列2 from table as 表`
 
@@ -193,6 +203,54 @@ select user_id, count(*) as totals from station group by user_id;
 -- 列出表 Orders 字段 OrderPrice 列最大值，
 -- 结果集列不显示 OrderPrice 显示 LargestOrderPrice
 SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders
+```
+
+# 添加索引
+
+## 普通索引(INDEX)
+
+> 语法：ALTER TABLE `表名字` ADD INDEX index_name ( `字段名字` )
+
+```sql
+-- 给 user 表中的 id字段 添加主键索引(PRIMARY key)
+ALTER TABLE `user` ADD INDEX index_name (name)
+```
+
+## 主键索引(PRIMARY key)
+
+> 语法：ALTER TABLE `表名字` ADD PRIMARY KEY ( `字段名字` )
+
+```sql
+-- 给 user 表中的 id字段 添加主键索引(PRIMARY key)
+ALTER TABLE `user` ADD PRIMARY key (id);
+```
+
+## 唯一索引(UNIQUE)
+
+> 语法：ALTER TABLE `表名字` ADD UNIQUE (`字段名字`)
+
+```sql
+-- 给 user 表中的 creattime 字段添加唯一索引(UNIQUE)
+ALTER TABLE `user` ADD UNIQUE (creattime);
+```
+
+## 全文索引(FULLTEXT)
+
+> 语法：ALTER TABLE `表名字` ADD FULLTEXT (`字段名字`)
+
+```sql
+-- 给 user 表中的 description 字段添加全文索引(FULLTEXT)
+ALTER TABLE `user` ADD FULLTEXT (description);
+```
+
+## 添加多列索引
+
+> 语法：
+ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3`)
+
+```sql
+-- 给 user 表中的 description 字段添加全文索引(FULLTEXT)
+ALTER TABLE `user` ADD FULLTEXT (description);
 ```
 
 # 其它相关
