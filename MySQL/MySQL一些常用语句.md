@@ -209,11 +209,26 @@ SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders
 
 ## 普通索引(INDEX)
 
-> 语法：ALTER TABLE `表名字` ADD INDEX index_name ( `字段名字` )
+> 语法：ALTER TABLE `表名字` ADD INDEX 索引名字 ( `字段名字` )
 
 ```sql
+-- –直接创建索引
+CREATE INDEX index_user ON user(title)
+-- –修改表结构的方式添加索引
+ALTER TABLE table_name ADD INDEX index_name ON (column(length))
 -- 给 user 表中的 name字段 添加普通索引(INDEX)
-ALTER TABLE `user` ADD INDEX index_name (name)
+ALTER TABLE `table` ADD INDEX index_name (name)
+-- –创建表的时候同时创建索引
+CREATE TABLE `table` (
+    `id` int(11) NOT NULL AUTO_INCREMENT ,
+    `title` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+    `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+    `time` int(10) NULL DEFAULT NULL ,
+    PRIMARY KEY (`id`),
+    INDEX index_name (title(length))
+)
+-- –删除索引
+DROP INDEX index_name ON table
 ```
 
 ## 主键索引(PRIMARY key)
