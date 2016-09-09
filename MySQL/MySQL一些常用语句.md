@@ -212,7 +212,7 @@ SELECT MAX(OrderPrice) AS LargestOrderPrice FROM Orders
 > 语法：ALTER TABLE `表名字` ADD INDEX index_name ( `字段名字` )
 
 ```sql
--- 给 user 表中的 id字段 添加主键索引(PRIMARY key)
+-- 给 user 表中的 name字段 添加普通索引(INDEX)
 ALTER TABLE `user` ADD INDEX index_name (name)
 ```
 
