@@ -268,6 +268,23 @@ ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3`)
 ALTER TABLE `user` ADD FULLTEXT (description);
 ```
 
+## 建立索引的时机
+
+在`WHERE`和`JOIN`中出现的列需要建立索引，但也不完全如此：
+
+- MySQL只对`<`，`<=`，`=`，`>`，`>=`，`BETWEEN`，`IN`使用索引
+- 某些时候的`LIKE`也会使用索引。
+- 在`LIKE`以通配符%和_开头作查询时，MySQL不会使用索引。
+
+```sql
+SELECT t.Name  
+FROM mytable t LEFT JOIN mytable m ON t.Name=m.username 
+WHERE m.age=20 AND m.city='上海' 
+-- 此时就需要对city和age建立索引，
+-- 由于mytable表的userame也出现在了JOIN子句中，也有对它建立索引的必要。
+
+```
+
 # 其它相关
 
 - [让MySQL支持emoji图标存储](让MySQL支持emoji图标存储.md)
