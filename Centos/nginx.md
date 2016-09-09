@@ -44,15 +44,16 @@ make install
 # 开启nginx进程
 
 ```bash
+# 启动
 /usr/local/nginx-1.7.8/sbin/nginx
-```
 
-# 重启或关闭进程：
-
-```bash
+# 重启
 /usr/local/nginx-1.7.8/sbin/nginx -s reload
+
+# 关闭进程
 /usr/local/nginx-1.7.8/sbin/nginx -s stop
 ```
+
 
 # 关闭防火墙，或者添加防火墙规则就可以测试了
 

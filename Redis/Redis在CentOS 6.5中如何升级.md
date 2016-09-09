@@ -39,7 +39,7 @@ sudo vi /etc/redis.conf
 
 Restart Redis daemon, and make it auto-start on reboot:
 
-```
+```bash
 sudo service redis start
 sudo chkconfig redis on
 ```

@@ -198,6 +198,8 @@ sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
 # sysctl -p
 # echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
+# 检查gitlab
+gitlab-rake gitlab:check SANITIZE=true --trace
 
 # 查看日志
 sudo gitlab-ctl tail

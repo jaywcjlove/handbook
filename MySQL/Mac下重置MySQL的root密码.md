@@ -58,4 +58,4 @@ sudo /usr/local/mysql/support-files/mysql.server start
 # 官网参考
 
 
-- [ How to Reset the Root Password](http://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)
+- [How to Reset the Root Password](http://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html)

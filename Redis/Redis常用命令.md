@@ -3,7 +3,17 @@
 
 ```bash
 # 命令行客户端启动
+$ redis-cli start
+# 启动
+$ service redis start
+# 停止
+$ service redis stop
+
+# 命令行客户端启动
 $ redis-cli
+
+#指定端口启动
+$ redis-server --port 6380 &
 
 # 查看 Redis 版本
 $ redis-cli info | grep redis_version
@@ -57,7 +67,6 @@ OK
 # 执行命令所耗费的毫秒数(每个命令的总时间和平均时间)
 # 只需要简单地执行 CONFIG RESETSTAT 命令就可以重置，这样你就可以得到一个全新的统计结果。
 
-只需要简单地执行 CONFIG RESETSTAT 命令就可以重置，这样你就可以得到一个全新的统计结果。
 127.0.0.1:6379> commandstats
 cmdstat_get:calls=78,usec=608,usec_per_call=7.79
 cmdstat_setex:calls=5,usec=71,usec_per_call=14.20
