@@ -264,8 +264,8 @@ ALTER TABLE `user` ADD FULLTEXT (description);
 ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3`)
 
 ```sql
--- 给 user 表中的 description 字段添加全文索引(FULLTEXT)
-ALTER TABLE `user` ADD FULLTEXT (description);
+-- 给 user 表中的 name、city、age 字段添加名字为name_city_age的普通索引(INDEX)
+ALTER TABLE user ADD INDEX name_city_age (name(10),city,age); 
 ```
 
 ## 建立索引的时机
