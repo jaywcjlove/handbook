@@ -63,6 +63,7 @@ COMMENT='用户表信息';
 - `AUTO_INCREMENT`：自动递增，适用于整数类型；
 - `UNSIGNED`：是指数值类型只能为正数；
 - `CHARACTER SET name`：指定一个字符集；
+- `COMMENT`：对表或者字段说明；
 
 # 增删改查
 
