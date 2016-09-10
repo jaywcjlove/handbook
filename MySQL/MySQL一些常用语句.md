@@ -1,3 +1,60 @@
+# 开始使用
+
+## 登录MySQL
+
+```bash
+mysql -h 127.0.0.1 -u 用户名 -p
+mysql -D 所选择的数据库名 -h 主机名 -u 用户名 -p
+mysql> exit # 退出
+mysql> quit # 退出
+```
+
+## 创建数据库
+
+对于表的操作需要先进入库`use 库名;`
+
+```sql
+-- 创建一个名为 samp_db 的数据库，数据库字符编码指定为 gbk
+create database samp_db character set gbk;
+drop database samp_db; -- 删除 库名为samp_db的库
+show databases;        -- 显示数据库列表。
+use samp_db;    -- 选择创建的数据库samp_db
+show 表名;       -- 显示samp_db下面所有的表名字
+describe 表名;   -- 显示数据表的结构
+delete from 表名; -- 清空表中记录
+```
+
+## 创建数据库表
+
+> 使用 create table 语句可完成对表的创建, create table 的常见形式:
+> 语法：create table 表名称(列声明);
+
+```sql
+CREATE TABLE `user_accounts` (
+  `id`             int(100) unsigned NOT NULL AUTO_INCREMENT primary key,
+  `password`       varchar(32)       NOT NULL DEFAULT '' COMMENT '用户密码',
+  `reset_password` tinyint(32)       NOT NULL DEFAULT 0 COMMENT '用户类型：0－不需要重置密码；1-需要重置密码',
+  `mobile`         varchar(20)       NOT NULL DEFAULT '' COMMENT '手机',
+  `create_at`      timestamp(6)      NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `update_at`      timestamp(6)      NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  -- 创建唯一索引，不允许重复
+  UNIQUE INDEX idx_user_mobile(`mobile`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8
+COMMENT='用户表信息';
+```
+
+数据类型的属性解释
+
+| MySQL关键字   |  含义 |
+| ---- | ---- |
+| NULL         | 数据列可包含NULL值 |
+| NOT NULL     | 数据列不允许包含NULL值 |
+| DEFAULT      | 默认值 |
+| PRIMARY      | KEY 主键 |
+| AUTO_INCREMENT | 自动递增，适用于整数类型 |
+| UNSIGNED       | 是指数值类型只能为正数 |
+| CHARACTER SET name | 指定一个字符集 |
 
 # 增删改查
 
@@ -292,6 +349,77 @@ SELECT * FROM mytable WHEREt Name like'%admin'; -- 因此，在使用LIKE时应�
 - 索引不会包含有NULL值的列
 - 使用短索引
 - 不要在列上进行运算 索引会失效
+
+# 创建后表的修改
+
+## 添加列
+
+> 语法：`alter table 表名 add 列名 列数据类型 [after 插入位置];`
+
+示例:
+
+```sql
+-- 在表students的最后追加列 address: 
+alter table students add address char(60);
+-- 在名为 age 的列后插入列 birthday: 
+alter table students add birthday date after age;
+```
+
+## 修改列
+
+> 语法：`alter table 表名 change 列名称 列新名称 新数据类型;`
+
+```sql
+-- 将表 tel 列改名为 telphone: 
+alter table students change tel telphone char(13) default "-";
+-- 将 name 列的数据类型改为 char(16): 
+alter table students change name name char(16) not null;
+```
+
+## 删除列
+
+> 语法：`alter table 表名 drop 列名称;`
+
+```sql
+-- 删除表students中的 birthday 列: 
+alter table students drop birthday;
+```
+
+## 重命名表
+
+> 语法：`alter table 表名 rename 新表名;`
+
+```sql
+-- 重命名 students 表为 workmates: 
+alter table students rename workmates;
+```
+
+## 清空表数据
+
+> 语法：`delete from 表名;`
+
+```sql
+-- 清空表为 workmates 里面的数据，不删除表。 
+delete from workmates;
+```
+
+## 删除整张表
+
+> 语法：`drop table 表名;`
+
+```sql
+-- 删除 workmates 表: 
+drop table workmates;
+```
+
+## 删除整个数据库
+
+> 语法：`drop database 数据库名;`
+
+```sql
+-- 删除 samp_db 数据库: 
+drop database samp_db;
+```
 
 # 其它相关
 

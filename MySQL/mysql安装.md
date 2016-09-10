@@ -134,13 +134,13 @@ select * from 表名;
 
 ## 导出数据：
 
-```
+```bash
 mysqldump --opt test > mysql.test
 ```
 
 即将数据库test数据库导出到`mysql.test`文件，后者是一个文本文件
 
-```
+```bash
 mysqldump -u root -p123456 --databases dbname > mysql.dbname
 ```
 
@@ -148,13 +148,13 @@ mysqldump -u root -p123456 --databases dbname > mysql.dbname
 
 ## 导入数据:
 
-```
+```bash
 mysqlimport -u root -p123456 < mysql.dbname。
 ```
 
 登录数据库，在数据库中导入数据
 
-```
+```bash
 source ~/sql/database.sql
 ```
 
@@ -163,87 +163,87 @@ source ~/sql/database.sql
 
 文本数据的字段数据之间用tab键隔开。
 
-```
+```bash
 use test;
 load data local infile "文件名" into table 表名;
 ```
 
 1:使用SHOW语句找出在服务器上当前存在什么数据库：
 
-```
+```bash
 mysql> SHOW DATABASES;
 ```
 
 2:创建一个数据库MYSQLDATA
 
-```
+```bash
 mysql> CREATE DATABASE MYSQLDATA;
 ```
 
 3:选择你所创建的数据库
 
-```
+```bash
 mysql> USE MYSQLDATA; (按回车键出现Database changed 时说明操作成功!)
 ```
 
 4:查看现在的数据库中存在什么表
 
-```
+```bash
 mysql> SHOW TABLES;
 ```
 
 5:创建一个数据库表
 
-```
+```bash
   mysql> CREATE TABLE MYTABLE (name VARCHAR(20), sex CHAR(1));
 ```
 
 6:显示表的结构：
 
-```
+```bash
 mysql> DESCRIBE MYTABLE;
 ```
 
 7:往表中加入记录
 
-```
+```bash
 mysql> insert into MYTABLE values ("hyq","M");
 ```
 
 8:用文本方式将数据装入数据库表中(例如`D:/mysql.txt`)
 
-```
+```bash
 mysql> LOAD DATA LOCAL INFILE "D:/mysql.txt" INTO TABLE MYTABLE;
 ```
 
 9:导入.sql文件命令(例如D:/mysql.sql)
 
-```
-mysql>use database;
-mysql>source d:/mysql.sql;
+```bash
+mysql> use database;
+mysql> source d:/mysql.sql;
 ```
 
 10:删除表
 
-```
+```bash
 mysql>drop TABLE MYTABLE;
 ```
 
 11:清空表
 
-```
-mysql>delete from MYTABLE;
+```bash
+mysql> delete from MYTABLE;
 ```
 
 12:更新表中数据
 
-```
-  mysql>update MYTABLE set sex="f" where name='hyq';
+```bash
+mysql> update MYTABLE set sex="f" where name='hyq';
 ```
 
 13：备份数据库
 
-```
+```bash
 mysqldump -u root 库名>xxx.data
 ```
 

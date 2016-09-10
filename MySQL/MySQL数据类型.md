@@ -1,6 +1,15 @@
 
 # MySQL数据类型
 
+- 数字类型
+  - 整数: tinyint、smallint、mediumint、int、bigint
+  - 浮点数: float、double、real、decimal
+- 日期和时间: date、time、datetime、timestamp、year
+- 字符串类型
+  - 字符串: char、varchar
+  - 文本: tinytext、text、mediumtext、longtext
+- 二进制(可用来存储图片、音乐等): tinyblob、blob、mediumblob、longblob
+
 ## 字符串类型
 
 | 类型 | 单位 | 最大 | 特性 |
@@ -33,14 +42,14 @@
 
 ### 浮点型
 
-| 属性 | 存储空间 | 精度 | 精确性 |
-| ---- | ----  | ---- | ---- |
-|FLOAT(M, D)|4 bytes|单精度|非精确|
-|DOUBLE(M, D)|8 bytes|双精度|比Float精度高|
+| 属性 | 存储空间 | 精度 | 精确性 | 说明 |
+| ---- | ----  | ---- | ---- | ---- |
+|FLOAT(M, D)|4 bytes|单精度|非精确| 单精度浮点型，m总个数，d小数位 |
+|DOUBLE(M, D)|8 bytes|双精度|比Float精度高| 双精度浮点型，m总个数，d小数位 |
 
 - FLOAT容易造成精度丢失
 
-#### DECIMAL
+### 定点数DECIMAL
 
 - 高精度的数据类型，常用来存储交易相关的数据
 - DECIMAL(M,N).M代表总精度，N代表小数点右侧的位数（标度）
