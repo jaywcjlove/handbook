@@ -13,7 +13,7 @@
     - [Mac下重置MySQL的root密码](MySQL/Mac下重置MySQL的root密码.md)
     - [MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
     - [MySQL一些常用语句](MySQL/MySQL%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5.md)
-    - [MySQL数据类型](MySQL/MySQL数据类型.md)
+    - [MySQL数据类型](./MySQL/MySQL数据类型.md)
     - [Centos6下升级MySQL数据库](MySQL/Centos6下升级MySQL数据库.md)
 - Redis
     - [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
