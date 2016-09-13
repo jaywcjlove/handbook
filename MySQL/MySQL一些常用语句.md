@@ -225,7 +225,7 @@ SELECT t.name from (SELECT * from users_profile a) AS t;
 SELECT ua.mobile,up.name FROM user_accounts as ua INNER JOIN users_profile as up ON ua.id = up.user_id;
 ```
 
-# JION 
+# JOIN 
 
 > 用于根据两个或多个表中的列之间的关系，从这些表中查询数据。  
 
