@@ -1,5 +1,7 @@
 # 开始使用
 
+我下面所有的SQL语句是基于MySQL 5.6+运行。 
+
 MySQL 为关系型数据库(Relational Database Management System)，一个关系型数据库由一个或数个表格组成, 如图所示的一个表格：
 
 ![MySQL](_img/data.jpg)
