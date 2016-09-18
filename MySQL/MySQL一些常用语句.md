@@ -407,11 +407,17 @@ alter table students rename workmates;
 
 ## 清空表数据
 
-> 语法：`delete from 表名;`
+> 方法一：`delete from 表名;`
+> 方法二：`truncate from "表名";`
+
+- `DELETE:`1. DML语言;2. 可以回退;3. 可以有条件的删除;
+- `TRUNCATE:`1. DDL语言;2. 无法回退;3. 默认所有的表内容都删除;4. 删除速度比delete快。
 
 ```sql
 -- 清空表为 workmates 里面的数据，不删除表。 
 delete from workmates;
+-- 删除workmates表中的所有数据，且无法恢复
+truncate from workmates;
 ```
 
 ## 删除整张表
