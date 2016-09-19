@@ -84,6 +84,9 @@ SELECT LastName FROM Persons
 
 -- 结果集中会自动去重复数据
 SELECT DISTINCT Company FROM Orders 
+-- 表 Persons 字段 Id_P 等于 Orders 字段 Id_P 的值，
+-- 结果集显示 Persons表的 LastName、FirstName字段，Orders表的OrderNo字段
+SELECT p.LastName, p.FirstName, o.OrderNo FROM Persons p, Orders o WHERE p.Id_P = o.Id_P 
 ```
 
 ## UPDATE
@@ -107,8 +110,13 @@ where id = (select id from user2 where user2 .name='小苏')
 ```sql
 -- 向表 Persons 插入一条字段 LastName = Wilson 字段 Address = shanghai
 INSERT INTO Persons (LastName, Address) VALUES ('JSLite', 'shanghai');
-
+-- 向表 meeting 插入 字段 a=1 和字段 b=2
 INSERT INTO meeting SET a=1,b=2;
+-- 
+-- SQL实现将一个表的数据插入到另外一个表的代码
+-- 如果只希望导入指定字段，可以用这种方法：
+-- INSERT INTO 目标表 (字段1, 字段2, ...) SELECT 字段1, 字段2, ... FROM 来源表;
+INSERT INTO orders (user_account_id, title) SELECT m.user_id, m.title FROM meeting m where m.id=1;
 ```
 
 ## DELETE
@@ -125,9 +133,6 @@ DELETE * FROM table_name
 DELETE FROM Person WHERE LastName = 'Wilson' 
 -- 删除 表meeting id 为2和3的两条数据
 DELETE from meeting where id in (2,3);
--- 表 Persons 字段 Id_P 等于 Orders 字段 Id_P 的值，
--- 结果集显示 Persons表的 LastName、FirstName字段，Orders表的OrderNo字段
-SELECT p.LastName, p.FirstName, o.OrderNo FROM Persons p, Orders o WHERE p.Id_P = o.Id_P 
 ```
 
 # WHERE
