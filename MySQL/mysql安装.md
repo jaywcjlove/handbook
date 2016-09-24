@@ -373,6 +373,6 @@ yum remove mysql mysql-server mysql-libs compat-mysql51
 
 # 重启
 
-1. 启动：`/usr/local/mysql/support-files/mysql.server start `
-2. 停止：`/usr/local/mysql/support-files/mysql.server stop `
-3. 重启：`/usr/local/mysql/support-files/mysql.server restart`
+1. 启动：`sudo /usr/local/mysql/support-files/mysql.server start `
+2. 停止：`sudo /usr/local/mysql/support-files/mysql.server stop `
+3. 重启：`sudo /usr/local/mysql/support-files/mysql.server restart`
