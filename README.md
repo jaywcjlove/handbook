@@ -21,6 +21,7 @@
     - [Redis在CentOS 6.5中如何升级](Redis/Redis在CentOS 6.5中如何升级.md)
     - [Redis配置说明](Redis/Redis配置说明.md)
     - [Redis.conf 配置文件例子](Redis/Redis.conf)
+- [思维导图来学习 Javascript 基础知识](Javascript/)
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
 - [git](http://jaywcjlove.github.io/handbook/html/git.html)
