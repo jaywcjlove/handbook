@@ -1,1 +1,1 @@
-# [所有MySQL相关的都搬家到这里了](https://github.com/jaywcjlove/mysql-tutoria)
+# [所有MySQL相关的都搬家到这里了](https://github.com/jaywcjlove/mysql-tutorial)
