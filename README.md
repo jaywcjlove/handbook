@@ -23,7 +23,7 @@
     - [Redis配置说明](Redis/Redis配置说明.md)
     - [Redis.conf 配置文件例子](Redis/Redis.conf)
 - [思维导图来学习 Javascript 基础知识](Javascript/)
-- [公众账号推荐](other/公众账号推荐.md)
+- [40多个公众账号推荐，祝你了解程序员的世界](other/公众账号推荐.md)
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
 - [git](http://jaywcjlove.github.io/handbook/html/git.html)
