@@ -25,8 +25,8 @@
 - [思维导图来学习 Javascript 基础知识](Javascript/)
 - [40多个公众账号推荐，祝你了解程序员的世界](other/公众账号推荐.md)
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
-- [Lua5.3](http://jaywcjlove.github.io/handbook/html/Lua5.3.html)
-- [git](http://jaywcjlove.github.io/handbook/html/git.html)
+- [Lua5.3中文手册](other/Lua5.3.md)
+- [Git常用命令清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)
 - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
 - 测试工具
     - [chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
