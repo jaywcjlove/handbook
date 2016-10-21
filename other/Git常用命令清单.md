@@ -1,10 +1,68 @@
 [部分转载颜海镜的文章](http://yanhaijing.com/git/2014/11/01/my-git-note)
 这篇文章记录个人常用的一些命令，和记不住的一些命令，转载了并不断更新。
 
-- [Git官网](http://git-scm.com/)
-- [**Github 15分钟学习Git**](https://try.github.io)
+## 目录
+
+- [参考资料](#参考资料)
+- [配置](#配置)
+- [修改项目中的个人信息](#修改项目中的个人信息)
+- [多账号ssh配置](#多账号ssh配置)
+- [Git推向3个库](#Git推向3个库)
+  - [增加3个远程库地址](#增加3个远程库地址)
+  - [删除其中一个 set-url 地址](#删除其中一个 set-url 地址)
+  - [push](#push)
+  - [pull](#pull)
+  - [更改pull](#更改pull)
+- [新建仓库](#新建仓库)
+  - [init](#init)
+  - [status](#status)
+  - [add](#add)
+  - [commit](#commit)
+  - [remote](#remote)
+  - [push](#push)
+- [从现有仓库克隆](#从现有仓库克隆)
+- [submodule](#submodule)
+- [本地](#本地)
+  - [add](#add)
+  - [rm](#rm)
+  - [commit](#commit)
+  - [reset](#reset)
+  - [revert](#revert)
+  - [checkout](#checkout)
+  - [diff](#diff)
+  - [stash](#stash)
+  - [merge](#merge)
+  - [cherry-pick](#cherry-pick)
+  - [rebase](#rebase)
+- [分支branch](#分支branch)
+  - [删除](#删除)
+  - [提交](#提交)
+  - [拉取](#拉取)
+  - [分支合并](#分支合并)
+  - [重命名](#重命名)
+  - [查看](#查看)
+  - [新建](#新建)
+  - [连接](#连接)
+  - [分支切换](#分支切换)
+- [远端](#远端)
+  - [撤销远程记录](#撤销远程记录)
+- [忽略文件](#忽略文件)
+- [删除文件](#删除文件)
+- [源remote](#源remote)
+- [同步一个fork](#同步一个fork)
+  - [设置](#设置)
+  - [同步](#同步)
+- [标签tag](#标签tag)
+- [日志log](#日志log)
+- [重写历史](#重写历史)
+- [查看某个文件历史](#查看某个文件历史)
+- [总结](#总结)
+- [报错](#报错)
 
 ## 参考资料
+
+- [Git官网](http://git-scm.com/)
+- [**Github 15分钟学习Git**](https://try.github.io)
 - [Git参考手册](http://gitref.org/zh/index.html)
 - [Git简明手册](http://www.mceiba.com/tool/git-cheat-sheet.html)
 - [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/)
@@ -167,9 +225,6 @@ $ git clone file:///opt/git/project.git
 $ git clone ftp[s]://example.com/path/to/repo.git/
 $ git clone rsync://example.com/path/to/repo.git/
 ```
-
-
-
 
 
 ## submodule
