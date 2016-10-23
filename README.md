@@ -24,7 +24,7 @@
     - [Redis.conf 配置文件例子](Redis/Redis.conf)
 - [思维导图来学习 Javascript 基础知识](Javascript/)
 - [40多个公众账号推荐，祝你了解程序员的世界](other/公众账号推荐.md)
-- [常见HTTP错误代码大全](other/HTTP-Status-codes.md)
+- [常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)
 - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
 - [Lua5.3中文手册](other/Lua5.3.md)
 - [Git常用命令清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)
