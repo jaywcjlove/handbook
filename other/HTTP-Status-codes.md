@@ -232,7 +232,8 @@ _WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客
 
 - [HTTP状态码列表](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 - [FTP状态码列表](https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes)
-- [自定义错误页面，404一些错误代码定义的IIS](https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages)
+- [FTP状态码列表](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
+- [MDN CloseEvent](https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages)
 - [List of FTP server return codes](https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes)
 - [HTTP概述](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview)
 - [Help for HTTP error 403: “Forbidden”](http://www.getnetgoing.com/HTTP-403.html)
