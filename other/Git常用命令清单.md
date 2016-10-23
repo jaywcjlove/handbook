@@ -257,14 +257,17 @@ $ git clone rsync://example.com/path/to/repo.git/
 `git log` #查看提交记录  
 
 ### commit
-`git commit` #提交更新   
-`git commit -m 'message'` #提交说明   
-`git commit -a` #跳过使用暂存区域，把所有已经跟踪过的文件暂存起来一并提交   
-`git commit --amend` #修改最后一次提交   
-`git commit log` #查看所有提交，包括没有push的commit    
-`git commit -m "#133"` #关联issue 任意位置带上`#` 符号加上issue号码  
-`git commit -m "fix #133"` commit关闭issue  
-`git commit -m '概要描述'$'\n\n''1.详细描述'$'\n''2.详细描述'` #提交简要描述和详细描述  
+
+```bash
+git commit #提交更新   
+git commit -m 'message' #提交说明   
+git commit -a #跳过使用暂存区域，把所有已经跟踪过的文件暂存起来一并提交   
+git commit --amend #修改最后一次提交   
+git commit log #查看所有提交，包括没有push的commit    
+git commit -m "#133" #关联issue 任意位置带上# 符号加上issue号码  
+git commit -m "fix #133" commit关闭issue  
+git commit -m '概要描述'$'\n\n''1.详细描述'$'\n''2.详细描述' #提交简要描述和详细描述  
+```
 
 ### reset
 `git reset HEAD` *#取消已经暂存的文件   
