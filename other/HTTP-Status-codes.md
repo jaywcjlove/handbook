@@ -1,5 +1,5 @@
 
-常见HTTP错误代码大全
+常见HTTP/FTP/WebSocket错误代码大全
 ---
 
 ![](img_http/Fetching_a_page.png)
@@ -13,12 +13,12 @@
   - [4xx客户端错误](#4xx客户端错误)
   - [5xx服务器错误](#5xx服务器错误)
 - [FTP](#FTP)
-  - [1xx](#1xx)
-  - [2xx](#2xx)
-  - [3xx](#3xx)
-  - [4xx](#4xx)
-  - [5xx](#5xx)
-  - [6xx](#6xx)
+  - [1xx初步](#1xx初步)
+  - [2xx完成](#2xx完成)
+  - [3xx中间](#3xx中间)
+  - [4xx瞬态否定](#4xx瞬态否定)
+  - [5xx永久性否定](#5xx永久性否定)
+  - [6xx受保护](#6xx受保护)
 - [WebSockets](#WebSockets状态码)
 - [参考资料](#参考资料)
 
@@ -129,7 +129,7 @@ _这类状态码代表了服务器在处理请求的过程中有错误或者异�
 
 ## FTP
 
-### 1xx
+### 1xx初步
 
 _肯定的初步答复，这些状态代码指示一项操作已经成功开始，但客户端希望在继续操作新命令前得到另一个答复。_
 
@@ -138,7 +138,7 @@ _肯定的初步答复，这些状态代码指示一项操作已经成功开始�
 - 125 数据连接已打开，正在开始传输。
 - 150 文件状态正常，准备打开数据连接。
 
-### 2xx
+### 2xx完成
 
 _肯定的完成答复，一项操作已经成功完成。客户端可以执行新命令。_
 
@@ -158,7 +158,7 @@ _肯定的完成答复，一项操作已经成功完成。客户端可以执行�
 - 250 请求的文件操作正确，已完成。
 - 257 已创建“PATHNAME”。
 
-### 3xx
+### 3xx中间
 
 _肯定的中间答复，该命令已成功，但服务器需要更多来自客户端的信息以完成对请求的处理。_
 
@@ -166,7 +166,7 @@ _肯定的中间答复，该命令已成功，但服务器需要更多来自客�
 - 332 需要登录帐户。
 - 350 请求的文件操作正在等待进一步的信息。
 
-### 4xx
+### 4xx瞬态否定
 
 _瞬态否定的完成答复，该命令不成功，但错误是暂时的。如果客户端重试命令，可能会执行成功。_
 
@@ -177,7 +177,7 @@ _瞬态否定的完成答复，该命令不成功，但错误是暂时的。如�
 - 451 请求的操作异常终止：正在处理本地错误。
 - 452 未执行请求的操作。系统存储空间不够。
 
-## 5xx
+## 5xx永久性否定
 
 _永久性否定的完成答复，该命令不成功，错误是永久性的。如果客户端重试命令，将再次出现同样的错误。_
 
@@ -193,7 +193,7 @@ _永久性否定的完成答复，该命令不成功，错误是永久性的。�
 - 552 请求的文件操作异常终止：超出存储分配（对于当前目录或数据集）。
 - 553 未执行请求的操作。不允许的文件名。
 
-## 6xx
+## 6xx受保护
 
 - 600 Series，Replies regarding confidentiality and integrity
 - 631 Integrity protected reply.
@@ -232,8 +232,8 @@ _WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客
 
 - [HTTP状态码列表](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 - [FTP状态码列表](https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes)
-- [FTP状态码列表](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
-- [MDN CloseEvent](https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages)
+- [MDN CloseEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
+- [HTTP 404](https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages)
 - [List of FTP server return codes](https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes)
 - [HTTP概述](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview)
 - [Help for HTTP error 403: “Forbidden”](http://www.getnetgoing.com/HTTP-403.html)
