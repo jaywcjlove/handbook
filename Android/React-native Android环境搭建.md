@@ -1,6 +1,21 @@
 React-native Android环境搭建.md
 ---
 
+## 目录
+
+- [基础安装](#基础安装)
+  - [安装Homebrew](#安装Homebrew)
+  - [安装Node.js](#安装Node.js)
+  - [安装watchman](#安装watchman)
+  - [安装flow](#安装flow)
+  - [安装react-native-cli](#安装react-native-cli)
+- [iOS环境安装](#iOS环境安装)
+- [Android环境安装](#Android环境安装)
+  - [基础软件安装](#基础软件安装)
+  - [环境变量配置](#环境变量配置)
+  - [测试服务端](#测试服务端)
+  - [启动步骤](#启动步骤)
+
 ## 基础安装 
 
 ### 安装Homebrew
@@ -47,6 +62,10 @@ $ react-native run-android`
 ```
 
 ## Android环境安装
+
+在Android环境，比较难搞，按照步骤安装即可，不要放过任何步骤哦。
+
+### 基础软件安装 
 
 1. 安装JDK [jdk-8u101-macosx-x64.dmg](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html)
   - 查看版本，命令行中运行`javac -version`
