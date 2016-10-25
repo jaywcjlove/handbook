@@ -5,7 +5,7 @@ React-native Android环境搭建.md
 
 - [基础安装](#基础安装)
   - [安装Homebrew](#安装Homebrew)
-  - [安装Node.js](#安装Node.js)
+  - [安装Node.js](#安装nodejs)
   - [安装watchman](#安装watchman)
   - [安装flow](#安装flow)
   - [安装react-native-cli](#安装react-native-cli)
