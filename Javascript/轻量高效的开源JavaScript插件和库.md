@@ -8,6 +8,7 @@
 - [布局](#布局)
 - [音频视频](#音频视频)
 - [编辑器](#编辑器)
+- [轮播图](#轮播图)
 - [弹出层](#弹出层)
 - [表单](#表单)
 - [存储](#存储)
@@ -21,12 +22,15 @@
 - [viewerjs](https://github.com/fengyuanchen/viewerjs) - 是一个图像预览插件。[demo](https://fengyuanchen.github.io/viewerjs/)
 - [cropperjs](https://github.com/fengyuanchen/cropperjs) - 是一个图片编辑器插件。[demo](https://fengyuanchen.github.io/cropperjs/)
 - [photo-editor](https://github.com/fengyuanchen/photo-editor) - 是一个本地图片编辑器插件。[demo](https://fengyuanchen.github.io/photo-editor/)
+- [blazy.js](https://github.com/dinbror/blazy/) - 是一个懒惰加载插件。[demo](http://dinbror.dk/blazy/)
 
 ## 布局
 
 - [SuperEmbed.js](https://github.com/corbindavenport/superembed.js) - 是一个Javascript库，可检测出网页上的内嵌视频并使他们能够变成响应式元素。[demo](https://jsfiddle.net/h6x04LuL/)
 - [ScrollReveal](https://github.com/jlmakes/scrollreveal) - ScrollReveal插件使用户能够无比轻松地创建桌面和移动浏览器的网页滚动动画。[demo](http://callmecavs.com/bricks.js/)
 - [Bricks.js](https://github.com/callmecavs/bricks.js) - 是一款超快的用于固定宽度元素的“砖石”布局生成器。[demo](http://callmecavs.com/bricks.js/)
+
+- [Swipe](https://github.com/thebird/Swipe) - 准确的触摸滑块。[demo](http://thebird.github.io/Swipe/)
 
 ## 弹出层
 
@@ -63,10 +67,15 @@
 ## 动画
 
 - [anime.js](https://github.com/juliangarnier/anime) - 是一个灵活轻便的JavaScript动画库。[demo](http://codepen.io/collection/XLebem/)
+- [three.js](https://github.com/mrdoob/three.js) - 是一个JS 3D库。[demo](https://threejs.org/)
+- [vivus](https://github.com/maxwellito/vivus) - JavaScript库，使SVG绘制动画。[demo](http://maxwellito.github.io/vivus/)
 
 ## 其它
 
 - [hotkeys](https://github.com/jaywcjlove/hotkeys) - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。[demo](http://nickersoft.github.io/push.js/)
-- [Push.js](https://github.com/jaywcjlove/onlinenetwork) - 是一个跨浏览器的Javascript桌面通知插件。[demo](http://nickersoft.github.io/push.js/)
+- [clipboard.js](https://github.com/zenorocha/clipboard.js) - 现代复制到剪贴板。没有Flash，gzip压缩只有3KB 。[demo](https://clipboardjs.com/)
+- [translater.js](https://github.com/jaywcjlove/onlinenetwork) - 这是一个利用HTML注释的页面翻译解决方案。[demo](https://jaywcjlove.github.io/translater.js/)
+- [Push.js](https://github.com/jaywcjlove/translater.js) - 是一个跨浏览器的Javascript桌面通知插件。[demo](http://nickersoft.github.io/push.js/)
 - [onlinenetwork](https://github.com/jaywcjlove/onlinenetwork) - js判断是否断网了。
-- [iNotify](https://github.com/jaywcjlove/iNotify) - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。。[demo](http://jaywcjlove.github.io/iNotify)
+- [iNotify](https://github.com/jaywcjlove/iNotify) - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。[demo](http://jaywcjlove.github.io/iNotify)
+- [tesseract.js](https://github.com/naptha/tesseract.js) - 是一个文字识别转换，可以运行在浏览器和服务器NodeJS上。[demo](http://tesseract.projectnaptha.com/)
