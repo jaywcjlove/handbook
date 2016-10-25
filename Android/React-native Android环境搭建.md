@@ -1,7 +1,50 @@
 React-native Android环境搭建.md
 ---
 
-#  安装步骤
+# 基础安装 
+
+## 安装Homebrew
+
+Homebrew是Mac OSX的包管理器，我们需要通过Homebrew安装开发React Native的相关软件包。
+如果不知道怎样安装Homebrew可以点这里：[官网](http://brew.sh/index_zh-cn.html)。根据官网的介绍安装即可。
+
+## 安装Node.js
+
+$brew install node
+
+## 安装watchman
+
+watchman是Facebook用于监视JavaScript文件改动的开源项目。
+
+```bash
+$ brew install watchman
+```
+
+## 安装flow
+
+flow是Facebook开源的一个JavaScript静态类型检查器，用于发现JavaScript程序中的类型错误。
+
+```bash
+$ brew install flow
+```
+
+## 安装react-native-cli
+
+react-native-cli是React Native的命令行工具，安装react-native-cli后我们就能够通过react-native相关命令管理ReactNative工程。
+
+```bash
+$ npm install -g react-native-cli
+```
+
+# iOS环境安装
+
+相对于Android环境搭建，iOS简单太多了，太easy了！在基础环境安装成功之后，只需去[Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)下载Xcode，并安装Xcode即可。在初始化项目好之后，只需在项目根目录运行下面命令即可：
+
+```bash
+$ react-native run-android`
+```
+
+# Android环境安装
 
 1. 安装JDK [jdk-8u101-macosx-x64.dmg](http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html)
   - 查看版本，命令行中运行`javac -version`
@@ -15,8 +58,6 @@ React-native Android环境搭建.md
   - 注册帐号
   - 下载Genymotion
   - 安装Genymotion
-
-# 其它相关
 
 ## 环境变量配置
 
@@ -39,9 +80,9 @@ export ANDROID_HOME=~/Library/Android/sdk
 http://localhost:8081/index.android.bundle?platform=android  
 如果可以访问表示服务器端已经可以了。
 
-# 启动步骤
+## 启动步骤
 
-## 启动 Genymotion 设置
+### 启动 Genymotion 设置
 
 在应用中登录，点击按钮`Add`下载模拟器设备，在`Setting`中设置`ADB`选择`User custom Android SDK tools.`填写地址，一般在目录`/Users/用户名/Library/Android/sdk`中，点击按钮`Start`启动模拟器
 
@@ -49,7 +90,7 @@ http://localhost:8081/index.android.bundle?platform=android
 ![](img/Genymotion02.jpg)
 ![](img/Genymotion03.jpg)
 
-## 运行命令启动项目
+### 运行命令启动项目
 
 进入项目的根目录，也就是有`package.json`文件的目录，运行`react-native run-android`启动项目，如下动图：
 
@@ -57,7 +98,7 @@ http://localhost:8081/index.android.bundle?platform=android
 
 ## 报错
 
-没有连接手机会报如下错，**开发阶段可忽视**
+在Android环境下运行，会报下面错误，原因是没有连接手机会报如下错，**开发阶段可忽视**
 
 ```bash
 error: no devices/emulators found

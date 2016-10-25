@@ -24,7 +24,7 @@
     - [Redis.conf 配置文件例子](Redis/Redis.conf)
 - Android
     - [Mac完整卸载Android Studio的方法](Android/Mac%E5%AE%8C%E6%95%B4%E5%8D%B8%E8%BD%BDAndroid%20Studio%E7%9A%84%E6%96%B9%E6%B3%95.md)
-    - [React-native Android环境搭建.md](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
+    - [React-native Android环境搭建](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 - Javascript
     - [思维导图来学习 Javascript 基础知识](Javascript/)
     - [轻量高效的开源JavaScript插件和库](Javascript/轻量高效的开源JavaScript插件和库.md)
