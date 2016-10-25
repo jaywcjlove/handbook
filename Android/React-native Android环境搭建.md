@@ -10,7 +10,9 @@ Homebrew是Mac OSX的包管理器，我们需要通过Homebrew安装开发React 
 
 ## 安装Node.js
 
-$brew install node
+```bash
+$ brew install node
+```
 
 ## 安装watchman
 
