@@ -15,6 +15,7 @@ React-native Android环境搭建.md
   - [环境变量配置](#环境变量配置)
   - [测试服务端](#测试服务端)
   - [启动步骤](#启动步骤)
+- [参考资料](#参考资料)
 
 ## 基础安装 
 
@@ -125,3 +126,9 @@ http://localhost:8081/index.android.bundle?platform=android
 error: no devices/emulators found
 Could not run adb reverse: Command failed: ~/Library/Android/sdk/platform-tools/adb reverse tcp:8081 tcp:8081
 ```
+
+## 参考资料
+
+- [官方搭建开发环境](https://facebook.github.io/react-native/docs/getting-started.html#content)
+- [reactnative.cn搭建开发环境](http://reactnative.cn/docs/0.35/getting-started.html)
+- [极客学院搭建开发环境](http://wiki.jikexueyuan.com/project/react-native/DevelopmentSetupAndroid.html)
