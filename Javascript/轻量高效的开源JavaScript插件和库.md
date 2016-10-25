@@ -18,7 +18,7 @@
 
 - [baguetteBox.js](https://github.com/feimosi/baguetteBox.js) - 是一个简单易用的响应式图像灯箱效果脚本。[demo](https://feimosi.github.io/baguetteBox.js/)
 - [Lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) - 是一个功能齐全的JavaScript图像灯箱插件。[demo](https://sachinchoolur.github.io/lightgallery.js/)
-- [Lightgallery.js](https://github.com/fengyuanchen/viewerjs) - 是一个图像预览插件。[demo](https://fengyuanchen.github.io/viewerjs/)
+- [viewerjs](https://github.com/fengyuanchen/viewerjs) - 是一个图像预览插件。[demo](https://fengyuanchen.github.io/viewerjs/)
 - [cropperjs](https://github.com/fengyuanchen/cropperjs) - 是一个图片编辑器插件。[demo](https://fengyuanchen.github.io/cropperjs/)
 - [photo-editor](https://github.com/fengyuanchen/photo-editor) - 是一个本地图片编辑器插件。[demo](https://fengyuanchen.github.io/photo-editor/)
 
@@ -66,6 +66,7 @@
 
 ## 其它
 
-- [onlinenetwork](https://github.com/jaywcjlove/onlinenetwork) - js判断是否断网了。
+- [hotkeys](https://github.com/jaywcjlove/hotkeys) - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。[demo](http://nickersoft.github.io/push.js/)
 - [Push.js](https://github.com/jaywcjlove/onlinenetwork) - 是一个跨浏览器的Javascript桌面通知插件。[demo](http://nickersoft.github.io/push.js/)
+- [onlinenetwork](https://github.com/jaywcjlove/onlinenetwork) - js判断是否断网了。
 - [iNotify](https://github.com/jaywcjlove/iNotify) - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。。[demo](http://jaywcjlove.github.io/iNotify)
