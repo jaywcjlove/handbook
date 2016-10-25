@@ -30,6 +30,8 @@
 - [ScrollReveal](https://github.com/jlmakes/scrollreveal) - ScrollReveal插件使用户能够无比轻松地创建桌面和移动浏览器的网页滚动动画。[demo](http://callmecavs.com/bricks.js/)
 - [Bricks.js](https://github.com/callmecavs/bricks.js) - 是一款超快的用于固定宽度元素的“砖石”布局生成器。[demo](http://callmecavs.com/bricks.js/)
 
+## 轮播图
+
 - [Swipe](https://github.com/thebird/Swipe) - 准确的触摸滑块。[demo](http://thebird.github.io/Swipe/)
 
 ## 弹出层
