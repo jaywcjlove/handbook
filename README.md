@@ -28,11 +28,11 @@
 - Javascript
     - [思维导图来学习 Javascript 基础知识](Javascript/)
     - [轻量高效的开源JavaScript插件和库](Javascript/轻量高效的开源JavaScript插件和库.md)
-    - [Backbone.js](http://jaywcjlove.github.io/handbook/index.html)
+    - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - 测试工具
-    - [chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
-    - [mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
-    - [should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
+    - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
+    - [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
+    - [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
 - [50多个公众账号推荐，助你了解程序员的世界](other/公众账号推荐.md)
 - [常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)
 - [Lua5.3中文手册](other/Lua5.3.md)
