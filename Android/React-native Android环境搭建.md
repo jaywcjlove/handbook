@@ -56,7 +56,7 @@ $ npm install -g react-native-cli
 
 ## iOS环境安装
 
-相对于Android环境搭建，iOS简单太多了，太easy了！在基础环境安装成功之后，只需去[Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)下载Xcode，并安装Xcode即可。在初始化项目好之后，只需在项目根目录运行下面命令即可：
+相对于Android环境搭建，iOS简单太多了，太easy了！在基础环境安装成功之后，只需去[Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)下载Xcode，并安装Xcode即可，首次安装需要打开Xcode初始化。在初始化项目好之后，只需在项目根目录运行下面命令即可：
 
 ```bash
 $ react-native run-ios`
