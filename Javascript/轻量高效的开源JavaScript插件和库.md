@@ -44,6 +44,7 @@
 ## 音频视频
 
 - [Loud Links](https://github.com/mahdif/loud-links) - 是一个轻量级的JavaScript库用于添加交互声音到您的站点。[demo](http://loudlinks.rocks/#examples)
+- [flv.js](https://github.com/Bilibili/flv.js) - B 站 HTML5 播放器内核开源。
 
 ## 编辑器
 
