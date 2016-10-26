@@ -89,8 +89,9 @@ $ react-native run-ios`
 
 ```bash
 PATH="~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools:${PATH}"
-export PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ANDROID_HOME=~/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
 ```
 
 改完需要运行`source ~/.bash_profile`
@@ -110,6 +111,10 @@ http://localhost:8081/index.android.bundle?platform=android
 
 ![](img/Genymotion01.jpg)
 ![](img/Genymotion02.jpg)
+
+在启动前需要设置ADB SDK，否则会报错 `error: could not install smartsocket listener: Address already in use`，解决方法：genymotion的adb设置Android sdk。如下图：
+
+![](img/Genymotion04.jpg)
 ![](img/Genymotion03.jpg)
 
 #### 运行命令启动项目
@@ -120,15 +125,37 @@ http://localhost:8081/index.android.bundle?platform=android
 
 ### 报错
 
+#### 1. error: no devices/emulators found
+
+Could not run adb reverse: Command failed: ~/Library/Android/sdk/platform-tools/adb reverse tcp:8081 tcp:8081
+
 在Android环境下运行，会报下面错误，原因是没有连接手机会报如下错，**开发阶段可忽视**
 
-```bash
-error: no devices/emulators found
-Could not run adb reverse: Command failed: ~/Library/Android/sdk/platform-tools/adb reverse tcp:8081 tcp:8081
+#### 2. react-native run-android时出现Could not download imagepipeline.aar
+
+解决方法：修改build.gradle的版本，com.android.tools.build:gradle:2.1.0，改为更高的，然后更改gradle/wrapper/gradle-wrapper.properties中相应的gradle-2.10-all.zip。
+
+#### 3. Undefined symbols for architecture x86_64: “std::terminate()”
+
+解决方法：I ran in to this issue as well, and the solution @charpeni proposed solved the issue. To be clear for others, if you are upgrading to 0.26+ then you need to make the following changes.
+
+In ios/YourProject.xcodeproj/project.pbxproj, look for the two lines like OTHER_LDFLAGS = "-ObjC";. Replace them with the following:
+
 ```
+OTHER_LDFLAGS = (
+        "-ObjC",
+        "-lc++",
+);
+```
+
+#### 4. react-native run-android时出现Could not download imagepipeline.aar
+
+解决方法：修改build.gradle的版本，com.android.tools.build:gradle:2.1.0，改为更高的，然后更改gradle/wrapper/gradle-wrapper.properties中相应的gradle-2.10-all.zip。
+
 
 ## 参考资料
 
 - [官方搭建开发环境](https://facebook.github.io/react-native/docs/getting-started.html#content)
 - [reactnative.cn搭建开发环境](http://reactnative.cn/docs/0.35/getting-started.html)
 - [极客学院搭建开发环境](http://wiki.jikexueyuan.com/project/react-native/DevelopmentSetupAndroid.html)
+- [React Native开发过程中遇到的问题](https://github.com/haiyangjiajian/haiyangjiajian.github.io/blob/4bd765801712adf33b4d45280fb01e9aef21c1b1/_posts/2016-8-9-react%20native%20related%20problems%20and%20solutions.md)
