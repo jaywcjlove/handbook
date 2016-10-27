@@ -15,6 +15,7 @@ React-native Android环境搭建.md
   - [环境变量配置](#环境变量配置)
   - [测试服务端](#测试服务端)
   - [启动步骤](#启动步骤)
+- [各种报错](#各种报错)
 - [参考资料](#参考资料)
 
 ## 基础安装
@@ -123,7 +124,7 @@ http://localhost:8081/index.android.bundle?platform=android
 
 ![](img/React-native-run.gif)
 
-### 报错
+## 各种报错
 
 #### 1. error: no devices/emulators found
 
@@ -176,4 +177,3 @@ xcrun: error: unable to find utility "instruments", not a developer tool or in P
 - [reactnative.cn搭建开发环境](http://reactnative.cn/docs/0.35/getting-started.html)
 - [极客学院搭建开发环境](http://wiki.jikexueyuan.com/project/react-native/DevelopmentSetupAndroid.html)
 - [React Native开发过程中遇到的问题](https://github.com/haiyangjiajian/haiyangjiajian.github.io/blob/4bd765801712adf33b4d45280fb01e9aef21c1b1/_posts/2016-8-9-react%20native%20related%20problems%20and%20solutions.md)
-- [React Native开发过程中遇到的问题](https://github.com/mzkmzk/WEB_Accumulate/blob/48959f4ad30a2b1773de5cfaa316879f2666cd94/reactnativeru_men.md)
