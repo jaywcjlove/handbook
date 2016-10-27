@@ -152,6 +152,23 @@ OTHER_LDFLAGS = (
 
 解决方法：修改build.gradle的版本，com.android.tools.build:gradle:2.1.0，改为更高的，然后更改gradle/wrapper/gradle-wrapper.properties中相应的gradle-2.10-all.zip。
 
+#### 5. error: unable to find utility "instruments", not a developer tool or in PATH
+
+```bash
+ ~/Learning/ReactNative/AwesomeProject:  react-native run-ios
+Found Xcode project AwesomeProject.xcodeproj
+xcrun: error: unable to find utility "instruments", not a developer tool or in PATH
+
+Command failed: xcrun instruments -s
+xcrun: error: unable to find utility "instruments", not a developer tool or in PATH
+```
+
+输入sudo xcode-select -s /Applications/Xcode.app/Contents/Developer/然后就可以运行react-native run-ios了。
+
+#### 6. Property 'force' not found on object of type 'UITouch'
+
+出现这种类似错误，只能升级Xcode咯。
+
 
 ## 参考资料
 
@@ -159,3 +176,4 @@ OTHER_LDFLAGS = (
 - [reactnative.cn搭建开发环境](http://reactnative.cn/docs/0.35/getting-started.html)
 - [极客学院搭建开发环境](http://wiki.jikexueyuan.com/project/react-native/DevelopmentSetupAndroid.html)
 - [React Native开发过程中遇到的问题](https://github.com/haiyangjiajian/haiyangjiajian.github.io/blob/4bd765801712adf33b4d45280fb01e9aef21c1b1/_posts/2016-8-9-react%20native%20related%20problems%20and%20solutions.md)
+- [React Native开发过程中遇到的问题](https://github.com/mzkmzk/WEB_Accumulate/blob/48959f4ad30a2b1773de5cfaa316879f2666cd94/reactnativeru_men.md)
