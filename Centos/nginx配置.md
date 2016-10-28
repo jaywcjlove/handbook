@@ -2,6 +2,12 @@
 nginx配置
 ---
 
+Nginx 是一款面向性能设计的 HTTP 服务器，能反向代理 HTTP，HTTPS 和邮件相关(SMTP，POP3，IMAP)的协议链接。并且提供了负载均衡以及 HTTP 缓存。它的设计充分使用异步事件模型，削减上下文调度的开销，提高服务器并发能力。采用了模块化设计，提供了丰富模块的第三方模块。
+
+所以关于 Nginx，有这些标签：「异步」「事件」「模块化」「高性能」「高并发」「反向代理」「负载均衡」
+
+## 配置检查加载
+
 检查配置
 
 ```bash
@@ -15,6 +21,23 @@ nginx配置
 ```
 
 ## Nginx配置文件
+
+nginx 的配置系统由一个主配置文件和其他一些辅助的配置文件构成。这些配置文件均是纯文本文件，全部位于 nginx 安装目录下的 conf 目录下。
+
+指令由 nginx 的各个模块提供，不同的模块会提供不同的指令来实现配置。
+指令除了 Key-Value 的形式，还有作用域指令。
+
+nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了分类，也就是分成了多个作用域，或者称之为配置指令上下文。不同的作用域含有一个或者多个配置项。
+
+下面的这些上下文指令是用的比较多：
+
+| Directive |  Description | Contains Directive |
+| ---- | ---- | ---- |
+| main  |  nginx 在运行时与具体业务功能（比如 http 服务或者 email 服务代理）无关的一些参数，比如工作进程数，运行的身份等。 | user, worker_processes, error_log, events, http, mail |
+| http  |  与提供 http 服务相关的一些配置参数。例如：是否使用 keepalive 啊，是否使用 gzip 进行压缩等。 |  server |
+| server | http 服务上支持若干虚拟主机。每个虚拟主机一个对应的 server 配置项，配置项里面包含该虚拟主机相关的配置。在提供 mail 服务的代理时，也可以建立若干 server. 每个 server 通过监听的地址来区分。| listen, server_name, access_log, location, protocol, proxy, smtp_auth, xclient |
+| location  |  http 服务中，某些特定的 URL 对应的一系列配置项。  | index, root |
+| mail | 实现 email 相关的 SMTP/IMAP/POP3 代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。 | server, http, imap_capabilities |
 
 在Centos 默认配置文件在 /usr/local/nginx-1.5.1/conf/nginx.conf 我们要在这里配置一些文件。例如我们再 nginx.conf 里面引用两个配置 vhost/example.com.conf 和 vhost/gitlab.com.conf 它们都被放在一个我自己新建的目录 vhost 下面。nginx.conf 配置如下：
 
