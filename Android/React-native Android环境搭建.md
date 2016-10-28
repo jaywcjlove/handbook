@@ -170,6 +170,31 @@ xcrun: error: unable to find utility "instruments", not a developer tool or in P
 
 出现这种类似错误，只能升级Xcode咯。
 
+#### 7. Ignoring return value of function declared with warn_unused_result attribute
+
+这个报错在此文件中有两处，代码
+
+```objective-c
+SecRandomCopyBytes(kSecRandomDefault, sizeof(uint32_t), (uint8_t *)mask_key);
+```
+
+修改为
+
+```objective-c
+(void)SecRandomCopyBytes(kSecRandomDefault, sizeof(uint32_t), (uint8_t *)mask_key);
+```
+
+前面加上`(void)`。
+
+#### 8. Use of undeclared identifier '_refreshControl'; did you mean 'refreshControl'?
+
+```objective-c
+@implementation RCTCustomScrollView
+{
+  __weak UIView *_dockedHeaderView;
+  RCTRefreshControl *_refreshControl;  // 加入此行
+}
+```
 
 ## 参考资料
 
