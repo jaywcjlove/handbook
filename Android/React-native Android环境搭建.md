@@ -188,13 +188,26 @@ SecRandomCopyBytes(kSecRandomDefault, sizeof(uint32_t), (uint8_t *)mask_key);
 
 #### 8. Use of undeclared identifier '_refreshControl'; did you mean 'refreshControl'?
 
-```objective-c
-@implementation RCTCustomScrollView
-{
+```
+@implementation RCTCustomScrollView{
   __weak UIView *_dockedHeaderView;
   RCTRefreshControl *_refreshControl;  // 加入此行
 }
 ```
+
+#### 9. Execution failed for task ':react-native-update:compileReleaseNdk'.NDK not configured.
+
+错误信息
+
+```
+* What went wrong:
+Execution failed for task ':react-native-update:compileReleaseNdk'.
+> NDK not configured.
+  Download the NDK from http://developer.android.com/tools/sdk/ndk/.Then add ndk.dir=path/to/ndk in local.properties.
+  (On Windows, make sure you escape backslashes, e.g. C:\\ndk rather than C:\ndk)
+```
+
+解决方法：[下载安装NDK和相关工具](https://developer.android.com/ndk/guides/index.html#download-ndk)，菜单进入 **Tools > Android > SDK Manager** 在选项卡中选择 **SDK Tools**，选择 **LLDB**, **CMake**, 和 **NDK** 勾选，点击 **Apply** 进行下载安装。
 
 ## 参考资料
 
