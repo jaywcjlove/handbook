@@ -3,7 +3,7 @@
 - **[50多个公众账号推荐，助你了解程序员的世界](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
 - Centos 
-    - [Centos安装](Centos/centos.md)
+    - [Centos常用命令](Centos/centos.md)
     - [chmod说明](Centos/chmod.md)
     - [Gitlab安装](Centos/gitlab安装.md)
     - [Linux添加、删除用户和用户组](Centos/Linux添加、删除用户和用户组.md)

@@ -1,3 +1,17 @@
+# 目录
+
+- [下载](#下载)
+- [登录](#登录)
+- [centos常用命令](#centos常用命令)
+    - [系统的关机重启以及登出](#系统的关机重启以及登出)
+    - [如何查看linux系统资源](#如何查看linux系统资源)
+    - [查看网络配置的命令](#查看网络配置的命令)
+    - [log日志查看](#log日志查看)
+    - [查看系统服务的命令](#查看系统服务的命令)
+    - [安装程序的命令](#安装程序的命令)
+- [安装软件方法](#安装软件方法)
+- [yum错误](#yum错误)
+
 # 下载
 
 [www.centos.org](https://www.centos.org/)
@@ -152,11 +166,10 @@ sed -n '5,10p' /var/log/messages # 查询日志的5到10行
 `man <命令>` 获得命令帮助  
 
 
-# 安装node
-
+# 安装软件方法
 
 ```bash
-# 下载已编译版本
+# 安装下载工具wget
 $ yum install wget
 
 # 解压
@@ -166,38 +179,6 @@ $ wget https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz
 # 测试安装
 # 没有用到`gzip`压缩去掉`z`参数
 $ sudo tar --strip-components 1 -xzvf node-v* -C /usr/local
-```
-
-
-# 安装nginx
-
-
-下载对应当前系统版本的nginx包(package)
-
-```
-$ wget  http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-```
-
-## 建立nginx的yum仓库
-
-```bash
-$ rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm
-```
-
-## 下载并安装nginx
-
-```bash
-# 查看 nginx 版本
-$ yum list | grep nginx
-
-# 安装 nginx
-$ yum install nginx
-```
-
-## 启动nginx服务
-
-```bash
-systemctl start nginx
 ```
 
 # yum错误
