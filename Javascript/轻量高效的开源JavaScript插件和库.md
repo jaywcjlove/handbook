@@ -52,6 +52,18 @@
 - [Substance](https://github.com/yabwe/medium-editor) - 是一个基于Web的内容自定义编辑器。[demo](http://substance.io/examples/)
 - [flatpickr](https://github.com/chmln/flatpickr) - 是一个轻量级的代码高亮库，适用于任何编程语言。[demo](https://chmln.github.io/flatpickr)
 - [pen](https://github.com/sofish/pen) - 是一个Markdown编辑器工具。[demo](http://sofish.github.io/pen)
+- [aceAce](https://github.com/ajaxorg/ace)（Ajax.org Cloud9 Editor）。[demo](https://ace.c9.io/)
+- [CodeMirror](https://github.com/codemirror/CodeMirror)浏览器端的代码编辑器。[demo](http://codemirror.net/)
+- [esprima](https://github.com/ariya/esprima)用于综合分析的 ECMAScript 解析器。[demo](https://yabwe.github.io/medium-editor/)
+- [quill](https://github.com/quilljs/quill)一个带有 API 的跨浏览器富文本编辑器。([demo](http://quilljs.com/))
+- [ckeditor-releases](https://github.com/ckeditor/ckeditor-releases) 适用于每个人的 web 文本编辑器。[demo](http://ckeditor.com/demo)
+- [editor](https://github.com/lepture/editor) 一个 markdown 编辑器，但仍在开发中。[demo](http://lab.lepture.com/editor/)
+- [EpicEditor](https://github.com/OscarGodson/EpicEditor) 一个可嵌入的 JavaScript Markdown [demo](http://jsoneditoronline.org/)的编辑器，拥有全屏编辑、即时预览、自动保存草稿和离线支持等功能。
+- [jsoneditor](https://github.com/josdejong/jsoneditor) 查看、编辑和格式化 JSON 的 web 工具。[demo](http://jsoneditoronline.org/)
+- [vim.js](https://github.com/coolwanglu/vim.js)  拥有持久化 ~/.vimrc 的 Vim 编辑器的 JavaScript 移植版本。[demo](http://coolwanglu.github.io/vim.js/emterpreter/vim.html)
+- [Squire](https://github.com/neilj/Squire) HTML5 富文本编辑器。[demo](http://neilj.github.io/Squire/)
+- [TinyMCE](https://github.com/tinymce/tinymce) JavaScript 富文本编辑器。[demo](https://www.tinymce.com/)
+- [trix](https://github.com/basecamp/trix) 由 Basecamp 制作，适用于每天写作的富文本编辑器。[demo](https://trix-editor.org/)
 
 ## 表单 
 
