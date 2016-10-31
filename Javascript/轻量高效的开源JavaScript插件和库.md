@@ -57,8 +57,8 @@
 - [esprima](https://github.com/ariya/esprima)用于综合分析的 ECMAScript 解析器。[demo](https://yabwe.github.io/medium-editor/)
 - [quill](https://github.com/quilljs/quill)一个带有 API 的跨浏览器富文本编辑器。([demo](http://quilljs.com/))
 - [ckeditor-releases](https://github.com/ckeditor/ckeditor-releases) 适用于每个人的 web 文本编辑器。[demo](http://ckeditor.com/demo)
-- [editor](https://github.com/lepture/editor) 一个 markdown 编辑器，但仍在开发中。[demo](http://lab.lepture.com/editor/)
-- [EpicEditor](https://github.com/OscarGodson/EpicEditor) 一个可嵌入的 JavaScript Markdown [demo](http://jsoneditoronline.org/)的编辑器，拥有全屏编辑、即时预览、自动保存草稿和离线支持等功能。
+- [editor](https://github.com/lepture/editor) 一个 markdown 编辑器，但仍在开发中。[demo]( http://lab.lepture.com/editor/)
+- [EpicEditor](https://github.com/OscarGodson/EpicEditor) 一个可嵌入的 js Markdown的编辑器，拥有全屏编辑、即时预览、自动保存草稿和离线支持等功能。[demo](http://epiceditor.com)
 - [jsoneditor](https://github.com/josdejong/jsoneditor) 查看、编辑和格式化 JSON 的 web 工具。[demo](http://jsoneditoronline.org/)
 - [vim.js](https://github.com/coolwanglu/vim.js)  拥有持久化 ~/.vimrc 的 Vim 编辑器的 JavaScript 移植版本。[demo](http://coolwanglu.github.io/vim.js/emterpreter/vim.html)
 - [Squire](https://github.com/neilj/Squire) HTML5 富文本编辑器。[demo](http://neilj.github.io/Squire/)
