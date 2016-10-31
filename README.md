@@ -1,5 +1,7 @@
 # 笔记/搜集
 
+- **[50多个公众账号推荐，助你了解程序员的世界](other/公众账号推荐.md)**
+- **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
 - Centos 
     - [Centos安装](Centos/centos.md)
     - [chmod说明](Centos/chmod.md)
@@ -26,17 +28,15 @@
     - [Mac完整卸载Android Studio的方法](Android/Mac%E5%AE%8C%E6%95%B4%E5%8D%B8%E8%BD%BDAndroid%20Studio%E7%9A%84%E6%96%B9%E6%B3%95.md)
     - [React-native Android环境搭建](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 - Javascript
-    - [思维导图来学习 Javascript 基础知识](Javascript/)
+    - **[思维导图来学习 Javascript 基础知识](Javascript/)**
     - [轻量高效的开源JavaScript插件和库](Javascript/轻量高效的开源JavaScript插件和库.md)
     - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - 测试工具
     - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
     - [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
     - [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
-- [50多个公众账号推荐，助你了解程序员的世界](other/公众账号推荐.md)
-- [常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)
+- **[常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)**
 - [Lua5.3中文手册](other/Lua5.3.md)
-- [Git常用命令清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)
 - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
 - 快捷键
     - [Sketch](http://jaywcjlove.github.io/handbook/html/Shortcuts/Sketch.html)
