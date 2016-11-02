@@ -45,6 +45,7 @@
   - [分支切换](#分支切换)
 - [远端](#远端)
   - [撤销远程记录](#撤销远程记录)
+  - [回滚到某个commit并提交](#回滚到某个commit并提交)
 - [忽略文件](#忽略文件)
 - [删除文件](#删除文件)
 - [源remote](#源remote)
@@ -89,7 +90,7 @@
 
 ### config
 
-```bash
+```shell
 git config --global user.name JSLite    # 设置提交用户名  
 git config --global user.email JSLite@yeah.net  # 设置提交邮箱  
 git config --list         # 查看配置的信息  
@@ -124,7 +125,7 @@ git remote add origin git@jslite.github.com:JSLite/JSLite.git  # 添加远程路
 ### 3.修改config文件  
 `vim ~/.ssh/config` #修改config文件，如果没有创建 `config`  
 
-```
+```bash
 Host jslite.github.com
 HostName github.com
 User git
@@ -143,9 +144,11 @@ IdentityFile ~/.ssh/github_abc
 
 ### 增加3个远程库地址
 
-`git remote add origin https://github.com/JSLite/JSLite.git`   
-`git remote set-url --add origin https://gitlab.com/wang/JSLite.js.git`   
-`git remote set-url --add origin https://oschina.net/wang/JSLite.js.git`   
+```shell
+git remote add origin https://github.com/JSLite/JSLite.git  
+git remote set-url --add origin https://gitlab.com/wang/JSLite.js.git  
+git remote set-url --add origin https://oschina.net/wang/JSLite.js.git  
+```
 
 ### 删除其中一个 set-url 地址
 
@@ -169,20 +172,21 @@ usage: git remote set-url [--push] <name> <newurl> [<oldurl>]
 只能拉取 `origin` 里的一个url地址，这个fetch-url  
 默认为你添加的到 `origin`的第一个地址  
 
-`git pull origin master`   
-`git pull --all` # 获取远程所有内容包括tag  
-`git pull origin next:master` # 取回origin主机的next分支，与本地的master分支合并  
-`git pull origin next` # 远程分支是与当前分支合并  
+```shell
+git pull origin master   
+git pull --all # 获取远程所有内容包括tag  
+git pull origin next:master # 取回origin主机的next分支，与本地的master分支合并  
+git pull origin next # 远程分支是与当前分支合并  
 
-上面一条命令等同于下面两条命令   
-`git fetch origin`  
-`git merge origin/next`  
-
+# 上面一条命令等同于下面两条命令   
+git fetch origin  
+git merge origin/next  
+```
 
 如果远程主机删除了某个分支，默认情况下，git pull 不会在拉取远程分支的时候，删除对应的本地分支。这是为了防止，由于其他人操作了远程主机，导致git pull不知不觉删除了本地分支。  
 但是，你可以改变这个行为，加上参数 -p 就会在本地删除远程已经删除的分支。  
 
-```
+```shell
 $ git pull -p
 # 等同于下面的命令
 $ git fetch --prune origin 
@@ -196,6 +200,7 @@ $ git fetch -p
 ## 新建仓库
 
 ### init
+
 `git init` #初始化  
 
 ### status
@@ -218,13 +223,14 @@ $ git fetch -p
 `git push origin master`  
 
 ##从现有仓库克隆
+
 `git clone git://github.com/JSLite/JSLite.js.git `  
 `git clone git://github.com/JSLite/JSLite.js.git mypro` #克隆到自定义文件夹  
 `git clone [user@]example.com:path/to/repo.git/` #SSH协议还有另一种写法。  
 
 git clone支持多种协议，除了HTTP(s)以外，还支持SSH、Git、本地文件协议等，下面是一些例子。`$ git clone <版本库的网址> <本地目录名>`  
 
-```
+```shell
 $ git clone http[s]://example.com/path/to/repo.git/
 $ git clone ssh://example.com/path/to/repo.git/
 $ git clone git://example.com/path/to/repo.git/
@@ -256,14 +262,14 @@ $ git clone rsync://example.com/path/to/repo.git/
 
 ### add
 
-```bash
+```shell
 git add *   # 跟踪新文件   
 git add -u [path]   # 添加[指定路径下]已跟踪文件   
 ```
 
 ### rm
 
-```bash
+```shell
 rm *&git rm *          # 移除文件  
 git rm -f *            # 移除文件  
 git rm --cached *      # 取消跟踪  
@@ -273,7 +279,7 @@ git log   # 查看提交记录
 
 ### commit
 
-```bash
+```shell
 git commit #提交更新   
 git commit -m 'message' #提交说明   
 git commit -a #跳过使用暂存区域，把所有已经跟踪过的文件暂存起来一并提交   
@@ -286,7 +292,7 @@ git commit -m '概要描述'$'\n\n''1.详细描述'$'\n''2.详细描述' #提交
 
 ### reset
 
-```bash
+```shell
 git reset HEAD *  # 取消已经暂存的文件   
 git reset --mixed HEAD * # 同上   
 git reset --soft HEAD *  # 重置到指定状态，不会修改索引区和工作树   
@@ -296,7 +302,7 @@ git reset -- files *     # 重置index区文件
 
 ### revert
 
-```bash
+```shell
 git revert HEAD   # 撤销前一次操作   
 git revert HEAD~  # 撤销前前一次操作   
 git revert commit # 撤销指定操作   
@@ -304,7 +310,7 @@ git revert commit # 撤销指定操作
 
 ### checkout
 
-```bash
+```shell
 git checkout -- file  # 取消对文件的修改（从暂存区——覆盖worktree file）  
 git checkout branch|tag|commit -- file_name  # 从仓库取出file覆盖当前分支   
 git checkout HEAD~1 [文件]  # 将会更新 working directory 去匹配某次 commit   
@@ -314,7 +320,7 @@ git checkout -b gh-pages  0c304c9  # 这个表示 从当前分支 commit 哈希�
 
 ### diff
 
-```bash
+```shell
 git diff file     # 查看指定文件的差异   
 git diff --stat   # 查看简单的diff结果   
 git diff  # 比较Worktree和Index之间的差异   
@@ -329,7 +335,7 @@ git diff master...test    # 你想找出‘master’,‘test’的共有 父分�
 
 ### stash
 
-```bash
+```shell
 git stash # 将工作区现场（已跟踪文件）储藏起来，等以后恢复后继续工作。   
 git stash list  # 查看保存的工作现场   
 git stash apply # 恢复工作现场   
@@ -344,14 +350,14 @@ git stash apply stash@{0} # 恢复指定的工作现场，当你保存了不只�
 
 ### cherry-pick
 
-```bash
+```shell
 git cherry-pick commit    # 拣选合并，将commit合并到当前分支   
 git cherry-pick -n commit # 拣选多个提交，合并完后可以继续拣选下一个提交   
 ```
 
 ### rebase
 
-```bash
+```shell
 git rebase master   # 将master分之上超前的提交，变基到当前分支  
 git rebase --onto master 169a6  # 限制回滚范围，rebase当前分支从169a6以后的提交  
 git rebase --interactive # 交互模式，修改commit   
@@ -364,7 +370,7 @@ git rebase --abort  # 取消合并
 
 ### 删除
 
-```bash
+```shell
 git push origin :branchName  #删除远程分支  
 git push origin --delete new #删除远程分支new   
 git branch -d branchName     #删除本地分支，强制删除用-D  
@@ -382,7 +388,7 @@ git branch -D test #强制删除本地test分支
 
 ### 分支合并
 
-```bash
+```shell
 git merge branchName      # 合并分支 - 将分支branchName和当前所在分支合并   
 git merge origin/master   # 在本地分支上合并远程分支。   
 git rebase origin/master  # 在本地分支上合并远程分支。   
@@ -395,7 +401,7 @@ git merge test            # 将test分支合并到当前分支
 
 ### 查看
 
-```bash
+```shell
 git branch      # 列出本地分支   
 git branch -r   # 列出远端分支   
 git branch -a   # 列出所有分支   
@@ -406,21 +412,21 @@ git branch --no-merge   # 查看为合并到当前分支的分支
 
 ### 新建
 
-```bash
+```shell
 git branch test # 新建test分支  
 git checkout -b newBrach origin/master # 取回远程主机的更新以后，在它的基础上创建一个新的分支  
 ```
 
 ### 连接
 
-```bash
+```shell
 git branch --set-upstream dev origin/dev     # 将本地dev分支与远程dev分支之间建立链接  
 git branch --set-upstream master origin/next # 手动建立追踪关系  
 ```
 
 ### 分支切换
 
-```bash
+```shell
 git checkout test     # 切换到test分支   
 git checkout -b test  # 新建+切换到test分支   
 git checkout -b test dev # 基于dev新建test分支，并切换   
@@ -428,7 +434,7 @@ git checkout -b test dev # 基于dev新建test分支，并切换
 
 ## 远端
 
-```bash
+```shell
 git fetch <远程主机名> <分支名>   # fetch取回所有分支（branch）的更新  
 git fetch origin remotebranch[:localbranch]   #  从远端拉去分支[到本地指定分支]   
 git merge origin/branch   # 合并远端上指定分支   
@@ -440,8 +446,18 @@ git checkout -b [--track] test origin/dev # 基于远端dev分支，新建本地
 ```
 
 ### 撤销远程记录
-`git reset --hard HEAD~1` #撤销一条记录   
-`git push -f origin HEAD:master` #同步到远程仓库  
+
+```shell
+git reset --hard HEAD~1 # 撤销一条记录   
+git push -f origin HEAD:master # 同步到远程仓库  
+```
+
+## 回滚到某个commit并提交
+
+```shell
+git revert HEAD~1 # 撤销一条记录 会弹出 commit 编辑
+git push # 提交回滚
+```
 
 ## 忽略文件
 `echo node_modules/ >> .gitignore`  
@@ -453,7 +469,7 @@ git checkout -b [--track] test origin/dev # 基于远端dev分支，新建本地
 git是一个分布式代码管理工具，所以可以支持多个仓库，在git里，服务器上的仓库在本地称之为remote。  
 个人开发时，多源用的可能不多，但多源其实非常有用。  
 
-```bash
+```shell
 git remote add origin1 git@github.com:yanhaijing/data.js.git  
 git remote    # 显示全部源  
 git remote -v # 显示全部源+详细信息  
@@ -603,7 +619,7 @@ pick f7f3f6d changed my name a bit
 
 ## 查看某个文件历史
 
-```bash
+```shell
 git log --pretty=oneline 文件名  # 列出文件的所有改动历史  
 git show c178bf49   # 某次的改动的修改记录  
 git log -p c178bf49 # 某次的改动的修改记录  
@@ -641,7 +657,7 @@ git status  # 获取当前的状态，非常有用，因为git会提示接下来
 
 解决方案：
 
-```bash
+```shell
 #vim 编辑器打开 当前项目中的config文件
 vim .git/config
 
