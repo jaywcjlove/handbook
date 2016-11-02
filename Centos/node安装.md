@@ -8,7 +8,7 @@
 
 ## 下载node 
 
-根据你的系统，在官网找到 https://nodejs.org/en/download/ 你需要下载的版本。比如我选择的 Linux Binaries (x86/x64) **64bit**
+根据你的系统，在官网找到 https://nodejs.org/en/download/ 你需要下载的版本。比如我选择的 Linux Binaries (x86/x64) **64bit** ，点击右键将你需要的版本连接地址复制出来，通过命令下载nodejs安装压缩包。
 
 ```bash
 $ wget https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz
