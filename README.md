@@ -11,6 +11,7 @@
     - [Linux添加、删除用户和用户组](Centos/Linux添加、删除用户和用户组.md)
     - [nginx安装搭建](Centos/nginx安装.md)
     - [nginx配置](Centos/nginx配置.md)
+    - [node安装](Centos/node安装.md)
     - [samba安装搭建使用](Centos/samba.md)
     - [常用基础命令](Centos/常用基础命令.md)
 - MySQL
