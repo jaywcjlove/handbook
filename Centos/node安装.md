@@ -2,6 +2,8 @@
 安装node.js
 ---
 
+给大家介绍在 Centos7 上安装Node.js的方法。
+
 ## 登陆Centos
 
 终端登录 `$ ssh root@192.168.0.23` IP可以是局域网内或者公网IP。

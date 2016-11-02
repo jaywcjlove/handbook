@@ -39,7 +39,7 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
 | location  |  http 服务中，某些特定的 URL 对应的一系列配置项。  | index, root |
 | mail | 实现 email 相关的 SMTP/IMAP/POP3 代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。 | server, http, imap_capabilities |
 
-在Centos 默认配置文件在 /usr/local/nginx-1.5.1/conf/nginx.conf 我们要在这里配置一些文件。例如我们再 nginx.conf 里面引用两个配置 vhost/example.com.conf 和 vhost/gitlab.com.conf 它们都被放在一个我自己新建的目录 vhost 下面。nginx.conf 配置如下：
+在Centos 默认配置文件在 **/usr/local/nginx-1.5.1/conf/nginx.conf** 我们要在这里配置一些文件。例如我们再 **nginx.conf** 里面引用两个配置 vhost/example.com.conf 和 vhost/gitlab.com.conf 它们都被放在一个我自己新建的目录 vhost 下面。nginx.conf 配置如下：
 
 ```
 worker_processes  1;
