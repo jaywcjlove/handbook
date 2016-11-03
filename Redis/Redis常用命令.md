@@ -1,5 +1,8 @@
 
-## Redis常用命令
+Redis常用命令
+---
+
+## 启动命令
 
 ```bash
 # 命令行客户端启动
@@ -10,20 +13,32 @@ $ service redis start
 $ service redis stop
 
 # 命令行客户端启动
-$ redis-cli
+$ redis-cli -p 6380
 
-#指定端口启动
+# 指定端口启动
 $ redis-server --port 6380 &
+```
 
+## 查看类命令
+
+```bash
 # 查看 Redis 版本
 $ redis-cli info | grep redis_version
 
 # 查看端口号
 $ redis-cli info | grep tcp_port
+```
 
+## 配置设置命令
+
+```bash
 # 设置配置开启通知功能
 $ redis-cli config set notify-keyspace-events KEA
+```
 
+## Redis操作指令
+
+```bash
 # 测试心跳
 127.0.0.1:6379> ping
 PONG

@@ -50,3 +50,22 @@ Finally, check the version of currently installed Redis:
 ```
 redis-cli info | grep redis_version
 ```
+
+## Redis 启动警告错误解决
+
+1. WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+
+```shell
+echo "vm.overcommit_memory=1" > /etc/sysctl.conf  # 或 vi /etcsysctl.conf , 然后reboot重启机器
+echo 1 > /proc/sys/vm/overcommit_memory  # 不需要启机器就生效
+```
+
+2. WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+
+```shell
+echo 511 > /proc/sys/net/core/somaxconn
+```
+
+## 参考文档
+
+- [Redis 启动警告错误解决](http://skly-java.iteye.com/blog/2167400)

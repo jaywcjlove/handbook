@@ -1,7 +1,7 @@
 
 # 配置(Configuration) 
 
-Redis 的配置文件位于 Redis 安装目录下，文件名为 redis.conf。
+Redis 的配置文件位于 Redis 安装目录下，文件名为 redis.conf。默认 redis 配置文件在 sudo vi /etc/redis.conf 这里可以编辑
 你可以通过 CONFIG 命令查看或设置配置项。
 
 ## CONFIG 命令格式
