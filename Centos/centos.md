@@ -14,6 +14,7 @@ Centos常用命令
     - [安装程序的命令](#安装程序的命令)
 - [安装软件方法](#安装软件方法)
 - [yum错误](#yum错误)
+- [安装源](#安装源)
 - [下载](#下载)
 
 
@@ -196,6 +197,10 @@ ls
 找到`yum.repos.d`这个目录，里面有个文件，以`.repo` 结尾的，例如`zl.repo`删除  
 然后`#yum clean all`  
 
+# 安装源
+
+http://dl.fedoraproject.org/pub/
+http://rpms.remirepo.net/enterprise/
 
 # 下载
 

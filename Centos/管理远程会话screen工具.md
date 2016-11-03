@@ -18,6 +18,7 @@
 | C-a k  | 杀掉当前窗口 |
 | C-a [  | 进入拷贝/回滚模式 |
 
+# 参考资料
 
 - http://www.gnu.org/software/screen/
 - http://www.ibm.com/developerworks/cn/linux/l-cn-screen/
