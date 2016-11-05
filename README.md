@@ -1,4 +1,6 @@
-# 笔记/搜集
+# 笔记/搜集/摘录/实践
+
+这里放置我的笔记、搜集、摘录，给自己建设自我的知识体系，保持好奇心。
 
 - **[50多个公众账号推荐，助你了解程序员的世界](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
@@ -33,6 +35,7 @@
 - Javascript
     - **[思维导图来学习 Javascript 基础知识](Javascript/)**
     - [轻量高效的开源JavaScript插件和库](Javascript/轻量高效的开源JavaScript插件和库.md)
+    - [一些正则表达式随记](Javascript/一些正则表达式随记.md)
     - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - 测试工具
     - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
