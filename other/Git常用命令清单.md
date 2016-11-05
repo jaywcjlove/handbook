@@ -58,7 +58,7 @@
 - [利用commit关闭一个issue](#利用commit关闭一个issue)
 - [查看某个文件历史](#查看某个文件历史)
 - [其它](#其它)
-- [报错](#报错)
+- [报错问题解决](#报错问题解决)
 
 ## 参考资料
 
@@ -204,6 +204,7 @@ $ git fetch -p
 `git init` #初始化  
 
 ### status
+
 `git status` #获取状态  
 
 ### add
@@ -650,12 +651,15 @@ git status  # 获取当前的状态，非常有用，因为git会提示接下来
 ```
 
 
-## 报错
+## 报错问题解决
 
-1. `git fatal: protocol error: bad line length character: No s` 解决办法：更换remote地址为 `http/https` 的  
-2. `The requested URL returned error: 403 Forbidden while accessing`解决github push错误的办法
+**1. `git fatal: protocol error: bad line length character: No s`**
 
-解决方案：
+解决办法：更换remote地址为 `http/https` 的  
+
+**2. `The requested URL returned error: 403 Forbidden while accessing`**
+
+解决github push错误的办法：
 
 ```shell
 #vim 编辑器打开 当前项目中的config文件
@@ -668,4 +672,18 @@ vim .git/config
 #为下面代码
 [remote "origin"]  
     url = https://jaywcjlove@github.com/jaywcjlove/example.git  
+```
+
+**3. git status 显示中文问题**
+
+在查看状态的时候 git status 如果是中文就下市下面的情况
+
+```bash
+\344\272\247\345\223\201\351\234\200\346\261\202
+```
+
+解决这个问题方法是：
+
+```bash
+git config --global core.quotepath false
 ```
