@@ -16,7 +16,7 @@
     - [node安装](Centos/node安装.md)
     - [samba安装搭建使用](Centos/samba.md)
     - [常用基础命令](Centos/常用基础命令.md)
-- MySQL
+- MySQL - [搜集整合资源迁移到这里了](https://github.com/jaywcjlove/mysql-tutorial)
     - [MySQL安装](MySQL/mysql安装.md)
     - [Mac下重置MySQL的root密码](MySQL/Mac下重置MySQL的root密码.md)
     - [MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
