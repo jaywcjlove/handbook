@@ -100,7 +100,7 @@
 ## CDN
 
 - https://cdnjs.com
-- http://cdnjs.net/
+- http://cdnjs.net
 - http://www.jsdelivr.com
 - http://unpkg.com
 - http://rawgit.com 
@@ -112,5 +112,5 @@
 - http://jscdn.upai.com
 - https://www.asp.net/ajax/cdn
 - http://libs.sun0769.com
-- https://css.net/
+- https://css.net
 - https://developers.google.com/speed/libraries/
