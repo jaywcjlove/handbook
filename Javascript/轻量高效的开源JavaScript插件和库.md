@@ -14,6 +14,7 @@
 - [存储](#存储)
 - [动画](#动画)
 - [其它](#其它)
+- [CDN](#cdn)
 
 ## 图片
 
@@ -94,3 +95,22 @@
 - [onlinenetwork](https://github.com/jaywcjlove/onlinenetwork) - js判断是否断网了。
 - [iNotify](https://github.com/jaywcjlove/iNotify) - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。[demo](http://jaywcjlove.github.io/iNotify)
 - [tesseract.js](https://github.com/naptha/tesseract.js) - 是一个文字识别转换，可以运行在浏览器和服务器NodeJS上。[demo](http://tesseract.projectnaptha.com/)
+
+
+## CDN
+
+- https://cdnjs.com
+- http://cdnjs.net/
+- http://www.jsdelivr.com
+- http://unpkg.com
+- http://rawgit.com 
+- http://staticfile.org 
+- http://www.bootcdn.cn
+- http://cdn.baomitu.com 
+- http://lib.sinaapp.com 
+- http://cdn.code.baidu.com
+- http://jscdn.upai.com
+- https://www.asp.net/ajax/cdn
+- http://libs.sun0769.com
+- https://css.net/
+- https://developers.google.com/speed/libraries/
