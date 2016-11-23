@@ -50,6 +50,3 @@
     - [Lua5.3中文手册](other/Lua5.3.md)
     - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
     - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
-
-
-    [1]: http://latex.codecogs.com/gif.latex?\prod%20\(n_{i}\)+1
