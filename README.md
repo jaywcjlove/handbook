@@ -41,10 +41,15 @@
     - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
     - [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
     - [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
-- **[常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)**
-- [Lua5.3中文手册](other/Lua5.3.md)
-- [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
 - 快捷键
-    - [Sketch](http://jaywcjlove.github.io/handbook/html/Shortcuts/Sketch.html)
-    - [bash](http://jaywcjlove.github.io/handbook/html/Shortcuts/bash.html)
-    - [sublime](http://jaywcjlove.github.io/handbook/html/Shortcuts/sublime.html)
+    - [Sketch设计软件快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/Sketch.html)
+    - [命令行工具bash快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/bash.html)
+    - [sublime编辑器快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/sublime.html)
+- 其它
+    - **[常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)**
+    - [Lua5.3中文手册](other/Lua5.3.md)
+    - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
+    - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
+
+
+    [1]: http://latex.codecogs.com/gif.latex?\prod%20\(n_{i}\)+1
