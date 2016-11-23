@@ -1,0 +1,30 @@
+多年来搜集的谷歌镜像，大多数都能打开，打不开的也许过一段上一段时间能打开。希望这些神奇的搜索引擎，能助你在前端界有所建树。😄
+
+- http://www.wen.lu/
+- https://g2.wen.lu/
+- http://gc.ihuan.me/
+- http://ggss.cf/
+- http://hao.cytbj.com/
+- http://jgoproxy.tk/
+- http://s.8090st.com/
+- https://www.wacao.org/
+- http://www.g363.com/
+- http://g.helloit.info/
+- https://g.jikewenku.cn/
+- https://www.guge.xxx/
+- https://g.libnull.com/
+- http://ssdao.cdjltz.com/
+- https://global.gogfw.com/
+- https://www.onk6.com/
+- http://www.hntvchina.com/
+- https://g.zrj766.com/
+- https://g.alexyang.me/
+- https://ggso.in/
+- http://www.bjgong.tk/
+- http://scholar.hntvchina.com/
+- https://ggss.ml/
+- https://fuckgfw.ggss.cf/
+- https://g.jikewenku.cn/
+- http://www.mrba.com.cn/
+- http://hi18.cn/
+- http://www.gusou.co/
