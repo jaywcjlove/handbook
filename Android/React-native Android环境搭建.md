@@ -77,7 +77,7 @@ $ react-native run-ios`
   - 安装`SDK Tools` 必须是这个版本 `Android SDK Build-Tools 23.0.1`，记得勾选`Show Package Details`。
   - ANDROID_HOME环境变量设置。（见下面 环境变量配置）方法
 3. 安装 [免费VirtualBox虚拟机](https://www.virtualbox.org/)
-4. 安装模拟器[Genymotion](http://www.genymotion.net/)
+4. 安装模拟器[Genymotion](https://www.genymotion.com/)
   - 注册帐号
   - 下载Genymotion
   - 安装Genymotion

@@ -71,7 +71,6 @@
 - [validator.js](https://github.com/jaywcjlove/validator.js) - 轻量级的JavaScript表单验证，字符串验证。[demo](http://jaywcjlove.github.io/validator.js)
 - [List.js](https://github.com/javve/list.js) - 是一个轻量级的为列表、表格或其他任何HTMLL标签增加了搜索，排序，过滤器和灵活性等元素。[demo](http://listjs.com/)
 - [Algolia Places](https://github.com/algolia/places/) - 是一个能让你在网页轻易实现搜索栏自动完成功能。[demo](https://community.algolia.com/places/)
-- [Algolia Places](https://github.com/algolia/places/) - 是一个轻量级的日期标记和日历插件。[demo](https://community.algolia.com/places/)
 - [Cleave.js](https://github.com/nosir/cleave.js) - 是一个会在你输入时格式化你的`<input/>`标签里面的内容。[demo](http://nosir.github.io/cleave.js/)
 - [validator.js](https://github.com/sofish/validator.js) - 是一个简单、轻量级，但功能强大的 Validator 组件。[demo](http://sofish.github.io/validator.js/)
 
