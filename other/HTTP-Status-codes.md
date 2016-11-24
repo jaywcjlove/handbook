@@ -221,7 +221,7 @@ _WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客
 |1011 | Internal Error | 客户端由于遇到没有预料的情况阻止其完成请求, 因此服务端断开连接。 |
 |1012 | Service Restart | 服务器由于重启而断开连接。 [Ref] |
 |1013 | Try Again Later | 服务器由于临时原因断开连接, 如服务器过载因此断开一部分客户端连接。 [Ref] |
-|1014 | - |由 WebSocket | 标准保留以便未来使用。 |
+|1014 | - |由 WebSocket 标准保留以便未来使用。 |
 |1015 | TLS Handshake   | 保留。 表示连接由于无法完成 TLS 握手而关闭 (例如无法验证服务器证书)。 |
 |1016–1999 |  - | 由 WebSocket 标准保留以便未来使用。 |
 |2000–2999 |  - | 由 WebSocket 拓展保留使用。 |
