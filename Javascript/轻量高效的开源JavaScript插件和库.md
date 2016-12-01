@@ -87,7 +87,7 @@
 
 ## 其它
 
-- [hotkeys](https://github.com/jaywcjlove/hotkeys) - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。[demo](http://nickersoft.github.io/push.js/)
+- [hotkeys](https://github.com/jaywcjlove/hotkeys) - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。[demo](http://jaywcjlove.github.io/hotkeys/ )
 - [clipboard.js](https://github.com/zenorocha/clipboard.js) - 现代复制到剪贴板。没有Flash，gzip压缩只有3KB 。[demo](https://clipboardjs.com/)
 - [translater.js](https://github.com/jaywcjlove/onlinenetwork) - 这是一个利用HTML注释的页面翻译解决方案。[demo](https://jaywcjlove.github.io/translater.js/)
 - [Push.js](https://github.com/jaywcjlove/translater.js) - 是一个跨浏览器的Javascript桌面通知插件。[demo](http://nickersoft.github.io/push.js/)
