@@ -13,6 +13,7 @@
 - [表单](#表单)
 - [存储](#存储)
 - [动画](#动画)
+- [时间](#时间)
 - [其它](#其它)
 - [CDN](#cdn)
 
@@ -84,6 +85,12 @@
 - [anime.js](https://github.com/juliangarnier/anime) - 是一个灵活轻便的JavaScript动画库。[demo](http://codepen.io/collection/XLebem/)
 - [three.js](https://github.com/mrdoob/three.js) - 是一个JS 3D库。[demo](https://threejs.org/)
 - [vivus](https://github.com/maxwellito/vivus) - JavaScript库，使SVG绘制动画。[demo](http://maxwellito.github.io/vivus/)
+
+## 时间
+
+- [moment](https://github.com/moment/moment) - 是一个日期处理类库,用于解析、检验、操作、以及显示日期。[demo](http://momentjs.com)
+- [timesheet.js](https://github.com/sbstjn/timesheet.js) - 是一个时间展示片段插件。[demo](https://sbstjn.github.io/timesheet.js)
+- [date.js](https://github.com/jaywcjlove/date.js) - 是一个格式化时间、过去时间展示、解决因时区变更插件。
 
 ## 其它
 
