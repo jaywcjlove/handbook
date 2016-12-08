@@ -29,7 +29,7 @@
 ## 布局
 
 - [SuperEmbed.js](https://github.com/corbindavenport/superembed.js) - 是一个Javascript库，可检测出网页上的内嵌视频并使他们能够变成响应式元素。[demo](https://jsfiddle.net/h6x04LuL/)
-- [ScrollReveal](https://github.com/jlmakes/scrollreveal) - ScrollReveal插件使用户能够无比轻松地创建桌面和移动浏览器的网页滚动动画。[demo](http://callmecavs.com/bricks.js/)
+- [ScrollReveal](https://github.com/jlmakes/scrollreveal) - ScrollReveal插件使用户能够无比轻松地创建桌面和移动浏览器的网页滚动动画。[demo](https://scrollrevealjs.org/)
 - [Bricks.js](https://github.com/callmecavs/bricks.js) - 是一款超快的用于固定宽度元素的“砖石”布局生成器。[demo](http://callmecavs.com/bricks.js/)
 
 ## 轮播图
