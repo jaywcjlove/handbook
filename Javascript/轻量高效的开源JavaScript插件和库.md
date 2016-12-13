@@ -91,6 +91,7 @@
 - [moment](https://github.com/moment/moment) - 是一个日期处理类库,用于解析、检验、操作、以及显示日期。[demo](http://momentjs.com)
 - [timesheet.js](https://github.com/sbstjn/timesheet.js) - 是一个时间展示片段插件。[demo](https://sbstjn.github.io/timesheet.js)
 - [date.js](https://github.com/jaywcjlove/date.js) - 是一个格式化时间、过去时间展示、解决因时区变更插件。
+- [timeago.js](https://github.com/hustcc/timeago.js) - 格式化时间显示多久以前的插件。 [demo](http://timeago.org/)
 
 ## 其它
 
