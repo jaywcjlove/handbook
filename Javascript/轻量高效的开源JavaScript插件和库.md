@@ -84,6 +84,7 @@
 
 - [anime.js](https://github.com/juliangarnier/anime) - 是一个灵活轻便的JavaScript动画库。[demo](http://codepen.io/collection/XLebem/)
 - [three.js](https://github.com/mrdoob/three.js) - 是一个JS 3D库。[demo](https://threejs.org/)
+- [tween.js](https://github.com/tweenjs/tween.js) - 是一个JS 平滑动画库。[demo](http://tweenjs.github.io/tween.js/examples/12_graphs_custom_functions.html)
 - [vivus](https://github.com/maxwellito/vivus) - JavaScript库，使SVG绘制动画。[demo](http://maxwellito.github.io/vivus/)
 
 ## 时间
