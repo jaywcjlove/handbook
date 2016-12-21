@@ -46,7 +46,135 @@ mysql -uroot -p
 mysql> Create USER 'seafile'@'%' IDENTIFIED BY '123456';
 ```
 
-在 seafile-server_6.0.7 目录下面，运行如下命令
+运行`./setup-seafile-mysql.sh`安装脚本并回答预设问题
+
+```bash
+./setup-seafile-mysql.sh
+  Checking python on this machine ...
+  Checking python module: setuptools ... Done.
+  Checking python module: python-imaging ... Done.
+  Checking python module: python-mysqldb ... Done.
+
+-----------------------------------------------------------------
+This script will guide you to setup your seafile server using MySQL.
+Make sure you have read seafile server manual at
+
+        https://github.com/haiwen/seafile/wiki
+
+Press ENTER to continue
+-----------------------------------------------------------------
+
+What is the name of the server? It will be displayed on the client.
+3 - 15 letters or digits
+[ server name ] <填写 seafile 服务器的名字>
+
+What is the ip or domain of the server?
+For example: www.mycompany.com, 192.168.1.101
+[ This server's ip or domain ] <seafile 服务器的 IP 地址或者域名>
+
+Where do you want to put your seafile data?
+Please use a volume with enough free space
+[ default "/home/www/jinpans/seafile-data" ]
+
+Which port do you want to use for the seafile fileserver?
+[ default "8082" ]  [ seafile fileserver 使用的 TCP 端口 ]
+
+-------------------------------------------------------
+Please choose a way to initialize seafile databases:
+-------------------------------------------------------
+
+[1] Create new ccnet/seafile/seahub databases
+    你需要提供根密码. 脚本程序会创建数据库和用户。
+[2] Use existing ccnet/seafile/seahub databases
+    ccnet/seafile/seahub 数据库应该已经被你（或者其他人）提前创建。
+[ 1 or 2 ] <选择一种创建 Seafile 数据库的方式>
+
+What is the host of mysql server?
+[ default "localhost" ]
+
+What is the port of mysql server?
+[ default "3306" ]
+
+What is the password of the mysql root user?
+[ root password ] <输入root密码>
+
+verifying password of user root ...  done
+
+Enter the name for mysql user of seafile. It would be created if not exists.
+[ default "seafile" ] <默认seafile的MySQL用户名，可以使用默认>
+
+Enter the password for mysql user "seafile":
+[ password for seafile ] <输入seafile密码>
+
+verifying password of user seafile ...  done
+
+Enter the database name for ccnet-server:
+[ default "ccnet-db" ]
+
+Enter the database name for seafile-server:
+[ default "seafile-db" ]
+
+Enter the database name for seahub:
+[ default "seahub-db" ]
+
+---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile 服务器的名字
+    server ip/domain:       192.168.1.101
+
+    seafile data dir:       /home/www/jinpans/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet-db
+    seafile database:       seafile-db
+    seahub database:        seahub-db
+    database user:          seafile
+
+---------------------------------
+Press ENTER to continue, or Ctrl-C to abort
+---------------------------------
+
+Generating ccnet configuration ...
+
+done
+Successly create configuration dir /home/www/jinpans/ccnet.
+Generating seafile configuration ...
+
+Done.
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seahub database tables ...
+
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://github.com/haiwen/seafile/wiki
+
+```
+
+上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令
 
 ### 启动 Seafile:
 
