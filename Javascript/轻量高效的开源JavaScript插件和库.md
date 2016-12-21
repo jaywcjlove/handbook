@@ -66,6 +66,7 @@
 - [Squire](https://github.com/neilj/Squire) HTML5 富文本编辑器。[demo](http://neilj.github.io/Squire/)
 - [TinyMCE](https://github.com/tinymce/tinymce) JavaScript 富文本编辑器。[demo](https://www.tinymce.com/)
 - [trix](https://github.com/basecamp/trix) 由 Basecamp 制作，适用于每天写作的富文本编辑器。[demo](https://trix-editor.org/)
+- [Editor.md](https://github.com/pandao/editor.md) 由 Basecamp 制作，适用于每天写作的富文本编辑器。[demo](https://trix-editor.org/)
 
 ## 表单 
 
