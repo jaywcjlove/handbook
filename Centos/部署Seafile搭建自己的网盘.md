@@ -44,6 +44,8 @@ mysql -uroot -p
 
 # 创建用户设置密码
 mysql> Create USER 'seafile'@'%' IDENTIFIED BY '123456';
+# 执行下面语句立即生效
+mysql> flush privileges;
 ```
 
 运行`./setup-seafile-mysql.sh`安装脚本并回答预设问题
@@ -232,5 +234,5 @@ http://192.168.1.111:8000/
 ## 参考资料
 
 - [Seafile服务器手册中文版](https://www.gitbook.com/book/freeplant/seafile-manual-cn/details)
-- [Seafile](https://github.com/haiwen/seafile)
+- [Seafile for Github](https://github.com/haiwen/seafile)
 - [Seafile官网](http://seafile.com/)

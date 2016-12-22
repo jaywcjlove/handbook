@@ -14,6 +14,7 @@
     - [nginx安装搭建](Centos/nginx安装.md)
     - [nginx配置](Centos/nginx配置.md)
     - [node安装](Centos/node安装.md)
+    - [Seafile部署搭建自己的网盘](Centos/部署Seafile搭建自己的网盘.md)
     - [samba安装搭建使用](Centos/samba.md)
     - [常用基础命令](Centos/常用基础命令.md)
 - MySQL - [搜集整合资源迁移到这里了](https://github.com/jaywcjlove/mysql-tutorial)
