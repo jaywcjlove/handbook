@@ -41,6 +41,8 @@ $ sudo dd if=/Volumes/Untitled\ 1/CentOS-7-x86_64-Everything-1511.iso of=/dev/di
 
 ```bash
 sudo pv -cN source < /Users/kacperwang/Downloads/CentOS-7-x86_64-Everything-1511.iso | sudo dd of=/dev/disk2 bs=4m
+## 显示下面进度
+source:  5.2GiB 5:11:41 [ 503KiB/s] [=====================>       ] 71% ETA 2:01:56
 ```
 
 ## 查看磁盘进度
