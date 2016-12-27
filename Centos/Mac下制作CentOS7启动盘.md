@@ -1,4 +1,7 @@
-## Mac下将ISO写入U盘可使用命令行工具dd，操作如下：
+Mac上制作linux系统U盘安装盘
+===
+
+Mac下将ISO写入U盘可使用命令行工具dd，操作如下：
 
 1. 找出U盘挂载的路径，使用如下命令：diskutil list
 2. 将U盘unmount（将N替换为挂载路径）：diskutil unmountDisk /dev/disk[N]
@@ -20,8 +23,10 @@ $ diskutil list
 
 ## 解除其挂载
 
-```
+```bash
 $ diskutil unmountDisk /dev/disk5
+# 提示卸载成功！
+# Unmount of all volumes on disk5 was successful
 ```
 
 ## 用 dd 命令将 iso 写入
@@ -29,10 +34,18 @@ $ diskutil unmountDisk /dev/disk5
 这 /Volumes/Untitled\ 1/CentOS-7-x86_64-Everything-1511.iso 是我本地移动硬盘镜像路径
 
 ```bash
-$ sudo dd if=/Volumes/Untitled\ 1/CentOS-7-x86_64-Everything-1511.iso of=/dev/disk5
+$ sudo dd if=/Volumes/Untitled\ 1/CentOS-7-x86_64-Everything-1511.iso of=/dev/disk5 bs=1m
 ```
 
-## 查看磁盘进度，可以用iostat命令查看磁盘写入状态
+使用brew安装pv工具，之后使用以下的命令来实现进度条的显示
+
+```bash
+sudo pv -cN source < /Users/kacperwang/Downloads/CentOS-7-x86_64-Everything-1511.iso | sudo dd of=/dev/disk2 bs=4m
+```
+
+## 查看磁盘进度
+
+可以用iostat命令查看磁盘写入状态，进度。
 
 ```bash
 $ iostat -w 5
