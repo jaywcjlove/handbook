@@ -35,6 +35,8 @@
 ## 轮播图
 
 - [Swipe](https://github.com/thebird/Swipe) - 准确的触摸滑块。[demo](http://thebird.github.io/Swipe/)
+- [Lory](https://github.com/meandmax/lory/) -  是一个由 Vanilla JavaScript 编写的拥有触摸功能的简约滑块。[demo](http://meandmax.github.io/lory/)
+- [baguetteBox.js](https://github.com/feimosi/baguetteBox.js) -  是一个简单、易用的响应式 Lightbox 图片库，它支持移动端上触滑动手势操作，无依赖。[demo](https://feimosi.github.io/baguetteBox.js/)
 
 ## 弹出层
 
@@ -47,6 +49,7 @@
 
 - [Loud Links](https://github.com/mahdif/loud-links) - 是一个轻量级的JavaScript库用于添加交互声音到您的站点。[demo](http://loudlinks.rocks/#examples)
 - [flv.js](https://github.com/Bilibili/flv.js) - B 站 HTML5 播放器内核开源。
+- [Loud Links](https://github.com/mahdif/loud-links/) - 是一个轻量级 JavaScript 库，用于向您的网站添加交互音频。。[demo](https://loudlinks.rocks/)
 
 ## 编辑器
 
@@ -88,6 +91,7 @@
 - [three.js](https://github.com/mrdoob/three.js) - 是一个JS 3D库。[demo](https://threejs.org/)
 - [tween.js](https://github.com/tweenjs/tween.js) - 是一个JS 平滑动画库。[demo](http://tweenjs.github.io/tween.js/examples/12_graphs_custom_functions.html)
 - [vivus](https://github.com/maxwellito/vivus) - JavaScript库，使SVG绘制动画。[demo](http://maxwellito.github.io/vivus/)
+- [Choreographer-js](https://github.com/christinecha/choreographer-js) - 是一个用于处理复杂动画的简单库。[demo](https://christinecha.github.io/choreographer-js/)
 
 ## 时间
 
@@ -105,6 +109,9 @@
 - [onlinenetwork](https://github.com/jaywcjlove/onlinenetwork) - js判断是否断网了。
 - [iNotify](https://github.com/jaywcjlove/iNotify) - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。[demo](http://jaywcjlove.github.io/iNotify)
 - [tesseract.js](https://github.com/naptha/tesseract.js) - 是一个文字识别转换，可以运行在浏览器和服务器NodeJS上。[demo](http://tesseract.projectnaptha.com/)
+- [Leaflet.js](http://github.com/Leaflet/Leaflet) - 是一个开源的移动友好交互式地图 JavaScript 库。体积仅有 33 KB。[demo](http://leafletjs.com/)
+- [CurrencyFormatter.js](https://github.com/osrec/currencyFormatter.js/) - 是一款简单实用的纯 JS 格式化货币库。它支持 155 种不同国家的货币格式，并且 gzip 压缩后仅有 7KB。[demo](https://osrec.github.io/currencyFormatter.js/)
+- [Feature.js](https://github.com/osrec/currencyFormatter.js/) - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。[demo](hhttp://featurejs.com/)
 
 
 ## CDN
