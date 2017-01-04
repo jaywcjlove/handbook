@@ -1,10 +1,27 @@
 
-#  官方安装教程
+## 目录
 
-- [gitlab / gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
-- 官网下载：https://www.gitlab.cc/downloads
-- 官网安装说明：https://doc.gitlab.cc/ce/install/requirements.html
-- 开源版本和企业版本对比：https://www.gitlab.cc/features/#enterprise
+- [官方安装](#官方安装)
+- [第三方镜像安装](#第三方镜像安装)
+  - [编辑源](#编辑源)
+  - [更新本地YUM缓存](#更新本地YUM缓存)
+  - [安装社区版](#安装社区版)
+  - [更改配置](#更改配置)
+  - [配置并启动GitLab](#配置并启动GitLab)
+  - [登录GitLab](#登录GitLab)
+- [运维](#运维)
+- [备份恢复](#备份恢复)
+  - [创建备份](#创建备份)
+  - [修改备份文件默认目录](#修改备份文件默认目录)
+  - [开始备份](#开始备份)
+  - [开始恢复](#开始恢复)
+- [暴力升级](#暴力升级)
+- [错误处理](#错误处理)
+  - [解决80端口被占用](#解决80端口被占用)
+  - [头像无法正常显示](#头像无法正常显示)
+- [参考资料](#参考资料)
+
+##  官方安装
 
 1. Install and configure the necessary dependencies
 
@@ -46,12 +63,15 @@ On your first visit, you'll be redirected to a password reset screen to provide 
 The default account's username is root. Provide the password you created earlier and login. After login you can change the username if you wish.
 
 
-# 解决官方无法安装的情况
+
+## 第三方镜像安装
 
 - [Gitlab Community Edition 镜像使用帮助](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
 - [在阿里云上通过Omnibus一键安装包安装Gitlab](https://github.com/hehongwei44/my-blog/issues/19)
 
-## 编辑源
+### 编辑源
+
+新建 /etc/yum.repos.d/gitlab-ce.repo，内容为
 
 [使用清华大学 TUNA 镜像源](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/) 打开网址将内容复制到`gitlab-ce.repo`文件中，编辑路径`vim /etc/yum.repos.d/gitlab-ce.repo`
 
@@ -65,21 +85,20 @@ enabled=1
 gpgkey=https://packages.gitlab.com/gpg.key
 ```
 
-## 更新本地 YUM 缓存
+### 更新本地YUM缓存
 
 ```bash 
 sudo yum makecache
 ```
 
-## 安装 GitLab 社区版
+### 安装社区版
 
 ```bash
 sudo yum install gitlab-ce #(自动安装最新版)
-sudo yum install gitlab-ce-8.8.4-ce.0.el6 #(安装指定版本)
+sudo yum install gitlab-ce-8.15.2-ce.0.el6 #(安装指定版本)
 ```
 
-
-## 更改配置
+### 更改配置
 
 ```bash
  vim /etc/gitlab/gitlab.rb
@@ -87,7 +106,7 @@ sudo yum install gitlab-ce-8.8.4-ce.0.el6 #(安装指定版本)
  # 修改成你的地址
 ```
 
-# 配置并启动GitLab
+### 配置并启动GitLab
 
 ```bash
 # 打开`/etc/gitlab/gitlab.rb`,
@@ -96,40 +115,203 @@ sudo yum install gitlab-ce-8.8.4-ce.0.el6 #(安装指定版本)
 sudo gitlab-ctl reconfigure
 ```
 
-# 登录GitLab
+### 登录GitLab
 
 ```
 Username: root 
 Password: 5iveL!fe
 ```
 
-# GitLab头像无法正常显示
-
-原因：gravatar被墙
-解决办法：
-编辑 /etc/gitlab/gitlab.rb，将
+## 运维 
 
 ```bash
-# gitlab_rails['gravatar_plain_url'] = 'http://gravatar.duoshuo.com/avatar/%{hash}?s=%{size}&d=identicon'
+# 启动所有 gitlab 组件：
+sudo gitlab-ctl start
+
+# 停止所有 gitlab 组件：
+sudo gitlab-ctl stop
+
+# 停止所有 gitlab postgresql 组件：
+sudo gitlab-ctl stop postgresql
+
+# 重启所有 gitlab 组件：
+sudo gitlab-ctl restart
+
+# 重启所有 gitlab gitlab-workhorse 组件：
+sudo gitlab-ctl restart  gitlab-workhorse
+
+# 查看服务状态
+sudo gitlab-ctl status
+
+# 启动服务
+sudo gitlab-ctl reconfigure
+
+# 修改默认的配置文件
+sudo vim /etc/gitlab/gitlab.rb
+
+# 查看版本
+sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+
+# echo "vm.overcommit_memory=1" >> /etc/sysctl.conf
+# sysctl -p
+# echo never > /sys/kernel/mm/transparent_hugepage/enabled
+
+# 检查gitlab
+gitlab-rake gitlab:check SANITIZE=true --trace
+
+# 查看日志
+sudo gitlab-ctl tail
+
+# 数据库关系升级
+sudo gitlab-rake db:migrate
+
+# 清理缓存
+sudo gitlab-rake cache:clear
 ```
 
-修改为：
+## 备份恢复
 
-```
-gitlab_rails['gravatar_plain_url'] = 'http://gravatar.duoshuo.com/avatar/%{hash}?s=%{size}&d=identicon'
-```
+### 创建备份
 
-然后在命令行执行：
+使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单,用一条命令即可创建完整的Gitlab备份:
 
 ```bash
-sudo gitlab-ctl reconfigure 
-sudo gitlab-rake cache:clear RAILS_ENV=production
+gitlab-rake gitlab:backup:create  
 ```
 
-# nginx配置
+以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
 
-解决 `80` 端口被占用
+### 修改备份文件默认目录
 
+修改`/etc/gitlab/gitlab.rb`来修改默认存放备份文件的目录:
+
+```bash
+gitlab_rails['backup_path'] = '/mnt/backups'  
+```
+
+修改后使用gitlab-ctl reconfigure命令重载配置文件。
+
+### 开始备份
+
+```bash
+gitlab-rake gitlab:backup:create
+
+#每天2点备份gitlab数据
+0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
+0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create  
+```
+
+### 开始恢复
+
+迁移如同备份与恢复的步骤一样, 只需要将老服务器/var/opt/gitlab/backups目录下的备份文件拷贝到新服务器上的/var/opt/gitlab/backups即可(如果你没修改过默认备份目录的话)。 然后执行恢复命令。
+如果修改了，首先进入备份 gitlab 的目录，这个目录是配置文件中的 `gitlab_rails['backup_path']` ，默认为 `/var/opt/gitlab/backups` 。
+
+然后停止 unicorn 和 sidekiq ，保证数据库没有新的连接，不会有写数据情况。
+
+```bash
+# 停止相关数据连接服务
+# ok: down: unicorn: 0s, normally up
+gitlab-ctl stop unicorn  
+# ok: down: sidekiq: 0s, normally up
+gitlab-ctl stop sidekiq
+
+# 从xxxxx编号备份中恢复
+# 然后恢复数据，1406691018为备份文件的时间戳
+gitlab-rake gitlab:backup:restore BACKUP=xxxxxx
+
+# 启动Gitlab
+sudo gitlab-ctl start  
+```
+
+
+判断是执行实际操作的gitlab相关用户：git，没有得到足够的权限。依次执行命令：
+
+```
+root@myserver:~# mkdir /var/opt/gitlab/backups
+root@myserver:~# chown git /var/opt/gitlab/backups
+root@myserver:~# chmod 700 /var/opt/gitlab/backups
+```
+
+
+## 暴力升级
+
+直接编辑源 /etc/yum.repos.d/gitlab-ce.repo，安装 GitLab 社区版
+
+```bash
+sudo yum install gitlab-ce #(自动安装最新版)
+sudo yum install gitlab-ce-8.15.2-ce.0.el6 #(安装指定版本)
+```
+
+安装过程会报错
+
+```
+gitlab preinstall: Automatically backing up only the GitLab SQL database (excluding everything else!)
+Dumping database ...
+Dumping PostgreSQL database gitlabhq_production ... pg_dump: [archiver (db)] connection to database "gitlabhq_production" failed: could not connect to server: 没有那个文件或目录
+    Is the server running locally and accepting
+    connections on Unix domain socket "/var/opt/gitlab/postgresql/.s.PGSQL.5432"?
+Backup failed
+[FAILED]
+gitlab preinstall:
+gitlab preinstall: Backup failed! If you want to skip this backup, run the following command and
+gitlab preinstall: try again:
+gitlab preinstall:
+gitlab preinstall:   sudo touch /etc/gitlab/skip-auto-migrations
+gitlab preinstall:
+error: %pre(gitlab-ce-8.15.2-ce.0.el6.x86_64) scriptlet failed, exit status 1
+Error in PREIN scriptlet in rpm package gitlab-ce-8.15.2-ce.0.el6.x86_64
+error:   install: %pre scriptlet failed (2), skipping gitlab-ce-8.15.2-ce.0.el6
+gitlab-ce-8.11.5-ce.0.el6.x86_64 was supposed to be removed but is not!
+  Verifying  : gitlab-ce-8.11.5-ce.0.el6.x86_64                                                                                                                                                             1/2
+  Verifying  : gitlab-ce-8.15.2-ce.0.el6.x86_64                                                                                                                                                             2/2
+
+Failed:
+  gitlab-ce.x86_64 0:8.11.5-ce.0.el6
+```
+
+看上面一堆错误，瞬间就懵逼了，看到一条救星明林让我尝试运行 `sudo touch /etc/gitlab/skip-auto-migrations` 于是我二逼的运行了，结果真的安装成功了，😄。
+
+```
+...
+gitlab: Thank you for installing GitLab!
+gitlab: To configure and start GitLab, RUN THE FOLLOWING COMMAND:
+
+sudo gitlab-ctl reconfigure
+
+gitlab: GitLab should be reachable at http://114.55.148.71:8081
+gitlab: Otherwise configure GitLab for your system by editing /etc/gitlab/gitlab.rb file
+gitlab: And running reconfigure again.
+gitlab:
+gitlab: For a comprehensive list of configuration options please see the Omnibus GitLab readme
+gitlab: https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md
+gitlab:
+
+gitlab: GitLab now ships with a newer version of PostgreSQL (9.6.1), and will be used
+gitlab: as the default in the next major relase. To upgrade, RUN THE FOLLOWING COMMANDS:
+
+sudo gitlab-ctl pg-upgrade
+
+gitlab: For more details, please see:
+gitlab: https://docs.gitlab.com/omnibus/settings/database.html#upgrade-packaged-postgresql-server
+gitlab:
+  清理       : gitlab-ce-8.11.5-ce.0.el6.x86_64                                                                                                                                                             2/2
+Found /etc/gitlab/skip-auto-migrations, exiting...
+  Verifying  : gitlab-ce-8.15.2-ce.0.el6.x86_64                                                                                                                                                             1/2
+  Verifying  : gitlab-ce-8.11.5-ce.0.el6.x86_64                                                                                                                                                             2/2
+
+更新完毕:
+  gitlab-ce.x86_64 0:8.15.2-ce.0.el6
+
+完毕！
+```
+
+
+## 错误处理
+
+
+### 解决80端口被占用
+
+nginx配置解决 `80` 端口被占用
 
 ```
 upstream gitlab {
@@ -160,6 +342,8 @@ server {
 }
 ```
 
+nginx配置检查和立即生效
+
 ```bash
 
 # 检查配置
@@ -170,95 +354,32 @@ server {
 ```
 
 
-# 运维 
+
+### 头像无法正常显示
+
+原因：gravatar被墙
+解决办法：
+编辑 /etc/gitlab/gitlab.rb，将
 
 ```bash
-# 启动所有 gitlab 组件：
-sudo gitlab-ctl start
-
-# 停止所有 gitlab 组件：
-sudo gitlab-ctl stop
-
-# 重启所有 gitlab 组件：
-sudo gitlab-ctl restart
-
-# 查看服务状态
-sudo gitlab-ctl status
-
-# 启动服务
-sudo gitlab-ctl reconfigure
-
-# 修改默认的配置文件
-sudo vim /etc/gitlab/gitlab.rb
-
-# 查看版本
-sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
-
-# echo "vm.overcommit_memory=1" >> /etc/sysctl.conf
-# sysctl -p
-# echo never > /sys/kernel/mm/transparent_hugepage/enabled
-
-# 检查gitlab
-gitlab-rake gitlab:check SANITIZE=true --trace
-
-# 查看日志
-sudo gitlab-ctl tail
+# gitlab_rails['gravatar_plain_url'] = 'http://gravatar.duoshuo.com/avatar/%{hash}?s=%{size}&d=identicon'
 ```
 
-## 备份恢复
+修改为：
 
-### Gitlab 创建备份
-
-使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单,用一条命令即可创建完整的Gitlab备份:
-
-```bash
-gitlab-rake gitlab:backup:create  
+```
+gitlab_rails['gravatar_plain_url'] = 'http://gravatar.duoshuo.com/avatar/%{hash}?s=%{size}&d=identicon'
 ```
 
-以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
-
-### Gitlab 修改备份文件默认目录
-
-修改`/etc/gitlab/gitlab.rb`来修改默认存放备份文件的目录:
+然后在命令行执行：
 
 ```bash
-gitlab_rails['backup_path'] = '/mnt/backups'  
-```
-
-修改后使用gitlab-ctl reconfigure命令重载配置文件。
-
-### 备份
-
-```bash
-0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
-0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create  
-```
-
-### 恢复
-
-首先进入备份 gitlab 的目录，这个目录是配置文件中的 `gitlab_rails['backup_path']` ，默认为 `/var/opt/gitlab/backups` 。
-
-然后停止 unicorn 和 sidekiq ，保证数据库没有新的连接，不会有写数据情况。
-
-```bash
-# 停止相关数据连接服务
-# ok: down: unicorn: 0s, normally up
-gitlab-ctl stop unicorn  
-# ok: down: sidekiq: 0s, normally up
-gitlab-ctl stop sidekiq
-
-# 从xxxxx编号备份中恢复
-# 然后恢复数据，1406691018为备份文件的时间戳
-gitlab-rake gitlab:backup:restore BACKUP=xxxxxx
-
-# 启动Gitlab
-sudo gitlab-ctl start  
+sudo gitlab-ctl reconfigure 
+sudo gitlab-rake cache:clear RAILS_ENV=production
 ```
 
 
-
-
-# 错误处理
+### 其它错误
 
 ```bash
 Error executing action `run` on resource 'bash[migrate gitlab-rails database]'
@@ -271,3 +392,27 @@ https://gitlab.com/gitlab-org/gitlab-ce/issues/2052#note_1667899
 ```bash
 NameError: uninitialized constant Devise::Async
 ```
+
+
+```
+Processing by RootController#index as HTML
+Completed 401 Unauthorized in 17ms (ActiveRecord: 2.7ms)
+```
+
+
+```
+/var/log/gitlab/nginx/gitlab_access.log <==
+114.55.148.71 - - [04/Jan/2017:17:20:24 +0800] "GET /favicon.ico HTTP/1.0" 502 2662 "http://git.showgold.cn/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
+```
+
+
+## 参考资料
+
+- [gitlab / gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
+- [官网下载](https://www.gitlab.cc/downloads)
+- [官网安装说明](https://doc.gitlab.cc/ce/install/requirements.html)
+- [开源版本和企业版本对比](https://www.gitlab.cc/features/#enterprise)
+- [官方升级Gitlab教程](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/update/8.14-to-8.15.md)
+- [官方Centos安装Gitlab教程](https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/install/centos)
+- [Gitlab升级记录](http://opjasee.com/2016/01/28/gitlab-upgrade.html)
+- [修改gitlab使用现有nginx服务及502问题解决](http://www.yuzhewo.com/2015/11/03/%E4%BF%AE%E6%94%B9gitlab%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89nginx%E6%9C%8D%E5%8A%A1%E5%8F%8A502%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/)
