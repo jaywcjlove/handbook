@@ -28,7 +28,9 @@ Gitlab安装维护
 
 ##  官方安装
 
-1. Install and configure the necessary dependencies
+下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过。
+
+1. 安装并配置必要的依赖项
 
 If you install Postfix to send email please select 'Internet Site' during setup. Instead of using Postfix you can also use Sendmail or configure a custom SMTP server and configure it as an SMTP server.
 
@@ -41,7 +43,7 @@ sudo chkconfig postfix on
 sudo lokkit -s http -s ssh
 ```
 
-2. Add the GitLab package server and install the package
+2. 添加gitlab服务器包和安装包
 
 ```
 curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
@@ -55,13 +57,13 @@ curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/6/gitlab-ce-X
 rpm -i gitlab-ce-XXX.rpm
 ```
 
-3. Configure and start GitLab
+3. 配置并启动GitLab
 
 ```
 sudo gitlab-ctl reconfigure
 ```
 
-4. Browse to the hostname and login
+4. 浏览器打开并登录
 
 On your first visit, you'll be redirected to a password reset screen to provide the password for the initial administrator account. Enter your desired password and you'll be redirected back to the login screen.
 
@@ -106,9 +108,9 @@ sudo yum install gitlab-ce-8.15.2-ce.0.el6 #(安装指定版本)
 ### 更改配置
 
 ```bash
- vim /etc/gitlab/gitlab.rb
- # 找到 external_url 'http://000.00.00.00:8081'
- # 修改成你的地址
+vim /etc/gitlab/gitlab.rb
+# 找到 external_url 'http://000.00.00.00:8081'
+# 修改成你的地址
 ```
 
 ### 配置并启动GitLab
