@@ -11,6 +11,7 @@ Gitlab安装维护
   - [更改配置](#更改配置)
   - [配置并启动GitLab](#配置并启动GitLab)
   - [登录GitLab](#登录GitLab)
+- [卸载](#卸载)
 - [运维](#运维)
   - [服务管理](#服务管理)
   - [日志查看](#日志查看)
@@ -127,6 +128,12 @@ sudo gitlab-ctl reconfigure
 ```
 Username: root 
 Password: 5iveL!fe
+```
+
+## 卸载
+
+```bash
+sudo gitlab-ctl uninstall
 ```
 
 ## 运维 
@@ -287,6 +294,13 @@ gitlab-rake gitlab:backup:create
 #每天2点备份gitlab数据
 0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
 0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create  
+```
+
+这里放你的备份文件文件夹，和仓库源文件。
+
+```bash
+/var/opt/gitlab/backups                   # 备份文件文件夹
+/var/opt/gitlab/git-data/repositories     # git仓库源文件
 ```
 
 ### 开始恢复
