@@ -1,3 +1,5 @@
+Gitlab安装维护
+===
 
 ## 目录
 
@@ -10,6 +12,9 @@
   - [配置并启动GitLab](#配置并启动GitLab)
   - [登录GitLab](#登录GitLab)
 - [运维](#运维)
+  - [服务管理](#服务管理)
+  - [日志查看](#日志查看)
+  - [重置管理员密码](#重置管理员密码)
 - [备份恢复](#备份恢复)
   - [创建备份](#创建备份)
   - [修改备份文件默认目录](#修改备份文件默认目录)
@@ -125,27 +130,6 @@ Password: 5iveL!fe
 ## 运维 
 
 ```bash
-# 启动所有 gitlab 组件：
-sudo gitlab-ctl start
-
-# 停止所有 gitlab 组件：
-sudo gitlab-ctl stop
-
-# 停止所有 gitlab postgresql 组件：
-sudo gitlab-ctl stop postgresql
-
-# 重启所有 gitlab 组件：
-sudo gitlab-ctl restart
-
-# 重启所有 gitlab gitlab-workhorse 组件：
-sudo gitlab-ctl restart  gitlab-workhorse
-
-# 查看服务状态
-sudo gitlab-ctl status
-
-# 启动服务
-sudo gitlab-ctl reconfigure
-
 # 修改默认的配置文件
 sudo vim /etc/gitlab/gitlab.rb
 
@@ -167,6 +151,108 @@ sudo gitlab-rake db:migrate
 
 # 清理缓存
 sudo gitlab-rake cache:clear
+
+
+sudo gitlab-rake gitlab:check
+
+sudo gitlab-rake gitlab:check SANITIZE=true
+```
+
+### 服务管理
+
+```bash 
+# 启动所有 gitlab 组件：
+sudo gitlab-ctl start
+
+# 停止所有 gitlab 组件：
+sudo gitlab-ctl stop
+
+# 停止所有 gitlab postgresql 组件：
+sudo gitlab-ctl stop postgresql
+
+# 停止相关数据连接服务
+sudo gitlab-ctl stop unicorn
+sudo gitlab-ctl stop sidekiq
+
+# 重启所有 gitlab 组件：
+sudo gitlab-ctl restart
+
+# 重启所有 gitlab gitlab-workhorse 组件：
+sudo gitlab-ctl restart  gitlab-workhorse
+
+# 查看服务状态
+sudo gitlab-ctl status
+
+# 启动服务
+sudo gitlab-ctl reconfigure
+```
+
+### 日志查看
+
+```bash
+
+# 查看日志
+sudo gitlab-ctl tail
+
+# 检查redis的日志
+sudo gitlab-ctl tail redis
+ 
+# 检查postgresql的日志
+sudo gitlab-ctl tail postgresql
+ 
+# 检查gitlab-workhorse的日志
+sudo gitlab-ctl tail gitlab-workhorse
+ 
+# 检查logrotate的日志
+sudo gitlab-ctl tail logrotate
+ 
+# 检查nginx的日志
+sudo gitlab-ctl tail nginx
+ 
+# 检查sidekiq的日志
+sudo gitlab-ctl tail sidekiq
+ 
+# 检查unicorn的日志
+sudo gitlab-ctl tail unicorn
+
+```
+
+### 重置管理员密码
+
+gitlab管理员密码忘记，怎么重置密码，Gitlab 修改root用户密码
+
+使用rails工具打开终端
+
+```bash
+sudo gitlab-rails console production
+```
+
+查询用户的email，用户名，密码等信息，id:1 表示root账号
+
+```bash
+user = User.where(id: 1).first
+```
+
+重新设置密码
+
+```bash
+user.password = '新密码'
+user.password_confirmation = '新密码'　
+```
+
+保存密码
+
+```bash
+user.save!
+```
+
+完整的操作ruby脚本
+
+```bash
+user = User.where(id: 1).first
+user.password = '新密码'
+user.password_confirmation = '新密码'
+user.save!
 ```
 
 ## 备份恢复
@@ -176,7 +262,7 @@ sudo gitlab-rake cache:clear
 使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单,用一条命令即可创建完整的Gitlab备份:
 
 ```bash
-gitlab-rake gitlab:backup:create  
+gitlab-rake gitlab:backup:create
 ```
 
 以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
@@ -210,14 +296,17 @@ gitlab-rake gitlab:backup:create
 
 ```bash
 # 停止相关数据连接服务
+gitlab-ctl stop unicorn
 # ok: down: unicorn: 0s, normally up
-gitlab-ctl stop unicorn  
-# ok: down: sidekiq: 0s, normally up
 gitlab-ctl stop sidekiq
+# ok: down: sidekiq: 0s, normally up
 
 # 从xxxxx编号备份中恢复
 # 然后恢复数据，1406691018为备份文件的时间戳
-gitlab-rake gitlab:backup:restore BACKUP=xxxxxx
+gitlab-rake gitlab:backup:restore BACKUP=1406691018
+
+# 新版本 1483533591_2017_01_04_gitlab_backup.tar
+gitlab-rake gitlab:backup:restore BACKUP=1483533591_2017_01_04_gitlab_backup.tar
 
 # 启动Gitlab
 sudo gitlab-ctl start  
@@ -226,10 +315,15 @@ sudo gitlab-ctl start
 
 判断是执行实际操作的gitlab相关用户：git，没有得到足够的权限。依次执行命令：
 
-```
-root@myserver:~# mkdir /var/opt/gitlab/backups
-root@myserver:~# chown git /var/opt/gitlab/backups
-root@myserver:~# chmod 700 /var/opt/gitlab/backups
+```bash
+mkdir /var/opt/gitlab/backups
+chown git /var/opt/gitlab/backups
+chmod 700 /var/opt/gitlab/backups
+
+sudo chown -R git:git /var/opt/gitlab/git-data/repositories
+sudo chmod -R ug+rwX,o-rwx /var/opt/gitlab/git-data/repositories
+sudo chmod -R ug-s /var/opt/gitlab/git-data/repositories
+sudo find /var/opt/gitlab/git-data/repositories -type d -print0 | sudo xargs -0 chmod g+s
 ```
 
 
