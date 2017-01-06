@@ -29,7 +29,7 @@ Gitlab安装维护
 
 ##  官方安装
 
-下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过。
+下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过这里，看下面的。
 
 1. 安装并配置必要的依赖项
 
@@ -332,10 +332,12 @@ sudo gitlab-ctl start
 判断是执行实际操作的gitlab相关用户：git，没有得到足够的权限。依次执行命令：
 
 ```bash
+# 恢复过程中没有权限
 mkdir /var/opt/gitlab/backups
 chown git /var/opt/gitlab/backups
 chmod 700 /var/opt/gitlab/backups
 
+# 恢复成功页面报没有权限的错误
 sudo chown -R git:git /var/opt/gitlab/git-data/repositories
 sudo chmod -R ug+rwX,o-rwx /var/opt/gitlab/git-data/repositories
 sudo chmod -R ug-s /var/opt/gitlab/git-data/repositories
@@ -379,7 +381,7 @@ Failed:
   gitlab-ce.x86_64 0:8.11.5-ce.0.el6
 ```
 
-看上面一堆错误，瞬间就懵逼了，看到一条救星明林让我尝试运行 `sudo touch /etc/gitlab/skip-auto-migrations` 于是我二逼的运行了，结果真的安装成功了，😄。
+看上面一堆错误，瞬间就懵逼了，看到一条救星命令让我尝试运行 `sudo touch /etc/gitlab/skip-auto-migrations` 于是我二逼的运行了，结果真的安装成功了，😄。
 
 ```
 ...
