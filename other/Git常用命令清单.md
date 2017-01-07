@@ -56,6 +56,7 @@
 - [日志log](#日志log)
 - [重写历史](#重写历史)
 - [利用commit关闭一个issue](#利用commit关闭一个issue)
+- [修改历史commit中的名字和邮箱](#修改历史commit中的名字和邮箱)
 - [查看某个文件历史](#查看某个文件历史)
 - [其它](#其它)
 - [报错问题解决](#报错问题解决)
@@ -618,6 +619,74 @@ pick f7f3f6d changed my name a bit
 1. closes #xxx
 1. close #xxx
 1. closed #xxx
+
+## 修改历史commit中的名字和邮箱
+
+### 克隆仓库
+
+注意参数，这个不是普通的clone，clone下来的仓库并不能参与开发
+
+```
+git clone --bare https://github.com/user/repo.git
+cd repo.git
+```
+
+### 命令行中运行代码
+
+OLD_EMAIL原来的邮箱  
+CORRECT_NAME更正的名字  
+CORRECT_EMAIL更正的邮箱  
+
+```
+% git filter-branch --env-filter '
+OLD_EMAIL="wowohoo@qq.com"
+CORRECT_NAME="小弟调调"
+CORRECT_EMAIL="12345678@qq.com"
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+```
+
+执行过程
+
+```
+Rewrite 160d4df2689ff6df3820563bfd13b5f1fb9ba832 (479/508) (16 seconds passed, remaining 0 predicted)
+Ref 'refs/heads/dev' was rewritten
+Ref 'refs/heads/master' was rewritten
+```
+
+### 同步到远程仓库
+
+同步到push远程git仓库
+
+```bash
+git push --force --tags origin 'refs/heads/*'
+```
+
+当上面的push 不上去的时候，先 `git pull` 确保最新代码，`Gitlab`的分支保护，在项目设置菜单下面的`Protected branches`
+
+```bash
+git pull  --allow-unrelated-histories
+# 或者指定分枝
+git pull origin master ----allow-unrelated-histories
+```
+
+### 删除仓库
+
+```
+cd ..
+rm -rf repo.git
+```
+
+[官方教程](https://help.github.com/articles/changing-author-info/)
 
 ## 查看某个文件历史
 
