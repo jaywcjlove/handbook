@@ -142,6 +142,25 @@ IdentityFile ~/.ssh/github_abc
 ### 4.测试
 `ssh -T git@jslite.github.com` # `@`后面跟上定义的Host  
 
+## config免密登录
+
+```bash
+$ ssh-keygen -t rsa -P '' -f ~/.ssh/aliyunserver.key
+$ ssh-copy-id -i ~/.ssh/aliyunserver.key.pub root@192.168.182.112 # 这里需要输入密码一次
+```
+
+编辑 `~/.ssh/config`
+
+```bash
+Host aliyun1
+  HostName 192.168.182.112
+  User root
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/aliyunserver.key
+```
+
+上面配置完了，可以通过命令登录，不需要输入IP地址和密码 `ssh aliyun1`
+
 ## Git推向3个库
 
 ### 增加3个远程库地址
