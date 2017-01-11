@@ -8,6 +8,7 @@
     - [Centos常用命令](Centos/centos.md)
     - [Mac下制作CentOS7启动盘](Centos/Mac下制作CentOS7启动盘.md)
     - [Centos7网络配置](Centos/Centos7网络配置.md)
+    - [Centos7中修改ssh端口号的方法](Centos/Centos7中修改ssh端口号的方法.md)
     - [chmod说明](Centos/chmod.md)
     - [Gitlab安装](Centos/gitlab安装.md)
     - [Linux添加、删除用户和用户组](Centos/Linux添加、删除用户和用户组.md)
