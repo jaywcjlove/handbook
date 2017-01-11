@@ -2,6 +2,8 @@
 Centos7中修改ssh端口号的方法
 ===
 
+使用场景，公司一个公网IP，两台服务器，所以尝试使用修改ssh端口号的方法，来链接不同的服务器。
+
 ## 查看端口
 
 ```bash
@@ -18,7 +20,7 @@ tcp6       0      0 :::22         :::*            LISTEN      986/sshd
 ```bash
 vi /etc/ssh/sshd_config
 #Port 22        # 这行去掉#号
-Port 5222       # 下面添加这一行
+Port 2218       # 下面添加这一行
 ```
 
 修改SELinux
@@ -29,13 +31,13 @@ Port 5222       # 下面添加这一行
 semanage port -l | grep ssh
 
 # 添加20000端口到 SELinux
-semanage port -a -t ssh_port_t -p tcp 5222
+semanage port -a -t ssh_port_t -p tcp 2218
 
 # 然后确认一下是否添加进去
 semanage port -l | grep ssh
 
 # 如果成功会输出
-ssh_port_t       tcp    5222, 22
+ssh_port_t       tcp    2218, 22
 ```
 
 重启ssh
@@ -63,6 +65,15 @@ setenforce 0
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 2218 -j ACCEPT
 ```
 
+也可下面方法
+
+```bash
+# 防火墙中开启端口2218
+firewall-cmd --zone=public --add-port=2218/tcp --permanent
+
+# 查看2218端口打开情况
+firewall-cmd --query-port=2218/tcp
+```
 
 重启iptables
 
