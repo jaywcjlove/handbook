@@ -20,7 +20,7 @@ tcp6       0      0 :::22         :::*            LISTEN      986/sshd
 ```bash
 vi /etc/ssh/sshd_config
 #Port 22        # 这行去掉#号
-Port 2218       # 下面添加这一行
+Port 2211       # 下面添加这一行
 ```
 
 修改SELinux
@@ -30,14 +30,14 @@ Port 2218       # 下面添加这一行
 # 使用以下命令查看当前SElinux 允许的ssh端口：
 semanage port -l | grep ssh
 
-# 添加20000端口到 SELinux
-semanage port -a -t ssh_port_t -p tcp 2218
+# 添加2211端口到 SELinux
+semanage port -a -t ssh_port_t -p tcp 2211
 
 # 然后确认一下是否添加进去
 semanage port -l | grep ssh
 
 # 如果成功会输出
-ssh_port_t       tcp    2218, 22
+ssh_port_t       tcp    2211, 22
 ```
 
 重启ssh
@@ -62,17 +62,17 @@ setenforce 0
 
 ```bash
 # 编辑文件/etc/sysconfig/iptables 添加下面这行
--A INPUT -p tcp -m state --state NEW -m tcp --dport 2218 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 2211 -j ACCEPT
 ```
 
 也可下面方法
 
 ```bash
-# 防火墙中开启端口2218
-firewall-cmd --zone=public --add-port=2218/tcp --permanent
+# 防火墙中开启端口2211
+firewall-cmd --zone=public --add-port=2211/tcp --permanent
 
-# 查看2218端口打开情况
-firewall-cmd --query-port=2218/tcp
+# 查看2211端口打开情况
+firewall-cmd --query-port=2211/tcp
 ```
 
 重启iptables

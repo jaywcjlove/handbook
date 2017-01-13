@@ -81,6 +81,7 @@
 - [How to undo (almost) anything with Git撤销一切，汇总各种回滚撤销的场景，加强学习。](https://github.com/blog/2019-how-to-undo-almost-anything-with-git)
 - [Git 教程 | 菜鸟教程runoob.com](http://www.runoob.com/git/git-tutorial.html)
 - [Git 本地仓库和裸仓库](https://gold.xitu.io/post/5842f9b861ff4b005889ade6)
+- [沉浸式学 Git](http://www.kancloud.cn/kancloud/igit/46710)
 
 ## 配置
 首先是配置帐号信息  
