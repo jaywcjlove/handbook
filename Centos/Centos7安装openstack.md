@@ -28,10 +28,38 @@
 ```bash
 wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
+
+yum install -y openstack-packstack
 yum -y update
+
+# 接下来一键安装OpenStack，--install-hosts参数需要输入你的IP地址
+packstack --install-hosts=your_ip; # 提示输入的时候输入你的密码，等待安装完成即可。
 packstack --allinone
 
+# 输出结果
+You will find full trace in log /var/tmp/packstack/20170113-125411-kkk_H3/manifests/192.168.188.127_controller.pp.log
+Please check log file /var/tmp/packstack/20170113-125411-kkk_H3/openstack-setup.log for more information
+Additional information:
+ * A new answerfile was created in: /root/packstack-answers-20170113-125412.txt
+ * Time synchronization installation was skipped. Please note that unsynchronized time on server instances might be problem for some OpenStack components.
+ * File /root/keystonerc_admin has been created on OpenStack client host 192.168.188.127. To use the command line tools you need to source the file.
+ * To access the OpenStack Dashboard browse to http://192.168.188.127/dashboard .
+Please, find your login credentials stored in the keystonerc_admin in your home directory.
+ * To use Nagios, browse to http://192.168.188.127/nagios username: nagiosadmin, password: de7af5954a834f89
+
 # reboot 重启机器
+```
+
+## 登陆Dashboard
+
+```bash
+cat /root/keystonerc_admin 
+
+export OS_USERNAME=admin
+export OS_TENANT_NAME=admin
+export OS_PASSWORD=d6433394e15f4175
+export OS_AUTH_URL=http://10.1.199.8:35357/v2.0/
+export PS1='[\u@\h \W(keystone_admin)]\$ '
 ```
 
 ## 错误处理
@@ -51,10 +79,34 @@ wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
 ```
 
+### 端口被占用
+
+```shell
+# 查看到80端口
+netstat -lnp|grep 80
+
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      27906/nginx: master
+tcp        0      0 0.0.0.0:6080            0.0.0.0:*               LISTEN      32437/python2
+unix  2      [ ACC ]     STREAM     LISTENING     21680    2003/master          public/flush
+unix  2      [ ACC ]     STREAM     LISTENING     13380    1/systemd            /run/lvm/lvmetad.sock
+```
+
+杀掉或者停用服务
+
+```shell
+kill -9 27906
+```
+
 
 ```
 warning: /var/cache/yum/x86_64/7/openstack-newton/packages/hiera-1.3.4-5.el7.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 764429e6: NOKEY2.4 MB  00:00:53 ETA
 hiera-1.3.4-5.el7.noarch.rpm 的公钥尚未安装
+```
+
+
+```
+ERROR : Error appeared during Puppet run: 192.168.188.127_controller.pp
+Error: Could not prefetch nova_flavor provider 'openstack': Command: 'openstack ["flavor", "list", "--quiet", "--format", "csv", ["--long", "--all"]]' has been running for more than 40 seconds (tried 4, for a total of 170 seconds)
 ```
 
 ## 参考知识
@@ -63,3 +115,5 @@ hiera-1.3.4-5.el7.noarch.rpm 的公钥尚未安装
 - [OpenStack部署都有哪些方式](http://www.trystack.cn/Articles/openstack-deployment.html)
 - [Openstack安装部署](http://promisejohn.github.io/2015/05/07/HelloOpenstack/)
 - [CentOS 6.4 RDO测试](http://www.chenshake.com/centos-6-4-rdo-test/)
+- [Install And Configure Openstack Mitaka RDO On CentOS 7](http://linuxpitstop.com/openstack-mitaka-rdo-on-centos-7/)
+- [Openstack Havana Dashboard测试和使用](http://www.chenshake.com/openstack-havana-dashboard-to-test-and-use/#i)

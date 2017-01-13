@@ -6,6 +6,7 @@
 - [配置](#配置)
 - [修改项目中的个人信息](#修改项目中的个人信息)
 - [多账号ssh配置](#多账号ssh配置)
+- [免密登录](#免密登录)
 - [Git推向3个库](#Git推向3个库)
   - [增加3个远程库地址](#增加3个远程库地址)
   - [删除其中一个 set-url 地址](#删除其中一个-set-url-地址)
@@ -144,7 +145,7 @@ IdentityFile ~/.ssh/github_abc
 
 `ssh -T git@jslite.github.com` # `@`后面跟上定义的Host  
 
-## config免密登录
+## 免密登录
 
 ```bash
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/aliyunserver.key
