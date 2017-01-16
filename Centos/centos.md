@@ -5,12 +5,18 @@ Centos常用命令
 # 目录
 
 - [登录](#登录)
-- [centos常用命令](#centos常用命令)
-    - [系统的关机重启以及登出](#系统的关机重启以及登出)
-    - [如何查看linux系统资源](#如何查看linux系统资源)
-    - [查看网络配置的命令](#查看网络配置的命令)
-    - [log日志查看](#log日志查看)
-    - [查看系统服务的命令](#查看系统服务的命令)
+- [系统配置情况命令](#系统配置情况命令)
+  - [系统](#系统)
+  - [资源](#资源)
+  - [磁盘和分区](#磁盘和分区)
+  - [网络](#网络)
+  - [进程查看](#进程查看)
+- [常用命令](#常用命令)
+  - [系统的关机重启以及登出](#系统的关机重启以及登出)
+  - [如何查看linux系统资源](#如何查看linux系统资源)
+  - [查看网络配置的命令](#查看网络配置的命令)
+  - [log日志查看](#log日志查看)
+  - [查看系统服务的命令](#查看系统服务的命令)
     - [安装程序的命令](#安装程序的命令)
 - [安装软件方法](#安装软件方法)
 - [yum错误](#yum错误)
@@ -25,9 +31,76 @@ password:安装时设置的密码
 
 其它终端登录 `$ ssh root@192.168.0.23`  
 
-# centos常用命令
+# 系统配置情况命令
 
-```bash
+## 系统
+
+```shell
+uname -a               # 查看内核/操作系统/CPU信息
+head -n 1 /etc/issue   # 查看操作系统版本
+cat /proc/cpuinfo      # 查看CPU信息
+hostname               # 查看计算机名
+lspci -tv              # 列出所有PCI设备
+lsusb -tv              # 列出所有USB设备
+lsmod                  # 列出加载的内核模块
+env                    # 查看环境变量
+dmidecode | grep "Product Nmae"   #查看服务器型号
+```
+
+## 资源
+
+```shell
+free -m                # 查看内存使用量和交换区使用量
+df -h                  # 查看各分区使用情况
+du -sh <目录名>        # 查看指定目录的大小
+grep MemTotal /proc/meminfo   # 查看内存总量
+grep MemFree /proc/meminfo    # 查看空闲内存量
+uptime                 # 查看系统运行时间、用户数、负载
+cat /proc/loadavg      # 查看系统负载
+```
+
+## 磁盘和分区
+
+```shell
+mount | column -t      # 查看挂接的分区状态
+fdisk -l               # 查看所有分区
+swapon -s              # 查看所有交换分区
+hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)
+dmesg | grep IDE       # 查看启动时IDE设备检测状况
+```
+
+## 网络
+
+```shell
+ifconfig               # 查看所有网络接口的属性
+iptables -L            # 查看防火墙设置
+route -n               # 查看路由表
+netstat -lntp          # 查看所有监听端口
+netstat -antp          # 查看所有已经建立的连接
+netstat -s             # 查看网络统计信息
+```
+
+## 进程查看
+
+```shell
+ps -ef                 # 查看所有进程
+top                    # 实时显示进程状态
+```
+
+## 用户
+
+```shell
+w                         # 查看活动用户
+id <用户名>                # 查看指定用户信息
+last                      # 查看用户登录日志
+cut -d: -f1 /etc/passwd   # 查看系统所有用户
+cut -d: -f1 /etc/group    # 查看系统所有组
+crontab -l                # 查看当前用户的计划任务
+```
+
+# 常用命令
+
+```shell
 
 # 查看网络接口统计数据的，两种发放  
 ip link # 或者下面方法
@@ -83,28 +156,6 @@ shutdown -c  #取消按预定时间关闭系统
 shutdown -r now # 重启  (1)   
 reboot  #重启  (2)   
 logout # 注销  
-```
-
-## 如何查看linux系统资源
-
-```bash
-free -m # 查看内存使用量和交换区使用量   
-df -h # 查看各分区使用情况   
-du -sh <目录名> # 查看指定目录的大小   
-grep MemTotal /proc/meminfo # 查看内存总量   
-grep MemFree /proc/meminfo # 查看空闲内存量   
-uptime # 查看系统运行时间、用户数、负载   
-cat /proc/loadavg # 查看系统负载  
-```
-
-## 如何查看linux磁盘和分区
-
-```bash
-mount | column -t # 查看挂接的分区状态   
-fdisk -l # 查看所有分区   
-swapon -s # 查看所有交换分区   
-hdparm -i /dev/hda # 查看磁盘参数(仅适用于IDE设备)   
-dmesg | grep IDE # 查看启动时IDE设备检测状况  
 ```
 
 ## 查看网络配置的命令
