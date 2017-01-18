@@ -121,6 +121,8 @@ vim /etc/gitlab/gitlab.rb
 # 将`external_url = 'http://git.example.com'`修改为自己的IP地址：`http://xxx.xx.xxx.xx`，
 # 然后执行下面的命令，对GitLab进行编译。
 sudo gitlab-ctl reconfigure
+# 清除缓存
+sudo gitlab-rake cache:clear RAILS_ENV=production
 ```
 
 ### 登录GitLab
