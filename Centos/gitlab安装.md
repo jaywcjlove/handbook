@@ -194,7 +194,7 @@ sudo gitlab-ctl restart  gitlab-workhorse
 # 查看服务状态
 sudo gitlab-ctl status
 
-# 启动服务
+# 生成配置启动服务
 sudo gitlab-ctl reconfigure
 ```
 

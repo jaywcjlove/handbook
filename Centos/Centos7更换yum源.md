@@ -28,5 +28,6 @@ yum makecache
 ```
 
 # 官方说明：
-http://mirrors.163.com/
-http://mirrors.163.com/.help/centos.html
+
+http://mirrors.163.com/  
+http://mirrors.163.com/.help/centos.html  
