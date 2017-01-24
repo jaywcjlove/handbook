@@ -1,4 +1,4 @@
-Gitlab安装维护
+CentOS7安装维护Gitlab
 ===
 
 ## 目录

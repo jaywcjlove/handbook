@@ -10,7 +10,7 @@
     - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
     - [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
     - [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
-    - [Gitlab安装](CentOS/gitlab安装.md)
+    - [CentOS7安装维护Gitlab](CentOS/CentOS安装维护Gitlab.md.md)
     - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
     - [nginx安装搭建](CentOS/nginx安装.md)
     - [nginx配置](CentOS/nginx配置.md)
