@@ -165,8 +165,13 @@ sudo gitlab-rake cache:clear
 
 
 sudo gitlab-rake gitlab:check
-
 sudo gitlab-rake gitlab:check SANITIZE=true
+
+# 升级gitlab
+sudo yum install gitlab-ce
+
+# 升级数据命令
+sudo gitlab-ctl pg-upgrade
 ```
 
 ### 服务管理
