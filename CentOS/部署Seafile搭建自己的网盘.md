@@ -178,7 +178,7 @@ When problems occur, Refer to
 
 上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令
 
-### 启动 Seafile:
+### 启动 Seafile
 
 ```bash
 ./seafile.sh start # 启动 Seafile 服务

@@ -298,9 +298,15 @@ gitlab_rails['backup_path'] = '/mnt/backups'
 ```bash
 gitlab-rake gitlab:backup:create
 
-#每天2点备份gitlab数据
+# 通过crontab使用备份命令实现自动备份
+crontab -e
+# 每天2点备份gitlab数据
 0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
-0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create  
+0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
+
+# 上面两行保存之后，重新载入配置
+
+/sbin/service crond reload
 ```
 
 这里放你的备份文件文件夹，和仓库源文件。
@@ -308,6 +314,16 @@ gitlab-rake gitlab:backup:create
 ```bash
 /var/opt/gitlab/backups                   # 备份文件文件夹
 /var/opt/gitlab/git-data/repositories     # git仓库源文件
+```
+
+设置只保存最近7天的备份，编辑 /etc/gitlab/gitlab.rb 配置文件，找到如下代码，删除注释 `#` 保存
+
+```bash
+# /etc/gitlab/gitlab.rb 配置文件 修改下面这一行
+gitlab_rails['backup_keep_time'] = 604800  
+
+# 重新加载gitlab配置文件
+sudo gitlab-ctl reconfigure  
 ```
 
 ### 开始恢复
