@@ -17,9 +17,11 @@ CentOS7安装维护Gitlab
   - [日志查看](#日志查看)
   - [重置管理员密码](#重置管理员密码)
 - [备份恢复](#备份恢复)
-  - [创建备份](#创建备份)
   - [修改备份文件默认目录](#修改备份文件默认目录)
+  - [创建备份](#创建备份)
   - [开始备份](#开始备份)
+  - [自动备份](#自动备份)
+  - [备份保留七天](#备份保留七天)
   - [开始恢复](#开始恢复)
 - [暴力升级](#暴力升级)
 - [错误处理](#错误处理)
@@ -273,15 +275,7 @@ user.save!
 
 ## 备份恢复
 
-### 创建备份
-
 使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单,用一条命令即可创建完整的Gitlab备份:
-
-```bash
-gitlab-rake gitlab:backup:create
-```
-
-以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
 
 ### 修改备份文件默认目录
 
@@ -291,22 +285,20 @@ gitlab-rake gitlab:backup:create
 gitlab_rails['backup_path'] = '/mnt/backups'  
 ```
 
+### 创建备份
+
+```bash
+gitlab-rake gitlab:backup:create
+```
+
+以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
+
 修改后使用gitlab-ctl reconfigure命令重载配置文件。
 
 ### 开始备份
 
 ```bash
 gitlab-rake gitlab:backup:create
-
-# 通过crontab使用备份命令实现自动备份
-crontab -e
-# 每天2点备份gitlab数据
-0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
-0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
-
-# 上面两行保存之后，重新载入配置
-
-/sbin/service crond reload
 ```
 
 这里放你的备份文件文件夹，和仓库源文件。
@@ -316,15 +308,38 @@ crontab -e
 /var/opt/gitlab/git-data/repositories     # git仓库源文件
 ```
 
+### 自动备份
+
+通过crontab使用备份命令实现自动备份
+
+```bash
+crontab -e
+# 每天2点备份gitlab数据
+0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create
+0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
+```
+
+上面两行保存之后，重新载入配置
+
+```bash
+/sbin/service crond reload
+```
+
+### 备份保留七天
+
 设置只保存最近7天的备份，编辑 /etc/gitlab/gitlab.rb 配置文件，找到如下代码，删除注释 `#` 保存
 
 ```bash
 # /etc/gitlab/gitlab.rb 配置文件 修改下面这一行
 gitlab_rails['backup_keep_time'] = 604800  
+```
 
-# 重新加载gitlab配置文件
+重新加载gitlab配置文件
+
+```bash
 sudo gitlab-ctl reconfigure  
 ```
+
 
 ### 开始恢复
 
