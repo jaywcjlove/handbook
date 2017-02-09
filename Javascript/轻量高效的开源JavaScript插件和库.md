@@ -74,15 +74,15 @@
 
 ## 字符串
 
-- [selecting](https://github.com/EvandroLG/selecting)一个允许你获取用户选定文本的库。
-- [string.js](https://github.com/jprichardson/string.js)额外的 JavaScript 字符串方法。[demo](http://stringjs.com/)
-- [he](https://github.com/mathiasbynens/he)健壮的 HTML 实体编码/解码器。
-- [multiline](https://github.com/sindresorhus/multiline)多行字符串。
-- [query-string](https://github.com/sindresorhus/query-string)解析和字符串化 URL 查询字符串。
-- [URI.js](https://github.com/medialize/URI.js/)URL 操作库。[demo](http://medialize.github.io/URI.js/)
-- [jsurl](https://github.com/Mikhus/jsurl)轻量的 URL 操作库。
-- [sprintf.js](https://github.com/alexei/sprintf.js)实现字符串格式化。
-- [url-pattern](https://github.com/snd/url-pattern)让 url 和其它字符串进行比正则表达式匹配更简单。字符串和数据可相互转化。
+- [selecting](https://github.com/EvandroLG/selecting) - 一个允许你获取用户选定文本的库。
+- [string.js](https://github.com/jprichardson/string.js) - 额外的 JavaScript 字符串方法。[demo](http://stringjs.com/)
+- [he](https://github.com/mathiasbynens/he) - 健壮的 HTML 实体编码/解码器。
+- [multiline](https://github.com/sindresorhus/multiline) - 多行字符串。
+- [query-string](https://github.com/sindresorhus/query-string) - 解析和字符串化 URL 查询字符串。
+- [URI.js](https://github.com/medialize/URI.js/) - URL 操作库。[demo](http://medialize.github.io/URI.js/)
+- [jsurl](https://github.com/Mikhus/jsurl) - 轻量的 URL 操作库。
+- [sprintf.js](https://github.com/alexei/sprintf.js) - 实现字符串格式化。
+- [url-pattern](https://github.com/snd/url-pattern) - 让 url 和其它字符串进行比正则表达式匹配更简单。字符串和数据可相互转化。
 
 ## 表单 
 
@@ -97,6 +97,21 @@
 
 - [store.js](https://github.com/jaywcjlove/store.js) - 本地存储localstorage的封装，提供简单的API。[demo](http://jaywcjlove.github.io/store.js)
 - [cookie.js](https://github.com/jaywcjlove/cookie.js) - 对操作cookie的封装，提供简单的AIP 兼容IE6。[demo](http://jaywcjlove.github.io/cookie.js)
+
+
+
+- [store.js](https://github.com/marcuswestin/store.js) - 为所有浏览器封装了 LocalStorage，而没有使用 cookies 和 flash。隐秘地使用 localStorage、globalStorage 和用户数据。
+- [localForage](https://github.com/mozilla/localForage) - 改善后的离线存储。其封装了 IndexedDB、WebSQL 和 localStorage，拥有操作简单和强大的 API。[demo](https://localforage.github.io/localForage)
+- [cross-storage](https://github.com/zendesk/cross-storage) - 获得权限后，能跨域名本地存储。
+- [basket.js](https://github.com/addyosmani/basket.js) - 用 localStorage 加载和缓存脚本的资源加载器。[demo](https://addyosmani.com/basket.js/)
+- [bag.js](https://github.com/nodeca/bag.js) - 可以缓存脚本和加载资源，与 basket.js 相似，但增加了键值对接口和对 localStorage / websql /undexedDB 的支持。
+- [basil.js](https://github.com/Wisembly/basil.js) - 智能的&nbsp;JavaScript 数据持久层库。
+- [Cookies](https://github.com/ScottHamper/Cookies) - 客户端 Cookie 操作库。
+- [DB.js](https://github.com/aaronpowell/db.js/) - 基于 Promise 的、封装了 IndexedDB 的库。[demo](http://aaronpowell.github.io/db.js/)
+- [lawnchair.js](https://github.com/brianleroux/lawnchair/) - 简单的客户端 JSON 存储。[demo](http://brian.io/lawnchair/)
+
+
+
 
 ## 动画
 
