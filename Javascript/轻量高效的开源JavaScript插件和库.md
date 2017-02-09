@@ -10,6 +10,7 @@
 - [编辑器](#编辑器)
 - [轮播图](#轮播图)
 - [弹出层](#弹出层)
+- [字符串](#字符串)
 - [表单](#表单)
 - [存储](#存储)
 - [动画](#动画)
@@ -71,6 +72,18 @@
 - [trix](https://github.com/basecamp/trix) 由 Basecamp 制作，适用于每天写作的富文本编辑器。[demo](https://trix-editor.org/)
 - [Editor.md](https://github.com/pandao/editor.md) 由 Basecamp 制作，适用于每天写作的富文本编辑器。[demo](https://trix-editor.org/)
 
+## 字符串
+
+- [selecting](https://github.com/EvandroLG/selecting)一个允许你获取用户选定文本的库。
+- [string.js](https://github.com/jprichardson/string.js)额外的 JavaScript 字符串方法。[demo](http://stringjs.com/)
+- [he](https://github.com/mathiasbynens/he)健壮的 HTML 实体编码/解码器。
+- [multiline](https://github.com/sindresorhus/multiline)多行字符串。
+- [query-string](https://github.com/sindresorhus/query-string)解析和字符串化 URL 查询字符串。
+- [URI.js](https://github.com/medialize/URI.js/)URL 操作库。[demo](http://medialize.github.io/URI.js/)
+- [jsurl](https://github.com/Mikhus/jsurl)轻量的 URL 操作库。
+- [sprintf.js](https://github.com/alexei/sprintf.js)实现字符串格式化。
+- [url-pattern](https://github.com/snd/url-pattern)让 url 和其它字符串进行比正则表达式匹配更简单。字符串和数据可相互转化。
+
 ## 表单 
 
 - [validator.js](https://github.com/jaywcjlove/validator.js) - 轻量级的JavaScript表单验证，字符串验证。[demo](http://jaywcjlove.github.io/validator.js)
@@ -99,6 +112,10 @@
 - [timesheet.js](https://github.com/sbstjn/timesheet.js) - 是一个时间展示片段插件。[demo](https://sbstjn.github.io/timesheet.js)
 - [date.js](https://github.com/jaywcjlove/date.js) - 是一个格式化时间、过去时间展示、解决因时区变更插件。
 - [timeago.js](https://github.com/hustcc/timeago.js) - 格式化时间显示多久以前的插件。 [demo](http://timeago.org/)
+- [rome](https://github.com/bevacqua/rome) - 可定制的日期（和时间）选择器。无依赖，可选 UI。 [demo](https://bevacqua.github.io/rome/)
+- [moment-timezone](https://github.com/moment/moment-timezone) - 基于 moment.js 的时区库。[demo](http://momentjs.com/timezone)
+- [date](https://github.com/MatthewMueller/date) - 拥有人性化的 Date() 方法。[demo](http://matthewmueller.github.io/date/)
+- [ms.js](https://github.com/rauchg/ms.js) - 小巧的毫秒转换工具。
 
 ## 其它
 
@@ -110,7 +127,7 @@
 - [iNotify](https://github.com/jaywcjlove/iNotify) - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。[demo](http://jaywcjlove.github.io/iNotify)
 - [tesseract.js](https://github.com/naptha/tesseract.js) - 是一个文字识别转换，可以运行在浏览器和服务器NodeJS上。[demo](http://tesseract.projectnaptha.com/)
 - [Leaflet.js](http://github.com/Leaflet/Leaflet) - 是一个开源的移动友好交互式地图 JavaScript 库。体积仅有 33 KB。[demo](http://leafletjs.com/)
-- [CurrencyFormatter.js](https://github.com/osrec/currencyFormatter.js/) - 是一款简单实用的纯 JS 格式化货币库。它支持 155 种不同国家的货币格式，并且 gzip 压缩后仅有 7KB。[demo](https://osrec.github.io/currencyFormatter.js/)
+- [CurrencyFormatter.js](https://github.com/osrec/currencyFormatter.js/) - 是一款简单纯JS格式化155种不同国家货币格式库，gzip压缩后仅7KB。[demo](https://osrec.github.io/currencyFormatter.js/)
 - [Feature.js](https://github.com/osrec/currencyFormatter.js/) - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。[demo](hhttp://featurejs.com/)
 
 
