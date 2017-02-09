@@ -79,6 +79,110 @@ wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
 ```
 
+`/etc/apt/sources.list`
+
+```
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+```
+
+`~/.pip/pip.conf`
+
+```
+[global]
+index-url = https://pypi.douban.com/simple
+download_cache = ~/.cache/pip
+[install]
+use-mirrors = true
+mirrors = http://pypi.douban.com/
+```
+
+`controller local.conf`
+
+```
+[[local|localrc]]
+
+MULTI_HOST=true
+
+# management & api network
+HOST_IP=192.168.104.10
+LOGFILE=/opt/stack/logs/stack.sh.log
+
+# Credentials
+ADMIN_PASSWORD=admin
+MYSQL_PASSWORD=secret
+RABBIT_PASSWORD=secret
+SERVICE_PASSWORD=secret
+SERVICE_TOKEN=abcdefghijklmnopqrstuvwxyz
+
+# enable neutron-ml2-vlan
+disable_service n-net
+enable_service q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron,q-lbaas,q-fwaas
+Q_AGENT=linuxbridge
+ENABLE_TENANT_VLANS=True
+TENANT_VLAN_RANGE=3001:4000
+PHYSICAL_NETWORK=default
+
+LOG_COLOR=True
+LOGDIR=$DEST/logs
+SCREEN_LOGDIR=$LOGDIR/screen
+
+# use TryStack git mirror
+GIT_BASE=http://git.trystack.cn
+NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
+SPICE_REPO=http://git.trystack.cn/git/spice/spice-html5.git
+```
+
+compute local.conf
+
+```
+[[local|localrc]]
+
+MULTI_HOST=true
+# management & api network
+HOST_IP=192.168.104.11
+
+# Credentials
+ADMIN_PASSWORD=admin
+MYSQL_PASSWORD=secret
+RABBIT_PASSWORD=secret
+SERVICE_PASSWORD=secret
+SERVICE_TOKEN=abcdefghijklmnopqrstuvwxyz
+
+# Service information
+SERVICE_HOST=192.168.104.10
+MYSQL_HOST=$SERVICE_HOST
+RABBIT_HOST=$SERVICE_HOST
+GLANCE_HOSTPORT=$SERVICE_HOST:9292
+Q_HOST=$SERVICE_HOST
+KEYSTONE_AUTH_HOST=$SERVICE_HOST
+KEYSTONE_SERVICE_HOST=$SERVICE_HOST
+
+ENABLED_SERVICES=n-cpu,q-agt,neutron
+Q_AGENT=linuxbridge
+ENABLE_TENANT_VLANS=True
+TENANT_VLAN_RANGE=3001:4000
+PHYSICAL_NETWORK=default
+
+# vnc config
+NOVA_VNC_ENABLED=True
+NOVNCPROXY_URL="http://$SERVICE_HOST:6080/vnc_auto.html"
+VNCSERVER_LISTEN=$HOST_IP
+VNCSERVER_PROXYCLIENT_ADDRESS=$VNCSERVER_LISTEN
+
+LOG_COLOR=True
+LOGDIR=$DEST/logs
+SCREEN_LOGDIR=$LOGDIR/screen
+
+# use TryStack git mirror
+GIT_BASE=http://git.trystack.cn
+NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
+SPICE_REPO=http://git.trystack.cn/git/spice/spice-html5.git
+```
+
 ### 端口被占用
 
 ```shell
@@ -115,5 +219,11 @@ Error: Could not prefetch nova_flavor provider 'openstack': Command: 'openstack 
 - [OpenStack部署都有哪些方式](http://www.trystack.cn/Articles/openstack-deployment.html)
 - [Openstack安装部署](http://promisejohn.github.io/2015/05/07/HelloOpenstack/)
 - [CentOS 6.4 RDO测试](http://www.chenshake.com/centos-6-4-rdo-test/)
-- [Install And Configure Openstack Mitaka RDO On CentOS 7](http://linuxpitstop.com/openstack-mitaka-rdo-on-centos-7/)
-- [Openstack Havana Dashboard测试和使用](http://www.chenshake.com/openstack-havana-dashboard-to-test-and-use/#i)
+- [Install And Configure OpenStack Mitaka RDO On CentOS 7](http://linuxpitstop.com/openstack-mitaka-rdo-on-centos-7/)
+- [OpenStack Havana Dashboard测试和使用](http://www.chenshake.com/openstack-havana-dashboard-to-test-and-use/#i)
+- [OpenStack安装视频教程](http://cloudman.cc/)
+- [10分钟安装OpenStack](https://www.ustack.com/blog/install-openstack-in-10mins/#OpenStack-3/)
+- [cirros镜像下载](http://download.cirros-cloud.net/0.3.4/)
+- [制作openstack镜像win7.qcow2（centos/ubuntu/win镜像分享）](http://blog.csdn.net/qq_20154221/article/details/51586537) 镜像密码均为 intel@123
+
+

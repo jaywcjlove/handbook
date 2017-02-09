@@ -10,7 +10,7 @@
     - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
     - [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
     - [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
-    - [CentOS7安装维护Gitlab](CentOS/CentOS安装维护Gitlab.md.md)
+    - [CentOS7安装维护Gitlab★★★](CentOS/CentOS7安装维护Gitlab.md)
     - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
     - [nginx安装搭建](CentOS/nginx安装.md)
     - [nginx配置](CentOS/nginx配置.md)
@@ -19,7 +19,7 @@
     - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
     - [samba安装搭建使用](CentOS/samba.md)
     - [常用基础命令](CentOS/常用基础命令.md)
-- MySQL - [搜集整合资源迁移到这里了](https://github.com/jaywcjlove/mysql-tutorial)
+- MySQL - [搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
     - [MySQL安装](MySQL/mysql安装.md)
     - [Mac下重置MySQL的root密码](MySQL/Mac下重置MySQL的root密码.md)
     - [MySQL支持emoji图标存储](MySQL/让MySQL支持emoji图标存储.md)
@@ -36,8 +36,8 @@
     - [Mac完整卸载Android Studio的方法](Android/Mac%E5%AE%8C%E6%95%B4%E5%8D%B8%E8%BD%BDAndroid%20Studio%E7%9A%84%E6%96%B9%E6%B3%95.md)
     - [React-native Android环境搭建](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 - Javascript
-    - **[思维导图来学习 Javascript 基础知识](Javascript/)**
-    - [轻量高效的开源JavaScript插件和库](Javascript/轻量高效的开源JavaScript插件和库.md)
+    - **[思维导图来学习 Javascript 基础知识★★★★](Javascript/)**
+    - [轻量高效的开源JavaScript插件和库★★★★★](Javascript/轻量高效的开源JavaScript插件和库.md)
     - [一些正则表达式随记](Javascript/一些正则表达式随记.md)
     - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - 测试工具
@@ -49,8 +49,8 @@
     - [命令行工具bash快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/bash.html)
     - [sublime编辑器快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/sublime.html)
 - 其它
-    - **[常见HTTP/FTP/WebSockets状态码大全](other/HTTP-Status-codes.md)**
+    - **[常见HTTP/FTP/WebSockets状态码大全★★★★★](other/HTTP-Status-codes.md)**
     - [Lua5.3中文手册](other/Lua5.3.md)
     - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
     - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
-    - [TIOBE编程语言排行榜](http://www.tiobe.com/tiobe-index/)
+    - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
