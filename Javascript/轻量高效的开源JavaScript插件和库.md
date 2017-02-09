@@ -97,11 +97,11 @@
 
 - [store.js](https://github.com/jaywcjlove/store.js) - 本地存储localstorage的封装，提供简单的API。[demo](http://jaywcjlove.github.io/store.js)
 - [cookie.js](https://github.com/jaywcjlove/cookie.js) - 对操作cookie的封装，提供简单的AIP 兼容IE6。[demo](http://jaywcjlove.github.io/cookie.js)
-- [store.js](https://github.com/marcuswestin/store.js) - 为所有浏览器封装了 LocalStorage，而没有使用 cookies 和 flash。隐秘地使用 localStorage、globalStorage 和用户数据。
-- [localForage](https://github.com/mozilla/localForage) - 改善后的离线存储。其封装了 IndexedDB、WebSQL 和 localStorage，拥有操作简单和强大的 API。[demo](https://localforage.github.io/localForage)
+- [store.js](https://github.com/marcuswestin/store.js) - 为所有浏览器封装了LocalStorage，隐秘地使用localStorage、globalStorage和用户数据。
+- [localForage](https://github.com/mozilla/localForage) - 改善后的离线存储。封装了IndexedDB、WebSQL和localStorage。[demo](https://localforage.github.io/localForage)
 - [cross-storage](https://github.com/zendesk/cross-storage) - 获得权限后，能跨域名本地存储。
 - [basket.js](https://github.com/addyosmani/basket.js) - 用 localStorage 加载和缓存脚本的资源加载器。[demo](https://addyosmani.com/basket.js/)
-- [bag.js](https://github.com/nodeca/bag.js) - 可以缓存脚本和加载资源，与 basket.js 相似，但增加了键值对接口和对 localStorage / websql /undexedDB 的支持。
+- [bag.js](https://github.com/nodeca/bag.js) - 可以缓存脚本和加载资源，增加了键值对接口和对localStorage/websql/indexedDB 的支持。
 - [basil.js](https://github.com/Wisembly/basil.js) - 智能的&nbsp;JavaScript 数据持久层库。
 - [Cookies](https://github.com/ScottHamper/Cookies) - 客户端 Cookie 操作库。
 - [DB.js](https://github.com/aaronpowell/db.js/) - 基于 Promise 的、封装了 IndexedDB 的库。[demo](http://aaronpowell.github.io/db.js/)
