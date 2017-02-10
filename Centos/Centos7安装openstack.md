@@ -213,6 +213,94 @@ ERROR : Error appeared during Puppet run: 192.168.188.127_controller.pp
 Error: Could not prefetch nova_flavor provider 'openstack': Command: 'openstack ["flavor", "list", "--quiet", "--format", "csv", ["--long", "--all"]]' has been running for more than 40 seconds (tried 4, for a total of 170 seconds)
 ```
 
+## 日志
+
+OpenStack通过生成大量日志信息来帮助排查系统安装运行期间出现的问题，接下来介绍几个常见服务的相关日志位置。
+
+### Nova日志
+
+OpenStack计算服务日志位于/var/log/nova，默认权限拥有者是nova用户。需要注意的是，并不是每台服务器上都包含所有的日志文件,例如nova-compute.log仅在计算节点生成。
+
+- nova-compute.log：虚拟机实例在启动和运行中产生的日志
+- nova-network.log：关于网络状态、分配、路由和安全组的日志
+- nova-manage.log：运行nova-manage命令时产生的日志
+- nova-scheduler.log：有关调度的，分配任务给节点以及消息队列的相关日志
+- nova-objectstore.log：镜像相关的日志
+- nova-api.log：用户与OpenStack交互以及OpenStack组件间交互的消息相关日志
+- nova-cert.log：nova-cert过程的相关日志
+- nova-console.log：关于nova-console的VNC服务的详细信息
+- nova-consoleauth.log：关于nova-console服务的验证细节
+- nova-dhcpbridge.log：与dhckbridge服务先关的网络信息
+
+### Dashboard日志
+
+Dashboard是一个DJango的web应用程序，默认运行在Apache服务器上，相应的运行日志也都记录在Apache的日志中，用户可以在`/var/log/apache2/`中查看。
+
+### 存储日志
+
+对象存储Swift默认日志写到syslog中，在Ubuntu系统中，可以通过/var/log/syslog查看，在其他系统中，可能位于/var/log/messages中。 
+块存储Cinder产生的日志默认存放在/var/log/cinder目录中 
+- cinder-api.log：关于cinder-api服务的细节 
+- cinder-scheduler.log：关于cinder调度服务的操作的细节 
+- cinder-volume.log：与cinder卷服务相关的日志项
+
+Keystone日志
+
+身份认证Keystone服务的日志记录在/var/log/keystone/keystone.log中。
+
+### Glance日志
+
+镜像服务Glance的日志默认存放在/var/log/glance目录中 
+- api.log：Glance API相关的日志 
+- registry.log：Glance registry服务相关的日志 
+根据日志配置的不同，会保存诸如元信息更新和访问记录这些信息。
+
+### Neutron日志
+
+网络服务Neutron的日志默认存放在/var/log/neutron目录中 
+- dhcp-agent.log：关于dhcp-agent的日志 
+- l3-agent.log：与l3代理及其功能相关的日志 
+- metadata-agent.log：通过neutron代理给Nova元数据服务的相关日志 
+- openvswitch-agent.log：与openvswitch相关操作的日志项，在具体实现OpenStack网络时，如果使用了不同的插件，就会有相应的日志文件名 
+- server.log：与Neutron API服务相关的日志
+
+### 改变日志级别
+
+每个OpenStack服务的默认日志级别均为警告级（Warning），该级别的日志对于了解运行中系统的状态或者基本的错误定位已经够用，但是有时候需要上调日志级别来帮助诊断问题，或者下调日志级别以减少日志噪声。由于各个服务的日志设置方式类似，因此这里就以Nova服务为例。
+
+#### 设置Nova服务的日志级别
+
+```
+vi /etc/nova/logging.conf 
+```
+
+将列出的服务的日志级别修改为DEBUG、INFO或WARNING
+
+```
+[logger_root]
+level = WARNING
+handlers = null
+
+[logger_nova]
+level = INFO
+handlers = stderr
+qualname = nova
+......
+```
+
+#### 设置其他OpenStack服务中的日志级别
+
+其他服务（如Glance和Keystone）目前都在它们的主配置文件中设置了日志级别颗，例如/etc/glance/glance-api.conf。可以通过修改这些文件中对应设置来将日志级别调整到INFO和DEBUG：
+
+```
+[DEFAULT]
+#set INFO log level output
+verbose = False
+
+#set DEBUG log level output
+debug = False
+```
+
 ## 参考知识
 
 - [在 CentOS7.2 上安装 OpenStack Liberty 版](http://www.infocool.net/kb/OpenStack/201609/187078.htmldddAA)
