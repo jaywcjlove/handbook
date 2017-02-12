@@ -1,12 +1,12 @@
 CentOS7系统更换软件安装源
 ===
 
-得益与阿里云的高速发展，这么大的需求，肯定会推出自己的镜像源。阿里云Linux安装镜像源地址：http://mirrors.aliyun.com/ 。
+阿里云Linux安装镜像源地址：http://mirrors.aliyun.com/ 。
 
 第一步：备份你的原镜像文件，以免出错后可以恢复。
 
 ```bash
-cp /etc/yum.repos.d/CentOS-Base.repo{,.bak}
+cp /etc/yum.repos.d/CentOS-Base.repo{,.backup}
 # 或者
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 ```
@@ -27,7 +27,7 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 # CentOS 6
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
 # CentOS 7
-wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 ```
 
 第三步：运行yum makecache生成缓存
@@ -44,6 +44,7 @@ http://mirrors.163.com/.help/centos.html
 
 # 中国开源镜像站点
 
+- 阿里云开源镜像站：http://mirrors.aliyun.com/
 - 网易开源镜像站：http://mirrors.163.com/
 - 搜狐开源镜像站：http://mirrors.sohu.com/
 - 北京交通大学：http://mirror.bjtu.edu.cn/cn/ <教育网荐>
