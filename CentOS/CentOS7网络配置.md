@@ -120,6 +120,8 @@ service network start    # 启动网络服务
 service network stop     # 停止网络服务
 service network restart  # 重启网络服务
 service network status   # 查看网络服务状态
+nmcli dev status         # 检查受网络管理器管理的网络接口
+systemctl status NetworkManager.service # 验证网络管理器服务的状态
 ```
 
 ## 其它名词解释
