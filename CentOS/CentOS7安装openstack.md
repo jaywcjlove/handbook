@@ -50,6 +50,50 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
 # reboot 重启机器
 ```
 
+## 安装Mitaka
+
+执行下列命令安装RDO库[RDO官网](https://www.rdoproject.org/install/quickstart/)
+
+```
+yum install https://rdoproject.org/repos/rdo-release.rpm
+yum reinstall -y http://rdo.fedorapeople.org/rdo-release.rpm
+```
+
+安装CentOS openstack RPM repository
+
+```
+yum install centos-release-openstack-mitaka
+
+# 最新的版本
+yum install -y centos-release-openstack-newton
+```
+
+更新系统包
+
+```
+yum update -y
+```
+
+安装packstack工具
+
+```
+yum install -y openstack-packstack
+```
+
+安装openstack newton版本
+
+```
+packstack --allinone
+```
+
+执行这一步之后会花费一些时间
+
+## 卸载
+
+```bash
+yum list installed | grep @openstack- | awk '{ print $1 }' | xargs yum -y remove
+```
+
 ## 登陆Dashboard
 
 ```bash
@@ -77,110 +121,6 @@ yum install http://rdo.fedorapeople.org/rdo-release.rpm
 ```bash
 wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
-```
-
-`/etc/apt/sources.list`
-
-```
-deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
-```
-
-`~/.pip/pip.conf`
-
-```
-[global]
-index-url = https://pypi.douban.com/simple
-download_cache = ~/.cache/pip
-[install]
-use-mirrors = true
-mirrors = http://pypi.douban.com/
-```
-
-`controller local.conf`
-
-```
-[[local|localrc]]
-
-MULTI_HOST=true
-
-# management & api network
-HOST_IP=192.168.104.10
-LOGFILE=/opt/stack/logs/stack.sh.log
-
-# Credentials
-ADMIN_PASSWORD=admin
-MYSQL_PASSWORD=secret
-RABBIT_PASSWORD=secret
-SERVICE_PASSWORD=secret
-SERVICE_TOKEN=abcdefghijklmnopqrstuvwxyz
-
-# enable neutron-ml2-vlan
-disable_service n-net
-enable_service q-svc,q-agt,q-dhcp,q-l3,q-meta,neutron,q-lbaas,q-fwaas
-Q_AGENT=linuxbridge
-ENABLE_TENANT_VLANS=True
-TENANT_VLAN_RANGE=3001:4000
-PHYSICAL_NETWORK=default
-
-LOG_COLOR=True
-LOGDIR=$DEST/logs
-SCREEN_LOGDIR=$LOGDIR/screen
-
-# use TryStack git mirror
-GIT_BASE=http://git.trystack.cn
-NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
-SPICE_REPO=http://git.trystack.cn/git/spice/spice-html5.git
-```
-
-compute local.conf
-
-```
-[[local|localrc]]
-
-MULTI_HOST=true
-# management & api network
-HOST_IP=192.168.104.11
-
-# Credentials
-ADMIN_PASSWORD=admin
-MYSQL_PASSWORD=secret
-RABBIT_PASSWORD=secret
-SERVICE_PASSWORD=secret
-SERVICE_TOKEN=abcdefghijklmnopqrstuvwxyz
-
-# Service information
-SERVICE_HOST=192.168.104.10
-MYSQL_HOST=$SERVICE_HOST
-RABBIT_HOST=$SERVICE_HOST
-GLANCE_HOSTPORT=$SERVICE_HOST:9292
-Q_HOST=$SERVICE_HOST
-KEYSTONE_AUTH_HOST=$SERVICE_HOST
-KEYSTONE_SERVICE_HOST=$SERVICE_HOST
-
-ENABLED_SERVICES=n-cpu,q-agt,neutron
-Q_AGENT=linuxbridge
-ENABLE_TENANT_VLANS=True
-TENANT_VLAN_RANGE=3001:4000
-PHYSICAL_NETWORK=default
-
-# vnc config
-NOVA_VNC_ENABLED=True
-NOVNCPROXY_URL="http://$SERVICE_HOST:6080/vnc_auto.html"
-VNCSERVER_LISTEN=$HOST_IP
-VNCSERVER_PROXYCLIENT_ADDRESS=$VNCSERVER_LISTEN
-
-LOG_COLOR=True
-LOGDIR=$DEST/logs
-SCREEN_LOGDIR=$LOGDIR/screen
-
-# use TryStack git mirror
-GIT_BASE=http://git.trystack.cn
-NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
-SPICE_REPO=http://git.trystack.cn/git/spice/spice-html5.git
 ```
 
 ### 端口被占用
