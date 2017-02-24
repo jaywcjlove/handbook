@@ -16,7 +16,7 @@
 
 ## MySQL
 
-[搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
+搜集整合的MySQL笔记迁移到[这里了](https://github.com/jaywcjlove/mysql-tutorial) ★★★
 
 - [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
 - [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
