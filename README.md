@@ -2,6 +2,9 @@
 
 这里放置我的笔记、搜集、摘录、实践，给自己建设自我的知识体系，保持好奇心。
 
+- 开放职位 - 坐标上海
+  - [前端工程师 7k-15k](Job-Descriptions/frontend-engineer.md#前端工程师)
+  - [Node.js 工程师 10k-15k](Job-Descriptions/node-engineer.md#nodejs开发工程师)
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
 - CentOS 
