@@ -1,6 +1,6 @@
 # 笔记/搜集/摘录/实践
 
-这里放置我的笔记、搜集、摘录、实践，给自己建设自我的知识体系，保持好奇心。
+放置我的笔记、搜集、摘录、实践，保持好奇心。这里就是个随记，涉猎技术知识点广而不精，不能保证正确，看文需谨慎，后果很严重。
 
 ## 开放职位 
 
@@ -13,6 +13,15 @@
 
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
+
+## MySQL - [搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
+
+- [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
+- [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
+- [MySQL支持emoji图标存储](https://github.com/jaywcjlove/mysql-tutorial)
+- [MySQL一些常用语句](https://github.com/jaywcjlove/mysql-tutorial)
+- [MySQL数据类型](https://github.com/jaywcjlove/mysql-tutorial)
+- [Centos6下升级MySQL数据库](https://github.com/jaywcjlove/mysql-tutorial)
 
 ## CentOS 
 
@@ -29,15 +38,6 @@
 - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
 - [samba安装搭建使用](CentOS/samba.md)
 - [常用基础命令](CentOS/常用基础命令.md)
-
-## MySQL - [搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
-
-- [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
-- [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
-- [MySQL支持emoji图标存储](https://github.com/jaywcjlove/mysql-tutorial)
-- [MySQL一些常用语句](https://github.com/jaywcjlove/mysql-tutorial)
-- [MySQL数据类型](https://github.com/jaywcjlove/mysql-tutorial)
-- [Centos6下升级MySQL数据库](https://github.com/jaywcjlove/mysql-tutorial)
 
 ## Redis
 
