@@ -2,57 +2,77 @@
 
 这里放置我的笔记、搜集、摘录、实践，给自己建设自我的知识体系，保持好奇心。
 
-- 开放职位 - 坐标上海
+## 开放职位 
+
+坐标上海，点击查看具体要求，简历发送 [wowohoo@qq.com](mailto:wowohoo@qq.com)
+
   - [前端工程师 7k-15k](Job-Descriptions/frontend-engineer.md#前端工程师)
   - [Node.js 工程师 10k-15k](Job-Descriptions/node-engineer.md#nodejs开发工程师)
+
+## 精华
+
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
-- CentOS 
-    - [Centos常用命令](CentOS/CentOS.md)
-    - [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
-    - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
-    - [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
-    - [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
-    - [CentOS7安装维护Nginx](CentOS/CentOS7安装维护Nginx.md)
-    - [CentOS7安装维护Gitlab★★★](CentOS/CentOS7安装维护Gitlab.md)
-    - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
-    - [node安装](CentOS/node安装.md)
-    - [chmod说明](CentOS/chmod.md)
-    - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
-    - [samba安装搭建使用](CentOS/samba.md)
-    - [常用基础命令](CentOS/常用基础命令.md)
-- MySQL - [搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
-    - [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
-    - [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
-    - [MySQL支持emoji图标存储](https://github.com/jaywcjlove/mysql-tutorial)
-    - [MySQL一些常用语句](https://github.com/jaywcjlove/mysql-tutorial)
-    - [MySQL数据类型](https://github.com/jaywcjlove/mysql-tutorial)
-    - [Centos6下升级MySQL数据库](https://github.com/jaywcjlove/mysql-tutorial)
-- Redis
-    - [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
-    - [Redis提供的原生监控](Redis/Redis提供的原生监控.md)
-    - [Redis在CentOS 6.5中如何升级](Redis/Redis在CentOS 6.5中如何升级.md)
-    - [Redis配置说明](Redis/Redis配置说明.md)
-    - [Redis.conf 配置文件例子](Redis/Redis.conf)
-- Android
-    - [Mac完整卸载Android Studio的方法](Android/Mac%E5%AE%8C%E6%95%B4%E5%8D%B8%E8%BD%BDAndroid%20Studio%E7%9A%84%E6%96%B9%E6%B3%95.md)
-    - [React-native Android环境搭建](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
-- Javascript
-    - **[思维导图来学习 Javascript 基础知识★★★★](Javascript/)**
-    - [轻量高效的开源JavaScript插件和库★★★★★](Javascript/轻量高效的开源JavaScript插件和库.md)
-    - [一些正则表达式随记](Javascript/一些正则表达式随记.md)
-    - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
-- 测试工具
+
+## CentOS 
+
+- [Centos常用命令](CentOS/CentOS.md)
+- [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
+- [CentOS7网络配置](CentOS/CentOS7网络配置.md)
+- [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
+- [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
+- [CentOS7安装维护Nginx](CentOS/CentOS7安装维护Nginx.md)
+- [CentOS7安装维护Gitlab★★★](CentOS/CentOS7安装维护Gitlab.md)
+- [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
+- [node安装](CentOS/node安装.md)
+- [chmod说明](CentOS/chmod.md)
+- [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
+- [samba安装搭建使用](CentOS/samba.md)
+- [常用基础命令](CentOS/常用基础命令.md)
+
+## MySQL - [搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
+
+- [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
+- [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
+- [MySQL支持emoji图标存储](https://github.com/jaywcjlove/mysql-tutorial)
+- [MySQL一些常用语句](https://github.com/jaywcjlove/mysql-tutorial)
+- [MySQL数据类型](https://github.com/jaywcjlove/mysql-tutorial)
+- [Centos6下升级MySQL数据库](https://github.com/jaywcjlove/mysql-tutorial)
+
+## Redis
+
+- [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
+- [Redis提供的原生监控](Redis/Redis提供的原生监控.md)
+- [Redis在CentOS 6.5中如何升级](Redis/Redis在CentOS 6.5中如何升级.md)
+- [Redis配置说明](Redis/Redis配置说明.md)
+- [Redis.conf 配置文件例子](Redis/Redis.conf)
+
+## Android
+
+- [Mac完整卸载Android Studio的方法](Android/Mac%E5%AE%8C%E6%95%B4%E5%8D%B8%E8%BD%BDAndroid%20Studio%E7%9A%84%E6%96%B9%E6%B3%95.md)
+- [React-native Android环境搭建](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
+
+## Javascript
+
+- **[思维导图来学习 Javascript 基础知识★★★★](Javascript/)**
+- [轻量高效的开源JavaScript插件和库★★★★★](Javascript/轻量高效的开源JavaScript插件和库.md)
+- [一些正则表达式随记](Javascript/一些正则表达式随记.md)
+- [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
+- JS测试工具
     - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
     - [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
     - [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
-- 快捷键
-    - [Sketch设计软件快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/Sketch.html)
-    - [命令行工具bash快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/bash.html)
-    - [sublime编辑器快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/sublime.html)
-- 其它
-    - **[常见HTTP/FTP/WebSockets状态码大全★★★★★](other/HTTP-Status-codes.md)**
-    - [Lua5.3中文手册](other/Lua5.3.md)
-    - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
-    - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
-    - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
+
+## 快捷键
+
+- [Sketch设计软件快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/Sketch.html)
+- [命令行工具bash快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/bash.html)
+- [sublime编辑器快捷键](http://jaywcjlove.github.io/handbook/html/Shortcuts/sublime.html)
+
+## 其它
+
+- **[常见HTTP/FTP/WebSockets状态码大全★★★★★](other/HTTP-Status-codes.md)**
+- [Lua5.3中文手册](other/Lua5.3.md)
+- [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
+- [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
+- [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
