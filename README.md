@@ -14,7 +14,9 @@
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
 
-## MySQL - [搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
+## MySQL
+
+[搜集整合资源迁移到这里了★★★](https://github.com/jaywcjlove/mysql-tutorial)
 
 - [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
 - [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
