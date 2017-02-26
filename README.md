@@ -6,8 +6,8 @@
 
 坐标上海，点击查看具体要求，简历发送 [wowohoo@qq.com](mailto:wowohoo@qq.com)
 
-  - [前端工程师 7k-15k](Job-Descriptions/frontend-engineer.md#前端工程师)
-  - [Node.js 工程师 10k-15k](Job-Descriptions/node-engineer.md#nodejs开发工程师)
+  - [前端工程师](Job-Descriptions/frontend-engineer.md#前端工程师)
+  - [Node.js 工程师](Job-Descriptions/node-engineer.md#nodejs开发工程师)
 
 ## 精华
 
