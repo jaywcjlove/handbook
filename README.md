@@ -60,6 +60,7 @@
 - [轻量高效的开源JavaScript插件和库★★★★★](Javascript/轻量高效的开源JavaScript插件和库.md)
 - [一些正则表达式随记](Javascript/一些正则表达式随记.md)
 - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
+- [前端工程师也需要zsh](http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&mid=401433562&idx=1&sn=1ca074b0629463f37a777a2b96aa98af)
 - JS测试工具
     - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
     - [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
