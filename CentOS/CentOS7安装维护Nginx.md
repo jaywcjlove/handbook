@@ -23,7 +23,13 @@ Nginx版本：`1.11.5`
 - [配置](#配置)
   - [配置文件](#配置文件)
   - [反向代理](#反向代理)
-  - [模块upstream](#模块upstream)
+  - [RR](#rr)
+  - [权重](#权重)
+  - [ip_hash](#ip_hash)
+  - [fair](#fair)
+  - [url_hash](#url_hash)
+  - [负载均衡](#负载均衡)
+- [第三方模块安装方法](#第三方模块安装方法)
 - [常见使用场景](#常见使用场景)
   - [跨域问题](#跨域问题)
   - [ssl配置](#ssl配置)
@@ -371,7 +377,22 @@ Nginx提供了许多预定义的变量，也可以通过使用set来设置变量
 
 ### 反向代理
 
-反向代理是一个Web服务器，它接受客户端的连接请求，然后将请求转发给上游服务器，并将从服务器得到的结果返回给连接的客户端。复杂的配置: gitlab.com.conf。
+反向代理是一个Web服务器，它接受客户端的连接请求，然后将请求转发给上游服务器，并将从服务器得到的结果返回给连接的客户端。下面简单的反向代理的例子：
+
+```
+server {  
+    listen       80;                                                        
+    server_name  localhost;                                              
+    client_max_body_size 1024M;  # 允许客户端请求的最大单文件字节数
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host:$server_port;
+    }
+}
+```
+
+复杂的配置: gitlab.com.conf。
 
 ```
 server {
@@ -411,7 +432,7 @@ server {
 | proxy_ignore_headers | 这个指令禁止处理来自代理服务器的应答。 | 
 | proxy_intercept_errors | 使nginx阻止HTTP应答代码为400或者更高的应答。 | 
 
-### 模块upstream
+### 负载均衡
 
 upstream指令启用一个新的配置区段，在该区段定义一组上游服务器。这些服务器可能被设置不同的权重，也可能出于对服务器进行维护，标记为down。
 
@@ -448,6 +469,98 @@ server {
 }
 ```
 
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
+
+**负载均衡：**
+
+upstream模块能够使用3种负载均衡算法：轮询、IP哈希、最少连接数。
+
+**轮询：** 默认情况下使用轮询算法，不需要配置指令来激活它，它是基于在队列中谁是下一个的原理确保访问均匀地分布到每个上游服务器；  
+**IP哈希：** 通过ip_hash指令来激活，Nginx通过IPv4地址的前3个字节或者整个IPv6地址作为哈希键来实现，同一个IP地址总是能被映射到同一个上游服务器；  
+**最少连接数：** 通过least_conn指令来激活，该算法通过选择一个活跃数最少的上游服务器进行连接。如果上游服务器处理能力不同，可以通过给server配置weight权重来说明，该算法将考虑到不同服务器的加权最少连接数。
+
+#### RR
+
+**简单配置** ，这里我配置了2台服务器，当然实际上是一台，只是端口不一样而已，而8081的服务器是不存在的，也就是说访问不到，但是我们访问 `http://localhost` 的时候，也不会有问题，会默认跳转到`http://localhost:8080`具体是因为Nginx会自动判断服务器的状态，如果服务器处于不能访问（服务器挂了），就不会跳转到这台服务器，所以也避免了一台服务器挂了影响使用的情况，由于Nginx默认是RR策略，所以我们不需要其他更多的设置
+
+```
+upstream test {
+    server localhost:8080;
+    server localhost:8081;
+}
+server {
+    listen       81;                                                        
+    server_name  localhost;                                              
+    client_max_body_size 1024M;
+ 
+    location / {
+        proxy_pass http://test;
+        proxy_set_header Host $host:$server_port;
+    }
+}
+```
+
+**负载均衡的核心代码为** 
+
+```
+upstream test {
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+#### 权重
+
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。 例如
+
+```
+upstream test {
+    server localhost:8080 weight=9;
+    server localhost:8081 weight=1;
+}
+```
+
+那么10次一般只会有1次会访问到8081，而有9次会访问到8080
+
+#### ip_hash
+
+上面的2种方式都有一个问题，那就是下一个请求来的时候请求可能分发到另外一个服务器，当我们的程序不是无状态的时候（采用了session保存数据），这时候就有一个很大的很问题了，比如把登录信息保存到了session中，那么跳转到另外一台服务器的时候就需要重新登录了，所以很多时候我们需要一个客户只访问一个服务器，那么就需要用iphash了，iphash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。
+
+```
+upstream test {
+    ip_hash;
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+#### fair
+
+这是个第三方模块，按后端服务器的响应时间来分配请求，响应时间短的优先分配。
+
+```
+upstream backend {
+    fair;
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+#### url_hash
+
+这是个第三方模块，按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。 在upstream中加入hash语句，server语句中不能写入weight等其他的参数，hash_method是使用的hash算法
+
+```
+upstream backend {
+    hash $request_uri;
+    hash_method crc32;
+    server localhost:8080;
+    server localhost:8081;
+}
+```
+
+以上5种负载均衡各自适用不同情况下使用，所以可以根据实际情况选择使用哪种策略模式，不过fair和url_hash需要安装第三方模块才能使用
+
 **server指令可选参数：**
 
 1. weight：设置一个服务器的访问权重，数值越高，收到的请求也越多；
@@ -460,13 +573,12 @@ server {
 
 Nginx服务器将会为每一个worker进行保持同上游服务器的连接。
 
-**负载均衡：**
+## 第三方模块安装方法
 
-upstream模块能够使用3种负载均衡算法：轮询、IP哈希、最少连接数。
+```
+./configure --prefix=/你的安装目录  --add-module=/第三方模块目录
+```
 
-**轮询：** 默认情况下使用轮询算法，不需要配置指令来激活它，它是基于在队列中谁是下一个的原理确保访问均匀地分布到每个上游服务器；  
-**IP哈希：** 通过ip_hash指令来激活，Nginx通过IPv4地址的前3个字节或者整个IPv6地址作为哈希键来实现，同一个IP地址总是能被映射到同一个上游服务器；  
-**最少连接数：** 通过least_conn指令来激活，该算法通过选择一个活跃数最少的上游服务器进行连接。如果上游服务器处理能力不同，可以通过给server配置weight权重来说明，该算法将考虑到不同服务器的加权最少连接数。
 
 ## 常见使用场景
 
