@@ -31,4 +31,30 @@ git config --global https.proxy socks5://127.0.0.1:9742
 192.30.253.112 github.com
 ```
 
+通过 `dig github.com` 查看IP地址
+
+```bash
+dig github.com
+
+# 输出下面内容
+# -----------------------
+# ; <<>> DiG 9.8.3-P1 <<>> github.com
+# ;; global options: +cmd
+# ;; Got answer:
+# ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 57278
+# ;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+# 
+# ;; QUESTION SECTION:
+# ;github.com.            IN  A
+# 
+# ;; ANSWER SECTION:
+# github.com.     60  IN  A   192.30.253.112
+# github.com.     60  IN  A   192.30.253.113
+# 
+# ;; Query time: 16 msec
+# ;; SERVER: 192.168.188.1#53(192.168.188.1)
+# ;; WHEN: Wed Mar 22 21:35:21 2017
+# ;; MSG SIZE  rcvd: 60
+```
+
 
