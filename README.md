@@ -76,6 +76,7 @@
 
 - **[常见HTTP/FTP/WebSockets状态码大全★★★★★](other/HTTP-Status-codes.md)**
 - [Lua5.3中文手册](other/Lua5.3.md)
+- [通过代理工具提高Github Clone速度](other/通过代理工具提高Github%20Clone速度.md)
 - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
 - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
