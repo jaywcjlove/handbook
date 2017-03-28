@@ -304,7 +304,7 @@ nginx.conf 中的配置信息，根据其逻辑上的意义，对它们进行了
 
 例如我们再 **nginx.conf** 里面引用两个配置 vhost/example.com.conf 和 vhost/gitlab.com.conf 它们都被放在一个我自己新建的目录 vhost 下面。nginx.conf 配置如下：
 
-```
+```nginx
 worker_processes  1;
 events {
     worker_connections  1024;
@@ -347,7 +347,7 @@ http {
 
 简单的配置: example.com.conf
 
-```
+```nginx
 server {
     #侦听的80端口
     listen       80;
@@ -379,7 +379,7 @@ Nginx提供了许多预定义的变量，也可以通过使用set来设置变量
 
 反向代理是一个Web服务器，它接受客户端的连接请求，然后将请求转发给上游服务器，并将从服务器得到的结果返回给连接的客户端。下面简单的反向代理的例子：
 
-```
+```nginx
 server {  
     listen       80;                                                        
     server_name  localhost;                                              
@@ -394,7 +394,7 @@ server {
 
 复杂的配置: gitlab.com.conf。
 
-```
+```nginx
 server {
     #侦听的80端口
     listen       80;
@@ -436,7 +436,7 @@ server {
 
 upstream指令启用一个新的配置区段，在该区段定义一组上游服务器。这些服务器可能被设置不同的权重，也可能出于对服务器进行维护，标记为down。
 
-```
+```nginx
 upstream  gitlab {
     ip_hash;
     server 192.168.122.11:8081 ;
@@ -483,7 +483,7 @@ upstream模块能够使用3种负载均衡算法：轮询、IP哈希、最少连
 
 **简单配置** ，这里我配置了2台服务器，当然实际上是一台，只是端口不一样而已，而8081的服务器是不存在的，也就是说访问不到，但是我们访问 `http://localhost` 的时候，也不会有问题，会默认跳转到`http://localhost:8080`具体是因为Nginx会自动判断服务器的状态，如果服务器处于不能访问（服务器挂了），就不会跳转到这台服务器，所以也避免了一台服务器挂了影响使用的情况，由于Nginx默认是RR策略，所以我们不需要其他更多的设置
 
-```
+```nginx
 upstream test {
     server localhost:8080;
     server localhost:8081;
@@ -502,7 +502,7 @@ server {
 
 **负载均衡的核心代码为** 
 
-```
+```nginx
 upstream test {
     server localhost:8080;
     server localhost:8081;
@@ -513,7 +513,7 @@ upstream test {
 
 指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。 例如
 
-```
+```nginx
 upstream test {
     server localhost:8080 weight=9;
     server localhost:8081 weight=1;
@@ -526,7 +526,7 @@ upstream test {
 
 上面的2种方式都有一个问题，那就是下一个请求来的时候请求可能分发到另外一个服务器，当我们的程序不是无状态的时候（采用了session保存数据），这时候就有一个很大的很问题了，比如把登录信息保存到了session中，那么跳转到另外一台服务器的时候就需要重新登录了，所以很多时候我们需要一个客户只访问一个服务器，那么就需要用iphash了，iphash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。
 
-```
+```nginx
 upstream test {
     ip_hash;
     server localhost:8080;
@@ -538,7 +538,7 @@ upstream test {
 
 这是个第三方模块，按后端服务器的响应时间来分配请求，响应时间短的优先分配。
 
-```
+```nginx
 upstream backend {
     fair;
     server localhost:8080;
@@ -550,7 +550,7 @@ upstream backend {
 
 这是个第三方模块，按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。 在upstream中加入hash语句，server语句中不能写入weight等其他的参数，hash_method是使用的hash算法
 
-```
+```nginx
 upstream backend {
     hash $request_uri;
     hash_method crc32;
@@ -586,7 +586,7 @@ Nginx服务器将会为每一个worker进行保持同上游服务器的连接。
 
 在工作中，有时候会遇到一些接口不支持跨域，这时候可以简单的添加add_headers来支持cors跨域。配置如下：
 
-```
+```nginx
 server {
   listen 80;
   server_name api.xxx.com;
@@ -600,6 +600,34 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host  $http_host;    
+  } 
+}
+```
+
+上面更改头信息，还有一种，使用 [rewrite](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html) 指令重定向URI来解决跨域问题。
+
+```nginx
+upstream test {
+  server 127.0.0.1:8080;
+  server localhost:8081;
+}
+server {
+  listen 80;
+  server_name api.xxx.com;
+  location /{ 
+    root  html;                   #去请求../html文件夹里的文件
+    index  index.html index.htm;  #首页响应地址
+  }
+  # 用于拦截请求，匹配任何以 /api/开头的地址，
+  # 匹配符合以后，停止往下搜索正则。
+  location ^~/api/{ 
+    # 代表重写拦截进来的请求，并且只能对域名后边的除去传递的参数外的字符串起作用，
+    # 例如www.a.com/proxy/api/msg?meth=1&par=2重写，只对/proxy/api/msg重写。
+    # rewrite后面的参数是一个简单的正则 ^/api/(.*)$，
+    # $1代表正则中的第一个()，$2代表第二个()的值，以此类推。
+    rewrite ^/api/(.*)$ /$1 break;
+
+    proxy_pass http://test;
   } 
 }
 ```
@@ -631,9 +659,9 @@ configure arguments: --prefix=/usr/local/nginx-1.5.1 --with-http_ssl_module --wi
 ./configure --user=www --group=www --prefix=/mt/server/nginx --with-http_stub_status_module --with-openssl=/home/nginx-1.8.0/openssl-1.0.0d --without-http-cache --with-http_ssl_module --with-http_gzip_static_module --with-...
 ```
 
+HTTPS server
 
-```
-# HTTPS server
+```nginx
 server {
     listen       443 ssl;
     server_name  localhost;
