@@ -32,8 +32,8 @@
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
 - [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
 - [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
-- [CentOS7安装维护Nginx](CentOS/CentOS7安装维护Nginx.md)
-- [CentOS7安装维护Gitlab★★★](CentOS/CentOS7安装维护Gitlab.md)
+- **[CentOS7安装维护Nginx★★★★](CentOS/CentOS7安装维护Nginx.md)**
+- **[CentOS7安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
 - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
 - [node安装](CentOS/node安装.md)
 - [chmod说明](CentOS/chmod.md)
