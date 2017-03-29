@@ -45,7 +45,7 @@
 
 - [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
 - [Redis提供的原生监控](Redis/Redis提供的原生监控.md)
-- [Redis在CentOS 6.5中如何升级](Redis/Redis在CentOS 6.5中如何升级.md)
+- [Redis在CentOS 6.5中如何升级](Redis/Redis在CentOS%206.5中如何升级.md)
 - [Redis配置说明](Redis/Redis配置说明.md)
 - [Redis.conf 配置文件例子](Redis/Redis.conf)
 
