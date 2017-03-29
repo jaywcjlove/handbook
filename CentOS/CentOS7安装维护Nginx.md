@@ -215,8 +215,8 @@ yum remove nginx
 | --builddir=DIR | 指定编译的目录 |
 | --with-rtsig_module | 启用 rtsig 模块 |
 | --with-select_module --without-select_module | 允许或不允许开启SELECT模式，如果 configure 没有找到更合适的模式，比如：kqueue(sun os),epoll (linux kenel 2.6+), rtsig(- 实时信号)或者/dev/poll(一种类似select的模式，底层实现与SELECT基本相 同，都是采用轮训方法) SELECT模式将是默认安装模式|
-| --with-poll_module --without-poll_module | Whether or not to enable the poll module. This module is enabled by | default if a more suitable method such as kqueue, epoll, rtsig or /dev/poll is not discovered by configure. |
-| --with-http_ssl_module | Enable ngx_http_ssl_module. Enables SSL support and the ability to handle HTTPS requests. | Requires OpenSSL. On Debian, this is libssl-dev. 开启HTTP SSL模块，使NGINX可以支持HTTPS请求。这个模块需要已经安装了OPENSSL，在DEBIAN上是libssl  |
+| --with-poll_module --without-poll_module | Whether or not to enable the poll module. This module is enabled by, default if a more suitable method such as kqueue, epoll, rtsig or /dev/poll is not discovered by configure. |
+| --with-http_ssl_module | Enable ngx_http_ssl_module. Enables SSL support and the ability to handle HTTPS requests. Requires OpenSSL. On Debian, this is libssl-dev. 开启HTTP SSL模块，使NGINX可以支持HTTPS请求。这个模块需要已经安装了OPENSSL，在DEBIAN上是libssl  |
 | --with-http_realip_module | 启用 ngx_http_realip_module |
 | --with-http_addition_module | 启用 ngx_http_addition_module |
 | --with-http_sub_module | 启用 ngx_http_sub_module |
@@ -254,8 +254,8 @@ yum remove nginx
 | --with-cc=PATH | 指定 C 编译器的路径 |
 | --with-cpp=PATH | 指定 C 预处理器的路径 |
 | --with-cc-opt=OPTIONS | Additional parameters which will be added to the variable CFLAGS. With the use of the system library PCRE in FreeBSD, it is necessary to indicate --with-cc-opt="-I /usr/local/include". If we are using select() and it is necessary to increase the number of file descriptors, then this also can be assigned here: --with-cc-opt="-D FD_SETSIZE=2048". |
-| --with-ld-opt=OPTIONS | Additional parameters passed to the linker. With the use of the system library PCRE in | FreeBSD, it is necessary to indicate --with-ld-opt="-L /usr/local/lib". |
-| --with-cpu-opt=CPU | 为特定的 CPU 编译，有效的值包括：pentium, pentiumpro, pentium3, pentium4, athlon, opteron, amd64, | sparc32, sparc64, ppc64 |
+| --with-ld-opt=OPTIONS | Additional parameters passed to the linker. With the use of the system library PCRE in - FreeBSD, it is necessary to indicate --with-ld-opt="-L /usr/local/lib". |
+| --with-cpu-opt=CPU | 为特定的 CPU 编译，有效的值包括：pentium, pentiumpro, pentium3, pentium4, athlon, opteron, amd64, sparc32, sparc64, ppc64 |
 | --without-pcre | 禁止 PCRE 库的使用。同时也会禁止 HTTP rewrite 模块。在 "location" 配置指令中的正则表达式也需要 PCRE 。 |
 | --with-pcre=DIR | 指定 PCRE 库的源代码的路径。 |
 | --with-pcre-opt=OPTIONS | Set additional options for PCRE building. |
@@ -489,8 +489,8 @@ upstream test {
     server localhost:8081;
 }
 server {
-    listen       81;                                                        
-    server_name  localhost;                                              
+    listen       81;
+    server_name  localhost;
     client_max_body_size 1024M;
  
     location / {
@@ -635,7 +635,55 @@ server {
     # 配置一： http://www.b.com 后面没有有“/” 
     #         将反向代理成 http://www.b.com/test.jsp 访问
     proxy_pass http://test;
+
+    # 如果 proxy_pass  URL 是 http://a.xx.com/platform/ 这种情况
+    # proxy_cookie_path应该设置成 /platform/ / (注意两个斜杠之间有空格)。
+    proxy_cookie_path /platfrom/ /;
+
+    # http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header
+    # 设置 Cookie 头通过
+    proxy_pass_header Set-Cookie;
   } 
+}
+```
+
+### 代理转发
+
+我有一些需求，需要搭建一个静态服务，路由在前端，前端请求API，需要到代理到API服务器，图片资源需要代理到图片资源服务器。
+
+```nginx
+upstream server-api{
+    # api 代理服务地址
+    server 127.0.0.1:3110;    
+}
+upstream server-resource{
+    # 静态资源 代理服务地址
+    server 127.0.0.1:3120;
+}
+server {
+    listen       3111;
+    server_name  localhost;      # 这里指定域名
+    root /home/www/server-statics;
+    # 匹配 api 路由的反向代理到API服务
+    location ^~/api/ {
+        rewrite ^/(.*)$ /$1 break;
+        proxy_pass http://server-api;
+    }
+    # 假设这里验证码也在API服务中
+    location ^~/captcha {
+        rewrite ^/(.*)$ /$1 break;
+        proxy_pass http://server-api;
+    }
+    # 假设你的图片资源全部在另外一个服务上面
+    location ^~/img/ {
+        rewrite ^/(.*)$ /$1 break;
+        proxy_pass http://server-resource;
+    }
+    # 路由在前端，后端没有真实路由，在路由不存在的 404状态的页面返回 /index.html
+    # 这个方式使用场景，你在写React或者Vue项目的时候，没有真实路由
+    location / {
+        try_files $uri $uri/ /index.html =404;
+    }
 }
 ```
 
