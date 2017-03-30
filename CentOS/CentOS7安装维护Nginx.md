@@ -63,7 +63,7 @@ $ yum install wget
 然后进入目录编译安装，[configure参数说明](#configure参数说明)
 
 ```bash
-cd nginx-1.7.8
+cd nginx-1.11.5
 ./configure
 ```
 
