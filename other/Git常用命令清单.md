@@ -374,11 +374,12 @@ git rebase --abort  # 取消合并
 ### 删除
 
 ```shell
-git push origin :branchName  #删除远程分支  
-git push origin --delete new #删除远程分支new   
-git branch -d branchName     #删除本地分支，强制删除用-D  
-git branch -d test #删除本地test分支   
-git branch -D test #强制删除本地test分支   
+git push origin :branchName  # 删除远程分支  
+git push origin --delete new # 删除远程分支new   
+git branch -d branchName     # 删除本地分支，强制删除用-D  
+git branch -d test # 删除本地test分支   
+git branch -D test # 强制删除本地test分支   
+git remote prune origin # 远程删除了，本地还能看到远程存在，这条命令删除远程不存在的分支
 ```
 
 ### 提交
@@ -411,6 +412,7 @@ git branch -a   # 列出所有分支
 git branch -v   # 查看各个分支最后一个提交对象的信息   
 git branch --merge      # 查看已经合并到当前分支的分支   
 git branch --no-merge   # 查看为合并到当前分支的分支   
+git remote show origin  # 可以查看remote地址，远程分支
 ```
 
 ### 新建
