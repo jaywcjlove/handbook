@@ -21,6 +21,7 @@ Nginx版本：`1.11.5`
 - [nginx卸载](#nginx卸载)
 - [参数说明](#参数说明)
 - [配置](#配置)
+  - [符号参考](#符号参考)
   - [配置文件](#配置文件)
   - [反向代理](#反向代理)
   - [RR](#rr)
@@ -29,11 +30,15 @@ Nginx版本：`1.11.5`
   - [fair](#fair)
   - [url_hash](#url_hash)
   - [负载均衡](#负载均衡)
+  - [屏蔽ip](#屏蔽ip)
 - [第三方模块安装方法](#第三方模块安装方法)
 - [常见使用场景](#常见使用场景)
   - [跨域问题](#跨域问题)
   - [代理转发](#代理转发)
   - [ssl配置](#ssl配置)
+  - [两个虚拟主机](#两个虚拟主机)
+  - [虚拟主机标准配置](#虚拟主机标准配置)
+  - [防盗链](#防盗链)
 
 ## 安装
 
@@ -278,6 +283,17 @@ yum remove nginx
 ## 配置
 
 在Centos 默认配置文件在 **/usr/local/nginx-1.5.1/conf/nginx.conf** 我们要在这里配置一些文件。nginx.conf是主配置文件，由若干个部分组成，每个大括号`{}`表示一个部分。每一行指令都由分号结束`;`，标志着一行的结束。
+
+### 符号参考
+
+| 符号 | 说明 | 符号 | 说明 | 符号 | 说明 |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| k,K | 千字节 | m,M | 兆字节 | ms | 毫秒 |
+| s | 秒 | m | 分钟 | h |  小时 |
+| d | 日 | w | 周 | M |  一个月, 30天 |
+
+例如，"8k"，"1m" 代表字节数计量。  
+例如，"1h 30m"，"1y 6M"。代表 "1小时 30分"，"1年零6个月"。 
 
 ### 配置文件
 
@@ -574,6 +590,34 @@ upstream backend {
 
 Nginx服务器将会为每一个worker进行保持同上游服务器的连接。
 
+### 屏蔽ip
+
+在nginx的配置文件`nginx.conf`中加入如下配置，可以放到http, server, location, limit_except语句块，需要注意相对路径，本例当中`nginx.conf`，`blocksip.conf`在同一个目录中。
+
+```nginx
+include blockip.conf;
+```
+
+在blockip.conf里面输入内容，如：
+
+```nginx
+deny 165.91.122.67;
+
+deny IP;   # 屏蔽单个ip访问
+allow IP;  # 允许单个ip访问
+deny all;  # 屏蔽所有ip访问
+allow all; # 允许所有ip访问
+deny 123.0.0.0/8   # 屏蔽整个段即从123.0.0.1到123.255.255.254访问的命令
+deny 124.45.0.0/16 # 屏蔽IP段即从123.45.0.1到123.45.255.254访问的命令
+deny 123.45.6.0/24 # 屏蔽IP段即从123.45.6.1到123.45.6.254访问的命令
+
+# 如果你想实现这样的应用，除了几个IP外，其他全部拒绝
+allow 1.1.1.1; 
+allow 1.1.1.2;
+deny all; 
+```
+
+
 ## 第三方模块安装方法
 
 ```
@@ -745,3 +789,58 @@ server {
 }
 ```
 
+### 两个虚拟主机
+
+纯静态-html 支持
+
+```nginx
+http {
+    server {
+        listen          80;
+        server_name     www.domain1.com;
+        access_log      logs/domain1.access.log main;
+        location / {
+            index index.html;
+            root  /var/www/domain1.com/htdocs;
+        }
+    }
+    server {
+        listen          80;
+        server_name     www.domain2.com;
+        access_log      logs/domain2.access.log main;
+        location / {
+            index index.html;
+            root  /var/www/domain2.com/htdocs;
+        }
+    }
+}
+```
+
+### 虚拟主机标准配置
+
+```nginx
+http {
+  server {
+    listen          80 default;
+    server_name     _ *;
+    access_log      logs/default.access.log main;
+    location / {
+       index index.html;
+       root  /var/www/default/htdocs;
+    }
+  }
+}
+```
+
+### 防盗链
+
+```nginx
+location ~* \.(gif|jpg|png|swf|flv)$ {
+   root html
+   valid_referers none blocked *.nginxcn.com;
+   if ($invalid_referer) {
+     rewrite ^/ www.nginx.cn
+     #return 404;
+   }
+}
+```
