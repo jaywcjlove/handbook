@@ -37,14 +37,15 @@ password:安装时设置的密码
 ## 系统
 
 ```shell
-uname -a               # 查看内核/操作系统/CPU信息
-head -n 1 /etc/issue   # 查看操作系统版本
-cat /proc/cpuinfo      # 查看CPU信息
-hostname               # 查看计算机名
-lspci -tv              # 列出所有PCI设备
-lsusb -tv              # 列出所有USB设备
-lsmod                  # 列出加载的内核模块
-env                    # 查看环境变量
+cat /etc/redhat-release # CentOS 查看系统信息
+uname -a                # 查看内核/操作系统/CPU信息
+head -n 1 /etc/issue    # 查看操作系统版本
+cat /proc/cpuinfo       # 查看CPU信息
+hostname                # 查看计算机名
+lspci -tv               # 列出所有PCI设备
+lsusb -tv               # 列出所有USB设备
+lsmod                   # 列出加载的内核模块
+env                     # 查看环境变量
 dmidecode | grep "Product Nmae"   #查看服务器型号
 ```
 
