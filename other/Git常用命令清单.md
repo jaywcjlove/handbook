@@ -95,33 +95,44 @@ git remote add origin git@jslite.github.com:JSLite/JSLite.git  # 添加远程路
 
 ## 多账号ssh配置
 
-### 1.生成指定名字的密钥  
+**1.生成指定名字的密钥**
 
-`ssh-keygen -t rsa -C "邮箱地址" -f ~/.ssh/github_jslite`  
-会生成 `github_jslite` 和 `github_jslite.pub` 这两个文件  
+`ssh-keygen -t rsa -C "邮箱地址" -f ~/.ssh/jslite_rsa`  
+会生成 `jslite_rsa` 和 `jslite_rsa.pub` 这两个文件  
 
-### 2.密钥复制到托管平台上
-`vim ~/.ssh/github_jslite.pub`   
-打开公钥文件 `github_jslite.pub` ，并把内容复制至代码托管平台上   
+**2.密钥复制到托管平台上**
 
-### 3.修改config文件  
+`vim ~/.ssh/jslite_rsa.pub`   
+打开公钥文件 `jslite_rsa.pub` ，并把内容复制至代码托管平台上   
+
+**3.修改config文件**
+
 `vim ~/.ssh/config` #修改config文件，如果没有创建 `config`  
 
-```bash
+```shell
 Host jslite.github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/github_jslite
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/jslite_rsa
 
-Host abc.github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/github_abc
+Host work.github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/work_rsa
 ```
 
-### 4.测试
+- `Host` 这里是个别名可以随便命名
+- `HostName` 一般是网站如：`git@ss.github.com:username/repo.git` 填写 `github.com`
+- `User` 通常填写`git`
+- `IdentityFile` 使用的公钥文件地址
 
-`ssh -T git@jslite.github.com` # `@`后面跟上定义的Host  
+**4.测试**
+
+```bash
+ssh -T git@jslite.github.com  # `@`后面跟上定义的Host  
+ssh -T work.github.com        # 通过别名测试
+ssh -i ~/公钥文件地址 Host别名  # 如 ssh -i ~/.ssh/work_rsa work.github.com
+```
 
 ## 免密登录
 
