@@ -117,6 +117,9 @@ Host jslite.github.com
 
 Host work.github.com
   HostName github.com
+  # Port 服务器open-ssh端口（默认：22,默认时一般不写此行）
+  # PreferredAuthentications 配置登录时用什么权限认证 
+  #                          publickey|password publickey|keyboard-interactive等
   User git
   IdentityFile ~/.ssh/work_rsa
 ```
@@ -132,6 +135,17 @@ Host work.github.com
 ssh -T git@jslite.github.com  # `@`后面跟上定义的Host  
 ssh -T work.github.com        # 通过别名测试
 ssh -i ~/公钥文件地址 Host别名  # 如 ssh -i ~/.ssh/work_rsa work.github.com
+```
+
+**5.注意**
+
+如果你修改了id_rsa的名字，你需要将ssh key添加到SSH agent中，如：
+
+```bash
+ssh-add ~/.ssh/jslite_rsa
+ssh-add -l  # 查看所有的key
+ssh-add -D  # 删除所有的key
+ssh-add -d  ~/.ssh/jslite_rsa # 删除指定的key
 ```
 
 ## 免密登录
