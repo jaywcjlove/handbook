@@ -21,6 +21,8 @@ Nginx版本：`1.11.5`
 - [nginx卸载](#nginx卸载)
 - [参数说明](#参数说明)
 - [配置](#配置)
+  - [常用正则](#常用正则)
+  - [全局变量](#全局变量)
   - [符号参考](#符号参考)
   - [配置文件](#配置文件)
   - [反向代理](#反向代理)
@@ -283,6 +285,42 @@ yum remove nginx
 ## 配置
 
 在Centos 默认配置文件在 **/usr/local/nginx-1.5.1/conf/nginx.conf** 我们要在这里配置一些文件。nginx.conf是主配置文件，由若干个部分组成，每个大括号`{}`表示一个部分。每一行指令都由分号结束`;`，标志着一行的结束。
+
+### 常用正则
+
+| 正则 | 说明 | 正则 | 说明 |
+| ---- | ---- | ---- | ---- | 
+| `. ` | 匹配除换行符以外的任意字符 | `$ ` | 匹配字符串的结束 |
+| `? ` | 重复0次或1次 | `{n} ` | 重复n次 |
+| `+ ` | 重复1次或更多次 | `{n,} ` | 重复n次或更多次 |
+| `*` | 重复0次或更多次 | `[c] ` | 匹配单个字符c |
+| `\d ` |匹配数字 | `[a-z]` | 匹配a-z小写字母的任意一个 |
+| `^ ` | 匹配字符串的开始 | - | - |
+
+### 全局变量
+
+| 变量 | 说明 | 变量 | 说明 |
+| ---- | ---- | ---- | ---- | 
+| $args | 这个变量等于请求行中的参数，同$query_string | $remote_port | 客户端的端口。 |
+| $content_length | 请求头中的Content-length字段。 | $remote_user | 已经经过Auth Basic Module验证的用户名。 |
+| $content_type | 请求头中的Content-Type字段。 | $request_filename | 当前请求的文件路径，由root或alias指令与URI请求生成。 |
+| $document_root | 当前请求在root指令中指定的值。 | $scheme | HTTP方法（如http，https）。 |
+| $host | 请求主机头字段，否则为服务器名称。 | $server_protocol | 请求使用的协议，通常是HTTP/1.0或HTTP/1.1。 |
+| $http_user_agent | 客户端agent信息 | $server_addr | 服务器地址，在完成一次系统调用后可以确定这个值。 |
+| $http_cookie | 客户端cookie信息 | $server_name | 服务器名称。 |
+| $limit_rate | 这个变量可以限制连接速率。 | $server_port | 请求到达服务器的端口号。 |
+| $request_method | 客户端请求的动作，通常为GET或POST。 | $request_uri | 包含请求参数的原始URI，不包含主机名，如：/foo/bar.php?arg=baz。 |
+| $remote_addr | 客户端的IP地址。 | $uri | 不带请求参数的当前URI，$uri不包含主机名，如/foo/bar.html。 |
+| $document_uri | 与$uri相同。 | - | - |
+
+例如请求：`http://localhost:3000/test1/test2/test.php`
+
+$host：localhost  
+$server_port：3000  
+$request_uri：/test1/test2/test.php  
+$document_uri：/test1/test2/test.php  
+$document_root：/var/www/html  
+$request_filename：/var/www/html/test1/test2/test.php  
 
 ### 符号参考
 
