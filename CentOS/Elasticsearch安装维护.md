@@ -155,6 +155,7 @@ plugin.mandatory: analysis-icu,lang-js
 
 ### 插件
 
+- [ElasticSearch Toolbox](https://chrome.google.com/webstore/detail/dejavu/jopjeaiilkcibeohjdmejhoifenbnmlh) 谷歌浏览器的扩展组件  
 - [ElasticSearch Toolbox](https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp/related) 谷歌浏览器的扩展组件  
 - [Elasticsearch GUI](http://www.gridshore.nl/esgui/) 
 - [Elasticsearch-head](https://github.com/mobz/elasticsearch-head)
