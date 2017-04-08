@@ -138,6 +138,7 @@
 - [Leaflet.js](http://github.com/Leaflet/Leaflet) - 是一个开源的移动友好交互式地图 JavaScript 库。体积仅有 33 KB。[demo](http://leafletjs.com/)
 - [CurrencyFormatter.js](https://github.com/osrec/currencyFormatter.js/) - 是一款简单纯JS格式化155种不同国家货币格式库，gzip压缩后仅7KB。[demo](https://osrec.github.io/currencyFormatter.js/)
 - [Feature.js](https://github.com/osrec/currencyFormatter.js/) - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。[demo](hhttp://featurejs.com/)
+- [screenfull.js](https://github.com/sindresorhus/screenfull.js) -  极小、跨平台的 JavaScript 全屏插件。[demo](https://sindresorhus.com/screenfull.js/)
 
 
 ## CDN
