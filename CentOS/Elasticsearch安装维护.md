@@ -110,14 +110,28 @@ health status index pri rep docs.count docs.deleted store.size pri.store.size
 
 ## 对比理解
 
-```
-Relational DB -> Databases -> Tables -> Rows -> Columns
-Elasticsearch -> Indices   -> Types  -> Documents -> Fields
-```
-
 在Elasticsearch中，文档归属于一种类型(type),而这些类型存在于索引(index)中，我们可以画一些简单的对比图来类比传统关系型数据库
 
-Elasticsearch集群可以包含多个索引(indices)（数据库），每一个索引可以包含多个类型(types)（表），每一个类型包含多个文档(documents)（行），然后每个文档包含多个字段(Fields)（列）。
+```
+Relational DB -> Databases -> Tables -> Rows -> Columns
+关系型数据库        数据库        表        行       列
+Elasticsearch -> Indices   -> Types  -> Documents -> Fields
+Elasticsearch     索引          类型      文档         域(字段)
+```
+
+| Relational DB | 说明 | Elasticsearch | 说明 |
+| ---- | ---- | ---- | ---- |
+| Databases | 数据库 | Indices | 索引 |
+| Tables | 表 | Types | 类型 |
+| Rows | 表 | Documents | 文档 |
+| Columns | 列 | Fields | 文域(字段) |
+| Schema | - | Mapping | - |
+| Index | 索引 | 一切都被索引 | - |
+| SQL | - | Query DSL | - |
+| SELECT * FROM table.. | - | GET http:// | - |
+| UPDATE table SET .. | - | PUT http:// | - |
+
+Elasticsearch集群可以包含多个索引(indices)（数据库），每一个索引可以包含多个类型(types)（表），每一个类型包含多个文域(字段)(documents)（行），然后每个文档包含多个字段(Fields)（列）。
 
 ## 插件安装
 
