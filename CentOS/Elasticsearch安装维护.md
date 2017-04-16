@@ -12,6 +12,8 @@ ElasticSearch安装维护
 - [对比理解](#对比理解)
 - [插件安装](#插件安装)
     - [插件](#插件)
+    - [MySQL数据导入](#mysql数据导入)
+- [错误处理](#错误处理)
 - [参考文档](#参考文档)
 
 ## 下载安装
@@ -31,10 +33,13 @@ cd elasticsearch-5.3.0/
 
 ## 命令行运行
 
-进入解压目录之后，运行下面命令即可开始运行Elasticsearch服务了。`Ctrl-C` 结束服务。
+进入解压目录之后，运行下面命令即可开始运行Elasticsearch服务了。`ctrl-c` 结束服务。
 
 ```bash
+# 命令行运行
 ./bin/elasticsearch
+# 查看日志
+tail -f logs/elasticsearch.log
 ```
 
 运行出现下面警告，一般是磁盘不够的样子
@@ -110,28 +115,14 @@ health status index pri rep docs.count docs.deleted store.size pri.store.size
 
 ## 对比理解
 
-在Elasticsearch中，文档归属于一种类型(type),而这些类型存在于索引(index)中，我们可以画一些简单的对比图来类比传统关系型数据库
-
 ```
 Relational DB -> Databases -> Tables -> Rows -> Columns
-关系型数据库        数据库        表        行       列
 Elasticsearch -> Indices   -> Types  -> Documents -> Fields
-Elasticsearch     索引          类型      文档         域(字段)
 ```
 
-| Relational DB | 说明 | Elasticsearch | 说明 |
-| ---- | ---- | ---- | ---- |
-| Databases | 数据库 | Indices | 索引 |
-| Tables | 表 | Types | 类型 |
-| Rows | 表 | Documents | 文档 |
-| Columns | 列 | Fields | 文域(字段) |
-| Schema | - | Mapping | - |
-| Index | 索引 | 一切都被索引 | - |
-| SQL | - | Query DSL | - |
-| SELECT * FROM table.. | - | GET http:// | - |
-| UPDATE table SET .. | - | PUT http:// | - |
+在Elasticsearch中，文档归属于一种类型(type),而这些类型存在于索引(index)中，我们可以画一些简单的对比图来类比传统关系型数据库
 
-Elasticsearch集群可以包含多个索引(indices)（数据库），每一个索引可以包含多个类型(types)（表），每一个类型包含多个文域(字段)(documents)（行），然后每个文档包含多个字段(Fields)（列）。
+Elasticsearch集群可以包含多个索引(indices)（数据库），每一个索引可以包含多个类型(types)（表），每一个类型包含多个文档(documents)（行），然后每个文档包含多个字段(Fields)（列）。
 
 ## 插件安装
 
@@ -169,10 +160,10 @@ plugin.mandatory: analysis-icu,lang-js
 
 ### 插件
 
-- [ElasticSearch Toolbox](https://chrome.google.com/webstore/detail/dejavu/jopjeaiilkcibeohjdmejhoifenbnmlh) 谷歌浏览器的扩展组件  
 - [ElasticSearch Toolbox](https://chrome.google.com/webstore/detail/elasticsearch-toolbox/focdbmjgdonlpdknobfghplhmafpgfbp/related) 谷歌浏览器的扩展组件  
 - [Elasticsearch GUI](http://www.gridshore.nl/esgui/) 
 - [Elasticsearch-head](https://github.com/mobz/elasticsearch-head)
+- [Sense (Beta)](https://chrome.google.com/webstore/detail/sense-beta/lhjgkmllcaadmopgmanpapmpjgmfcfig/related?hl=zh-CN)
 
 插件[elasticsearch-head](https://github.com/mobz/elasticsearch-head)不能通过命令安装，这是一个图形界面管理elasticsearch。
 
@@ -191,6 +182,34 @@ npm start
 http://localhost:9100/
 ```
 
+### MySQL数据导入
+
+- [go-mysql-elasticsearch](https://github.com/siddontang/go-mysql-elasticsearch) golang版本
+- [elasticsearch-river-mysql](https://github.com/scharron/elasticsearch-river-mysql)
+- [elasticsearch-river-jdbc](https://github.com/jprante/elasticsearch-river-jdbc)
+
+## 错误处理
+
+注：ES有执行脚本的能力，因安全因素，不能在root用户下运行，强行运行会报如下错误：
+
+> org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
+
+```bash
+groupadd elsearch   # 增加es组
+useradd elsearch -g elsearch -p elasticsearch  # 增加elsearch用户并附加到elsearch组
+chown -R elsearch:elsearch elasticsearch-5.1.1             # 给目录权限
+su elsearch # 使用es用户
+```
+
+注： `network.host: 127.0.0.1`
+
+```bash
+bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+ERROR: bootstrap checks failed
+```
+
+我通过设置Nginx代理来访问
+
 ## 参考文档
 
 - [Elasticsearch配置](https://www.elastic.co/guide/en/elasticsearch/reference/5.3/settings.html)
@@ -199,3 +218,5 @@ http://localhost:9100/
 - [npm官方仓库](https://www.npmjs.com/package/elasticsearch)
 - [Elasticsearch 权威指南（中文版）](https://www.gitbook.com/book/looly/elasticsearch-the-definitive-guide-cn/details)
 - [Node.js 官方文档](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/12.1/index.html)
+- [Elasticsearch配置说明](http://www.cnblogs.com/hanyouchun/p/5163183.html)
+- [Elasticsearch5.0 安装问题集锦](http://www.cnblogs.com/woxpp/p/6061073.html)
