@@ -59,6 +59,13 @@ grep MemTotal /proc/meminfo   # 查看内存总量
 grep MemFree /proc/meminfo    # 查看空闲内存量
 uptime                 # 查看系统运行时间、用户数、负载
 cat /proc/loadavg      # 查看系统负载
+# 查看内存的插槽数，已经使用多少插槽。每条内存多大，已使用内存多大
+dmidecode|grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range 
+# 查看内存支持的最大内存容量
+dmidecode|grep -P 'Maximum\s+Capacity'
+# 查看内存的频率
+dmidecode|grep -A16 "Memory Device"
+dmidecode|grep -A16 "Memory Device"|grep 'Speed'
 ```
 
 ## 磁盘和分区
