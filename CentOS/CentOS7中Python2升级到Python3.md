@@ -24,7 +24,7 @@ mkdir /usr/local/python3.6.1
 
 ```bash
 cd /usr/local/src/Python-3.6.1
-# ./configure --prefix=/usr/local/python3.6
+# ./configure --prefix=/usr/local/python3.6.1
 # make all
 # make install
 # make clean
@@ -45,5 +45,5 @@ Python 3.6.1
 mv /usr/bin/python /usr/bin/python3.6.1
 
 # 修改软连接
-sudo ln -s /usr/local/python3.6/bin/python3 /usr/bin/python
+sudo ln -s /usr/local/python3.6.1/bin/python3 /usr/bin/python
 ```
