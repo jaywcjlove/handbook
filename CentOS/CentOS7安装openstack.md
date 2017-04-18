@@ -46,7 +46,6 @@ Additional information:
  * To access the OpenStack Dashboard browse to http://192.168.188.127/dashboard .
 Please, find your login credentials stored in the keystonerc_admin in your home directory.
  * To use Nagios, browse to http://192.168.188.127/nagios username: nagiosadmin, password: de7af5954a834f89
-
 # reboot 重启机器
 ```
 
@@ -239,6 +238,104 @@ verbose = False
 
 #set DEBUG log level output
 debug = False
+```
+
+## 服务管理
+
+### 重启 Neutron 服务
+
+#### 控制节点
+
+```
+service openstack-nova-api restart
+service openstack-nova-scheduler restart
+service openstack-nova-conductor restart
+service neutron-server restart
+```
+
+#### 网络节点
+
+```
+service openvswitch restart
+service neutron-openvswitch-agent restart（fuel控制节点默认stop）
+service neutron-l3-agent restart（fuel控制节点默认stop）
+service neutron-dhcp-agent restart（fuel控制节点默认stop）
+service neutron-metadata-agent restart（fuel控制节点默认stop）
+```
+
+#### 计算节点
+
+```
+service neutron-openvswitch-agent restart
+service openvswitch restart
+```
+
+### 重启cinder服务
+
+#### 存储节点
+
+```
+service openstack-cinder-api restart
+service openstack-cinder-scheduler restart
+```
+
+#### 存储节点
+
+```
+service openstack-cinder-volume restart
+```
+
+### 重启glance服务
+
+```
+service openstack-glance-api restart
+service openstack-glance-registry restart
+```
+
+### 重启Swift服务
+
+#### 控制节点
+
+```
+service openstack-swift-proxy restart
+service memcached restart
+```
+
+#### 存储节点
+
+```
+service openstack-swift-account restart
+service openstack-swift-account-auditor restart
+service openstack-swift-account-reaper restart
+service openstack-swift-account-replicator restart
+service openstack-swift-container restart
+service openstack-swift-container-auditor restart
+service openstack-swift-container-replicator restart
+service openstack-swift-container-updater restart
+service openstack-swift-object restart
+service openstack-swift-object-auditor restart
+service openstack-swift-object-replicator restart
+service openstack-swift-object-updater restart
+```
+
+### 重启Nova服务
+
+#### 控制节点
+
+```
+service openstack-nova-api restart
+service openstack-nova-cert restart
+service openstack-nova-consoleauth restart
+service openstack-nova-scheduler restart
+service openstack-nova-conductor restart
+service openstack-nova-novncproxy restart
+```
+
+#### 计算节点
+
+```
+service libvirtd restart
+service openstack-nova-compute restart
 ```
 
 ## 参考知识
