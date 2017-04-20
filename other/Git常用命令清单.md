@@ -703,7 +703,7 @@ git push --force --tags origin 'refs/heads/*'
 ```bash
 git pull  --allow-unrelated-histories
 # 或者指定分枝
-git pull origin master ----allow-unrelated-histories
+git pull origin master --allow-unrelated-histories
 ```
 
 ### 删除仓库
