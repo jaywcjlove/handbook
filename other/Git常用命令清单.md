@@ -75,8 +75,9 @@ git config --list         # 查看配置的信息
 
 自动转换坑太大，提交到git是自动将换行符转换为lf 
 
-`git config --global core.autocrlf input`
-
+```bash
+git config --global core.autocrlf input
+```
 
 ## 常见使用场景
 
@@ -245,8 +246,9 @@ git push # 提交回滚
 
 ### 添加忽略文件
 
-`echo node_modules/ >> .gitignore`  
-
+```
+echo node_modules/ >> .gitignore
+```
 
 ### 利用commit关闭一个issue
 
@@ -256,8 +258,7 @@ git push # 提交回滚
 
 ### 同步fork的上游仓库
 
-[github教程](https://help.github.com/articles/syncing-a-fork/)  
-[在github上同步一个分支(fork)](http://www.miss77.net/549.html)  
+[Github教程同步fork教程](https://help.github.com/articles/syncing-a-fork/)，[在Github上同步一个分支(fork)](http://www.miss77.net/549.html)  
 
 **设置添加多个远程仓库地址。**
 
@@ -319,7 +320,7 @@ git merge upstream/master
 
 注意参数，这个不是普通的clone，clone下来的仓库并不能参与开发
 
-```
+```bash
 git clone --bare https://github.com/user/repo.git
 cd repo.git
 ```
@@ -461,7 +462,9 @@ $ git clone rsync://example.com/path/to/repo.git/
 
 ### help
 
-`git help config` 获取帮助信息  
+```bash
+git help config # 获取帮助信息  
+```
 
 ### add
 
@@ -549,7 +552,9 @@ git stash apply stash@{0} # 恢复指定的工作现场，当你保存了不只�
 
 ### merge
 
-`git merge --squash test` ##合并压缩，将test上的commit压缩为一条   
+```bash
+git merge --squash test # 合并压缩，将test上的commit压缩为一条   
+```
 
 ### cherry-pick
 
@@ -565,8 +570,8 @@ git rebase master   # 将master分之上超前的提交，变基到当前分支
 git rebase --onto master 169a6  # 限制回滚范围，rebase当前分支从169a6以后的提交  
 git rebase --interactive # 交互模式，修改commit   
 git rebase --continue    # 处理完冲突继续合并   
-git rebase --skip   # 跳过   
-git rebase --abort  # 取消合并    
+git rebase --skip        # 跳过   
+git rebase --abort       # 取消合并    
 ```
 
 ## 分支branch
@@ -577,14 +582,16 @@ git rebase --abort  # 取消合并
 git push origin :branchName  # 删除远程分支  
 git push origin --delete new # 删除远程分支new   
 git branch -d branchName     # 删除本地分支，强制删除用-D  
-git branch -d test # 删除本地test分支   
-git branch -D test # 强制删除本地test分支   
+git branch -d test      # 删除本地test分支   
+git branch -D test      # 强制删除本地test分支   
 git remote prune origin # 远程删除了，本地还能看到远程存在，这条命令删除远程不存在的分支
 ```
 
 ### 提交
 
-`git push -u origin branchName` #提交分支到远程origin主机中  
+```bash
+git push -u origin branchName # 提交分支到远程origin主机中  
+```
 
 ### 拉取
 
@@ -673,7 +680,9 @@ git submodule foreach --recursive git submodule update
 
 ## 删除文件
 
-`git rm -rf node_modules/`  
+```bash
+git rm -rf node_modules/
+```
 
 ## remote
 
@@ -738,22 +747,25 @@ git log <last tag> HEAD --pretty=format:%s # 只显示commit
 
 ## 重写历史
 
-`git commit --amend` #改变最近一次提交  
-`git rebase -i HEAD~3` #修改最近三次的提交说明，或者其中任意一次  
-`git commit --amend` #保存好了，这些指示很明确地告诉了你该干什么  
-`git rebase --continue` 修改提交说明，退出编辑器。  
-
+```bash
+git commit --amend    # 改变最近一次提交  
+git rebase -i HEAD~3  # 修改最近三次的提交说明，或者其中任意一次  
+git commit --amend    # 保存好了，这些指示很明确地告诉了你该干什么  
+git rebase --continue # 修改提交说明，退出编辑器。  
 ```
+
+```bash
 pick f7f3f6d changed my name a bit
 pick 310154e updated README formatting and added blame
 pick a5f4a0d added cat-file
 ```
+
 改成
+
 ```
 pick 310154e updated README formatting and added blame
 pick f7f3f6d changed my name a bit
 ```
-
 
 ### 删除仓库
 
@@ -762,11 +774,11 @@ cd ..
 rm -rf repo.git
 ```
 
-[官方教程](https://help.github.com/articles/changing-author-info/)
+[Github官方教程](https://help.github.com/articles/changing-author-info/)
 
 ## 其它
 
-```
+```bash
 git help *  # 获取命令的帮助信息  
 git status  # 获取当前的状态，非常有用，因为git会提示接下来的能做的操作  
 ```
