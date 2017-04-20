@@ -25,7 +25,7 @@
 
 ## 安装
 
-```bash
+```
 wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
 
@@ -241,6 +241,11 @@ debug = False
 ```
 
 ## 服务管理
+
+```bash
+systemctl stop httpd
+systemctl start httpd
+```
 
 ### 重启 Neutron 服务
 
