@@ -334,11 +334,10 @@ CORRECT_EMAIL更正的邮箱
 将下面代码复制放到命令行中执行
 
 ```bash
-git filter-branch -f \ 
---env-filter '
+git filter-branch -f --env-filter '
 OLD_EMAIL="wowohoo@qq.com"
 CORRECT_NAME="小弟调调"
-CORRECT_EMAIL="12345678@qq.com"
+CORRECT_EMAIL="更正的邮箱@qq.com"
 if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
 then
     export GIT_COMMITTER_NAME="$CORRECT_NAME"
