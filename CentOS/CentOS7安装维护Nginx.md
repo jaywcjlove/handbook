@@ -767,7 +767,8 @@ server {
     # 这个方式使用场景，你在写React或者Vue项目的时候，没有真实路由
     location / {
         try_files $uri $uri/ /index.html =404;
-    }
+        #                               ^ 空格很重要
+    }
 }
 ```
 
