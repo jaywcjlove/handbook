@@ -12,6 +12,7 @@
   - [文件推向3个git库](#文件推向3个git库)
   - [修改远程仓库地址](#修改远程仓库地址)
   - [撤销远程记录](#撤销远程记录)
+  - [放弃本地的文件修改](#放弃本地的文件修改)
   - [回滚到某个commit提交](#回滚到某个commit提交)
   - [添加忽略文件](#添加忽略文件)
   - [利用commit关闭一个issue](#利用commit关闭一个issue)
@@ -235,6 +236,30 @@ git remote add origin git@jslite.github.com:JSLite/JSLite.git  # 添加远程路
 ```shell
 git reset --hard HEAD~1 # 撤销一条记录   
 git push -f origin HEAD:master # 同步到远程仓库  
+```
+
+### 放弃本地的文件修改
+
+```shell
+git reset --hard FETCH_HEAD # FETCH_HEAD表示上一次成功git pull之后形成的commit点。然后git pull
+```
+
+`git reset --hard FETCH_HEAD` 出现错误
+
+```bash
+git pull
+You are not currently on a branch, so I cannot use any
+'branch.<branchname>.merge' in your configuration file.
+Please specify which remote branch you want to use on the command
+line and try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) FOR details.
+```
+
+解决方法：
+
+```bash
+git checkout -b temp # 新建+切换到temp分支 
+git checkout master
 ```
 
 ### 回滚到某个commit提交
