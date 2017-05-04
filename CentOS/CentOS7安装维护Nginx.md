@@ -889,3 +889,6 @@ location ~* \.(gif|jpg|png|swf|flv)$ {
 
 - [负载均衡原理的解析](https://my.oschina.net/u/3341316/blog/877206)
 - [Nginx泛域名解析，实现多个二级域名 ](http://blog.githuber.cn/posts/73)
+- [深入 NGINX: 我们如何设计性能和扩展](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
+- [Inside NGINX: How We Designed for Performance & Scale](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
+- [Nginx开发从入门到精通](http://tengine.taobao.org/book/index.html)
