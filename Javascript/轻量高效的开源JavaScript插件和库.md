@@ -16,6 +16,10 @@
 - [动画](#动画)
 - [时间](#时间)
 - [其它](#其它)
+- [加载器](#加载器)
+- [构建工具](#构建工具)
+- [测试](#测试)
+- [包管理器](#包管理器)
 - [CDN](#cdn)
 
 ## 图片
@@ -140,6 +144,45 @@
 - [Feature.js](https://github.com/osrec/currencyFormatter.js/) - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。[demo](hhttp://featurejs.com/)
 - [screenfull.js](https://github.com/sindresorhus/screenfull.js) -  极小、跨平台的 JavaScript 全屏插件。[demo](https://sindresorhus.com/screenfull.js/)
 
+## 加载器
+
+- [requirejs](https://github.com/requirejs/requirejs) - JS模块化工具
+- [SeaJS](https://github.com/seajs/seajs) - JavaScript模块加载框架
+- [loadjs](https://github.com/muicss/loadjs) - JavaScript模块加载框架
+- [ESL](https://github.com/ecomfe/esl) - 浏览器端AMD标准加载器
+
+## 构建工具
+
+- [webpack](https://github.com/webpack/webpack) - 前端构建工具
+- [Gulp](https://github.com/gulpjs/gulp) - 自动化构建工具
+- [Babel](https://github.com/babel/babel) - 下一代JavasScript语法编译器
+- [PostCSS](https://github.com/postcss/postcss) - 利用JS插件转换CSS样式的工具
+- [Grunt](https://github.com/gruntjs/grunt) - JavaScript世界的构建工具
+- [rollup.js](https://github.com/rollup/rollup) - JS模块打包器
+- [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard) - webpack开发服务器的CLI仪表板
+- [traceur-compiler](https://github.com/google/traceur-compiler) - 支持ES6的JS编译器
+- [brunch](https://github.com/brunch/brunch) - 超快的HTML5构建工具
+- [Helium-css](https://github.com/geuis/helium-css) - 显示网站中未使用的CSS
+
+## 测试
+
+- [mocha](https://github.com/mochajs/mocha) - JavaScript 测试框架
+- [ESLint](https://github.com/eslint/eslint) - JavaScript代码检查工具
+- [JSHint](https://github.com/jshint/jshint) - JavaScript语法和风格检查工具
+- [casperjs](https://github.com/casperjs/casperjs) - 开源的导航脚本处理和测试工具
+- [Nightwatch](https://github.com/nightwatchjs/nightwatch) - 用户界面自动化测试框架
+- [istanbul](https://github.com/gotwarlost/istanbul) - JS代码覆盖工具
+- [intern](https://github.com/theintern/intern) - JavaScript测试系统
+- [benchmark.js](https://github.com/bestiejs/benchmark.js) - 强大的JavaScript基准库
+- [loadtest](https://github.com/alexfernandez/loadtest) - HTTP或WebSockets URL的负载测试
+- [JSCover](https://github.com/tntim96/JSCover) - JavaScript代码覆盖测量工具
+
+## 包管理器
+
+- [yarn](https://github.com/yarnpkg/yarn) - 新的 Hadoop 资源管理器
+- [bower](https://github.com/bower/bower) - web包管理器
+- [npm](https://github.com/npm/npm) - NodeJS包安装的管理模块
+- [ndm](https://github.com/720kb/ndm) - npm桌面管理器
 
 ## CDN
 
