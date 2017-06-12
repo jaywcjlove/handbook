@@ -892,3 +892,5 @@ location ~* \.(gif|jpg|png|swf|flv)$ {
 - [深入 NGINX: 我们如何设计性能和扩展](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
 - [Inside NGINX: How We Designed for Performance & Scale](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
 - [Nginx开发从入门到精通](http://tengine.taobao.org/book/index.html)
+- [Nginx的优化与防盗链](http://os.51cto.com/art/201703/535326.htm#topx)
+- [Nginx+Keepalived(双机热备)搭建高可用负载均衡环境(HA)](https://my.oschina.net/xshuai/blog/917097)
