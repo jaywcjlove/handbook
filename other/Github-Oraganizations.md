@@ -1,0 +1,24 @@
+国内互联网公司的开源项目及Github地址汇总
+---
+
+- [Alibaba](https://github.com/alibaba) 阿里巴巴 ![](https://avatars1.githubusercontent.com/u/1961952?v=3&s=14)
+  - [aliceui](https://github.com/aliceui) 支付宝 ![](https://avatars3.githubusercontent.com/u/3404882?v=3&s=14)
+  - [issyteam](https://github.com/kissyteam) 淘宝 ![](https://avatars1.githubusercontent.com/u/328318?v=3&s=14)
+- [Huawei](https://github.com/Huawei-Hadoop) 华为 ![](https://avatars0.githubusercontent.com/u/3898822?v=3&s=14)
+- [Tencent](https://code.csdn.net/tencent) 腾讯 
+  - [腾讯 AlloyTeam ](https://github.com/AlloyTeam) 腾讯 ![](https://avatars2.githubusercontent.com/u/1503033?v=3&s=14)
+- [Baidu EFE team](https://github.com/baidufe) 百度  ![](https://avatars3.githubusercontent.com/u/2268460?v=3&s=14)
+- [NetEase](https://github.com/netease) 网易 ![](https://avatars2.githubusercontent.com/u/1460597?v=3&s=14)
+- [SOHUDBA](https://github.com/SOHUDBA) 搜狐 ![](https://avatars2.githubusercontent.com/u/4919525?v=3&s=14)
+- [Qihoo360](https://github.com/Qihoo360) 奇虎360 ![](https://avatars2.githubusercontent.com/u/4082929?v=3&s=14)
+- [唯品会](https://github.com/vipshop) 唯品会 ![](https://avatars3.githubusercontent.com/u/7145544?v=3&s=14)
+- [Douban Inc.](https://github.com/douban) 豆瓣 ![](https://avatars3.githubusercontent.com/u/1220164?v=3&s=14)
+- [大众点评网 ](https://github.com/dianping) 大众点评网 ![](https://avatars0.githubusercontent.com/u/1539555?v=3&s=14)
+- [Xiaomi Open Source.](https://github.com/xiaomi) 小米 
+- [meituan.com](https://github.com/meituan) 美团 ![](https://avatars1.githubusercontent.com/u/977371?v=3&s=14)
+- [蘑菇街](https://github.com/mogujie) 蘑菇街 ![](https://avatars1.githubusercontent.com/u/10172799?v=3&s=14)
+- [CodisLabs](https://github.com/CodisLabs) 豌豆荚 ![](https://avatars1.githubusercontent.com/u/16700854?v=3&s=14)
+- [当当](https://github.com/dangdangdotcom) 当当 ![](https://avatars1.githubusercontent.com/u/10172799?v=3&s=14)
+- [有赞](https://github.com/youzan) 有赞 ![](https://avatars0.githubusercontent.com/u/11404085?v=3&s=14)
+- [TeamStuQ](https://github.com/TeamStuQ) TeamStuQ ![](https://avatars2.githubusercontent.com/u/15888474?v=3&s=14)
+- [伯乐在线](https://github.com/jobbole) 有赞 ![](https://avatars1.githubusercontent.com/u/8531823?v=3&s=14)
