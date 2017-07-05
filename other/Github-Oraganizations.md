@@ -21,4 +21,5 @@
 - [当当](https://github.com/dangdangdotcom) 当当 ![](https://avatars1.githubusercontent.com/u/10172799?v=3&s=14)
 - [有赞](https://github.com/youzan) 有赞 ![](https://avatars0.githubusercontent.com/u/11404085?v=3&s=14)
 - [TeamStuQ](https://github.com/TeamStuQ) TeamStuQ ![](https://avatars2.githubusercontent.com/u/15888474?v=3&s=14)
+- [稀土](https://github.com/xitu) 稀土 ![](https://avatars1.githubusercontent.com/u/10482599?v=3&s=14)
 - [伯乐在线](https://github.com/jobbole) 伯乐在线 ![](https://avatars1.githubusercontent.com/u/8531823?v=3&s=14)
