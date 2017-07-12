@@ -6,20 +6,22 @@ CentOS7安装KVM虚拟机详解
 
 ## 目录
 
-
 - [检测是否支持KVM](#检测是否支持KVM)
 - [安装 KVM 环境](#安装kvm环境)
 - [配置宿主机网络](#配置宿主机网络)
-  - [Bridge模式配置](#Bridge模式配置)
-  - [NAT模式](#NAT模式)
-  - [自定义NAT网络](#自定义NAT网络)
+  - [Bridge模式配置](#bridge模式配置)
+  - [NAT模式](#nat模式)
+  - [自定义NAT网络](#自定义nat网络)
+    - [物理机上面配置](#物理机上面配置)
+    - [机上面配置](#机上面配置)
 - [安装虚拟机](#安装虚拟机)
-- [连接虚拟机](#连接虚拟机)
-- [KVM网络模式](#KVM网络模式)
-  - [Bridge模式](#Bridge模式)
+  - [创建磁盘文件](#创建磁盘文件)
+  - [命令行配置系统](#命令行配置系统)
+  - [连接虚拟机](#连接虚拟机)
 - [常用命令说明](#常用命令说明)
   - [virt-install](#virt-install)
   - [virt](#virt)
+- [参考文章](#参考文章)
 
 ## 检测是否支持KVM
 
@@ -458,7 +460,8 @@ virt-install \
 --extra-args='console=ttyS0' \
 --force
 ```
---disk path=/home/vms/centos76.qcow2,size=60 \
+
+### 命令行配置系统
 
 上面创建虚拟机命令最终需要你配置系统基础设置，带 `[!]` 基本都是要配置的，按照顺序往下配置，按对用的数字以此进行设置。
 
@@ -572,7 +575,7 @@ Select a partition scheme configuration.
 echo "TZ='Asia/Shanghai'; export TZ" >> /etc/profile
 ```
 
-## 连接虚拟机
+### 连接虚拟机
 
 通过 `virsh console <虚拟机名称>` 命令来连接虚拟机
 
