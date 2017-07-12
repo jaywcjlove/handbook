@@ -20,6 +20,7 @@
   - [批量修改历史commit中的名字和邮箱](#批量修改历史commit中的名字和邮箱)
   - [查看某个文件历史](#查看某个文件历史)
   - [打造自己的git命令](#打造自己的git命令)
+  - [中文乱码的解决方案](#中文乱码的解决方案)
 - [新建仓库](#新建仓库)
   - [init](#init)
   - [status](#status)
@@ -339,7 +340,7 @@ git merge upstream/master
 ```
 
 
-## 批量修改历史commit中的名字和邮箱
+### 批量修改历史commit中的名字和邮箱
 
 **1.克隆仓库**
 
@@ -407,7 +408,7 @@ git pull origin master --allow-unrelated-histories
 ```
 
 
-## 查看某个文件历史
+### 查看某个文件历史
 
 ```shell
 git log --pretty=oneline 文件名  # 列出文件的所有改动历史  
@@ -417,7 +418,7 @@ git blame 文件名     # 显示文件的每一行是在那个版本最后修改
 git whatchanged 文件名  # 显示某个文件的每个版本提交信息：提交日期，提交人员，版本号，提交备注（没有修改细节）  
 ```
 
-## 打造自己的git命令
+### 打造自己的git命令
 
 ```sh
 git config --global alias.st status
@@ -430,6 +431,12 @@ git config --global alias.ci commit
 
 ```sh
 git st
+```
+
+### 中文乱码的解决方案
+
+```bash
+git config --global core.quotepath false
 ```
 
 ## 新建仓库
