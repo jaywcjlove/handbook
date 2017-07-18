@@ -64,6 +64,9 @@ wget http://nginx.org/download/nginx-1.11.5.tar.gz
 # 如果没有安装wget
 # 下载已编译版本
 $ yum install wget
+
+# 解压压缩包
+tar zxf nginx-1.13.3.tar.gz
 ```
 
 ### 编译安装
@@ -73,6 +76,27 @@ $ yum install wget
 ```bash
 cd nginx-1.11.5
 ./configure
+
+
+....
+Configuration summary
+  + using system PCRE library
+  + OpenSSL library is not used
+  + using system zlib library
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx modules path: "/usr/local/nginx/modules"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
 ```
 
 安装报错误的话比如：“C compiler cc is not found”，这个就是缺少编译环境，安装一下就可以了 **yum -y install gcc make gcc-c++ openssl-devel wget**
@@ -97,11 +121,13 @@ make install
 
 ## 开机自启动
 
+**开机自启动方法一：**
+
 编辑 **vi /lib/systemd/system/nginx.service** 文件，没有创建一个 **touch nginx.service** 然后将如下内容根据具体情况进行修改后，添加到nginx.service文件中：
 
 ```bash
 [Unit]
-Description=nginx1.11.5
+Description=nginx
 After=network.target remote-fs.target nss-lookup.target
 
 [Service]
@@ -118,10 +144,41 @@ PrivateTmp=true
 WantedBy=multi-user.target
 ```
 
+[Unit]:服务的说明  
+Description:描述服务  
+After:描述服务类别  
+[Service]服务运行参数的设置  
+Type=forking是后台运行的形式  
+ExecStart为服务的具体运行命令  
+ExecReload为重启命令  
+ExecStop为停止命令  
+PrivateTmp=True表示给服务分配独立的临时空间  
+注意：[Service]的启动、重启、停止命令全部要求使用绝对路径  
+[Install]运行级别下服务安装的相关设置，可设置为多用户，即系统运行级别为3  
+
+保存退出。
+
 设置开机启动，使配置生效：
 
-```
+```bash
 systemctl enable nginx.service
+# 输出下面内容表示成功了
+Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service to /usr/lib/systemd/system/nginx.service.
+```
+
+**开机自启动方法二：**
+
+```bash
+vi /etc/rc.local
+
+# 在 rc.local 文件中，添加下面这条命令
+/usr/local/nginx/sbin/nginx -s reload
+```
+
+如果开机后发现自启动脚本没有执行，你要去确认一下rc.local这个文件的访问权限是否是可执行的，因为rc.local默认是不可执行的。修改rc.local访问权限，增加可执行权限：
+
+```bash
+chmod +x /etc/rc.d/rc.local
 ```
 
 ## 运维

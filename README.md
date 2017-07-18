@@ -9,45 +9,51 @@
   - [前端工程师](Job-Descriptions/frontend-engineer.md#前端工程师)
   - [Node.js 工程师](Job-Descriptions/node-engineer.md#nodejs开发工程师)
 
-## 精华
+## 精华置顶
 
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
+- **[CentOS7安装维护Nginx★★★★](CentOS/CentOS7安装维护Nginx.md)**
+- **[CentOS7安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
 
 ## MySQL
 
 搜集整合的MySQL笔记迁移到[这里了](https://github.com/jaywcjlove/mysql-tutorial) ★★★
 
-- [MySQL安装](https://github.com/jaywcjlove/mysql-tutorial)
-- [Mac下重置MySQL的root密码](https://github.com/jaywcjlove/mysql-tutorial)
-- [MySQL支持emoji图标存储](https://github.com/jaywcjlove/mysql-tutorial)
-- [MySQL一些常用语句](https://github.com/jaywcjlove/mysql-tutorial)
-- [MySQL数据类型](https://github.com/jaywcjlove/mysql-tutorial)
-- [Centos6下升级MySQL数据库](https://github.com/jaywcjlove/mysql-tutorial)
-
 ## CentOS 
 
 - [Centos常用命令](CentOS/CentOS.md)
-- [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
+- [CentOS7安装KVM虚拟机详解](CentOS/CentOS7安装KVM虚拟机详解.md)
 - [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
 - [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
-- **[CentOS7安装维护Nginx★★★★](CentOS/CentOS7安装维护Nginx.md)**
-- **[CentOS7安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
+- [Centos7安装编译Node](CentOS/Centos7安装编译Node.md)
 - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
-- [node安装](CentOS/node安装.md)
 - [chmod说明](CentOS/chmod.md)
 - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
+- [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
 - [samba安装搭建使用](CentOS/samba.md)
 - [常用基础命令](CentOS/常用基础命令.md)
 
-## Redis
+## 10分钟入门Redis
 
-- [Redis事件通知发布订阅](Redis/Redis事件通知发布订阅.md)
-- [Redis提供的原生监控](Redis/Redis提供的原生监控.md)
-- [Redis在CentOS 6.5中如何升级](Redis/Redis在CentOS%206.5中如何升级.md)
-- [Redis配置说明](Redis/Redis配置说明.md)
-- [Redis.conf 配置文件例子](Redis/Redis.conf)
+Redis是一个开源的，先进的 key-value 存储可用于构建高性能的存储解决方案，入门介绍就到这里了。
+
+- [Redis安装](Redis/index.md#redis安装)
+  - [官方编译安装](Redis/index.md#官方编译安装)
+  - [通过EPEL源安装](Redis/index.md#通过epel源安装)
+- [Redis升级](Redis/index.md#redis升级)
+- [服务管理](Redis/index.md#服务管理)
+- [更改配置](Redis/index.md#更改配置)
+- [基本操作](Redis/index.md#基本操作)
+- [开启通知](Redis/index.md#开启通知)
+- [开启远程登录连接](Redis/index.md#开启远程登录连接)
+- [提供的原生监控](Redis/index.md#提供的原生监控)
+  - [当前链接的客户端数和连接数](Redis/index.md#当前链接的客户端数和连接数)
+  - [内存最大的键值和平均的键值数据](Redis/index.md#内存最大的键值和平均的键值数据)
+  - [查看当前的键值情况](Redis/index.md#查看当前的键值情况)
+  - [原生的Monitor监控](Redis/index.md#原生的monitor监控)
+- [配置说明](Redis/index.md#配置说明)
 
 ## Android
 
@@ -75,8 +81,9 @@
 ## 其它
 
 - **[常见HTTP/FTP/WebSockets状态码大全★★★★★](other/HTTP-Status-codes.md)**
-- [Lua5.3中文手册](other/Lua5.3.md)
+- [国内互联网公司的开源项目及Github地址汇总](other/Github-Oraganizations.md)
 - [通过代理工具提高Github Clone速度](other/通过代理工具提高Github%20Clone速度.md)
 - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
-- [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
+- [Lua5.3中文手册](other/Lua5.3.md)
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
+- [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
