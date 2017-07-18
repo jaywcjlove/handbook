@@ -3,21 +3,21 @@ CentOS7安装KVM虚拟机详解
 
 基于 CentOS Linux release 7.2.1511 (Core) 的环境下命令行的方式安装KVM的详细过程。
 
-
 ## 目录
 
 - [检测是否支持KVM](#检测是否支持KVM)
 - [安装 KVM 环境](#安装kvm环境)
+- [安装虚拟机](#安装虚拟机)
+  - [命令行配置系统](#命令行配置系统)
+  - [连接虚拟机](#连接虚拟机)
+  - [退出虚拟机](#退出虚拟机)
+- [配置物理机网络](#配置物理机网络)
 - [配置宿主机网络](#配置宿主机网络)
   - [Bridge模式配置](#bridge模式配置)
   - [NAT模式](#nat模式)
   - [自定义NAT网络](#自定义nat网络)
     - [物理机上面配置](#物理机上面配置)
     - [机上面配置](#机上面配置)
-- [安装虚拟机](#安装虚拟机)
-  - [命令行配置系统](#命令行配置系统)
-  - [连接虚拟机](#连接虚拟机)
-  - [退出虚拟机](#退出虚拟机)
 - [挂载磁盘](#挂载磁盘)
   - [创建磁盘](#创建磁盘)
 - [常用命令说明](#常用命令说明)
@@ -99,6 +99,270 @@ systemctl is-enabled libvirtd
    Active: active (running) since 二 2001-01-02 11:29:53 CST; 1h 41min ago
      Docs: man:libvirtd(8)
            http://libvirt.org
+```
+
+## 安装虚拟机
+
+安装前要设置环境语言为英文`LANG="en_US.UTF-8"`，如果是中文的话某些版本可能会报错。`CentOS 7` 在这里修改 `/etc/locale.conf`。
+
+kvm创建虚拟机，特别注意`.iso`镜像文件一定放到`/home` 或者根目录重新创建目录，不然会因为权限报错，无法创建虚拟机。
+
+```bash
+virt-install \
+--virt-type=kvm \
+--name=centos78 \
+--vcpus=2 \
+--memory=4096 \
+--location=/tmp/CentOS-7-x86_64-Minimal-1511.iso \
+--disk path=/home/vms/centos78.qcow2,size=40,format=qcow2 \
+--network bridge=br0 \
+--graphics none \
+--extra-args='console=ttyS0' \
+--force
+# ------------------------
+virt-install --virt-type=kvm --name=centos88 --vcpus=2 --memory=4096 --location=/tmp/CentOS-7-x86_64-Minimal-1511.iso --disk path=/home/vms/centos88.qcow2,size=40,format=qcow2 --network bridge=br0 --graphics none --extra-args='console=ttyS0' --force
+```
+
+### 命令行配置系统
+
+上面创建虚拟机命令最终需要你配置系统基础设置，带 `[!]` 基本都是要配置的，按照顺序往下配置，按对用的数字以此进行设置。
+
+```bash
+
+Installation
+
+ 1) [x] Language settings                 2) [!] Timezone settings
+        (English (United States))                (Timezone is not set.)
+ 3) [!] Installation source               4) [!] Software selection
+        (Processing...)                          (Processing...)
+ 5) [!] Installation Destination          6) [x] Kdump
+        (No disks selected)                      (Kdump is enabled)
+ 7) [ ] Network configuration             8) [!] Root password
+        (Not connected)                          (Password is not set.)
+ 9) [!] User creation
+        (No user will be created)
+  Please make your choice from above ['q' to quit | 'b' to begin installation |
+  'r' to refresh]:
+```
+
+2) Timezone settings 时区设置选择  `5) Asia亚洲`，再选择城市 `62) Shanghai上海`
+
+```bash
+Available regions
+ 1)  Africa                 6)  Atlantic              10)  Pacific
+ 2)  America                7)  Australia             11)  US
+ 3)  Antarctica             8)  Europe                12)  Etc
+ 4)  Arctic                 9)  Indian
+ 5)  Asia
+Please select the timezone.
+Use numbers or type names directly [b to region list, q to quit]: 5
+--------------------
+
+ 8)  Baghdad               35)  Kathmandu             61)  Seoul
+ 9)  Bahrain               36)  Khandyga              62)  Shanghai
+10)  Baku                  37)  Kolkata               63)  Singapore
+26)  Hong_Kong             53)  Pontianak
+27)  Hovd
+Please select the timezone.
+Use numbers or type names directly [b to region list, q to quit]: 62
+
+```
+
+3) Installation source 安装源输入数字`2`
+
+```bash
+Choose an installation source type.
+ 1)  CD/DVD
+ 2)  local ISO file
+ 3)  Network
+  Please make your choice from above ['q' to quit | 'c' to continue |
+  'r' to refresh]: 2
+```
+
+4) Software selection 软件选择
+
+```bash
+Base environment
+Software selection
+
+Base environment
+
+ 1)  [x] Minimal Install
+  Please make your choice from above ['q' to quit | 'c' to continue |
+  'r' to refresh]:
+```
+
+5) Installation Destination 安装目的地
+
+```bash
+Installation Destination
+
+[x] 1) : 40 GiB (vda)
+
+1 disk selected; 40 GiB capacity; 40 GiB free ...
+
+  Please make your choice from above ['q' to quit | 'c' to continue |
+  'r' to refresh]: c
+
+
+Autopartitioning Options 自动分区选项
+
+[ ] 1) Replace Existing Linux system(s) 替换现有的Linux系统
+
+[x] 2) Use All Space 使用所有空间
+
+[ ] 3) Use Free Space 使用可用空间
+
+================================================================================
+Partition Scheme Options 分区方案选项
+
+[ ] 1) Standard Partition 标准分区
+
+[ ] 2) Btrfs Btrfs
+
+[x] 3) LVM LVM(逻辑卷管理)
+
+[ ] 4) LVM Thin Provisioning 精简配置
+
+Select a partition scheme configuration.
+
+  Please make your choice from above ['q' to quit | 'c' to continue |
+  'r' to refresh]: c
+
+```
+
+此处也可以只设置 `Root 密码`和`Installation Destination 安装目的地`其它进入系统设置比如时区设置如下：
+
+```bash
+echo "TZ='Asia/Shanghai'; export TZ" >> /etc/profile
+```
+
+### 连接虚拟机
+
+通过 `virsh console <虚拟机名称>` 命令来连接虚拟机
+
+```bash
+# 查看虚拟机
+virsh list              # 查看在运行的虚拟机
+virsh list –all         # 查看所有虚拟机
+
+ Id    Name                           State
+----------------------------------------------------
+ 7     centos72                       running
+```
+
+连接虚拟机
+
+```bash
+virsh console centos72
+```
+
+配置虚拟机网络，编辑`vi /etc/sysconfig/network-scripts/ifcfg-eth0`
+
+```bash
+TYPE=Ethernet
+BOOTPROTO=static
+IPADDR=192.168.120.200
+PREFIX=24
+GATEWAY=192.168.120.1
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=eth0
+UUID=adfa3b7d-bf60-47e6-8482-871dee686fb5
+DEVICE=eth0
+ONBOOT=yes
+```
+
+添加DNS配置，也可以放到`ifcfg-eth0`中，DNS不是随便设置的，你可以通过[host](https://jaywcjlove.github.io/linux-command/c/host.html)、[dig](https://jaywcjlove.github.io/linux-command/c/dig.html)、[nslookup](https://jaywcjlove.github.io/linux-command/c/nslookup.html)命令查询DNS，如果这些工具不存在可以通过`yum install bind-utils -y`来安装一下。
+
+```bash
+# 如果没有在网络配置添加DNS可以这种方式添加DNS
+echo "nameserver 192.168.188.1" > /etc/resolv.conf
+```
+
+激活网卡
+
+```bash
+ifup eth0 # 激活网卡
+```
+
+
+## 配置物理机网络
+
+目前我只有一个固定IP，通过配置`eno2`，网桥当做路由器，虚拟机共享物理机进出网络。
+
+物理机网络配置，网络进出走`eno2` 编辑`vi /etc/sysconfig/network-scripts/ifcfg-eno2`
+
+```bash
+TYPE=Ethernet
+BOOTPROTO=static
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=eno2
+UUID=f66c303e-994a-43cf-bd91-bb897dc2088d
+DEVICE=eno2
+ONBOOT=yes
+
+IPADDR=<这里固定IP配置的地方>  # 设置IP地址
+PREFIX=24                   # 设置子网掩码
+GATEWAY=<这里设置网关>        # 设置网关
+DNS1=<这里设置DNS>           # DNS
+```
+
+`ifcfg-br0` 桥接网卡配置在同一个目录中。
+
+```bash
+TYPE=Bridge
+BOOTPROTO=static
+NAME=br0
+DEVICE=br0
+ONBOOT=yes
+IPADDR=192.168.120.1
+PREFIX=24
+```
+
+物理网卡指定桥接网卡`BRIDGE="br0"`
+
+```bash
+TYPE=Ethernet
+BOOTPROTO=none
+NAME=eno1
+DEVICE=eno1
+ONBOOT=yes
+BRIDGE="br0"
+```
+
+配置路由转发`vi /etc/sysctl.conf`
+
+```bash
+# Controls IP packet forwarding
+net.ipv4.ip_forward = 0
+修改为
+# Controls IP packet forwarding
+net.ipv4.ip_forward = 1    允许内置路由
+```
+
+设置转发规则
+
+```bash
+iptables -t nat -A POSTROUTING -s 192.168.188.0/24 -j SNAT --to-source <固定IP>
+# cat /etc/sysconfig/iptables
 ```
 
 ## 配置宿主机网络
@@ -397,201 +661,6 @@ virsh net-list --all
 # ----------------------------------------------------------
 #  default              active     no            no
 #  management           active     yes           yes
-```
-
-#### 机上面配置
-
-## 安装虚拟机
-
-安装前要设置环境语言为英文`LANG="en_US.UTF-8"`，如果是中文的话某些版本可能会报错。`CentOS 7` 在这里修改 `/etc/locale.conf`。
-
-kvm创建虚拟机，特别注意`.iso`镜像文件一定放到`/home` 或者根目录重新创建目录，不然会因为权限报错，无法创建虚拟机。
-
-```bash
-virt-install \
---virt-type=kvm \
---name=centos78 \
---vcpus=2 \
---memory=4096 \
---location=/tmp/CentOS-7-x86_64-Minimal-1511.iso \
---disk path=/home/vms/centos78.qcow2,size=40,format=qcow2 \
---network bridge=br0 \
---graphics none \
---extra-args='console=ttyS0' \
---force
-# ------------------------
-virt-install --virt-type=kvm --name=centos88 --vcpus=2 --memory=4096 --location=/tmp/CentOS-7-x86_64-Minimal-1511.iso --disk path=/home/vms/centos88.qcow2,size=40,format=qcow2 --network bridge=br0 --graphics none --extra-args='console=ttyS0' --force
-```
-
-### 命令行配置系统
-
-上面创建虚拟机命令最终需要你配置系统基础设置，带 `[!]` 基本都是要配置的，按照顺序往下配置，按对用的数字以此进行设置。
-
-```bash
-
-Installation
-
- 1) [x] Language settings                 2) [!] Timezone settings
-        (English (United States))                (Timezone is not set.)
- 3) [!] Installation source               4) [!] Software selection
-        (Processing...)                          (Processing...)
- 5) [!] Installation Destination          6) [x] Kdump
-        (No disks selected)                      (Kdump is enabled)
- 7) [ ] Network configuration             8) [!] Root password
-        (Not connected)                          (Password is not set.)
- 9) [!] User creation
-        (No user will be created)
-  Please make your choice from above ['q' to quit | 'b' to begin installation |
-  'r' to refresh]:
-```
-
-2) Timezone settings 时区设置选择  `5) Asia亚洲`，再选择城市 `62) Shanghai上海`
-
-```bash
-Available regions
- 1)  Africa                 6)  Atlantic              10)  Pacific
- 2)  America                7)  Australia             11)  US
- 3)  Antarctica             8)  Europe                12)  Etc
- 4)  Arctic                 9)  Indian
- 5)  Asia
-Please select the timezone.
-Use numbers or type names directly [b to region list, q to quit]: 5
---------------------
-
- 8)  Baghdad               35)  Kathmandu             61)  Seoul
- 9)  Bahrain               36)  Khandyga              62)  Shanghai
-10)  Baku                  37)  Kolkata               63)  Singapore
-26)  Hong_Kong             53)  Pontianak
-27)  Hovd
-Please select the timezone.
-Use numbers or type names directly [b to region list, q to quit]: 62
-
-```
-
-3) Installation source 安装源输入数字`2`
-
-```bash
-Choose an installation source type.
- 1)  CD/DVD
- 2)  local ISO file
- 3)  Network
-  Please make your choice from above ['q' to quit | 'c' to continue |
-  'r' to refresh]: 2
-```
-
-4) Software selection 软件选择
-
-```bash
-Base environment
-Software selection
-
-Base environment
-
- 1)  [x] Minimal Install
-  Please make your choice from above ['q' to quit | 'c' to continue |
-  'r' to refresh]:
-```
-
-5) Installation Destination 安装目的地
-
-```bash
-Installation Destination
-
-[x] 1) : 40 GiB (vda)
-
-1 disk selected; 40 GiB capacity; 40 GiB free ...
-
-  Please make your choice from above ['q' to quit | 'c' to continue |
-  'r' to refresh]: c
-
-
-Autopartitioning Options 自动分区选项
-
-[ ] 1) Replace Existing Linux system(s) 替换现有的Linux系统
-
-[x] 2) Use All Space 使用所有空间
-
-[ ] 3) Use Free Space 使用可用空间
-
-================================================================================
-Partition Scheme Options 分区方案选项
-
-[ ] 1) Standard Partition 标准分区
-
-[ ] 2) Btrfs Btrfs
-
-[x] 3) LVM LVM(逻辑卷管理)
-
-[ ] 4) LVM Thin Provisioning 精简配置
-
-Select a partition scheme configuration.
-
-  Please make your choice from above ['q' to quit | 'c' to continue |
-  'r' to refresh]: c
-
-```
-
-此处也可以只设置 `Root 密码`和`Installation Destination 安装目的地`其它进入系统设置比如时区设置如下：
-
-```bash
-echo "TZ='Asia/Shanghai'; export TZ" >> /etc/profile
-```
-
-### 连接虚拟机
-
-通过 `virsh console <虚拟机名称>` 命令来连接虚拟机
-
-```bash
-# 查看虚拟机
-virsh list              # 查看在运行的虚拟机
-virsh list –all         # 查看所有虚拟机
-
- Id    Name                           State
-----------------------------------------------------
- 7     centos72                       running
-```
-
-连接虚拟机
-
-```bash
-virsh console centos72
-```
-
-配置虚拟机网络，编辑`vi /etc/sysconfig/network-scripts/ifcfg-eth0`
-
-```bash
-TYPE=Ethernet
-BOOTPROTO=static
-IPADDR=192.168.188.200
-PREFIX=24
-GATEWAY=192.168.188.1
-DEFROUTE=yes
-PEERDNS=yes
-PEERROUTES=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_PEERDNS=yes
-IPV6_PEERROUTES=yes
-IPV6_FAILURE_FATAL=no
-NAME=eth0
-UUID=adfa3b7d-bf60-47e6-8482-871dee686fb5
-DEVICE=eth0
-ONBOOT=yes
-```
-
-添加DNS配置，也可以放到`ifcfg-eth0`中，DNS不是随便设置的，你可以通过[host](https://jaywcjlove.github.io/linux-command/c/host.html)、[dig](https://jaywcjlove.github.io/linux-command/c/dig.html)、[nslookup](https://jaywcjlove.github.io/linux-command/c/nslookup.html)命令查询DNS，如果这些工具不存在可以通过`yum install bind-utils -y`来安装一下。
-
-```bash
-# 如果没有在网络配置添加DNS可以这种方式添加DNS
-echo "nameserver 192.168.188.1" > /etc/resolv.conf
-```
-
-激活网卡
-
-```bash
-ifup eth0 # 激活网卡
 ```
 
 ### 退出虚拟机
