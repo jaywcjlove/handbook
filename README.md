@@ -39,21 +39,21 @@
 
 Redis是一个开源的，先进的 key-value 存储可用于构建高性能的存储解决方案，入门介绍就到这里了。
 
-- [Redis安装](Redis/index.md#redis安装)
-  - [官方编译安装](Redis/index.md#官方编译安装)
-  - [通过EPEL源安装](Redis/index.md#通过epel源安装)
-- [Redis升级](Redis/index.md#redis升级)
-- [服务管理](Redis/index.md#服务管理)
-- [更改配置](Redis/index.md#更改配置)
-- [基本操作](Redis/index.md#基本操作)
-- [开启通知](Redis/index.md#开启通知)
-- [开启远程登录连接](Redis/index.md#开启远程登录连接)
-- [提供的原生监控](Redis/index.md#提供的原生监控)
-  - [当前链接的客户端数和连接数](Redis/index.md#当前链接的客户端数和连接数)
-  - [内存最大的键值和平均的键值数据](Redis/index.md#内存最大的键值和平均的键值数据)
-  - [查看当前的键值情况](Redis/index.md#查看当前的键值情况)
-  - [原生的Monitor监控](Redis/index.md#原生的monitor监控)
-- [配置说明](Redis/index.md#配置说明)
+- [Redis安装](Redis/README.md#redis安装)
+  - [官方编译安装](Redis/README.md#官方编译安装)
+  - [通过EPEL源安装](Redis/README.md#通过epel源安装)
+- [Redis升级](Redis/README.md#redis升级)
+- [服务管理](Redis/README.md#服务管理)
+- [更改配置](Redis/README.md#更改配置)
+- [基本操作](Redis/README.md#基本操作)
+- [开启通知](Redis/README.md#开启通知)
+- [开启远程登录连接](Redis/README.md#开启远程登录连接)
+- [提供的原生监控](Redis/README.md#提供的原生监控)
+  - [当前链接的客户端数和连接数](Redis/README.md#当前链接的客户端数和连接数)
+  - [内存最大的键值和平均的键值数据](Redis/README.md#内存最大的键值和平均的键值数据)
+  - [查看当前的键值情况](Redis/README.md#查看当前的键值情况)
+  - [原生的Monitor监控](Redis/README.md#原生的monitor监控)
+- [配置说明](Redis/README.md#配置说明)
 
 ## Android
 
