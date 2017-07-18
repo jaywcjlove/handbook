@@ -356,10 +356,23 @@ net.ipv4.ip_forward = 0
 net.ipv4.ip_forward = 1    允许内置路由
 ```
 
-设置转发规则
+通过[iptables](https://jaywcjlove.github.io/linux-command/c/iptables.html)命令来设置转发规则，源SNAT规则，源网络地址转换，SNAT就是重写包的源IP地址。
 
 ```bash
-iptables -t nat -A POSTROUTING -s 192.168.188.0/24 -j SNAT --to-source <固定IP>
+# 数据包进行 源NAT(SNAT)，系统先路由——>再过滤（FORWARD)——>最后才进行POSTROUTING SNAT地址翻译
+# -t<表>：指定要操纵的表；
+# -A：向规则链中添加条目；
+# -s：指定要匹配的数据包源ip地址；
+# -j<目标>：指定要跳转的目标；
+# -j SNAT：源网络地址转换，SNAT就是重写包的源IP地址
+# --to-source ipaddr[-ipaddr][:port-port] 
+#   它可以指定单个新的源IP地址，IP地址的包含范围，以及可选的端口范围（仅当规则还指定-p tcp或-p udp时才有效）。 
+#   如果没有指定端口范围，则低于512的源端口将映射到512以下的其他端口：512和1023之间的端口将映射到低于1024的端口，
+#   其他端口将被映射到1024或更高。 在可能的情况下，不会发生港口更改。
+#   在内核高达2.6.10，您可以添加几个 - 源选项。 
+#   对于这些内核，如果通过地址范围或多个源选项指定多个源地址，则会在这些地址之间进行简单的循环（循环中循环）。 
+#   后来的内核（> = 2.6.11-rc1）不再具有NAT到多个范围的能力。
+iptables -t nat -A POSTROUTING -s 192.168.120.0/24 -j SNAT --to-source <固定IP>
 # cat /etc/sysconfig/iptables
 ```
 
@@ -463,7 +476,7 @@ virbr0    8000.525400193f0f yes   virbr0-nic
 
 ### NAT模式
 
-NAT方式是kvm安装后的默认方式。它支持主机与虚拟机的互访，同时也支持虚拟机访问互联网，但不支持外界访问虚拟机。
+NAT(Network Address Translation网络地址翻译)，NAT方式是kvm安装后的默认方式。它支持主机与虚拟机的互访，同时也支持虚拟机访问互联网，但不支持外界访问虚拟机。
 
 ```bash
 virsh net-list --all
