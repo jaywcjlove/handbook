@@ -4,3 +4,6 @@
 [submodule "shell-tutorial"]
 	path = shell-tutorial
 	url = https://github.com/jaywcjlove/shell-tutorial.git
+[submodule "swift-tutorial"]
+	path = swift-tutorial
+	url = https://github.com/jaywcjlove/swift-tutorial.git
