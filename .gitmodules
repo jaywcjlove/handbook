@@ -7,3 +7,6 @@
 [submodule "swift-tutorial"]
 	path = swift-tutorial
 	url = https://github.com/jaywcjlove/swift-tutorial.git
+[submodule "linux-command"]
+	path = linux-command
+	url = https://github.com/jaywcjlove/linux-command.git
