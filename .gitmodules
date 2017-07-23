@@ -1,0 +1,3 @@
+[submodule "mysql-tutorial"]
+	path = mysql-tutorial
+	url = https://github.com/jaywcjlove/mysql-tutorial.git
