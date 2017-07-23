@@ -15,13 +15,13 @@
 - **[Git常用命令及教程网站清单](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
 - [CentOS7安装维护Nginx★★★★](CentOS/CentOS7安装维护Nginx.md)
 - **[CentOS7安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
-- [MySQL入门教程学习笔记](./mysql-tutorial)
+- [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
 - [Shell入门教程学习笔记](https://github.com/jaywcjlove/shell-tutorial)
 - [Swift入门教程读书笔记](https://github.com/jaywcjlove/swift-tutorial)
 
 ## MySQL
 
-搜集整合的MySQL笔记迁移到[这里了](./mysql-tutorial) ★★★
+搜集整合的MySQL笔记迁移到[这里了](https://github.com/jaywcjlove/mysql-tutorial) ★★★
 
 ## CentOS 
 
