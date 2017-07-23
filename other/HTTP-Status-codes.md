@@ -4,23 +4,27 @@
 
 ![](img_http/Fetching_a_page.png)
 
-## 目录
+目录
+===
+<!-- TOC -->
 
-- [HTTP](#HTTP)
+- [HTTP](#http)
   - [1xx消息](#1xx消息)
   - [2xx成功](#2xx成功)
   - [3xx重定向](#3xx重定向)
   - [4xx客户端错误](#4xx客户端错误)
   - [5xx服务器错误](#5xx服务器错误)
-- [FTP](#FTP)
+- [FTP](#ftp)
   - [1xx初步](#1xx初步)
   - [2xx完成](#2xx完成)
   - [3xx中间](#3xx中间)
   - [4xx瞬态否定](#4xx瞬态否定)
-  - [5xx永久性否定](#5xx永久性否定)
-  - [6xx受保护](#6xx受保护)
-- [WebSockets](#WebSockets状态码)
+- [5xx永久性否定](#5xx永久性否定)
+- [6xx受保护](#6xx受保护)
+- [WebSockets状态码](#websockets状态码)
 - [参考资料](#参考资料)
+
+<!-- /TOC -->
 
 ## HTTP
 

@@ -1,15 +1,14 @@
  
 轻量高效的开源JavaScript插件和库
 ---
-
-## 目录
+<!-- TOC -->
 
 - [图片](#图片)
 - [布局](#布局)
-- [音频视频](#音频视频)
-- [编辑器](#编辑器)
 - [轮播图](#轮播图)
 - [弹出层](#弹出层)
+- [音频视频](#音频视频)
+- [编辑器](#编辑器)
 - [字符串](#字符串)
 - [表单](#表单)
 - [存储](#存储)
@@ -21,6 +20,8 @@
 - [测试](#测试)
 - [包管理器](#包管理器)
 - [CDN](#cdn)
+
+<!-- /TOC -->
 
 ## 图片
 
@@ -87,6 +88,7 @@
 - [jsurl](https://github.com/Mikhus/jsurl) - 轻量的 URL 操作库。
 - [sprintf.js](https://github.com/alexei/sprintf.js) - 实现字符串格式化。
 - [url-pattern](https://github.com/snd/url-pattern) - 让 url 和其它字符串进行比正则表达式匹配更简单。字符串和数据可相互转化。
+- [Numeral.js](https://github.com/adamwdraper/Numeral-js) - 格式化和操作数字的 JS 库。 [demo](http://numeraljs.com/)
 
 ## 表单 
 
