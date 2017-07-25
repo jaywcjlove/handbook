@@ -10,6 +10,9 @@
   - [通过EPEL源安装](#通过epel源安装)
   - [Redis升级](#redis升级)
 - [服务管理](#服务管理)
+  - [基本服务操作](#基本服务操作)
+  - [查看版本](#查看版本)
+  - [开机启动](#开机启动)
 - [更改配置](#更改配置)
 - [基本操作](#基本操作)
 - [支持的数据类型](#支持的数据类型)
@@ -36,7 +39,7 @@
 
 ```bash
 $ wget http://download.redis.io/releases/redis-4.0.0.tar.gz
-$ tar xzvf tcl8.6.1-src.tar.gz -C /usr/local/
+$ tar xzvf redis-4.0.0.tar.gz -C /usr/local/
 $ cd /usr/local/redis-4.0.0
 $ make
 $ make test
@@ -148,7 +151,7 @@ sudo service redis start
 sudo chkconfig redis on
 ```
 
-基本服务操作
+### 基本服务操作
 
 ```bash
 ## 启动并后台运行
@@ -171,6 +174,7 @@ $ redis-cli -p 6380
 # 指定端口后台启动
 $ redis-server --port 6380 &
 ```
+### 查看版本
 
 检查当前安装的Redis版本：
 
@@ -181,6 +185,44 @@ $ redis-cli info | grep redis_version
 # 查看端口号
 $ redis-cli info | grep tcp_port
 ```
+
+### 开机启动
+
+我们将在 Redis 安装目录找到`/usr/local/redis-4.0.0/utils`这个目录，在这个目录中有个有个脚本 `redis_init_script`，将此脚本拷贝到`/etc/init.d`目录下，命名为`redis`: 
+
+```bash
+cp /usr/local/redis-4.0.0/utils/redis_init_script /etc/init.d/redis
+```
+
+拷贝一下`redis.conf` 文件到`/etc/redis`目录下
+
+```bash
+cp /usr/local/redis-4.0.0/redis.conf /etc/redis/6380.conf
+```
+
+配置文件`6380.conf`需要更改几个地方
+
+```bash
+# 是否在后台执行，yes：后台运行；no：不是后台运行（老版本默认）
+daemonize yes
+```
+
+更改权限，通过 [chkconfig](https://jaywcjlove.github.io/linux-command/c/chkconfig.html) 命令检查、设置系统redis服务开启
+
+```bash
+chmod +x /etc/init.d/redis
+chkconfig redis on
+```
+
+必须把下面两行注释放在 `/etc/init.d/redis` 文件头部，不设置会报不支持的提示 `
+service redis does not support chkconfig`
+
+```bash
+# chkconfig:   2345 90 10
+# description:  redis is a persistent key-value database
+```
+
+上面的注释的意思是，redis服务必须在运行级2，3，4，5下被启动或关闭，启动的优先级是90，关闭的优先级是10。
 
 **Redis 启动警告错误解决**
 
