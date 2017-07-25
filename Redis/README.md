@@ -214,8 +214,7 @@ chmod +x /etc/init.d/redis
 chkconfig redis on
 ```
 
-必须把下面两行注释放在 `/etc/init.d/redis` 文件头部，不设置会报不支持的提示 `
-service redis does not support chkconfig`
+必须把下面两行注释放在 `/etc/init.d/redis` 文件头部，不设置会报不支持的提示 `service redis does not support chkconfig`
 
 ```bash
 # chkconfig:   2345 90 10
