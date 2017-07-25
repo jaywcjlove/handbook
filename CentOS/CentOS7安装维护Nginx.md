@@ -839,6 +839,29 @@ server {
 }
 ```
 
+### 跳转到带www的域上面
+
+```nginx
+server {
+    listen 80;
+    # 配置正常的带www的域名
+    server_name www.wangchujiang.com;
+    root /home/www/wabg/download;
+    location / {
+        try_files $uri $uri/ /index.html =404;
+    }
+}
+server {
+    # 这个要放到下面，
+    # 将不带www的 wangchujiang.com 永久性重定向到  https://www.wangchujiang.com
+    server_name wangchujiang.com;
+    rewrite ^(.*) https://www.wangchujiang.com$1 permanent;
+}
+```
+
+- `permanent` 永久性重定向。请求日志中的状态码为301
+- `redirect` 临时重定向。请求日志中的状态码为302
+
 ### ssl配置
 
 超文本传输安全协议（缩写：HTTPS，英语：Hypertext Transfer Protocol Secure）是超文本传输协议和SSL/TLS的组合，用以提供加密通讯及对网络服务器身份的鉴定。HTTPS连接经常被用于万维网上的交易支付和企业信息系统中敏感信息的传输。HTTPS不应与在RFC 2660中定义的安全超文本传输协议（S-HTTP）相混。
