@@ -16,6 +16,7 @@ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 如果 wget 没有安装，运行下面命令安装 wget 软件。
 
 ```bash
+yum update --skip-broken
 yum -y install wget
 ```
 
