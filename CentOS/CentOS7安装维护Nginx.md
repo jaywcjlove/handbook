@@ -557,11 +557,14 @@ server {
 upstream指令启用一个新的配置区段，在该区段定义一组上游服务器。这些服务器可能被设置不同的权重，也可能出于对服务器进行维护，标记为down。
 
 ```nginx
-upstream  gitlab {
+upstream gitlab {
     ip_hash;
+    # upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。
     server 192.168.122.11:8081 ;
-    server 127.0.0.1:3000;
-    server 127.0.0.1:3001 down;
+    server 127.0.0.1:82 weight=3;
+    server 127.0.0.1:83 weight=3 down;
+    server 127.0.0.1:84 weight=3; max_fails=3  fail_timeout=20s;
+    server 127.0.0.1:85 weight=4;;
     keepalive 32;
 }
 server {
@@ -762,7 +765,7 @@ upstream test {
 server {
   listen 80;
   server_name api.xxx.com;
-  location /{ 
+  location / { 
     root  html;                   #去请求../html文件夹里的文件
     index  index.html index.htm;  #首页响应地址
   }
