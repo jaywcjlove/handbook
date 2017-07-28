@@ -18,6 +18,7 @@ Nginx版本：`1.11.5`
   - [下载](#下载)
   - [编译安装](#编译安装)
   - [nginx测试](#nginx测试)
+  - [设置全局nginx命令](#设置全局nginx命令)
 - [开机自启动](#开机自启动)
 - [运维](#运维)
   - [服务管理](#服务管理)
@@ -47,6 +48,7 @@ Nginx版本：`1.11.5`
   - [两个虚拟主机](#两个虚拟主机)
   - [虚拟主机标准配置](#虚拟主机标准配置)
   - [防盗链](#防盗链)
+  - [防盗图配置](#防盗图配置)
 - [精品文章参考](#精品文章参考)
 
 <!-- /TOC -->
@@ -58,8 +60,9 @@ Nginx版本：`1.11.5`
 > prce(重定向支持)和openssl(https支持，如果不需要https可以不安装。)
 
 ```bash
-yum -y install pcre*
-yum -y install openssl*
+yum install -y pcre-devel 
+yum -y install gcc make gcc-c++ openssl-devel wget
+yum -y install openssl openssl--devel 
 ```
 
 CentOS 6.5 我安装的时候是选择的“基本服务器”，默认这两个包都没安装全，所以这两个都运行安装即可。
@@ -107,7 +110,7 @@ Configuration summary
   nginx http scgi temporary files: "scgi_temp"
 ```
 
-安装报错误的话比如：“C compiler cc is not found”，这个就是缺少编译环境，安装一下就可以了 **yum -y install gcc make gcc-c++ openssl-devel wget**
+安装报错误的话比如：“C compiler cc is not found”，这个就是缺少编译环境，安装一下就可以了 **yum -y install gcc make gcc-c++ openssl-devel**
 
 如果没有error信息，就可以执行下边的安装了：
 
@@ -118,14 +121,30 @@ make install
 
 ### nginx测试
 
-运行下面命令会出现两个结果
+运行下面命令会出现两个结果，一般情况nginx会安装在`/usr/local/nginx`目录中
 
 ```bash
+cd /usr/local/nginx/sbin/
 ./nginx -t
 
 # nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
 # nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 ```
+
+### 设置全局nginx命令
+
+```bash
+vi ~/.bash_profile
+```
+
+将下面内容添加到 `~/.bash_profile` 文件中
+
+```bash
+PATH=$PATH:$HOME/bin:/usr/local/nginx/sbin/
+export PATH
+```
+
+运行命令 **`source ~/.bash_profile`** 让配置立即生效。你就可以全局运行 `nginx` 命令了。
 
 ## 开机自启动
 
@@ -212,26 +231,28 @@ chmod +x /etc/rc.d/rc.local
 
 **关闭防火墙，或者添加防火墙规则就可以测试了**
 
-```
+```bash
 service iptables stop
 ```
 
 或者编辑配置文件：
 
-```
+```bash
 vi /etc/sysconfig/iptables
 ```
 
 添加这样一条开放80端口的规则后保存：
 
-```
+```bash
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 ```
 
 重启服务即可:
 
-```
+```bash
 service iptables restart
+# 命令进行查看目前nat
+iptables -t nat -L
 ```
 
 ### 重启服务防火墙报错解决
@@ -976,6 +997,17 @@ location ~* \.(gif|jpg|png|swf|flv)$ {
 }
 ```
 
+### 防盗图配置
+
+```nginx
+location ~ \/public\/(css|js|img)\/.*\.(js|css|gif|jpg|jpeg|png|bmp|swf) {
+    valid_referers none blocked *.homeway.me;
+    if ($invalid_referer) {
+            rewrite ^/  http://xiaocao.u.qiniudn.com/blog%2Fpiratesp.png;
+    }
+}
+```
+
 ## 精品文章参考
 
 - [负载均衡原理的解析](https://my.oschina.net/u/3341316/blog/877206)
@@ -984,4 +1016,6 @@ location ~* \.(gif|jpg|png|swf|flv)$ {
 - [Inside NGINX: How We Designed for Performance & Scale](https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/)
 - [Nginx开发从入门到精通](http://tengine.taobao.org/book/index.html)
 - [Nginx的优化与防盗链](http://os.51cto.com/art/201703/535326.htm#topx)
+- [实战开发一个Nginx扩展 (Nginx Module)](https://segmentfault.com/a/1190000009769143)
 - [Nginx+Keepalived(双机热备)搭建高可用负载均衡环境(HA)](https://my.oschina.net/xshuai/blog/917097)
+- [Nginx 平滑升级](http://www.huxd.org/articles/2017/07/24/1500890692329.html)
