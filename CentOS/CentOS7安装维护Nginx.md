@@ -40,15 +40,27 @@ Nginx版本：`1.11.5`
     - [url_hash](#url_hash)
   - [屏蔽ip](#屏蔽ip)
 - [第三方模块安装方法](#第三方模块安装方法)
+- [重定向](#重定向)
+  - [重定向整个网站](#重定向整个网站)
+  - [重定向单页](#重定向单页)
+  - [重定向整个子路径](#重定向整个子路径)
+- [性能](#性能)
+  - [内容缓存](#内容缓存)
+  - [Gzip压缩](#gzip压缩)
+  - [打开文件缓存](#打开文件缓存)
+  - [SSL缓存](#ssl缓存)
+  - [上游Keepalive](#上游keepalive)
+  - [监控](#监控)
 - [常见使用场景](#常见使用场景)
   - [跨域问题](#跨域问题)
+    - [跳转到带www的域上面](#跳转到带www的域上面)
   - [代理转发](#代理转发)
-  - [跳转到带www的域上面](#跳转到带www的域上面)
   - [ssl配置](#ssl配置)
   - [两个虚拟主机](#两个虚拟主机)
   - [虚拟主机标准配置](#虚拟主机标准配置)
   - [防盗链](#防盗链)
   - [防盗图配置](#防盗图配置)
+  - [屏蔽.git等文件](#屏蔽git等文件)
 - [精品文章参考](#精品文章参考)
 
 <!-- /TOC -->
@@ -745,12 +757,121 @@ allow 1.1.1.2;
 deny all; 
 ```
 
-
 ## 第三方模块安装方法
 
 ```
 ./configure --prefix=/你的安装目录  --add-module=/第三方模块目录
 ```
+
+## 重定向
+
+- `permanent` 永久性重定向。请求日志中的状态码为301
+- `redirect` 临时重定向。请求日志中的状态码为302
+
+### 重定向整个网站
+
+```nginx
+server {
+    server_name old-site.com
+    return 301 $scheme://new-site.com$request_uri;
+}
+```
+
+### 重定向单页
+
+```nginx
+server {
+    location = /oldpage.html {
+        return 301 http://example.org/newpage.html;
+    }
+}
+```
+
+### 重定向整个子路径
+
+```nginx
+location /old-site {
+    rewrite ^/old-site/(.*) http://example.org/new-site/$1 permanent;
+}
+```
+
+## 性能
+
+### 内容缓存
+
+允许浏览器基本上永久地缓存静态内容。 Nginx将为您设置Expires和Cache-Control头信息。
+
+```nginx
+location /static {
+    root /data;
+    expires max;
+}
+```
+
+如果要求浏览器永远不会缓存响应（例如用于跟踪请求），请使用-1。
+
+```nginx
+location = /empty.gif {
+    empty_gif;
+    expires -1;
+}
+```
+
+### Gzip压缩
+
+```nginx
+gzip  on;
+gzip_buffers 16 8k;
+gzip_comp_level 6;
+gzip_http_version 1.1;
+gzip_min_length 256;
+gzip_proxied any;
+gzip_vary on;
+gzip_types
+    text/xml application/xml application/atom+xml application/rss+xml application/xhtml+xml image/svg+xml
+    text/javascript application/javascript application/x-javascript
+    text/x-json application/json application/x-web-app-manifest+json
+    text/css text/plain text/x-component
+    font/opentype application/x-font-ttf application/vnd.ms-fontobject
+    image/x-icon;
+gzip_disable  "msie6";
+```
+
+### 打开文件缓存
+
+```nginx
+open_file_cache max=1000 inactive=20s;
+open_file_cache_valid 30s;
+open_file_cache_min_uses 2;
+open_file_cache_errors on;
+```
+
+### SSL缓存
+
+```nginx
+ssl_session_cache shared:SSL:10m;
+ssl_session_timeout 10m;
+```
+
+### 上游Keepalive
+
+```nginx
+upstream backend {
+    server 127.0.0.1:8080;
+    keepalive 32;
+}
+server {
+    ...
+    location /api/ {
+        proxy_pass http://backend;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+    }
+}
+```
+
+### 监控
+
 
 
 ## 常见使用场景
@@ -820,6 +941,26 @@ server {
 }
 ```
 
+#### 跳转到带www的域上面
+
+```nginx
+server {
+    listen 80;
+    # 配置正常的带www的域名
+    server_name www.wangchujiang.com;
+    root /home/www/wabg/download;
+    location / {
+        try_files $uri $uri/ /index.html =404;
+    }
+}
+server {
+    # 这个要放到下面，
+    # 将不带www的 wangchujiang.com 永久性重定向到  https://www.wangchujiang.com
+    server_name wangchujiang.com;
+    rewrite ^(.*) https://www.wangchujiang.com$1 permanent;
+}
+```
+
 ### 代理转发
 
 我有一些需求，需要搭建一个静态服务，路由在前端，前端请求API，需要到代理到API服务器，图片资源需要代理到图片资源服务器。
@@ -860,29 +1001,6 @@ server {
     }
 }
 ```
-
-### 跳转到带www的域上面
-
-```nginx
-server {
-    listen 80;
-    # 配置正常的带www的域名
-    server_name www.wangchujiang.com;
-    root /home/www/wabg/download;
-    location / {
-        try_files $uri $uri/ /index.html =404;
-    }
-}
-server {
-    # 这个要放到下面，
-    # 将不带www的 wangchujiang.com 永久性重定向到  https://www.wangchujiang.com
-    server_name wangchujiang.com;
-    rewrite ^(.*) https://www.wangchujiang.com$1 permanent;
-}
-```
-
-- `permanent` 永久性重定向。请求日志中的状态码为301
-- `redirect` 临时重定向。请求日志中的状态码为302
 
 ### ssl配置
 
@@ -1005,6 +1123,14 @@ location ~ \/public\/(css|js|img)\/.*\.(js|css|gif|jpg|jpeg|png|bmp|swf) {
     if ($invalid_referer) {
             rewrite ^/  http://xiaocao.u.qiniudn.com/blog%2Fpiratesp.png;
     }
+}
+```
+
+### 屏蔽.git等文件
+
+```nginx
+location ~ (.git|.gitattributes|.gitignore|.svn) {
+    deny all;
 }
 ```
 
