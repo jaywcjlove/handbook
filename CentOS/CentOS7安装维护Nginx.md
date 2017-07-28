@@ -81,8 +81,10 @@ CentOS 6.5 我安装的时候是选择的“基本服务器”，默认这两个
 
 ### 下载
 
+[nginx的所有版本在这里](http://nginx.org/download/)
+
 ```bash
-wget http://nginx.org/download/nginx-1.11.5.tar.gz
+wget http://nginx.org/download/nginx-1.13.3.tar.gz
 
 # 如果没有安装wget
 # 下载已编译版本
