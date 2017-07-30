@@ -25,18 +25,19 @@
 
 ## CentOS 
 
-- [Centos常用命令](CentOS/CentOS.md)
+- [CentOS常用基础命令](CentOS/CentOS.md)
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
-- [CentOS7安装KVM虚拟机详解](CentOS/CentOS7安装KVM虚拟机详解.md)
-- [CentOS7安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
-- [CentOS7中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
+- [安装KVM虚拟机详解](CentOS/CentOS7安装KVM虚拟机详解.md)
+- [安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
+- [中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
 - [Centos7安装编译Node](CentOS/Centos7安装编译Node.md)
 - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
-- [chmod说明](CentOS/chmod.md)
 - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
 - [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
+- [安装使用OpenStack](CentOS/CentOS7安装openstack.md)
+- [Elasticsearch安装维护](CentOS/elasticsearch安装维护.md)
 - [samba安装搭建使用](CentOS/samba.md)
-- [常用基础命令](CentOS/常用基础命令.md)
+- [chmod说明](CentOS/chmod.md)
 
 ## [10分钟入门Redis](Redis/README.md)
 
