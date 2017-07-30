@@ -94,9 +94,12 @@ NAME=em1                # 网卡名称
 UUID=99-6217--a******   # UUID号，没事不要动它，否则你会后悔的
 DEVICE=em1              # 接口名称
 ONBOOT=yes              # 设置网络开机自动启动
-IPADDR0=192.168.21.128  # 设置IP地址
-PREFIXO0=24             # 设置子网掩码
-GATEWAY0=192.168.21.2   # 设置网关
+
+IPADDR=<这里固定IP配置的地方>  # 设置IP地址
+PREFIX=24                   # 设置子网掩码
+GATEWAY=<这里设置网关>        # 设置网关
+DNS1=<这里设置DNS>           # DNS
+
 DNS1=8.8.8.8            # 设置主DNS
 DNS2=8.8.4.4            # 设置备DNS
 ```
