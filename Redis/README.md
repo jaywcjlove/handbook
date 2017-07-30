@@ -14,6 +14,8 @@
   - [查看版本](#查看版本)
   - [开机启动](#开机启动)
 - [更改配置](#更改配置)
+- [设置请求密码](#设置请求密码)
+- [主从架构配置](#主从架构配置)
 - [基本操作](#基本操作)
 - [支持的数据类型](#支持的数据类型)
   - [字符串](#字符串)
@@ -240,10 +242,10 @@ echo 511 > /proc/sys/net/core/somaxconn
 
 ## 更改配置
 
-Redis 的配置文件位于 Redis 安装目录下，文件名为 `redis.conf`。默认 Redis 配置文件在 `sudo vi /etc/redis.conf` 这里可以编辑
+Redis 的配置文件位于 Redis 安装目录下，文件名为 `redis.conf`。上面已经将它拷贝到`/etc/redis`目录下了，配置文件在 `sudo vi /etc/redis/6380.conf` 这里可以编辑
 
 ```bash
-sudo vi /etc/redis.conf
+sudo vi /etc/redis/6380.conf
 ```
 
 你可以通过 CONFIG 命令查看或设置配置项。配置设置命令
@@ -260,6 +262,55 @@ sudo vi /etc/redis.conf
 ## 设置配置开启通知功能
 $ redis-cli config set notify-keyspace-events KEA
 ```
+
+## 设置请求密码
+
+打开 `vim /etc/redis/6380.conf` 配置文件编辑它，更改下面两项内容：
+
+```bash
+# ...
+# requirepass foobared
+# 更改成下面内容，把 foobared 改为你想要设置的密码
+requirepass 111111
+
+# bind 127.0.0.1 去掉 # 注释并改为
+bind 0.0.0.0
+```
+
+更改为之后你就可以带密码访问redis了。
+
+```bash
+redis-cli -h 127.0.0.1 -p 6379 -a 111111
+```
+
+## 主从架构配置
+
+假设有两台服务器，一台做主，一台做从
+
+```bash
+Redis 主信息：
+  IP：12.168.1.114
+  端口：6379
+Redis 从信息：
+  IP：12.168.1.115
+  端口：6379
+```
+
+编辑从机的 Redis 配置文件，找到 `# slaveof`开头的这一行应该是注释的：`# slaveof <masterip> <masterport>`我们需要去掉该注释，并且填写我们自己的主机的 IP 和 端口，比如：`slaveof 192.168.1.114 6379`。
+
+```bash
+# slaveof <自己的主机的 IP> <自己的主机的 端口>
+# 这行更改成下面内容
+slaveof 192.168.1.114 6379
+```
+
+配置完成后重启从机 Redis 服务重启完之后，进入主机的 redis-cli 状态下，输入：`INFO replication` 可以查询到当前主机的 redis 处于什么角色，有哪些从机已经连上主机。
+
+此时已经完成了主从配置，我们可以测试下：
+
+1. 我们进入主机的 redis-cli 状态，然后 set 某个值，比如：set mygithub jaywcjlove
+2. 我们切换进入从机的 redis-cli 的状态下，获取刚刚设置的值看是否存在：get mygithub，此时，我们可以发现是可以获取到值的。
+3. 但是有一个需要注意的：从库不具备写入数据能力，不然会报错。 从库只有只读能力。
 
 ## 基本操作
 
