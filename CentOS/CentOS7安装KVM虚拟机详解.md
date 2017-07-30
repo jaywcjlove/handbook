@@ -304,9 +304,7 @@ ifup eth0 # 激活网卡
 
 ## 配置物理机网络
 
-目前我只有一个固定IP，通过配置`eno2`，网桥当做路由器，虚拟机共享物理机进出网络。
-
-物理机网络配置，网络进出走`eno2` 编辑`vi /etc/sysconfig/network-scripts/ifcfg-eno2`
+目前我只有一个固定IP，通过配置`eno2`，网桥当做路由器，虚拟机共享物理机进出网络。物理机网络配置，网络进出走`eno2` 编辑`vi /etc/sysconfig/network-scripts/ifcfg-eno2`
 
 ```bash
 TYPE=Ethernet
@@ -344,7 +342,7 @@ IPADDR=192.168.120.1
 PREFIX=24
 ```
 
-物理网卡指定桥接网卡`BRIDGE="br0"`
+`ifcfg-eno1` 物理网卡指定桥接网卡`BRIDGE="br0"`
 
 ```bash
 TYPE=Ethernet
@@ -363,6 +361,13 @@ net.ipv4.ip_forward = 0
 修改为
 # Controls IP packet forwarding
 net.ipv4.ip_forward = 1    允许内置路由
+```
+
+再执行 `sysctl -p` 使其生效，编辑`vi /etc/rc.d/rc.local` 添加下面命令，达到开机重启配置网络转发规则。
+
+```bash
+# 启动网络转发规则
+iptables -t nat -A POSTROUTING -s 192.168.188.0/24 -j SNAT --to-source 210.14.67.7
 ```
 
 通过[iptables](https://jaywcjlove.github.io/linux-command/c/iptables.html)命令来设置转发规则，源SNAT规则，源网络地址转换，SNAT就是重写包的源IP地址。
