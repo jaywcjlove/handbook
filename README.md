@@ -35,7 +35,7 @@
 - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
 - [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
 - [安装使用OpenStack](CentOS/CentOS7安装openstack.md)
-- [Elasticsearch安装维护](CentOS/elasticsearch安装维护.md)
+- [Elasticsearch安装维护](CentOS/Elasticsearch安装维护.md)
 - [samba安装搭建使用](CentOS/samba.md)
 - [chmod说明](CentOS/chmod.md)
 
