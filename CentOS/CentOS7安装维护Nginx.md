@@ -1136,6 +1136,31 @@ location ~ (.git|.gitattributes|.gitignore|.svn) {
 }
 ```
 
+### 域名路径加不加需要都能正常访问
+
+```bash
+http://wangchujiang.com/api/index.php?a=1&name=wcj
+                                  ^ 有后缀
+
+http://wangchujiang.com/api/index?a=1&name=wcj
+                                 ^ 没有后缀
+```
+
+nginx rewrite规则如下：
+
+```nginx
+rewrite ^/(.*)/$ /index.php?/$1 permanent;
+if (!-d $request_filename){
+        set $rule_1 1$rule_1;
+}
+if (!-f $request_filename){
+        set $rule_1 2$rule_1;
+}
+if ($rule_1 = "21"){
+        rewrite ^/ /index.php last;
+}
+```
+
 ## 精品文章参考
 
 - [负载均衡原理的解析](https://my.oschina.net/u/3341316/blog/877206)
