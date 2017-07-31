@@ -61,7 +61,7 @@ wget https://github.com/apple/swift/archive/swift-DEVELOPMENT-SNAPSHOT-2017-07-2
 wget https://github.com/ninja-build/ninja/archive/v1.7.2.tar.gz -P ninja
 ```
 
-上面采用 开发板编译花了三个小时，后面用 released 版本编译，不仅没有警告，而且编译快了相当多呢
+上面采用 开发板编译花了三个小时，后面用 released 版本编译，警告少了许多，而且编译快了相当多呢，所以你需要选择一个稳定的 released 版本安装。
 
 ```bash
 wget https://github.com/ninja-build/ninja/archive/v1.7.2.tar.gz -P ninja

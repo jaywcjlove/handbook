@@ -36,6 +36,7 @@
 - [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
 - [安装使用OpenStack](CentOS/CentOS7安装openstack.md)
 - [Elasticsearch安装维护](CentOS/Elasticsearch安装维护.md)
+- [尝试在CentOS7.2上编译安装Swift 4.0](CentOS/尝试在centos72上编译安装swift.md)
 - [samba安装搭建使用](CentOS/samba.md)
 - [chmod说明](CentOS/chmod.md)
 
