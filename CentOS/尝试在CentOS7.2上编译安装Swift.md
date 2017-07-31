@@ -144,9 +144,9 @@ sudo swapon /swapfile
 /swapfile none swap sw 0 0
 ```
 
-https://stackoverflow.com/questions/34234250/building-swift-on-centos
-
 **libatomic不存在**
+
+[building swift on centos](https://stackoverflow.com/questions/34234250/building-swift-on-centos)
 
 ```bash
 # 错误
