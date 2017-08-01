@@ -146,14 +146,12 @@ sudo swapon /swapfile
 
 **libatomic不存在**
 
-[building swift on centos](https://stackoverflow.com/questions/34234250/building-swift-on-centos)
-
 ```bash
 # 错误
 /usr/bin/ld: cannot find /usr/lib64/libatomic.so.1.0.0
 ```
 
-解决办法
+解决办法，[building swift on centos](https://stackoverflow.com/questions/34234250/building-swift-on-centos)。
 
 ```bash
 # 下载
