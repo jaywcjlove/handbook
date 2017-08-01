@@ -17,7 +17,7 @@ xz -d Python-3.6.1.tar.xz
 tar -xf Python-3.6.1.tar
 ```
 
-在`/usr/local`路径下创建目录`--python3.6`， 为第4步的安装目录
+在`/usr/local`路径下创建目录`python3.6.1`
 
 ```
 mkdir /usr/local/python3.6.1
