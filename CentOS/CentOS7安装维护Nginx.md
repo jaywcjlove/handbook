@@ -59,8 +59,10 @@ Nginx版本：`1.11.5`
   - [两个虚拟主机](#两个虚拟主机)
   - [虚拟主机标准配置](#虚拟主机标准配置)
   - [防盗链](#防盗链)
+  - [虚拟目录配置](#虚拟目录配置)
   - [防盗图配置](#防盗图配置)
   - [屏蔽.git等文件](#屏蔽git等文件)
+  - [域名路径加不加需要都能正常访问](#域名路径加不加需要都能正常访问)
 - [精品文章参考](#精品文章参考)
 
 <!-- /TOC -->
@@ -1117,13 +1119,28 @@ location ~* \.(gif|jpg|png|swf|flv)$ {
 }
 ```
 
+### 虚拟目录配置
+
+alias指定的目录是准确的，root是指定目录的上级目录，并且该上级目录要含有location指定名称的同名目录。
+
+```nginx
+location /img/ {
+    alias /var/www/image/;
+}
+# 访问/img/目录里面的文件时，ningx会自动去/var/www/image/目录找文件
+location /img/ {
+    root /var/www/image;
+}
+# 访问/img/目录下的文件时，nginx会去/var/www/image/img/目录下找文件。]
+```
+
 ### 防盗图配置
 
 ```nginx
 location ~ \/public\/(css|js|img)\/.*\.(js|css|gif|jpg|jpeg|png|bmp|swf) {
-    valid_referers none blocked *.homeway.me;
+    valid_referers none blocked *.jslite.io;
     if ($invalid_referer) {
-            rewrite ^/  http://xiaocao.u.qiniudn.com/blog%2Fpiratesp.png;
+        rewrite ^/  http://wangchujiang.com/piratesp.png;
     }
 }
 ```
