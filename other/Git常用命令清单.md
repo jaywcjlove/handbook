@@ -784,6 +784,8 @@ git log <last tag> HEAD --pretty=format:%s # 只显示commit
 |%an |作者（author）的名字 |%s  |提交说明|
 |%ae |作者的电子邮件地址| - | - |
 
+[Pretty Formats](https://git-scm.com/docs/git-log#_pretty_formats)
+
 ## 重写历史
 
 ```bash
