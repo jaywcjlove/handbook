@@ -38,6 +38,14 @@ yum clean all
 yum makecache
 ```
 
+yum 安装报错 
+
+```bash
+File "/usr/bin/yum", line 30 except KeyboardInterrupt, e:
+```
+
+解决：修改文件`/usr/bin/yum`、`/usr/libexec/urlgrabber-ext-down`头中相应python为`#!/usr/bin/python2.7`
+
 # 163官方说明：
 
 http://mirrors.163.com/  
