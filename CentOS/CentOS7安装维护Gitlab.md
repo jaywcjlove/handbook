@@ -541,9 +541,8 @@ sudo gitlab-rake cache:clear RAILS_ENV=production
 Error executing action `run` on resource 'bash[migrate gitlab-rails database]'
 ```
 
+上面错误是数据库没有启动，我不知道如何启动，我重启了服务器，然后好球了。😆 
 https://gitlab.com/gitlab-org/gitlab-ce/issues/2052#note_1667899
-
-
 
 ```bash
 NameError: uninitialized constant Devise::Async
