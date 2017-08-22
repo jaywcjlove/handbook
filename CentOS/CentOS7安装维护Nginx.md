@@ -1007,8 +1007,7 @@ server {
 
 ### 代理转发连接替换
 
-```
-
+```nginx
 location ^~/api/upload {
     rewrite ^/(.*)$ /wfs/v1/upload break;
     proxy_pass http://wfs-api;
@@ -1198,3 +1197,4 @@ if ($rule_1 = "21"){
 - [实战开发一个Nginx扩展 (Nginx Module)](https://segmentfault.com/a/1190000009769143)
 - [Nginx+Keepalived(双机热备)搭建高可用负载均衡环境(HA)](https://my.oschina.net/xshuai/blog/917097)
 - [Nginx 平滑升级](http://www.huxd.org/articles/2017/07/24/1500890692329.html)
+- [Nginx最新模块—ngx_http_mirror_module分析可以做版本发布前的预先验证，进行流量放大后的压测等等](https://mp.weixin.qq.com/s?__biz=MzIxNzg5ODE0OA==&mid=2247483708&idx=1&sn=90b0b1dccd9c337922a0588245277666&chksm=97f38cf7a08405e1928e0b46d923d630e529e7db8ac7ca2a91310a075986f8bcb2cee5b4953d#rd)
