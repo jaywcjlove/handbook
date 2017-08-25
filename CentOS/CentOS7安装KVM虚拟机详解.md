@@ -1,6 +1,8 @@
 CentOS7安装KVM虚拟机详解
 ---
 
+![](img/kvmbanner-logo3.png)
+
 基于 CentOS Linux release 7.2.1511 (Core) 的环境下命令行的方式安装KVM的详细过程。
 
 目录
@@ -916,6 +918,7 @@ virt-manager 没有找到存储池，创建储存池即可
 
 ## 参考文章
 
+- [KVM官方网站](https://www.linux-kvm.org/page/Main_Page)
 - [KVM虚拟机Linux系统增加硬盘](http://www.cnblogs.com/ilanni/p/3878151.html)
 - [virt-install 命令参数详解](https://www.ibm.com/support/knowledgecenter/zh/linuxonibm/liaat/liaatvirtinstalloptions.htm)
 - [使用virt-install安装虚拟机，发行版安装代码直接复制运行](https://raymii.org/s/articles/virt-install_introduction_and_copy_paste_distro_install_commands.html)
