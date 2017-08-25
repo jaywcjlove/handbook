@@ -13,6 +13,7 @@ CentOS7安装KVM虚拟机详解
 - [安装虚拟机](#安装虚拟机)
   - [命令行配置系统](#命令行配置系统)
   - [连接虚拟机](#连接虚拟机)
+  - [虚拟机其它管理](#虚拟机其它管理)
 - [配置物理机网络](#配置物理机网络)
 - [配置宿主机网络](#配置宿主机网络)
   - [Bridge模式配置](#bridge模式配置)
@@ -301,6 +302,19 @@ echo "nameserver 192.168.188.1" > /etc/resolv.conf
 ifup eth0 # 激活网卡
 ```
 
+### 虚拟机其它管理
+
+```bash
+virsh start centos72     # 虚拟机开启（启动）：
+virsh reboot centos72    # 虚拟机重新启动
+virsh shutdown centos72  # 虚拟机关机
+virsh destroy centos72   # 强制关机（强制断电）
+virsh suspend centos72   # 暂停（挂起）KVM 虚拟机
+virsh resume centos72    # 恢复被挂起的 KVM 虚拟机
+virsh undefine centos72  # 该方法只删除配置文件，磁盘文件未删除
+virsh autostart centos72 # 随物理机启动而启动（开机启动）
+virsh autostart --disable centos72 # 取消标记为自动开始（取消开机启动）
+```
 
 ## 配置物理机网络
 
@@ -493,6 +507,7 @@ virbr0    8000.525400193f0f yes   virbr0-nic
 NAT(Network Address Translation网络地址翻译)，NAT方式是kvm安装后的默认方式。它支持主机与虚拟机的互访，同时也支持虚拟机访问互联网，但不支持外界访问虚拟机。
 
 ```bash
+virsh net-edit default # 如果要创建或者修改NAT网络，要先编辑default.xml：
 virsh net-list --all
 
  Name                 State      Autostart     Persistent
@@ -619,11 +634,19 @@ virsh net-define /usr/share/libvirt/networks/default.xml
 
 也可以修改xml，创建自己的虚拟网络。
 
+重新加载和激活配置：
+
+```bash
+virsh  net-define /etc/libvirt/qemu/networks/default.xml
+```
+
 标记为自动启动：
 
 ```bash
 virsh net-autostart default
 # Network default marked as autostarted
+
+virsh net-start default
 ```
 
 启动网络：
@@ -880,6 +903,16 @@ Escape character is ^]
 ```
 
 如果出现上面字符串使用 <kbd>CTRL+Shift+5</kbd> <kbd>CTRL+Shift+]</kbd>
+
+1. ERROR Format cannot be specified for unmanaged storage.
+virt-manager 没有找到存储池，创建储存池即可
+
+2. KVM VNC客户端连接闪退
+使用real vnc或者其它vnc客户端连接kvm闪退，把客户端设置中的ColourLevel值设置为rgb222或full即可
+
+3. virsh shutdown <domain> 无法关闭虚拟机
+使用该命令关闭虚拟机时，KVM是向虚拟机发送一个ACPI的指令，需要虚拟机安装acpid服务：
+
 
 ## 参考文章
 
