@@ -134,6 +134,7 @@
 - [tween.js](https://github.com/tweenjs/tween.js) - 是一个JS 平滑动画库。[demo](http://tweenjs.github.io/tween.js/examples/12_graphs_custom_functions.html)
 - [vivus](https://github.com/maxwellito/vivus) - JavaScript库，使SVG绘制动画。[demo](http://maxwellito.github.io/vivus/)
 - [Choreographer-js](https://github.com/christinecha/choreographer-js) - 是一个用于处理复杂动画的简单库。[demo](https://christinecha.github.io/choreographer-js/)
+- [minirefresh](https://github.com/minirefresh/minirefresh) - 优雅的H5下拉刷新。零依赖。[demo](https://minirefresh.github.io/minirefresh-doc/minirefresh-doc/guid/guid_effect.html)
 
 ## 时间
 
