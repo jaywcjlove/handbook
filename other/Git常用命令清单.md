@@ -16,6 +16,9 @@
   - [撤销远程记录](#撤销远程记录)
   - [放弃本地的文件修改](#放弃本地的文件修改)
   - [回滚到某个commit提交](#回滚到某个commit提交)
+  - [回退到某一个版本](#回退到某一个版本)
+  - [去掉某个commit](#去掉某个commit)
+  - [合并多个commit](#合并多个commit)
   - [添加忽略文件](#添加忽略文件)
   - [利用commit关闭一个issue](#利用commit关闭一个issue)
   - [同步fork的上游仓库](#同步fork的上游仓库)
@@ -276,6 +279,30 @@ git checkout master
 ```shell
 git revert HEAD~1 # 撤销一条记录 会弹出 commit 编辑
 git push # 提交回滚
+```
+
+### 回退到某一个版本
+
+```bash
+git reset --hard <hash>
+# 例如 git reset --hard a3hd73r
+# --hard代表丢弃工作区的修改，让工作区与版本代码一模一样，与之对应，
+# --soft参数代表保留工作区的修改。
+```
+
+### 去掉某个commit
+
+```bash
+# 实质是新建了一个与原来完全相反的commit，抵消了原来commit的效果
+git revert <commit-hash> 
+```
+
+### 合并多个commit
+
+```bash
+# 这个命令，将最近4个commit合并为1个，HEAD代表当前版本。
+# 将进入VIM界面，你可以修改提交信息。
+git rebase -i HEAD~4 
 ```
 
 ### 添加忽略文件
