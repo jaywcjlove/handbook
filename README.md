@@ -101,4 +101,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
 - [Lua5.3中文手册](other/Lua5.3.md)
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
+- [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
+- [在GitHub上积极开发的编程语言列表](https://github.com/showcases/programming-languages/)
+- [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
 - [gulp-book](http://jaywcjlove.github.io/handbook/html/gulp-book.html)
