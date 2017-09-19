@@ -32,6 +32,7 @@
   - [查看当前的键值情况](#查看当前的键值情况)
   - [原生的Monitor监控](#原生的monitor监控)
 - [配置说明](#配置说明)
+- [精品文章](#精品文章)
 
 <!-- /TOC -->
 
@@ -964,3 +965,15 @@ hz 10
 # 在aof重写的时候，如果打开了aof-rewrite-incremental-fsync开关，系统会每32MB执行一次fsync。这对于把文件写入磁盘是有帮助的，可以避免过大的延迟峰值。
 aof-rewrite-incremental-fsync yes
 ```
+
+## 精品文章
+
+- [Redis 4.0 新功能简介](http://blog.huangz.me/diary/2016/redis-4-outline.html)
+- [Redis 学习路线](http://blog.huangz.me/diary/2016/how-to-learn-redis.html)
+- [Redis架构之防雪崩设计：网站不宕机背后的兵法](https://mp.weixin.qq.com/s/TBCEwLVAXdsTszRVpXhVug)
+- [Redis的内存优化](https://cachecloud.github.io/2017/02/16/Redis%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/)
+- [细说Redis监控和告警](https://zhuoroger.github.io/2016/08/20/redis-monitor-and-alarm/)
+- [搜狐视频(sohu tv)Redis私有云平台](https://github.com/sohutv/cachecloud)
+- [优酷土豆的Redis服务平台化之路](https://mp.weixin.qq.com/s?__biz=MzA5NzkxMzg1Nw==&mid=2653159795&idx=1&sn=10264108e1da670774b4b53a1e6dbbe4&scene=0)
+- [这可能是最全的 Redis 集群方案介绍了](https://mp.weixin.qq.com/s?__biz=MzA3MzYwNjQ3NA==&mid=2651296671&idx=1&sn=366de50a6787963517ff6e096c9d1643&scene=2&srcid=0601j5sEtcRyw9TtehhXW0Ix&from=timeline&isappinstalled=0#wechat_redirect)
+- [如何实现高可用的redis集群](https://mp.weixin.qq.com/s?__biz=MzAwNTg2MDUyMw==&mid=2247483661&idx=1&sn=c924b3a2b098c4211b0044de180a1c0e)
