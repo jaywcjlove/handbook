@@ -540,14 +540,16 @@ Nginx提供了许多预定义的变量，也可以通过使用set来设置变量
 
 ```nginx
 server {  
-    listen       80;                                                        
-    server_name  localhost;                                              
-    client_max_body_size 1024M;  # 允许客户端请求的最大单文件字节数
+  listen       80;                                                        
+  server_name  localhost;                                              
+  client_max_body_size 1024M;  # 允许客户端请求的最大单文件字节数
 
-    location / {
-        proxy_pass http://localhost:8080;
-        proxy_set_header Host $host:$server_port;
-    }
+  location / {
+    proxy_pass                         http://localhost:8080;
+    proxy_set_header Host              $host:$server_port;
+    proxy_set_header X-Forwarded-For   $remote_addr; # HTTP的请求端真实的IP
+    proxy_set_header X-Forwarded-Proto $scheme;      # 为了正确地识别实际用户发出的协议是 http 还是 https
+  }
 }
 ```
 
