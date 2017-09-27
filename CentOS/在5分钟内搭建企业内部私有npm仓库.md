@@ -200,7 +200,7 @@ npm install -S git+https://isaacs@github.com/npm/npm.git
 npm install -S git://github.com/npm/npm.git#v1.0.27
 ```
 
-上面安装需要注意：你的工程一定是在某一个组下面建立，方便管理，在生成你的包的时候`package.json`中的`name`一定要带上范围
+⚠️ 上面安装需要注意：你的工程一定是在某一个组下面建立，方便管理，在生成你的包的时候`package.json`中的`name`一定要带上范围
 
 ### 建立一个私有模块
 
@@ -214,7 +214,7 @@ npm init --scope=companyfe
 git push origin master
 ```
 
-将得到如下依赖，注意：
+⚠️ 将得到如下依赖，注意：
 
 > `name`字段必须限定范围，一般为 GitLab group 的名字, 例如 `@companyfe`, 那么 `name` 为: `@companyfe/hello-private`。  
 > `private` 设为 `true` 防止将私有模块上传到公网上去，需要手动设置一下。  
