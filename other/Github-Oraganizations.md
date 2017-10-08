@@ -15,6 +15,8 @@
 - [Baidu](https://github.com/baidu) 百度 ![](https://avatars3.githubusercontent.com/u/13245940?v=4&s=14)
   - [Baidu FEX team](https://github.com/fex-team) 百度  ![](https://avatars0.githubusercontent.com/u/6668906?v=4&s=14)
   - [Baidu EFE team](https://github.com/ecomfe) 百度  ![](https://avatars3.githubusercontent.com/u/2268460?v=3&s=14)
+- [eleme](https://github.com/eleme) 饿了么 ![](https://avatars2.githubusercontent.com/u/1201438?v=4&s=14)
+  - [饿了么前端](https://github.com/elemefe) 饿了么 ![](https://avatars2.githubusercontent.com/u/12810740?v=4&s=14)
 - [NetEase](https://github.com/netease) 网易 ![](https://avatars2.githubusercontent.com/u/1460597?v=3&s=14)
 - [SOHUDBA](https://github.com/SOHUDBA) 搜狐 ![](https://avatars2.githubusercontent.com/u/4919525?v=3&s=14)
 - [Qihoo360](https://github.com/Qihoo360) 奇虎360 ![](https://avatars2.githubusercontent.com/u/4082929?v=3&s=14)
