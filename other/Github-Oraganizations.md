@@ -2,12 +2,19 @@
 ---
 
 - [Alibaba](https://github.com/alibaba) 阿里巴巴 ![](https://avatars1.githubusercontent.com/u/1961952?v=3&s=14)
+  - [Ant Design](https://github.com/ant-design) Ant Design ![](https://avatars1.githubusercontent.com/u/12101536?v=4&s=14)
+  - [Ant DataVis Team](https://github.com/antvis) 蚂蚁金服 - 体验技术部 - 数据图形组 ![](https://avatars3.githubusercontent.com/u/19199542?v=4&s=14)
+  - [NG-ZORRO](https://github.com/NG-ZORRO) Angular Developers ![](https://avatars2.githubusercontent.com/u/30223759?v=4&s=14)
   - [aliceui](https://github.com/aliceui) 支付宝 ![](https://avatars3.githubusercontent.com/u/3404882?v=3&s=14)
   - [issyteam](https://github.com/kissyteam) 淘宝 ![](https://avatars1.githubusercontent.com/u/328318?v=3&s=14)
-- [Huawei](https://github.com/Huawei-Hadoop) 华为 ![](https://avatars0.githubusercontent.com/u/3898822?v=3&s=14)
+  - [seajs](https://github.com/seajs) Web的模块加载程序 ![](https://avatars1.githubusercontent.com/u/12101536?v=4&s=14)
+  - [egg](https://github.com/eggjs) Node.js的Web框架框架 ![](https://avatars2.githubusercontent.com/u/15833670?v=4&s=14)
+- [Huawei](https://github.com/Huawei-Hadoop) 华为 ![](https://avatars2.githubusercontent.com/u/539149?v=4&s=14)
 - [Tencent](https://code.csdn.net/tencent) 腾讯 
   - [腾讯 AlloyTeam ](https://github.com/AlloyTeam) 腾讯 ![](https://avatars2.githubusercontent.com/u/1503033?v=3&s=14)
-- [Baidu EFE team](https://github.com/baidufe) 百度  ![](https://avatars3.githubusercontent.com/u/2268460?v=3&s=14)
+- [Baidu](https://github.com/baidu) 百度 ![](https://avatars3.githubusercontent.com/u/13245940?v=4&s=14)
+  - [Baidu FEX team](https://github.com/fex-team) 百度  ![](https://avatars0.githubusercontent.com/u/6668906?v=4&s=14)
+  - [Baidu EFE team](https://github.com/ecomfe) 百度  ![](https://avatars3.githubusercontent.com/u/2268460?v=3&s=14)
 - [NetEase](https://github.com/netease) 网易 ![](https://avatars2.githubusercontent.com/u/1460597?v=3&s=14)
 - [SOHUDBA](https://github.com/SOHUDBA) 搜狐 ![](https://avatars2.githubusercontent.com/u/4919525?v=3&s=14)
 - [Qihoo360](https://github.com/Qihoo360) 奇虎360 ![](https://avatars2.githubusercontent.com/u/4082929?v=3&s=14)
