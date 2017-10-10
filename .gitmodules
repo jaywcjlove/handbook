@@ -10,3 +10,6 @@
 [submodule "linux-command"]
 	path = linux-command
 	url = https://github.com/jaywcjlove/linux-command.git
+[submodule "golang-tutorial"]
+	path = golang-tutorial
+	url = https://github.com/jaywcjlove/golang-tutorial.git
