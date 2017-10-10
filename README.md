@@ -18,6 +18,7 @@
 - [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
 - [Shell入门教程学习笔记](https://github.com/jaywcjlove/shell-tutorial)
 - [Swift入门教程读书笔记](https://github.com/jaywcjlove/swift-tutorial)
+- [Go语言入门学习笔记](https://github.com/jaywcjlove/golang-tutorial)
 
 ## MySQL
 
