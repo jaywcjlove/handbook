@@ -13,3 +13,6 @@
 [submodule "golang-tutorial"]
 	path = golang-tutorial
 	url = https://github.com/jaywcjlove/golang-tutorial.git
+[submodule "docker-tutorial"]
+	path = docker-tutorial
+	url = https://github.com/jaywcjlove/docker-tutorial.git
