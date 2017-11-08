@@ -1,6 +1,30 @@
 CentOS7安装使用svn
 ===
 
+<!-- TOC -->
+
+- [安装部署](#安装部署)
+  - [安装SVN](#安装svn)
+  - [验证安装](#验证安装)
+- [代码库创建](#代码库创建)
+- [配置用户](#配置用户)
+  - [添加用户](#添加用户)
+  - [配置用户权限](#配置用户权限)
+  - [svnserve.conf配置](#svnserveconf配置)
+- [启动svn](#启动svn)
+  - [配置防火墙端口](#配置防火墙端口)
+  - [启动SVN](#启动svn)
+  - [查看SVN进程](#查看svn进程)
+  - [检测SVN 端口](#检测svn-端口)
+  - [停止重启SVN](#停止重启svn)
+- [简单SVN命令](#简单svn命令)
+  - [下载克隆项目](#下载克隆项目)
+  - [添加](#添加)
+  - [删除](#删除)
+  - [提交修改](#提交修改)
+  - [查看状态](#查看状态)
+
+<!-- /TOC -->
 
 ## 安装部署
 
@@ -141,13 +165,63 @@ svnserve -d -r /opt/svn # 启动
 ```
 
 
-
-### 配置用户权限
-
 ## 简单SVN命令
 
 
+### 下载克隆项目
+
 ```bash
+# 下载项目
+svn checkout 'url'
+# 简写
+svn co 'url'
+# 实例
 svn checkout path（path是服务器上的目录）
 svn checkout svn://192.168.1.1/pro/domain
+```
+
+
+### 添加
+
+```bash
+# 添加指定文件或目录
+svn add 'file'或'dir'
+
+# 添加所有目录文件
+svn add *
+
+# 创建纳入版本目录
+svn mkdir -m 'commit message' 'url/dir'
+```
+
+### 删除
+
+```bash
+删除指定文件
+svn delete 'file'
+推荐组合
+svn delete 'file name'
+svn commit -m 'delete file name'
+```
+
+### 提交修改
+
+```bash
+# 提交指定文件
+svn commit -m 'commit message' 'file'
+
+# 提交所有文件
+svn commit -m 'commit message'
+# 简写
+svn ci -m
+```
+
+
+### 查看状态
+
+```bash
+# 查看文件或目录状态
+svn status 'file'或'dir'
+# 简写
+svn st 'file'或'dir'
 ```
