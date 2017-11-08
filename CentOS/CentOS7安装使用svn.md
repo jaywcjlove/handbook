@@ -23,6 +23,13 @@ CentOS7安装使用svn
   - [删除](#删除)
   - [提交修改](#提交修改)
   - [查看状态](#查看状态)
+  - [查看日志](#查看日志)
+  - [更新](#更新)
+  - [锁定](#锁定)
+  - [比较差异](#比较差异)
+  - [分支](#分支)
+  - [解决冲突](#解决冲突)
+  - [帮助](#帮助)
 
 <!-- /TOC -->
 
@@ -224,4 +231,78 @@ svn ci -m
 svn status 'file'或'dir'
 # 简写
 svn st 'file'或'dir'
+```
+
+正常状态不显示
+
+> ?：不在svn的控制中  
+> M：内容被修改  
+> C：发生冲突  
+> A：预定加入到版本库  
+> K：被锁定  
+
+### 查看日志
+
+```bash
+# 看指定文件日志
+svn log 'file'
+
+# 查看指定文件详细信息
+svn info 'file'
+
+# 查看指定目录文件列表
+svn list 'dir'
+```
+
+
+### 更新
+
+```bash
+# 更新指定文件
+svn update 'file'
+
+# 更新所有文件
+svn update
+```
+
+### 锁定
+
+```bash
+# 加锁指定文件
+svn lock -m 'commit message' 'file'  
+
+# 解锁指定文件
+svn unlock 'file'
+```
+ 
+### 比较差异
+
+```bash
+比较指定文件差异
+svn diff 'file'  
+
+对指定文件的版本1和版本2比较差异
+svn diff -r version1:version2 'file'  
+```
+
+### 分支
+
+```bash
+从分支A新建出一个分支B
+svn copy branchA branchB -m 'commit message'    
+```
+
+### 解决冲突
+
+```bash
+svn resolved 
+# 产生冲突是，会生成三个新的文件，
+# svn resolved除了删除冲突文件，
+# 还修正了一些记录在工作拷贝管理区域的记录数据
+```
+
+### 帮助
+
+```bash
+svn help    
 ```
