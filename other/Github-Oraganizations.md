@@ -7,10 +7,12 @@
   - [NG-ZORRO](https://github.com/NG-ZORRO) Angular Developers ![](https://avatars2.githubusercontent.com/u/30223759?v=4&s=14)
   - [aliceui](https://github.com/aliceui) 支付宝 ![](https://avatars3.githubusercontent.com/u/3404882?v=3&s=14)
   - [issyteam](https://github.com/kissyteam) kissyteam ![](https://avatars1.githubusercontent.com/u/328318?v=3&s=14)
-  - [Taobao, Inc. ](https://github.com/taobao) 淘宝 ![](https://avatars1.githubusercontent.com/u/328318?v=3&s=14)
+  - [Taobao, Inc. ](https://github.com/taobao) 淘宝 ![](https://avatars0.githubusercontent.com/u/1560507?v=3&s=14)
+  - [天猫前端](https://github.com/tmallfe) 天猫 ![](https://avatars0.githubusercontent.com/u/7637440?v=3&s=14)
   - [seajs](https://github.com/seajs) Web的模块加载程序 ![](https://avatars1.githubusercontent.com/u/12101536?v=4&s=14)
   - [kissyteam](https://github.com/kissyteam) 强大的模块集合 ![](https://avatars3.githubusercontent.com/u/328318?v=4&s=14)
   - [egg](https://github.com/eggjs) Node.js的Web框架框架 ![](https://avatars2.githubusercontent.com/u/15833670?v=4&s=14)
+  
 - [Huawei](https://github.com/Huawei-Hadoop) 华为 ![](https://avatars2.githubusercontent.com/u/539149?v=4&s=14)
 - [Tencent](https://github.com/tencent) 腾讯 Github ![](https://avatars0.githubusercontent.com/u/18461506?v=4&s=14)
   - [Tencent](https://code.csdn.net/tencent) 腾讯 csdn
