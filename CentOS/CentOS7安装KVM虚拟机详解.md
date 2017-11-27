@@ -17,6 +17,8 @@ CentOS7安装KVM虚拟机详解
   - [连接虚拟机](#连接虚拟机)
   - [虚拟机其它管理](#虚拟机其它管理)
 - [配置物理机网络](#配置物理机网络)
+- [端口转发](#端口转发)
+- [公网访问虚拟机](#公网访问虚拟机)
 - [配置宿主机网络](#配置宿主机网络)
   - [Bridge模式配置](#bridge模式配置)
   - [NAT模式](#nat模式)
@@ -25,6 +27,7 @@ CentOS7安装KVM虚拟机详解
 - [修改虚拟机配置信息](#修改虚拟机配置信息)
 - [克隆虚拟机](#克隆虚拟机)
 - [通过镜像创建虚拟机](#通过镜像创建虚拟机)
+- [动态更改cpu数量和内存大小](#动态更改cpu数量和内存大小)
 - [挂载磁盘](#挂载磁盘)
   - [创建磁盘](#创建磁盘)
 - [常用命令说明](#常用命令说明)
@@ -56,25 +59,24 @@ vi /etc/sysconfig/selinux
  
 通过 [yum](https://jaywcjlove.github.io/linux-command/c/yum.html) 安装 kvm 基础包和管理工具
 
+kvm相关安装包及其作用: 
+
+- `qemu-kvm` 主要的KVM程序包  
+- `python-virtinst` 创建虚拟机所需要的命令行工具和程序库  
+- `virt-manager` GUI虚拟机管理工具  
+- `virt-top` 虚拟机统计命令  
+- `virt-viewer` GUI连接程序，连接到已配置好的虚拟机  
+- `libvirt` C语言工具包，提供libvirt服务  
+- `libvirt-client` 为虚拟客户机提供的C语言工具包  
+- `virt-install` 基于libvirt服务的虚拟机创建命令  
+- `bridge-utils` 创建和管理桥接设备的工具  
+
 ```bash
-# 安装 kvm 基础包
+# 安装 kvm 
 # ------------------------
-yum -y install kvm
+# yum -y install qemu-kvm python-virtinst libvirt libvirt-python virt-manager libguestfs-tools bridge-utils virt-install
 
-# 安装 kvm 管理工具
-# ------------------------
-yum -y install qemu-kvm python-virtinst libvirt libvirt-python virt-manager libguestfs-tools bridge-utils virt-install
-
-# qemu-kvm: KVM模块
-
-# pyhon-virtinst: 包含python模块和工具（virt-install，virt-clone和virt-image），
-# 用于安装和克隆虚拟机使用libvirt。 它完全支持paravirtulized客人和客人虚拟客人。 
-# 支持的虚拟机管理程序是Xen，qemu（QEMU）和kvm
-
-# libvirt: 虚拟管理模块
-# virt-manager: 图形界面管理虚拟机
-# libguestfs* : virt-cat等命令的支持软件包
-
+yum -y install qemu-kvm libvirt virt-install bridge-utils 
 
 # 重启宿主机，以便加载 kvm 模块
 # ------------------------
@@ -92,10 +94,8 @@ kvm                   525259  1 kvm_intel
 开启kvm服务，并且设置其开机自动启动
 
 ```bash
-systemctl start acpid.service
-systemctl enable acpid.service
-systemctl start libvirtd.service
-systemctl enable libvirtd.service
+systemctl start libvirtd
+systemctl enable libvirtd
 ```
 
 查看状态操作结果，如`Active: active (running)`，说明运行情况良好
@@ -379,11 +379,24 @@ net.ipv4.ip_forward = 0
 net.ipv4.ip_forward = 1    允许内置路由
 ```
 
-再执行 `sysctl -p` 使其生效，编辑`vi /etc/rc.d/rc.local` 添加下面命令，达到开机重启配置网络转发规则。
+再执行 `sysctl -p` 使其生效
+
+## 端口转发
+
+现在我们还以上述VM为例，目前该KVM的公网IP为`211.11.61.7`，VM的IP为`192.168.188.115`，现在我要求通过访问KVM的2222端口访问VM的22端口。
+
+编辑`vi /etc/rc.d/rc.local` 添加下面命令，达到开机重启配置网络转发规则。
 
 ```bash
 # 启动网络转发规则
-iptables -t nat -A POSTROUTING -s 192.168.188.0/24 -j SNAT --to-source 210.14.67.7
+iptables -t nat -A : -s 192.168.188.0/24 -j SNAT --to-source 211.11.61.7
+
+iptables -t nat -A POSTROUTING -s 192.168.188.0/24 -j SNAT --to-source 211.11.61.7
+iptables -t nat -A PREROUTING -d  211.11.61.7 -p tcp --dport 2222  -j DNAT --to-dest 192.168.188.115:22
+iptables -t nat -A PREROUTING -d  211.11.61.7 -p tcp --dport 2221  -j DNAT --to-dest 192.168.188.115:21
+
+# 实际效果可以通过外网连接虚拟机
+ssh -p 2222 root@211.11.61.7
 ```
 
 通过[iptables](https://jaywcjlove.github.io/linux-command/c/iptables.html)命令来设置转发规则，源SNAT规则，源网络地址转换，SNAT就是重写包的源IP地址。
@@ -404,6 +417,14 @@ iptables -t nat -A POSTROUTING -s 192.168.188.0/24 -j SNAT --to-source 210.14.67
 #   后来的内核（> = 2.6.11-rc1）不再具有NAT到多个范围的能力。
 iptables -t nat -A POSTROUTING -s 192.168.120.0/24 -j SNAT --to-source <固定IP>
 # cat /etc/sysconfig/iptables
+```
+
+## 公网访问虚拟机
+
+通过公网ip `211.11.61.7:8023` 访问虚拟机`192.168.188.115:80`
+
+```
+iptables -t nat -A PREROUTING -d 211.11.61.7 -p tcp -m tcp –dport 8023 -j DNAT –to-destination 192.168.188.115:80
 ```
 
 ## 配置宿主机网络
@@ -803,6 +824,24 @@ vi /home/vms/centos7.113.xml
 ```bash
 virsh define /home/vms/centos7.113.xml
 # Domain centos.113 defined from /home/vms/centos7.113.xml
+```
+
+## 动态更改cpu数量和内存大小
+
+动态调整，如果超过给虚拟机分配的最大内存，需要重启虚拟机。
+
+```bash
+virsh list --all
+#  Id    名称                         状态
+# ----------------------------------------------------
+#  2     working112                     running
+
+# 更改CPU
+virsh setvcpus working112 --maximum 4 --config
+# 更改内存
+virsh setmaxmem working112 1048576 --config
+# 查看信息
+virsh dominfo working112
 ```
 
 ## 挂载磁盘
