@@ -76,8 +76,8 @@ Nginx版本：`1.11.5`
 
 ```bash
 yum install -y pcre-devel 
-yum -y install gcc make gcc-c++ openssl-devel wget
-yum -y install openssl openssl--devel 
+yum -y install gcc make gcc-c++ wget
+yum -y install openssl openssl-devel 
 ```
 
 CentOS 6.5 我安装的时候是选择的“基本服务器”，默认这两个包都没安装全，所以这两个都运行安装即可。
@@ -88,6 +88,7 @@ CentOS 6.5 我安装的时候是选择的“基本服务器”，默认这两个
 
 ```bash
 wget http://nginx.org/download/nginx-1.13.3.tar.gz
+wget http://nginx.org/download/nginx-1.13.7.tar.gz
 
 # 如果没有安装wget
 # 下载已编译版本
