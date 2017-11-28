@@ -217,7 +217,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service t
 vi /etc/rc.local
 
 # 在 rc.local 文件中，添加下面这条命令
-/usr/local/nginx/sbin/nginx -s reload
+/usr/local/nginx/sbin/nginx start
 ```
 
 如果开机后发现自启动脚本没有执行，你要去确认一下rc.local这个文件的访问权限是否是可执行的，因为rc.local默认是不可执行的。修改rc.local访问权限，增加可执行权限：
