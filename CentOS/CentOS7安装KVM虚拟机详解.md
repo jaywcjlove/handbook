@@ -421,10 +421,19 @@ iptables -t nat -A POSTROUTING -s 192.168.120.0/24 -j SNAT --to-source <固定IP
 
 ## 公网访问虚拟机
 
-通过公网ip `211.11.61.7:8023` 访问虚拟机`192.168.188.115:80`
+通过公网ip `192.168.188.222`端口`2280`，转发到虚拟机`192.168.111.133:80`上面
 
+```bash
+iptables -t nat -A PREROUTING -d 192.168.188.222 -p tcp --dport 2280 -j DNAT --to-dest 192.168.111.133:80
 ```
-iptables -t nat -A PREROUTING -d 211.11.61.7 -p tcp -m tcp –dport 8023 -j DNAT –to-destination 192.168.188.115:80
+
+重启并保存 `iptables` 配置。
+
+```bash
+# 保存 
+service iptables save
+# 重启
+service iptables restart
 ```
 
 ## 配置宿主机网络
@@ -852,21 +861,82 @@ virsh dominfo working112
 mkdir /home/vms
 ```
 
-创建镜像文件
+查看镜像信息
 
 ```bash
-sudo qemu-img create /home/vms/centos78.img
+virt-filesystems --long --parts --blkdevs -h -a working112.qcow2
+
+# Name       Type       Size  Parent
+# /dev/sda1  partition  200M  /dev/sda
+# /dev/sda2  partition  9.8G  /dev/sda
+# /dev/sda   device     10G   -
+
+qemu-img info working112.qcow2
+
+# image: working112.qcow2
+# file format: qcow2
+# virtual size: 140G (150323855360 bytes)
+# disk size: 33G
+# cluster_size: 65536
+# Format specific information:
+#     compat: 1.1
+#     lazy refcounts: true
 ```
 
-创建普通的qcow2格式镜像文件
+给虚拟机镜像添加`200G`大小，注意需要停止`working112`虚拟机
 
 ```bash
-# 创建 guest 所需的磁盘
-# create 表示创建，-f qcow2 表示创建一个格式为 qcow2 的磁盘， 
-# /home/vms/centos78.qcow2 表示创建的磁盘名称及磁盘文件，40G 表示该磁盘可用大小。
-qemu-img create -f qcow2 -o preallocation=metadata /home/vms/centos78.qcow2 40G
+qemu-img resize working112.qcow2 +200G
+# Image resized.
 ```
 
+首先，我们制作如下所示的磁盘的备份副本。
+
+```bash
+cp working112.qcow2 working112-orig.qcow2
+```
+
+然后我们运行下面的命令来增加 `/dev/sda`
+
+```bash
+virt-resize --expand /dev/sda1 working112-orig.qcow2 working112.qcow2
+```
+
+查看镜像信息
+
+```bash
+qemu-img info working112.qcow2
+# image: working112.qcow2
+# file format: qcow2
+# virtual size: 140G (150323855360 bytes)
+# disk size: 33G
+# cluster_size: 65536
+# Format specific information:
+#     compat: 1.1
+#     lazy refcounts: true
+```
+
+进入虚拟机`virsh console working112` 查看信息：
+
+```bash
+vgdisplay # 显示卷组大小
+lvdisplay # 显示逻辑卷大小
+```
+
+卷组大小已增加，下面需要分配容量给逻辑卷
+
+```bash
+lvextend -L +60G /dev/centos/root
+```
+
+还有最后一步，分配好了需要做系统调整
+
+```bash
+# ext 系统格式使用：
+resize2fs /dev/centos/root
+# xfs 系统格式使用下面命令
+xfs_growfs /dev/centos/root
+```
 
 ## 常用命令说明
 
@@ -961,3 +1031,4 @@ virt-manager 没有找到存储池，创建储存池即可
 - [KVM虚拟机Linux系统增加硬盘](http://www.cnblogs.com/ilanni/p/3878151.html)
 - [virt-install 命令参数详解](https://www.ibm.com/support/knowledgecenter/zh/linuxonibm/liaat/liaatvirtinstalloptions.htm)
 - [使用virt-install安装虚拟机，发行版安装代码直接复制运行](https://raymii.org/s/articles/virt-install_introduction_and_copy_paste_distro_install_commands.html)
+- [KVM Linux - Expanding a Guest LVM File System Using Virt-resize](http://blog.oneiroi.co.uk/linux/kvm/virt-resize/RHEL/LVM/kvm-linux-expanding-a-lvm-guest-file-system-using-virt-resize/)
