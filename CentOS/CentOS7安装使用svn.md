@@ -136,7 +136,13 @@ authz-db = authz
 vi /etc/sysconfig/iptables
 # 添加以下内容：
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 3690 -j ACCEPT
+
+# 或者下面方式
+# 开启3690端口的命令，在终端输入以下命令：
+iptables -I INPUT -i eth0 -p tcp --dport 3690 -j ACCEPT
+iptables -I OUTPUT -o eth0 -p tcp --sport 3690 -j ACCEPT
 # 保存后重启防火墙
+service iptables save
 service iptables restart
 ```
 
