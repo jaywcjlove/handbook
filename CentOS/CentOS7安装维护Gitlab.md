@@ -303,10 +303,6 @@ gitlab-rake gitlab:backup:create
 
 ### 开始备份
 
-```bash
-gitlab-rake gitlab:backup:create
-```
-
 这里放你的备份文件文件夹，和仓库源文件。
 
 ```bash
@@ -328,7 +324,9 @@ crontab -e
 上面两行保存之后，重新载入配置
 
 ```bash
-/sbin/service crond reload
+service crond reload
+# or
+systemctl reload crond.service
 ```
 
 ### 备份保留七天
@@ -372,7 +370,6 @@ gitlab-rake gitlab:backup:restore BACKUP=1483533591_2017_01_04_gitlab_backup.tar
 sudo gitlab-ctl start  
 ```
 
-
 判断是执行实际操作的gitlab相关用户：git，没有得到足够的权限。依次执行命令：
 
 ```bash
@@ -388,6 +385,11 @@ sudo chmod -R ug-s /var/opt/gitlab/git-data/repositories
 sudo find /var/opt/gitlab/git-data/repositories -type d -print0 | sudo xargs -0 chmod g+s
 ```
 
+如果备份文件报没有权限，通过`ls -al`查看权限是不是`git`，而不是`root`，通过下面方式给`git`用户权限
+
+```bash
+sudo chown -R git:git 1483533591_2017_01_04_gitlab_backup.tar
+```
 
 ## 暴力升级
 
@@ -461,6 +463,11 @@ Found /etc/gitlab/skip-auto-migrations, exiting...
 完毕！
 ```
 
+重启配置，可以解决大部分`502`错误。
+
+```bash
+gitlab-ctl reconfigure
+```
 
 ## 错误处理
 
@@ -571,3 +578,4 @@ Completed 401 Unauthorized in 17ms (ActiveRecord: 2.7ms)
 - [官方Centos安装Gitlab教程](https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/install/centos)
 - [Gitlab升级记录](http://opjasee.com/2016/01/28/gitlab-upgrade.html)
 - [修改gitlab使用现有nginx服务及502问题解决](http://www.yuzhewo.com/2015/11/03/%E4%BF%AE%E6%94%B9gitlab%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89nginx%E6%9C%8D%E5%8A%A1%E5%8F%8A502%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/)
+- [我所遇到的GitLab 502问题的解决](http://blog.csdn.net/wangxicoding/article/details/43738137)
