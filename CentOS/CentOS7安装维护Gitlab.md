@@ -60,9 +60,11 @@ sudo yum install gitlab-ce
 ```
 
 If you are not comfortable installing the repository through a piped script, you can find the entire script here and select and download the package manually and install using
+[gitlab/gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
 
-```
+```bash
 curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/6/gitlab-ce-XXX.rpm/download
+curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-10.2.2-ce.0.el7.x86_64.rpm/download
 rpm -i gitlab-ce-XXX.rpm
 ```
 
@@ -154,90 +156,57 @@ sudo vim /etc/gitlab/gitlab.rb
 
 # 查看版本
 sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
-
 # echo "vm.overcommit_memory=1" >> /etc/sysctl.conf
 # sysctl -p
 # echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
 # 检查gitlab
 gitlab-rake gitlab:check SANITIZE=true --trace
-
+gitlab-rake gitlab:check
+gitlab-rake gitlab:check SANITIZE=true
 # 查看日志
-sudo gitlab-ctl tail
-
+gitlab-ctl tail
 # 数据库关系升级
-sudo gitlab-rake db:migrate
-
+gitlab-rake db:migrate
 # 清理缓存
-sudo gitlab-rake cache:clear
+gitlab-rake cache:clear
 
-
-sudo gitlab-rake gitlab:check
-sudo gitlab-rake gitlab:check SANITIZE=true
+# 更新gitlab包
+yum update gitlab-ce
 
 # 升级gitlab
-sudo yum install gitlab-ce
+yum install gitlab-ce
 
 # 升级数据命令
-sudo gitlab-ctl pg-upgrade
+gitlab-ctl pg-upgrade
 ```
 
 ### 服务管理
 
 ```bash 
-# 启动所有 gitlab 组件：
-sudo gitlab-ctl start
-
-# 停止所有 gitlab 组件：
-sudo gitlab-ctl stop
-
-# 停止所有 gitlab postgresql 组件：
-sudo gitlab-ctl stop postgresql
-
+gitlab-ctl start # 启动所有 gitlab 组件：
+gitlab-ctl stop  # 停止所有 gitlab 组件：
+gitlab-ctl stop postgresql # 停止所有 gitlab postgresql 组件：
 # 停止相关数据连接服务
-sudo gitlab-ctl stop unicorn
-sudo gitlab-ctl stop sidekiq
-
-# 重启所有 gitlab 组件：
-sudo gitlab-ctl restart
-
-# 重启所有 gitlab gitlab-workhorse 组件：
-sudo gitlab-ctl restart  gitlab-workhorse
-
-# 查看服务状态
-sudo gitlab-ctl status
-
-# 生成配置启动服务
-sudo gitlab-ctl reconfigure
+gitlab-ctl stop unicorn
+gitlab-ctl stop sidekiq
+gitlab-ctl restart # 重启所有 gitlab 组件：
+gitlab-ctl restart gitlab-workhorse # 重启所有 gitlab gitlab-workhorse 组件：
+gitlab-ctl status # 查看服务状态
+gitlab-ctl reconfigure # 生成配置启动服务
 ```
 
 ### 日志查看
 
 ```bash
-
-# 查看日志
-sudo gitlab-ctl tail
-
-# 检查redis的日志
-sudo gitlab-ctl tail redis
- 
-# 检查postgresql的日志
-sudo gitlab-ctl tail postgresql
- 
-# 检查gitlab-workhorse的日志
-sudo gitlab-ctl tail gitlab-workhorse
- 
-# 检查logrotate的日志
-sudo gitlab-ctl tail logrotate
- 
-# 检查nginx的日志
-sudo gitlab-ctl tail nginx
- 
-# 检查sidekiq的日志
-sudo gitlab-ctl tail sidekiq
- 
-# 检查unicorn的日志
-sudo gitlab-ctl tail unicorn
+sudo gitlab-ctl tail # 查看日志
+sudo gitlab-ctl tail redis # 检查redis的日志
+sudo gitlab-ctl tail postgresql       # 检查postgresql的日志
+sudo gitlab-ctl tail gitlab-workhorse # 检查gitlab-workhorse的日志
+sudo gitlab-ctl tail logrotate # 检查logrotate的日志
+sudo gitlab-ctl tail nginx    # 检查nginx的日志
+sudo gitlab-ctl tail sidekiq  # 检查sidekiq的日志
+sudo gitlab-ctl tail unicorn  # 检查unicorn的日志
 
 ```
 
@@ -427,7 +396,7 @@ Failed:
   gitlab-ce.x86_64 0:8.11.5-ce.0.el6
 ```
 
-看上面一堆错误，瞬间就懵逼了，看到一条救星命令让我尝试运行 `sudo touch /etc/gitlab/skip-auto-migrations` 于是我二逼的运行了，结果真的安装成功了，😄。
+看上面一堆错误，瞬间就懵逼了，看到一条救星命令让我尝试运行 `sudo touch /etc/gitlab/skip-auto-migrations` 于是我二逼的重新`yum install gitlab-ce`运行了，结果真的安装成功了，😄。
 
 ```
 ...
@@ -471,53 +440,47 @@ gitlab-ctl reconfigure
 
 ## 错误处理
 
-
 ### 解决80端口被占用
 
 nginx配置解决 `80` 端口被占用
 
-```
+```nginx
 upstream gitlab {
      server 114.55.111.111:8081 ;
 }
 server {
-    #侦听的80端口
-    listen       80;
-    server_name  git.diggg.cn;
-    location / {
-        proxy_pass   http://gitlab;    #在这里设置一个代理，和upstream的名字一样
-        #以下是一些反向代理的配置可删除
-        proxy_redirect             off;
-        #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
-        proxy_set_header           Host $host;
-        proxy_set_header           X-Real-IP $remote_addr;
-        proxy_set_header           X-Forwarded-For $proxy_add_x_forwarded_for;
-        client_max_body_size       10m; #允许客户端请求的最大单文件字节数
-        client_body_buffer_size    128k; #缓冲区代理缓冲用户端请求的最大字节数
-        proxy_connect_timeout      300; #nginx跟后端服务器连接超时时间(代理连接超时)
-        proxy_send_timeout         300; #后端服务器数据回传时间(代理发送超时)
-        proxy_read_timeout         300; #连接成功后，后端服务器响应时间(代理接收超时)
-        proxy_buffer_size          4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-        proxy_buffers              4 32k; #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
-        proxy_busy_buffers_size    64k; #高负荷下缓冲大小（proxy_buffers*2）
-        proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
-    }
+  # 侦听的80端口
+  listen       80;
+  server_name  git.diggg.cn;
+  location / {
+    proxy_pass   http://gitlab;    #在这里设置一个代理，和upstream的名字一样
+    #以下是一些反向代理的配置可删除
+    proxy_redirect             off;
+    #后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
+    proxy_set_header           Host $host;
+    proxy_set_header           X-Real-IP $remote_addr;
+    proxy_set_header           X-Forwarded-For $proxy_add_x_forwarded_for;
+    client_max_body_size       10m; #允许客户端请求的最大单文件字节数
+    client_body_buffer_size    128k; #缓冲区代理缓冲用户端请求的最大字节数
+    proxy_connect_timeout      300; #nginx跟后端服务器连接超时时间(代理连接超时)
+    proxy_send_timeout         300; #后端服务器数据回传时间(代理发送超时)
+    proxy_read_timeout         300; #连接成功后，后端服务器响应时间(代理接收超时)
+    proxy_buffer_size          4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小
+    proxy_buffers              4 32k; #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
+    proxy_busy_buffers_size    64k; #高负荷下缓冲大小（proxy_buffers*2）
+    proxy_temp_file_write_size 64k; #设定缓存文件夹大小，大于这个值，将从upstream服务器传
+  }
 }
 ```
 
 nginx配置检查和立即生效
 
 ```bash
-
 # 检查配置
-/usr/local/nginx-1.5.1/sbin/nginx -tc conf/nginx.conf
-
+/usr/local/nginx/sbin/nginx -tc conf/nginx.conf
 # nginx 重新加载配置
-/usr/local/nginx-1.5.1/sbin/nginx -s reload
+/usr/local/nginx/sbin/nginx -s reload
 ```
-
-
-
 ### 头像无法正常显示
 
 原因：gravatar被墙
@@ -541,7 +504,6 @@ sudo gitlab-ctl reconfigure
 sudo gitlab-rake cache:clear RAILS_ENV=production
 ```
 
-
 ### 其它错误
 
 ```bash
@@ -564,13 +526,20 @@ Completed 401 Unauthorized in 17ms (ActiveRecord: 2.7ms)
 
 ```
 /var/log/gitlab/nginx/gitlab_access.log <==
-114.55.148.71 - - [04/Jan/2017:17:20:24 +0800] "GET /favicon.ico HTTP/1.0" 502 2662 "http://git.showgold.cn/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
+114.55.148.71 - - [04/Jan/2017:17:20:24 +0800] "GET /favicon.ico HTTP/1.0" 502 2662 "http://git.xxxxx.cn/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
 ```
 
+```
+GitLab: Failed to authorize your Git request: internal API unreachable
+```
+
+解决办法：https://gitlab.com/gitlab-org/gitlab-ce/issues/33702
+
+通过防火墙规则 127.0.0.1
 
 ## 参考资料
 
-- [gitlab / gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
+- [gitlab/gitlab-ce](https://packages.gitlab.com/gitlab/gitlab-ce)
 - [官网下载](https://www.gitlab.cc/downloads)
 - [官网安装说明](https://doc.gitlab.cc/ce/install/requirements.html)
 - [开源版本和企业版本对比](https://www.gitlab.cc/features/#enterprise)
