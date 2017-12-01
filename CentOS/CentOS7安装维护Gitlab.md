@@ -30,6 +30,7 @@ CentOS7安装维护Gitlab
 - [错误处理](#错误处理)
   - [解决80端口被占用](#解决80端口被占用)
   - [头像无法正常显示](#头像无法正常显示)
+  - [internal API unreachable](#internal-api-unreachable)
   - [其它错误](#其它错误)
 - [参考资料](#参考资料)
 
@@ -504,6 +505,17 @@ sudo gitlab-ctl reconfigure
 sudo gitlab-rake cache:clear RAILS_ENV=production
 ```
 
+### internal API unreachable
+
+这个错误是一个自己制造的坑，我克隆和提交都没有办法搞，但是网站能正常运行，尝试了非常多的方法，最终我的问题是`22`端口没有隐射出去，好尴尬。
+
+```bash
+GitLab: Failed to authorize your Git request: internal API unreachable
+```
+
+解决办法：https://gitlab.com/gitlab-org/gitlab-ce/issues/33702  
+通过防火墙规则 127.0.0.1  
+
 ### 其它错误
 
 ```bash
@@ -528,14 +540,6 @@ Completed 401 Unauthorized in 17ms (ActiveRecord: 2.7ms)
 /var/log/gitlab/nginx/gitlab_access.log <==
 114.55.148.71 - - [04/Jan/2017:17:20:24 +0800] "GET /favicon.ico HTTP/1.0" 502 2662 "http://git.xxxxx.cn/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
 ```
-
-```
-GitLab: Failed to authorize your Git request: internal API unreachable
-```
-
-解决办法：https://gitlab.com/gitlab-org/gitlab-ce/issues/33702
-
-通过防火墙规则 127.0.0.1
 
 ## 参考资料
 
