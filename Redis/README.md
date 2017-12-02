@@ -191,6 +191,15 @@ $ redis-cli info | grep tcp_port
 
 ### 开机启动
 
+如果你是通过yum安装，可以使用下面方式开机启动。
+
+```bash
+systemctl enable redis.servic
+chkconfig redis on
+```
+
+如果你是编译安装可通过下面方式设置开机启动
+
 我们将在 Redis 安装目录找到`/usr/local/redis-4.0.0/utils`这个目录，在这个目录中有个有个脚本 `redis_init_script`，将此脚本拷贝到`/etc/init.d`目录下，命名为`redis`: 
 
 ```bash
