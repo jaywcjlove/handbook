@@ -5,6 +5,18 @@ Rocket.Chat 开源IM系统部署
 
 主要依赖三个工具 `Nginx`、`CentOS 7`、`Mongodb`
 
+![](img/screenshot.png)
+
+
+<!-- TOC -->
+
+- [安装步骤](#安装步骤)
+- [安装Mongodb数据库](#安装mongodb数据库)
+- [安装Rocket.Chat](#安装rocketchat)
+- [启动服务](#启动服务)
+- [开机启动](#开机启动)
+
+<!-- /TOC -->
 
 ## 安装步骤
 
@@ -24,6 +36,10 @@ yum install -y curl
 
 ```bash
 yum install -y nodejs npm
+# node版本很重要需要安装`n`来切换版本
+npm install -g inherits n
+# 切换node版本, 很重要
+n 4.8.4
 ```
 
 安装meteor
@@ -72,6 +88,8 @@ service mongod restart
 
 ## 安装Rocket.Chat
 
+安装的时候记得前面加上`sudo`
+
 ```bash
 cd /opt
 curl -L https://download.rocket.chat/stable -o rocket.chat.tgz
@@ -79,15 +97,16 @@ curl -L https://download.rocket.chat/stable -o rocket.chat.tgz
 tar zxvf rocket.chat.tgz
 mv bundle Rocket.Chat
 cd Rocket.Chat/programs/server
-npm install
+# ========sudo很重要===========
+sudo npm install # 记得前面加上sudo
 cd ../..
 ```
 
 直接在命令行中运行下面命令，配置 `PORT`, `ROOT_URL` 和 `MONGO_URL`:
 
 ```bash
-export PORT=9666
-export ROOT_URL=http://192.168.188.223:9666/
+export PORT=3000
+export ROOT_URL=http://127.0.0.1:3000/
 export MONGO_URL=mongodb://localhost:27017/rocketchat
 ```
 
@@ -123,7 +142,7 @@ node main.js
 meteor npm install --save bcrypt
 ```
 
-使用上面的连接地址 `http://192.168.188.223:9666/`在浏览器中打开，点击`注册新账号`，输入`管理员姓名`，`电子邮件`，`两次密码`，如下：
+使用上面的连接地址 `http://127.0.0.1:3000/`在浏览器中打开，点击`注册新账号`，输入`管理员姓名`，`电子邮件`，`两次密码`，如下：
 
 ```bash
 姓名：admin
@@ -132,3 +151,50 @@ meteor npm install --save bcrypt
 ```
 
 点击提交，系统会提示你选择一个用户，直接选择管理员，点击使用此用户名继续。
+
+
+```bash
+Error: MONGO_URL must be set in environment
+```
+
+报`node-v46-linux-x64`不存在错误 直接更改文件夹名字就解决了。
+
+```bash
+mv node-v48-linux-x64 node-v46-linux-x64/
+```
+
+## 开机启动
+
+```bash
+cd /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/rocketchat_google-vision/node_modules/grpc/src/node/extension_binary/
+vi /usr/lib/systemd/system/rocketchat.service
+```
+
+将下面内容复制到上面文件中。
+
+```
+[Unit]
+Description=The Rocket.Chat server
+After=network.target remote-fs.target nss-lookup.target nginx.target mongod.target
+[Service]
+ExecStart=/usr/local/bin/node /opt/Rocket.Chat/main.js
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=rocketchat
+User=root
+Environment=MONGO_URL=mongodb://localhost:27017/rocketchat ROOT_URL=http://your-host-name.com-as-accessed-from-internet:3000/ PORT=3000
+[Install]
+WantedBy=multi-user.target
+```
+
+现在可以运行以下命令来启用此服务：
+
+```bash
+systemctl enable rocketchat.service
+```
+
+最后通过运行来启动它，你就不需要：
+
+```bash
+systemctl start rocketchat.service
+```
