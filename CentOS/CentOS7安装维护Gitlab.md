@@ -31,6 +31,7 @@ CentOS7安装维护Gitlab
   - [解决80端口被占用](#解决80端口被占用)
   - [头像无法正常显示](#头像无法正常显示)
   - [internal API unreachable](#internal-api-unreachable)
+- [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
   - [其它错误](#其它错误)
 - [参考资料](#参考资料)
 
@@ -515,6 +516,22 @@ GitLab: Failed to authorize your Git request: internal API unreachable
 
 解决办法：https://gitlab.com/gitlab-org/gitlab-ce/issues/33702  
 通过防火墙规则 127.0.0.1  
+
+## proxy_temp 目录没有权限
+
+```bash
+[crit] 14788#0: *215 open() "/usr/local/nginx/proxy_temp/5/01/0000000015" failed (13: Permission denied) while reading upstream
+```
+
+以下方式解决
+
+```bash
+chown -R root:root /usr/local/nginx/proxy_temp
+# 编辑 nginx.conf
+sudo vi /usr/local/nginx/conf/nginx.conf
+# 在第一行添加
+user root;
+```
 
 ### 其它错误
 
