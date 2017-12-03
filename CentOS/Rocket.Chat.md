@@ -1,6 +1,12 @@
 Rocket.Chat 开源IM系统部署
 ===
 
+Rocket.Chat 是特性最丰富的 Slack 开源替代品之一。
+
+主要功能：群组聊天，直接通信，私聊群，桌面通知，媒体嵌入，链接预览，文件上传，语音/视频 聊天，截图等等。Rocket.Chat 原生支持 Windows，Mac OS X ，Linux，iOS 和 Android 平台。Rocket.Chat 通过 hubot 集成了非常流行的服务，比如 GitHub，GitLab，Confluence，JIRA 等等。
+
+高级的特性包括：OTR 消息，XMPP 多用户聊天，Kerberos 认证，p2p 文件分享等等。
+
 以下教程是在 `CentOS Linux release 7.2.1511 (Core)` 下安装 `Rocket.Chat`，可以通过官方教程安装在这里：[Deploying Rocket.Chat on Centos 7](https://rocket.chat/docs/installation/manual-installation/centos/)。
 
 主要依赖三个工具 `Nginx`、`CentOS 7`、`Mongodb`
@@ -10,7 +16,7 @@ Rocket.Chat 开源IM系统部署
 
 <!-- TOC -->
 
-- [安装步骤](#安装步骤)
+- [安装依赖步骤](#安装依赖步骤)
 - [安装Mongodb数据库](#安装mongodb数据库)
 - [安装Rocket.Chat](#安装rocketchat)
 - [启动服务](#启动服务)
@@ -18,7 +24,7 @@ Rocket.Chat 开源IM系统部署
 
 <!-- /TOC -->
 
-## 安装步骤
+## 安装依赖步骤
 
 添加epel存储库并更新所有内容。
 
