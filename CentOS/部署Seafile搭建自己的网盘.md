@@ -10,6 +10,8 @@ Seafile 是一个开源的文件云存储平台，解决文件集中存储、同
 - [安装](#安装)
   - [启动 Seafile](#启动-seafile)
   - [启动 Seahub](#启动-seahub)
+- [备份](#备份)
+- [恢复](#恢复)
 - [服务管理](#服务管理)
 - [参考资料](#参考资料)
 
@@ -227,6 +229,33 @@ Done.
 
 ```bash
 http://192.168.1.111:8000/
+```
+
+## 备份
+
+备份数据库，假设你的数据库名分别为 `ccnet-db` , `seafile-db` 和 `seahubdb`，下面命令分别备份这三个数据库，同时要注意备份需要先建立好文件夹。
+
+```bash
+mysqldump -h localhost -uroot -p --opt ccnet-db > ./backup/databases/ccnet-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h localhost -uroot -p --opt seafile-db > ./backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h localhost -uroot -p --opt seahub-db > ./backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+```
+
+备份文件
+
+```bash
+nohup cp -R ./seafile-data ./backup/data/seafile-data-`date +"%Y-%m-%d-%H-%M-%S"` 2>&1 &
+nohup cp -R ./seahub-data ./backup/data/seahub-data-`date +"%Y-%m-%d-%H-%M-%S"` 2>&1 &
+
+[1] 17294
+```
+
+## 恢复
+
+```bash
+mysql -uroot -p ccnet-db < ccnet-db.sql.2017-11-29-11-36-06 
+mysql -uroot -p seafile-db < seafile-db.sql.2017-11-29-11-36-06 
+mysql -uroot -p seahub-db < seahub-db.sql.2017-11-29-11-36-06 
 ```
 
 ## 服务管理
