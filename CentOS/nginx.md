@@ -1019,9 +1019,41 @@ location ^~/api/upload {
 
 ### ssl配置
 
-超文本传输安全协议（缩写：HTTPS，英语：Hypertext Transfer Protocol Secure）是超文本传输协议和SSL/TLS的组合，用以提供加密通讯及对网络服务器身份的鉴定。HTTPS连接经常被用于万维网上的交易支付和企业信息系统中敏感信息的传输。HTTPS不应与在RFC 2660中定义的安全超文本传输协议（S-HTTP）相混。
+超文本传输安全协议（缩写：HTTPS，英语：Hypertext Transfer Protocol Secure）是超文本传输协议和SSL/TLS的组合，用以提供加密通讯及对网络服务器身份的鉴定。HTTPS连接经常被用于万维网上的交易支付和企业信息系统中敏感信息的传输。HTTPS不应与在RFC 2660中定义的安全超文本传输协议（S-HTTP）相混。HTTPS 目前已经是所有注重隐私和安全的网站的首选，随着技术的不断发展，HTTPS 网站已不再是大型网站的专利，所有普通的个人站长和博客均可以自己动手搭建一个安全的加密的网站。
 
-HTTPS 目前已经是所有注重隐私和安全的网站的首选，随着技术的不断发展，HTTPS 网站已不再是大型网站的专利，所有普通的个人站长和博客均可以自己动手搭建一个安全的加密的网站。
+
+创建SSL证书，如果你购买的证书，就可以直接下载
+
+```bash
+sudo mkdir /etc/nginx/ssl
+# 创建了有效期100年，加密强度为RSA2048的SSL密钥key和X509证书文件。
+sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+# 上面命令，会有下面需要填写内容
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:New York
+Locality Name (eg, city) []:New York City
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Bouncy Castles, Inc.
+Organizational Unit Name (eg, section) []:Ministry of Water Slides
+Common Name (e.g. server FQDN or YOUR name) []:your_domain.com
+Email Address []:admin@your_domain.com
+```
+
+创建自签证书
+
+```bash
+首先，创建证书和私钥的目录
+# mkdir -p /etc/nginx/cert
+# cd /etc/nginx/cert
+创建服务器私钥，命令会让你输入一个口令：
+# openssl genrsa -des3 -out nginx.key 2048
+创建签名请求的证书（CSR）：
+# openssl req -new -key nginx.key -out nginx.csr
+在加载SSL支持的Nginx并使用上述私钥时除去必须的口令：
+# cp nginx.key nginx.key.org
+# openssl rsa -in nginx.key.org -out nginx.key
+最后标记证书使用上述私钥和CSR：
+# openssl x509 -req -days 365 -in nginx.csr -signkey nginx.key -out nginx.crt
+```
 
 查看目前nginx编译选项
 
@@ -1035,13 +1067,22 @@ sbin/nginx -V
 nginx version: nginx/1.7.8
 built by gcc 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC)
 TLS SNI support enabled
-configure arguments: --prefix=/usr/local/nginx-1.5.1 --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre
+configure arguments: --prefix=/usr/local/nginx-1.7.8 --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre
 ```
 
-如果依赖的模块不存在，可以输入下面命令重新编译安装。
+如果依赖的模块不存在，可以进入安装目录，输入下面命令重新编译安装。
 
+```bash
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
 ```
-./configure --user=www --group=www --prefix=/mt/server/nginx --with-http_stub_status_module --with-openssl=/home/nginx-1.8.0/openssl-1.0.0d --without-http-cache --with-http_ssl_module --with-http_gzip_static_module --with-...
+
+运行完成之后还需要`make` (不用make install)
+
+```bash
+# 备份nginx的二进制文件
+cp -rf /usr/local/nginx/sbin/nginx　 /usr/local/nginx/sbin/nginx.bak
+# 覆盖nginx的二进制文件
+cp -rf objs/nginx   /usr/local/nginx/sbin/
 ```
 
 HTTPS server
@@ -1051,15 +1092,16 @@ server {
     listen       443 ssl;
     server_name  localhost;
 
-    ssl_certificate /usr/local/nginx/conf/vjjhd.crt;
-    ssl_certificate_key /usr/local/nginx/conf/vjjhd.key;
-
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+    # 禁止在header中出现服务器版本，防止黑客利用版本漏洞攻击
+    server_tokens off;
     # 设置ssl/tls会话缓存的类型和大小。如果设置了这个参数一般是shared，buildin可能会参数内存碎片，默认是none，和off差不多，停用缓存。如shared:SSL:10m表示我所有的nginx工作进程共享ssl会话缓存，官网介绍说1M可以存放约4000个sessions。 
     ssl_session_cache    shared:SSL:1m; 
 
     # 客户端可以重用会话缓存中ssl参数的过期时间，内网系统默认5分钟太短了，可以设成30m即30分钟甚至4h。
     ssl_session_timeout  5m; 
-    
+
     # 选择加密套件，不同的浏览器所支持的套件（和顺序）可能会不同。
     # 这里指定的是OpenSSL库能够识别的写法，你可以通过 openssl -v cipher 'RC4:HIGH:!aNULL:!MD5'（后面是你所指定的套件加密算法） 来看所支持算法。
     ssl_ciphers  HIGH:!aNULL:!MD5;
