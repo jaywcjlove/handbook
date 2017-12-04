@@ -57,6 +57,7 @@ Nginx版本：`1.11.5`
   - [代理转发](#代理转发)
   - [代理转发连接替换](#代理转发连接替换)
   - [ssl配置](#ssl配置)
+  - [强制将http重定向到https](#强制将http重定向到https)
   - [两个虚拟主机](#两个虚拟主机)
   - [虚拟主机标准配置](#虚拟主机标准配置)
   - [防盗链](#防盗链)
@@ -880,7 +881,34 @@ server {
 
 ### 监控
 
+使用`ngxtop`实时解析nginx访问日志，并且将处理结果输出到终端，功能类似于系统命令top。所有示例都读取nginx配置文件的访问日志位置和格式。如果要指定访问日志文件和/或日志格式，请使用-f和-a选项。
 
+注意：在nginx配置中`/usr/local/nginx/conf/nginx.conf`日志文件必须是绝对路径。
+
+```bash
+# 安装 ngxtop
+pip install ngxtop
+
+# 实时状态
+ngxtop
+# 状态为404的前10个请求的路径：
+ngxtop top request_path --filter 'status == 404'
+
+# 发送总字节数最多的前10个请求
+ngxtop --order-by 'avg(bytes_sent) * count'
+
+# 排名前十位的IP，例如，谁攻击你最多
+ngxtop --group-by remote_addr
+
+# 打印具有4xx或5xx状态的请求，以及status和http referer
+ngxtop -i 'status >= 400' print request status http_referer
+
+# 由200个请求路径响应发送的平均正文字节以'foo'开始：
+ngxtop avg bytes_sent --filter 'status == 200 and request_path.startswith("foo")'
+
+# 使用“common”日志格式从远程机器分析apache访问日志
+ssh remote tail -f /var/log/apache2/access.log | ngxtop -f common
+```
 
 ## 常见使用场景
 
@@ -1113,6 +1141,18 @@ server {
         root   html;
         index  index.html index.htm;
     }
+}
+```
+
+### 强制将http重定向到https
+
+```nginx
+server {
+    listen       80;
+    server_name  example.com;
+    rewrite ^ https://$http_host$request_uri? permanent;    # 强制将http重定向到https
+    # 在错误页面和“服务器”响应头字段中启用或禁用发射nginx版本。 防止黑客利用版本漏洞攻击
+    server_tokens off;
 }
 ```
 
