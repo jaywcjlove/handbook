@@ -65,6 +65,7 @@ Nginx版本：`1.11.5`
   - [防盗图配置](#防盗图配置)
   - [屏蔽.git等文件](#屏蔽git等文件)
   - [域名路径加不加需要都能正常访问](#域名路径加不加需要都能正常访问)
+- [错误问题](#错误问题)
 - [精品文章参考](#精品文章参考)
 
 <!-- /TOC -->
@@ -1268,6 +1269,31 @@ if (!-f $request_filename){
 }
 if ($rule_1 = "21"){
         rewrite ^/ /index.php last;
+}
+```
+
+## 错误问题
+
+```bash
+The plain HTTP request was sent to HTTPS port
+```
+
+解决办法，`fastcgi_param HTTPS $https if_not_empty` 添加这条规则，
+
+```nginx
+server {
+    listen 443 ssl; # 注意这条规则
+    server_name  my.domain.com;
+    
+    fastcgi_param HTTPS $https if_not_empty;
+    fastcgi_param HTTPS on;
+
+    ssl_certificate /etc/ssl/certs/your.pem;
+    ssl_certificate_key /etc/ssl/private/your.key;
+
+    location / {
+        # Your config here...
+    }
 }
 ```
 
