@@ -116,7 +116,7 @@ export ROOT_URL=http://127.0.0.1:3000/
 export MONGO_URL=mongodb://localhost:27017/rocketchat
 ```
 
-将9666替换为您选择的端口。
+将3000替换为您选择的端口，一般情况默认就好。
 如果您选择使用端口80，则需要以root身份运行Rocket.Chat。
 如果您没有配置DNS，请使用您的IP代替主机名。 您可以稍后在管理员菜单中进行更改。
 
