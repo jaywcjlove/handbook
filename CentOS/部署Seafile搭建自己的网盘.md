@@ -13,6 +13,7 @@ Seafile 是一个开源的文件云存储平台，解决文件集中存储、同
 - [备份](#备份)
 - [恢复](#恢复)
 - [服务管理](#服务管理)
+- [开机启动](#开机启动)
 - [参考资料](#参考资料)
 
 <!-- /TOC -->
@@ -269,6 +270,68 @@ mysql -uroot -p seahub-db < seahub-db.sql.2017-11-29-11-36-06
 
 ./seafile.sh restart   # 停止当前的 Seafile 进程，然后重启 Seafile
 ./seahub.sh restart    # 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub
+```
+
+## 开机启动
+
+创建 systemd 服务文件`seafile.service`，记得将服务文件中的`${seafile_dir}`替换成你的安装目录
+
+```bash
+sudo vim /etc/systemd/system/seafile.service
+```
+
+文件内容如下：
+
+```bash
+[Unit]
+Description=Seafile
+# add mysql.service or postgresql.service depending on your database to the line below
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=${seafile_dir}/seafile-server-latest/seafile.sh start
+ExecStop=${seafile_dir}/seafile-server-latest/seafile.sh stop
+RemainAfterExit=yes
+User=seafile
+Group=seafile
+
+[Install]
+WantedBy=multi-user.target
+```
+
+创建 systemd 服务文件 `seahub.service`，记得将服务文件中的`${seafile_dir}`替换成你的安装目录
+
+```bash
+sudo vim /etc/systemd/system/seahub.service
+```
+
+文件内容如下：
+
+```bash
+[Unit]
+Description=Seafile hub
+After=network.target seafile.service
+
+[Service]
+# change start to start-fastcgi if you want to run fastcgi
+ExecStart=${seafile_dir}/seafile-server-latest/seahub.sh start
+ExecStop=${seafile_dir}/seafile-server-latest/seahub.sh stop
+User=seafile
+Group=seafile
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+[Install]
+WantedBy=multi-user.target
+
+```bash
+sudo systemctl enable seafile.service
+sudo systemctl enable seahub.service
 ```
 
 ## 参考资料
