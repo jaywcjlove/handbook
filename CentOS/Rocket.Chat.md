@@ -166,13 +166,13 @@ Error: MONGO_URL must be set in environment
 报`node-v46-linux-x64`不存在错误 直接更改文件夹名字就解决了。
 
 ```bash
+cd /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/rocketchat_google-vision/node_modules/grpc/src/node/extension_binary/
 mv node-v48-linux-x64 node-v46-linux-x64/
 ```
 
 ## 开机启动
 
 ```bash
-cd /opt/Rocket.Chat/programs/server/npm/node_modules/meteor/rocketchat_google-vision/node_modules/grpc/src/node/extension_binary/
 vi /usr/lib/systemd/system/rocketchat.service
 ```
 
