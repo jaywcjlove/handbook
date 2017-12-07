@@ -15,6 +15,7 @@
   - [修改远程仓库地址](#修改远程仓库地址)
   - [撤销远程记录](#撤销远程记录)
   - [放弃本地的文件修改](#放弃本地的文件修改)
+  - [最简单放弃本地修改内容](#最简单放弃本地修改内容)
   - [回滚到某个commit提交](#回滚到某个commit提交)
   - [回退到某一个版本](#回退到某一个版本)
   - [去掉某个commit](#去掉某个commit)
@@ -272,6 +273,17 @@ See git-pull(1) FOR details.
 ```bash
 git checkout -b temp # 新建+切换到temp分支 
 git checkout master
+```
+
+### 最简单放弃本地修改内容
+
+```bash
+# 如果有的修改以及加入暂存区的话
+git reset --hard 
+# 还原所有修改，不会删除新增的文件
+git checkout . 
+# 下面命令会删除新增的文件
+git clean -xdf
 ```
 
 ### 回滚到某个commit提交
