@@ -286,6 +286,12 @@ git checkout .
 git clean -xdf
 ```
 
+通过存储暂存区stash，在删除暂存区的方法放弃本地修改。
+
+```bash
+git stash && git stash drop 
+```
+
 ### 回滚到某个commit提交
 
 ```shell
