@@ -20,6 +20,7 @@
   - [回退到某一个版本](#回退到某一个版本)
   - [去掉某个commit](#去掉某个commit)
   - [合并多个commit](#合并多个commit)
+  - [修改远程Commit记录](#修改远程commit记录)
   - [添加忽略文件](#添加忽略文件)
   - [利用commit关闭一个issue](#利用commit关闭一个issue)
   - [同步fork的上游仓库](#同步fork的上游仓库)
@@ -322,6 +323,52 @@ git revert <commit-hash>
 # 将进入VIM界面，你可以修改提交信息。
 git rebase -i HEAD~4 
 ```
+
+### 修改远程Commit记录
+
+```bash
+git commit --amend
+# amend只能修改没有提交到线上的，最后一次commit记录
+git rebase -i HEAD~3
+# 表示要修改当前版本的倒数第三次状态
+# 将要更改的记录行首单词 pick 改为 edit
+pick 96dc3f9 doc: Update quick-start.md
+pick f1cce8a test(Transition):Add transition test (#47)
+pick 6293516 feat(Divider): Add Divider component.
+# Rebase eeb03a4..6293516 onto eeb03a4 (3 commands)
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+# d, drop = remove commit
+```
+
+保存并退出，会弹出下面提示
+
+```bash
+# You can amend the commit now, with
+# 
+#   git commit --amend
+# 
+# Once you are satisfied with your changes, run
+# 
+#   git rebase --continue
+
+# 通过这条命令进入编辑页面更改commit，保存退出
+git commit --amend
+# 保存退出确认修改，继续执行 rebase, 
+git rebase --continue
+# 如果修改多条记录反复执行上面两条命令直到完成所有修改
+
+# 最后，确保别人没有提交进行push，最好不要加 -f 强制推送
+git push -f origin master
+```
+
+
 
 ### 添加忽略文件
 
