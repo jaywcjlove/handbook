@@ -78,6 +78,9 @@ pip install shadowsocks
 ssserver -c /etc/shadowsocks.json -d start
 # 或不需要配置文件
 sudo ssserver -p 443 -k password -m rc4-md5 --user nobody -d start
+
+# 关闭防火墙
+systemctl stop firewalld.service
 ```
 
 ### 关闭
