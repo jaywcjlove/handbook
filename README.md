@@ -22,7 +22,7 @@
 - [Go语言入门学习笔记](https://github.com/jaywcjlove/golang-tutorial)
 - [Docker入门学习笔记](https://github.com/jaywcjlove/docker-tutorial)
 
-## MySQL
+## [MySQL](https://github.com/jaywcjlove/mysql-tutorial)
 
 搜集整合的MySQL笔记迁移到[这里了](https://github.com/jaywcjlove/mysql-tutorial) ★★★
 
@@ -46,32 +46,6 @@
 ## [10分钟入门Redis](Redis/README.md)
 
 Redis是一个开源的，先进的 key-value 存储可用于构建高性能的存储解决方案，入门介绍就到这里了。
-
-- [Redis安装](Redis/README.md#redis安装)
-  - [官方编译安装](Redis/README.md#官方编译安装)
-  - [通过EPEL源安装](Redis/README.md#通过epel源安装)
-  - [Redis升级](Redis/README.md#redis升级)
-- [服务管理](Redis/README.md#服务管理)
-  - [基本服务操作](Redis/README.md#基本服务操作)
-  - [查看版本](Redis/README.md#查看版本)
-  - [开机启动](Redis/README.md#开机启动)
-- [更改配置](Redis/README.md#更改配置)
-- [基本操作](Redis/README.md#基本操作)
-- [支持的数据类型](Redis/README.md#支持的数据类型)
-  - [字符串](Redis/README.md#字符串)
-  - [Hashes - 哈希值](Redis/README.md#hashes---哈希值)
-  - [Lists - 列表](Redis/README.md#lists---列表)
-  - [有序集合](Redis/README.md#有序集合)
-- [开启通知](Redis/README.md#开启通知)
-- [开启远程登录连接](Redis/README.md#开启远程登录连接)
-  - [修改防火墙配置](Redis/README.md#修改防火墙配置)
-  - [修改配置文件](Redis/README.md#修改配置文件)
-- [提供的原生监控](Redis/README.md#提供的原生监控)
-  - [当前链接的客户端数和连接数](Redis/README.md#当前链接的客户端数和连接数)
-  - [内存最大的键值和平均的键值数据](Redis/README.md#内存最大的键值和平均的键值数据)
-  - [查看当前的键值情况](Redis/README.md#查看当前的键值情况)
-  - [原生的Monitor监控](Redis/README.md#原生的monitor监控)
-- [配置说明](Redis/README.md#配置说明)
 
 ## Android
 
