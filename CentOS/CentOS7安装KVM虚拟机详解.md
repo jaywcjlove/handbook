@@ -987,6 +987,7 @@ xfs_growfs /dev/centos/root
 基础命令
 
 ```bash
+virsh list --all           # 查看所有运行和没有运行的虚拟机
 virsh list                 # 查看在运行的虚拟机
 virsh dumpxml vm-name      # 查看kvm虚拟机配置文件
 virsh start vm-name        # 启动kvm虚拟机
@@ -995,7 +996,7 @@ virsh shutdown vm-name     # 正常关机
 virsh destroy vm-name      # 非正常关机，强制关闭虚拟机（相当于物理机直接拔掉电源）
 virsh undefine vm-name     # 删除vm的配置文件
 
-ls  /etc/libvirt/qemu
+ls /etc/libvirt/qemu
 # 查看删除结果，Centos-6.6的配置文件被删除，但磁盘文件不会被删除
 
 virsh define file-name.xml # 根据配置文件定义虚拟机
