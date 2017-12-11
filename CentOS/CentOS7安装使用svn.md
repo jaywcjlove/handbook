@@ -155,6 +155,21 @@ service iptables restart
 svnserve -d -r /opt/svn
 ```
 
+### 启动报警告
+
+```bash
+svnserve -d -r /opt/svn
+svnserve: warning: cannot set LC_CTYPE locale
+svnserve: warning: environment variable LC_CTYPE is UTF-8
+svnserve: warning: please check that your locale name is correct
+```
+
+解决方法
+
+```bash
+echo "export LC_ALL=C" >> /etc/profile
+```
+
 ### 查看SVN进程 
 
 ```bash 
