@@ -129,7 +129,45 @@ sudo certbot --nginx certonly
 #    Donating to EFF:                    https://eff.org/donate-le
 ```
 
-上面生成成功了，可以添加到 nginx 配置中，这下完事儿了。
+上面生成成功了，可以添加到 nginx 配置中，这下完事儿了，下面是一端nginx的配置实例。
+
+```nginx
+# http 重定向到 https
+server {
+    listen       80;
+    server_name  g.wangchujiang.com;
+    rewrite ^ https://$http_host$request_uri? permanent;
+    # Enables or disables emitting nginx version on error pages and in the "Server" response header field.
+    server_tokens off;
+}
+# https 的配置
+server {
+  listen       443 ssl;
+  server_name  g.wangchujiang.com;
+
+  ssl_certificate /etc/letsencrypt/live/g.wangchujiang.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/g.wangchujiang.com/privkey.pem;
+  # 禁止在header中出现服务器版本，防止黑客利用版本漏洞攻击
+  server_tokens off;
+  # 设置ssl/tls会话缓存的类型和大小。如果设置了这个参数一般是shared，buildin可能会参数内存碎片，默认是none，和off差不多，停用缓存。如shared:SSL:10m表示我所有的nginx工作进程共享ssl会话缓存，官网介绍说1M可以存放约4000个sessions。 
+  ssl_session_cache    shared:SSL:1m; 
+
+  # 客户端可以重用会话缓存中ssl参数的过期时间，内网系统默认5分钟太短了，可以设成30m即30分钟甚至4h。
+  ssl_session_timeout  5m; 
+
+  # 选择加密套件，不同的浏览器所支持的套件（和顺序）可能会不同。
+  # 这里指定的是OpenSSL库能够识别的写法，你可以通过 openssl -v cipher 'RC4:HIGH:!aNULL:!MD5'（后面是你所指定的套件加密算法） 来看所支持算法。
+  ssl_ciphers  HIGH:!aNULL:!MD5;
+
+  # 设置协商加密算法时，优先使用我们服务端的加密套件，而不是客户端浏览器的加密套件。
+  ssl_prefer_server_ciphers  on;
+
+  location / {
+    root   html;
+    index  index.html index.htm;
+  }
+}
+```
 
 ## 参考阅读
 
