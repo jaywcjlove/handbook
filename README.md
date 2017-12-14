@@ -37,6 +37,7 @@
 - [安装使用OpenStack](CentOS/CentOS7安装openstack.md)
 - [Elasticsearch安装维护](CentOS/Elasticsearch安装维护.md)
 - [尝试在CentOS7.2上编译安装Swift 4.0](CentOS/尝试在CentOS7.2上编译安装Swift.md)
+- [使用免费SSL证书让网站支持HTTPS访问](CentOS/使用免费SSL证书让网站支持HTTPS访问.md)
 - [samba安装搭建使用](CentOS/samba.md)
 - [chmod说明](CentOS/chmod.md)
 
