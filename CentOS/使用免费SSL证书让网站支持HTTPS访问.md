@@ -110,7 +110,7 @@ sudo certbot --nginx certonly
 ```bash
 # Obtaining a new certificate
 # Performing the following challenges:
-# tls-sni-01 challenge for chat.showgold.cn
+# tls-sni-01 challenge for g.wangchujiang.com
 # Waiting for verification...
 # Cleaning up challenges
 # 
@@ -130,6 +130,8 @@ sudo certbot --nginx certonly
 ```
 
 上面生成成功了，可以添加到 nginx 配置中，这下完事儿了，下面是一端nginx的配置实例。
+
+#### 配置nginx
 
 ```nginx
 # http 重定向到 https
