@@ -209,12 +209,11 @@ sudo gitlab-ctl tail logrotate # 检查logrotate的日志
 sudo gitlab-ctl tail nginx    # 检查nginx的日志
 sudo gitlab-ctl tail sidekiq  # 检查sidekiq的日志
 sudo gitlab-ctl tail unicorn  # 检查unicorn的日志
-
 ```
 
 ### 重置管理员密码
 
-gitlab管理员密码忘记，怎么重置密码，Gitlab 修改root用户密码
+Gitlab管理员密码忘记，怎么重置密码，Gitlab 修改root用户密码，[How to reset your root password](http://docs.gitlab.com/ce/security/reset_root_password.html)。
 
 使用rails工具打开终端
 
