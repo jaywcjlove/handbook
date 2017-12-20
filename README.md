@@ -14,8 +14,8 @@
 - **[Rocket.Chat 开源IM系统部署★★★★](CentOS/Rocket.Chat.md)**
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单★★★★★](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
-- **[CentOS7安装维护Nginx★★★★](CentOS/nginx.md)**
-- **[CentOS7安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
+- **[安装维护Nginx★★★★](CentOS/nginx.md)**
+- **[安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
 - [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
 - [Shell入门教程学习笔记](https://github.com/jaywcjlove/shell-tutorial)
 - [Swift入门教程读书笔记](https://github.com/jaywcjlove/swift-tutorial)
@@ -29,6 +29,7 @@
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
 - [安装KVM虚拟机详解](CentOS/CentOS7安装KVM虚拟机详解.md)
 - [安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
+- **[安装使用svn](CentOS/安装使用svn.md)**
 - [中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
 - [Centos7安装编译Node](CentOS/Centos7安装编译Node.md)
 - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
@@ -38,6 +39,7 @@
 - [Elasticsearch安装维护](CentOS/Elasticsearch安装维护.md)
 - [尝试在CentOS7.2上编译安装Swift 4.0](CentOS/尝试在CentOS7.2上编译安装Swift.md)
 - [使用免费SSL证书让网站支持HTTPS访问](CentOS/使用免费SSL证书让网站支持HTTPS访问.md)
+- [5分钟内3种方法搭建企业内部私有npm仓库](CentOS/在5分钟内搭建企业内部私有npm仓库.md)
 - [samba安装搭建使用](CentOS/samba.md)
 - [chmod说明](CentOS/chmod.md)
 
