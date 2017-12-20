@@ -27,7 +27,10 @@
 
 - [CentOS常用基础命令](CentOS/CentOS.md)
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
-- [安装KVM虚拟机详解](CentOS/CentOS7安装KVM虚拟机详解.md)
+- [KVM虚拟机安装详解](CentOS/CentOS7安装KVM虚拟机详解.md)
+- [OpenStack安装使用](CentOS/CentOS7安装openstack.md)
+- [Elasticsearch安装维护](CentOS/Elasticsearch安装维护.md)
+- [samba安装搭建使用](CentOS/samba.md)
 - [安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
 - **[安装使用svn](CentOS/安装使用svn.md)**
 - [中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
@@ -35,12 +38,9 @@
 - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
 - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
 - [Mac下制作CentOS7启动盘](CentOS/Mac下制作CentOS7启动盘.md)
-- [安装使用OpenStack](CentOS/CentOS7安装openstack.md)
-- [Elasticsearch安装维护](CentOS/Elasticsearch安装维护.md)
 - [尝试在CentOS7.2上编译安装Swift 4.0](CentOS/尝试在CentOS7.2上编译安装Swift.md)
 - [使用免费SSL证书让网站支持HTTPS访问](CentOS/使用免费SSL证书让网站支持HTTPS访问.md)
 - [5分钟内3种方法搭建企业内部私有npm仓库](CentOS/在5分钟内搭建企业内部私有npm仓库.md)
-- [samba安装搭建使用](CentOS/samba.md)
 - [chmod说明](CentOS/chmod.md)
 
 ## [MySQL](https://github.com/jaywcjlove/mysql-tutorial)
