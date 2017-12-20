@@ -11,20 +11,19 @@
 
 ## 精华置顶
 
-- **[Rocket.Chat 开源IM系统部署★★★★](CentOS/Rocket.Chat.md)**
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单★★★★★](other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)**
-- **[安装维护Nginx★★★★](CentOS/nginx.md)**
-- **[安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
 - [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
 - [Shell入门教程学习笔记](https://github.com/jaywcjlove/shell-tutorial)
 - [Swift入门教程读书笔记](https://github.com/jaywcjlove/swift-tutorial)
 - [Go语言入门学习笔记](https://github.com/jaywcjlove/golang-tutorial)
 - [Docker入门学习笔记](https://github.com/jaywcjlove/docker-tutorial)
 
-
 ## CentOS 
 
+- **[Rocket.Chat 开源IM系统部署★★★★](CentOS/Rocket.Chat.md)**
+- **[安装维护Nginx★★★★](CentOS/nginx.md)**
+- **[安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
 - [CentOS常用基础命令](CentOS/CentOS.md)
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
 - [KVM虚拟机安装详解](CentOS/CentOS7安装KVM虚拟机详解.md)
