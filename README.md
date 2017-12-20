@@ -33,7 +33,7 @@
 - [samba安装搭建使用](CentOS/samba.md)
 - [安装配置vsftp搭建FTP](CentOS/CentOS7安装配置vsftp搭建FTP.md)
 - **[安装使用svn](CentOS/安装使用svn.md)**
-- [中修改ssh端口号的方法](CentOS/CentOS7中修改ssh端口号的方法.md)
+- [中修改ssh端口号的方法](CentOS/修改ssh端口号的方法.md)
 - [Centos7安装编译Node](CentOS/Centos7安装编译Node.md)
 - [Linux添加、删除用户和用户组](CentOS/Linux添加、删除用户和用户组.md)
 - [Seafile部署搭建自己的网盘](CentOS/部署Seafile搭建自己的网盘.md)
