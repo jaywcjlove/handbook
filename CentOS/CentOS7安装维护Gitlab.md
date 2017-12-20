@@ -382,6 +382,18 @@ sudo chown -R git:git 1483533591_2017_01_04_gitlab_backup.tar
 cp /var/opt/gitlab/nginx/conf/gitlab-http.conf /usr/local/nginx/conf/vhost/
 ```
 
+将你的SSL证书配置复制进去
+
+```nginx
+server {
+  listen 443 ssl;
+  server_name  g.doman.cn;
+  ssl_certificate /etc/letsencrypt/live/*****/certificate.crt;
+  ssl_certificate_key /etc/letsencrypt/live/*****/private.key;
+  # .....
+}
+```
+
 编辑`vi /usr/local/nginx/conf/nginx.conf`你的nginx配置，引用你复制过来的配置。
 
 ```nginx
@@ -435,17 +447,6 @@ http {
 }
 ```
 
-最后将你的SSL证书配置复制进去
-
-```nginx
-server {
-  listen 443 ssl;
-  server_name  g.doman.cn;
-  ssl_certificate /etc/letsencrypt/live/*****/certificate.crt;
-  ssl_certificate_key /etc/letsencrypt/live/*****/private.key;
-  # .....
-}
-```
 
 ## 暴力升级
 
