@@ -26,12 +26,14 @@ CentOS7安装维护Gitlab
   - [自动备份](#自动备份)
   - [备份保留七天](#备份保留七天)
   - [开始恢复](#开始恢复)
+- [一些常规目录](#一些常规目录)
+- [使用HTTPS](#使用https)
 - [暴力升级](#暴力升级)
 - [错误处理](#错误处理)
   - [解决80端口被占用](#解决80端口被占用)
   - [头像无法正常显示](#头像无法正常显示)
   - [internal API unreachable](#internal-api-unreachable)
-- [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
+  - [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
   - [其它错误](#其它错误)
 - [参考资料](#参考资料)
 
@@ -361,6 +363,90 @@ sudo find /var/opt/gitlab/git-data/repositories -type d -print0 | sudo xargs -0 
 sudo chown -R git:git 1483533591_2017_01_04_gitlab_backup.tar
 ```
 
+## 一些常规目录
+
+```bash
+# 配置目录
+/etc/gitlab/gitlab.rb
+# 生成好的nginx配置
+/var/opt/gitlab/nginx/conf/gitlab-http.conf
+# 备份目录
+/var/opt/gitlab/backups
+```
+
+## 使用HTTPS
+
+直接将nginx配置复制到你自己的nginx配置中，停掉gitlab的nginx
+
+```bash
+cp /var/opt/gitlab/nginx/conf/gitlab-http.conf /usr/local/nginx/conf/vhost/
+```
+
+编辑`vi /usr/local/nginx/conf/nginx.conf`你的nginx配置，引用你复制过来的配置。
+
+```nginx
+http {
+  # .....
+  include vhost/gitlab-http.conf;
+}
+```
+
+同时要把`/var/opt/gitlab/nginx/conf/nginx.conf`中的一些变量复制到自己的nginx配置中`nginx.conf`
+
+```nginx
+http {
+  # .....
+  log_format gitlab_access '$remote_addr - $remote_user [$time_local] "$request_method $filtered_request_uri $server_protocol" $status $body_bytes_sent "$filtered_http_referer" "$http_user_agent"';
+  log_format gitlab_mattermost_access '$remote_addr - $remote_user [$time_local] "$request_method $filtered_request_uri $server_protocol" $status $body_bytes_sent "$filtered_http_referer" "$http_user_agent"';
+
+  proxy_cache_path proxy_cache keys_zone=gitlab:10m max_size=1g levels=1:2;
+  proxy_cache gitlab;
+  map $http_upgrade $connection_upgrade {
+      default upgrade;
+      ''      close;
+  }
+
+  # Remove private_token from the request URI
+  # In:  /foo?private_token=unfiltered&authenticity_token=unfiltered&rss_token=unfiltered&...
+  # Out: /foo?private_token=[FILTERED]&authenticity_token=unfiltered&rss_token=unfiltered&...
+  map $request_uri $temp_request_uri_1 {
+    default $request_uri;
+    ~(?i)^(?<start>.*)(?<temp>[\?&]private[\-_]token)=[^&]*(?<rest>.*)$ "$start$temp=[FILTERED]$rest";
+  }
+  # Remove authenticity_token from the request URI
+  # In:  /foo?private_token=[FILTERED]&authenticity_token=unfiltered&rss_token=unfiltered&...
+  # Out: /foo?private_token=[FILTERED]&authenticity_token=[FILTERED]&rss_token=unfiltered&...
+  map $temp_request_uri_1 $temp_request_uri_2 {
+    default $temp_request_uri_1;
+    ~(?i)^(?<start>.*)(?<temp>[\?&]authenticity[\-_]token)=[^&]*(?<rest>.*)$ "$start$temp=[FILTERED]$rest";
+  }
+  # Remove rss_token from the request URI
+  # In:  /foo?private_token=[FILTERED]&authenticity_token=[FILTERED]&rss_token=unfiltered&...
+  # Out: /foo?private_token=[FILTERED]&authenticity_token=[FILTERED]&rss_token=[FILTERED]&...
+  map $temp_request_uri_2 $filtered_request_uri {
+    default $temp_request_uri_2;
+    ~(?i)^(?<start>.*)(?<temp>[\?&]rss[\-_]token)=[^&]*(?<rest>.*)$ "$start$temp=[FILTERED]$rest";
+  }
+  # A version of the referer without the query string
+  map $http_referer $filtered_http_referer {
+    default $http_referer;
+    ~^(?<temp>.*)\? $temp;
+  }
+}
+```
+
+最后将你的SSL证书配置复制进去
+
+```nginx
+server {
+  listen 443 ssl;
+  server_name  g.doman.cn;
+  ssl_certificate /etc/letsencrypt/live/*****/certificate.crt;
+  ssl_certificate_key /etc/letsencrypt/live/*****/private.key;
+  # .....
+}
+```
+
 ## 暴力升级
 
 直接编辑源 /etc/yum.repos.d/gitlab-ce.repo，安装 GitLab 社区版
@@ -516,7 +602,7 @@ GitLab: Failed to authorize your Git request: internal API unreachable
 解决办法：https://gitlab.com/gitlab-org/gitlab-ce/issues/33702  
 通过防火墙规则 127.0.0.1  
 
-## proxy_temp 目录没有权限
+### proxy_temp 目录没有权限
 
 ```bash
 [crit] 14788#0: *215 open() "/usr/local/nginx/proxy_temp/5/01/0000000015" failed (13: Permission denied) while reading upstream
