@@ -18,6 +18,9 @@
 - [Swift入门教程读书笔记](https://github.com/jaywcjlove/swift-tutorial)
 - [Go语言入门学习笔记](https://github.com/jaywcjlove/golang-tutorial)
 - [Docker入门学习笔记](https://github.com/jaywcjlove/docker-tutorial)
+- [搞得像IDE一样的Vim，安装配置自己的Vim](https://github.com/jaywcjlove/vim-web)
+- [很酷炫的前端网站搜集器，导航网](https://github.com/jaywcjlove/FED)
+- [简单的文档生成工具idoc](https://github.com/jaywcjlove/idoc)
 
 ## CentOS 
 
@@ -55,7 +58,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - [Mac完整卸载Android Studio的方法](Android/Mac%E5%AE%8C%E6%95%B4%E5%8D%B8%E8%BD%BDAndroid%20Studio%E7%9A%84%E6%96%B9%E6%B3%95.md)
 - [React-native Android环境搭建](Android/React-native%20Android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
 
-## 前端
+## 前端&后端&Node
 
 - [搜集React/Vue/Angular组件库和后台管理平台模板](https://github.com/jaywcjlove/awesome-uikit)
 - **[思维导图来学习 Javascript 基础知识★★★★](Javascript/)**
@@ -63,10 +66,10 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - [一些正则表达式随记](Javascript/一些正则表达式随记.md)
 - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - [前端工程师也需要zsh](http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&mid=401433562&idx=1&sn=1ca074b0629463f37a777a2b96aa98af)
-- JS测试工具
-    - [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
-    - [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
-    - [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
+- [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
+- [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
+- [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
+- [使用Node.js制作命令行工具学习教程](https://github.com/jaywcjlove/wcj)
 
 ## 快捷键
 
