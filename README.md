@@ -80,6 +80,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 ## 排行榜
 
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
+- [JavaScript各种工具统计★★★](https://stateofjs.com/)
 - [Github Follower排行榜](http://www.githubrank.com/)
 - [Gitstar Ranking](https://gitstar-ranking.com)
 - [Githuber.cn星榜](https://githuber.cn/)
