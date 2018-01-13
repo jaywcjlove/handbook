@@ -40,5 +40,5 @@
 - [稀土](https://github.com/xitu) 稀土 ![](https://avatars1.githubusercontent.com/u/10482599?v=3&s=14)
 - [伯乐在线](https://github.com/jobbole) 伯乐在线 ![](https://avatars1.githubusercontent.com/u/8531823?v=3&s=14)
 - [深度](https://github.com/linuxdeepin) Wuhan Deepin Technology Co.,Ltd. ![](https://avatars3.githubusercontent.com/u/1592697?v=4&s=14)
-- [DNSPod](https://github.com/linuxdeepin) DNSPod ![](https://avatars3.githubusercontent.com/u/672779?v=4&s=14)
+- [DNSPod](https://github.com/DNSPod) DNSPod ![](https://avatars3.githubusercontent.com/u/672779?v=4&s=14)
 - [Weibo R&D Open Source Projects](https://github.com/weibocom) 新浪 ![](https://avatars3.githubusercontent.com/u/672779?v=4&s=14)
