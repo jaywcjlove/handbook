@@ -44,7 +44,6 @@
 - [使用免费SSL证书让网站支持HTTPS访问](CentOS/使用免费SSL证书让网站支持HTTPS访问.md)
 - [5分钟内3种方法搭建企业内部私有npm仓库](CentOS/在5分钟内搭建企业内部私有npm仓库.md)
 - [部署高效、易用、功能强大的api管理平台](CentOS/部署YApi平台.md)
-- [chmod说明](CentOS/chmod.md)
 
 ## [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
 
