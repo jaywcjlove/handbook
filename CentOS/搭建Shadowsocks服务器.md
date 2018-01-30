@@ -16,6 +16,8 @@
 
 <!-- /TOC -->
 
+推荐 VPS 服务器，[vultr注册地址](https://www.vultr.com/?ref=7260367) （全球15个服务器位置可选，KVM框架），一直在用还可以。
+
 ## 客户端
 
 ### 安装shadowsocks
