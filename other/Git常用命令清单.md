@@ -804,6 +804,14 @@ git checkout -b [--track] test origin/dev # 基于远端dev分支，新建本地
 
 ## submodule
 
+克隆项目同时克隆submodule
+
+```bash
+git clone https://github.com/jaywcjlove/handbook.git --depth=1 --recurse-submodules
+```
+
+克隆项目，之后再手动克隆 submodule 子项目
+
 ```bash
 git submodule add --force '仓库地址' '路径'
 # 其中，仓库地址是指子模块仓库地址，路径指将子模块放置在当前工程下的路径。
