@@ -98,6 +98,14 @@ ssserver -d stop
 less /var/log/shadowsocks.log
 ```
 
+### 开机启动
+
+```bash
+vi /etc/rc.local
+# 下面代码复制到 rc.local 中
+ssserver -c /etc/shadowsocks.json -d start
+```
+
 ### 帮助
 
 ```bash
