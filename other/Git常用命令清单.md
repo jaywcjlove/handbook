@@ -818,12 +818,12 @@ git submodule add --force '仓库地址' '路径'
 # 注意：路径不能以 / 结尾（会造成修改不生效）、不能是现有工程已有的目录（不能順利 Clone）
 git submodule init # 初始化submodule
 git submodule update # 更新submodule(必须在根目录执行命令)
+git submodule update --init --recursive  # 下载的工程带有submodule
 ```
 
 当使用`git clone`下来的工程中带有submodule时，初始的时候，submodule的内容并不会自动下载下来的，此时，只需执行如下命令：
 
 ```bash
-git submodule update --init --recursive  # 下载的工程带有submodule
 git submodule foreach git pull  # submodule 里有其他的 submodule 一次更新
 git submodule foreach git pull origin master # submodule更新
 
