@@ -319,7 +319,7 @@ sudo gitlab-ctl reconfigure
 
 ### 开始恢复
 
-迁移如同备份与恢复的步骤一样, 只需要将老服务器/var/opt/gitlab/backups目录下的备份文件拷贝到新服务器上的/var/opt/gitlab/backups即可(如果你没修改过默认备份目录的话)。 然后执行恢复命令。
+迁移如同备份与恢复的步骤一样, 只需要将老服务器 `/var/opt/gitlab/backups` 目录下的备份文件拷贝到新服务器上的 `/var/opt/gitlab/backups` 即可(如果你没修改过默认备份目录的话)。 然后执行恢复命令。
 如果修改了，首先进入备份 gitlab 的目录，这个目录是配置文件中的 `gitlab_rails['backup_path']` ，默认为 `/var/opt/gitlab/backups` 。
 
 然后停止 unicorn 和 sidekiq ，保证数据库没有新的连接，不会有写数据情况。
@@ -450,14 +450,29 @@ http {
 
 ## 暴力升级
 
+暴力升级前先备份，然后停止所有服务运行，记得备份的良好习惯
+
+```bash
+gitlab-ctl stop  # 停止所有 gitlab 组件：
+```
+
 直接编辑源 /etc/yum.repos.d/gitlab-ce.repo，安装 GitLab 社区版
 
 ```bash
+yum list gitlab-ce # 查看版本
 sudo yum install gitlab-ce #(自动安装最新版)
 sudo yum install gitlab-ce-8.15.2-ce.0.el6 #(安装指定版本)
 ```
 
-安装过程会报错
+安装完成记得将所有服务启起来哦
+
+```bash
+gitlab-ctl start # 启动所有数据库
+# postgresql 数据库如果启动不了，通过重启启动
+gitlab-ctl restart postgresql
+```
+
+安装过如果报错，查看提示根据提示操作，版本跨度太大会报错哦。
 
 ```
 gitlab preinstall: Automatically backing up only the GitLab SQL database (excluding everything else!)
