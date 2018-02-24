@@ -454,6 +454,8 @@ http {
 
 ```bash
 gitlab-ctl stop  # 停止所有 gitlab 组件：
+# 更新gitlab包
+yum update gitlab-ce
 ```
 
 直接编辑源 /etc/yum.repos.d/gitlab-ce.repo，安装 GitLab 社区版
