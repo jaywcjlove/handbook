@@ -225,8 +225,11 @@ vi /etc/rc.local
 如果开机后发现自启动脚本没有执行，你要去确认一下rc.local这个文件的访问权限是否是可执行的，因为rc.local默认是不可执行的。修改rc.local访问权限，增加可执行权限：
 
 ```bash
+# /etc/rc.local是/etc/rc.d/rc.local的软连接，
 chmod +x /etc/rc.d/rc.local
 ```
+
+官方脚本 [ed Hat NGINX Init Script](https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/)。
 
 ## 运维
 
