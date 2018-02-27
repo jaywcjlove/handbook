@@ -21,6 +21,8 @@ Rocket.Chat 是特性最丰富的 Slack 开源替代品之一。
 - [安装Rocket.Chat](#安装rocketchat)
 - [启动服务](#启动服务)
 - [开机启动](#开机启动)
+- [更新升级](#更新升级)
+- [错误处理](#错误处理)
 
 <!-- /TOC -->
 
@@ -204,3 +206,75 @@ systemctl enable rocketchat.service
 ```bash
 systemctl start rocketchat.service
 ```
+
+## 更新升级
+
+```bash
+# 停止服务
+systemctl stop rocketchat.service
+# 进入安装目录
+cd /opt/
+# 删除Rocket.Chat目录，删除前记得备份哦
+rm -rf Rocket.Chat
+```
+
+上面操作完成，将[安装Rocket.Chat](#安装rocketchat)步骤再操作一遍，记得数据库不要动就可以了。
+
+## 错误处理
+
+1. Error: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.20' not found
+
+```bash
+strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
+
+# GLIBCXX_3.4
+# ....
+# GLIBCXX_3.4.15
+# GLIBCXX_3.4.16
+# GLIBCXX_3.4.17
+# GLIBCXX_3.4.18
+# GLIBCXX_3.4.19
+# GLIBCXX_DEBUG_MESSAGE_LENGTH
+```
+
+发现少了GLIBCXX_3.4.20，解决方法是升级libstdc++.
+
+```bash
+yum provides libstdc++.so.6
+# Loaded plugins: fastestmirror
+# Loading mirror speeds from cached hostfile
+#  * base: ftp.sjtu.edu.cn
+#  * epel: mirrors.ustc.edu.cn
+#  * extras: ftp.sjtu.edu.cn
+#  * updates: ftp.sjtu.edu.cn
+# libstdc++-4.8.5-16.el7.i686 : GNU Standard C++ Library
+# Repo        : base
+# Matched from:
+# Provides    : libstdc++.so.6
+# 
+# libstdc++-4.8.5-16.el7_4.1.i686 : GNU Standard C++ Library
+# Repo        : updates
+# Matched from:
+# Provides    : libstdc++.so.6
+yum install libstdc++-4.8.5-16.el7_4.1.i686
+```
+
+如果上面还不能解决你的问题，需要升级 `gcc` 到 `4.9+` 的版本
+
+```bash
+sudo yum install libmpc-devel mpfr-devel gmp-devel
+
+cd ~/Downloads
+curl ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.bz2 -O
+tar xvfj gcc-4.9.2.tar.bz2
+
+cd gcc-4.9.2
+./configure --disable-multilib --enable-languages=c,c++
+# 处理过程非常长 搞了两个多小时
+make -j 4
+make install
+
+# 用最新的libstdc++.so.6替换旧的
+sudo cp /usr/local/lib64/libstdc++.so.6 /lib64/
+```
+
