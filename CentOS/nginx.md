@@ -208,10 +208,35 @@ PrivateTmp=True表示给服务分配独立的临时空间
 设置开机启动，使配置生效：
 
 ```bash
+# 启动nginx服务
+systemctl start nginx.service
+# 停止开机自启动
+systemctl disable nginx.service
+# 查看服务当前状态
+systemctl status nginx.service
+# 查看所有已启动的服务
+systemctl list-units --type=service
+# 重新启动服务
+systemctl restart nginx.service
+# 设置开机自启动
 systemctl enable nginx.service
 # 输出下面内容表示成功了
 Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service to /usr/lib/systemd/system/nginx.service.
 ```
+
+```bash
+systemctl is-enabled servicename.service # 查询服务是否开机启动
+systemctl enable *.service # 开机运行服务
+systemctl disable *.service # 取消开机运行
+systemctl start *.service # 启动服务
+systemctl stop *.service # 停止服务
+systemctl restart *.service # 重启服务
+systemctl reload *.service # 重新加载服务配置文件
+systemctl status *.service # 查询服务运行状态
+systemctl --failed # 显示启动失败的服务
+```
+
+注：*代表某个服务的名字，如http的服务名为httpd
 
 **开机自启动方法二：**
 
