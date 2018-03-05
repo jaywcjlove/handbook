@@ -85,6 +85,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - [Gitstar Ranking](https://gitstar-ranking.com)
 - [Githuber.cn星榜](https://githuber.cn/)
 - [DiyCode Github Ranking](https://www.diycode.cc/trends)
+- [JavaScript Rising Stars](https://risingstars.js.org)
 - [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
 
 ## 其它
