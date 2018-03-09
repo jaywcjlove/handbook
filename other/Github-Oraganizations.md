@@ -7,7 +7,7 @@
   - [NG-ZORRO](https://github.com/NG-ZORRO) Angular Developers ![](https://avatars2.githubusercontent.com/u/30223759?v=4&s=14)
   - [aliceui](https://github.com/aliceui) 支付宝 ![](https://avatars3.githubusercontent.com/u/3404882?v=3&s=14)
   - [issyteam](https://github.com/kissyteam) kissyteam ![](https://avatars1.githubusercontent.com/u/328318?v=3&s=14)
-  - [Taobao, Inc. ](https://github.com/taobao) 淘宝 ![](https://avatars0.githubusercontent.com/u/1560507?v=3&s=14)
+  - [Taobao, Inc.](https://github.com/taobao) 淘宝 ![](https://avatars0.githubusercontent.com/u/1560507?v=3&s=14)
   - [天猫前端](https://github.com/tmallfe) 天猫 ![](https://avatars0.githubusercontent.com/u/7637440?v=3&s=14)
   - [seajs](https://github.com/seajs) Web的模块加载程序 ![](https://avatars1.githubusercontent.com/u/12101536?v=4&s=14)
   - [kissyteam](https://github.com/kissyteam) 强大的模块集合 ![](https://avatars3.githubusercontent.com/u/328318?v=4&s=14)
@@ -16,7 +16,7 @@
 - [Huawei](https://github.com/Huawei-Hadoop) 华为 ![](https://avatars2.githubusercontent.com/u/539149?v=4&s=14)
 - [Tencent](https://github.com/tencent) 腾讯 Github ![](https://avatars0.githubusercontent.com/u/18461506?v=4&s=14)
   - [Tencent](https://code.csdn.net/tencent) 腾讯 csdn
-  - [腾讯 AlloyTeam ](https://github.com/AlloyTeam) 腾讯 ![](https://avatars2.githubusercontent.com/u/1503033?v=3&s=14)
+  - [腾讯 AlloyTeam](https://github.com/AlloyTeam) 腾讯 ![](https://avatars2.githubusercontent.com/u/1503033?v=3&s=14)
 - [Baidu](https://github.com/baidu) 百度 ![](https://avatars3.githubusercontent.com/u/13245940?v=4&s=14)
   - [Baidu FEX team](https://github.com/fex-team) 百度  ![](https://avatars0.githubusercontent.com/u/6668906?v=4&s=14)
   - [Baidu EFE team](https://github.com/ecomfe) 百度  ![](https://avatars3.githubusercontent.com/u/2268460?v=3&s=14)
@@ -29,7 +29,8 @@
 - [360EntSecGroup-Skylar](https://github.com/360EntSecGroup-Skylar) 360企业安全集团终端安全子公司 ![](https://avatars2.githubusercontent.com/u/29733149?v=3&s=14)
 - [唯品会](https://github.com/vipshop) 唯品会 ![](https://avatars3.githubusercontent.com/u/7145544?v=3&s=14)
 - [Douban Inc.](https://github.com/douban) 豆瓣 ![](https://avatars3.githubusercontent.com/u/1220164?v=3&s=14)
-- [大众点评网 ](https://github.com/dianping) 大众点评网 ![](https://avatars0.githubusercontent.com/u/1539555?v=3&s=14)
+- [大众点评网](https://github.com/dianping) 大众点评网 ![](https://avatars0.githubusercontent.com/u/1539555?v=3&s=14)
+- [美团点评](https://github.com/Meituan-Dianping) 美团点评 ![](https://avatars0.githubusercontent.com/u/1539555?v=3&s=14)
 - [Xiaomi Open Source.](https://github.com/xiaomi) 小米 
 - [meituan.com](https://github.com/meituan) 美团 ![](https://avatars1.githubusercontent.com/u/977371?v=3&s=14)
 - [蘑菇街](https://github.com/mogujie) 蘑菇街 ![](https://avatars1.githubusercontent.com/u/10172799?v=3&s=14)
