@@ -60,7 +60,7 @@ sudo certbot --nginx
 # The error was: MisconfigurationError('Error while running nginx -c /etc/nginx/nginx.conf -t.\n\nnginx: [emerg] open() "/etc/nginx/nginx.conf" failed (2: No such file or directory)\nnginx: configuration file /etc/nginx/nginx.conf test failed\n',)
 ```
 
-解决方法，这个解决方法就是让`certbot`认为你的，你的配置存在，并且将SSL配置写入你的nginx配置文件中，然后拷贝配置到你的默认 nginx 配置中。哈哈为了方便 nginx 启动不用指定配置，也没有看到 `certbot` 工具提供指定目录的命令，暂时我就这么解决吧。
+解决方法，这个解决方法就是让`certbot`认为你的，你的配置存在，并且将SSL配置写入你的nginx配置文件中，然后拷贝配置到你的默认 nginx 配置中。哈哈为了方便 nginx 启动不用指定配置，也没有看到 `certbot` 工具提供指定目录的命令，暂时我就这么解决吧。
 
 ```bash
 # nginx 默认配置文件目录不 /etc/nginx/ 目录下，
