@@ -150,6 +150,16 @@ ssh -T work.github.com        # 通过别名测试
 ssh -i ~/公钥文件地址 Host别名  # 如 ssh -i ~/.ssh/work_rsa work.github.com
 ```
 
+**5.使用**
+
+```bash
+# 原来的写法
+git clone git@github.com:<jslite的用户名>/learngit.git
+# 现在的写法
+git clone git@jslite.github.com:<jslite的用户名>/learngit.git
+git clone git@work.github.com:<work的用户名>/learngit.git
+```
+
 **5.注意**
 
 如果你修改了id_rsa的名字，你需要将ssh key添加到SSH agent中，如：
