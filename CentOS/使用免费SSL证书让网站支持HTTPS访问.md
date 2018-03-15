@@ -3,7 +3,164 @@
 
 我们使用的服务器是在公司内部，用联通送的ip，通过路由器隐射使得外网可以访问，我们在这个服务器搭建了很多工具，比如Gitlab，聊天工具，网盘等，访问都很麻烦，没有备案，都必须带上端口号访问对应的服务，据说80端口被封了，假设有了https就可以默认443端口，就不用带端口号了，通过https访问默认浏览器会给你带上443端口，下面是我使用[Let's Encrypt](https://www.sslforfree.com/)提供的SSL证书，记录配置SSL的安装实践过程。
 
-## 安装 EPEL 仓库
+<!-- TOC -->
+
+- [certbot-auto](#certbot-auto)
+  - [安装](#安装)
+  - [申请证书](#申请证书)
+  - [续期HTTPS证书](#续期https证书)
+  - [nginx应用该证书的例子](#nginx应用该证书的例子)
+  - [无法应用到主域名](#无法应用到主域名)
+- [certbot-nginx](#certbot-nginx)
+  - [安装 EPEL 仓库](#安装-epel-仓库)
+  - [安装签发证书工具](#安装签发证书工具)
+  - [申请证书](#申请证书-1)
+    - [报nginx命令不存在错误](#报nginx命令不存在错误)
+    - [报nginx配置文件目录不对错误](#报nginx配置文件目录不对错误)
+    - [正式申请申请证书](#正式申请申请证书)
+  - [配置nginx](#配置nginx)
+- [参考阅读](#参考阅读)
+
+<!-- /TOC -->
+
+下面两种方法均在 CentOS7 环境下操作滴。
+
+## certbot-auto
+
+刚看到新闻，Let's Encrypt发布的 ACME v2 现已正式支持通配符HTTPS证书，就立马使用上了 
+
+### 安装
+
+```bash
+# 下载
+wget https://dl.eff.org/certbot-auto
+
+# 设为可执行权限
+chmod a+x certbot-auto
+```
+
+### 申请证书
+
+```bash
+# 注xxx.com请根据自己的域名自行更改
+./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.xxx.com" --manual --preferred-challenges dns-01 certonly
+```
+
+执行完这一步之后，会下载一些需要的依赖，稍等片刻之后，会提示输入邮箱
+
+> 邮箱很重要，主要用于安全提醒，以及续期提醒
+
+```diff
+Complete!
+Creating virtual environment...
+Installing Python packages...
+Installation succeeded.
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator manual, Installer None
+Enter email address (used for urgent renewal and security notices) (Enter 'c' to
+- cancel): 
++ cancel):  这里填写邮箱地址
+
+-------------------------------------------------------------------------------
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+-------------------------------------------------------------------------------
+- (A)gree/(C)ancel: 
++ (A)gree/(C)ancel: A
+
+-------------------------------------------------------------------------------
+Would you be willing to share your email address with the Electronic Frontier
+Foundation, a founding partner of the Let's Encrypt project and the non-profit
+organization that develops Certbot? We'd like to send you email about EFF and
+our work to encrypt the web, protect its users and defend digital rights.
+-------------------------------------------------------------------------------
+- (Y)es/(N)o: 
++ (Y)es/(N)o: Y
+Obtaining a new certificate
+Performing the following challenges:
+dns-01 challenge for showgold.com
+
+-------------------------------------------------------------------------------
+NOTE: The IP of this machine will be publicly logged as having requested this
+certificate. If you're running certbot in manual mode on a machine that is not
+your server, please ensure you're okay with that.
+
+Are you OK with your IP being logged?
+-------------------------------------------------------------------------------
+- (Y)es/(N)o: 
++ (Y)es/(N)o: Y
+
+-------------------------------------------------------------------------------
+Please deploy a DNS TXT record under the name
++ _acme-challenge.xxx.com
+with the following value:
+
++ VBsfRHG______4t_drxcEFQlyOS0puAlJFypAYQTA
+
+Before continuing, verify the record is deployed.
+-------------------------------------------------------------------------------
+Press Enter to Continue
++ 不要心急着按回车，先执行dig _acme-challenge.xxx.com txt确认解析记录是否生效，生效之后再回去按回车确认
+Waiting for verification...
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
++   /etc/letsencrypt/live/xxx.com/fullchain.pem
+   Your key file has been saved at:
++   /etc/letsencrypt/live/xxx.com/privkey.pem
+   Your cert will expire on 2018-06-13. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot-auto
+   again. To non-interactively renew *all* of your certificates, run
++   "certbot-auto renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+```
+
+> 注意：  
+> 申请通配符证书是要经过DNS认证的，按照提示，前往域名后台添加对应的DNS TXT记录。  
+> 添加之后，不要心急着按回车，先执行 dig xxxx.xxx.com txt确认解析记录是否生效，生效之后再回去按回车确认
+
+看到 `Congratulations` 你就大功告成了！
+
+### 续期HTTPS证书
+
+```bash
+certbot-auto renew
+```
+
+### nginx应用该证书的例子
+
+```nginx
+server {
+    server_name xxx.com;
+    listen 443 http2 ssl;
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/xxx.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/xxx.com/privkey.pem;
+
+    location / {
+      proxy_pass http://127.0.0.1:6666;
+    }
+}
+```
+
+### 无法应用到主域名
+
+如需把主域名也增加到证书的覆盖范围，请在开始申请证书步骤的那个指令把主域名也加上`-d "xxx.com"`，如下：
+
+> 需要注意的是，这样的话需要修改两次解析记录
+
+```
+./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.xxx.com" -d "xxx.com" --manual --preferred-challenges dns-01 certonly
+```
+
+## certbot-nginx
+
+### 安装 EPEL 仓库
 
 首先要安装 `Let's Encrypt` 证书用的工具，这个可以在CentOS 的 EPEL 仓库里找到它，在找到它之前，先检查是否存在 `EPEL` 源:
 
@@ -18,13 +175,16 @@ cd /etc/yum.repos.d/
 sudo yum install epel-release -y
 ```
 
-## 安装签发证书工具
+### 安装签发证书工具
 
 ```bash
 sudo yum install certbot-nginx -y
+# 查看版本
+certbot --version
+# certbot 0.21.1
 ```
 
-## 申请证书
+### 申请证书
 
 #### 报nginx命令不存在错误
 
@@ -131,7 +291,7 @@ sudo certbot --nginx certonly
 
 上面生成成功了，可以添加到 nginx 配置中，这下完事儿了，下面是一端nginx的配置实例。
 
-#### 配置nginx
+### 配置nginx
 
 ```nginx
 # http 重定向到 https
@@ -176,3 +336,4 @@ server {
 - [利用SSL For Free工具3分钟获取Let's Encrypt免费SSL证书](http://www.laozuo.org/7742.html)
 - [Let's Encrypt：用免费的 SSL 证书，让网站支持 HTTPS](https://mp.weixin.qq.com/s/UHTMJjglrgjBHxi5l1EO8g)
 - [Automatically enable HTTPS on your website with EFF's Certbot, deploying Let's Encrypt certificates.](https://certbot.eff.org/)
+- [Let's Encrypt 宣布支持通配符证书，所有子域名可轻松开启 HTTPS](https://mp.weixin.qq.com/s/vxRpZU6DNoewrQZLDW7YDA)
