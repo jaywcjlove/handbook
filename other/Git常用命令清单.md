@@ -19,6 +19,7 @@
   - [回滚到某个commit提交](#回滚到某个commit提交)
   - [回退到某一个版本](#回退到某一个版本)
   - [去掉某个commit](#去掉某个commit)
+  - [新建一个空分支](#新建一个空分支)
   - [合并多个commit](#合并多个commit)
   - [修改远程Commit记录](#修改远程commit记录)
   - [添加忽略文件](#添加忽略文件)
@@ -310,6 +311,7 @@ git revert HEAD~1 # 撤销一条记录 会弹出 commit 编辑
 git push # 提交回滚
 ```
 
+
 ### 回退到某一个版本
 
 ```bash
@@ -324,6 +326,17 @@ git reset --hard <hash>
 ```bash
 # 实质是新建了一个与原来完全相反的commit，抵消了原来commit的效果
 git revert <commit-hash> 
+```
+
+### 新建一个空分支
+
+```bash
+# 这种方式新建的分支(gh-pages)是没有 commit 记录的
+git checkout --orphan gh-pages
+# 删除新建的gh-pages分支原本的内容，如果不删除，提交将作为当前分支的第一个commit
+git rm -rf .
+# 查看一下状态 有可能上面一条命令，没有删除还没有提交的的文件
+git state 
 ```
 
 ### 合并多个commit
@@ -781,7 +794,9 @@ git remote show origin  # 可以查看remote地址，远程分支
 
 ```shell
 git branch test # 新建test分支  
+git branch newBrach 3defc69 # 指定哈希3defc69，新建分支名字为newBrach
 git checkout -b newBrach origin/master # 取回远程主机的更新以后，在它的基础上创建一个新的分支  
+git checkout -b newBrach 3defc69 # 以哈希值3defc69，新建 newBrach 分支，并切换到该分支
 ```
 
 ### 连接
