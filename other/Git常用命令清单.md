@@ -11,6 +11,7 @@
   - [创建SSH密钥](#创建ssh密钥)
   - [多账号ssh配置](#多账号ssh配置)
   - [免密码登录远程服务器](#免密码登录远程服务器)
+  - [https协议下提交代码免密码](#https协议下提交代码免密码)
   - [文件推向3个git库](#文件推向3个git库)
   - [修改远程仓库地址](#修改远程仓库地址)
   - [撤销远程记录](#撤销远程记录)
@@ -190,6 +191,31 @@ Host aliyun1
 ```
 
 上面配置完了，可以通过命令登录，不需要输入IP地址和密码 `ssh aliyun1`
+
+### https协议下提交代码免密码
+
+```bash
+git clone https://github.com/username/rep.git
+```
+
+通过上面方式克隆可能需要密码，解决办法：进入当前克隆的项目 `vi rep/.git/config` 编辑 `config`, 按照下面方式修改，你就可以提交代码不用输入密码了。
+
+```diff
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+-	url = https://github.com/username/rep.git
++	url = https://用户名:密码@github.com/username/rep.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+```
 
 ### 文件推向3个git库
 
