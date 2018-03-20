@@ -18,6 +18,7 @@
 - [Swift入门教程读书笔记](https://github.com/jaywcjlove/swift-tutorial)
 - [Go语言入门学习笔记](https://github.com/jaywcjlove/golang-tutorial)
 - [Docker入门学习笔记](https://github.com/jaywcjlove/docker-tutorial)
+- **[Nginx安装维护入门学习笔记★★★★](https://github.com/jaywcjlove/nginx-tutorial)**
 - [搞得像IDE一样的Vim，安装配置自己的Vim](https://github.com/jaywcjlove/vim-web)
 - [很酷炫的前端网站搜集器，导航网](https://github.com/jaywcjlove/FED)
 - [简单的文档生成工具idoc](https://github.com/jaywcjlove/idoc)
@@ -25,7 +26,6 @@
 ## CentOS 
 
 - **[Rocket.Chat 开源IM系统部署★★★★](CentOS/Rocket.Chat.md)**
-- **[安装维护Nginx★★★★](CentOS/nginx.md)**
 - **[安装维护Gitlab★★★★](CentOS/CentOS7安装维护Gitlab.md)**
 - [CentOS常用基础命令](CentOS/CentOS.md)
 - [CentOS7网络配置](CentOS/CentOS7网络配置.md)
