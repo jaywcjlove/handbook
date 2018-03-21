@@ -15,6 +15,7 @@
 - [动画](#动画)
 - [时间](#时间)
 - [其它](#其它)
+- [图表](#图表)
 - [加载器](#加载器)
 - [构建工具](#构建工具)
 - [测试](#测试)
@@ -163,6 +164,16 @@
 - [CurrencyFormatter.js](https://github.com/osrec/currencyFormatter.js/) - 是一款简单纯JS格式化155种不同国家货币格式库，gzip压缩后仅7KB。[demo](https://osrec.github.io/currencyFormatter.js/)
 - [Feature.js](https://github.com/osrec/currencyFormatter.js/) - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。[demo](hhttp://featurejs.com/)
 - [screenfull.js](https://github.com/sindresorhus/screenfull.js) -  极小、跨平台的 JavaScript 全屏插件。[demo](https://sindresorhus.com/screenfull.js/)
+
+## 图表
+
+- [TOAST UI Chart](https://github.com/nhnent/tui.chart) - 提供了直方图、折线图、散点图、饼图、热力图等多种类型格式的图表，兼容 IE8+ [demo](http://ui.toast.com/tui-chart/)
+- [Chart.js](https://github.com/chartjs/Chart.js) - Simple HTML5 Charts using the `<canvas>` tag [demo](http://www.chartjs.org/)
+- [ECharts](https://github.com/ecomfe/echarts) - A powerful, interactive charting and visualization library for browser  [demo](http://echarts.baidu.com/)
+- [D3](https://github.com/d3/d3) - Bring data to life with SVG, Canvas and HTML. [demo](https://d3js.org)
+- [Frappe Charts](https://github.com/frappe/charts) - Bring data to life with SVG, Canvas and HTML. [demo](https://frappe.github.io/charts/)
+- [Chartist.js](https://github.com/gionkunz/chartist-js) - Simple responsive charts. [demo](http://gionkunz.github.io/chartist-js/)
+- [Recharts](https://github.com/recharts/recharts) - Simple responsive charts. [demo](http://recharts.org/#/en-US/)
 
 ## 加载器
 
