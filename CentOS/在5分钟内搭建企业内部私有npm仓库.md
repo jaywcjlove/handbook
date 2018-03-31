@@ -35,6 +35,8 @@
 
 ## cnpm搭建
 
+[cnpmjs.org](https://github.com/cnpm/cnpmjs.org)
+
 ### 安装
 
 ```bash
