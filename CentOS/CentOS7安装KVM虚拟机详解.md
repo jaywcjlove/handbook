@@ -254,7 +254,7 @@ echo "TZ='Asia/Shanghai'; export TZ" >> /etc/profile
 ```bash
 # 查看虚拟机
 virsh list              # 查看在运行的虚拟机
-virsh list –all         # 查看所有虚拟机
+virsh list --all         # 查看所有虚拟机
 
  Id    Name                           State
 ----------------------------------------------------
