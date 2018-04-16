@@ -16,3 +16,6 @@
 [submodule "docker-tutorial"]
 	path = docker-tutorial
 	url = https://github.com/jaywcjlove/docker-tutorial.git
+[submodule "nginx-tutorial"]
+	path = nginx-tutorial
+	url = git@github.com:jaywcjlove/nginx-tutorial.git
