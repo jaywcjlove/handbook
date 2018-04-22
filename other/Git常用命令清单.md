@@ -939,6 +939,7 @@ git log --pretty=format:"%h - %an, %ar : %s"#定制要显示的记录格式
 git log --pretty=format:'%h : %s' --date-order --graph # 拓扑顺序展示   
 git log --pretty=format:'%h : %s - %ad' --date=short #日期YYYY-MM-DD显示   
 git log <last tag> HEAD --pretty=format:%s # 只显示commit   
+git config --global format.pretty '%h : %s - %ad' --date=short #日期YYYY-MM-DD显示 写入全局配置
 ```
 
 |选项 | 说明|选项 | 说明|
