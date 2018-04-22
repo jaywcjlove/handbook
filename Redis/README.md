@@ -977,6 +977,7 @@ aof-rewrite-incremental-fsync yes
 
 ## 精品文章
 
+- [史上最全Redis高可用技术解决方案大全](https://mp.weixin.qq.com/s/BoLsVKYyu8yRXZbxd1uuQw)
 - [Redis 4.0 新功能简介](http://blog.huangz.me/diary/2016/redis-4-outline.html)
 - [Redis 学习路线](http://blog.huangz.me/diary/2016/how-to-learn-redis.html)
 - [Redis架构之防雪崩设计：网站不宕机背后的兵法](https://mp.weixin.qq.com/s/TBCEwLVAXdsTszRVpXhVug)
