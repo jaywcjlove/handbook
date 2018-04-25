@@ -26,6 +26,7 @@
 
 ## 图片
 
+- [Day.js](https://github.com/xx45/dayjs) - 是一个轻量的 JavaScript 时间日期处理库。
 - [baguetteBox.js](https://github.com/feimosi/baguetteBox.js) - 是一个简单易用的响应式图像灯箱效果脚本。[demo](https://feimosi.github.io/baguetteBox.js/)
 - [Lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) - 是一个功能齐全的JavaScript图像灯箱插件。[demo](https://sachinchoolur.github.io/lightgallery.js/)
 - [viewerjs](https://github.com/fengyuanchen/viewerjs) - 是一个图像预览插件。[demo](https://fengyuanchen.github.io/viewerjs/)
