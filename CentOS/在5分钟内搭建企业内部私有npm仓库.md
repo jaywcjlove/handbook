@@ -157,6 +157,7 @@ yarn global add verdaccio
 ### 启动服务
 
 ```bash
+verdaccio -l 192.168.188.224:4873 >> verdaccio.log 2>&1 &
 verdaccio >> verdaccio.log 2>&1 & # 后台启动并写入日志
 
 # Verdaccio doesn't need superuser privileges. Don't run it under root.
