@@ -67,6 +67,7 @@
 - [删除文件](#删除文件)
 - [remote](#remote-1)
 - [标签tag](#标签tag)
+  - [重命名Tag](#重命名tag)
 - [日志log](#日志log)
 - [重写历史](#重写历史)
   - [删除仓库](#删除仓库)
@@ -930,6 +931,13 @@ git tag -d v0.1 # 删除标签
 git push origin :refs/tags/v0.1 # 删除远程标签   
 git pull --all # 获取远程所有内容包括tag  
 git --git-dir='<绝对地址>/.git' describe --tags HEAD # 查看本地版本信息  
+```
+
+### 重命名Tag
+
+```bash
+mv .git/refs/tags/1.9.1 .git/refs/tags/v1.9.1
+git push -f --tags
 ```
 
 ## 日志log
