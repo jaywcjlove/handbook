@@ -796,7 +796,9 @@ git push -u origin branchName # 提交分支到远程origin主机中
 
 ### 拉取
 
-`git fetch -p` #拉取远程分支时，自动清理 远程分支已删除，本地还存在的对应同名分支。  
+```bash
+git fetch -p # 拉取远程分支时，自动清理 远程分支已删除，本地还存在的对应同名分支。  
+```
 
 ### 分支合并
 
@@ -809,7 +811,9 @@ git merge test            # 将test分支合并到当前分支
 
 ### 重命名
 
-`git branch -m old new` #重命名分支  
+```bash
+git branch -m old new # 重命名分支  
+```
 
 ### 查看
 
@@ -862,7 +866,7 @@ git checkout -b [--track] test origin/dev # 基于远端dev分支，新建本地
 
 ## submodule
 
-克隆项目同时克隆submodule
+克隆项目同时克隆 submodule
 
 ```bash
 git clone https://github.com/jaywcjlove/handbook.git --depth=1 --recurse-submodules
