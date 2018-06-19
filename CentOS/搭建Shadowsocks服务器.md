@@ -20,13 +20,17 @@
 推荐 VPS 服务器，[vultr注册地址](https://www.vultr.com/?ref=7260367) （全球15个服务器位置可选，KVM框架），一直在用还可以。
 最近切换到[linode](https://www.linode.com/)使用。
 
+<a href="https://www.vultr.com/?ref=7260367"><img src="https://www.vultr.com/media/banner_1.png" width="728" height="90"></a>
+
 ## 客户端
 
 ### 安装shadowsocks
 
 ```bash
 yum install python-setuptools && easy_install pip
-## pip install --upgrade pip
+# pip install --upgrade pip
+# sudo easy_install pip
+# sudo pip install easygui
 pip install shadowsocks
 ```
 
