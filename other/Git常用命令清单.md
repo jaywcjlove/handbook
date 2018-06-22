@@ -20,6 +20,7 @@
   - [回滚到某个commit提交](#回滚到某个commit提交)
   - [回退到某一个版本](#回退到某一个版本)
   - [去掉某个commit](#去掉某个commit)
+  - [获取最近一次提交的 commit id](#获取最近一次提交的-commit-id)
   - [新建一个空分支](#新建一个空分支)
   - [合并多个commit](#合并多个commit)
   - [修改远程Commit记录](#修改远程commit记录)
@@ -355,6 +356,13 @@ git reset --hard <hash>
 ```bash
 # 实质是新建了一个与原来完全相反的commit，抵消了原来commit的效果
 git revert <commit-hash> 
+```
+
+### 获取最近一次提交的 commit id
+
+```bash
+git rev-parse HEAD # e10721cb8859b2cd340d31a52ef4bf4b9629ddda
+git rev-parse --short HEAD # e10721c
 ```
 
 ### 新建一个空分支
