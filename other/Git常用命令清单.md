@@ -657,14 +657,18 @@ git push -f origin master # 强制推送文件，缩写 -f（全写--force）
 
 ## clone
 
-`git clone git://github.com/JSLite/JSLite.js.git `  
-`git clone git://github.com/JSLite/JSLite.js.git mypro` #克隆到自定义文件夹  
-`git clone [user@]example.com:path/to/repo.git/` #SSH协议还有另一种写法。  
+```bash
+git clone git://github.com/JSLite/JSLite.js.git   
+git clone git://github.com/JSLite/JSLite.js.git --depth=1  
+git clone git://github.com/JSLite/JSLite.js.git mypro # 克隆到自定义文件夹  
+git clone [user@]example.com:path/to/repo.git/ # SSH协议还有另一种写法。  
+```
 
 git clone支持多种协议，除了HTTP(s)以外，还支持SSH、Git、本地文件协议等，下面是一些例子。`git clone <版本库的网址> <本地目录名>`  
 
 ```shell
 $ git clone http[s]://example.com/path/to/repo.git/
+$ git clone ssh://example.com/path/to/repo.git/
 $ git clone ssh://example.com/path/to/repo.git/
 $ git clone git://example.com/path/to/repo.git/
 $ git clone /opt/git/project.git 
