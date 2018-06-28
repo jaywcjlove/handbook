@@ -1025,6 +1025,18 @@ virt-manager 没有找到存储池，创建储存池即可
 3. virsh shutdown <domain> 无法关闭虚拟机
 使用该命令关闭虚拟机时，KVM是向虚拟机发送一个ACPI的指令，需要虚拟机安装acpid服务：
 
+4. operation failed: Active console session exists for this domain
+
+```bash
+# 方案1
+$ ps aux | grep console
+$ kill -9 <进程号>
+# 方案2
+$ /etc/init.d/libvirt-bin restart
+# 方案3
+$ ps aux | grep kvm
+$ kill 对应的虚拟机进程
+```
 
 ## 参考文章
 
