@@ -53,6 +53,8 @@ token = frpss
 
 ```bash
 # 服务在后台运行
+# nohup 保障进程不会被hangup信号异常中断；
+nohup ./frps -c frps.ini >> frps.log 2>&1 &
 ./frps -c frps.ini >> frps.log 2>&1 &
 ```
 
