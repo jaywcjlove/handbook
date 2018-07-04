@@ -1067,6 +1067,10 @@ vim .git/config
 git config --global core.quotepath false
 ```
 
+**4. The authenticity of host 192.168.0.xxx can't be establis**
+
+修改 `/etc/ssh/ssh_config` 中的 `StrictHostKeyChecking` 的 `ask` 为 `no` 解决问题。
+
 ## 参考资料
 
 - [Git官网](http://git-scm.com/)
