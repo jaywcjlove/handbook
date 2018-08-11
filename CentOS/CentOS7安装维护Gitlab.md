@@ -26,6 +26,7 @@ CentOS7安装维护Gitlab
   - [自动备份](#自动备份)
   - [备份保留七天](#备份保留七天)
   - [开始恢复](#开始恢复)
+- [连接数据库](#连接数据库)
 - [一些常规目录](#一些常规目录)
 - [使用HTTPS](#使用https)
 - [暴力升级](#暴力升级)
@@ -361,6 +362,41 @@ sudo find /var/opt/gitlab/git-data/repositories -type d -print0 | sudo xargs -0 
 
 ```bash
 sudo chown -R git:git 1483533591_2017_01_04_gitlab_backup.tar
+```
+
+## 连接数据库
+
+```bash
+# 登陆gitlab的安装服务查看配置文件
+cat /var/opt/gitlab/gitlab-rails/etc/database.yml 
+
+vim /var/opt/gitlab/postgresql/data/postgresql.conf
+# listen_addresses = '192.168.1.125' # 修改监听地址为ip
+# 或者改为 "*"
+```
+
+修改 `pg_hba.conf` 配置
+
+```bash
+vim  /var/opt/gitlab/postgresql/data/pg_hba.conf
+# 将下面这一行添加到配置的最后面
+# host    all    all    0.0.0.0/0    trust
+```
+
+如果不希望允许所有IP远程访问，则可以将上述配置项中的0.0.0.0设定为特定的IP值。
+
+重启 `postgresql` 数据库
+
+```
+gitlab-ctl restart postgresql
+```
+
+查看 `/etc/passwd` 文件里边 `gitlab` 对应的系统用户
+
+```bash
+[root@localhost ~]$ cat /etc/passwd
+...
+gitlab-psql:x:493:490::/var/opt/gitlab/postgresql:/bin/sh  # gitlab的postgresql用户
 ```
 
 ## 一些常规目录
