@@ -14,6 +14,12 @@
 - [JavaScript Rising Stars](https://risingstars.js.org)
 - [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
 
+## 徽章
+
+- [开源项目的质量元数据标记](http://shields.io/#/)
+- [快速徽章生成服务](https://badgen.net/)
+- [固定状态徽章](https://github.com/jaywcjlove/sb)
+
 ## 其它
 
 - [在GitHub上积极开发的编程语言列表](https://github.com/showcases/programming-languages/)
