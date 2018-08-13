@@ -13,6 +13,7 @@
 - [DiyCode Github Ranking](https://www.diycode.cc/trends)
 - [JavaScript Rising Stars](https://risingstars.js.org)
 - [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
+- [下载NPM包的统计信息](https://npm-stat.com/)
 
 ## 徽章
 
