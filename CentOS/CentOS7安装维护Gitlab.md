@@ -35,6 +35,7 @@ CentOS7安装维护Gitlab
   - [头像无法正常显示](#头像无法正常显示)
   - [internal API unreachable](#internal-api-unreachable)
   - [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
+  - [webhooks 错误](#webhooks-错误)
   - [其它错误](#其它错误)
 - [参考资料](#参考资料)
 
@@ -502,6 +503,13 @@ sudo yum install gitlab-ce #(自动安装最新版)
 sudo yum install gitlab-ce-8.15.2-ce.0.el6 #(安装指定版本)
 ```
 
+注意：`10.7` 版本升级到 `11.x` 版本需要先升级到 `10.8` 版本
+
+```bash
+# 安装指定版本 10.8 的版本
+sudo yum install gitlab-ce-10.8.0-ce.0.el6
+```
+
 安装完成记得将所有服务启起来哦
 
 ```bash
@@ -671,6 +679,16 @@ sudo vi /usr/local/nginx/conf/nginx.conf
 # 在第一行添加
 user root;
 ```
+
+### webhooks 错误
+
+错误显示不允许发送本地请求
+
+```
+Url is blocked: Requests to the local network are not allowed
+```
+
+解决方法，在设置中设置允许本地连接即可
 
 ### 其它错误
 
