@@ -14,6 +14,7 @@
 - [JavaScript Rising Stars](https://risingstars.js.org)
 - [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
 - [下载NPM包的统计信息](https://npm-stat.com/)
+- [比较npm包下载，计数随时间的变化](http://www.npmtrends.com/)
 
 ## 徽章
 
