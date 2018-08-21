@@ -690,6 +690,8 @@ Url is blocked: Requests to the local network are not allowed
 
 解决方法，在设置中设置允许本地连接即可
 
+> `admin` => `Settings` => `Outbound requests`
+
 ### 其它错误
 
 ```bash
