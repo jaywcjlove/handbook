@@ -1093,3 +1093,5 @@ git config --global core.quotepath false
 - [Git 本地仓库和裸仓库](https://gold.xitu.io/post/5842f9b861ff4b005889ade6)
 - [沉浸式学 Git](http://www.kancloud.cn/kancloud/igit/46710)
 - [Git进阶用法，主要是rebase高级用法](http://way.oschina.io/2016/12/15/notes/GitAdvance/?utm_source=gank.io&utm_medium=email)
+- [成为一个git大师](https://www.atlassian.com/git/tutorials)
+- [高质量的Git中文教程](https://github.com/geeeeeeeeek/git-recipes)
