@@ -547,6 +547,13 @@ Failed:
 
 看上面一堆错误，瞬间就懵逼了，看到一条救星命令让我尝试运行 `sudo touch /etc/gitlab/skip-auto-migrations` 于是我二逼的重新`yum install gitlab-ce`运行了，结果真的安装成功了，😄。
 
+```bash
+# 重新安装命令
+yum reinstall gitlab-ce
+# or
+yum install gitlab-ce
+```
+
 ```
 ...
 gitlab: Thank you for installing GitLab!
