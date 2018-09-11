@@ -27,7 +27,7 @@
 
 ## certbot-auto
 
-刚看到新闻，Let's Encrypt发布的 ACME v2 现已正式支持通配符HTTPS证书，就立马使用上了 
+刚看到新闻，Let's Encrypt发布的 ACME v2 现已正式支持通配符HTTPS证书，就立马使用上了 [certbot](https://github.com/certbot/certbot)
 
 ### 安装
 
@@ -130,7 +130,10 @@ IMPORTANT NOTES:
 
 ```bash
 certbot-auto renew
+certbot-auto delete -d chat.xxx.cn # 删除证书
 ```
+
+⚠️ 注意这里会有升级操作，并且有安装 Python 包，有时候会非常慢，不要停止，停止操作可能会造成麻烦。
 
 ### nginx应用该证书的例子
 
