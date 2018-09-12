@@ -36,6 +36,7 @@ CentOS7安装维护Gitlab
   - [internal API unreachable](#internal-api-unreachable)
   - [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
   - [webhooks 错误](#webhooks-错误)
+  - [服务无法启动](#服务无法启动)
   - [其它错误](#其它错误)
 - [参考资料](#参考资料)
 
@@ -698,6 +699,40 @@ Url is blocked: Requests to the local network are not allowed
 解决方法，在设置中设置允许本地连接即可
 
 > `admin` => `Settings` => `Outbound requests`
+
+
+### 服务无法启动
+
+```
+[root@localhost gitlab]# gitlab-ctl status
+fail: alertmanager: runsv not running
+fail: gitaly: runsv not running
+fail: gitlab-monitor: runsv not running
+fail: gitlab-workhorse: runsv not running
+fail: logrotate: runsv not running
+fail: nginx: runsv not running
+fail: node-exporter: runsv not running
+fail: postgres-exporter: runsv not running
+fail: postgresql: runsv not running
+fail: prometheus: runsv not running
+fail: redis: runsv not running
+fail: redis-exporter: runsv not running
+fail: sidekiq: runsv not running
+fail: unicorn: runsv not running
+```
+
+[](https://confluence.jaytaala.com/pages/viewpage.action?pageId=9666568)
+[Omnibus gitlab do not restart on CentOS7](https://gitlab.com/gitlab-org/omnibus-gitlab/issues/272)
+开机自动启动服务
+
+```
+[root@localhost ~]# systemctl status gitlab-runsvdir.service -l
+● gitlab-runsvdir.service - GitLab Runit supervision process
+   Loaded: loaded (/usr/lib/systemd/system/gitlab-runsvdir.service; enabled; vendor preset: disabled)
+   Active: inactive (dead)
+```
+
+如果 `gitlab-runsvdir.service` 服务没有响应，你可能要看一下内存是否满了，需要释放内存，老的版本需要 2G 内存，新版本需要至少 4G 内存。
 
 ### 其它错误
 
