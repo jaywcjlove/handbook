@@ -7,6 +7,11 @@
 
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
 - [JavaScript各种工具统计★★★](https://stateofjs.com/)
+- [Statcounter统计浏览器市场份额](http://gs.statcounter.com/)
+- [百度统计浏览器市场份额](https://tongji.baidu.com/data/browser)
+- [浏览器占有率排行](https://www.netmarketshare.com/browser-market-share.aspx)
+- [Stack Overflow 年度开发者调查](https://insights.stackoverflow.com/survey/)
+- [Github Trending](https://github.com/trending)
 - [Github Follower排行榜](http://www.githubrank.com/)
 - [Gitstar Ranking](https://gitstar-ranking.com)
 - [Githuber.cn星榜](https://githuber.cn/)
