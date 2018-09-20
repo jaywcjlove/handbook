@@ -194,7 +194,7 @@ $ redis-cli info | grep tcp_port
 如果你是通过yum安装，可以使用下面方式开机启动。
 
 ```bash
-systemctl enable redis.servic
+systemctl enable redis.service
 chkconfig redis on
 ```
 
