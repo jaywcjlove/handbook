@@ -9,6 +9,7 @@
   - [安装](#安装)
   - [申请证书](#申请证书)
   - [续期HTTPS证书](#续期https证书)
+  - [查看证书过期时间](#查看证书过期时间)
   - [nginx应用该证书的例子](#nginx应用该证书的例子)
   - [无法应用到主域名](#无法应用到主域名)
 - [certbot-nginx](#certbot-nginx)
@@ -134,6 +135,12 @@ certbot-auto delete -d chat.xxx.cn # 删除证书
 ```
 
 ⚠️ 注意这里会有升级操作，并且有安装 Python 包，有时候会非常慢，不要停止，停止操作可能会造成麻烦。
+
+### 查看证书过期时间
+
+```bash
+openssl x509 -noout -dates -in /etc/letsencrypt/live/<你的域名>/cert.pem
+```
 
 ### nginx应用该证书的例子
 
