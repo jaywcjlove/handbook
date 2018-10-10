@@ -66,6 +66,8 @@
   - [分支切换](#分支切换)
 - [远端](#远端)
 - [submodule](#submodule)
+- [更新](#更新)
+  - [转换分支](#转换分支)
 - [删除文件](#删除文件)
 - [remote](#remote-1)
 - [标签tag](#标签tag)
@@ -896,7 +898,7 @@ git clone https://github.com/jaywcjlove/handbook.git --depth=1 --recurse-submodu
 git submodule add --force '仓库地址' '路径'
 # 其中，仓库地址是指子模块仓库地址，路径指将子模块放置在当前工程下的路径。
 # 注意：路径不能以 / 结尾（会造成修改不生效）、不能是现有工程已有的目录（不能順利 Clone）
-git submodule init # 初始化submodule
+git submodule init # 初始化 submodule
 git submodule update # 更新submodule(必须在根目录执行命令)
 git submodule update --init --recursive  # 下载的工程带有submodule
 ```
@@ -904,11 +906,32 @@ git submodule update --init --recursive  # 下载的工程带有submodule
 当使用`git clone`下来的工程中带有submodule时，初始的时候，submodule的内容并不会自动下载下来的，此时，只需执行如下命令：
 
 ```bash
+git submodule foreach --recursive git submodule init
+```
+
+## 更新
+
+```bash
 git submodule foreach git pull  # submodule 里有其他的 submodule 一次更新
 git submodule foreach git pull origin master # submodule更新
-
-git submodule foreach --recursive git submodule init
 git submodule foreach --recursive git submodule update
+git submodule update --recursive --remote
+git pull --recurse-submodules
+```
+
+### 转换分支
+
+```bash
+$ git config -f .gitmodules submodule.public.branch gh-pages
+```
+
+下面是更改 `.gitmodules`  文件内容
+
+```
+[submodule "public"]
+	path = public
+	url = git@github.com:jaywcjlove/gitke.git
+	branch = gh-pages
 ```
 
 ## 删除文件
