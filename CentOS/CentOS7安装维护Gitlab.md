@@ -14,6 +14,7 @@ CentOS7安装维护Gitlab
   - [更改配置](#更改配置)
   - [配置并启动GitLab](#配置并启动gitlab)
   - [登录GitLab](#登录gitlab)
+- [Docker安装](#docker安装)
 - [卸载](#卸载)
 - [运维](#运维)
   - [服务管理](#服务管理)
@@ -149,6 +150,49 @@ Username: root
 Password: 5iveL!fe
 ```
 
+## Docker安装
+
+拉取镜像
+
+```bash
+docker pull gitlab/gitlab-ce
+```
+
+创建并运行容器
+
+```bash
+sudo docker run --detach \
+    --hostname gitlab.example.com \
+    --publish 8443:443 --publish 8081:80 -p 2222:22 \
+    --name gitlab \
+    --restart always \
+    --volume $HOME/_docker/gitlab/config:/etc/gitlab \
+    --volume $HOME/_docker/gitlab/logs:/var/log/gitlab \
+    --volume $HOME/_docker/gitlab/data:/var/opt/gitlab \
+    -v /etc/localtime:/etc/localtime \
+    gitlab/gitlab-ce:latest
+```
+
+由于端口冲突，重新映射了一个端口 `2222`
+
+```bash
+# 要从之前的：
+git clone git@gitlab.example.com:myuser/awesome-project.git
+# 改为明确使用 `ssh://` 的 `URL` 方式。
+git clone ssh://git@gitlab.example.com:2222/myuser/awesome-project.git
+```
+
+gitlab-runner
+
+```bash
+sudo docker run -d --name gitlab-runner --restart always \
+  -v $HOME/_docker/gitlab-runner/config:/etc/gitlab-runner \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  gitlab/gitlab-runner:latest
+# 注册runner
+sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
+```
+
 ## 卸载
 
 ```bash
@@ -272,7 +316,7 @@ gitlab_rails['backup_path'] = '/mnt/backups'
 gitlab-rake gitlab:backup:create
 ```
 
-以上命令将在/var/opt/gitlab/backups目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
+以上命令将在 `/var/opt/gitlab/backups` 目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。
 
 修改后使用gitlab-ctl reconfigure命令重载配置文件。
 
