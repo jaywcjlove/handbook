@@ -47,6 +47,15 @@ chmod a+x certbot-auto
 ./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.xxx.com" --manual --preferred-challenges dns-01 certonly
 ```
 
+从服务器到目的地的出站端口 443 是否被防火墙阻止
+
+```bash
+nc -vz acme-v02.api.letsencrypt.org 443 -w2
+# Ncat: Version 7.50 ( https://nmap.org/ncat )
+# Ncat: Connected to 23.77.214.183:443.
+# Ncat: 0 bytes sent, 0 bytes received in 0.07 seconds.
+```
+
 执行完这一步之后，会下载一些需要的依赖，稍等片刻之后，会提示输入邮箱
 
 > 邮箱很重要，主要用于安全提醒，以及续期提醒
