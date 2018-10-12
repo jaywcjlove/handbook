@@ -31,6 +31,7 @@ CentOS7安装维护Gitlab
 - [一些常规目录](#一些常规目录)
 - [使用HTTPS](#使用https)
 - [暴力升级](#暴力升级)
+- [优化内存使用](#优化内存使用)
 - [错误处理](#错误处理)
   - [解决80端口被占用](#解决80端口被占用)
   - [头像无法正常显示](#头像无法正常显示)
@@ -158,8 +159,6 @@ Password: 5iveL!fe
 docker pull gitlab/gitlab-ce
 ```
 
-创建并运行容器
-
 ```bash
 sudo docker run --detach \
     --hostname gitlab.example.com \
@@ -170,6 +169,7 @@ sudo docker run --detach \
     --volume $HOME/_docker/gitlab/logs:/var/log/gitlab \
     --volume $HOME/_docker/gitlab/data:/var/opt/gitlab \
     -v /etc/localtime:/etc/localtime \
+    -d \
     gitlab/gitlab-ce:latest
 ```
 
@@ -182,15 +182,21 @@ git clone git@gitlab.example.com:myuser/awesome-project.git
 git clone ssh://git@gitlab.example.com:2222/myuser/awesome-project.git
 ```
 
-gitlab-runner
+为了克隆不必麻烦，保留 `gitlab` 的 `22` 端口映射，将主机的 `sshd` 的 `22` 端口映射到容器中去。将主机的 sshd 端口更改为 `2222`
+
+编辑文件 `/etc/ssh/sshd_config`，将其中的 `#Port 22` 注释去掉，将数字 `22` 更改为 `2222`，执行下面的命令重启 `sshd` 服务
 
 ```bash
-sudo docker run -d --name gitlab-runner --restart always \
-  -v $HOME/_docker/gitlab-runner/config:/etc/gitlab-runner \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  gitlab/gitlab-runner:latest
-# 注册runner
-sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
+systemctl restart sshd
+```
+
+防火墙的规则，添加开发 `2222` 端口
+
+```
+iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 2222 -j ACCEPT
+# 再查看下是否添加上去, 看到添加了
+iptables -L -n
 ```
 
 ## 卸载
@@ -637,6 +643,24 @@ Found /etc/gitlab/skip-auto-migrations, exiting...
 
 ```bash
 gitlab-ctl reconfigure
+```
+
+## 优化内存使用
+
+修改配置文件 `/etc/gitlab/gitlab.rb`
+
+```bash
+# 减少 postgresql 数据库缓存
+postgresql['shared_buffers'] = "256MB"
+# 减少sidekiq的并发数
+sidekiq['concurrency'] = 1
+
+# worker进程数
+postgresql['max_worker_processes'] = 4
+
+unicorn['worker_processes'] = 2  ## worker进程数
+unicorn['worker_memory_limit_min'] = "400 * 1 << 20" ##worker最小内存
+unicorn['worker_memory_limit_max'] = "650 * 1 << 20" ##worker最大内存
 ```
 
 ## 错误处理
