@@ -153,51 +153,7 @@ Password: 5iveL!fe
 
 ## Docker安装
 
-拉取镜像
-
-```bash
-docker pull gitlab/gitlab-ce
-```
-
-```bash
-sudo docker run --detach \
-    --hostname gitlab.example.com \
-    --publish 8443:443 --publish 8081:80 -p 2222:22 \
-    --name gitlab \
-    --restart always \
-    --volume $HOME/_docker/gitlab/config:/etc/gitlab \
-    --volume $HOME/_docker/gitlab/logs:/var/log/gitlab \
-    --volume $HOME/_docker/gitlab/data:/var/opt/gitlab \
-    -v /etc/localtime:/etc/localtime \
-    -d \
-    gitlab/gitlab-ce:latest
-```
-
-由于端口冲突，重新映射了一个端口 `2222`
-
-```bash
-# 要从之前的：
-git clone git@gitlab.example.com:myuser/awesome-project.git
-# 改为明确使用 `ssh://` 的 `URL` 方式。
-git clone ssh://git@gitlab.example.com:2222/myuser/awesome-project.git
-```
-
-为了克隆不必麻烦，保留 `gitlab` 的 `22` 端口映射，将主机的 `sshd` 的 `22` 端口映射到容器中去。将主机的 sshd 端口更改为 `2222`
-
-编辑文件 `/etc/ssh/sshd_config`，将其中的 `#Port 22` 注释去掉，将数字 `22` 更改为 `2222`，执行下面的命令重启 `sshd` 服务
-
-```bash
-systemctl restart sshd
-```
-
-防火墙的规则，添加开发 `2222` 端口
-
-```
-iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
-iptables -A OUTPUT -p tcp --sport 2222 -j ACCEPT
-# 再查看下是否添加上去, 看到添加了
-iptables -L -n
-```
+[Docker 安装 Gitlab 教程](https://github.com/jaywcjlove/docker-tutorial/blob/master/gitlab.md)
 
 ## 卸载
 
@@ -368,7 +324,6 @@ gitlab_rails['backup_keep_time'] = 604800
 ```bash
 sudo gitlab-ctl reconfigure  
 ```
-
 
 ### 开始恢复
 
