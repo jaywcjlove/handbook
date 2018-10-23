@@ -2,84 +2,7 @@
 
 目录
 ===
-<!-- TOC -->
-
-- [配置](#配置)
-- [修改项目中的个人信息](#修改项目中的个人信息)
-  - [配置自动换行](#配置自动换行)
-- [常见使用场景](#常见使用场景)
-  - [创建SSH密钥](#创建ssh密钥)
-  - [多账号ssh配置](#多账号ssh配置)
-  - [免密码登录远程服务器](#免密码登录远程服务器)
-  - [https协议下提交代码免密码](#https协议下提交代码免密码)
-  - [文件推向3个git库](#文件推向3个git库)
-  - [修改远程仓库地址](#修改远程仓库地址)
-  - [撤销远程记录](#撤销远程记录)
-  - [放弃本地的文件修改](#放弃本地的文件修改)
-  - [最简单放弃本地修改内容](#最简单放弃本地修改内容)
-  - [回滚到某个commit提交](#回滚到某个commit提交)
-  - [回退到某一个版本](#回退到某一个版本)
-  - [去掉某个commit](#去掉某个commit)
-  - [获取最近一次提交的 commit id](#获取最近一次提交的-commit-id)
-  - [新建一个空分支](#新建一个空分支)
-  - [合并多个commit](#合并多个commit)
-  - [修改远程Commit记录](#修改远程commit记录)
-  - [添加忽略文件](#添加忽略文件)
-  - [利用commit关闭一个issue](#利用commit关闭一个issue)
-  - [同步fork的上游仓库](#同步fork的上游仓库)
-  - [批量修改历史commit中的名字和邮箱](#批量修改历史commit中的名字和邮箱)
-  - [查看某个文件历史](#查看某个文件历史)
-  - [查看git仓库中最近修改的分支](#查看git仓库中最近修改的分支)
-  - [打造自己的git命令](#打造自己的git命令)
-  - [中文乱码的解决方案](#中文乱码的解决方案)
-  - [提交一个空文件夹](#提交一个空文件夹)
-- [新建仓库](#新建仓库)
-  - [init](#init)
-  - [status](#status)
-  - [add](#add)
-  - [commit](#commit)
-  - [remote](#remote)
-  - [push](#push)
-- [clone](#clone)
-- [本地](#本地)
-  - [help](#help)
-  - [add](#add-1)
-  - [rm](#rm)
-  - [commit](#commit-1)
-  - [reset](#reset)
-  - [revert](#revert)
-  - [checkout](#checkout)
-  - [diff](#diff)
-  - [stash](#stash)
-  - [merge](#merge)
-  - [cherry-pick](#cherry-pick)
-  - [rebase](#rebase)
-- [分支branch](#分支branch)
-  - [删除](#删除)
-  - [提交](#提交)
-  - [拉取](#拉取)
-  - [分支合并](#分支合并)
-  - [重命名](#重命名)
-  - [查看](#查看)
-  - [新建](#新建)
-  - [连接](#连接)
-  - [分支切换](#分支切换)
-- [远端](#远端)
-- [submodule](#submodule)
-- [更新](#更新)
-  - [转换分支](#转换分支)
-- [删除文件](#删除文件)
-- [remote](#remote-1)
-- [标签tag](#标签tag)
-  - [重命名Tag](#重命名tag)
-- [日志log](#日志log)
-- [重写历史](#重写历史)
-  - [删除仓库](#删除仓库)
-- [其它](#其它)
-- [报错问题解决](#报错问题解决)
-- [参考资料](#参考资料)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [配置](#配置)auto- [修改项目中的个人信息](#修改项目中的个人信息)auto  - [配置自动换行](#配置自动换行)auto- [常见使用场景](#常见使用场景)auto  - [创建SSH密钥](#创建ssh密钥)auto  - [多账号ssh配置](#多账号ssh配置)auto  - [免密码登录远程服务器](#免密码登录远程服务器)auto  - [https协议下提交代码免密码](#https协议下提交代码免密码)auto  - [文件推向3个git库](#文件推向3个git库)auto  - [修改远程仓库地址](#修改远程仓库地址)auto  - [撤销远程记录](#撤销远程记录)auto  - [放弃本地的文件修改](#放弃本地的文件修改)auto  - [最简单放弃本地修改内容](#最简单放弃本地修改内容)auto  - [回滚到某个commit提交](#回滚到某个commit提交)auto  - [回退到某一个版本](#回退到某一个版本)auto  - [去掉某个commit](#去掉某个commit)auto  - [获取最近一次提交的 commit id](#获取最近一次提交的-commit-id)auto  - [新建一个空分支](#新建一个空分支)auto  - [合并多个commit](#合并多个commit)auto  - [修改远程Commit记录](#修改远程commit记录)auto  - [添加忽略文件](#添加忽略文件)auto  - [利用commit关闭一个issue](#利用commit关闭一个issue)auto  - [同步fork的上游仓库](#同步fork的上游仓库)auto  - [批量修改历史commit中的名字和邮箱](#批量修改历史commit中的名字和邮箱)auto  - [查看某个文件历史](#查看某个文件历史)auto  - [查看git仓库中最近修改的分支](#查看git仓库中最近修改的分支)auto  - [打造自己的git命令](#打造自己的git命令)auto  - [中文乱码的解决方案](#中文乱码的解决方案)auto  - [提交一个空文件夹](#提交一个空文件夹)auto- [新建仓库](#新建仓库)auto  - [init](#init)auto  - [status](#status)auto  - [add](#add)auto  - [commit](#commit)auto  - [remote](#remote)auto  - [push](#push)auto- [clone](#clone)auto- [本地](#本地)auto  - [help](#help)auto  - [add](#add-1)auto  - [rm](#rm)auto  - [commit](#commit-1)auto  - [reset](#reset)auto  - [revert](#revert)auto  - [checkout](#checkout)auto  - [diff](#diff)auto  - [stash](#stash)auto  - [merge](#merge)auto  - [cherry-pick](#cherry-pick)auto  - [rebase](#rebase)auto- [分支branch](#分支branch)auto  - [删除](#删除)auto  - [提交](#提交)auto  - [拉取](#拉取)auto  - [分支合并](#分支合并)auto  - [重命名](#重命名)auto  - [查看](#查看)auto  - [新建](#新建)auto  - [连接](#连接)auto  - [分支切换](#分支切换)auto- [远端](#远端)auto- [submodule](#submodule)auto- [更新](#更新)auto  - [转换分支](#转换分支)auto- [删除文件](#删除文件)auto- [remote](#remote-1)auto- [标签tag](#标签tag)auto  - [重命名Tag](#重命名tag)auto- [日志log](#日志log)auto- [重写历史](#重写历史)auto  - [删除仓库](#删除仓库)auto- [其它](#其它)auto- [报错问题解决](#报错问题解决)auto- [参考资料](#参考资料)autoauto<!-- /TOC -->
 
 ## 配置
 
@@ -1093,6 +1016,31 @@ git config --global core.quotepath false
 **4. The authenticity of host 192.168.0.xxx can't be establis**
 
 修改 `/etc/ssh/ssh_config` 中的 `StrictHostKeyChecking` 的 `ask` 为 `no` 解决问题。
+
+**5. SSH连接时出现 Host key verification failed 的原因及解决方法**
+
+用 OpenSSH 的人都知 ssh 会把你每个你访问过计算机的公钥(public key)都记录在~/.ssh/known_hosts。当下次访问相同计算机时，OpenSSH 会核对公钥。如果公钥不同，OpenSSH 会发出警告，避免你受到 DNS Hijack 之类的攻击。
+SSH 对主机的 public_key 的检查等级是根据
+
+```bash
+StrictHostKeyChecking=no  # 最不安全的级别，当然也没有那么多烦人的提示了，相对安全的内网测试时建议使用。如果连接server的key在本地不存在，那么就自动添加到文件中（默认是known_hosts），并且给出一个警告。
+StrictHostKeyChecking=ask # 默认的级别，就是出现刚才的提示了。如果连接和key不匹配，给出提示，并拒绝登录。
+StrictHostKeyChecking=yes # 最安全的级别，如果连接与key不匹配，就拒绝连接，不会提示详细信息。
+```
+
+【解决方法1】在 `.ssh/config`（或者`/etc/ssh/ssh_config`）中配置：
+
+```conf
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+```
+
+解决方法 2
+
+```bash
+vi ~/.ssh/known_hosts # 删除对应ip的相关rsa信息
+rm known_hosts # 或者直接全部删除
+```
 
 ## 参考资料
 
