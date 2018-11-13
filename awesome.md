@@ -27,7 +27,17 @@
 - [快速徽章生成服务](https://badgen.net/)
 - [固定状态徽章](https://github.com/jaywcjlove/sb)
 
+## 在线作图
+
+- [ProcessOn](https://www.processon.com/) 支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等
+- [draw.io](https://www.draw.io) 免费的在线图表软件，用于制作流程图，流程图，组织结构图，UML，ER和网络图
+
+## 工具
+
+- [Nodle-I-Ching](https://www.nodle.io/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库
+
 ## 其它
 
 - [在GitHub上积极开发的编程语言列表](https://github.com/showcases/programming-languages/)
 - [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
+- [foldnfly](https://www.foldnfly.com) 收集纸飞机折纸方法的网站，目前有40种纸飞机。
