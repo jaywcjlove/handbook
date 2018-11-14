@@ -35,6 +35,7 @@
 ## 工具
 
 - [Nodle-I-Ching](https://www.nodle.io/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库
+- [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
 
 ## 其它
 
