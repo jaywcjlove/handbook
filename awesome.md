@@ -6,6 +6,7 @@
 ## 排行榜
 
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
+- [PYPL流行程序设计语言](https://pypl.github.io/PYPL.html)
 - [JavaScript各种工具统计★★★](https://stateofjs.com/)
 - [Statcounter统计浏览器市场份额](http://gs.statcounter.com/)
 - [百度统计浏览器市场份额](https://tongji.baidu.com/data/browser)
