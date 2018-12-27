@@ -154,6 +154,7 @@
 ## 其它
 
 - [hotkeys](https://github.com/jaywcjlove/hotkeys) - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。[demo](http://jaywcjlove.github.io/hotkeys/ )
+- [isMobile](https://github.com/kaimallea/isMobile) - 一个检测移动设备的简单JS库。
 - [clipboard.js](https://github.com/zenorocha/clipboard.js) - 现代复制到剪贴板。没有Flash，gzip压缩只有3KB 。[demo](https://clipboardjs.com/)
 - [translater.js](https://github.com/jaywcjlove/onlinenetwork) - 这是一个利用HTML注释的页面翻译解决方案。[demo](https://jaywcjlove.github.io/translater.js/)
 - [scrollama](https://github.com/russellgoldenberg/scrollama) - 为 Scrollytelling 开发的现代、轻量级的 JavaScript 库。[demo](https://russellgoldenberg.github.io/scrollama/basic)
