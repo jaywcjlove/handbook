@@ -140,6 +140,7 @@
 
 ## 时间
 
+- [dayjs](https://github.com/iamkun/dayjs) 只有2KB日期库，替代Moment.js，具有相同的现代API。
 - [moment](https://github.com/moment/moment) - 是一个日期处理类库,用于解析、检验、操作、以及显示日期。[demo](http://momentjs.com)
 - [date-fns](https://github.com/date-fns/date-fns) - 现代JavaScript日期实用程序库。[demo](https://date-fns.org/)
 - [luxon](https://github.com/moment/luxon) - 在JS中使用日期和时间的库。[demo](https://moment.github.io/luxon/)
