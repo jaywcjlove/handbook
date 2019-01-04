@@ -33,6 +33,7 @@
 - [cropperjs](https://github.com/fengyuanchen/cropperjs) - 是一个图片编辑器插件。[demo](https://fengyuanchen.github.io/cropperjs/)
 - [photo-editor](https://github.com/fengyuanchen/photo-editor) - 是一个本地图片编辑器插件。[demo](https://fengyuanchen.github.io/photo-editor/)
 - [blazy.js](https://github.com/dinbror/blazy/) - 是一个懒惰加载插件。[demo](http://dinbror.dk/blazy/)
+- [tesseract.js](https://github.com/naptha/tesseract.js) - 可以从图像中获取几乎任何语言的单词。[demo](http://tesseract.projectnaptha.com/)
 
 ## 布局
 
