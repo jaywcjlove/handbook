@@ -43,6 +43,7 @@
 - [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
 - [bestofjs](https://github.com/bestofjs/bestofjs-webui) 展示了项目 Star 数变化的日历色块图。[demo](https://bestofjs.org/)
 - [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html)
+- [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
 
 ## 其它
 
