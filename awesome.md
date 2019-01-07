@@ -1,6 +1,6 @@
 
 
-## 排行榜
+## 排行榜统计
 
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
 - [PYPL流行程序设计语言](https://pypl.github.io/PYPL.html)
