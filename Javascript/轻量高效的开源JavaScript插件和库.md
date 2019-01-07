@@ -33,6 +33,7 @@
 - [cropperjs](https://github.com/fengyuanchen/cropperjs) - 是一个图片编辑器插件。[demo](https://fengyuanchen.github.io/cropperjs/)
 - [photo-editor](https://github.com/fengyuanchen/photo-editor) - 是一个本地图片编辑器插件。[demo](https://fengyuanchen.github.io/photo-editor/)
 - [blazy.js](https://github.com/dinbror/blazy/) - 是一个懒惰加载插件。[demo](http://dinbror.dk/blazy/)
+- [tesseract.js](https://github.com/naptha/tesseract.js) - 可以从图像中获取几乎任何语言的单词。[demo](http://tesseract.projectnaptha.com/)
 
 ## 布局
 
@@ -140,6 +141,7 @@
 
 ## 时间
 
+- [dayjs](https://github.com/iamkun/dayjs) 只有2KB日期库，替代Moment.js，具有相同的现代API。
 - [moment](https://github.com/moment/moment) - 是一个日期处理类库,用于解析、检验、操作、以及显示日期。[demo](http://momentjs.com)
 - [date-fns](https://github.com/date-fns/date-fns) - 现代JavaScript日期实用程序库。[demo](https://date-fns.org/)
 - [luxon](https://github.com/moment/luxon) - 在JS中使用日期和时间的库。[demo](https://moment.github.io/luxon/)
@@ -154,6 +156,7 @@
 ## 其它
 
 - [hotkeys](https://github.com/jaywcjlove/hotkeys) - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。[demo](http://jaywcjlove.github.io/hotkeys/ )
+- [isMobile](https://github.com/kaimallea/isMobile) - 一个检测移动设备的简单JS库。
 - [clipboard.js](https://github.com/zenorocha/clipboard.js) - 现代复制到剪贴板。没有Flash，gzip压缩只有3KB 。[demo](https://clipboardjs.com/)
 - [translater.js](https://github.com/jaywcjlove/onlinenetwork) - 这是一个利用HTML注释的页面翻译解决方案。[demo](https://jaywcjlove.github.io/translater.js/)
 - [scrollama](https://github.com/russellgoldenberg/scrollama) - 为 Scrollytelling 开发的现代、轻量级的 JavaScript 库。[demo](https://russellgoldenberg.github.io/scrollama/basic)
