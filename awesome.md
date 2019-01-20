@@ -15,6 +15,7 @@
 - [Githuber.cn星榜](https://githuber.cn/)
 - [DiyCode Github Ranking](https://www.diycode.cc/trends)
 - [JavaScript Rising Stars](https://risingstars.js.org)
+- [比项目较过去12个月在 GitHub 上增加的星标数](https://bestofjs.org/)
 - [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
 - [下载NPM包的统计信息](https://npm-stat.com/)
 - [比较npm包下载，计数随时间的变化](http://www.npmtrends.com/)
