@@ -36,6 +36,7 @@
 - [ESDoc](https://github.com/esdoc/esdoc) ESDoc是JavaScript的文档生成器。
 - [apiDoc](https://github.com/apidoc/apidoc) 生成RESTful Web API文档。
 - [jsdoc](https://github.com/jsdoc3/jsdoc) 用于JavaScript的API文档生成器。
+- [typedoc](https://github.com/TypeStrong/typedoc) TypeScript 项目的文档生成器。
 
 ## 工具
 
