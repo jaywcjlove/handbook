@@ -47,6 +47,13 @@
 - [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html)
 - [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
 
+## 在线代码编辑
+
+- [codepen]https://codepen.io/) 在线编辑器
+- [codesandbox](https://codesandbox.io/) 在线编辑器
+- [jsfiddle](jsfiddle.net) 在线编辑器
+- [runjs](https://runjs.cn/) 在线编辑器
+
 ## 其它
 
 - [在GitHub上积极开发的编程语言列表](https://github.com/showcases/programming-languages/)
