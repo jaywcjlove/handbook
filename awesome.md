@@ -44,7 +44,7 @@
 - [Nodle-I-Ching](https://www.nodle.io/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库
 - [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
 - [bestofjs](https://github.com/bestofjs/bestofjs-webui) 展示了项目 Star 数变化的日历色块图。[demo](https://bestofjs.org/)
-- [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html)
+- [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html) 可以生成字符串“图片”
 - [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
 
 ## 在线代码编辑
@@ -53,6 +53,8 @@
 - [codesandbox](https://codesandbox.io/) 在线编辑器
 - [jsfiddle](https://jsfiddle.net) 在线编辑器
 - [runjs](https://runjs.cn/) 在线编辑器
+- [jsrun](http://jsrun.net) 在线编辑器，支持多种语言
+
 
 ## 其它
 
@@ -61,3 +63,4 @@
 - [foldnfly](https://www.foldnfly.com) 收集纸飞机折纸方法的网站，目前有40种纸飞机。
 - [aqicn](http://aqicn.org) 实时空气质量指数地图.
 - [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST。
+- [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
