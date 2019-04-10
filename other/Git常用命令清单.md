@@ -856,6 +856,7 @@ git push -u origin branchName # 提交分支到远程origin主机中
 
 ```bash
 git fetch -p # 拉取远程分支时，自动清理 远程分支已删除，本地还存在的对应同名分支。  
+git fetch origin '+refs/heads/*:refs/heads/*' # 更新所有分支内容
 ```
 
 ### 分支合并
