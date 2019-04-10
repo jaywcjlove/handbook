@@ -3,7 +3,22 @@
 
 我们使用的服务器是在公司内部，用联通送的ip，通过路由器隐射使得外网可以访问，我们在这个服务器搭建了很多工具，比如Gitlab，聊天工具，网盘等，访问都很麻烦，没有备案，都必须带上端口号访问对应的服务，据说80端口被封了，假设有了https就可以默认443端口，就不用带端口号了，通过https访问默认浏览器会给你带上443端口，下面是我使用[Let's Encrypt](https://www.sslforfree.com/)提供的SSL证书，记录配置SSL的安装实践过程。
 
-<!-- TOC -->autoauto- [certbot-auto](#certbot-auto)auto  - [安装](#安装)auto  - [申请证书](#申请证书)auto  - [续期HTTPS证书](#续期https证书)auto  - [查看证书过期时间](#查看证书过期时间)auto  - [nginx应用该证书的例子](#nginx应用该证书的例子)auto  - [无法应用到主域名](#无法应用到主域名)auto- [certbot-nginx](#certbot-nginx)auto  - [安装 EPEL 仓库](#安装-epel-仓库)auto  - [安装签发证书工具](#安装签发证书工具)auto  - [申请证书](#申请证书-1)auto    - [报nginx命令不存在错误](#报nginx命令不存在错误)auto    - [报nginx配置文件目录不对错误](#报nginx配置文件目录不对错误)auto    - [正式申请申请证书](#正式申请申请证书)auto  - [配置nginx](#配置nginx)auto- [参考阅读](#参考阅读)autoauto<!-- /TOC -->
+- [certbot-auto](#certbot-auto)
+  - [安装](#安装)
+  - [申请证书](#申请证书)
+  - [续期HTTPS证书](#续期https证书)
+  - [查看证书过期时间](#查看证书过期时间)
+  - [nginx应用该证书的例子](#nginx应用该证书的例子)
+  - [无法应用到主域名](#无法应用到主域名)
+- [certbot-nginx](#certbot-nginx)
+  - [安装 EPEL 仓库](#安装-epel-仓库)
+  - [安装签发证书工具](#安装签发证书工具)
+  - [申请证书](#申请证书-1)
+    - [报nginx命令不存在错误](#报nginx命令不存在错误)
+    - [报nginx配置文件目录不对错误](#报nginx配置文件目录不对错误)
+    - [正式申请申请证书](#正式申请申请证书)
+  - [配置nginx](#配置nginx)
+- [参考阅读](#参考阅读)
 
 下面两种方法均在 CentOS7 环境下操作滴。
 
