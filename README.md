@@ -2,15 +2,9 @@
 
 放置我的笔记、搜集、摘录、实践，保持好奇心。这里就是个随记，涉猎技术知识点广而不精，不能保证正确，看文需谨慎，后果很严重。
 
-## 开放职位 
-
-坐标上海，点击查看具体要求，简历发送 [wowohoo@qq.com](mailto:wowohoo@qq.com)
-
-- [前端工程师](Job-Descriptions/frontend-engineer.md#前端工程师)
-- [Node.js 工程师](Job-Descriptions/node-engineer.md#nodejs开发工程师)
-
 ## 精华置顶
 
+- **[Github中国用户排名，仓库排名趋势榜★★★★★](http://jaywcjlove.github.io/github-rank/)**
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单★★★★★](https://github.com/jaywcjlove/git-tips)**
 - [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
@@ -60,15 +54,13 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 
 ## 前端&后端&Node
 
+- **[工具 ssr 用于快速原型设计的开发服务器★★★★](https://github.com/jaywcjlove/ssr)**
 - [搜集React/Vue/Angular组件库和后台管理平台模板](https://github.com/jaywcjlove/awesome-uikit)
 - **[思维导图来学习 Javascript 基础知识★★★★](Javascript/)**
 - [轻量高效的开源JavaScript插件和库★★★★★](Javascript/轻量高效的开源JavaScript插件和库.md)
 - [一些正则表达式随记](Javascript/一些正则表达式随记.md)
 - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - [前端工程师也需要zsh](http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&mid=401433562&idx=1&sn=1ca074b0629463f37a777a2b96aa98af)
-- [测试框架mocha](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/mocha.html)
-- [单元测试断言框架chai](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/chai.html)
-- [单元测试断言框架should](http://jaywcjlove.github.io/handbook/html/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/should.html)
 - [使用Node.js制作命令行工具学习教程](https://github.com/jaywcjlove/wcj)
 
 ## 快捷键
