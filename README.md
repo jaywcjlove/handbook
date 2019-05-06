@@ -2,26 +2,26 @@
 
 放置我的笔记、搜集、摘录、实践，保持好奇心。这里就是个随记，涉猎技术知识点广而不精，不能保证正确，看文需谨慎，后果很严重。
 
-<table>
-  <tr>
-    <td><a href="https://github.com/jaywcjlove/awesome-mac"><img src="banner/awesome-mac.svg" /></a></td>
-    <td><a href="https://github.com/jaywcjlove/linux-command"><img src="banner/linux-command.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/github-rank"><img src="banner/github-rank.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/ssr"><img src="banner/ssr.svg" /></td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/uiwjs/uiw"><img src="banner/uiw.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/git-tips"><img src="banner/git-tips.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/vim-web"><img src="banner/vim-web.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/mysql-tutorial"><img src="banner/mysql.svg" /></td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/jaywcjlove/oscnews"><img src="banner/oscnews.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/mocker-api"><img src="banner/mocker-api.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/translater.js"><img src="banner/translater.js.svg" /></td>
-    <td><a href="https://github.com/jaywcjlove/hotkeys"><img src="banner/hotkeys.svg" /></td>
-  </tr>
-</table>
+<p align="center">
+<a href="https://github.com/jaywcjlove/awesome-mac"><img src="banner/awesome-mac.svg" /></a>
+<a href="https://github.com/jaywcjlove/linux-command"><img src="banner/linux-command.svg" /></a>
+<a href="https://github.com/jaywcjlove/github-rank"><img src="banner/github-rank.svg" /></a>
+<a href="https://github.com/jaywcjlove/ssr"><img src="banner/ssr.svg" /></a>
+</p>
+<br />
+<p align="center">
+<a href="https://github.com/uiwjs/uiw"><img src="banner/uiw.svg" /></a>
+<a href="https://github.com/jaywcjlove/git-tips"><img src="banner/git-tips.svg" /></a>
+<a href="https://github.com/jaywcjlove/vim-web"><img src="banner/vim-web.svg" /></a>
+<a href="https://github.com/jaywcjlove/mysql-tutorial"><img src="banner/mysql.svg" /></a>
+</p>
+<p align="center">
+<a href="https://github.com/jaywcjlove/oscnews"><img src="banner/oscnews.svg" /></a>
+<a href="https://github.com/jaywcjlove/mocker-api"><img src="banner/mocker-api.svg" /></a>
+<a href="https://github.com/jaywcjlove/translater.js"><img src="banner/translater.js.svg" /></a>
+<a href="https://github.com/jaywcjlove/hotkeys"><img src="banner/hotkeys.svg" /></a>
+</p>
+
 
 ## 精华置顶
 
