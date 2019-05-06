@@ -8,7 +8,6 @@
 <a href="https://github.com/jaywcjlove/github-rank"><img src="banner/github-rank.svg" /></a>
 <a href="https://github.com/jaywcjlove/ssr"><img src="banner/ssr.svg" /></a>
 </p>
-<br />
 <p align="center">
 <a href="https://github.com/uiwjs/uiw"><img src="banner/uiw.svg" /></a>
 <a href="https://github.com/jaywcjlove/git-tips"><img src="banner/git-tips.svg" /></a>
@@ -25,7 +24,7 @@
 
 ## 精华置顶
 
-- **[Github中国用户排名，仓库排名趋势榜★★★★★](http://jaywcjlove.github.io/github-rank/)**
+- **[Github用户排名，仓库排名趋势榜★★★★★](http://jaywcjlove.github.io/github-rank/)**
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](other/公众账号推荐.md)**
 - **[Git常用命令及教程网站清单★★★★★](https://github.com/jaywcjlove/git-tips)**
 - [MySQL入门教程学习笔记](https://github.com/jaywcjlove/mysql-tutorial)
