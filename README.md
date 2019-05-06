@@ -9,14 +9,10 @@
 <a href="https://github.com/jaywcjlove/linux-command"><img src="banner/linux-command.svg" /></a>
 <a href="https://github.com/jaywcjlove/github-rank"><img src="banner/github-rank.svg" /></a>
 <a href="https://github.com/jaywcjlove/ssr"><img src="banner/ssr.svg" /></a>
-</p>
-<p>
 <a href="https://github.com/uiwjs/uiw"><img src="banner/uiw.svg" /></a>
 <a href="https://github.com/jaywcjlove/git-tips"><img src="banner/git-tips.svg" /></a>
 <a href="https://github.com/jaywcjlove/vim-web"><img src="banner/vim-web.svg" /></a>
 <a href="https://github.com/jaywcjlove/mysql-tutorial"><img src="banner/mysql.svg" /></a>
-</p>
-<p>
 <a href="https://github.com/jaywcjlove/oscnews"><img src="banner/oscnews.svg" /></a>
 <a href="https://github.com/jaywcjlove/mocker-api"><img src="banner/mocker-api.svg" /></a>
 <a href="https://github.com/jaywcjlove/translater.js"><img src="banner/translater.js.svg" /></a>
