@@ -67,3 +67,4 @@
 - [aqicn](http://aqicn.org) 实时空气质量指数地图.
 - [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST。
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
+- [Nginx配置在线极速生成“神器”](https://nginxconfig.io/)
