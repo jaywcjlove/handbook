@@ -49,6 +49,7 @@
 - [bestofjs](https://github.com/bestofjs/bestofjs-webui) 展示了项目 Star 数变化的日历色块图。[demo](https://bestofjs.org/)
 - [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html) 可以生成字符串“图片”
 - [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
+- [一个演示汉字笔画顺序的 JS 库](https://github.com/chanind/hanzi-writer)
 
 ## 在线代码编辑
 
