@@ -47,7 +47,7 @@
 ## 工具
 
 - [termtosvg](https://github.com/nbedos/termtosvg) 将你的终端会话录制成一个单独的 SVG 动画。
-- [Nodle-I-Ching](https://www.nodle.io/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库
+- [Nodle-I-Ching](https://iching.codes/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 [![Open-Source Software][OSS Icon]](https://github.com/NodleCode/Nodle-I-Ching)
 - [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
 - [bestofjs](https://github.com/bestofjs/bestofjs-webui) 展示了项目 Star 数变化的日历色块图。[demo](https://bestofjs.org/)
 - [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html) 可以生成字符串“图片”
