@@ -33,6 +33,9 @@
 
 - [ProcessOn](https://www.processon.com/) 支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等
 - [draw.io](https://www.draw.io) 免费的在线图表软件，用于制作流程图，流程图，组织结构图，UML，ER和网络图
+- [Pixel Art to CSS](https://www.pixelartcss.com/) 是一个在线像素风绘图工具 [![Open-Source Software][OSS Icon]](https://github.com/jvalen/pixel-art-react)
+
+
 
 ## 文档工具
 
@@ -44,11 +47,13 @@
 ## 工具
 
 - [termtosvg](https://github.com/nbedos/termtosvg) 将你的终端会话录制成一个单独的 SVG 动画。
-- [Nodle-I-Ching](https://www.nodle.io/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库
+- [Nodle-I-Ching](https://iching.codes/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 [![Open-Source Software][OSS Icon]](https://github.com/NodleCode/Nodle-I-Ching)
 - [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
 - [bestofjs](https://github.com/bestofjs/bestofjs-webui) 展示了项目 Star 数变化的日历色块图。[demo](https://bestofjs.org/)
 - [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html) 可以生成字符串“图片”
 - [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
+- [一个演示汉字笔画顺序的 JS 库](https://github.com/chanind/hanzi-writer)
+- [AsciiMath](http://asciimath.org/) 简单易用的数学公式转换工具 [![Open-Source Software][OSS Icon]]https://github.com/asciimath/asciimathml)
 
 ## 在线代码编辑
 
@@ -67,3 +72,10 @@
 - [aqicn](http://aqicn.org) 实时空气质量指数地图.
 - [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST。
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
+- [Nginx配置在线极速生成“神器”](https://nginxconfig.io/)
+- [一个免费的i18n翻译搜索引擎](https://i18ns.com/)
+
+
+
+
+[OSS Icon]: https://jaywcjlove.github.io/sb/ico/min-oss.svg "Open source ui componet on Github"

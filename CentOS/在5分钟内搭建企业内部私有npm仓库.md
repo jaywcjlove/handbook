@@ -277,6 +277,10 @@ var hello = require('@companyfe/hello-private');
 
 不好的地方是，使用 `npm update` 是无法更新私有模块，想更新只能重新安装一次。好处是不用搭建服务。
 
+## 其它工具
+
+- [cpm](https://github.com/cevio/cpm) 一套轻量化的 NPM 私有源管理程序
+
 ## 参考资料
 
 - [Can I run my own private registry?](https://docs.npmjs.com/misc/registry#can-i-run-my-own-private-registry)
