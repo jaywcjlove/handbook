@@ -57,7 +57,6 @@ grep SELINUX=disabled /etc/selinux/config
 setenforce 0
 ```
 
-
 ### 修改防火墙
 
 ```bash
@@ -72,7 +71,7 @@ setenforce 0
 firewall-cmd --zone=public --add-port=2211/tcp --permanent
 
 # 查看2211端口打开情况
-firewall-cmd --query-port=2211/tcp
+firewall-cmd --zone=public --query-port=2211/tcp
 ```
 
 重启iptables
@@ -83,8 +82,9 @@ systemctl start iptables
 systemctl status iptables
 ```
 
-重启sshd
+重启 ssh 查看状态
 
 ```bash
+systemctl restart sshd.service
 systemctl status sshd
 ```
