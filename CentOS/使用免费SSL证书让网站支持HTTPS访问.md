@@ -3,6 +3,8 @@
 
 我们使用的服务器是在公司内部，用联通送的ip，通过路由器隐射使得外网可以访问，我们在这个服务器搭建了很多工具，比如Gitlab，聊天工具，网盘等，访问都很麻烦，没有备案，都必须带上端口号访问对应的服务，据说80端口被封了，假设有了https就可以默认443端口，就不用带端口号了，通过https访问默认浏览器会给你带上443端口，下面是我使用[Let's Encrypt](https://www.sslforfree.com/)提供的SSL证书，记录配置SSL的安装实践过程。
 
+<!-- TOC -->
+
 - [certbot-auto](#certbot-auto)
   - [安装](#安装)
   - [申请证书](#申请证书)
@@ -19,6 +21,8 @@
     - [正式申请申请证书](#正式申请申请证书)
   - [配置nginx](#配置nginx)
 - [参考阅读](#参考阅读)
+
+<!-- /TOC -->
 
 下面两种方法均在 CentOS7 环境下操作滴。
 
@@ -146,6 +150,12 @@ certbot-auto delete -d chat.xxx.cn # 删除证书
 
 ```bash
 openssl x509 -noout -dates -in /etc/letsencrypt/live/<你的域名>/cert.pem
+```
+
+简单的查看方法
+
+```bash
+certbot-auto certificates 
 ```
 
 ### nginx应用该证书的例子
