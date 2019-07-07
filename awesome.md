@@ -63,6 +63,9 @@
 - [runjs](https://runjs.cn/) 在线编辑器
 - [jsrun](http://jsrun.net) 在线编辑器，支持多种语言
 
+## Github
+
+- [star-history](https://github.com/timqian/star-history) 帮助用户查看 GitHub 项目 star 数目的历史。
 
 ## 其它
 
