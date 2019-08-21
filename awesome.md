@@ -46,6 +46,7 @@
 
 ## 工具
 
+- [pagemap](https://github.com/lrsjng/pagemap) 在网页插入迷你的页面缩略导航图，可以点击这个图的不同部分，实现快速导航。
 - [termtosvg](https://github.com/nbedos/termtosvg) 将你的终端会话录制成一个单独的 SVG 动画。
 - [Nodle-I-Ching](https://iching.codes/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 [![Open-Source Software][OSS Icon]](https://github.com/NodleCode/Nodle-I-Ching)
 - [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
