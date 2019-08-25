@@ -66,7 +66,7 @@
 
 ## 正则表达式工具
 
-- https://regexr.com/
+- https://regexr.com/ [`Github`](https://github.com/gskinner/regexr/)
 - https://regex101.com/
 - https://regexper.com/
 - http://myregexp.com/
