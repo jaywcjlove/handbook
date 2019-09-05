@@ -43,6 +43,8 @@
 - [apiDoc](https://github.com/apidoc/apidoc) 生成RESTful Web API文档。
 - [jsdoc](https://github.com/jsdoc3/jsdoc) 用于JavaScript的API文档生成器。
 - [typedoc](https://github.com/TypeStrong/typedoc) TypeScript 项目的文档生成器。
+- [swagger](https://swagger.io) 一款RESTful 接口的文档在线自动生成+功能测试功能软件。
+- [swagger editor](https://editor.swagger.io/) 在线版编辑器。
 
 ## 工具
 
