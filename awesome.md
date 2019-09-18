@@ -48,6 +48,7 @@
 
 ## 工具
 
+- [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件。
 - [pagemap](https://github.com/lrsjng/pagemap) 在网页插入迷你的页面缩略导航图，可以点击这个图的不同部分，实现快速导航。
 - [termtosvg](https://github.com/nbedos/termtosvg) 将你的终端会话录制成一个单独的 SVG 动画。
 - [Nodle-I-Ching](https://iching.codes/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 [![Open-Source Software][OSS Icon]](https://github.com/NodleCode/Nodle-I-Ching)
