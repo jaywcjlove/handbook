@@ -79,7 +79,8 @@
 
 - [git-awards](http://git-awards.com/) 发现您在GitHub上的排名。
 - [star-history](https://github.com/timqian/star-history) 帮助用户查看 GitHub 项目 star 数目的历史。
-- [在GitHub上积极开发的编程语言列表](https://github.com/showcases/programming-languages/)
+- [starcharts](https://github.com/caarlos0/starcharts) 可以查看 GitHub 仓库的 Star 变化情况，生成折线图。
+- [programming-languages](https://github.com/showcases/programming-languages/) 在GitHub上积极开发的编程语言列表
 - [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
 
