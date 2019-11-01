@@ -59,7 +59,8 @@
 - [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
 - [一个演示汉字笔画顺序的 JS 库](https://github.com/chanind/hanzi-writer)
 - [AsciiMath](http://asciimath.org/) 简单易用的数学公式转换工具  [![Open-Source Software][OSS Icon]](https://github.com/asciimath/asciimathml)
-- [doka]https://doka.photo/) 一个使用 WebGL 技术搭建的在线图像编辑器，使用非常流畅。
+- [doka](https://doka.photo/) 一个使用 WebGL 技术搭建的在线图像编辑器，使用非常流畅。
+- [Publisheet](https://www.publisheet.com/) Excel 表格转为网页表格的在线工具。
 
 ## 在线代码编辑
 
