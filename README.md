@@ -107,7 +107,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 
 - [Sketch设计软件快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/Sketch.md)
 - [命令行工具bash快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/bash.md)
-- [sublime编辑器快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/sublime.md)
+- [Sublime编辑器快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/sublime.md)
 
 ## 其它
 
@@ -115,7 +115,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - **[常见HTTP/FTP/WebSockets状态码大全★★★★★](other/HTTP-Status-codes.md)**
 - [国内互联网公司的开源项目及Github地址汇总](other/Github-Oraganizations.md)
 - [通过代理工具提高Github Clone速度](other/通过代理工具提高Github%20Clone速度.md)
-- [谷歌(Google)镜像](other/谷歌(Google)镜像.md)
+- [谷歌(Google)镜像](https://github.com/jaywcjlove/google)
 - [Lua5.3中文手册](other/Lua5.3.md)
 
 
