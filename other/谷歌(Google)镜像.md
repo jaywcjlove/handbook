@@ -1,5 +1,7 @@
 多年来搜集的谷歌镜像，大多数都能打开，打不开的也许过一段时间能打开。希望这些神奇的搜索引擎，能助你在前端界有所建树。😄
 
+⚠️ 新的维护放在这里：[@jaywcjlove/google](https://github.com/jaywcjlove/google)
+
 - https://www.teoma.com/
 - https://intelme.com
 - https://skyn3t.in/srx
