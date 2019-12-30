@@ -1,5 +1,23 @@
 多年来搜集的谷歌镜像，大多数都能打开，打不开的也许过一段时间能打开。希望这些神奇的搜索引擎，能助你在前端界有所建树。😄
 
+- https://www.teoma.com/
+- https://intelme.com
+- https://skyn3t.in/srx
+- https://suche.dasnetzundich.de
+- https://searx.com.au
+- https://burtrum.org/searx
+- https://roteserver.de/searx
+- https://srx.sx
+- https://search.paulla.asso.fr
+- https://search.spaeth.me
+- https://seeks.hsbp.org
+- https://searx.linux.pizza
+- https://searx.gotrust.de
+- https://trovu.komun.org
+- https://searx.operationtulip.com
+- https://search.st8.at
+- https://mijisou.com
+- https://haku.ahmia.fi
 - https://google.nekoemtp.workers.dev/
 - http://baidu01.puataiwan.com/
 - https://gg.smiling.workers.dev/
@@ -101,23 +119,6 @@
 - https://searx.run
 - https://searx.wegeeks.win
 - https://searx.world
-- https://intelme.com
-- https://skyn3t.in/srx
-- https://suche.dasnetzundich.de
-- https://searx.com.au
-- https://burtrum.org/searx
-- https://roteserver.de/searx
-- https://srx.sx
-- https://search.paulla.asso.fr
-- https://search.spaeth.me
-- https://seeks.hsbp.org
-- https://searx.linux.pizza
-- https://searx.gotrust.de
-- https://trovu.komun.org
-- https://searx.operationtulip.com
-- https://search.st8.at
-- https://mijisou.com
-- https://haku.ahmia.fi
 - ~~http://www.wen.lu/~~
 - ~~https://g2.wen.lu/~~
 - ~~http://gc.ihuan.me/~~
