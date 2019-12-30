@@ -1,11 +1,18 @@
 多年来搜集的谷歌镜像，大多数都能打开，打不开的也许过一段时间能打开。希望这些神奇的搜索引擎，能助你在前端界有所建树。😄
 
 - https://1.52qu.xyz/
+- https://guge.one/
 - https://nav.hiqq.com.cn/twy/
 - https://g.luciaz.me/
 - https://searx.xyz/
 - https://www.kuaimen.bid/
 - https://4.52qu.xyz/
+- https://b.glgoo.top/scholar
+- https://c.glgoo.top/scholar
+- https://cc.glgoo.top/scholar
+- https://guge.schove.com/
+- http://so.hiqq.com.cn/
+- http://nav.hiqq.com.cn/twy/
 - ~~http://www.wen.lu/~~
 - ~~https://g2.wen.lu/~~
 - ~~http://gc.ihuan.me/~~
