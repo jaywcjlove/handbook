@@ -94,6 +94,8 @@
 - [NginxConfig](https://nginxconfig.io/) Nginx配置在线极速生成“神器”
 - [i18ns](https://i18ns.com/) 一个免费的i18n翻译搜索引擎
 - [TableConvert](https://tableconvert.com/) Markdown表格编辑器，可通过导入json、csv、excel、html table生成Markdown表格。
+- [基于时间版本控制规范](https://chronver.org/)
+- [语义化版本 2.0.0 语义化版本规范](https://semver.org/lang/zh-CN/)
 
 
 
