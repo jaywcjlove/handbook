@@ -63,7 +63,7 @@
 
 - [MediumEditor](https://github.com/yabwe/medium-editor) - 仿Medium.com的所见即所得在线编辑器工具栏。[demo](https://yabwe.github.io/medium-editor/)
 - [Substance](https://github.com/yabwe/medium-editor) - 是一个基于Web的内容自定义编辑器。[demo](http://substance.io/examples/)
-- [flatpickr](https://github.com/chmln/flatpickr) - 是一个轻量级的代码高亮库，适用于任何编程语言。[demo](https://chmln.github.io/flatpickr)
+- [rainbows](https://github.com/ccampbell/rainbow) - 是一个轻量级的代码高亮库(2.5kb)。[demo](https://craig.is/making/rainbows)
 - [pen](https://github.com/sofish/pen) - 是一个Markdown编辑器工具。[demo](http://sofish.github.io/pen)
 - [aceAce](https://github.com/ajaxorg/ace)（Ajax.org Cloud9 Editor）。[demo](https://ace.c9.io/)
 - [CodeMirror](https://github.com/codemirror/CodeMirror)浏览器端的代码编辑器。[demo](http://codemirror.net/)
