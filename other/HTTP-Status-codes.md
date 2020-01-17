@@ -241,3 +241,4 @@ _WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客
 - [List of FTP server return codes](https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes)
 - [HTTP概述](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview)
 - [Help for HTTP error 403: “Forbidden”](http://www.getnetgoing.com/HTTP-403.html)
+- [实用的 RESTful API 最佳实践](https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
