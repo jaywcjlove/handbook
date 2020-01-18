@@ -105,9 +105,9 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 
 ## 快捷键
 
-- [Sketch设计软件快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/Sketch.md)
+- [Sketch 设计软件快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/Sketch.md)
 - [命令行工具bash快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/bash.md)
-- [Sublime编辑器快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/sublime.md)
+- [Sublime 编辑器快捷键](https://github.com/jaywcjlove/handbook/blob/f927defdc74fc3adfeb4f2764893426685284327/md/Shortcuts/sublime.md)
 
 ## 其它
 
