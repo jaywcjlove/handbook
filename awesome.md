@@ -96,6 +96,7 @@
 - [TableConvert](https://tableconvert.com/) Markdown表格编辑器，可通过导入json、csv、excel、html table生成Markdown表格。
 - [基于时间版本控制规范](https://chronver.org/)
 - [语义化版本 2.0.0 语义化版本规范](https://semver.org/lang/zh-CN/)
+- [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
 
 
 
