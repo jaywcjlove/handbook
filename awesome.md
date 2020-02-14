@@ -97,6 +97,7 @@
 - [Chronologic Versioning](https://chronver.org/) 基于时间版本控制规范
 - [semver](https://semver.org/lang/zh-CN/) 语义化版本 2.0.0 语义化版本规范
 - [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
+- [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。
 
 
 
