@@ -101,6 +101,7 @@
 - [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
 - [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。
 - [OpenVidu](https://github.com/OpenVidu/openvidu) 开源的视频会议软件，使用 WebRTC 技术。
+- [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton) 开源的远程教育软件，也可用作视频会议。
 
 
 
