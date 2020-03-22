@@ -88,6 +88,12 @@
 - [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
 
+## 办公类应用
+
+- [OpenVidu](https://github.com/OpenVidu/openvidu) 开源的视频会议软件，使用 WebRTC 技术。
+- [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton) 开源的远程教育软件，也可用作视频会议。
+- [Jira clone](https://github.com/oldboyxx/jira_clone) 使用 React + Node.js 写的项目管理工具 Jira 的克隆。
+
 ## 其它
 
 - [foldnfly](https://www.foldnfly.com) 收集纸飞机折纸方法的网站，目前有40种纸飞机。
@@ -100,9 +106,6 @@
 - [semver](https://semver.org/lang/zh-CN/) 语义化版本 2.0.0 语义化版本规范
 - [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
 - [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。
-- [OpenVidu](https://github.com/OpenVidu/openvidu) 开源的视频会议软件，使用 WebRTC 技术。
-- [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton) 开源的远程教育软件，也可用作视频会议。
-
 
 
 
