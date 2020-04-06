@@ -20,6 +20,7 @@
     - [报nginx配置文件目录不对错误](#报nginx配置文件目录不对错误)
     - [正式申请申请证书](#正式申请申请证书)
   - [配置nginx](#配置nginx)
+- [错误处理](#错误处理)
 - [参考阅读](#参考阅读)
 
 <!-- /TOC -->
@@ -355,6 +356,23 @@ server {
     index  index.html index.htm;
   }
 }
+```
+
+## 错误处理
+
+1. 证书提示 certbot-auto 无法升级
+
+```bash
+[root@localhost ~]# ./certbot-auto certificates
+Upgrading certbot-auto 1.0.0 to 1.3.0...
+Couldn't download https://raw.githubusercontent.com/certbot/certbot/v1.3.0/letsencrypt-auto-source/letsencrypt-auto. <urlopen error [Errno 111] Connection refused>
+```
+`certbot-auto` 将始终尝试从最新版本中获取自身的最新版本。
+
+解决办法：如果希望将其锁定到特定版本并且不接收自动更新，只需在命令后加 --no-self-upgrade 即可
+
+```
+./certbot-auto certificates  --no-self-upgrade
 ```
 
 ## 参考阅读
