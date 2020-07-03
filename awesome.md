@@ -19,9 +19,6 @@
 - [JavaScript Rising Stars](https://risingstars.js.org)
 - [比项目较过去12个月在 GitHub 上增加的星标数](https://bestofjs.org/)
 - [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
-- [下载NPM包的统计信息](https://npm-stat.com/)
-- [NPM包下载趋势榜对比](https://www.npmtrends.com)
-- [比较npm包下载，计数随时间的变化](http://www.npmtrends.com/)
 - [Web框架性能测试排名](https://www.techempower.com/benchmarks/) 
 
 ## 徽章
@@ -49,10 +46,15 @@
 - [swagger](https://swagger.io) 一款RESTful 接口的文档在线自动生成+功能测试功能软件。
 - [swagger editor](https://editor.swagger.io/) 在线版编辑器。
 
-## 工具
+## npm
 
+- [下载NPM包的统计信息](https://npm-stat.com/)
+- [NPM包下载趋势榜对比](https://www.npmtrends.com)
+- [比较npm包下载，计数随时间的变化](http://www.npmtrends.com/)
 - [BundlePhobia](https://bundlephobia.com/) 查看添加 npm 软件包的成本。
 - [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件。
+
+## 工具
 - [pagemap](https://github.com/lrsjng/pagemap) 在网页插入迷你的页面缩略导航图，可以点击这个图的不同部分，实现快速导航。
 - [termtosvg](https://github.com/nbedos/termtosvg) 将你的终端会话录制成一个单独的 SVG 动画。
 - [Nodle-I-Ching](https://iching.codes/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 [![Open-Source Software][OSS Icon]](https://github.com/NodleCode/Nodle-I-Ching)
