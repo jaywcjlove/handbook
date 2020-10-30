@@ -36,6 +36,7 @@
 - [Pixlr X](https://pixlr.com/x) 基于 Canvas 和 WebGL 的在线图像编辑器。
 - [Terrastruct](https://terrastruct.com/) 一个在线的架构图、流程图工具。
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
+- [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
 
 ## 文档工具
 
