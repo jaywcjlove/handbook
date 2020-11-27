@@ -40,8 +40,9 @@
 
 ## 在线数据库建模工具
 
-- [sqldbm](https://sqldbm.com/) 在线数据库建模
+- [SQL DBM](https://sqldbm.com/) 在线数据库建模
 - [Vertabelo](https://vertabelo.com/) 在线数据库建模
+- [DB Designer](https://www.dbdesigner.net/) 在线数据库建模
 
 ## 文档工具
 
