@@ -38,6 +38,11 @@
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
 - [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
 
+## 在线数据库建模工具
+
+- [sqldbm](https://sqldbm.com/) 在线数据库建模
+- [Vertabelo](https://vertabelo.com/) 在线数据库建模
+
 ## 文档工具
 
 - [ESDoc](https://github.com/esdoc/esdoc) ESDoc是JavaScript的文档生成器。
