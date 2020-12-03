@@ -75,6 +75,8 @@
 - [doka](https://doka.photo/) 一个使用 WebGL 技术搭建的在线图像编辑器，使用非常流畅。
 - [Publisheet](https://www.publisheet.com/) Excel 表格转为网页表格的在线工具。
 - [dbdiagram](https://dbdiagram.io) 在线数据库关系图设计工具。
+- [cubic-bezier](https://cubic-bezier.com/)
+- [Animated Bézier Curves](https://www.jasondavies.com/animated-bezier/)
 
 ## 在线代码编辑
 
