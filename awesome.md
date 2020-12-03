@@ -77,6 +77,7 @@
 - [dbdiagram](https://dbdiagram.io) 在线数据库关系图设计工具。
 - [cubic-bezier](https://cubic-bezier.com/)
 - [Animated Bézier Curves](https://www.jasondavies.com/animated-bezier/)
+- [easings](https://easings.net/cn) 缓动函数速查表
 
 ## 在线代码编辑
 
