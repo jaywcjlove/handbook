@@ -78,6 +78,7 @@
 - [cubic-bezier](https://cubic-bezier.com/)
 - [Animated Bézier Curves](https://www.jasondavies.com/animated-bezier/)
 - [easings](https://easings.net/cn) 缓动函数速查表
+- [求字体](http://www.qiuziti.com/) 字体识别与搜索
 
 ## 在线代码编辑
 
