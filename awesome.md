@@ -36,6 +36,13 @@
 - [Pixlr X](https://pixlr.com/x) 基于 Canvas 和 WebGL 的在线图像编辑器。
 - [Terrastruct](https://terrastruct.com/) 一个在线的架构图、流程图工具。
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
+- [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
+
+## 在线数据库建模工具
+
+- [SQL DBM](https://sqldbm.com/) 在线数据库建模
+- [Vertabelo](https://vertabelo.com/) 在线数据库建模
+- [DB Designer](https://www.dbdesigner.net/) 在线数据库建模
 
 ## 文档工具
 
@@ -45,6 +52,7 @@
 - [typedoc](https://github.com/TypeStrong/typedoc) TypeScript 项目的文档生成器。
 - [swagger](https://swagger.io) 一款RESTful 接口的文档在线自动生成+功能测试功能软件。
 - [swagger editor](https://editor.swagger.io/) 在线版编辑器。
+- [EditCSV Online](https://www.editcsvonline.com/) 一个编辑 CSV 文件的在线工具。
 
 ## npm
 
@@ -66,6 +74,11 @@
 - [AsciiMath](http://asciimath.org/) 简单易用的数学公式转换工具  [![Open-Source Software][OSS Icon]](https://github.com/asciimath/asciimathml)
 - [doka](https://doka.photo/) 一个使用 WebGL 技术搭建的在线图像编辑器，使用非常流畅。
 - [Publisheet](https://www.publisheet.com/) Excel 表格转为网页表格的在线工具。
+- [dbdiagram](https://dbdiagram.io) 在线数据库关系图设计工具。
+- [cubic-bezier](https://cubic-bezier.com/)
+- [Animated Bézier Curves](https://www.jasondavies.com/animated-bezier/)
+- [easings](https://easings.net/cn) 缓动函数速查表
+- [求字体](http://www.qiuziti.com/) 字体识别与搜索
 
 ## 在线代码编辑
 
@@ -92,6 +105,7 @@
 - [programming-languages](https://github.com/showcases/programming-languages/) 在GitHub上积极开发的编程语言列表
 - [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
+- [GitHub 加速下载](http://toolwa.com/github/)
 
 ## 办公类应用
 
@@ -113,6 +127,9 @@
 - [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。
 - [nodesign](https://nodesign.dev/) 设计工具收集
 
+## 一些网站
+
+- [无线路由器使用分享与评测对比](https://www.acwifi.net/)
 
 
 [OSS Icon]: https://jaywcjlove.github.io/sb/ico/min-oss.svg "Open source ui componet on Github"
