@@ -5,6 +5,7 @@
 
 <!-- TOC -->
 
+- [使用免费SSL证书让网站支持HTTPS访问](#使用免费ssl证书让网站支持https访问)
 - [certbot-auto](#certbot-auto)
   - [安装](#安装)
   - [申请证书](#申请证书)
@@ -46,6 +47,8 @@ chmod a+x certbot-auto
 ```bash
 # 注xxx.com请根据自己的域名自行更改
 ./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.xxx.com" --manual --preferred-challenges dns-01 certonly
+
+sudo ./certbot-auto certonly --standalone --email my@qq.com -d abc.com -d www.abc.com
 ```
 
 从服务器到目的地的出站端口 443 是否被防火墙阻止

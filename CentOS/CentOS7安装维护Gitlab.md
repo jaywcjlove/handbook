@@ -6,41 +6,43 @@ CentOS7安装维护Gitlab
 
 <!-- TOC -->
 
-- [官方安装](#官方安装)
-- [第三方镜像安装](#第三方镜像安装)
-  - [编辑源](#编辑源)
-  - [更新本地YUM缓存](#更新本地yum缓存)
-  - [安装社区版](#安装社区版)
-  - [更改配置](#更改配置)
-  - [配置并启动GitLab](#配置并启动gitlab)
-  - [登录GitLab](#登录gitlab)
-- [Docker安装](#docker安装)
-- [卸载](#卸载)
-- [运维](#运维)
-  - [服务管理](#服务管理)
-  - [日志查看](#日志查看)
-  - [重置管理员密码](#重置管理员密码)
-- [备份恢复](#备份恢复)
-  - [修改备份文件默认目录](#修改备份文件默认目录)
-  - [创建备份](#创建备份)
-  - [开始备份](#开始备份)
-  - [自动备份](#自动备份)
-  - [备份保留七天](#备份保留七天)
-  - [开始恢复](#开始恢复)
-- [连接数据库](#连接数据库)
-- [一些常规目录](#一些常规目录)
-- [使用HTTPS](#使用https)
-- [暴力升级](#暴力升级)
-- [优化内存使用](#优化内存使用)
-- [错误处理](#错误处理)
-  - [解决80端口被占用](#解决80端口被占用)
-  - [头像无法正常显示](#头像无法正常显示)
-  - [internal API unreachable](#internal-api-unreachable)
-  - [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
-  - [webhooks 错误](#webhooks-错误)
-  - [服务无法启动](#服务无法启动)
-  - [其它错误](#其它错误)
-- [参考资料](#参考资料)
+- [目录](#目录)
+  - [官方安装](#官方安装)
+  - [第三方镜像安装](#第三方镜像安装)
+    - [编辑源](#编辑源)
+    - [更新本地YUM缓存](#更新本地yum缓存)
+    - [安装社区版](#安装社区版)
+    - [更改配置](#更改配置)
+    - [配置并启动GitLab](#配置并启动gitlab)
+    - [登录GitLab](#登录gitlab)
+    - [启用 gitlab registry 功能](#启用-gitlab-registry-功能)
+  - [Docker安装](#docker安装)
+  - [卸载](#卸载)
+  - [运维](#运维)
+    - [服务管理](#服务管理)
+    - [日志查看](#日志查看)
+    - [重置管理员密码](#重置管理员密码)
+  - [备份恢复](#备份恢复)
+    - [修改备份文件默认目录](#修改备份文件默认目录)
+    - [创建备份](#创建备份)
+    - [开始备份](#开始备份)
+    - [自动备份](#自动备份)
+    - [备份保留七天](#备份保留七天)
+    - [开始恢复](#开始恢复)
+  - [连接数据库](#连接数据库)
+  - [一些常规目录](#一些常规目录)
+  - [使用HTTPS](#使用https)
+  - [暴力升级](#暴力升级)
+  - [优化内存使用](#优化内存使用)
+  - [错误处理](#错误处理)
+    - [解决80端口被占用](#解决80端口被占用)
+    - [头像无法正常显示](#头像无法正常显示)
+    - [internal API unreachable](#internal-api-unreachable)
+    - [proxy_temp 目录没有权限](#proxy_temp-目录没有权限)
+    - [webhooks 错误](#webhooks-错误)
+    - [服务无法启动](#服务无法启动)
+    - [其它错误](#其它错误)
+  - [参考资料](#参考资料)
 
 <!-- /TOC -->
 
@@ -149,6 +151,35 @@ sudo gitlab-rake cache:clear RAILS_ENV=production
 ```
 Username: root 
 Password: 5iveL!fe
+```
+
+### 启用 gitlab registry 功能
+
+开启 [Configuring Registry](https://docs.gitlab.com/omnibus/architecture/registry/README.html#configuring-registry) 功能，只需修改配置 [`/etc/gitlab/gitlab.rb`](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/10-3-stable/files/gitlab-cookbooks/gitlab/libraries/registry.rb#L39-55) 文件，将 `registry_external_url` 的值修改为 http://192.168.188.211:5008
+
+```ruby
+registry_external_url 'http://192.168.188.211:5008'
+```
+
+`registry_external_url` 这个地址是我们使用 `docker` 命令进行 `pull` 或者 `push` 镜像的仓库地址。
+
+重启 `Gitlab` 后，可以在 `Gitlab` 左侧面板看到 `Container Registry` 的菜单。
+
+按照 gitlab 给出的提示，我们先登录上 gitlab 的 registry：
+
+```bash
+docker login 192.168.188.211:5008
+Username: ****
+Password: **
+```
+
+注意：⚠️ 密码是需要通过 [Gitlab > User Settings > Access Tokens > Add a personal access token](http://gitlab.com/-/profile/personal_access_tokens) 生成一个 `personal_access_tokens` 而不是真正的密码
+
+
+```
+docker build -t 192.168.188.211:5008/docker/docker-static-service-template .
+# 提交镜像
+docker push 192.168.188.211:5008/docker/docker-static-service-template
 ```
 
 ## Docker安装
