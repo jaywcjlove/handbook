@@ -51,6 +51,8 @@ chmod a+x certbot-auto
 sudo ./certbot-auto certonly --standalone --email my@qq.com -d abc.com -d www.abc.com
 ```
 
+选项 `--no-self-upgrade`。certbot-auto默认始终尝试更新到最新版，但对已经稳定的应用而言，可以不用更新，因此可以使用此选项直接更新证书，而不用更新certbot-auto导致其它意外问题。
+
 从服务器到目的地的出站端口 443 是否被防火墙阻止
 
 ```bash
