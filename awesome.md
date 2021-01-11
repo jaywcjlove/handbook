@@ -90,6 +90,14 @@
 - [jsrun](http://jsrun.net) 在线编辑器，支持多种语言
 - [JSON Generator](https://next.json-generator.com) 生成虚拟 JSON 数据的在线工具
 
+## 免费托管服务工具
+
+- [OPENSHIFT](https://www.openshift.com/)
+- [opeNode](http://www.openode.io/)
+- [Heroku](http://www.heroku.com)
+- [Vercel](https://vercel.com/)
+- [Glitch](https://glitch.com)
+
 ## 正则表达式工具
 
 - https://regexr.com/ [`Github`](https://github.com/gskinner/regexr/)
