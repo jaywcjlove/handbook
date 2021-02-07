@@ -135,6 +135,7 @@
 - [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
 - [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。
 - [nodesign](https://nodesign.dev/) 设计工具收集
+- [Is Apple silicon ready?](https://isapplesiliconready.com/for/developer/) 查询 Apple M1 相关软件支持情况
 
 ## 一些网站
 
