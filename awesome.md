@@ -127,7 +127,7 @@
 - [foldnfly](https://www.foldnfly.com) 收集纸飞机折纸方法的网站，目前有40种纸飞机。
 - [aqicn](http://aqicn.org) 实时空气质量指数地图.
 - [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST。
-- [NginxConfig](https://nginxconfig.io/) Nginx配置在线极速生成“神器”
+- [NginxConfig](https://nginxconfig.io/) Nginx配置在线极速生成“神器” [Github](https://github.com/digitalocean/nginxconfig.io)
 - [i18ns](https://i18ns.com/) 一个免费的i18n翻译搜索引擎
 - [TableConvert](https://tableconvert.com/) Markdown表格编辑器，可通过导入json、csv、excel、html table生成Markdown表格。
 - [Chronologic Versioning](https://chronver.org/) 基于时间版本控制规范
