@@ -64,6 +64,7 @@
 - [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件。
 
 ## 工具
+
 - [pagemap](https://github.com/lrsjng/pagemap) 在网页插入迷你的页面缩略导航图，可以点击这个图的不同部分，实现快速导航。
 - [termtosvg](https://github.com/nbedos/termtosvg) 将你的终端会话录制成一个单独的 SVG 动画。
 - [Nodle-I-Ching](https://iching.codes/) 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 [![Open-Source Software][OSS Icon]](https://github.com/NodleCode/Nodle-I-Ching)
@@ -116,6 +117,7 @@
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
 - [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) 为您的 Github 自述文件动态生成的统计信息
 - [GitHub 加速下载](http://toolwa.com/github/)
+- [GitHub Skyline](https://skyline.github.com) GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图
 
 ## 办公类应用
 
