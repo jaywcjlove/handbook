@@ -7,6 +7,7 @@
 
 - [yargs-parser](https://www.npmjs.com/package/yargs-parser) <img src="https://img.shields.io/jsdelivr/npm/hy/yargs-parser" height="13" /> 强大的命令参数解释器
 - [minimist](https://www.npmjs.com/package/minimist) <img src="https://img.shields.io/jsdelivr/npm/hy/minimist" height="13" /> 解析参数选项，没有任何奇特的修饰。
+- [cac](https://github.com/cacjs/cac) <img src="https://img.shields.io/jsdelivr/npm/hy/cac" height="13" /> 用于构建命令行应用程序的简单而强大的框架。
 - [mri](https://www.npmjs.com/package/mri) <img src="https://img.shields.io/jsdelivr/npm/hy/mri" height="13" /> 快速扫描CLI标志和参数，minimist 和 yargs 解析器的快速，轻量级替代方案。
 - [has-flag](https://www.npmjs.com/package/has-flag) <img src="https://img.shields.io/jsdelivr/npm/hy/has-flag" height="13" /> 检查argv是否具有特定标志
 - [dargs](https://www.npmjs.com/package/dargs) <img src="https://img.shields.io/jsdelivr/npm/hy/dargs" height="13" /> 反转 minimist。 将选项对象转换为命令行参数数组。
