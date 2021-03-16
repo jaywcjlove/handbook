@@ -115,9 +115,10 @@
 - [programming-languages](https://github.com/showcases/programming-languages/) 在GitHub上积极开发的编程语言列表
 - [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
 - [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
-- [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) 为您的 Github 自述文件动态生成的统计信息
+- [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) 为您的 Github 自述文件动态生成的统计信息。
+- [GitHub Profile Trophy](https://github.com/ryo-ma/github-profile-trophy) 为您的 Github 自述文件动态生成档案奖杯。
 - [GitHub 加速下载](http://toolwa.com/github/)
-- [GitHub Skyline](https://skyline.github.com) GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图
+- [GitHub Skyline](https://skyline.github.com) GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图。
 
 ## 办公类应用
 
