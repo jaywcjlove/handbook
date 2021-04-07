@@ -48,6 +48,11 @@ chmod a+x certbot-auto
 # 注xxx.com请根据自己的域名自行更改
 ./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.xxx.com" --manual --preferred-challenges dns-01 certonly
 
+# 如需把主域名也增加到证书的覆盖范围，请在开始申请证书步骤的那个指令把主域名也加上`-d "xxx.com"`，如下：
+# 需要注意的是，这样的话需要修改两次解析记录
+./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.xxx.com" -d "xxx.com" --manual --preferred-challenges dns-01 certonly
+```
+
 sudo ./certbot-auto certonly --standalone --email my@qq.com -d abc.com -d www.abc.com
 ```
 
