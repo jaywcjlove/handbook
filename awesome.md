@@ -38,6 +38,7 @@
 - [Terrastruct](https://terrastruct.com/) 一个在线的架构图、流程图工具。
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
 - [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
+- [Squoosh](https://github.com/GoogleChromeLabs/squoosh) 在浏览器中使用一流的编解码器无损压缩图片。
 
 ## 在线数据库建模工具
 
