@@ -90,6 +90,7 @@
 - [codesandbox](https://codesandbox.io/) 在线编辑器
 - [jsfiddle](https://jsfiddle.net) 在线编辑器
 - [runjs](https://runjs.cn/) 在线编辑器
+- [JS Bin](https://jsbin.com/) 在线编辑器
 - [jsrun](http://jsrun.net) 在线编辑器，支持多种语言
 - [JSON Generator](https://next.json-generator.com) 生成虚拟 JSON 数据的在线工具
 - [QuickType](https://app.quicktype.io/) 即时解析任何语言的JSON
