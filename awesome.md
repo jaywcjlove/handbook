@@ -84,6 +84,7 @@
 - [easings](https://easings.net/cn) 缓动函数速查表
 - [求字体](http://www.qiuziti.com/) 字体识别与搜索
 - [color-space](http://colorjs.github.io/color-space/) 颜色转化工具。
+- [Track Awesome List](https://www.trackawesomelist.com/) 追踪每个 Awesome 清单的更新，可以及时查看每天新增哪些资源。
 
 ## 在线代码编辑
 
