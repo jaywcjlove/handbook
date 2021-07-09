@@ -39,6 +39,7 @@
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
 - [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
 - [Squoosh](https://github.com/GoogleChromeLabs/squoosh) 在浏览器中使用一流的编解码器无损压缩图片。
+- [Fluid Paint](https://david.li/paint/) 网页画板工具，可以定制笔刷，产生刷油漆的流体效果，非常精美
 
 ## 在线数据库建模工具
 
