@@ -82,6 +82,7 @@
 - [cubic-bezier](https://cubic-bezier.com/)
 - [Animated Bézier Curves](https://www.jasondavies.com/animated-bezier/)
 - [easings](https://easings.net/cn) 缓动函数速查表
+- [Animista](https://animista.net) 网页 CSS 动画工具，可自由配置各种动画特效，并生成代码。
 - [求字体](http://www.qiuziti.com/) 字体识别与搜索
 - [color-space](http://colorjs.github.io/color-space/) 颜色转化工具。
 - [Track Awesome List](https://www.trackawesomelist.com/) 追踪每个 Awesome 清单的更新，可以及时查看每天新增哪些资源。
