@@ -40,6 +40,7 @@
 - [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
 - [Squoosh](https://github.com/GoogleChromeLabs/squoosh) 在浏览器中使用一流的编解码器无损压缩图片。
 - [Fluid Paint](https://david.li/paint/) 网页画板工具，可以定制笔刷，产生刷油漆的流体效果，非常精美
+- [IconMaker](https://iconmaker.app/) 应用程序图标 favicons 图标生成器和调整器
 
 ## 在线数据库建模工具
 
