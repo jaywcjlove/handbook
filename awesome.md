@@ -116,6 +116,7 @@
 - https://regex101.com/
 - https://regexper.com/
 - http://myregexp.com/
+- https://ihateregex.io/ [`Github`](https://github.com/geongeorge/i-hate-regex)
 
 ## Github
 
