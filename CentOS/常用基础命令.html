@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>handbook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="放置我的笔记、搜集、摘录、实践，保持好奇心。看文需谨慎，后果很严重。 - handbook">
+    <meta keywords="example,handbook">
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+    <style>body { margin: 0; }.markdown-body { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; max-width: 960px; margin: 28px auto 60px auto; padding: 8px; color: #24292f; background-color: #ffffff; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word;}.markdown-body .octicon { display: inline-block; fill: currentColor; vertical-align: text-bottom;}.markdown-body .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block;}.markdown-body .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer;}.markdown-body .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important;}.markdown-body details.octicon-video:not([open])>*:not(summary) { display: none !important;}.markdown-body details.octicon-video:not([open]) > summary { border-bottom: 0 !important;}.markdown-body .octicon-video summary > svg + span { margin: 4px !important;}.markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body h3:hover .anchor .octicon-link:before,.markdown-body h4:hover .anchor .octicon-link:before,.markdown-body h5:hover .anchor .octicon-link:before,.markdown-body h6:hover .anchor .octicon-link:before { width: 16px; height: 16px; content: ' '; display: inline-block; background-color: currentColor; -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>"); mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");}.markdown-body details,.markdown-body figcaption,.markdown-body figure { display: block;}.markdown-body summary { display: list-item;}.markdown-body a { background-color: transparent; color: #0969da; text-decoration: none;}.markdown-body a:active,.markdown-body a:hover { outline-width: 0;}.markdown-body abbr[title] { border-bottom: none; -webkit-text-decoration: underline dotted; text-decoration: underline dotted;}.markdown-body b,.markdown-body strong { font-weight: 600;}.markdown-body dfn { font-style: italic;}.markdown-body h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body mark { background-color: #ff0; color: #24292f;}.markdown-body small { font-size: 90%;}.markdown-body sub,.markdown-body sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}.markdown-body sub { bottom: -0.25em;}.markdown-body sup { top: -0.5em;}.markdown-body img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: #ffffff;}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp { font-family: monospace,monospace; font-size: 1em;}.markdown-body figure { margin: 1em 40px;}.markdown-body hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid hsla(210,18%,87%,1); height: .25em; padding: 0; margin: 24px 0; background-color: #d0d7de; border: 0;}.markdown-body html [type=button],.markdown-body [type=reset],.markdown-body [type=submit] { -webkit-appearance: button;}.markdown-body [type=button]::-moz-focus-inner,.markdown-body [type=reset]::-moz-focus-inner,.markdown-body [type=submit]::-moz-focus-inner { border-style: none; padding: 0;}.markdown-body [type=button]:-moz-focusring,.markdown-body [type=reset]:-moz-focusring,.markdown-body [type=submit]:-moz-focusring { outline: 1px dotted ButtonText;}.markdown-body [type=checkbox],.markdown-body [type=radio] { box-sizing: border-box; padding: 0;}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button { height: auto;}.markdown-body [type=search] { -webkit-appearance: textfield; outline-offset: -2px;}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration { -webkit-appearance: none;}.markdown-body ::-webkit-input-placeholder { color: inherit; opacity: .54;}.markdown-body ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit;}.markdown-body a:hover { text-decoration: underline;}.markdown-body hr::before { display: table; content: "";}.markdown-body hr::after { display: table; clear: both; content: "";}.markdown-body table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto;}.markdown-body td,.markdown-body th { padding: 0;}.markdown-body details summary { cursor: pointer;}.markdown-body details:not([open])>*:not(summary) { display: none !important;}.markdown-body kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: #24292f; vertical-align: middle; background-color: #f6f8fa; border: solid 1px rgba(175,184,193,0.2); border-bottom-color: rgba(175,184,193,0.2); border-radius: 6px; box-shadow: inset 0 -1px 0 rgba(175,184,193,0.2);}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;}.markdown-body h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body h3 { font-weight: 600; font-size: 1.25em;}.markdown-body h4 { font-weight: 600; font-size: 1em;}.markdown-body h5 { font-weight: 600; font-size: .875em;}.markdown-body h6 { font-weight: 600; font-size: .85em; color: #57606a;}.markdown-body p { margin-top: 0; margin-bottom: 10px;}.markdown-body blockquote { margin: 0; padding: 0 1em; color: #57606a; border-left: .25em solid #d0d7de;}.markdown-body ul,.markdown-body ol { margin-top: 0; margin-bottom: 0; padding-left: 2em;}.markdown-body ol ol,.markdown-body ul ol { list-style-type: lower-roman;}.markdown-body ul ul ol,.markdown-body ul ol ol,.markdown-body ol ul ol,.markdown-body ol ol ol { list-style-type: lower-alpha;}.markdown-body dd { margin-left: 0;}.markdown-body tt,.markdown-body code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px;}.markdown-body pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; word-wrap: normal;}.markdown-body :-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::placeholder { color: #6e7781; opacity: 1;}.markdown-body .pl-c { color: #6e7781;}.markdown-body .pl-c1,.markdown-body .pl-s .pl-v { color: #0550ae;}.markdown-body .pl-e,.markdown-body .pl-en { color: #8250df;}.markdown-body .pl-smi,.markdown-body .pl-s .pl-s1 { color: #24292f;}.markdown-body .pl-ent { color: #116329;}.markdown-body .pl-k { color: #cf222e;}.markdown-body .pl-s,.markdown-body .pl-pds,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-sr .pl-sra { color: #0a3069;}.markdown-body .pl-v,.markdown-body .pl-smw { color: #953800;}.markdown-body .pl-bu { color: #82071e;}.markdown-body .pl-ii { color: #f6f8fa; background-color: #82071e;}.markdown-body .pl-c2 { color: #f6f8fa; background-color: #cf222e;}.markdown-body .pl-sr .pl-cce { font-weight: bold; color: #116329;}.markdown-body .pl-ml { color: #3b2300;}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms { font-weight: bold; color: #0550ae;}.markdown-body .pl-mi { font-style: italic; color: #24292f;}.markdown-body .pl-mb { font-weight: bold; color: #24292f;}.markdown-body .pl-md { color: #82071e; background-color: #FFEBE9;}.markdown-body .pl-mi1 { color: #116329; background-color: #dafbe1;}.markdown-body .pl-mc { color: #953800; background-color: #ffd8b5;}.markdown-body .pl-mi2 { color: #eaeef2; background-color: #0550ae;}.markdown-body .pl-mdr { font-weight: bold; color: #8250df;}.markdown-body .pl-ba { color: #57606a;}.markdown-body .pl-sg { color: #8c959f;}.markdown-body .pl-corl { text-decoration: underline; color: #0a3069;}.markdown-body [data-catalyst] { display: block;}.markdown-body g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em;}.markdown-body g-emoji img { width: 1em; height: 1em;}.markdown-body::before { display: table; content: "";}.markdown-body::after { display: table; clear: both; content: "";}.markdown-body>*:first-child { margin-top: 0 !important;}.markdown-body>*:last-child { margin-bottom: 0 !important;}.markdown-body a:not([href]) { color: inherit; text-decoration: none;}.markdown-body .absent { color: #cf222e;}.markdown-body .anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1;}.markdown-body .anchor:focus { outline: none;}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details { margin-top: 0; margin-bottom: 16px;}.markdown-body blockquote>:first-child { margin-top: 0;}.markdown-body blockquote>:last-child { margin-bottom: 0;}.markdown-body sup>a::before { content: "[";}.markdown-body sup>a::after { content: "]";}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link { color: #24292f; vertical-align: middle; visibility: hidden;}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor { text-decoration: none;}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link { visibility: visible;}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code { padding: 0 .2em; font-size: inherit;}.markdown-body ul.no-list,.markdown-body ol.no-list { padding: 0; list-style-type: none;}.markdown-body ol[type="1"] { list-style-type: decimal;}.markdown-body ol[type=a] { list-style-type: lower-alpha;}.markdown-body ol[type=i] { list-style-type: lower-roman;}.markdown-body div>ol:not([type]) { list-style-type: decimal;}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul { margin-top: 0; margin-bottom: 0;}.markdown-body li>p { margin-top: 16px;}.markdown-body li+li { margin-top: .25em;}.markdown-body dl { padding: 0;}.markdown-body dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600;}.markdown-body dl dd { padding: 0 16px; margin-bottom: 16px;}.markdown-body table th { font-weight: 600;}.markdown-body table th,.markdown-body table td { padding: 6px 13px; border: 1px solid #d0d7de;}.markdown-body table tr { background-color: #ffffff; border-top: 1px solid hsla(210,18%,87%,1);}.markdown-body table tr:nth-child(2n) { background-color: #f6f8fa;}.markdown-body table img { background-color: transparent;}.markdown-body img[align=right] { padding-left: 20px;}.markdown-body img[align=left] { padding-right: 20px;}.markdown-body .emoji { max-width: none; vertical-align: text-top; background-color: transparent;}.markdown-body span.frame { display: block; overflow: hidden;}.markdown-body span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid #d0d7de;}.markdown-body span.frame span img { display: block; float: left;}.markdown-body span.frame span span { display: block; padding: 5px 0 0; clear: both; color: #24292f;}.markdown-body span.align-center { display: block; overflow: hidden; clear: both;}.markdown-body span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center;}.markdown-body span.align-center span img { margin: 0 auto; text-align: center;}.markdown-body span.align-right { display: block; overflow: hidden; clear: both;}.markdown-body span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right;}.markdown-body span.align-right span img { margin: 0; text-align: right;}.markdown-body span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden;}.markdown-body span.float-left span { margin: 13px 0 0;}.markdown-body span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden;}.markdown-body span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right;}.markdown-body code,.markdown-body tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: rgba(175,184,193,0.2); border-radius: 6px;}.markdown-body code br,.markdown-body tt br { display: none;}.markdown-body del code { text-decoration: inherit;}.markdown-body pre code { font-size: 100%;}.markdown-body pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0;}.markdown-body .highlight { margin-bottom: 16px;}.markdown-body .highlight pre { margin-bottom: 0; word-break: normal;}.markdown-body .highlight pre,.markdown-body pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: #f6f8fa; border-radius: 6px;}.markdown-body pre code,.markdown-body pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0;}.markdown-body .csv-data td,.markdown-body .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap;}.markdown-body .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: #ffffff; border: 0;}.markdown-body .csv-data tr { border-top: 0;}.markdown-body .csv-data th { font-weight: 600; background: #f6f8fa; border-top: 0;}.markdown-body .footnotes { font-size: 12px; color: #57606a; border-top: 1px solid #d0d7de;}.markdown-body .footnotes ol { padding-left: 16px;}.markdown-body .footnotes li { position: relative;}.markdown-body .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid #0969da; border-radius: 6px;}.markdown-body .footnotes li:target { color: #24292f;}.markdown-body .footnotes .data-footnote-backref g-emoji { font-family: monospace;}.markdown-body [hidden] { display: none !important;}.markdown-body ::-webkit-calendar-picker-indicator { filter: invert(50%);}.markdown-body .token.tag .attr-value { color: #032f62;}.markdown-body .token.property,.markdown-body .token.tag,.markdown-body .token.boolean,.markdown-body .token.number,.markdown-body .token.function-name,.markdown-body .token.constant,.markdown-body .token.symbol,.markdown-body .token.deleted { color: #0060c9;}.markdown-body .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] { color: black;}.markdown-body code[class*="language-"] .token.selector,.markdown-body code[class*="language-"] .token.attr-name,.markdown-body code[class*="language-"] .token.string,.markdown-body code[class*="language-"] .token.char,.markdown-body code[class*="language-"] .token.function,.markdown-body code[class*="language-"] .token.builtin { color: #6f42c1;}.markdown-body code[class*="language-"] .token.inserted { color: #22863a; background-color: #f0fff4;}.markdown-body code[class*="language-"] .token.deleted { color: #b31d28; background-color: #ffeef0;}.markdown-body code[class*="language-"] .token.class-name { color: #6f42c1;}.markdown-body code[class*="language-"] .code-block { color: #032f62;}.markdown-body code[class*="language-"] .token.comment,.markdown-body code[class*="language-"] .token.block-comment,.markdown-body code[class*="language-"] .token.prolog,.markdown-body code[class*="language-"] .token.doctype,.markdown-body code[class*="language-"] .token.cdata { color: #7D8B99;}.markdown-body code[class*="language-"] .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] .token.operator,.markdown-body code[class*="language-"] .token.entity,.markdown-body code[class*="language-"] .token.url,.markdown-body code[class*="language-"] .token.variable { color: #d73a49; background: rgba(255, 255, 255, 0.5);}.markdown-body code[class*="language-"] .token.atrule,.markdown-body code[class*="language-"] .token.attr-value { color: #004698;}.markdown-body code[class*="language-"] .token.keyword { color: #d63200;}.markdown-body code[class*="language-"] .token.regex,.markdown-body code[class*="language-"] .token.important { color: #e90;}.markdown-body code[class*="language-"] .token.string { color: #0a53c1;}</style>
+    <style>.header {
+position: fixed;
+width: 100%;
+background: #fff;
+backdrop-filter: saturate(180%) blur(0.4rem);
+background-color: rgba(255,255,255,0.55);
+border-bottom: 1px solid #00000014;
+z-index: 99;
+top: 0;
+}
+.header .inner {
+max-width: 960px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+padding: 5px 0;
+}
+.header .logo {
+margin-right: 10px;
+}
+.header .title {
+display: flex;
+align-items: center;
+font-size: 16px;
+font-weight: bold;
+color: #333;
+}
+.header .logo img {
+height: 26px;
+display: block;
+}
+.markdown-body {
+margin-top: 78px;
+}
+.footer {
+max-width: 960px;
+margin: 0 auto;
+text-align: center;
+padding: 0 0 110px 0;
+border-top: 1px solid hsla(210,18%,87%,1);
+padding-top: 18px;
+}
+.footer a {
+font-size: 14px;
+text-decoration: initial;
+color: #3f51b5;
+}
+.footer a:hover {
+color:#009688;
+text-decoration: underline;
+}
+.footer a + a {
+margin-left: 10px;
+}
+.footer .copyright {
+color: #596068;
+font-size: 14px;
+padding-top: 5px;
+}</style>
+  </head>
+  <body id="totop">
+    <header class="header">
+      <article class="inner"><a class="logo" href="../index.html"><img src="data:image/png;base64,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" alt="handbook logo"></a>
+        <div class="title">handbook</div>
+        <nav class="nav"></nav>
+      </article>
+    </header><a aria-label="View source on GitHub" target="__blank" class="github-corner" href="https://github.com/jaywcjlove/handbook.git"><svg width="54" height="54" viewBox="0 0 250 250" aria-hidden="true" style="fill: rgb(32, 34, 37); color: rgb(255, 255, 255); position: fixed; z-index: 99999; border: 0px; top: 0px; right: 0px;">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path style="transform-origin: 130px 106px;" class="octo-arm" fill="currentColor" d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"></path>
+        <path class="octo-body" fill="currentColor" d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"></path>
+      </svg></a>
+    <div class="markdown-body">
+      <h1 id="其它命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#其它命令"><span class="octicon octicon-link"></span></a>其它命令</h1>
+      <p><code>sudo chmod 755 -R node</code> 修改目录权限<br><code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br><code>ps -ef | grep websocket</code> 查看websocket进程<br><code>ps aux | grep mysql</code> 查看mysql进程<br><code>sudo kill 443</code> 杀掉进程</p>
+      <h1 id="给目录权限"><a class="anchor" aria-hidden="true" tabindex="-1" href="#给目录权限"><span class="octicon octicon-link"></span></a>给目录权限</h1>
+      <p><code>sudo chmod -R 777 目录</code></p>
+      <h1 id="搜索"><a class="anchor" aria-hidden="true" tabindex="-1" href="#搜索"><span class="octicon octicon-link"></span></a>搜索</h1>
+      <p><code>find path -option [-print] [-exec -ok command] { }\;</code></p>
+      <ul>
+        <li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
+        <li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
+        <li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>'command' { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
+        <li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
+      </ul>
+      <pre class="language-bash"><code class="language-bash">$ <span class="token function">find</span> ~ -name <span class="token string">"*.txt"</span>  -print   <span class="token comment">#在$HOME中查.txt文件并显示</span>
+$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">"*.txt"</span>  -print
+$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">"[A-Z]*"</span> -print   <span class="token comment">#查以大写字母开头的文件</span>
+$ <span class="token function">find</span> /etc -name <span class="token string">"host*"</span>  -print  <span class="token comment">#查以host开头的文件</span>
+<span class="token comment"># 查以两个小写字母和两个数字开头的txt文件</span>
+$ <span class="token function">find</span> <span class="token builtin class-name">.</span>   -name   <span class="token string">"[a-z][a-z][0–9][0–9].txt"</span> -print   
+$ ind <span class="token builtin class-name">.</span> -perm   <span class="token number">755</span>   -print
+$ ind <span class="token builtin class-name">.</span> -perm -007   -exec <span class="token function">ls</span> -l <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>   <span class="token comment">#查所有用户都可读写执行的文件同-perm 777</span>
+$ ind <span class="token builtin class-name">.</span> -type d   -print
+$ ind <span class="token builtin class-name">.</span> <span class="token operator">!</span>  -type d   -print 
+$ ind <span class="token builtin class-name">.</span> -type l   -print
+</code></pre>
+      <h1 id="ls"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ls"><span class="octicon octicon-link"></span></a>ls</h1>
+      <blockquote>
+        <p>类似于dos下的dir命令</p>
+      </blockquote>
+      <p>ls最常用的参数有三个： -a -l -F。</p>
+      <p>ls –a</p>
+      <p>
+        Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -
+        a除了显示一般文件名外，连隐藏文件也会显示出来。
+        ls –l
+        该参数显示更详细的文件信息。
+        ls –F
+        使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。
+      </p>
+      <h1 id="cd"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cd"><span class="octicon octicon-link"></span></a>cd</h1>
+      <blockquote>
+        <p>用于切换用户当前工作目录</p>
+      </blockquote>
+      <p>
+        cd aaa 进入aaa目录
+        cd 命令后不指定目录，会切换到当前用户的home 目录
+        cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录
+        cd - 命令后跟一个减号，则会退回到切换前的目录
+        cd .. 返回到当前目录下的上一级目录
+      </p>
+      <h1 id="pwd"><a class="anchor" aria-hidden="true" tabindex="-1" href="#pwd"><span class="octicon octicon-link"></span></a>pwd</h1>
+      <blockquote>
+        <p>用于显示用户当前工作目录</p>
+      </blockquote>
+      <h1 id="mkdir-和-rmdir"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mkdir-和-rmdir"><span class="octicon octicon-link"></span></a>mkdir 和 rmdir</h1>
+      <blockquote>
+        <p>midir:创建目录 / rmdir:删除目录</p>
+      </blockquote>
+      <p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
+      <p>如下：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> -p <span class="token number">1</span>/2/3
+<span class="token function">rmdir</span> -p <span class="token number">1</span>/2/3 
+</code></pre>
+      <h2 id="mkdir循环创建目录"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mkdir循环创建目录"><span class="octicon octicon-link"></span></a>mkdir循环创建目录</h2>
+      <p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory">How do I make multiple directories at once in a directory?</a></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token keyword">for</span> <span class="token for-or-select variable">char</span> <span class="token keyword">in</span> <span class="token punctuation">{</span>A<span class="token punctuation">..</span>Z<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token function">mkdir</span> <span class="token variable">$char</span>
+<span class="token keyword">done</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">num</span> <span class="token keyword">in</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token function">mkdir</span> <span class="token variable">$num</span>
+<span class="token keyword">done</span>
+</code></pre>
+      <h1 id="cp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cp"><span class="octicon octicon-link"></span></a>cp</h1>
+      <blockquote>
+        <p>复制命令</p>
+      </blockquote>
+      <ul>
+        <li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
+        <li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
+        <li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
+        <li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
+      </ul>
+      <h1 id="mv"><a class="anchor" aria-hidden="true" tabindex="-1" href="#mv"><span class="octicon octicon-link"></span></a>mv</h1>
+      <blockquote>
+        <p>移动命令</p>
+      </blockquote>
+      <p>
+        将一个文件移动到另一个目录：mv 1.txt ../test1
+        将一个文件在本目录改名：mv 1.txt 2.txt
+        将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt
+      </p>
+      <h1 id="rm命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rm命令"><span class="octicon octicon-link"></span></a>rm命令</h1>
+      <blockquote>
+        <p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
+      </blockquote>
+      <ol>
+        <li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
+        <li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
+        <li>–f：和-i参数相反，-f表示强制删除</li>
+      </ol>
+      <h1 id="find"><a class="anchor" aria-hidden="true" tabindex="-1" href="#find"><span class="octicon octicon-link"></span></a>find</h1>
+      <blockquote>
+        <p>find 查找目录和文件</p>
+      </blockquote>
+      <pre class="language-bash"><code class="language-bash">-name   filename   <span class="token comment">#查找名为filename的文件</span>
+-perm              <span class="token comment">#按执行权限来查找</span>
+-user    username  <span class="token comment">#按文件属主来查找</span>
+-group groupname   <span class="token comment">#按组来查找</span>
+-mtime   -n +n     <span class="token comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span>
+-atime    -n +n    <span class="token comment">#按文件访问时间来查GIN: 0px"></span>
+
+-ctime    -n +n    <span class="token comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span>
+
+-nogroup           <span class="token comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span>
+-nouser            <span class="token comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span>
+-newer   f1 <span class="token operator">!</span>f2    <span class="token comment">#找文件，-n指n天以内，+n指n天以前 </span>
+-ctime    -n +n    <span class="token comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span>
+-nogroup           <span class="token comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span>
+-nouser            <span class="token comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span>
+-newer   f1 <span class="token operator">!</span>f2    <span class="token comment">#查更改时间比f1新但比f2旧的文件</span>
+-type    b/d/c/p   <span class="token comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span>
+-size      n<span class="token punctuation">[</span>c<span class="token punctuation">]</span>    <span class="token comment">#查长度为n块[或n字节]的文件</span>
+-depth             <span class="token comment">#使查找在进入子目录前先行查找完本目录</span>
+-fstype            <span class="token comment">#查更改时间比f1新但比f2旧的文件</span>
+-type    b/d/c/p   <span class="token comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span>
+-size      n<span class="token punctuation">[</span>c<span class="token punctuation">]</span>    <span class="token comment">#查长度为n块[或n字节]的文件</span>
+-depth             <span class="token comment">#使查找在进入子目录前先行查找完本目录</span>
+-fstype            <span class="token comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span>
+-mount             <span class="token comment">#查文件时不跨越文件系统mount点</span>
+-follow            <span class="token comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span>
+-cpio %<span class="token punctuation">;</span>           <span class="token comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span>
+-mount             <span class="token comment">#查文件时不跨越文件系统mount点</span>
+-follow            <span class="token comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span>
+-cpio              <span class="token comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span>
+-prune             <span class="token comment">#忽略某个目录</span>
+</code></pre>
+      <p>例子：</p>
+      <ul>
+        <li>~ 代表的是$home目录，</li>
+      </ul>
+      <pre class="language-bash"><code class="language-bash">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">'*.DS_Store'</span> -type f -delete <span class="token comment"># 删除所有.DS_Store文件</span>
+$ <span class="token function">find</span> ~ -name <span class="token string">"*.txt"</span> -print       <span class="token comment"># 在$HOME中查.txt文件并显示</span>
+$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size +1000000c -print     <span class="token comment"># 查长度大于1Mb的文件</span>
+$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size 100c -print          <span class="token comment"># 查长度为100c的文件</span>
+$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size +10 -print           <span class="token comment"># 查长度超过期作废10块的文件（1块=512字节）</span>
+$ <span class="token function">find</span> -name april*                 <span class="token comment"># 在当前目录下查找以april开始的文件</span>
+$ <span class="token function">find</span> -name april* fprint <span class="token function">file</span>     <span class="token comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span>
+$ <span class="token function">find</span> -name ap* -o -name may*          <span class="token comment"># 查找以ap或may开头的文件</span>
+$ <span class="token function">find</span> /mnt -name tom.txt -ftype vfat   <span class="token comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span>
+$ <span class="token function">find</span> /mnt -name t.txt <span class="token operator">!</span> -ftype vfat   <span class="token comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span>
+$ <span class="token function">find</span> /tmp -name wa* -type l           <span class="token comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span>
+$ <span class="token function">find</span> ~ -mtime -2                  <span class="token comment"># 在/home下查最近两天内改动过的文件</span>
+$ <span class="token function">find</span> ~ -atime -1                  <span class="token comment"># 查1天之内被存取过的文件</span>
+$ <span class="token function">find</span> ~ -mmin +60                  <span class="token comment"># 在/home下查60分钟前改动过的文件</span>
+$ <span class="token function">find</span> ~ -amin +30                  <span class="token comment"># 查最近30分钟前被存取过的文件</span>
+$ <span class="token function">find</span> ~ -newer tmp.txt             <span class="token comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span>
+$ <span class="token function">find</span> ~ -anewer tmp.txt            <span class="token comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span>
+$ <span class="token function">find</span> ~ -used -2                   <span class="token comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span>
+$ <span class="token function">find</span> ~ -user cnscn                <span class="token comment"># 列出/home目录内属于用户cnscn的文件或目录</span>
+$ <span class="token function">find</span> ~ -uid +501                  <span class="token comment"># 列出/home目录内用户的识别码大于501的文件或目录</span>
+$ <span class="token function">find</span> ~ -group cnscn               <span class="token comment"># 列出/home内组为cnscn的文件或目录</span>
+$ <span class="token function">find</span> ~ -gid <span class="token number">501</span>                   <span class="token comment"># 列出/home内组id为501的文件或目录</span>
+$ <span class="token function">find</span> ~ -nouser                    <span class="token comment"># 列出/home内不属于本地用户的文件或目录</span>
+$ <span class="token function">find</span> ~ -nogroup                   <span class="token comment"># 列出/home内不属于本地组的文件或目录</span>
+$ <span class="token function">find</span> ~ -name tmp.txt -maxdepth <span class="token number">4</span>  <span class="token comment"># 列出/home内的tmp.txt 查时深度最多为3层</span>
+$ <span class="token function">find</span> ~ -name tmp.txt -mindepth <span class="token number">3</span>  <span class="token comment"># 从第2层开始查</span>
+$ <span class="token function">find</span> ~ -empty                     <span class="token comment"># 查找大小为0的文件或空目录</span>
+$ <span class="token function">find</span> ~ -size   +512k              <span class="token comment"># 查大于512k的文件</span>
+$ <span class="token function">find</span> ~ -size   -512k              <span class="token comment"># 查小于512k的文件</span>
+$ <span class="token function">find</span> ~ -links   +2                <span class="token comment"># 查硬连接数大于2的文件或目录</span>
+$ <span class="token function">find</span> ~ -perm 0700                 <span class="token comment"># 查权限为700的文件或目录</span>
+$ <span class="token function">find</span> ~ -perm <span class="token number">755</span> -print <span class="token operator">|</span> <span class="token function">more</span>    <span class="token comment"># 查找权限为755的文件</span>
+$ <span class="token function">find</span> /tmp -name tmp.txt -exec <span class="token function">cat</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+$ <span class="token function">find</span> /tmp -name tmp.txt ok <span class="token function">rm</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+
+$ <span class="token function">find</span> / -amin    -10      <span class="token comment"># 查找在系统中最后10分钟访问的文件</span>
+$ <span class="token function">find</span> / -atime   -2       <span class="token comment"># 查找在系统中最后48小时访问的文件</span>
+$ <span class="token function">find</span> / -empty            <span class="token comment"># 查找在系统中为空的文件或者文件夹</span>
+$ <span class="token function">find</span> / -group   <span class="token function">cat</span>      <span class="token comment"># 查找在系统中属于 groupcat的文件</span>
+$ <span class="token function">find</span> / -mmin   -5        <span class="token comment"># 查找在系统中最后5分钟里修改过的文件</span>
+$ <span class="token function">find</span> / -mtime   -1       <span class="token comment"># 查找在系统中最后24小时里修改过的文件</span>
+$ <span class="token function">find</span> / -nouser           <span class="token comment"># 查找在系统中属于作废用户的文件</span>
+$ <span class="token function">find</span> / -user    fred     <span class="token comment"># 查找在系统中属于FRED这个用户的文件</span>
+</code></pre>
+      <h1 id="dudf命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#dudf命令"><span class="octicon octicon-link"></span></a>du、df命令</h1>
+      <blockquote>
+        <p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
+      </blockquote>
+      <p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
+      <ol>
+        <li><code>du -hs</code> 指定目录 查看指定目录的总大小</li>
+        <li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
+      </ol>
+      <p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
+      <h1 id="cat命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#cat命令"><span class="octicon octicon-link"></span></a>cat命令</h1>
+      <blockquote>
+        <p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
+      </blockquote>
+      <ol>
+        <li><code>cat file1</code> 显示file1文件内容</li>
+        <li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
+        <li><code>cat file1 file2 > file3</code> 把file1, file2的内容结合起来，再“重定向（>）”到file3文件中。</li>
+        <li><code>></code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用">>"重定向符。</li>
+      </ol>
+      <p>如果">"左边没有指定文件，如： cat >file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
+      <h1 id="echo命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#echo命令"><span class="octicon octicon-link"></span></a>echo命令</h1>
+      <blockquote>
+        <p>
+          echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。
+          语法：echo [-ne][字符串]
+          功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。
+        </p>
+      </blockquote>
+      <p>参数：</p>
+      <ul>
+        <li><code>-n</code> 显示字串时在最后自动换行</li>
+        <li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
+        <li><code>/a</code> 发出警告声；</li>
+        <li><code>/b</code> 删除前一个字符；</li>
+        <li><code>/c</code> 最后不加上换行符号；</li>
+        <li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
+        <li><code>/n</code> 换行且光标移至行首；</li>
+        <li><code>/r</code> 光标移至行首，但不换行；</li>
+        <li><code>/t</code> 插入tab；</li>
+        <li><code>/v</code> 与/f相同；</li>
+        <li><code>//</code> 插入/字符；</li>
+        <li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
+      </ul>
+      <p>示例：</p>
+      <pre class="language-bash"><code class="language-bash">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> <span class="token string">"123"</span> <span class="token string">"456"</span>
+<span class="token number">123</span> <span class="token number">456</span>
+kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> <span class="token string">"123/n456"</span>
+<span class="token number">123</span>/n456
+kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123/n456"</span>
+<span class="token number">123</span>
+<span class="token number">456</span>
+kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -E <span class="token string">"123/n456"</span>
+<span class="token number">123</span>/n456
+kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -E <span class="token string">"123///456"</span>
+<span class="token number">123</span>//456
+kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123///456"</span>
+<span class="token number">123</span>/456
+kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123/100456"</span>
+<span class="token number">123</span>@456
+</code></pre>
+      <p>
+        注意事项：
+        在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：
+        Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)
+      </p>
+      <p>示例如下：</p>
+      <pre><code>kenny@jstest:~> echo "`TEST`"
+-bash: TEST: command not found
+kenny@jstest:~> echo '`TEST`'
+`TEST`
+kenny@jstest:~> echo "$TEST"
+        
+kenny@jstest:~> echo '$TEST'
+$TEST
+kenny@jstest:~> echo "//TEST"
+/TEST
+kenny@jstest:~> echo '//TEST'
+//TEST
+kenny@jstest:~> echo "Hello!"
+echo "Hello"
+Hello
+kenny@jstest:~> echo 'Hello!'
+Hello!
+</code></pre>
+      <h1 id="morelessclear"><a class="anchor" aria-hidden="true" tabindex="-1" href="#morelessclear"><span class="octicon octicon-link"></span></a>more，less，clear</h1>
+      <blockquote>
+        <p>more，less命令</p>
+      </blockquote>
+      <pre><code>这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。
+</code></pre>
+      <p>less的常用动作命令：</p>
+      <ul>
+        <li>回车键 向下移动一行；</li>
+        <li><code>y</code> 向上移动一行；</li>
+        <li>空格键 向下滚动一屏；</li>
+        <li><code>b</code> 向上滚动一屏；</li>
+        <li><code>d</code> 向下滚动半屏；</li>
+        <li><code>h</code> less的帮助；</li>
+        <li><code>u</code> 向上洋动半屏；</li>
+        <li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
+        <li><code>g</code> 跳到第一行；</li>
+        <li><code>G</code> 跳到最后一行；</li>
+        <li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
+        <li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
+        <li><code>v</code> 调用vi编辑器；</li>
+        <li><code>q</code> 退出less</li>
+        <li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
+        <li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
+      </ul>
+      <h1 id="headtail"><a class="anchor" aria-hidden="true" tabindex="-1" href="#headtail"><span class="octicon octicon-link"></span></a>head，tail</h1>
+      <ul>
+        <li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
+        <li>tail -f命令可以实时查看文件新增内容。</li>
+      </ul>
+      <h1 id="wc命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#wc命令"><span class="octicon octicon-link"></span></a>wc命令</h1>
+      <p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
+      <ul>
+        <li>-l 统计行数</li>
+        <li>-w 统计字数</li>
+        <li>-c 统计字节数</li>
+      </ul>
+      <p>
+        这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。
+        行数、字数、字节数、文件名
+        如果命令行中没有文件名，则输出中不出现文件名。
+      </p>
+      <p>例如：</p>
+      <pre class="language-bash"><code class="language-bash">oracle@hjtest:~<span class="token operator">></span> <span class="token function">wc</span> <span class="token number">1</span>.txt <span class="token number">2</span>.txt
+  <span class="token number">460</span>  <span class="token number">1679</span> <span class="token number">16353</span> <span class="token number">1</span>.txt
+  <span class="token number">300</span>  <span class="token number">1095</span> <span class="token number">10665</span> <span class="token number">2</span>.txt
+  <span class="token number">760</span>  <span class="token number">2774</span> <span class="token number">27018</span> 总用量
+oracle@hjtest:~<span class="token operator">></span> <span class="token function">wc</span> -l <span class="token number">1</span>.txt
+<span class="token number">460</span> <span class="token number">1</span>.txt
+</code></pre>
+      <p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
+      <h1 id="grep-命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#grep-命令"><span class="octicon octicon-link"></span></a>grep 命令</h1>
+      <blockquote>
+        <p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
+      </blockquote>
+      <p>
+        grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。
+        示例：
+      </p>
+      <pre><code>$ ls -l | grep '^a'
+通过管道过滤ls -l输出的内容，只显示以a开头的行。
+$ grep 'test' d*
+显示所有以d开头的文件中包含test的行。
+$ grep 'test' aa bb cc
+显示在aa，bb，cc文件中匹配test的行。
+$ grep '[a-z]/{5/}' aa
+显示所有包含每个字符串至少有5个连续小写字符的字符串的行。
+$ grep 'w/(es/)t.*/1' aa
+如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用"/"号进行转义，直接写成'w(es)t.*/1'就可以了。
+</code></pre>
+      <h1 id="manlogout命令"><a class="anchor" aria-hidden="true" tabindex="-1" href="#manlogout命令"><span class="octicon octicon-link"></span></a>man，logout命令</h1>
+      <blockquote>
+        <p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
+      </blockquote>
+      <blockquote>
+        <p>logout命令，该命令用于退出系统，与login命令对应。</p>
+      </blockquote>
+      <h1 id="管道和xargs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#管道和xargs"><span class="octicon octicon-link"></span></a>管道和xargs</h1>
+      <h2 id="管道"><a class="anchor" aria-hidden="true" tabindex="-1" href="#管道"><span class="octicon octicon-link"></span></a>管道</h2>
+      <p>
+        利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。
+        注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道
+        例子：ls | grep a 查看当前目录下名称包含a的文件或文件夹
+      </p>
+      <h2 id="xargs"><a class="anchor" aria-hidden="true" tabindex="-1" href="#xargs"><span class="octicon octicon-link"></span></a>xargs</h2>
+      <p>
+        大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。
+        注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去
+      </p>
+      <p>例子：</p>
+      <ol>
+        <li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
+      </ol>
+      <pre><code>$ find / -name "core" -print | xargs echo "" >/tmp/core.log
+</code></pre>
+      <ol start="2">
+        <li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
+      </ol>
+      <pre><code>$ls | xargs rm
+</code></pre>
+      <h1 id="basename-和-dirname"><a class="anchor" aria-hidden="true" tabindex="-1" href="#basename-和-dirname"><span class="octicon octicon-link"></span></a>basename 和 dirname</h1>
+      <p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
+      <pre><code>> basename /home/hj/1.txt
+1.txt
+> dirname  /home/hj/1.txt
+/home/hj
+> basename 1.txt
+1.txt
+> dirname 1.txt
+.
+</code></pre>
+    </div>
+    <div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/CentOS/常用基础命令.md" href="https://github.com/jaywcjlove/handbook/edit/master/CentOS/常用基础命令.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a>
+      <div class="copyright">Copyright © 2021. All rights reserved.</div>
+    </div>
+  </body>
+</html>

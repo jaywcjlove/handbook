@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{530:function(n,o){n.exports="\x3c!--\ntitle: 工具\n--\x3e\n\n工具页面"}}]);

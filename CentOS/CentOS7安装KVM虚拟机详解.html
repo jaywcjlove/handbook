@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      CentOS7安装KVM虚拟机详解---
+      ![](img/kvmbanner-logo3.png)
+      基于 CentOS Linux release 7.2.1511 (Core) 的环境下命令行的方式安装KVM的详细过程。
+      目录
+      - handbook
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="放置我的笔记、搜集、摘录、实践，保持好奇心。看文需谨慎，后果很严重。CentOS7安装KVM虚拟机详解---
+
+![](img/kvmbanner-logo3.png)
+
+基于 CentOS Linux release 7.2.1511 (Core) 的环境下命令行的方式安装KVM的详细过程。
+
+目录
+ - handbook">
+    <meta keywords="example,handbook">
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+    <style>body { margin: 0; }.markdown-body { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; max-width: 960px; margin: 28px auto 60px auto; padding: 8px; color: #24292f; background-color: #ffffff; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word;}.markdown-body .octicon { display: inline-block; fill: currentColor; vertical-align: text-bottom;}.markdown-body .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block;}.markdown-body .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer;}.markdown-body .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important;}.markdown-body details.octicon-video:not([open])>*:not(summary) { display: none !important;}.markdown-body details.octicon-video:not([open]) > summary { border-bottom: 0 !important;}.markdown-body .octicon-video summary > svg + span { margin: 4px !important;}.markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body h3:hover .anchor .octicon-link:before,.markdown-body h4:hover .anchor .octicon-link:before,.markdown-body h5:hover .anchor .octicon-link:before,.markdown-body h6:hover .anchor .octicon-link:before { width: 16px; height: 16px; content: ' '; display: inline-block; background-color: currentColor; -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>"); mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");}.markdown-body details,.markdown-body figcaption,.markdown-body figure { display: block;}.markdown-body summary { display: list-item;}.markdown-body a { background-color: transparent; color: #0969da; text-decoration: none;}.markdown-body a:active,.markdown-body a:hover { outline-width: 0;}.markdown-body abbr[title] { border-bottom: none; -webkit-text-decoration: underline dotted; text-decoration: underline dotted;}.markdown-body b,.markdown-body strong { font-weight: 600;}.markdown-body dfn { font-style: italic;}.markdown-body h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body mark { background-color: #ff0; color: #24292f;}.markdown-body small { font-size: 90%;}.markdown-body sub,.markdown-body sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}.markdown-body sub { bottom: -0.25em;}.markdown-body sup { top: -0.5em;}.markdown-body img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: #ffffff;}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp { font-family: monospace,monospace; font-size: 1em;}.markdown-body figure { margin: 1em 40px;}.markdown-body hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid hsla(210,18%,87%,1); height: .25em; padding: 0; margin: 24px 0; background-color: #d0d7de; border: 0;}.markdown-body html [type=button],.markdown-body [type=reset],.markdown-body [type=submit] { -webkit-appearance: button;}.markdown-body [type=button]::-moz-focus-inner,.markdown-body [type=reset]::-moz-focus-inner,.markdown-body [type=submit]::-moz-focus-inner { border-style: none; padding: 0;}.markdown-body [type=button]:-moz-focusring,.markdown-body [type=reset]:-moz-focusring,.markdown-body [type=submit]:-moz-focusring { outline: 1px dotted ButtonText;}.markdown-body [type=checkbox],.markdown-body [type=radio] { box-sizing: border-box; padding: 0;}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button { height: auto;}.markdown-body [type=search] { -webkit-appearance: textfield; outline-offset: -2px;}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration { -webkit-appearance: none;}.markdown-body ::-webkit-input-placeholder { color: inherit; opacity: .54;}.markdown-body ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit;}.markdown-body a:hover { text-decoration: underline;}.markdown-body hr::before { display: table; content: "";}.markdown-body hr::after { display: table; clear: both; content: "";}.markdown-body table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto;}.markdown-body td,.markdown-body th { padding: 0;}.markdown-body details summary { cursor: pointer;}.markdown-body details:not([open])>*:not(summary) { display: none !important;}.markdown-body kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: #24292f; vertical-align: middle; background-color: #f6f8fa; border: solid 1px rgba(175,184,193,0.2); border-bottom-color: rgba(175,184,193,0.2); border-radius: 6px; box-shadow: inset 0 -1px 0 rgba(175,184,193,0.2);}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;}.markdown-body h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body h3 { font-weight: 600; font-size: 1.25em;}.markdown-body h4 { font-weight: 600; font-size: 1em;}.markdown-body h5 { font-weight: 600; font-size: .875em;}.markdown-body h6 { font-weight: 600; font-size: .85em; color: #57606a;}.markdown-body p { margin-top: 0; margin-bottom: 10px;}.markdown-body blockquote { margin: 0; padding: 0 1em; color: #57606a; border-left: .25em solid #d0d7de;}.markdown-body ul,.markdown-body ol { margin-top: 0; margin-bottom: 0; padding-left: 2em;}.markdown-body ol ol,.markdown-body ul ol { list-style-type: lower-roman;}.markdown-body ul ul ol,.markdown-body ul ol ol,.markdown-body ol ul ol,.markdown-body ol ol ol { list-style-type: lower-alpha;}.markdown-body dd { margin-left: 0;}.markdown-body tt,.markdown-body code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px;}.markdown-body pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; word-wrap: normal;}.markdown-body :-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::placeholder { color: #6e7781; opacity: 1;}.markdown-body .pl-c { color: #6e7781;}.markdown-body .pl-c1,.markdown-body .pl-s .pl-v { color: #0550ae;}.markdown-body .pl-e,.markdown-body .pl-en { color: #8250df;}.markdown-body .pl-smi,.markdown-body .pl-s .pl-s1 { color: #24292f;}.markdown-body .pl-ent { color: #116329;}.markdown-body .pl-k { color: #cf222e;}.markdown-body .pl-s,.markdown-body .pl-pds,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-sr .pl-sra { color: #0a3069;}.markdown-body .pl-v,.markdown-body .pl-smw { color: #953800;}.markdown-body .pl-bu { color: #82071e;}.markdown-body .pl-ii { color: #f6f8fa; background-color: #82071e;}.markdown-body .pl-c2 { color: #f6f8fa; background-color: #cf222e;}.markdown-body .pl-sr .pl-cce { font-weight: bold; color: #116329;}.markdown-body .pl-ml { color: #3b2300;}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms { font-weight: bold; color: #0550ae;}.markdown-body .pl-mi { font-style: italic; color: #24292f;}.markdown-body .pl-mb { font-weight: bold; color: #24292f;}.markdown-body .pl-md { color: #82071e; background-color: #FFEBE9;}.markdown-body .pl-mi1 { color: #116329; background-color: #dafbe1;}.markdown-body .pl-mc { color: #953800; background-color: #ffd8b5;}.markdown-body .pl-mi2 { color: #eaeef2; background-color: #0550ae;}.markdown-body .pl-mdr { font-weight: bold; color: #8250df;}.markdown-body .pl-ba { color: #57606a;}.markdown-body .pl-sg { color: #8c959f;}.markdown-body .pl-corl { text-decoration: underline; color: #0a3069;}.markdown-body [data-catalyst] { display: block;}.markdown-body g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em;}.markdown-body g-emoji img { width: 1em; height: 1em;}.markdown-body::before { display: table; content: "";}.markdown-body::after { display: table; clear: both; content: "";}.markdown-body>*:first-child { margin-top: 0 !important;}.markdown-body>*:last-child { margin-bottom: 0 !important;}.markdown-body a:not([href]) { color: inherit; text-decoration: none;}.markdown-body .absent { color: #cf222e;}.markdown-body .anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1;}.markdown-body .anchor:focus { outline: none;}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details { margin-top: 0; margin-bottom: 16px;}.markdown-body blockquote>:first-child { margin-top: 0;}.markdown-body blockquote>:last-child { margin-bottom: 0;}.markdown-body sup>a::before { content: "[";}.markdown-body sup>a::after { content: "]";}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link { color: #24292f; vertical-align: middle; visibility: hidden;}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor { text-decoration: none;}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link { visibility: visible;}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code { padding: 0 .2em; font-size: inherit;}.markdown-body ul.no-list,.markdown-body ol.no-list { padding: 0; list-style-type: none;}.markdown-body ol[type="1"] { list-style-type: decimal;}.markdown-body ol[type=a] { list-style-type: lower-alpha;}.markdown-body ol[type=i] { list-style-type: lower-roman;}.markdown-body div>ol:not([type]) { list-style-type: decimal;}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul { margin-top: 0; margin-bottom: 0;}.markdown-body li>p { margin-top: 16px;}.markdown-body li+li { margin-top: .25em;}.markdown-body dl { padding: 0;}.markdown-body dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600;}.markdown-body dl dd { padding: 0 16px; margin-bottom: 16px;}.markdown-body table th { font-weight: 600;}.markdown-body table th,.markdown-body table td { padding: 6px 13px; border: 1px solid #d0d7de;}.markdown-body table tr { background-color: #ffffff; border-top: 1px solid hsla(210,18%,87%,1);}.markdown-body table tr:nth-child(2n) { background-color: #f6f8fa;}.markdown-body table img { background-color: transparent;}.markdown-body img[align=right] { padding-left: 20px;}.markdown-body img[align=left] { padding-right: 20px;}.markdown-body .emoji { max-width: none; vertical-align: text-top; background-color: transparent;}.markdown-body span.frame { display: block; overflow: hidden;}.markdown-body span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid #d0d7de;}.markdown-body span.frame span img { display: block; float: left;}.markdown-body span.frame span span { display: block; padding: 5px 0 0; clear: both; color: #24292f;}.markdown-body span.align-center { display: block; overflow: hidden; clear: both;}.markdown-body span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center;}.markdown-body span.align-center span img { margin: 0 auto; text-align: center;}.markdown-body span.align-right { display: block; overflow: hidden; clear: both;}.markdown-body span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right;}.markdown-body span.align-right span img { margin: 0; text-align: right;}.markdown-body span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden;}.markdown-body span.float-left span { margin: 13px 0 0;}.markdown-body span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden;}.markdown-body span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right;}.markdown-body code,.markdown-body tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: rgba(175,184,193,0.2); border-radius: 6px;}.markdown-body code br,.markdown-body tt br { display: none;}.markdown-body del code { text-decoration: inherit;}.markdown-body pre code { font-size: 100%;}.markdown-body pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0;}.markdown-body .highlight { margin-bottom: 16px;}.markdown-body .highlight pre { margin-bottom: 0; word-break: normal;}.markdown-body .highlight pre,.markdown-body pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: #f6f8fa; border-radius: 6px;}.markdown-body pre code,.markdown-body pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0;}.markdown-body .csv-data td,.markdown-body .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap;}.markdown-body .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: #ffffff; border: 0;}.markdown-body .csv-data tr { border-top: 0;}.markdown-body .csv-data th { font-weight: 600; background: #f6f8fa; border-top: 0;}.markdown-body .footnotes { font-size: 12px; color: #57606a; border-top: 1px solid #d0d7de;}.markdown-body .footnotes ol { padding-left: 16px;}.markdown-body .footnotes li { position: relative;}.markdown-body .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid #0969da; border-radius: 6px;}.markdown-body .footnotes li:target { color: #24292f;}.markdown-body .footnotes .data-footnote-backref g-emoji { font-family: monospace;}.markdown-body [hidden] { display: none !important;}.markdown-body ::-webkit-calendar-picker-indicator { filter: invert(50%);}.markdown-body .token.tag .attr-value { color: #032f62;}.markdown-body .token.property,.markdown-body .token.tag,.markdown-body .token.boolean,.markdown-body .token.number,.markdown-body .token.function-name,.markdown-body .token.constant,.markdown-body .token.symbol,.markdown-body .token.deleted { color: #0060c9;}.markdown-body .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] { color: black;}.markdown-body code[class*="language-"] .token.selector,.markdown-body code[class*="language-"] .token.attr-name,.markdown-body code[class*="language-"] .token.string,.markdown-body code[class*="language-"] .token.char,.markdown-body code[class*="language-"] .token.function,.markdown-body code[class*="language-"] .token.builtin { color: #6f42c1;}.markdown-body code[class*="language-"] .token.inserted { color: #22863a; background-color: #f0fff4;}.markdown-body code[class*="language-"] .token.deleted { color: #b31d28; background-color: #ffeef0;}.markdown-body code[class*="language-"] .token.class-name { color: #6f42c1;}.markdown-body code[class*="language-"] .code-block { color: #032f62;}.markdown-body code[class*="language-"] .token.comment,.markdown-body code[class*="language-"] .token.block-comment,.markdown-body code[class*="language-"] .token.prolog,.markdown-body code[class*="language-"] .token.doctype,.markdown-body code[class*="language-"] .token.cdata { color: #7D8B99;}.markdown-body code[class*="language-"] .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] .token.operator,.markdown-body code[class*="language-"] .token.entity,.markdown-body code[class*="language-"] .token.url,.markdown-body code[class*="language-"] .token.variable { color: #d73a49; background: rgba(255, 255, 255, 0.5);}.markdown-body code[class*="language-"] .token.atrule,.markdown-body code[class*="language-"] .token.attr-value { color: #004698;}.markdown-body code[class*="language-"] .token.keyword { color: #d63200;}.markdown-body code[class*="language-"] .token.regex,.markdown-body code[class*="language-"] .token.important { color: #e90;}.markdown-body code[class*="language-"] .token.string { color: #0a53c1;}</style>
+    <style>.header {
+position: fixed;
+width: 100%;
+background: #fff;
+backdrop-filter: saturate(180%) blur(0.4rem);
+background-color: rgba(255,255,255,0.55);
+border-bottom: 1px solid #00000014;
+z-index: 99;
+top: 0;
+}
+.header .inner {
+max-width: 960px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+padding: 5px 0;
+}
+.header .logo {
+margin-right: 10px;
+}
+.header .title {
+display: flex;
+align-items: center;
+font-size: 16px;
+font-weight: bold;
+color: #333;
+}
+.header .logo img {
+height: 26px;
+display: block;
+}
+.markdown-body {
+margin-top: 78px;
+}
+.footer {
+max-width: 960px;
+margin: 0 auto;
+text-align: center;
+padding: 0 0 110px 0;
+border-top: 1px solid hsla(210,18%,87%,1);
+padding-top: 18px;
+}
+.footer a {
+font-size: 14px;
+text-decoration: initial;
+color: #3f51b5;
+}
+.footer a:hover {
+color:#009688;
+text-decoration: underline;
+}
+.footer a + a {
+margin-left: 10px;
+}
+.footer .copyright {
+color: #596068;
+font-size: 14px;
+padding-top: 5px;
+}</style>
+  </head>
+  <body id="totop">
+    <header class="header">
+      <article class="inner"><a class="logo" href="../index.html"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAEIlJREFUeF7tnXtwVNUdx3/n7kIe8sgTNEjLTMeAUrVUKB0U0f6D1ZkKCqhBJKDSdjplHEnW6B8l0hZIQKBaq+KMQDvTOhYfnY5jpU7rg9pp0Y5aSysKA4SEAJJNIJjdkN3TOWuigcnuub97727u2fu9MzuJ7ve8vt/72XPP2XCvIBxwAA6kdUDAGzgAB9I7AEBwdsCBDA4AEJwecACA4ByAA84cwAzizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMgawC0tTU9DgRLRRCVDrrHqtUBxFFiSj1U0rZYVlWRzKZVP+v3bKsViJqi8fjbX19fa2NjY1JVu0BFG/atKlMSlmRSCQqhRAVRFQhpVRZqt9TP6WUJUR0wcBLCDHweyhHlm1PJBI7Hnzwwdez0V7WAGlubpbZ6LCHdbYLIVqllB8JIfZIKfcUFha+s3LlyriHbfi6qrVr16oTf6plWZcR0VQhxGUKAAWDekkpc3WSu/bJsqypdXV1e11XdF4FWQFkw4YNm6WU93nd2RzV94GCxbIsBc0/IpHIezlqN6vNrFu3blIoFLpOSjmjHwQFRC5m9qyOa1DleyKRyLe8biwrgDQ3N6vLmSqvOztM9Z0moreklLuFEO/29fW9+9BDD50cpr7YbnYACCKaLYS4RkpZbbuwoUIhxJX19fUfeNn9bAHi98srxx4KIRJSyn9KKV+TUu5qaGjY7bgyjwtu3LhxbjKZnNsPxAyPqzehuusikcgbXnYUgLh3U31i7VKwPPDAA392Xx2vhqampuuFEDcS0U1EdCmvdN6pAYifI5VSfqJgIaJXe3p6djU2Nsay0d/169fPCoVCN0opFRTfyEYbJtZpWdacurq6N73sO2YQL908ty61Q5aaWWKxmIJFbT+7Opqbm+8honuJyPPFqKuO+aRw3gBSX1/vuaXxeJx6e3tJ/Tz/d/XfPT09FI1Gv3glEgnP+5ChwhNEtFMIsbO+vv4v3IabmpqWWJb1AynlLG5Zrr6goICKioqouLj4nJ+D/9/g35U+V8ezzz5LLS0taZtLJpNzGhoazJ9BsgEIN6Surq5zgFHwHD16NAVSNg8hxG4p5c5wOLzz/vvvV7t9aY/169cvUmAQ0fXZ6FNZWRmNHz8+9brwwgtTP0eOHJmNpjypUwcIEV0biUTe8qSx/kqG5RLLD4CkM/HkyZPU2tpKR44cSf3s7Oz00u/BdXUR0fPJZHJnQ0PDK4Pf2LBhw81SSgXGDV41rk78iRMnpl4mwDDUuAGIV2eDh/UoYNra2lIvNb2rmSYLxx4i+lgIsU9K+V0imum2DQVEVVVV6jVp0iSaMGGC2yqHvbwOEMuyZtfV1Xm67Y4ZhBn74cOH6dChQ3Tw4EFqb29nls6uvKKigqqrq1MwXHzxxRQOh7PbYI5r1wGSTCZne/29FABxEfKxY8dSsAwA46IqV0UnT55MAy9XFfm8sA4QIromEon8zcthABCP3FSXXvv370+91CyT7WNgtpgyZQqVl5dnuzlf1A9AfBGD+04cP36cDhw4kIJFrV28PNR64oorrkjNGEE7dICEQqGrV61a9baXvrieQQp2nKq2pLxKyuQXia058fTqTJ308y6Wl+aquhQgChQFjALH6aFmjOnTp9Pll1/utArjy+kAeX70nGfeL6xOfVEiRfLt8MiC98/UjDrmZuCuACnY3rlREK06vwNrjm/N2KcgATLYCHXpNXAZZnc3LBQK0cyZM2nGjBm+/o7CzUlot6wOkKdLb6aWEePPr25rrLbk+3bbOF/nGJDC7Z1p/2IXgOjj2Lt3L3344YepBX66Q31jvWDBgtT3FjiIHAKSsi5WW+LoXHdUqHBH53MkaWG60ACIvdP57NmztGXLlrRitV1bU1Njr7IAqNwAIokeideW1HFtYgNSsL3za4JI/dVq2gOA2IsBgNjzaUClB2QetYwYl7ZSKazJ8aVj9nFaZQNStCM6X0rxAgDh2Dy0FoDwPNQBsrV0Hh3JAIggUdNTO/Z3nFbZgBRuizaSEBl3qTCD2IsAgNjzye4MogOEpHw4tqy0kdMqAOG45bEWgPAMdTuDABCe38OuBiC8CAAIzy/j1QCEF6EOkKdK51PriAx3MsIlFs/w4VYDEF4CAITnl/FqAMKLEIDw/DJeDUB4EWoBKZtPrWFcYvFc9bEagPDC0QHyZNl8agMgPFP9rAYgvHQACM8v49UAhBehHpBbqC2snsyQ5sAuFs/w4VYDEF4CAITnl/FqAMKLUAfIE2W30FHMIDxT/awGILx0AAjPL+PVAIQXIQDp92vfvn3U3d3Nc8+HanWPqlGjRqXtmReAqNulqpfpx0UXXUTqlenQA3IrHQ1nuMNLvizSAcjnp4mdf1EIQL5E6okyAGLUByVmEPtxeTGD/KrsVmrHDGLf9OFWAhD7CQCQQV7pbvuDSyxcYg2Flm4NghnE/geSL5SYQezH4M0MsoDaw2XpG8Ui3X4guVACEPsuewHI42UL6FhQALFvrX+V6tkcudjmPX1aPcrd7GP06NGut3kDA4jZUdvvvRffg9hvzXylbg0CQMzP+JwRABBeoACE55fxagDCi1AHyC/LFtLxcGn+L9J5tpmrBiC87AAIzy/j1QCEFyEA4fllvBqA8CIEIDy/jFcDEF6EOkAeK1tIJ7AG4ZnqZzUA4aUDQHh+Ga8GILwI9YAsohPhEuxi8Wz1rxqA8LLRAlK+iE6EAAjPVR+rAQgvHADC88t4NQDhRagD5NHyRfQpZhCeqX5WAxBeOgCE55fxagDCixCA8PwyXg1AeBHqAbmNPg2NxS4Wz1b/qgEILxsdIL8ov41OAhCeqX5WAxBeOgCE55fxagDCixCA8PwyXg1AeBECEJ5fxqsBCC9CHSBbym+njtAYLNJ5tvpXDUB42QCQfr/y4WbMaijqTh25uKsJ7zTzr9rtzasDM4Pgzoqfn8S4efW5MGMG6fcDgACQoeY5HSCby2+naBDWIAAEgACQDJfCAASAOAPkDoqGRuf/LhYAASAABDMIebHNiydMfXkibS7HDOLfPcoheoa7u9uPy4u7u28qv4M6g3CJlQ8P8Bw4NbL9PUhQvFJ+6naxAgOI/c8ds5VeXGKZ7QCv93pAaqgzlP6pwpQvD9Dh2WauGoDwsgMgPL+MVwMQXoQ6QB4pr6EuzCA8U/2sBiC8dLSAVNRQl4VLLJ6rPlYDEF44WkAwg/AM9bsagPAS0gKCGYRnqN/VAISXkA6QjRWL6ZR1Qf7/qQnPNnPVAISXHQDh+WW8GoDwIgQgPL+MVwMQXoQAhOeX8WoAwotQB8iGisV0GmsQnql+VgMQXjp6QO6k01YxFuk8W/2rBiC8bAAIzy/j1QCEFyEA4fllvBqA8CIEIDy/jFcDEF6EOkCaK+6kbqxBeKb6WQ1AeOnoAVlC3VYRFuk8W/2rBiC8bAAIzy/j1QCEFyEA4fllvBqA8CLUAdJUsYTO4BKLZ6qf1QCElw4A4fllvBqA8CIEIDy/jFcDEF6EekDuojNWIXaxeLb6Vw1AeNnoAFlfcRd9FgRA8ACdz08cu88H4Z1m/lW7fYBOYADBzat5gOTDB4oXtx4FIP798BuyZ7g3r/3AAMggr+rr6zM6hxkEM8hQJ4huDbKuYin1WAX5v0gHIAAEgGSYQwAIAHEESOVS6hGYQexf2A6zEmsQ+wF4sQZZB0DsG+4HJQCxnwIAYSzSg/JQGC++KAyKV+r00S3S11YupVgQLrHsf+6YrfQCELMd4PVeD0gtxcTI/N/F4tlmrhqA8LIDIDy/jFcDEF6EAITnl/FqAMKLUAfIzytrKY5LLJ6pflYDEF46AITnl/FqAMKLUA/IMoqLEVik82z1rxqA8LIBIDy/jFcDEF6EOkB+VrmMejGD8Ez1sxqA8NIBIDy/jFcDEF6EAITnl/FqAMKLUA/IcuoVYSzSebb6Vw1AeNnoAPlp5XI6C0B4pvpZDUB46QAQnl/GqwEIL0IAwvPLeDUA4UUIQHh+Ga8GILwI9YDcTWdFCIt0nq3+VQMQXjY6QNZU3k19AIRnqp/VAISXDgDh+WW8GoDwIgQgPL+MVwMQXoQAhOeX8WoAwotQB8jDlXdTAmsQnql+VgMQXjp6QO6hhLCwi8Wz1b9qAMLLBoDw/DJeDUB4EQIQnl/GqwEIL0IdII3j7qEk4RKL56qP1QCEFw4A4fllvBqA8CIEIDy/jFcDEF6EekDupSQJ7GLxbPWvGoDwstEBsnrcvSQBCM9UP6sBCC+dwAAya9YsnjN5qi4tLaWXX3457eiqqqpo2rRpFI1G89QB3rBaWlpIvdIdeTOD8GwJrrqgoIDi8XhwDWCOHIAwDYM8WA6sHreCZKYhS/lwbFlpI8eVDEv+oasp3BZtJCFWZ2pkzfGtnD5ACwc8ceAn41ZkrgeAeOIzKjHUAWMAWdz1Kk2OHzLUZnTbRAc6QmNoS/ntZswg03v+S987/ZaJPqPPhjqwu/hK2jVqphmAqF5OjR+g27peM9RudNskB2zBoQbklzXIgLlFMk7lfV0UpoRJfmetr8qLS+MHqbr3sKM2Ph45kfaPnEBtIyodlc+3QupRB9HQaOrJ9OjnwYP2GyD5FohX4/lm7COad+oNVnUvjZlD/yqczCoD8XkOABBzTolZn/2bbuj+u60O/2H0tfRu0RRbWogyOJALQAq2Re8TQmxGEO4dUBsZakMj06EWnuoaG4d7B6SkH8aXlTzJqYn9RWHRts6FUtBznEagTe/Aks5X6JLeof++yPbiEwbbckAkrat7lo9525a4X8QGpHh751VJonc4jUCb3gG1kbGi4yUqT3SdI1LrDbXuwOGZA/tiZ3qvoh+N6+bUyAZEVV60LfqoFOLHnIagTe9AVd+ntKLjRbL6/5LofwVfpd+OnQvLvHRAyutjy0pf51bpCBDViJ2/yeJ2Jsj6ge+NWkaMp+0lN2V+UlKQjXIwdinEyvjSsY85KJrpn1/pqyt65tQsaSWXE4lvE8mp+hJQZHJg9mfv0fuFl9Ap6wIY5d6B16VaCoTEU/ElYz9xWp3jGcRpg/lSrnBH559IkinXQaditSVj88X7XI4DgDh0u/A3p2ZTIvmmw+K5LeZg/z+3HfRvawDERTYF26MvChLzXFSRg6LiP7HasV/PQUN52QQAcRFr8Y7otKQULxHRV1xUk9WiQtKinmUlv89qI3lcOQBxGW7hM53fIYv+SETFLqvyvDjgcG8pAHHvIRX9OnpLUorFQtK1RFThQZXOq5B0jAT9VUh6ATOHcxsHSgIQ9x6eU0PqsitJw7JjlLRGdPQuHfWBx0MKdHUAJNDxY/A6BwCIziG8H2gHAEig48fgdQ4AEJ1DeD/QDgCQQMePwescACA6h/B+oB0AIIGOH4PXOQBAdA7h/UA7AEACHT8Gr3MAgOgcwvuBdgCABDp+DF7nAADROYT3A+0AAAl0/Bi8zgEAonMI7wfaAQAS6PgxeJ0DAETnEN4PtAMAJNDxY/A6BwCIziG8H2gH/g8LPRyq8vuk8QAAAABJRU5ErkJggg==" alt="handbook logo"></a>
+        <div class="title">handbook</div>
+        <nav class="nav"></nav>
+      </article>
+    </header><a aria-label="View source on GitHub" target="__blank" class="github-corner" href="https://github.com/jaywcjlove/handbook.git"><svg width="54" height="54" viewBox="0 0 250 250" aria-hidden="true" style="fill: rgb(32, 34, 37); color: rgb(255, 255, 255); position: fixed; z-index: 99999; border: 0px; top: 0px; right: 0px;">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path style="transform-origin: 130px 106px;" class="octo-arm" fill="currentColor" d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"></path>
+        <path class="octo-body" fill="currentColor" d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"></path>
+      </svg></a>
+    <div class="markdown-body">
+      <h2 id="centos7安装kvm虚拟机详解"><a class="anchor" aria-hidden="true" tabindex="-1" href="#centos7安装kvm虚拟机详解"><span class="octicon octicon-link"></span></a>CentOS7安装KVM虚拟机详解</h2>
+      <p>
+        <img src="img/kvmbanner-logo3.png" alt="">
+      </p>
+      <p>基于 CentOS Linux release 7.2.1511 (Core) 的环境下命令行的方式安装KVM的详细过程。</p>
+      <h1 id="目录"><a class="anchor" aria-hidden="true" tabindex="-1" href="#目录"><span class="octicon octicon-link"></span></a>目录</h1><!-- TOC -->
+      <ul>
+        <li><a href="#%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81kvm">检测是否支持KVM</a></li>
+        <li><a href="#%E5%AE%89%E8%A3%85-kvm-%E7%8E%AF%E5%A2%83">安装 KVM 环境</a></li>
+        <li><a href="#%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA">安装虚拟机</a>
+          <ul>
+            <li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F">命令行配置系统</a></li>
+            <li><a href="#%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA">连接虚拟机</a></li>
+            <li><a href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%B6%E5%AE%83%E7%AE%A1%E7%90%86">虚拟机其它管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E9%85%8D%E7%BD%AE%E7%89%A9%E7%90%86%E6%9C%BA%E7%BD%91%E7%BB%9C">配置物理机网络</a></li>
+        <li><a href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91">端口转发</a></li>
+        <li><a href="#%E5%85%AC%E7%BD%91%E8%AE%BF%E9%97%AE%E8%99%9A%E6%8B%9F%E6%9C%BA">公网访问虚拟机</a></li>
+        <li><a href="#%E9%85%8D%E7%BD%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%BD%91%E7%BB%9C">配置宿主机网络</a>
+          <ul>
+            <li><a href="#bridge%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BD%AE">Bridge模式配置</a></li>
+            <li><a href="#nat%E6%A8%A1%E5%BC%8F">NAT模式</a></li>
+            <li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89nat%E7%BD%91%E7%BB%9C">自定义NAT网络</a></li>
+            <li><a href="#%E9%80%80%E5%87%BA%E8%99%9A%E6%8B%9F%E6%9C%BA">退出虚拟机</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E4%BF%AE%E6%94%B9%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF">修改虚拟机配置信息</a></li>
+        <li><a href="#%E5%85%8B%E9%9A%86%E8%99%9A%E6%8B%9F%E6%9C%BA">克隆虚拟机</a></li>
+        <li><a href="#%E9%80%9A%E8%BF%87%E9%95%9C%E5%83%8F%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA">通过镜像创建虚拟机</a></li>
+        <li><a href="#%E5%8A%A8%E6%80%81%E6%9B%B4%E6%94%B9cpu%E6%95%B0%E9%87%8F%E5%92%8C%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F">动态更改cpu数量和内存大小</a></li>
+        <li><a href="#%E6%8C%82%E8%BD%BD%E7%A3%81%E7%9B%98">挂载磁盘</a>
+          <ul>
+            <li><a href="#%E5%88%9B%E5%BB%BA%E7%A3%81%E7%9B%98">创建磁盘</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E">常用命令说明</a>
+          <ul>
+            <li><a href="#virt-install">virt-install</a></li>
+            <li><a href="#virsh">virsh</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3">错误解决</a></li>
+        <li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0">参考文章</a></li>
+      </ul><!-- /TOC -->
+      <h2 id="检测是否支持kvm"><a class="anchor" aria-hidden="true" tabindex="-1" href="#检测是否支持kvm"><span class="octicon octicon-link"></span></a>检测是否支持KVM</h2>
+      <p>KVM 是基于 x86 虚拟化扩展(Intel VT 或者 AMD-V) 技术的虚拟机软件，所以查看 CPU 是否支持 VT 技术，就可以判断是否支持KVM。有返回结果，如果结果中有vmx（Intel）或svm(AMD)字样，就说明CPU的支持的。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">cat</span> /proc/cpuinfo <span class="token operator">|</span> <span class="token function">egrep</span> <span class="token string">'vmx|svm'</span>
+
+flags   <span class="token builtin class-name">:</span> fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm arat epb pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm xsaveopt cqm_llc cqm_occup_llc
+</code></pre>
+      <p>关闭SELinux，将 /etc/sysconfig/selinux 中的 <code>SELinux=enforcing</code> 修改为 <code>SELinux=disabled</code></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">vi</span> /etc/sysconfig/selinux
+</code></pre>
+      <h2 id="安装-kvm-环境"><a class="anchor" aria-hidden="true" tabindex="-1" href="#安装-kvm-环境"><span class="octicon octicon-link"></span></a>安装 KVM 环境</h2>
+      <p>通过 <a href="https://jaywcjlove.github.io/linux-command/c/yum.html">yum</a> 安装 kvm 基础包和管理工具</p>
+      <p>kvm相关安装包及其作用:</p>
+      <ul>
+        <li><code>qemu-kvm</code> 主要的KVM程序包</li>
+        <li><code>python-virtinst</code> 创建虚拟机所需要的命令行工具和程序库</li>
+        <li><code>virt-manager</code> GUI虚拟机管理工具</li>
+        <li><code>virt-top</code> 虚拟机统计命令</li>
+        <li><code>virt-viewer</code> GUI连接程序，连接到已配置好的虚拟机</li>
+        <li><code>libvirt</code> C语言工具包，提供libvirt服务</li>
+        <li><code>libvirt-client</code> 为虚拟客户机提供的C语言工具包</li>
+        <li><code>virt-install</code> 基于libvirt服务的虚拟机创建命令</li>
+        <li><code>bridge-utils</code> 创建和管理桥接设备的工具</li>
+      </ul>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 安装 kvm </span>
+<span class="token comment"># ------------------------</span>
+<span class="token comment"># yum -y install qemu-kvm python-virtinst libvirt libvirt-python virt-manager libguestfs-tools bridge-utils virt-install</span>
+
+yum -y <span class="token function">install</span> qemu-kvm libvirt virt-install bridge-utils 
+
+<span class="token comment"># 重启宿主机，以便加载 kvm 模块</span>
+<span class="token comment"># ------------------------</span>
+<span class="token function">reboot</span>
+
+<span class="token comment"># 查看KVM模块是否被正确加载</span>
+<span class="token comment"># ------------------------</span>
+lsmod <span class="token operator">|</span> <span class="token function">grep</span> kvm
+
+kvm_intel             <span class="token number">162153</span>  <span class="token number">0</span>
+kvm                   <span class="token number">525259</span>  <span class="token number">1</span> kvm_intel
+
+</code></pre>
+      <p>开启kvm服务，并且设置其开机自动启动</p>
+      <pre class="language-bash"><code class="language-bash">systemctl start libvirtd
+systemctl <span class="token builtin class-name">enable</span> libvirtd
+</code></pre>
+      <p>查看状态操作结果，如<code>Active: active (running)</code>，说明运行情况良好</p>
+      <pre class="language-bash"><code class="language-bash">systemctl status libvirtd
+systemctl is-enabled libvirtd
+
+● libvirtd.service - Virtualization daemon
+   Loaded: loaded <span class="token punctuation">(</span>/usr/lib/systemd/system/libvirtd.service<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
+   Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since 二 <span class="token number">2001</span>-01-02 <span class="token number">11</span>:29:53 CST<span class="token punctuation">;</span> 1h 41min ago
+     Docs: man:libvirtd<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>
+           http://libvirt.org
+</code></pre>
+      <h2 id="安装虚拟机"><a class="anchor" aria-hidden="true" tabindex="-1" href="#安装虚拟机"><span class="octicon octicon-link"></span></a>安装虚拟机</h2>
+      <p>安装前要设置环境语言为英文<code>LANG="en_US.UTF-8"</code>，如果是中文的话某些版本可能会报错。<code>CentOS 7</code> 在这里修改 <code>/etc/locale.conf</code>。</p>
+      <p>kvm创建虚拟机，特别注意<code>.iso</code>镜像文件一定放到<code>/home</code> 或者根目录重新创建目录，不然会因为权限报错，无法创建虚拟机。</p>
+      <pre class="language-bash"><code class="language-bash">virt-install <span class="token punctuation">\</span>
+--virt-type<span class="token operator">=</span>kvm <span class="token punctuation">\</span>
+--name<span class="token operator">=</span>centos78 <span class="token punctuation">\</span>
+--vcpus<span class="token operator">=</span><span class="token number">2</span> <span class="token punctuation">\</span>
+--memory<span class="token operator">=</span><span class="token number">4096</span> <span class="token punctuation">\</span>
+--location<span class="token operator">=</span>/tmp/CentOS-7-x86_64-Minimal-1511.iso <span class="token punctuation">\</span>
+--disk <span class="token assign-left variable">path</span><span class="token operator">=</span>/home/vms/centos78.qcow2,size<span class="token operator">=</span><span class="token number">40</span>,format<span class="token operator">=</span>qcow2 <span class="token punctuation">\</span>
+--network <span class="token assign-left variable">bridge</span><span class="token operator">=</span>br0 <span class="token punctuation">\</span>
+--graphics none <span class="token punctuation">\</span>
+--extra-args<span class="token operator">=</span><span class="token string">'console=ttyS0'</span> <span class="token punctuation">\</span>
+--force
+<span class="token comment"># ------------------------</span>
+virt-install --virt-type<span class="token operator">=</span>kvm --name<span class="token operator">=</span>centos88 --vcpus<span class="token operator">=</span><span class="token number">2</span> --memory<span class="token operator">=</span><span class="token number">4096</span> --location<span class="token operator">=</span>/tmp/CentOS-7-x86_64-Minimal-1511.iso --disk <span class="token assign-left variable">path</span><span class="token operator">=</span>/home/vms/centos88.qcow2,size<span class="token operator">=</span><span class="token number">40</span>,format<span class="token operator">=</span>qcow2 --network <span class="token assign-left variable">bridge</span><span class="token operator">=</span>br0 --graphics none --extra-args<span class="token operator">=</span><span class="token string">'console=ttyS0'</span> --force
+</code></pre>
+      <h3 id="命令行配置系统"><a class="anchor" aria-hidden="true" tabindex="-1" href="#命令行配置系统"><span class="octicon octicon-link"></span></a>命令行配置系统</h3>
+      <p>上面创建虚拟机命令最终需要你配置系统基础设置，带 <code>[!]</code> 基本都是要配置的，按照顺序往下配置，按对用的数字以此进行设置。</p>
+      <pre class="language-bash"><code class="language-bash">
+Installation
+
+ <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>x<span class="token punctuation">]</span> Language settings                 <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> Timezone settings
+        <span class="token punctuation">(</span>English <span class="token punctuation">(</span>United States<span class="token punctuation">))</span>                <span class="token punctuation">(</span>Timezone is not set.<span class="token punctuation">)</span>
+ <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> Installation <span class="token builtin class-name">source</span>               <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> Software selection
+        <span class="token punctuation">(</span>Processing<span class="token punctuation">..</span>.<span class="token punctuation">)</span>                          <span class="token punctuation">(</span>Processing<span class="token punctuation">..</span>.<span class="token punctuation">)</span>
+ <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> Installation Destination          <span class="token number">6</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>x<span class="token punctuation">]</span> Kdump
+        <span class="token punctuation">(</span>No disks selected<span class="token punctuation">)</span>                      <span class="token punctuation">(</span>Kdump is enabled<span class="token punctuation">)</span>
+ <span class="token number">7</span><span class="token punctuation">)</span> <span class="token punctuation">[</span> <span class="token punctuation">]</span> Network configuration             <span class="token number">8</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> Root password
+        <span class="token punctuation">(</span>Not connected<span class="token punctuation">)</span>                          <span class="token punctuation">(</span>Password is not set.<span class="token punctuation">)</span>
+ <span class="token number">9</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token operator">!</span><span class="token punctuation">]</span> User creation
+        <span class="token punctuation">(</span>No user will be created<span class="token punctuation">)</span>
+  Please <span class="token function">make</span> your choice from above <span class="token punctuation">[</span><span class="token string">'q'</span> to quit <span class="token operator">|</span> <span class="token string">'b'</span> to begin installation <span class="token operator">|</span>
+  <span class="token string">'r'</span> to refresh<span class="token punctuation">]</span>:
+</code></pre>
+      <ol start="2">
+        <li>Timezone settings 时区设置选择 <code>5) Asia亚洲</code>，再选择城市 <code>62) Shanghai上海</code></li>
+      </ol>
+      <pre class="language-bash"><code class="language-bash">Available regions
+ <span class="token number">1</span><span class="token punctuation">)</span>  Africa                 <span class="token number">6</span><span class="token punctuation">)</span>  Atlantic              <span class="token number">10</span><span class="token punctuation">)</span>  Pacific
+ <span class="token number">2</span><span class="token punctuation">)</span>  America                <span class="token number">7</span><span class="token punctuation">)</span>  Australia             <span class="token number">11</span><span class="token punctuation">)</span>  US
+ <span class="token number">3</span><span class="token punctuation">)</span>  Antarctica             <span class="token number">8</span><span class="token punctuation">)</span>  Europe                <span class="token number">12</span><span class="token punctuation">)</span>  Etc
+ <span class="token number">4</span><span class="token punctuation">)</span>  Arctic                 <span class="token number">9</span><span class="token punctuation">)</span>  Indian
+ <span class="token number">5</span><span class="token punctuation">)</span>  Asia
+Please <span class="token keyword">select</span> the timezone.
+Use numbers or <span class="token builtin class-name">type</span> names directly <span class="token punctuation">[</span>b to region list, q to quit<span class="token punctuation">]</span>: <span class="token number">5</span>
+--------------------
+
+ <span class="token number">8</span><span class="token punctuation">)</span>  Baghdad               <span class="token number">35</span><span class="token punctuation">)</span>  Kathmandu             <span class="token number">61</span><span class="token punctuation">)</span>  Seoul
+ <span class="token number">9</span><span class="token punctuation">)</span>  Bahrain               <span class="token number">36</span><span class="token punctuation">)</span>  Khandyga              <span class="token number">62</span><span class="token punctuation">)</span>  Shanghai
+<span class="token number">10</span><span class="token punctuation">)</span>  Baku                  <span class="token number">37</span><span class="token punctuation">)</span>  Kolkata               <span class="token number">63</span><span class="token punctuation">)</span>  Singapore
+<span class="token number">26</span><span class="token punctuation">)</span>  Hong_Kong             <span class="token number">53</span><span class="token punctuation">)</span>  Pontianak
+<span class="token number">27</span><span class="token punctuation">)</span>  Hovd
+Please <span class="token keyword">select</span> the timezone.
+Use numbers or <span class="token builtin class-name">type</span> names directly <span class="token punctuation">[</span>b to region list, q to quit<span class="token punctuation">]</span>: <span class="token number">62</span>
+
+</code></pre>
+      <ol start="3">
+        <li>Installation source 安装源输入数字<code>2</code></li>
+      </ol>
+      <pre class="language-bash"><code class="language-bash">Choose an installation <span class="token builtin class-name">source</span> type.
+ <span class="token number">1</span><span class="token punctuation">)</span>  CD/DVD
+ <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token builtin class-name">local</span> ISO <span class="token function">file</span>
+ <span class="token number">3</span><span class="token punctuation">)</span>  Network
+  Please <span class="token function">make</span> your choice from above <span class="token punctuation">[</span><span class="token string">'q'</span> to quit <span class="token operator">|</span> <span class="token string">'c'</span> to <span class="token builtin class-name">continue</span> <span class="token operator">|</span>
+  <span class="token string">'r'</span> to refresh<span class="token punctuation">]</span>: <span class="token number">2</span>
+</code></pre>
+      <ol start="4">
+        <li>Software selection 软件选择</li>
+      </ol>
+      <pre class="language-bash"><code class="language-bash">Base environment
+Software selection
+
+Base environment
+
+ <span class="token number">1</span><span class="token punctuation">)</span>  <span class="token punctuation">[</span>x<span class="token punctuation">]</span> Minimal Install
+  Please <span class="token function">make</span> your choice from above <span class="token punctuation">[</span><span class="token string">'q'</span> to quit <span class="token operator">|</span> <span class="token string">'c'</span> to <span class="token builtin class-name">continue</span> <span class="token operator">|</span>
+  <span class="token string">'r'</span> to refresh<span class="token punctuation">]</span>:
+</code></pre>
+      <ol start="5">
+        <li>Installation Destination 安装目的地</li>
+      </ol>
+      <pre class="language-bash"><code class="language-bash">Installation Destination
+
+<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token builtin class-name">:</span> <span class="token number">40</span> GiB <span class="token punctuation">(</span>vda<span class="token punctuation">)</span>
+
+<span class="token number">1</span> disk selected<span class="token punctuation">;</span> <span class="token number">40</span> GiB capacity<span class="token punctuation">;</span> <span class="token number">40</span> GiB <span class="token function">free</span> <span class="token punctuation">..</span>.
+
+  Please <span class="token function">make</span> your choice from above <span class="token punctuation">[</span><span class="token string">'q'</span> to quit <span class="token operator">|</span> <span class="token string">'c'</span> to <span class="token builtin class-name">continue</span> <span class="token operator">|</span>
+  <span class="token string">'r'</span> to refresh<span class="token punctuation">]</span>: c
+
+
+Autopartitioning Options 自动分区选项
+
+<span class="token punctuation">[</span> <span class="token punctuation">]</span> <span class="token number">1</span><span class="token punctuation">)</span> Replace Existing Linux system<span class="token punctuation">(</span>s<span class="token punctuation">)</span> 替换现有的Linux系统
+
+<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token number">2</span><span class="token punctuation">)</span> Use All Space 使用所有空间
+
+<span class="token punctuation">[</span> <span class="token punctuation">]</span> <span class="token number">3</span><span class="token punctuation">)</span> Use Free Space 使用可用空间
+
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span>
+Partition Scheme Options 分区方案选项
+
+<span class="token punctuation">[</span> <span class="token punctuation">]</span> <span class="token number">1</span><span class="token punctuation">)</span> Standard Partition 标准分区
+
+<span class="token punctuation">[</span> <span class="token punctuation">]</span> <span class="token number">2</span><span class="token punctuation">)</span> Btrfs Btrfs
+
+<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token number">3</span><span class="token punctuation">)</span> LVM LVM<span class="token punctuation">(</span>逻辑卷管理<span class="token punctuation">)</span>
+
+<span class="token punctuation">[</span> <span class="token punctuation">]</span> <span class="token number">4</span><span class="token punctuation">)</span> LVM Thin Provisioning 精简配置
+
+Select a partition scheme configuration.
+
+  Please <span class="token function">make</span> your choice from above <span class="token punctuation">[</span><span class="token string">'q'</span> to quit <span class="token operator">|</span> <span class="token string">'c'</span> to <span class="token builtin class-name">continue</span> <span class="token operator">|</span>
+  <span class="token string">'r'</span> to refresh<span class="token punctuation">]</span>: c
+
+</code></pre>
+      <p>此处也可以只设置 <code>Root 密码</code>和<code>Installation Destination 安装目的地</code>其它进入系统设置比如时区设置如下：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"TZ='Asia/Shanghai'; export TZ"</span> <span class="token operator">>></span> /etc/profile
+</code></pre>
+      <h3 id="连接虚拟机"><a class="anchor" aria-hidden="true" tabindex="-1" href="#连接虚拟机"><span class="octicon octicon-link"></span></a>连接虚拟机</h3>
+      <p>通过 <code>virsh console &#x3C;虚拟机名称></code> 命令来连接虚拟机</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 查看虚拟机</span>
+<span class="token function">virsh</span> list              <span class="token comment"># 查看在运行的虚拟机</span>
+<span class="token function">virsh</span> list --all         <span class="token comment"># 查看所有虚拟机</span>
+
+ Id    Name                           State
+----------------------------------------------------
+ <span class="token number">7</span>     centos72                       running
+</code></pre>
+      <p>连接虚拟机</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> console centos72
+</code></pre>
+      <p>配置虚拟机网络，编辑<code>vi /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>static
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">192.168</span>.120.200
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">192.168</span>.120.1
+<span class="token assign-left variable">DEFROUTE</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">PEERDNS</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">PEERROUTES</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV4_FAILURE_FATAL</span><span class="token operator">=</span>no
+<span class="token assign-left variable">IPV6INIT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_AUTOCONF</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_DEFROUTE</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_PEERDNS</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_PEERROUTES</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_FAILURE_FATAL</span><span class="token operator">=</span>no
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>eth0
+<span class="token assign-left variable">UUID</span><span class="token operator">=</span>adfa3b7d-bf60-47e6-8482-871dee686fb5
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>eth0
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+</code></pre>
+      <p>添加DNS配置，也可以放到<code>ifcfg-eth0</code>中，DNS不是随便设置的，你可以通过<a href="https://jaywcjlove.github.io/linux-command/c/host.html">host</a>、<a href="https://jaywcjlove.github.io/linux-command/c/dig.html">dig</a>、<a href="https://jaywcjlove.github.io/linux-command/c/nslookup.html">nslookup</a>命令查询DNS，如果这些工具不存在可以通过<code>yum install bind-utils -y</code>来安装一下。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 如果没有在网络配置添加DNS可以这种方式添加DNS</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"nameserver 192.168.188.1"</span> <span class="token operator">></span> /etc/resolv.conf
+</code></pre>
+      <p>激活网卡</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">ifup</span> eth0 <span class="token comment"># 激活网卡</span>
+</code></pre>
+      <h3 id="虚拟机其它管理"><a class="anchor" aria-hidden="true" tabindex="-1" href="#虚拟机其它管理"><span class="octicon octicon-link"></span></a>虚拟机其它管理</h3>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> start centos72     <span class="token comment"># 虚拟机开启（启动）：</span>
+<span class="token function">virsh</span> <span class="token function">reboot</span> centos72    <span class="token comment"># 虚拟机重新启动</span>
+<span class="token function">virsh</span> <span class="token function">shutdown</span> centos72  <span class="token comment"># 虚拟机关机</span>
+<span class="token function">virsh</span> destroy centos72   <span class="token comment"># 强制关机（强制断电）</span>
+<span class="token function">virsh</span> <span class="token function">suspend</span> centos72   <span class="token comment"># 暂停（挂起）KVM 虚拟机</span>
+<span class="token function">virsh</span> resume centos72    <span class="token comment"># 恢复被挂起的 KVM 虚拟机</span>
+<span class="token function">virsh</span> undefine centos72  <span class="token comment"># 该方法只删除配置文件，磁盘文件未删除</span>
+<span class="token function">virsh</span> autostart centos72 <span class="token comment"># 随物理机启动而启动（开机启动）</span>
+<span class="token function">virsh</span> autostart --disable centos72 <span class="token comment"># 取消标记为自动开始（取消开机启动）</span>
+</code></pre>
+      <h2 id="配置物理机网络"><a class="anchor" aria-hidden="true" tabindex="-1" href="#配置物理机网络"><span class="octicon octicon-link"></span></a>配置物理机网络</h2>
+      <p>目前我只有一个固定IP，通过配置<code>eno2</code>，网桥当做路由器，虚拟机共享物理机进出网络。物理机网络配置，网络进出走<code>eno2</code> 编辑<code>vi /etc/sysconfig/network-scripts/ifcfg-eno2</code></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>static
+<span class="token assign-left variable">DEFROUTE</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">PEERDNS</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">PEERROUTES</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV4_FAILURE_FATAL</span><span class="token operator">=</span>no
+<span class="token assign-left variable">IPV6INIT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_AUTOCONF</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_DEFROUTE</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_PEERDNS</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_PEERROUTES</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_FAILURE_FATAL</span><span class="token operator">=</span>no
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>eno2
+<span class="token assign-left variable">UUID</span><span class="token operator">=</span>f66c303e-994a-43cf-bd91-bb897dc2088d
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>eno2
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>这里固定IP配置的地方<span class="token operator">></span>  <span class="token comment"># 设置IP地址</span>
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>                   <span class="token comment"># 设置子网掩码</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>这里设置网关<span class="token operator">></span>        <span class="token comment"># 设置网关</span>
+<span class="token assign-left variable">DNS1</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>这里设置DNS<span class="token operator">></span>           <span class="token comment"># DNS</span>
+</code></pre>
+      <p><code>ifcfg-br0</code> 桥接网卡配置在同一个目录中。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Bridge
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>static
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>br0
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>br0
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">192.168</span>.120.1
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>
+</code></pre>
+      <p><code>ifcfg-eno1</code> 物理网卡指定桥接网卡<code>BRIDGE="br0"</code></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>none
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>eno1
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>eno1
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">BRIDGE</span><span class="token operator">=</span><span class="token string">"br0"</span>
+</code></pre>
+      <p>配置路由转发<code>vi /etc/sysctl.conf</code></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># Controls IP packet forwarding</span>
+net.ipv4.ip_forward <span class="token operator">=</span> <span class="token number">0</span>
+修改为
+<span class="token comment"># Controls IP packet forwarding</span>
+net.ipv4.ip_forward <span class="token operator">=</span> <span class="token number">1</span>    允许内置路由
+</code></pre>
+      <p>再执行 <code>sysctl -p</code> 使其生效</p>
+      <h2 id="端口转发"><a class="anchor" aria-hidden="true" tabindex="-1" href="#端口转发"><span class="octicon octicon-link"></span></a>端口转发</h2>
+      <p>现在我们还以上述VM为例，目前该KVM的公网IP为<code>211.11.61.7</code>，VM的IP为<code>192.168.188.115</code>，现在我要求通过访问KVM的2222端口访问VM的22端口。</p>
+      <p>编辑<code>vi /etc/rc.d/rc.local</code> 添加下面命令，达到开机重启配置网络转发规则。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 启动网络转发规则</span>
+iptables -t nat -A <span class="token builtin class-name">:</span> -s <span class="token number">192.168</span>.188.0/24 -j SNAT --to-source <span class="token number">211.11</span>.61.7
+
+iptables -t nat -A POSTROUTING -s <span class="token number">192.168</span>.188.0/24 -j SNAT --to-source <span class="token number">211.11</span>.61.7
+iptables -t nat -A PREROUTING -d  <span class="token number">211.11</span>.61.7 -p tcp --dport <span class="token number">2222</span>  -j DNAT --to-dest <span class="token number">192.168</span>.188.115:22
+iptables -t nat -A PREROUTING -d  <span class="token number">211.11</span>.61.7 -p tcp --dport <span class="token number">2221</span>  -j DNAT --to-dest <span class="token number">192.168</span>.188.115:21
+
+<span class="token comment"># 实际效果可以通过外网连接虚拟机</span>
+<span class="token function">ssh</span> -p <span class="token number">2222</span> root@211.11.61.7
+</code></pre>
+      <p>通过<a href="https://jaywcjlove.github.io/linux-command/c/iptables.html">iptables</a>命令来设置转发规则，源SNAT规则，源网络地址转换，SNAT就是重写包的源IP地址。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 数据包进行 源NAT(SNAT)，系统先路由——>再过滤（FORWARD)——>最后才进行POSTROUTING SNAT地址翻译</span>
+<span class="token comment"># -t&#x3C;表>：指定要操纵的表；</span>
+<span class="token comment"># -A：向规则链中添加条目；</span>
+<span class="token comment"># -s：指定要匹配的数据包源ip地址；</span>
+<span class="token comment"># -j&#x3C;目标>：指定要跳转的目标；</span>
+<span class="token comment"># -j SNAT：源网络地址转换，SNAT就是重写包的源IP地址</span>
+<span class="token comment"># --to-source ipaddr[-ipaddr][:port-port] </span>
+<span class="token comment">#   它可以指定单个新的源IP地址，IP地址的包含范围，以及可选的端口范围（仅当规则还指定-p tcp或-p udp时才有效）。 </span>
+<span class="token comment">#   如果没有指定端口范围，则低于512的源端口将映射到512以下的其他端口：512和1023之间的端口将映射到低于1024的端口，</span>
+<span class="token comment">#   其他端口将被映射到1024或更高。 在可能的情况下，不会发生港口更改。</span>
+<span class="token comment">#   在内核高达2.6.10，您可以添加几个 - 源选项。 </span>
+<span class="token comment">#   对于这些内核，如果通过地址范围或多个源选项指定多个源地址，则会在这些地址之间进行简单的循环（循环中循环）。 </span>
+<span class="token comment">#   后来的内核（> = 2.6.11-rc1）不再具有NAT到多个范围的能力。</span>
+iptables -t nat -A POSTROUTING -s <span class="token number">192.168</span>.120.0/24 -j SNAT --to-source <span class="token operator">&#x3C;</span>固定IP<span class="token operator">></span>
+<span class="token comment"># cat /etc/sysconfig/iptables</span>
+</code></pre>
+      <h2 id="公网访问虚拟机"><a class="anchor" aria-hidden="true" tabindex="-1" href="#公网访问虚拟机"><span class="octicon octicon-link"></span></a>公网访问虚拟机</h2>
+      <p>通过公网ip <code>192.168.188.222</code>端口<code>2280</code>，转发到虚拟机<code>192.168.111.133:80</code>上面</p>
+      <pre class="language-bash"><code class="language-bash">iptables -t nat -A PREROUTING -d <span class="token number">192.168</span>.188.222 -p tcp --dport <span class="token number">2280</span> -j DNAT --to-dest <span class="token number">192.168</span>.111.133:80
+</code></pre>
+      <p>重启并保存 <code>iptables</code> 配置。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 保存 </span>
+<span class="token function">service</span> iptables save
+<span class="token comment"># 重启</span>
+<span class="token function">service</span> iptables restart
+</code></pre>
+      <h2 id="配置宿主机网络"><a class="anchor" aria-hidden="true" tabindex="-1" href="#配置宿主机网络"><span class="octicon octicon-link"></span></a>配置宿主机网络</h2>
+      <ol>
+        <li>KVM 虚拟机是基于 NAT 的网络配置；</li>
+        <li>只有同一宿主机的虚拟键之间可以互相访问，跨宿主机是不能访问；</li>
+        <li>虚拟机需要和宿主机配置成桥接模式，以便虚拟机可以在局域网内可见；</li>
+      </ol>
+      <h3 id="bridge模式配置"><a class="anchor" aria-hidden="true" tabindex="-1" href="#bridge模式配置"><span class="octicon octicon-link"></span></a>Bridge模式配置</h3>
+      <p>Bridge方式即虚拟网桥的网络连接方式，是客户机和子网里面的机器能够互相通信。可以使虚拟机成为网络中具有独立IP的主机。<strong>桥接网络</strong>（也叫 <strong>物理设备共享</strong>）被用作把一个物理设备复制到一台虚拟机。网桥多用作高级设置，特别是主机多个网络接口的情况。</p>
+      <pre class="language-bash"><code class="language-bash">┌─────────────────────────┐      ┌─────────────────┐
+│          HOST           │      │Virtual Machine <span class="token number">1</span>│
+│ ┌──────┐      ┌───────┐ │      │    ┌──────┐     │
+│ │ br0  │──┬───│ vnet0 │─│─ ─ ─ │    │ br0  │     │
+│ └──────┘  │   └───────┘ │      │    └──────┘     │
+│     │     │             │      └─────────────────┘
+│     │     │   ┌───────┐ │      ┌─────────────────┐
+│ ┌──────┐  └───│ vnet1 │─│─     │Virtual Machine <span class="token number">2</span>│
+│ │ eno0 │      └───────┘ │ │    │    ┌──────┐     │
+│ └──────┘                │  ─ ─ │    │ br0  │     │
+│ ┌──────┐                │      │    └──────┘     │
+│ │ eno1 │                │      └─────────────────┘
+│ └──────┘                │
+└─────────────────────────┘
+</code></pre>
+      <p>通过<a href="https://jaywcjlove.github.io/linux-command/c/ip.html">ip</a> 命令查看宿主机配置文件的名字</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">ip</span> addr
+
+<span class="token number">6</span>: eno1: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state UP qlen <span class="token number">1000</span>
+    link/ether <span class="token number">38</span>:63:bb:44:cf:6c brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">192.168</span>.188.132/24 brd <span class="token number">192.168</span>.188.255 scope global dynamic eno1
+       valid_lft 2822sec preferred_lft 2822sec
+    inet6 fe80::3a63:bbff:fe44:cf6c/64 scope <span class="token function">link</span>
+       valid_lft forever preferred_lft forever
+</code></pre>
+      <p>可以看到上面<code>eno1</code>是有获取到ip地址的，相对应的文件在<code>/etc/sysconfig/network-scripts/</code>目录中，<code>ifcfg-eno1</code> 宿主机的物理网卡配置文件</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># cat ifcfg-eno1</span>
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>Ethernet
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>static
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>eno1
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>eno1
+<span class="token assign-left variable">UUID</span><span class="token operator">=</span>242b3d4d-37a5-4f46-b072-55554c185ecf
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+
+<span class="token assign-left variable">BRIDGE</span><span class="token operator">=</span><span class="token string">"br0"</span> <span class="token comment"># 指定桥接网卡的名称</span>
+</code></pre>
+      <p><code>ifcfg-br0</code> 桥接网卡配置在同一个目录中。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># cat ifcfg-br0</span>
+<span class="token assign-left variable">BOOTPROTO</span><span class="token operator">=</span>static
+<span class="token assign-left variable">DEFROUTE</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">PEERDNS</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">PEERROUTES</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV4_FAILURE_FATAL</span><span class="token operator">=</span>no
+<span class="token assign-left variable">IPV6INIT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_AUTOCONF</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_DEFROUTE</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_PEERDNS</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_PEERROUTES</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">IPV6_FAILURE_FATAL</span><span class="token operator">=</span>no
+<span class="token assign-left variable">NAME</span><span class="token operator">=</span>br0
+<span class="token assign-left variable">UUID</span><span class="token operator">=</span>242b3d4d-37a5-4f46-b072-55554c185ecf
+<span class="token assign-left variable">DEVICE</span><span class="token operator">=</span>br0
+<span class="token assign-left variable">ONBOOT</span><span class="token operator">=</span>yes
+<span class="token assign-left variable">TYPE</span><span class="token operator">=</span>bridge  <span class="token comment"># 将制定为桥接类型</span>
+<span class="token assign-left variable">IPADDR</span><span class="token operator">=</span><span class="token number">192.168</span>.188.133  <span class="token comment"># 设置IP地址</span>
+<span class="token assign-left variable">PREFIX</span><span class="token operator">=</span><span class="token number">24</span>               <span class="token comment"># 设置子网掩码</span>
+<span class="token assign-left variable">GATEWAY</span><span class="token operator">=</span><span class="token number">192.168</span>.188.1   <span class="token comment"># 设置网关</span>
+</code></pre>
+      <p>配置好之后，通过<a href="https://jaywcjlove.github.io/linux-command/c/systemctl.html">systemctl</a> 命令重启网卡。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">ifup</span> eno1 <span class="token comment"># 激活网卡</span>
+<span class="token function">ifup</span> br0 <span class="token comment"># 激活桥接网卡</span>
+<span class="token comment"># 两种重启网络的方法</span>
+systemctl restart network.service
+<span class="token function">service</span> network restart
+
+<span class="token comment"># 校验桥接接口</span>
+brctl show
+
+bridge name bridge <span class="token function">id</span>   STP enabled interfaces
+br0   <span class="token number">8000</span>.3863bb44cf6c no    eno1
+              vnet0
+virbr0    <span class="token number">8000</span>.525400193f0f <span class="token function">yes</span>   virbr0-nic
+</code></pre>
+      <h3 id="nat模式"><a class="anchor" aria-hidden="true" tabindex="-1" href="#nat模式"><span class="octicon octicon-link"></span></a>NAT模式</h3>
+      <p>NAT(Network Address Translation网络地址翻译)，NAT方式是kvm安装后的默认方式。它支持主机与虚拟机的互访，同时也支持虚拟机访问互联网，但不支持外界访问虚拟机。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> net-edit default <span class="token comment"># 如果要创建或者修改NAT网络，要先编辑default.xml：</span>
+<span class="token function">virsh</span> net-list --all
+
+ Name                 State      Autostart     Persistent
+----------------------------------------------------------
+ default              active     no            no
+</code></pre>
+      <p>default是宿主机安装虚拟机支持模块的时候自动安装的。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">ip</span> a l
+<span class="token number">1</span>: lo: <span class="token operator">&#x3C;</span>LOOPBACK,UP,LOWER_UP<span class="token operator">></span> mtu <span class="token number">65536</span> qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet <span class="token number">127.0</span>.0.1/8 scope <span class="token function">host</span> lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope <span class="token function">host</span>
+       valid_lft forever preferred_lft forever
+<span class="token number">2</span>: ens1f0: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether 2c:44:fd:8c:43:44 brd ff:ff:ff:ff:ff:ff
+<span class="token number">3</span>: ens1f1: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether 2c:44:fd:8c:43:45 brd ff:ff:ff:ff:ff:ff
+<span class="token number">4</span>: ens1f2: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether 2c:44:fd:8c:43:46 brd ff:ff:ff:ff:ff:ff
+<span class="token number">5</span>: ens1f3: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether 2c:44:fd:8c:43:47 brd ff:ff:ff:ff:ff:ff
+<span class="token number">6</span>: eno1: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq master br0 state UP qlen <span class="token number">1000</span>
+    link/ether <span class="token number">38</span>:63:bb:44:cf:6c brd ff:ff:ff:ff:ff:ff
+<span class="token number">7</span>: eno2: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether <span class="token number">38</span>:63:bb:44:cf:6d brd ff:ff:ff:ff:ff:ff
+<span class="token number">8</span>: eno3: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether <span class="token number">38</span>:63:bb:44:cf:6e brd ff:ff:ff:ff:ff:ff
+<span class="token number">9</span>: eno4: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc mq state DOWN qlen <span class="token number">1000</span>
+    link/ether <span class="token number">38</span>:63:bb:44:cf:6f brd ff:ff:ff:ff:ff:ff
+<span class="token number">10</span>: virbr0: <span class="token operator">&#x3C;</span>NO-CARRIER,BROADCAST,MULTICAST,UP<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc noqueue state DOWN
+    link/ether <span class="token number">52</span>:54:00:19:3f:0f brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">192.168</span>.122.1/24 brd <span class="token number">192.168</span>.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+<span class="token number">11</span>: virbr0-nic: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc pfifo_fast master virbr0 state DOWN qlen <span class="token number">500</span>
+    link/ether <span class="token number">52</span>:54:00:19:3f:0f brd ff:ff:ff:ff:ff:ff
+<span class="token number">12</span>: br0: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc noqueue state UP
+    link/ether <span class="token number">38</span>:63:bb:44:cf:6c brd ff:ff:ff:ff:ff:ff
+    inet <span class="token number">192.168</span>.188.132/24 brd <span class="token number">192.168</span>.188.255 scope global dynamic br0
+       valid_lft 3397sec preferred_lft 3397sec
+    inet <span class="token number">192.168</span>.188.133/24 brd <span class="token number">192.168</span>.188.255 scope global secondary br0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::3a63:bbff:fe44:cf6c/64 scope <span class="token function">link</span>
+       valid_lft forever preferred_lft forever
+<span class="token number">19</span>: vnet0: <span class="token operator">&#x3C;</span>BROADCAST,MULTICAST,UP,LOWER_UP<span class="token operator">></span> mtu <span class="token number">1500</span> qdisc pfifo_fast master br0 state UNKNOWN qlen <span class="token number">500</span>
+    link/ether fe:54:00:72:12:a8 brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::fc54:ff:fe72:12a8/64 scope <span class="token function">link</span>
+       valid_lft forever preferred_lft forever
+</code></pre>
+      <p>其中virbr0是由宿主机虚拟机支持模块安装时产生的虚拟网络接口，也是一个switch和bridge，负责把内容分发到各虚拟机。几个虚拟机管理模块产生的接口关系如下图:</p>
+      <pre class="language-bash"><code class="language-bash">┌───────────────────────┐                      
+│         HOST          │                      
+│ ┌──────┐              │   ┌─────────────────┐
+│ │ br0  │─┬──────┐     │   │Virtual Machine <span class="token number">1</span>│
+│ └──────┘ │      │     │   │   ┌──────┐      │
+│     │    │  ┌───────┐ │ ─ │   │ br0  │      │
+│     │    │  │ vnet0 │─│┘  │   └──────┘      │
+│ ┌──────┐ │  └───────┘ │   └─────────────────┘
+│ │virbr0│ │  ┌───────┐ │   ┌─────────────────┐
+│ │ -nic │ └──│ vnet1 │─│┐  │Virtual Machine <span class="token number">2</span>│
+│ └──────┘    └───────┘ │   │                 │
+│ ┌──────┐              │└ ─│   ┌──────┐      │
+│ │ eno0 │              │   │   │ br0  │      │
+│ └──────┘              │   │   └──────┘      │
+│ ┌──────┐              │   └─────────────────┘
+│ │ eno1 │              │
+│ └──────┘              │
+└───────────────────────┘
+</code></pre>
+      <p>从图上可以看出，虚拟接口和物理接口之间没有连接关系，所以虚拟机只能在通过虚拟的网络访问外部世界，无法从网络上定位和访问虚拟主机。</p>
+      <p>virbr0是一个桥接器，接收所有到网络192.168.122.*的内容。从下面命令可以验证：</p>
+      <pre class="language-bash"><code class="language-bash">brctl show
+<span class="token comment"># 输出结果</span>
+<span class="token comment"># ---------------------</span>
+<span class="token comment"># bridge name bridge id   STP enabled interfaces</span>
+<span class="token comment"># br0   8000.3863bb44cf6c no    eno1</span>
+<span class="token comment">#               vnet0</span>
+<span class="token comment"># virbr0    8000.525400193f0f yes   virbr0-nic</span>
+
+<span class="token function">ip</span> route
+<span class="token comment"># default via 192.168.188.1 dev br0</span>
+<span class="token comment"># 169.254.0.0/16 dev br0  scope link  metric 1012</span>
+<span class="token comment"># 192.168.122.0/24 dev virbr0  proto kernel  scope link  src 192.168.122.1</span>
+<span class="token comment"># 192.168.188.0/24 dev br0  proto kernel  scope link  src 192.168.188.132</span>
+</code></pre>
+      <p>同时，虚拟机支持模块会修改iptables规则，通过命令可以查看：</p>
+      <pre class="language-bash"><code class="language-bash">iptables -t nat -L -nv
+iptables -t filter -L -nv
+</code></pre>
+      <p>如果没有default的话，或者需要扩展自己的虚拟网络，可以使用命令重新安装NAT。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> net-define /usr/share/libvirt/networks/default.xml
+</code></pre>
+      <p>此命令定义一个虚拟网络，default.xml的内容：</p>
+      <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>network</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>name</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>name</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>bridge</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>virbr0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>forward</span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>ip</span> <span class="token attr-name">address</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>192.168.122.1<span class="token punctuation">"</span></span> <span class="token attr-name">netmask</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>255.255.255.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>dhcp</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>range</span> <span class="token attr-name">start</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>192.168.122.2<span class="token punctuation">"</span></span> <span class="token attr-name">end</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>192.168.122.254<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>dhcp</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>ip</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>network</span><span class="token punctuation">></span></span>
+</code></pre>
+      <p>也可以修改xml，创建自己的虚拟网络。</p>
+      <p>重新加载和激活配置：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span>  net-define /etc/libvirt/qemu/networks/default.xml
+</code></pre>
+      <p>标记为自动启动：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> net-autostart default
+<span class="token comment"># Network default marked as autostarted</span>
+
+<span class="token function">virsh</span> net-start default
+</code></pre>
+      <p>启动网络：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> net-start default
+<span class="token comment"># Network default started</span>
+</code></pre>
+      <p>网络启动后可以用命令brctl show 查看和验证。</p>
+      <p>修改<code>vi /etc/sysctl.conf</code>中参数，允许ip转发，CentOS7是在<code>vi /usr/lib/sysctl.d/00-system.conf</code> 这里面修改</p>
+      <pre class="language-bash"><code class="language-bash">net.ipv4.ip_forward<span class="token operator">=</span><span class="token number">1</span>
+</code></pre>
+      <p>通过 <code>sysctl -p</code> 查看修改结果</p>
+      <h3 id="自定义nat网络"><a class="anchor" aria-hidden="true" tabindex="-1" href="#自定义nat网络"><span class="octicon octicon-link"></span></a>自定义NAT网络</h3>
+      <p>创建名为<code>management</code>的NAT网络，<code>vi /usr/share/libvirt/networks/management.xml</code></p>
+      <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>network</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>name</span><span class="token punctuation">></span></span>management<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>name</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>bridge</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>virbr1<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>forward</span><span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>ip</span> <span class="token attr-name">address</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>192.168.123.1<span class="token punctuation">"</span></span> <span class="token attr-name">netmask</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>255.255.255.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>dhcp</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>range</span> <span class="token attr-name">start</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>192.168.123.2<span class="token punctuation">"</span></span> <span class="token attr-name">end</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>192.168.123.254<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>dhcp</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>ip</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>network</span><span class="token punctuation">></span></span>
+</code></pre>
+      <p>启用新建的NAT网络</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> net-define /usr/share/libvirt/networks/management.xml
+<span class="token function">virsh</span> net-start management
+<span class="token function">virsh</span> net-autostart management
+</code></pre>
+      <p>验证</p>
+      <pre class="language-bash"><code class="language-bash">brctl show
+<span class="token comment"># bridge name bridge id   STP enabled interfaces</span>
+<span class="token comment"># br0   8000.3863bb44cf6c no    eno1</span>
+<span class="token comment">#               vnet0</span>
+<span class="token comment"># virbr0    8000.525400193f0f yes   virbr0-nic</span>
+<span class="token comment"># virbr1    8000.52540027f0ba yes   virbr1-nic</span>
+
+<span class="token function">virsh</span> net-list --all
+<span class="token comment">#  Name                 State      Autostart     Persistent</span>
+<span class="token comment"># ----------------------------------------------------------</span>
+<span class="token comment">#  default              active     no            no</span>
+<span class="token comment">#  management           active     yes           yes</span>
+</code></pre>
+      <h3 id="退出虚拟机"><a class="anchor" aria-hidden="true" tabindex="-1" href="#退出虚拟机"><span class="octicon octicon-link"></span></a>退出虚拟机</h3>
+      <pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">exit</span> <span class="token comment"># 退出系统到登录界面</span>
+
+Ctrl+5 <span class="token comment"># 从虚拟机登录页面，退出到宿主机命令行页面</span>
+Ctrl+<span class="token punctuation">]</span> <span class="token comment"># 或者下面</span>
+</code></pre>
+      <h2 id="修改虚拟机配置信息"><a class="anchor" aria-hidden="true" tabindex="-1" href="#修改虚拟机配置信息"><span class="octicon octicon-link"></span></a>修改虚拟机配置信息</h2>
+      <p>直接通过vim命令修改</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">vim</span>  /etc/libvirt/qemu/centos72.xml
+</code></pre>
+      <p>通过virsh命令修改</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> edit centos72
+</code></pre>
+      <h2 id="克隆虚拟机"><a class="anchor" aria-hidden="true" tabindex="-1" href="#克隆虚拟机"><span class="octicon octicon-link"></span></a>克隆虚拟机</h2>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 暂停原始虚拟机</span>
+<span class="token function">virsh</span> <span class="token function">shutdown</span> centos72
+virt-clone -o centos72 -n centos.112 -f /home/vms/centos.112.qcow2 -m 00:00:00:00:00:01
+virt-clone -o centos88 -n centos.112 --file /home/vms/centos.112.qcow2 --nonsparse
+</code></pre>
+      <p><code>virt-clone</code> 参数介绍</p>
+      <ul>
+        <li><code>--version</code> 查看版本。</li>
+        <li><code>-h，--help</code> 查看帮助信息。</li>
+        <li><code>--connect=URI</code> 连接到虚拟机管理程序 libvirt 的URI。</li>
+        <li><code>-o 原始虚拟机名称</code> 原始虚拟机名称，必须为关闭或者暂停状态。</li>
+        <li><code>-n 新虚拟机名称</code> --name 新虚拟机名称。</li>
+        <li><code>--auto-clone</code> 从原来的虚拟机配置自动生成克隆名称和存储路径。</li>
+        <li><code>-u NEW_UUID, --uuid=NEW_UUID</code> 克隆虚拟机的新的UUID，默认值是一个随机生成的UUID。</li>
+        <li><code>-m NEW_MAC, --mac=NEW_MAC</code> 设置一个新的mac地址，默认为随机生成 MAC。</li>
+        <li><code>-f NEW_DISKFILE, --file=NEW_DISKFILE</code> 为新客户机使用新的磁盘镜像文件地址。</li>
+        <li><code>--force-copy=TARGET</code> 强制复制设备。</li>
+        <li><code>--nonsparse</code> 不使用稀疏文件复制磁盘映像。</li>
+      </ul>
+      <h2 id="通过镜像创建虚拟机"><a class="anchor" aria-hidden="true" tabindex="-1" href="#通过镜像创建虚拟机"><span class="octicon octicon-link"></span></a>通过镜像创建虚拟机</h2>
+      <p>创建虚拟机镜像文件</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 复制第一次安装的干净系统镜像，作为基础镜像文件，</span>
+<span class="token comment"># 后面创建虚拟机使用这个基础镜像</span>
+<span class="token function">cp</span> /home/vms/centos.88.qcow2 /home/vms/centos7.base.qcow2
+
+<span class="token comment"># 使用基础镜像文件，创建新的虚拟机镜像</span>
+<span class="token function">cp</span> /home/vms/centos7.base.qcow2 /home/vms/centos7.113.qcow2
+</code></pre>
+      <p>创建虚拟机配置文件</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 复制第一次安装的干净系统镜像，作为基础配置文件。</span>
+<span class="token function">virsh</span> dumpxml centos.88 <span class="token operator">></span> /home/vms/centos7.base.xml
+
+<span class="token comment"># 使用基础虚拟机镜像配置文件，创建新的虚拟机配置文件</span>
+<span class="token function">cp</span> /home/vms/centos7.base.xml /home/vms/centos7.113.xml
+
+<span class="token comment"># 编辑新虚拟机配置文件</span>
+<span class="token function">vi</span> /home/vms/centos7.113.xml
+</code></pre>
+      <p>主要是修改虚拟机文件名，UUID，镜像地址和网卡地址，其中 UUID 在 Linux 下可以使用 <code>uuidgen</code> 命令生成</p>
+      <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>domain</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>kvm<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>name</span><span class="token punctuation">></span></span>centos7.113<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>name</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>uuid</span><span class="token punctuation">></span></span>1e86167a-33a9-4ce8-929e-58013fbf9122<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>uuid</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>devices</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>disk</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>file<span class="token punctuation">'</span></span> <span class="token attr-name">device</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>disk<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>source</span> <span class="token attr-name">file</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>/home/vms/centos7.113.img<span class="token punctuation">'</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>disk</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>interface</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>bridge<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>mac</span> <span class="token attr-name">address</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>00:00:00:00:00:04<span class="token punctuation">'</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>interface</span><span class="token punctuation">></span></span>    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>devices</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>domain</span><span class="token punctuation">></span></span>
+</code></pre>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> define /home/vms/centos7.113.xml
+<span class="token comment"># Domain centos.113 defined from /home/vms/centos7.113.xml</span>
+</code></pre>
+      <h2 id="动态更改cpu数量和内存大小"><a class="anchor" aria-hidden="true" tabindex="-1" href="#动态更改cpu数量和内存大小"><span class="octicon octicon-link"></span></a>动态更改cpu数量和内存大小</h2>
+      <p>动态调整，如果超过给虚拟机分配的最大内存，需要重启虚拟机。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> list --all
+<span class="token comment">#  Id    名称                         状态</span>
+<span class="token comment"># ----------------------------------------------------</span>
+<span class="token comment">#  2     working112                     running</span>
+
+<span class="token comment"># 更改CPU</span>
+<span class="token function">virsh</span> setvcpus working112 --maximum <span class="token number">4</span> --config
+<span class="token comment"># 更改内存</span>
+<span class="token function">virsh</span> setmaxmem working112 <span class="token number">1048576</span> --config
+<span class="token comment"># 查看信息</span>
+<span class="token function">virsh</span> dominfo working112
+</code></pre>
+      <h2 id="挂载磁盘"><a class="anchor" aria-hidden="true" tabindex="-1" href="#挂载磁盘"><span class="octicon octicon-link"></span></a>挂载磁盘</h2>
+      <h3 id="创建磁盘"><a class="anchor" aria-hidden="true" tabindex="-1" href="#创建磁盘"><span class="octicon octicon-link"></span></a>创建磁盘</h3>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> /home/vms
+</code></pre>
+      <p>查看镜像信息</p>
+      <pre class="language-bash"><code class="language-bash">virt-filesystems --long --parts --blkdevs -h -a working112.qcow2
+
+<span class="token comment"># Name       Type       Size  Parent</span>
+<span class="token comment"># /dev/sda1  partition  200M  /dev/sda</span>
+<span class="token comment"># /dev/sda2  partition  9.8G  /dev/sda</span>
+<span class="token comment"># /dev/sda   device     10G   -</span>
+
+qemu-img info working112.qcow2
+
+<span class="token comment"># image: working112.qcow2</span>
+<span class="token comment"># file format: qcow2</span>
+<span class="token comment"># virtual size: 140G (150323855360 bytes)</span>
+<span class="token comment"># disk size: 33G</span>
+<span class="token comment"># cluster_size: 65536</span>
+<span class="token comment"># Format specific information:</span>
+<span class="token comment">#     compat: 1.1</span>
+<span class="token comment">#     lazy refcounts: true</span>
+</code></pre>
+      <p>给虚拟机镜像添加<code>200G</code>大小，注意需要停止<code>working112</code>虚拟机</p>
+      <pre class="language-bash"><code class="language-bash">qemu-img resize working112.qcow2 +200G
+<span class="token comment"># Image resized.</span>
+</code></pre>
+      <p>首先，我们制作如下所示的磁盘的备份副本。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">cp</span> working112.qcow2 working112-orig.qcow2
+</code></pre>
+      <p>然后我们运行下面的命令来增加 <code>/dev/sda</code></p>
+      <pre class="language-bash"><code class="language-bash">virt-resize --expand /dev/sda1 working112-orig.qcow2 working112.qcow2
+</code></pre>
+      <p>查看镜像信息</p>
+      <pre class="language-bash"><code class="language-bash">qemu-img info working112.qcow2
+<span class="token comment"># image: working112.qcow2</span>
+<span class="token comment"># file format: qcow2</span>
+<span class="token comment"># virtual size: 140G (150323855360 bytes)</span>
+<span class="token comment"># disk size: 33G</span>
+<span class="token comment"># cluster_size: 65536</span>
+<span class="token comment"># Format specific information:</span>
+<span class="token comment">#     compat: 1.1</span>
+<span class="token comment">#     lazy refcounts: true</span>
+</code></pre>
+      <p>进入虚拟机<code>virsh console working112</code> 查看信息：</p>
+      <pre class="language-bash"><code class="language-bash">vgdisplay <span class="token comment"># 显示卷组大小</span>
+lvdisplay <span class="token comment"># 显示逻辑卷大小</span>
+</code></pre>
+      <p>卷组大小已增加，下面需要分配容量给逻辑卷</p>
+      <pre class="language-bash"><code class="language-bash">lvextend -L +60G /dev/centos/root
+</code></pre>
+      <p>还有最后一步，分配好了需要做系统调整</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># ext 系统格式使用：</span>
+resize2fs /dev/centos/root
+<span class="token comment"># xfs 系统格式使用下面命令</span>
+xfs_growfs /dev/centos/root
+</code></pre>
+      <h2 id="常用命令说明"><a class="anchor" aria-hidden="true" tabindex="-1" href="#常用命令说明"><span class="octicon octicon-link"></span></a>常用命令说明</h2>
+      <h3 id="virt-install"><a class="anchor" aria-hidden="true" tabindex="-1" href="#virt-install"><span class="octicon octicon-link"></span></a>virt-install</h3>
+      <p>常用参数说明</p>
+      <pre class="language-bash"><code class="language-bash">–name指定虚拟机名称
+–memory分配内存大小。
+–vcpus分配CPU核心数，最大与实体机CPU核心数相同
+–disk指定虚拟机镜像，size指定分配大小单位为G。
+–network网络类型，此处用的是默认，一般用的应该是bridge桥接。
+–accelerate加速
+–cdrom指定安装镜像iso
+–vnc启用VNC远程管理，一般安装系统都要启用。
+–vncport指定VNC监控端口，默认端口为5900，端口不能重复。
+–vnclisten指定VNC绑定IP，默认绑定127.0.0.1，这里改为0.0.0.0。
+–os-type<span class="token operator">=</span>linux,windows
+–os-variant<span class="token operator">=</span>rhel6
+
+--name      指定虚拟机名称
+--ram       虚拟机内存大小，以 MB 为单位
+--vcpus     分配CPU核心数，最大与实体机CPU核心数相同
+–-vnc       启用VNC远程管理，一般安装系统都要启用。
+–-vncport   指定VNC监控端口，默认端口为5900，端口不能重复。
+–-vnclisten  指定VNC绑定IP，默认绑定127.0.0.1，这里改为0.0.0.0。
+--network   虚拟机网络配置
+  <span class="token comment"># 其中子选项，bridge=br0 指定桥接网卡的名称。</span>
+
+–os-type<span class="token operator">=</span>linux,windows
+–os-variant<span class="token operator">=</span>rhel7.2
+
+--disk 指定虚拟机的磁盘存储位置
+  <span class="token comment"># size，初始磁盘大小，以 GB 为单位。</span>
+
+--location 指定安装介质路径，如光盘镜像的文件路径。
+--graphics 图形化显示配置
+  <span class="token comment"># 全新安装虚拟机过程中可能会有很多交互操作，比如设置语言，初始化 root 密码等等。</span>
+  <span class="token comment"># graphics 选项的作用就是配置图形化的交互方式，可以使用 vnc（一种远程桌面软件）进行链接。</span>
+  <span class="token comment"># 我们这列使用命令行的方式安装，所以这里要设置为 none，但要通过 --extra-args 选项指定终端信息，</span>
+  <span class="token comment"># 这样才能将安装过程中的交互信息输出到当前控制台。</span>
+--extra-args 根据不同的安装方式设置不同的额外选项
+</code></pre>
+      <h3 id="virsh"><a class="anchor" aria-hidden="true" tabindex="-1" href="#virsh"><span class="octicon octicon-link"></span></a>virsh</h3>
+      <p>基础命令</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">virsh</span> list --all           <span class="token comment"># 查看所有运行和没有运行的虚拟机</span>
+<span class="token function">virsh</span> list                 <span class="token comment"># 查看在运行的虚拟机</span>
+<span class="token function">virsh</span> dumpxml vm-name      <span class="token comment"># 查看kvm虚拟机配置文件</span>
+<span class="token function">virsh</span> start vm-name        <span class="token comment"># 启动kvm虚拟机</span>
+<span class="token function">virsh</span> <span class="token function">shutdown</span> vm-name     <span class="token comment"># 正常关机</span>
+
+<span class="token function">virsh</span> destroy vm-name      <span class="token comment"># 非正常关机，强制关闭虚拟机（相当于物理机直接拔掉电源）</span>
+<span class="token function">virsh</span> undefine vm-name     <span class="token comment"># 删除vm的配置文件</span>
+
+<span class="token function">ls</span> /etc/libvirt/qemu
+<span class="token comment"># 查看删除结果，Centos-6.6的配置文件被删除，但磁盘文件不会被删除</span>
+
+<span class="token function">virsh</span> define file-name.xml <span class="token comment"># 根据配置文件定义虚拟机</span>
+<span class="token function">virsh</span> <span class="token function">suspend</span> vm-name      <span class="token comment"># 挂起，终止</span>
+<span class="token function">virsh</span> resumed vm-name      <span class="token comment"># 恢复被挂起的虚拟机</span>
+<span class="token function">virsh</span> autostart vm-name    <span class="token comment"># 开机自启动vm</span>
+<span class="token function">virsh</span> console <span class="token operator">&#x3C;</span>虚拟机名称<span class="token operator">></span>   <span class="token comment"># 连接虚拟机</span>
+</code></pre>
+      <h2 id="错误解决"><a class="anchor" aria-hidden="true" tabindex="-1" href="#错误解决"><span class="octicon octicon-link"></span></a>错误解决</h2>
+      <pre class="language-bash"><code class="language-bash">console <span class="token builtin class-name">test</span>
+Connected to domain <span class="token builtin class-name">test</span>
+Escape character is ^<span class="token punctuation">]</span>
+</code></pre>
+      <p>如果出现上面字符串使用 <kbd>CTRL+Shift+5</kbd> <kbd>CTRL+Shift+]</kbd></p>
+      <ol>
+        <li>
+          <p>
+            ERROR Format cannot be specified for unmanaged storage.
+            virt-manager 没有找到存储池，创建储存池即可
+          </p>
+        </li>
+        <li>
+          <p>
+            KVM VNC客户端连接闪退
+            使用real vnc或者其它vnc客户端连接kvm闪退，把客户端设置中的ColourLevel值设置为rgb222或full即可
+          </p>
+        </li>
+        <li>
+          <p>virsh shutdown 
+            <domain>
+              无法关闭虚拟机
+              使用该命令关闭虚拟机时，KVM是向虚拟机发送一个ACPI的指令，需要虚拟机安装acpid服务：
+            </domain>
+          </p>
+        </li>
+        <li>
+          <p>operation failed: Active console session exists for this domain</p>
+        </li>
+      </ol>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 方案1</span>
+$ <span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> console
+$ <span class="token function">kill</span> -9 <span class="token operator">&#x3C;</span>进程号<span class="token operator">></span>
+<span class="token comment"># 方案2</span>
+$ /etc/init.d/libvirt-bin restart
+<span class="token comment"># 方案3</span>
+$ <span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> kvm
+$ <span class="token function">kill</span> 对应的虚拟机进程
+</code></pre>
+      <h2 id="参考文章"><a class="anchor" aria-hidden="true" tabindex="-1" href="#参考文章"><span class="octicon octicon-link"></span></a>参考文章</h2>
+      <ul>
+        <li><a href="https://www.linux-kvm.org/page/Main_Page">KVM官方网站</a></li>
+        <li><a href="http://www.cnblogs.com/ilanni/p/3878151.html">KVM虚拟机Linux系统增加硬盘</a></li>
+        <li><a href="https://www.ibm.com/support/knowledgecenter/zh/linuxonibm/liaat/liaatvirtinstalloptions.htm">virt-install 命令参数详解</a></li>
+        <li><a href="https://raymii.org/s/articles/virt-install_introduction_and_copy_paste_distro_install_commands.html">使用virt-install安装虚拟机，发行版安装代码直接复制运行</a></li>
+        <li><a href="http://blog.oneiroi.co.uk/linux/kvm/virt-resize/RHEL/LVM/kvm-linux-expanding-a-lvm-guest-file-system-using-virt-resize/">KVM Linux - Expanding a Guest LVM File System Using Virt-resize</a></li>
+      </ul>
+    </div>
+    <div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/CentOS/CentOS7安装KVM虚拟机详解.md" href="https://github.com/jaywcjlove/handbook/edit/master/CentOS/CentOS7安装KVM虚拟机详解.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a>
+      <div class="copyright">Copyright © 2021. All rights reserved.</div>
+    </div>
+  </body>
+</html>

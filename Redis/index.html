@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      10分钟快速入门Redis---
+      目录
+      - handbook
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="放置我的笔记、搜集、摘录、实践，保持好奇心。看文需谨慎，后果很严重。10分钟快速入门Redis---
+
+目录
+ - handbook">
+    <meta keywords="example,handbook">
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+    <style>body { margin: 0; }.markdown-body { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; max-width: 960px; margin: 28px auto 60px auto; padding: 8px; color: #24292f; background-color: #ffffff; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word;}.markdown-body .octicon { display: inline-block; fill: currentColor; vertical-align: text-bottom;}.markdown-body .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block;}.markdown-body .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer;}.markdown-body .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important;}.markdown-body details.octicon-video:not([open])>*:not(summary) { display: none !important;}.markdown-body details.octicon-video:not([open]) > summary { border-bottom: 0 !important;}.markdown-body .octicon-video summary > svg + span { margin: 4px !important;}.markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body h3:hover .anchor .octicon-link:before,.markdown-body h4:hover .anchor .octicon-link:before,.markdown-body h5:hover .anchor .octicon-link:before,.markdown-body h6:hover .anchor .octicon-link:before { width: 16px; height: 16px; content: ' '; display: inline-block; background-color: currentColor; -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>"); mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");}.markdown-body details,.markdown-body figcaption,.markdown-body figure { display: block;}.markdown-body summary { display: list-item;}.markdown-body a { background-color: transparent; color: #0969da; text-decoration: none;}.markdown-body a:active,.markdown-body a:hover { outline-width: 0;}.markdown-body abbr[title] { border-bottom: none; -webkit-text-decoration: underline dotted; text-decoration: underline dotted;}.markdown-body b,.markdown-body strong { font-weight: 600;}.markdown-body dfn { font-style: italic;}.markdown-body h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body mark { background-color: #ff0; color: #24292f;}.markdown-body small { font-size: 90%;}.markdown-body sub,.markdown-body sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}.markdown-body sub { bottom: -0.25em;}.markdown-body sup { top: -0.5em;}.markdown-body img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: #ffffff;}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp { font-family: monospace,monospace; font-size: 1em;}.markdown-body figure { margin: 1em 40px;}.markdown-body hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid hsla(210,18%,87%,1); height: .25em; padding: 0; margin: 24px 0; background-color: #d0d7de; border: 0;}.markdown-body html [type=button],.markdown-body [type=reset],.markdown-body [type=submit] { -webkit-appearance: button;}.markdown-body [type=button]::-moz-focus-inner,.markdown-body [type=reset]::-moz-focus-inner,.markdown-body [type=submit]::-moz-focus-inner { border-style: none; padding: 0;}.markdown-body [type=button]:-moz-focusring,.markdown-body [type=reset]:-moz-focusring,.markdown-body [type=submit]:-moz-focusring { outline: 1px dotted ButtonText;}.markdown-body [type=checkbox],.markdown-body [type=radio] { box-sizing: border-box; padding: 0;}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button { height: auto;}.markdown-body [type=search] { -webkit-appearance: textfield; outline-offset: -2px;}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration { -webkit-appearance: none;}.markdown-body ::-webkit-input-placeholder { color: inherit; opacity: .54;}.markdown-body ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit;}.markdown-body a:hover { text-decoration: underline;}.markdown-body hr::before { display: table; content: "";}.markdown-body hr::after { display: table; clear: both; content: "";}.markdown-body table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto;}.markdown-body td,.markdown-body th { padding: 0;}.markdown-body details summary { cursor: pointer;}.markdown-body details:not([open])>*:not(summary) { display: none !important;}.markdown-body kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: #24292f; vertical-align: middle; background-color: #f6f8fa; border: solid 1px rgba(175,184,193,0.2); border-bottom-color: rgba(175,184,193,0.2); border-radius: 6px; box-shadow: inset 0 -1px 0 rgba(175,184,193,0.2);}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;}.markdown-body h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body h3 { font-weight: 600; font-size: 1.25em;}.markdown-body h4 { font-weight: 600; font-size: 1em;}.markdown-body h5 { font-weight: 600; font-size: .875em;}.markdown-body h6 { font-weight: 600; font-size: .85em; color: #57606a;}.markdown-body p { margin-top: 0; margin-bottom: 10px;}.markdown-body blockquote { margin: 0; padding: 0 1em; color: #57606a; border-left: .25em solid #d0d7de;}.markdown-body ul,.markdown-body ol { margin-top: 0; margin-bottom: 0; padding-left: 2em;}.markdown-body ol ol,.markdown-body ul ol { list-style-type: lower-roman;}.markdown-body ul ul ol,.markdown-body ul ol ol,.markdown-body ol ul ol,.markdown-body ol ol ol { list-style-type: lower-alpha;}.markdown-body dd { margin-left: 0;}.markdown-body tt,.markdown-body code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px;}.markdown-body pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; word-wrap: normal;}.markdown-body :-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::placeholder { color: #6e7781; opacity: 1;}.markdown-body .pl-c { color: #6e7781;}.markdown-body .pl-c1,.markdown-body .pl-s .pl-v { color: #0550ae;}.markdown-body .pl-e,.markdown-body .pl-en { color: #8250df;}.markdown-body .pl-smi,.markdown-body .pl-s .pl-s1 { color: #24292f;}.markdown-body .pl-ent { color: #116329;}.markdown-body .pl-k { color: #cf222e;}.markdown-body .pl-s,.markdown-body .pl-pds,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-sr .pl-sra { color: #0a3069;}.markdown-body .pl-v,.markdown-body .pl-smw { color: #953800;}.markdown-body .pl-bu { color: #82071e;}.markdown-body .pl-ii { color: #f6f8fa; background-color: #82071e;}.markdown-body .pl-c2 { color: #f6f8fa; background-color: #cf222e;}.markdown-body .pl-sr .pl-cce { font-weight: bold; color: #116329;}.markdown-body .pl-ml { color: #3b2300;}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms { font-weight: bold; color: #0550ae;}.markdown-body .pl-mi { font-style: italic; color: #24292f;}.markdown-body .pl-mb { font-weight: bold; color: #24292f;}.markdown-body .pl-md { color: #82071e; background-color: #FFEBE9;}.markdown-body .pl-mi1 { color: #116329; background-color: #dafbe1;}.markdown-body .pl-mc { color: #953800; background-color: #ffd8b5;}.markdown-body .pl-mi2 { color: #eaeef2; background-color: #0550ae;}.markdown-body .pl-mdr { font-weight: bold; color: #8250df;}.markdown-body .pl-ba { color: #57606a;}.markdown-body .pl-sg { color: #8c959f;}.markdown-body .pl-corl { text-decoration: underline; color: #0a3069;}.markdown-body [data-catalyst] { display: block;}.markdown-body g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em;}.markdown-body g-emoji img { width: 1em; height: 1em;}.markdown-body::before { display: table; content: "";}.markdown-body::after { display: table; clear: both; content: "";}.markdown-body>*:first-child { margin-top: 0 !important;}.markdown-body>*:last-child { margin-bottom: 0 !important;}.markdown-body a:not([href]) { color: inherit; text-decoration: none;}.markdown-body .absent { color: #cf222e;}.markdown-body .anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1;}.markdown-body .anchor:focus { outline: none;}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details { margin-top: 0; margin-bottom: 16px;}.markdown-body blockquote>:first-child { margin-top: 0;}.markdown-body blockquote>:last-child { margin-bottom: 0;}.markdown-body sup>a::before { content: "[";}.markdown-body sup>a::after { content: "]";}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link { color: #24292f; vertical-align: middle; visibility: hidden;}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor { text-decoration: none;}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link { visibility: visible;}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code { padding: 0 .2em; font-size: inherit;}.markdown-body ul.no-list,.markdown-body ol.no-list { padding: 0; list-style-type: none;}.markdown-body ol[type="1"] { list-style-type: decimal;}.markdown-body ol[type=a] { list-style-type: lower-alpha;}.markdown-body ol[type=i] { list-style-type: lower-roman;}.markdown-body div>ol:not([type]) { list-style-type: decimal;}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul { margin-top: 0; margin-bottom: 0;}.markdown-body li>p { margin-top: 16px;}.markdown-body li+li { margin-top: .25em;}.markdown-body dl { padding: 0;}.markdown-body dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600;}.markdown-body dl dd { padding: 0 16px; margin-bottom: 16px;}.markdown-body table th { font-weight: 600;}.markdown-body table th,.markdown-body table td { padding: 6px 13px; border: 1px solid #d0d7de;}.markdown-body table tr { background-color: #ffffff; border-top: 1px solid hsla(210,18%,87%,1);}.markdown-body table tr:nth-child(2n) { background-color: #f6f8fa;}.markdown-body table img { background-color: transparent;}.markdown-body img[align=right] { padding-left: 20px;}.markdown-body img[align=left] { padding-right: 20px;}.markdown-body .emoji { max-width: none; vertical-align: text-top; background-color: transparent;}.markdown-body span.frame { display: block; overflow: hidden;}.markdown-body span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid #d0d7de;}.markdown-body span.frame span img { display: block; float: left;}.markdown-body span.frame span span { display: block; padding: 5px 0 0; clear: both; color: #24292f;}.markdown-body span.align-center { display: block; overflow: hidden; clear: both;}.markdown-body span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center;}.markdown-body span.align-center span img { margin: 0 auto; text-align: center;}.markdown-body span.align-right { display: block; overflow: hidden; clear: both;}.markdown-body span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right;}.markdown-body span.align-right span img { margin: 0; text-align: right;}.markdown-body span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden;}.markdown-body span.float-left span { margin: 13px 0 0;}.markdown-body span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden;}.markdown-body span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right;}.markdown-body code,.markdown-body tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: rgba(175,184,193,0.2); border-radius: 6px;}.markdown-body code br,.markdown-body tt br { display: none;}.markdown-body del code { text-decoration: inherit;}.markdown-body pre code { font-size: 100%;}.markdown-body pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0;}.markdown-body .highlight { margin-bottom: 16px;}.markdown-body .highlight pre { margin-bottom: 0; word-break: normal;}.markdown-body .highlight pre,.markdown-body pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: #f6f8fa; border-radius: 6px;}.markdown-body pre code,.markdown-body pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0;}.markdown-body .csv-data td,.markdown-body .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap;}.markdown-body .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: #ffffff; border: 0;}.markdown-body .csv-data tr { border-top: 0;}.markdown-body .csv-data th { font-weight: 600; background: #f6f8fa; border-top: 0;}.markdown-body .footnotes { font-size: 12px; color: #57606a; border-top: 1px solid #d0d7de;}.markdown-body .footnotes ol { padding-left: 16px;}.markdown-body .footnotes li { position: relative;}.markdown-body .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid #0969da; border-radius: 6px;}.markdown-body .footnotes li:target { color: #24292f;}.markdown-body .footnotes .data-footnote-backref g-emoji { font-family: monospace;}.markdown-body [hidden] { display: none !important;}.markdown-body ::-webkit-calendar-picker-indicator { filter: invert(50%);}.markdown-body .token.tag .attr-value { color: #032f62;}.markdown-body .token.property,.markdown-body .token.tag,.markdown-body .token.boolean,.markdown-body .token.number,.markdown-body .token.function-name,.markdown-body .token.constant,.markdown-body .token.symbol,.markdown-body .token.deleted { color: #0060c9;}.markdown-body .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] { color: black;}.markdown-body code[class*="language-"] .token.selector,.markdown-body code[class*="language-"] .token.attr-name,.markdown-body code[class*="language-"] .token.string,.markdown-body code[class*="language-"] .token.char,.markdown-body code[class*="language-"] .token.function,.markdown-body code[class*="language-"] .token.builtin { color: #6f42c1;}.markdown-body code[class*="language-"] .token.inserted { color: #22863a; background-color: #f0fff4;}.markdown-body code[class*="language-"] .token.deleted { color: #b31d28; background-color: #ffeef0;}.markdown-body code[class*="language-"] .token.class-name { color: #6f42c1;}.markdown-body code[class*="language-"] .code-block { color: #032f62;}.markdown-body code[class*="language-"] .token.comment,.markdown-body code[class*="language-"] .token.block-comment,.markdown-body code[class*="language-"] .token.prolog,.markdown-body code[class*="language-"] .token.doctype,.markdown-body code[class*="language-"] .token.cdata { color: #7D8B99;}.markdown-body code[class*="language-"] .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] .token.operator,.markdown-body code[class*="language-"] .token.entity,.markdown-body code[class*="language-"] .token.url,.markdown-body code[class*="language-"] .token.variable { color: #d73a49; background: rgba(255, 255, 255, 0.5);}.markdown-body code[class*="language-"] .token.atrule,.markdown-body code[class*="language-"] .token.attr-value { color: #004698;}.markdown-body code[class*="language-"] .token.keyword { color: #d63200;}.markdown-body code[class*="language-"] .token.regex,.markdown-body code[class*="language-"] .token.important { color: #e90;}.markdown-body code[class*="language-"] .token.string { color: #0a53c1;}</style>
+    <style>.header {
+position: fixed;
+width: 100%;
+background: #fff;
+backdrop-filter: saturate(180%) blur(0.4rem);
+background-color: rgba(255,255,255,0.55);
+border-bottom: 1px solid #00000014;
+z-index: 99;
+top: 0;
+}
+.header .inner {
+max-width: 960px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+padding: 5px 0;
+}
+.header .logo {
+margin-right: 10px;
+}
+.header .title {
+display: flex;
+align-items: center;
+font-size: 16px;
+font-weight: bold;
+color: #333;
+}
+.header .logo img {
+height: 26px;
+display: block;
+}
+.markdown-body {
+margin-top: 78px;
+}
+.footer {
+max-width: 960px;
+margin: 0 auto;
+text-align: center;
+padding: 0 0 110px 0;
+border-top: 1px solid hsla(210,18%,87%,1);
+padding-top: 18px;
+}
+.footer a {
+font-size: 14px;
+text-decoration: initial;
+color: #3f51b5;
+}
+.footer a:hover {
+color:#009688;
+text-decoration: underline;
+}
+.footer a + a {
+margin-left: 10px;
+}
+.footer .copyright {
+color: #596068;
+font-size: 14px;
+padding-top: 5px;
+}</style>
+  </head>
+  <body id="totop">
+    <header class="header">
+      <article class="inner"><a class="logo" href="../index.html"><img src="data:image/png;base64,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" alt="handbook logo"></a>
+        <div class="title">handbook</div>
+        <nav class="nav"></nav>
+      </article>
+    </header><a aria-label="View source on GitHub" target="__blank" class="github-corner" href="https://github.com/jaywcjlove/handbook.git"><svg width="54" height="54" viewBox="0 0 250 250" aria-hidden="true" style="fill: rgb(32, 34, 37); color: rgb(255, 255, 255); position: fixed; z-index: 99999; border: 0px; top: 0px; right: 0px;">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path style="transform-origin: 130px 106px;" class="octo-arm" fill="currentColor" d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"></path>
+        <path class="octo-body" fill="currentColor" d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"></path>
+      </svg></a>
+    <div class="markdown-body">
+      <h2 id="10分钟快速入门redis"><a class="anchor" aria-hidden="true" tabindex="-1" href="#10分钟快速入门redis"><span class="octicon octicon-link"></span></a>10分钟快速入门Redis</h2>
+      <h1 id="目录"><a class="anchor" aria-hidden="true" tabindex="-1" href="#目录"><span class="octicon octicon-link"></span></a>目录</h1>
+      <ul>
+        <li><a href="#redis%E5%AE%89%E8%A3%85">Redis安装</a>
+          <ul>
+            <li><a href="#%E5%AE%98%E6%96%B9%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">官方编译安装</a></li>
+            <li><a href="#%E9%80%9A%E8%BF%87epel%E6%BA%90%E5%AE%89%E8%A3%85">通过EPEL源安装</a></li>
+            <li><a href="#redis%E5%8D%87%E7%BA%A7">Redis升级</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">服务管理</a>
+          <ul>
+            <li><a href="#%E5%9F%BA%E6%9C%AC%E6%9C%8D%E5%8A%A1%E6%93%8D%E4%BD%9C">基本服务操作</a></li>
+            <li><a href="#%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC">查看版本</a></li>
+            <li><a href="#%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">开机启动</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E6%9B%B4%E6%94%B9%E9%85%8D%E7%BD%AE">更改配置</a></li>
+        <li><a href="#%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%AF%86%E7%A0%81">设置请求密码</a></li>
+        <li><a href="#%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84%E9%85%8D%E7%BD%AE">主从架构配置</a></li>
+        <li><a href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">基本操作</a></li>
+        <li><a href="#%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">支持的数据类型</a>
+          <ul>
+            <li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+            <li><a href="#hashes---%E5%93%88%E5%B8%8C%E5%80%BC">Hashes - 哈希值</a></li>
+            <li><a href="#lists---%E5%88%97%E8%A1%A8">Lists - 列表</a></li>
+            <li><a href="#%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88">有序集合</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E5%BC%80%E5%90%AF%E9%80%9A%E7%9F%A5">开启通知</a></li>
+        <li><a href="#%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E8%BF%9E%E6%8E%A5">开启远程登录连接</a>
+          <ul>
+            <li><a href="#%E4%BF%AE%E6%94%B9%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE">修改防火墙配置</a></li>
+            <li><a href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">修改配置文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8E%9F%E7%94%9F%E7%9B%91%E6%8E%A7">提供的原生监控</a>
+          <ul>
+            <li><a href="#%E5%BD%93%E5%89%8D%E9%93%BE%E6%8E%A5%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%95%B0%E5%92%8C%E8%BF%9E%E6%8E%A5%E6%95%B0">当前链接的客户端数和连接数</a></li>
+            <li><a href="#%E5%86%85%E5%AD%98%E6%9C%80%E5%A4%A7%E7%9A%84%E9%94%AE%E5%80%BC%E5%92%8C%E5%B9%B3%E5%9D%87%E7%9A%84%E9%94%AE%E5%80%BC%E6%95%B0%E6%8D%AE">内存最大的键值和平均的键值数据</a></li>
+            <li><a href="#%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%9A%84%E9%94%AE%E5%80%BC%E6%83%85%E5%86%B5">查看当前的键值情况</a></li>
+            <li><a href="#%E5%8E%9F%E7%94%9F%E7%9A%84monitor%E7%9B%91%E6%8E%A7">原生的Monitor监控</a></li>
+          </ul>
+        </li>
+        <li><a href="#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E">配置说明</a></li>
+        <li><a href="#%E7%B2%BE%E5%93%81%E6%96%87%E7%AB%A0">精品文章</a></li>
+      </ul>
+      <h2 id="redis安装"><a class="anchor" aria-hidden="true" tabindex="-1" href="#redis安装"><span class="octicon octicon-link"></span></a>Redis安装</h2>
+      <h3 id="官方编译安装"><a class="anchor" aria-hidden="true" tabindex="-1" href="#官方编译安装"><span class="octicon octicon-link"></span></a>官方编译安装</h3>
+      <pre class="language-bash"><code class="language-bash">$ <span class="token function">wget</span> http://download.redis.io/releases/redis-4.0.0.tar.gz
+$ <span class="token function">tar</span> xzvf redis-4.0.0.tar.gz -C /usr/local/
+$ <span class="token builtin class-name">cd</span> /usr/local/redis-4.0.0
+$ <span class="token function">make</span>
+$ <span class="token function">make</span> <span class="token builtin class-name">test</span>
+$ <span class="token function">make</span> <span class="token function">install</span> 
+<span class="token comment"># 程序会自动执行:</span>
+<span class="token comment"># mkdir -p /usr/local/bin</span>
+<span class="token comment"># cp -pf redis-server /usr/local/bin</span>
+<span class="token comment"># cp -pf redis-benchmark /usr/local/bin</span>
+<span class="token comment"># cp -pf redis-cli /usr/local/bin</span>
+<span class="token comment"># cp -pf redis-check-dump /usr/local/bin</span>
+<span class="token comment"># cp -pf redis-check-aof /usr/local/bin</span>
+</code></pre>
+      <p>测试<code>make test</code>报错</p>
+      <pre><code>$ make test
+You need tcl 8.5 or newer in order to run the Redis test
+make: *** [test] Error 1
+</code></pre>
+      <p>这个是需要安装<code>tcl</code></p>
+      <pre><code>wget http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz  
+sudo tar xzvf tcl8.6.1-src.tar.gz  -C /usr/local/  
+cd  /usr/local/tcl8.6.1/unix/  
+sudo ./configure  
+sudo make  
+sudo make install   
+</code></pre>
+      <h3 id="通过epel源安装"><a class="anchor" aria-hidden="true" tabindex="-1" href="#通过epel源安装"><span class="octicon octicon-link"></span></a>通过EPEL源安装</h3>
+      <p>源安装问题在于不能安装最新，或者指定Redis版本。</p>
+      <pre class="language-bash"><code class="language-bash">yum --enablerepo<span class="token operator">=</span>epel -y <span class="token function">install</span> redis
+</code></pre>
+      <p>如果没有安装源，通过下面方式安装源。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /etc/yum.repos.d/
+<span class="token function">rpm</span> -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre>
+      <h3 id="redis升级"><a class="anchor" aria-hidden="true" tabindex="-1" href="#redis升级"><span class="octicon octicon-link"></span></a>Redis升级</h3>
+      <p>首先，确保安装了以下repos，EPEL和REMI：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rpm</span> -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+<span class="token function">sudo</span> <span class="token function">rpm</span> -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
+</code></pre>
+      <p>通过<code>--enablerepo=epel</code>参数查看指定源Redis版本，检查REMI repo中的Redis版本：</p>
+      <pre class="language-bash"><code class="language-bash">yum --enablerepo<span class="token operator">=</span>epel info redis
+<span class="token comment"># Loaded plugins: fastestmirror</span>
+<span class="token comment"># Loading mirror speeds from cached hostfile</span>
+<span class="token comment">#  * base: centos.ustc.edu.cn</span>
+<span class="token comment">#  * epel: mirrors.tuna.tsinghua.edu.cn</span>
+<span class="token comment">#  * extras: centos.ustc.edu.cn</span>
+<span class="token comment">#  * updates: mirrors.zju.edu.cn</span>
+<span class="token comment"># Available Packages</span>
+<span class="token comment"># Name        : redis</span>
+<span class="token comment"># Arch        : x86_64</span>
+<span class="token comment"># Version     : 2.4.10</span>
+<span class="token comment"># Release     : 1.el6</span>
+<span class="token comment"># Size        : 213 k</span>
+<span class="token comment"># Repo        : epel/x86_64</span>
+<span class="token comment"># Summary     : A persistent key-value database</span>
+<span class="token comment"># URL         : http://redis.io</span>
+<span class="token comment"># License     : BSD</span>
+<span class="token comment"># Description : Redis is an advanced key-value store. It is similar to memcached but the data</span>
+<span class="token comment">#             : set is not volatile, and values can be strings, exactly like in memcached, but</span>
+<span class="token comment">#             : also lists, sets, and ordered sets. All this data types can be manipulated with</span>
+<span class="token comment">#             : atomic operations to push/pop elements, add/remove elements, perform server</span>
+<span class="token comment">#             : side union, intersection, difference between sets, and so forth. Redis supports</span>
+<span class="token comment">#             : different kind of sorting abilities.</span>
+</code></pre>
+      <p>然后从EPEL repo安装相关的依赖关系（jemalloc）：</p>
+      <pre class="language-bash"><code class="language-bash">yum --enablerepo<span class="token operator">=</span>epel <span class="token function">install</span> jemalloc
+</code></pre>
+      <p>在安装之前，您应该停止旧的Redis守护进程：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">service</span> redis stop
+</code></pre>
+      <p>然后安装更新版本的Redis：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> yum --enablerepo<span class="token operator">=</span>remi <span class="token function">install</span> redis
+</code></pre>
+      <h2 id="服务管理"><a class="anchor" aria-hidden="true" tabindex="-1" href="#服务管理"><span class="octicon octicon-link"></span></a>服务管理</h2>
+      <p>重新启动Redis守护程序，并使其重新启动时自动启动：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> redis start
+<span class="token function">sudo</span> <span class="token function">chkconfig</span> redis on
+</code></pre>
+      <h3 id="基本服务操作"><a class="anchor" aria-hidden="true" tabindex="-1" href="#基本服务操作"><span class="octicon octicon-link"></span></a>基本服务操作</h3>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment">## 启动并后台运行</span>
+$ redis-server <span class="token operator">&#x26;</span> <span class="token function">nohup</span>
+<span class="token comment">## 查是否启动</span>
+$ redis-cli <span class="token function">ping</span>
+<span class="token comment">## 关闭命令</span>
+$ redis-cli <span class="token function">shutdown</span>
+
+<span class="token comment"># 命令行客户端启动</span>
+$ redis-cli start
+<span class="token comment"># 启动</span>
+$ <span class="token function">service</span> redis start
+<span class="token comment"># 停止</span>
+$ <span class="token function">service</span> redis stop
+
+<span class="token comment"># 命令行客户端启动</span>
+$ redis-cli -p <span class="token number">6380</span>
+
+<span class="token comment"># 指定端口后台启动</span>
+$ redis-server --port <span class="token number">6380</span> <span class="token operator">&#x26;</span>
+</code></pre>
+      <h3 id="查看版本"><a class="anchor" aria-hidden="true" tabindex="-1" href="#查看版本"><span class="octicon octicon-link"></span></a>查看版本</h3>
+      <p>检查当前安装的Redis版本：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 查看 Redis 版本</span>
+$ redis-cli info <span class="token operator">|</span> <span class="token function">grep</span> redis_version
+
+<span class="token comment"># 查看端口号</span>
+$ redis-cli info <span class="token operator">|</span> <span class="token function">grep</span> tcp_port
+</code></pre>
+      <h3 id="服务管理-1"><a class="anchor" aria-hidden="true" tabindex="-1" href="#服务管理-1"><span class="octicon octicon-link"></span></a>服务管理</h3>
+      <pre class="language-bash"><code class="language-bash">systemctl status redis <span class="token comment"># 查看服务状态</span>
+systemctl start redis <span class="token comment"># 启动 Redis</span>
+systemctl stop redis <span class="token comment"># 启动 Redis</span>
+</code></pre>
+      <h3 id="开机启动"><a class="anchor" aria-hidden="true" tabindex="-1" href="#开机启动"><span class="octicon octicon-link"></span></a>开机启动</h3>
+      <p>如果你是通过yum安装，可以使用下面方式开机启动。</p>
+      <pre class="language-bash"><code class="language-bash">systemctl <span class="token builtin class-name">enable</span> redis.service
+<span class="token function">chkconfig</span> redis on
+</code></pre>
+      <p>如果你是编译安装可通过下面方式设置开机启动</p>
+      <p>我们将在 Redis 安装目录找到<code>/usr/local/redis-4.0.0/utils</code>这个目录，在这个目录中有个有个脚本 <code>redis_init_script</code>，将此脚本拷贝到<code>/etc/init.d</code>目录下，命名为<code>redis</code>:</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">cp</span> /usr/local/redis-4.0.0/utils/redis_init_script /etc/init.d/redis
+</code></pre>
+      <p>拷贝一下<code>redis.conf</code> 文件到<code>/etc/redis</code>目录下</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">cp</span> /usr/local/redis-4.0.0/redis.conf /etc/redis/6380.conf
+</code></pre>
+      <p>配置文件<code>6380.conf</code>需要更改几个地方</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 是否在后台执行，yes：后台运行；no：不是后台运行（老版本默认）</span>
+daemonize <span class="token function">yes</span>
+</code></pre>
+      <p>更改权限，通过 <a href="https://jaywcjlove.github.io/linux-command/c/chkconfig.html">chkconfig</a> 命令检查、设置系统redis服务开启</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">chmod</span> +x /etc/init.d/redis
+<span class="token function">chkconfig</span> redis on
+</code></pre>
+      <p>必须把下面两行注释放在 <code>/etc/init.d/redis</code> 文件头部，不设置会报不支持的提示 <code>service redis does not support chkconfig</code></p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># chkconfig:   2345 90 10</span>
+<span class="token comment"># description:  redis is a persistent key-value database</span>
+</code></pre>
+      <p>上面的注释的意思是，redis服务必须在运行级2，3，4，5下被启动或关闭，启动的优先级是90，关闭的优先级是10。</p>
+      <p><strong>Redis 启动警告错误解决</strong></p>
+      <ol>
+        <li>WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.</li>
+      </ol>
+      <pre class="language-shell"><code class="language-shell"><span class="token builtin class-name">echo</span> <span class="token string">"vm.overcommit_memory=1"</span> <span class="token operator">></span> /etc/sysctl.conf  <span class="token comment"># 或 vi /etcsysctl.conf , 然后reboot重启机器</span>
+<span class="token builtin class-name">echo</span> <span class="token number">1</span> <span class="token operator">></span> /proc/sys/vm/overcommit_memory  <span class="token comment"># 不需要启机器就生效</span>
+</code></pre>
+      <ol start="2">
+        <li>WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</li>
+      </ol>
+      <pre class="language-shell"><code class="language-shell"><span class="token builtin class-name">echo</span> <span class="token number">511</span> <span class="token operator">></span> /proc/sys/net/core/somaxconn
+</code></pre>
+      <h2 id="更改配置"><a class="anchor" aria-hidden="true" tabindex="-1" href="#更改配置"><span class="octicon octicon-link"></span></a>更改配置</h2>
+      <p>Redis 的配置文件位于 Redis 安装目录下，文件名为 <code>redis.conf</code>。上面已经将它拷贝到<code>/etc/redis</code>目录下了，配置文件在 <code>sudo vi /etc/redis/6380.conf</code> 这里可以编辑</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vi</span> /etc/redis/6380.conf
+</code></pre>
+      <p>你可以通过 CONFIG 命令查看或设置配置项。配置设置命令</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment">## 进入redis获取</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG GET CONFIG_SETTING_NAME
+<span class="token comment">## 进入redis设置</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE
+
+<span class="token comment">## 获取所有配置</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> CONFIG GET *
+
+<span class="token comment">## 设置配置开启通知功能</span>
+$ redis-cli config <span class="token builtin class-name">set</span> notify-keyspace-events KEA
+</code></pre>
+      <h2 id="设置请求密码"><a class="anchor" aria-hidden="true" tabindex="-1" href="#设置请求密码"><span class="octicon octicon-link"></span></a>设置请求密码</h2>
+      <p>打开 <code>vim /etc/redis/6380.conf</code> 配置文件编辑它，更改下面两项内容：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># ...</span>
+<span class="token comment"># requirepass foobared</span>
+<span class="token comment"># 更改成下面内容，把 foobared 改为你想要设置的密码</span>
+requirepass <span class="token number">111111</span>
+
+<span class="token comment"># bind 127.0.0.1 去掉 # 注释并改为</span>
+<span class="token builtin class-name">bind</span> <span class="token number">0.0</span>.0.0
+</code></pre>
+      <p>更改为之后你就可以带密码访问redis了。</p>
+      <pre class="language-bash"><code class="language-bash">redis-cli -h <span class="token number">127.0</span>.0.1 -p <span class="token number">6379</span> -a <span class="token number">111111</span>
+</code></pre>
+      <h2 id="主从架构配置"><a class="anchor" aria-hidden="true" tabindex="-1" href="#主从架构配置"><span class="octicon octicon-link"></span></a>主从架构配置</h2>
+      <p>假设有两台服务器，一台做主，一台做从</p>
+      <pre class="language-bash"><code class="language-bash">Redis 主信息：
+  IP：12.168.1.114
+  端口：6379
+Redis 从信息：
+  IP：12.168.1.115
+  端口：6379
+</code></pre>
+      <p>编辑从机的 Redis 配置文件，找到 <code># slaveof</code>开头的这一行应该是注释的：<code># slaveof &#x3C;masterip> &#x3C;masterport></code>我们需要去掉该注释，并且填写我们自己的主机的 IP 和 端口，比如：<code>slaveof 192.168.1.114 6379</code>。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># slaveof &#x3C;自己的主机的 IP> &#x3C;自己的主机的 端口></span>
+<span class="token comment"># 这行更改成下面内容</span>
+slaveof <span class="token number">192.168</span>.1.114 <span class="token number">6379</span>
+</code></pre>
+      <p>配置完成后重启从机 Redis 服务重启完之后，进入主机的 redis-cli 状态下，输入：<code>INFO replication</code> 可以查询到当前主机的 redis 处于什么角色，有哪些从机已经连上主机。</p>
+      <p>此时已经完成了主从配置，我们可以测试下：</p>
+      <ol>
+        <li>我们进入主机的 redis-cli 状态，然后 set 某个值，比如：set mygithub jaywcjlove</li>
+        <li>我们切换进入从机的 redis-cli 的状态下，获取刚刚设置的值看是否存在：get mygithub，此时，我们可以发现是可以获取到值的。</li>
+        <li>但是有一个需要注意的：从库不具备写入数据能力，不然会报错。 从库只有只读能力。</li>
+      </ol>
+      <h2 id="基本操作"><a class="anchor" aria-hidden="true" tabindex="-1" href="#基本操作"><span class="octicon octicon-link"></span></a>基本操作</h2>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment">## 命令行客户端启动</span>
+$ redis-cli
+
+<span class="token comment"># 测试心跳</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> <span class="token function">ping</span>
+PONG
+
+<span class="token comment"># 设置 mykey 键的值</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> <span class="token builtin class-name">set</span> mykey hello
+OK
+
+<span class="token comment"># 获取 mykey 键的值</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> get mykey
+<span class="token string">"hello"</span>
+
+<span class="token comment">## 设置 mykey 失效事件</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> expire mykey <span class="token number">2</span>
+
+
+<span class="token comment"># 查看当前redis的配置信息</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> config get *
+
+<span class="token comment"># 获取所有的key</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> keys *
+
+<span class="token comment"># 删除redis当前数据库中的所有Key</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> flushdb
+
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> config get <span class="token function">dir</span>
+
+<span class="token comment"># 馋哭当前库 key 的数量</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> dbsize
+
+<span class="token comment"># 删除所有数据库中的key</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> flushall
+
+<span class="token comment"># 退出</span>
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> <span class="token builtin class-name">exit</span>
+
+
+<span class="token comment"># 找出拖慢 Redis 的罪魁祸首</span>
+<span class="token comment"># 通过这个工具可以查看所有命令统计的快照，</span>
+<span class="token comment"># 比如命令执行了多少次，</span>
+<span class="token comment"># 执行命令所耗费的毫秒数(每个命令的总时间和平均时间)</span>
+<span class="token comment"># 只需要简单地执行 CONFIG RESETSTAT 命令就可以重置，这样你就可以得到一个全新的统计结果。</span>
+
+<span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> commandstats
+cmdstat_get:calls<span class="token operator">=</span><span class="token number">78</span>,usec<span class="token operator">=</span><span class="token number">608</span>,usec_per_call<span class="token operator">=</span><span class="token number">7.79</span>
+cmdstat_setex:calls<span class="token operator">=</span><span class="token number">5</span>,usec<span class="token operator">=</span><span class="token number">71</span>,usec_per_call<span class="token operator">=</span><span class="token number">14.20</span>
+cmdstat_keys:calls<span class="token operator">=</span><span class="token number">2</span>,usec<span class="token operator">=</span><span class="token number">42</span>,usec_per_call<span class="token operator">=</span><span class="token number">21.00</span>
+cmdstat_info:calls<span class="token operator">=</span><span class="token number">10</span>,usec<span class="token operator">=</span><span class="token number">1931</span>,usec_per_call<span class="token operator">=</span><span class="token number">193.10</span>
+</code></pre>
+      <h2 id="支持的数据类型"><a class="anchor" aria-hidden="true" tabindex="-1" href="#支持的数据类型"><span class="octicon octicon-link"></span></a>支持的数据类型</h2>
+      <h3 id="字符串"><a class="anchor" aria-hidden="true" tabindex="-1" href="#字符串"><span class="octicon octicon-link"></span></a>字符串</h3>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># 启动客户端 ,存储字符串到redis.</span>
+redis<span class="token operator">></span> SET name forezp
+OK
+<span class="token comment"># 取字符串:</span>
+redis<span class="token operator">></span> get name 
+<span class="token string">"forezp"</span>
+</code></pre>
+      <h3 id="hashes---哈希值"><a class="anchor" aria-hidden="true" tabindex="-1" href="#hashes---哈希值"><span class="octicon octicon-link"></span></a>Hashes - 哈希值</h3>
+      <pre class="language-bash"><code class="language-bash">redis <span class="token operator">></span> HMSET king username forezp password xxdxx age <span class="token number">22</span>
+redis <span class="token operator">></span> HGETALL king
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"username"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"forezp "</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"password "</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"xxdxx "</span>
+<span class="token number">5</span><span class="token punctuation">)</span> <span class="token string">"age "</span>
+<span class="token number">6</span><span class="token punctuation">)</span> <span class="token string">"22"</span>
+</code></pre>
+      <h3 id="lists---列表"><a class="anchor" aria-hidden="true" tabindex="-1" href="#lists---列表"><span class="octicon octicon-link"></span></a>Lists - 列表</h3>
+      <pre class="language-bash"><code class="language-bash">redis<span class="token operator">></span> lpush pricess kenny
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+redis <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> lpush pricess jolin
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">2</span>
+redis <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> lpush pricess mayun
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">3</span>
+redis <span class="token number">127.0</span>.0.1:637<span class="token operator"><span class="token file-descriptor important">9</span>></span> lrange pricess <span class="token number">0</span> <span class="token number">10</span>
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"kenny"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"jolin"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"mayun"</span>
+</code></pre>
+      <h3 id="有序集合"><a class="anchor" aria-hidden="true" tabindex="-1" href="#有序集合"><span class="octicon octicon-link"></span></a>有序集合</h3>
+      <pre class="language-bash"><code class="language-bash">redis <span class="token operator">></span> ZADD kindom <span class="token number">1</span> redis
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+redis<span class="token operator">></span> ZADD kindom <span class="token number">2</span> mongodb
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+redis <span class="token operator">></span> ZADD kindom <span class="token number">3</span> mysql
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">1</span>
+redis <span class="token operator">></span> ZADD kindom <span class="token number">3</span> mysql
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+redis <span class="token operator">></span> ZADD kindom <span class="token number">4</span> mysql
+<span class="token punctuation">(</span>integer<span class="token punctuation">)</span> <span class="token number">0</span>
+redis <span class="token operator">></span> ZRANGE kindom <span class="token number">0</span> <span class="token number">10</span> WITHSCORES
+<span class="token number">1</span><span class="token punctuation">)</span> <span class="token string">"redis"</span>
+<span class="token number">2</span><span class="token punctuation">)</span> <span class="token string">"1"</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token string">"mongodb"</span>
+<span class="token number">4</span><span class="token punctuation">)</span> <span class="token string">"2"</span>
+<span class="token number">5</span><span class="token punctuation">)</span> <span class="token string">"mysql"</span>
+<span class="token number">6</span><span class="token punctuation">)</span> <span class="token string">"4"</span>
+</code></pre>
+      <h2 id="开启通知"><a class="anchor" aria-hidden="true" tabindex="-1" href="#开启通知"><span class="octicon octicon-link"></span></a>开启通知</h2>
+      <p>键空间事件通知默认被禁用，因为这个特性消耗CPU电量不是很明智。使用<code>redis.conf</code>的<code>notify-keyspace-events</code>，或者通过<code>CONFIG SET</code>来开启通知。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment">## 设置配置开启通知功能</span>
+$ redis-cli config <span class="token builtin class-name">set</span> notify-keyspace-events KEA
+<span class="token comment">## 命令行监控所有通知</span>
+$ redis-cli --csv psubscribe <span class="token string">'__key*__:*'</span>
+Reading messages<span class="token punctuation">..</span>. <span class="token punctuation">(</span>press Ctrl-C to quit<span class="token punctuation">)</span>
+<span class="token string">"psubscribe"</span>,<span class="token string">"__key*__:*"</span>,1
+</code></pre>
+      <p>键值说明</p>
+      <pre class="language-bash"><code class="language-bash">K     Keyspace events, published with __keyspace@<span class="token operator">&#x3C;</span>db<span class="token operator">></span>__ prefix.  
+E     Keyevent events, published with __keyevent@<span class="token operator">&#x3C;</span>db<span class="token operator">></span>__ prefix.  
+g     Generic commands <span class="token punctuation">(</span>non-type specific<span class="token punctuation">)</span> like DEL, EXPIRE, RENAME, <span class="token punctuation">..</span>.  
+$     String commands  
+l     List commands  
+s     Set commands  
+h     Hash commands  
+z     Sorted <span class="token builtin class-name">set</span> commands  
+x     Expired events <span class="token punctuation">(</span>events generated every <span class="token function">time</span> a key expires<span class="token punctuation">)</span>  
+e     Evicted events <span class="token punctuation">(</span>events generated when a key is evicted <span class="token keyword">for</span> maxmemory<span class="token punctuation">)</span>  
+A     Alias <span class="token keyword">for</span> g<span class="token variable">$lshzxe</span>, so that the <span class="token string">"AKE"</span> string means all the events. 
+</code></pre>
+      <p>不同命令产生的事件(Events generated by different commands)</p>
+      <p>按照下面的清单，不同的命令产生不同类型的事件。 <a href="http://redis.io/topics/notifications">Redis Keyspace Notifications</a></p>
+      <ul>
+        <li>DEL 为每一个被删除的键产生一个del事件。</li>
+        <li>RENAME 产生两个事件，为源键产生一个rename_from事件，为目标键产生一个rename_to事件。</li>
+        <li>EXPIRE 当为键设置过期时产生一个expire事件，或者每当设置了过期的键被删除时产生一个expired事件(查看EXPIRE文档获取更多信息)。</li>
+        <li>SORT 当STORE用于设置一个新键时产生一个sortstore事件。当结果列表为空，并且使用了STORE选项，并且已经有一个该名字的键存在，那么这个件键被删除，所以这种条件下或产生一个del事件。</li>
+        <li>SET及其所有变种(SETEX, SETNX,GETSET) 产生set事件。但是SETEX还会产生一个expire事件。</li>
+        <li>MSET 为每个键产生一个单独的set事件。</li>
+        <li>SETRANGE 产生一个setrange事件。</li>
+        <li>INCR, DECR, INCRBY, DECRBY 都产生incrby事件。</li>
+        <li>INCRBYFLOAT 产生一个incrbyfloat事件。</li>
+        <li>APPEND 产生一个append事件。</li>
+        <li>LPUSH和LPUSHX 产生单个lpush事件，即使在可变情况下(even in the variadic case)。</li>
+        <li>RPUSH和RPUSHX 产生单个rpush事件，即使在可变情况下(even in the variadic case)。</li>
+        <li>RPOP 产生一个rpop事件。如果键由于最后一个元素被从列表中弹出而导致删除，会又产生一个del事件。</li>
+        <li>LPOP 产生一个lpop事件。如果键由于最后一个元素被从列表中弹出而导致删除，会又产生一个del事件。</li>
+        <li>LINSERT 产生一个linsert事件。</li>
+        <li>LSET 产生一个lset事件。</li>
+        <li>LREM 产生一个lrem事件。如果结果列表为空并且键被删除，会又产生一个del事件。</li>
+        <li>LTRIM 产生一个ltrim事件。如果结果列表为空并且键被删除，会又产生一个del事件。</li>
+        <li>RPOPLPUSH和BRPOPLPUSH 产生一个rpop事件和一个lpush事件。两种情况下顺序都能保证 (lpush事件总是在rpop事件之后被传递) 如果结果列表长度为零并且键被删除，会又产生一个del事件。</li>
+        <li>HSET, HSETNX和HMSET 都产生单个hset事件。</li>
+        <li>HINCRBY 产生一个hincrby事件。</li>
+        <li>HINCRBYFLOAT 产生一个hincrbyfloat事件。</li>
+        <li>HDEL 产生单个hdel事件。如果结果哈希为空并且键被删除，会又产生一个del事件。</li>
+        <li>SADD 产生单个sadd事件，即使在可变情况下(even in the variadic case)。</li>
+        <li>SREM 产生单个srem事件。如果结果集合为空并且键被删除，会又产生一个del事件。</li>
+        <li>SMOVE 为源键产生一个srem事件为目标键产生一个sadd事件。</li>
+        <li>SPOP 产生一个spop事件。如果结果集合为空并且键被删除，会又产生一个del事件。</li>
+        <li>SINTERSTORE, SUNIONSTORE, SDIFFSTORE 分别产生sinterstore，sunionostore，sdiffstore事件。在特殊情况下，集合为空，且存储结果的键已经存在，由于键被删除，会产生一个del事件。</li>
+        <li>ZINCR 产生一个zincr事件。</li>
+        <li>ZADD产生单个zadd事件，即使添加了多个元素。.</li>
+        <li>ZREM 产生单个zrem事件，即使删除了多个元素。当结果有序集合为空，并且键被生成时，会产生一个额外的del事件。</li>
+        <li>ZREMBYSCORE 产生单个zrembyscore事件。当结果有序集合为空，并且键被生成时，会产生一个额外的del事件。</li>
+        <li>ZREMBYRANK 产生单个zrembyrank事件。当结果有序集合为空，并且键被生成时，会产生一个额外的del事件。</li>
+        <li>ZINTERSTORE和ZUNIONSTORE 分别产生zinterstore和zunionstore事件。在特殊情况下，集合为空，且存储结果的键已经存在，由于键被删除，会产生一个del事件。</li>
+        <li>每当一个关联有生存事件的键由于过期而被从数据集中删除时会产生一个expired事件。</li>
+        <li>每当一个键由于maxmemory策略而从数据集中被淘汰以节省内存时会产生一个evicted事件。</li>
+      </ul>
+      <h2 id="开启远程登录连接"><a class="anchor" aria-hidden="true" tabindex="-1" href="#开启远程登录连接"><span class="octicon octicon-link"></span></a>开启远程登录连接</h2>
+      <p>使用 netstat 来查看端口占用情况，6379为默认Redis端口。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token function">netstat</span> -nlt<span class="token operator">|</span><span class="token function">grep</span> <span class="token number">6379</span>
+</code></pre>
+      <ul>
+        <li>-t：指明显示 TCP 端口</li>
+        <li>-u：指明显示 UDP 端口</li>
+        <li>-l：仅显示监听套接字</li>
+        <li>-p：显示进程标识符和程序名称，每一个套接字/端口都属于一个程序。</li>
+        <li>-n：不进行 DNS 轮询，显示 IP （可以加速操作）</li>
+      </ul>
+      <h3 id="修改防火墙配置"><a class="anchor" aria-hidden="true" tabindex="-1" href="#修改防火墙配置"><span class="octicon octicon-link"></span></a>修改防火墙配置</h3>
+      <p>修改防火墙配置 sudo vi /etc/sysconfig/iptables</p>
+      <pre class="language-bash"><code class="language-bash">-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="token number">6379</span> -j ACCEPT
+</code></pre>
+      <h3 id="修改配置文件"><a class="anchor" aria-hidden="true" tabindex="-1" href="#修改配置文件"><span class="octicon octicon-link"></span></a>修改配置文件</h3>
+      <p>Redis protected-mode 是3.2 之后加入的新特性，在Redis.conf的注释中，我们可以了解到，他的具体作用和启用条件。可以在 sudo vi /etc/redis.conf 中编辑，修改配置文件。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># Protected mode is a layer of security protection, in order to avoid that</span>
+<span class="token comment"># Redis instances left open on the internet are accessed and exploited.</span>
+<span class="token comment">#</span>
+<span class="token comment"># When protected mode is on and if:</span>
+<span class="token comment">#</span>
+<span class="token comment"># 1) The server is not binding explicitly to a set of addresses using the</span>
+<span class="token comment">#    "bind" directive.</span>
+<span class="token comment"># 2) No password is configured.</span>
+<span class="token comment">#</span>
+<span class="token comment"># The server only accepts connections from clients connecting from the</span>
+<span class="token comment"># IPv4 and IPv6 loopback addresses 127.0.0.1 and ::1, and from Unix domain</span>
+<span class="token comment"># sockets.</span>
+<span class="token comment">#</span>
+<span class="token comment"># By default protected mode is enabled. You should disable it only if</span>
+<span class="token comment"># you are sure you want clients from other hosts to connect to Redis</span>
+<span class="token comment"># even if no authentication is configured, nor a specific set of interfaces</span>
+<span class="token comment"># are explicitly listed using the "bind" directive.</span>
+protected-mode <span class="token function">yes</span>
+
+</code></pre>
+      <p>它启用的条件，有两个：</p>
+      <ol>
+        <li>没有bind IP</li>
+        <li>没有设置访问密码</li>
+      </ol>
+      <p>如果启用了，则只能够通过lookback ip（127.0.0.1）访问Redis cache，如果从外网访问，则会返回相应的错误信息：</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token punctuation">(</span>error<span class="token punctuation">)</span> DENIED Redis is running <span class="token keyword">in</span> protected mode because protected mode is enabled, no <span class="token builtin class-name">bind</span> address was specified, no authentication password is requested to clients. In this mode connections are only accepted from the lookback interface. If you want to connect from external computers to Redis you may adopt one of the following solutions: <span class="token number">1</span><span class="token punctuation">)</span> Just disable protected mode sending the <span class="token builtin class-name">command</span> <span class="token string">'CONFIG SET protected-mode no'</span> from the loopback interface by connecting to Redis from the same <span class="token function">host</span> the server is running, however MAKE SURE Redis is not publicly accessible from internet <span class="token keyword">if</span> you <span class="token keyword">do</span> so. Use CONFIG REWRITE to <span class="token function">make</span> this change permanent. <span class="token number">2</span><span class="token punctuation">)</span> Alternatively you can just disable the protected mode by editing the Redis configuration file, and setting the protected mode option to <span class="token string">'no'</span>, and <span class="token keyword">then</span> restarting the server. <span class="token number">3</span><span class="token punctuation">)</span> If you started the server manually just <span class="token keyword">for</span> testing, restart it with the --portected-mode no option. <span class="token number">4</span><span class="token punctuation">)</span> Setup a <span class="token builtin class-name">bind</span> address or an authentication password. NOTE: You only need to <span class="token keyword">do</span> one of the above things <span class="token keyword">in</span> order <span class="token keyword">for</span> the server to start accepting connections from the outside.
+</code></pre>
+      <h2 id="提供的原生监控"><a class="anchor" aria-hidden="true" tabindex="-1" href="#提供的原生监控"><span class="octicon octicon-link"></span></a>提供的原生监控</h2>
+      <h3 id="当前链接的客户端数和连接数"><a class="anchor" aria-hidden="true" tabindex="-1" href="#当前链接的客户端数和连接数"><span class="octicon octicon-link"></span></a>当前链接的客户端数和连接数</h3>
+      <p><code>redis-cli --stat</code>查看当前连接的客户端数，连接数等</p>
+      <pre class="language-bash"><code class="language-bash">------- data ------ --------------------- load -------------------- - child -
+keys       mem      clients blocked requests            connections
+<span class="token number">4</span>          <span class="token number">1</span>.27M    <span class="token number">6</span>       <span class="token number">0</span>       <span class="token number">17340</span> <span class="token punctuation">(</span>+0<span class="token punctuation">)</span>          <span class="token number">111</span>
+<span class="token number">4</span>          <span class="token number">1</span>.27M    <span class="token number">6</span>       <span class="token number">0</span>       <span class="token number">17341</span> <span class="token punctuation">(</span>+1<span class="token punctuation">)</span>          <span class="token number">111</span>
+<span class="token number">4</span>          <span class="token number">1</span>.27M    <span class="token number">6</span>       <span class="token number">0</span>       <span class="token number">17342</span> <span class="token punctuation">(</span>+1<span class="token punctuation">)</span>          <span class="token number">111</span>
+<span class="token number">4</span>          <span class="token number">1</span>.27M    <span class="token number">6</span>       <span class="token number">0</span>       <span class="token number">17343</span> <span class="token punctuation">(</span>+1<span class="token punctuation">)</span>          <span class="token number">111</span>
+</code></pre>
+      <h3 id="内存最大的键值和平均的键值数据"><a class="anchor" aria-hidden="true" tabindex="-1" href="#内存最大的键值和平均的键值数据"><span class="octicon octicon-link"></span></a>内存最大的键值和平均的键值数据</h3>
+      <p><code>redis-cli --bigkeys</code> 对当前占用内存最大的键值和平均的键值数据，也可以通过指定<code>-i</code>参数定时查看当前的视图情况。</p>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment"># Scanning the entire keyspace to find biggest keys as well as</span>
+<span class="token comment"># average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec</span>
+<span class="token comment"># per 100 SCAN commands (not usually needed).</span>
+
+<span class="token punctuation">[</span>00.00%<span class="token punctuation">]</span> Biggest string found so far <span class="token string">'asdf.js'</span> with <span class="token number">3</span> bytes
+<span class="token punctuation">[</span>00.00%<span class="token punctuation">]</span> Biggest string found so far <span class="token string">'wabg-tokeneyJhbGciOiJIUzI1NiJ9.NA.UGGRiB2I42rP-33cIMrcoPub7AzHgDlqHacAKFw1pfE'</span> with <span class="token number">328</span> bytes
+<span class="token punctuation">[</span>00.00%<span class="token punctuation">]</span> Biggest string found so far <span class="token string">'wabg-token-province'</span> with <span class="token number">231042</span> bytes
+
+-------- summary -------
+
+Sampled <span class="token number">4</span> keys <span class="token keyword">in</span> the keyspace<span class="token operator">!</span>
+Total key length <span class="token keyword">in</span> bytes is <span class="token number">180</span> <span class="token punctuation">(</span>avg len <span class="token number">45.00</span><span class="token punctuation">)</span>
+
+Biggest string found <span class="token string">'wabg-token-province'</span> has <span class="token number">231042</span> bytes
+
+<span class="token number">4</span> strings with <span class="token number">231819</span> bytes <span class="token punctuation">(</span><span class="token number">100.00</span>% of keys, avg size <span class="token number">57954.75</span><span class="token punctuation">)</span>
+<span class="token number">0</span> lists with <span class="token number">0</span> items <span class="token punctuation">(</span>00.00% of keys, avg size <span class="token number">0.00</span><span class="token punctuation">)</span>
+<span class="token number">0</span> sets with <span class="token number">0</span> members <span class="token punctuation">(</span>00.00% of keys, avg size <span class="token number">0.00</span><span class="token punctuation">)</span>
+<span class="token number">0</span> hashs with <span class="token number">0</span> fields <span class="token punctuation">(</span>00.00% of keys, avg size <span class="token number">0.00</span><span class="token punctuation">)</span>
+<span class="token number">0</span> zsets with <span class="token number">0</span> members <span class="token punctuation">(</span>00.00% of keys, avg size <span class="token number">0.00</span><span class="token punctuation">)</span>
+</code></pre>
+      <h3 id="查看当前的键值情况"><a class="anchor" aria-hidden="true" tabindex="-1" href="#查看当前的键值情况"><span class="octicon octicon-link"></span></a>查看当前的键值情况</h3>
+      <p><code>redis-cli --scan</code>提供和<code>keys *</code>相似的功能，查看当前的键值情况，可以通过正则表达</p>
+      <pre class="language-bash"><code class="language-bash">$ redis-cli --scan
+
+sess:K4xh-bxOBrcXpy9kEW87oiy-u7I2sAA5
+asdf.js
+sess:1tGNZSXW8GyoEQsbtpqkA5tMmSFp_ZIn
+wabg-tokeneyJhbGciOiJIUzI1NiJ9.NA.UGGRiB2I42rP-33cIMrcoPub7AzHgDlqHacAKFw1pfE
+sess:3e4NGIJd0wf1-RONeTt-FsXQj4EaVNjk
+wabg-token-province
+sess:UuCLAX2sWZ50fiIO1qvDgulf0XIZRd98
+wabg-tokeneyJhbGciOiJIUzI1NiJ9.MQ.6z44GClzAsUED1M_UyxqdREdDKcYFnL9tSqd5ZhLhsY
+sess:2HEchaRLYUoaa44IF1bB6mpik7lZjBb4
+</code></pre>
+      <h3 id="原生的monitor监控"><a class="anchor" aria-hidden="true" tabindex="-1" href="#原生的monitor监控"><span class="octicon octicon-link"></span></a>原生的Monitor监控</h3>
+      <p>redis-cli monitor打印出所有sever接收到的命令以及其对应的客户端地址</p>
+      <pre class="language-bash"><code class="language-bash">$ redis-cli monitor
+OK
+<span class="token number">1472626566.218175</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"info"</span>
+<span class="token number">1472626571.220948</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"exists"</span> <span class="token string">"aaa"</span>
+<span class="token number">1472626571.223174</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"set"</span> <span class="token string">"aaa"</span> <span class="token string">""</span>
+<span class="token number">1472626571.232126</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"type"</span> <span class="token string">"aaa"</span>
+<span class="token number">1472626571.243697</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"pttl"</span> <span class="token string">"aaa"</span>
+<span class="token number">1472626571.243717</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"object"</span> <span class="token string">"ENCODING"</span> <span class="token string">"aaa"</span>
+<span class="token number">1472626571.243726</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token number">127.0</span>.0.1:62862<span class="token punctuation">]</span> <span class="token string">"strlen"</span> <span class="token string">"aaa"</span>
+</code></pre>
+      <h2 id="配置说明"><a class="anchor" aria-hidden="true" tabindex="-1" href="#配置说明"><span class="octicon octicon-link"></span></a>配置说明</h2>
+      <pre class="language-bash"><code class="language-bash"><span class="token comment">#redis.conf</span>
+<span class="token comment"># Redis configuration file example.</span>
+<span class="token comment"># ./redis-server /path/to/redis.conf</span>
+
+<span class="token comment">################################## INCLUDES ###################################</span>
+<span class="token comment">#这在你有标准配置模板但是每个redis服务器又需要个性设置的时候很有用。</span>
+<span class="token comment"># include /path/to/local.conf</span>
+<span class="token comment"># include /path/to/other.conf</span>
+
+<span class="token comment">################################ GENERAL #####################################</span>
+
+<span class="token comment"># 是否在后台执行，yes：后台运行；no：不是后台运行（老版本默认）</span>
+daemonize <span class="token function">yes</span>
+
+<span class="token comment"># 3.2里的参数，是否开启保护模式，默认开启。要是配置里没有指定bind和密码。</span>
+<span class="token comment"># 开启该参数后，redis只会本地进行访问，拒绝外部访问。</span>
+<span class="token comment"># 要是开启了密码   和bind，可以开启。否   则最好关闭，设置为no。</span>
+
+protected-mode <span class="token function">yes</span>
+<span class="token comment"># redis的进程文件</span>
+pidfile /var/run/redis/redis-server.pid
+
+<span class="token comment"># redis监听的端口号。</span>
+port <span class="token number">6379</span>
+
+<span class="token comment"># 此参数确定了TCP连接中已完成队列(完成三次握手之后)的长度， </span>
+<span class="token comment"># 当然此值必须不大于Linux系统定义的/proc/sys/net/core/somaxconn值，默认是511，</span>
+<span class="token comment"># 而Linux的默认参数值是128。当系统并发量大并且客户端速度缓慢的时候，</span>
+<span class="token comment"># 可以将这二个参数一起参考设定。该内核参数默认值一般是128，对于负载很大的服务程序来说大大的不够。</span>
+<span class="token comment"># 一般会将它修改为2048或者更大。在/etc/sysctl.conf中添加:net.core.somaxconn = 2048，然后在终端中执行sysctl -p。</span>
+tcp-backlog <span class="token number">511</span>
+
+<span class="token comment">#指定 redis 只接收来自于该 IP 地址的请求，如果不进行设置，那么将处理所有请求</span>
+<span class="token builtin class-name">bind</span> <span class="token number">127.0</span>.0.1
+
+<span class="token comment"># 配置unix socket来让redis支持监听本地连接。</span>
+<span class="token comment"># unixsocket /var/run/redis/redis.sock</span>
+<span class="token comment"># 配置unix socket使用文件的权限</span>
+<span class="token comment"># unixsocketperm 700</span>
+
+<span class="token comment"># 此参数为设置客户端空闲超过timeout，服务端会断开连接，为0则服务端不会主动断开连接，不能小于0。</span>
+<span class="token function">timeout</span> <span class="token number">0</span>
+
+<span class="token comment"># tcp keepalive参数。如果设置不为0，就使用配置tcp的SO_KEEPALIVE值，</span>
+<span class="token comment"># 使用keepalive有两个好处:检测挂掉的对端。降低中间设备出问题而导致网络看似连接却已经与对端端口的问题。</span>
+<span class="token comment"># 在Linux内核中，设置了keepalive，redis会定时给对端发送ack。检测到对端关闭需要两倍的设置值。</span>
+tcp-keepalive <span class="token number">0</span>
+
+<span class="token comment"># 指定了服务端日志的级别。级别包括：debug（很多信息，方便开发、测试），</span>
+<span class="token comment"># verbose（许多有用的信息，但是没有debug级别信息多），notice（适当的日志级别，适合生产环境），warn（只有非常重要的信息）</span>
+loglevel notice
+
+<span class="token comment">#指定了记录日志的文件。空字符串的话，日志会打印到标准输出设备。后台运行的redis标准输出是/dev/null。</span>
+logfile /var/log/redis/redis-server.log
+
+<span class="token comment"># 是否打开记录syslog功能</span>
+<span class="token comment"># syslog-enabled no</span>
+
+<span class="token comment"># syslog的标识符。</span>
+<span class="token comment"># syslog-ident redis</span>
+
+<span class="token comment"># 日志的来源、设备</span>
+<span class="token comment"># syslog-facility local0</span>
+
+<span class="token comment"># 数据库的数量，默认使用的数据库是DB 0。可以通过”SELECT “命令选择一个db</span>
+databases <span class="token number">16</span>
+
+<span class="token comment">################################ SNAPSHOTTING ################################</span>
+<span class="token comment"># 快照配置</span>
+<span class="token comment"># 注释掉“save”这一行配置项就可以让保存数据库功能失效</span>
+<span class="token comment"># 设置sedis进行数据库镜像的频率。</span>
+<span class="token comment"># 900秒（15分钟）内至少1个key值改变（则进行数据库保存--持久化） </span>
+<span class="token comment"># 300秒（5分钟）内至少10个key值改变（则进行数据库保存--持久化） </span>
+<span class="token comment"># 60秒（1分钟）内至少10000个key值改变（则进行数据库保存--持久化）</span>
+save <span class="token number">900</span> <span class="token number">1</span>
+save <span class="token number">300</span> <span class="token number">10</span>
+save <span class="token number">60</span> <span class="token number">10000</span>
+
+<span class="token comment"># 当RDB持久化出现错误后，是否依然进行继续进行工作，yes：不能进行工作，no：可以继续进行工作，</span>
+<span class="token comment"># 可以通过info中的rdb_last_bgsave_status了解RDB持久化是否有错误</span>
+stop-writes-on-bgsave-error <span class="token function">yes</span>
+
+<span class="token comment"># 使用压缩rdb文件，rdb文件压缩使用LZF压缩算法，yes：压缩，但是需要一些cpu的消耗。no：不压缩，需要更多的磁盘空间</span>
+rdbcompression <span class="token function">yes</span>
+
+<span class="token comment"># 是否校验rdb文件。从rdb格式的第五个版本开始，在rdb文件的末尾会带上CRC64的校验和。</span>
+<span class="token comment"># 这跟有利于文件的容错性，但是在保存rdb文件的时候，会有大概10%的性能损耗，所以如果你追求高性能，可以关闭该配置。</span>
+rdbchecksum <span class="token function">yes</span>
+
+<span class="token comment"># rdb文件的名称</span>
+dbfilename dump.rdb
+
+<span class="token comment"># 数据目录，数据库的写入会在这个目录。rdb、aof文件也会写在这个目录</span>
+<span class="token function">dir</span> /var/lib/redis
+
+<span class="token comment">################################# REPLICATION #################################</span>
+<span class="token comment"># 复制选项，slave复制对应的master。</span>
+<span class="token comment"># slaveof &#x3C;masterip> &#x3C;masterport></span>
+
+<span class="token comment">#如果master设置了requirepass，那么slave要连上master，需要有master的密码才行。masterauth就是用来配置master的密码，这样可以在连上master后进行认证。</span>
+<span class="token comment"># masterauth &#x3C;master-password></span>
+
+<span class="token comment">#当从库同主机失去连接或者复制正在进行，从机库有两种运行方式：1) 如果slave-serve-stale-data设置为yes(默认设置)，从库会继续响应客户端的请求。2) 如果slave-serve-stale-data设置为no，除去INFO和SLAVOF命令之外的任何请求都会返回一个错误”SYNC with master in progress”。</span>
+slave-serve-stale-data <span class="token function">yes</span>
+
+<span class="token comment">#作为从服务器，默认情况下是只读的（yes），可以修改成NO，用于写（不建议）。</span>
+slave-read-only <span class="token function">yes</span>
+
+<span class="token comment">#是否使用socket方式复制数据。目前redis复制提供两种方式，disk和socket。如果新的slave连上来或者重连的slave无法部分同步，就会执行全量同步，master会生成rdb文件。有2种方式：disk方式是master创建一个新的进程把rdb文件保存到磁盘，再把磁盘上的rdb文件传递给slave。socket是master创建一个新的进程，直接把rdb文件以socket的方式发给slave。disk方式的时候，当一个rdb保存的过程中，多个slave都能共享这个rdb文件。socket的方式就的一个个slave顺序复制。在磁盘速度缓慢，网速快的情况下推荐用socket方式。</span>
+repl-diskless-sync no
+
+<span class="token comment">#diskless复制的延迟时间，防止设置为0。一旦复制开始，节点不会再接收新slave的复制请求直到下一个rdb传输。所以最好等待一段时间，等更多的slave连上来。</span>
+repl-diskless-sync-delay <span class="token number">5</span>
+
+<span class="token comment">#slave根据指定的时间间隔向服务器发送ping请求。时间间隔可以通过 repl_ping_slave_period 来设置，默认10秒。</span>
+<span class="token comment"># repl-ping-slave-period 10</span>
+
+<span class="token comment">#复制连接超时时间。master和slave都有超时时间的设置。master检测到slave上次发送的时间超过repl-timeout，即认为slave离线，清除该slave信息。slave检测到上次和master交互的时间超过repl-timeout，则认为master离线。需要注意的是repl-timeout需要设置一个比repl-ping-slave-period更大的值，不然会经常检测到超时。</span>
+<span class="token comment"># repl-timeout 60</span>
+
+<span class="token comment">#是否禁止复制tcp链接的tcp nodelay参数，可传递yes或者no。默认是no，即使用tcp nodelay。如果master设置了yes来禁止tcp nodelay设置，在把数据复制给slave的时候，会减少包的数量和更小的网络带宽。但是这也可能带来数据的延迟。默认我们推荐更小的延迟，但是在数据量传输很大的场景下，建议选择yes。</span>
+repl-disable-tcp-nodelay no
+
+<span class="token comment">#复制缓冲区大小，这是一个环形复制缓冲区，用来保存最新复制的命令。这样在slave离线的时候，不需要完全复制master的数据，如果可以执行部分同步，只需要把缓冲区的部分数据复制给slave，就能恢复正常复制状态。缓冲区的大小越大，slave离线的时间可以更长，复制缓冲区只有在有slave连接的时候才分配内存。没有slave的一段时间，内存会被释放出来，默认1m。</span>
+<span class="token comment"># repl-backlog-size 5mb</span>
+
+<span class="token comment">#master没有slave一段时间会释放复制缓冲区的内存，repl-backlog-ttl用来设置该时间长度。单位为秒。</span>
+<span class="token comment"># repl-backlog-ttl 3600</span>
+
+<span class="token comment">#当master不可用，Sentinel会根据slave的优先级选举一个master。最低的优先级的slave，当选master。而配置成0，永远不会被选举。</span>
+slave-priority <span class="token number">100</span>
+
+<span class="token comment">#redis提供了可以让master停止写入的方式，如果配置了min-slaves-to-write，健康的slave的个数小于N，mater就禁止写入。master最少得有多少个健康的slave存活才能执行写命令。这个配置虽然不能保证N个slave都一定能接收到master的写操作，但是能避免没有足够健康的slave的时候，master不能写入来避免数据丢失。设置为0是关闭该功能。</span>
+<span class="token comment"># min-slaves-to-write 3</span>
+
+<span class="token comment">#延迟小于min-slaves-max-lag秒的slave才认为是健康的slave。</span>
+<span class="token comment"># min-slaves-max-lag 10</span>
+
+<span class="token comment"># 设置1或另一个设置为0禁用这个特性。</span>
+<span class="token comment"># Setting one or the other to 0 disables the feature.</span>
+<span class="token comment"># By default min-slaves-to-write is set to 0 (feature disabled) and</span>
+<span class="token comment"># min-slaves-max-lag is set to 10.</span>
+
+<span class="token comment">################################## SECURITY ###################################</span>
+<span class="token comment">#requirepass配置可以让用户使用AUTH命令来认证密码，才能使用其他命令。这让redis可以使用在不受信任的网络中。为了保持向后的兼容性，可以注释该命令，因为大部分用户也不需要认证。使用requirepass的时候需要注意，因为redis太快了，每秒可以认证15w次密码，简单的密码很容易被攻破，所以最好使用一个更复杂的密码。</span>
+<span class="token comment"># requirepass foobared</span>
+
+<span class="token comment">#把危险的命令给修改成其他名称。比如CONFIG命令可以重命名为一个很难被猜到的命令，这样用户不能使用，而内部工具还能接着使用。</span>
+<span class="token comment"># rename-command CONFIG b840fc02d524045429941cc15f59e41cb7be6c52</span>
+
+<span class="token comment">#设置成一个空的值，可以禁止一个命令</span>
+<span class="token comment"># rename-command CONFIG ""</span>
+<span class="token comment">################################### LIMITS ####################################</span>
+
+<span class="token comment"># 设置能连上redis的最大客户端连接数量。默认是10000个客户端连接。</span>
+<span class="token comment"># 由于redis不区分连接是客户端连接还是内部打开文件或者和slave连接等，所以maxclients最小建议设置到32。</span>
+<span class="token comment"># 如果超过了maxclients，redis会给新的连接发送’max number of clients reached’，并关闭连接。</span>
+<span class="token comment"># maxclients 10000</span>
+
+<span class="token comment"># redis配置的最大内存容量。当内存满了，需要配合maxmemory-policy策略进行处理。</span>
+<span class="token comment"># 注意slave的输出缓冲区是不计算在maxmemory内的。所以为了防止主机内存使用完，建议设置的maxmemory需要更小一些。</span>
+<span class="token comment"># maxmemory &#x3C;bytes></span>
+
+<span class="token comment"># 内存容量超过maxmemory后的处理策略。</span>
+<span class="token comment"># volatile-lru：利用LRU算法移除设置过过期时间的key。</span>
+<span class="token comment"># volatile-random：随机移除设置过过期时间的key。</span>
+<span class="token comment"># volatile-ttl：移除即将过期的key，根据最近过期时间来删除（辅以TTL）</span>
+<span class="token comment"># allkeys-lru：利用LRU算法移除任何key。</span>
+<span class="token comment"># allkeys-random：随机移除任何key。</span>
+<span class="token comment"># noeviction：不移除任何key，只是返回一个写错误。</span>
+<span class="token comment"># 上面的这些驱逐策略，如果redis没有合适的key驱逐，对于写命令，还是会返回错误。</span>
+<span class="token comment"># redis将不再接收写请求，只接收get请求。</span>
+<span class="token comment"># 写命令包括：set setnx setex append incr decr rpush lpush rpushx lpushx linsert lset rpoplpush sadd sinter sinterstore sunion sunionstore sdiff sdiffstore zadd zincrby zunionstore zinterstore hset hsetnx hmset hincrby incrby decrby getset mset msetnx exec sort。</span>
+<span class="token comment"># maxmemory-policy noeviction</span>
+
+<span class="token comment">#lru检测的样本数。使用lru或者ttl淘汰算法，从需要淘汰的列表中随机选择sample个key，选出闲置时间最长的key移除。</span>
+<span class="token comment"># maxmemory-samples 5</span>
+
+<span class="token comment">############################## APPEND ONLY MODE ###############################</span>
+<span class="token comment">#默认redis使用的是rdb方式持久化，这种方式在许多应用中已经足够用了。但是redis如果中途宕机，会导致可能有几分钟的数据丢失，根据save来策略进行持久化，Append Only File是另一种持久化方式，可以提供更好的持久化特性。Redis会把每次写入的数据在接收后都写入 appendonly.aof 文件，每次启动时Redis都会先把这个文件的数据读入内存里，先忽略RDB文件。</span>
+appendonly no
+
+<span class="token comment">#aof文件名</span>
+appendfilename <span class="token string">"appendonly.aof"</span>
+
+<span class="token comment"># aof持久化策略的配置</span>
+<span class="token comment"># no表示不执行fsync，由操作系统保证数据同步到磁盘，速度最快。</span>
+<span class="token comment"># always表示每次写入都执行fsync，以保证数据同步到磁盘。</span>
+<span class="token comment"># everysec表示每秒执行一次fsync，可能会导致丢失这1s数据。</span>
+appendfsync everysec
+
+<span class="token comment"># 在aof重写或者写入rdb文件的时候，会执行大量IO，</span>
+<span class="token comment"># 此时对于everysec和always的aof模式来说，执行fsync会造成阻塞过长时间，</span>
+<span class="token comment"># no-appendfsync-on-rewrite字段设置为默认设置为no。</span>
+<span class="token comment"># 如果对延迟要求很高的应用，这个字段可以设置为yes，否则还是设置为no，</span>
+<span class="token comment"># 这样对持久化特性来说这是更安全的选择。设置为yes表示rewrite期间对新写操作不fsync,</span>
+<span class="token comment"># 暂时存在内存中,等rewrite完成后再写入，默认为no，建议yes。Linux的默认fsync策略是30秒。可能丢失30秒数据。</span>
+no-appendfsync-on-rewrite no
+
+<span class="token comment"># aof自动重写配置。当目前aof文件大小超过上一次重写的aof文件大小的百分之多少进行重写，</span>
+<span class="token comment"># 即当aof文件增长到一定大小的时候Redis能够调用bgrewriteaof对日志文件进行重写。</span>
+<span class="token comment"># 当前AOF文件大小是上次日志重写得到AOF文件大小的二倍（设置为100）时，自动启动新的日志重写过程。</span>
+auto-aof-rewrite-percentage <span class="token number">100</span>
+<span class="token comment">#设置允许重写的最小aof文件大小，避免了达到约定百分比但尺寸仍然很小的情况还要重写</span>
+auto-aof-rewrite-min-size 64mb
+
+<span class="token comment"># aof文件可能在尾部是不完整的，当redis启动的时候，aof文件的数据被载入内存。</span>
+<span class="token comment"># 重启可能发生在redis所在的主机操作系统宕机后，</span>
+<span class="token comment"># 尤其在ext4文件系统没有加上data=ordered选项（redis宕机或者异常终止不会造成尾部不完整现象。）</span>
+<span class="token comment"># 出现这种现象，可以选择让redis退出，或者导入尽可能多的数据。如果选择的是yes，</span>
+<span class="token comment"># 当截断的aof文件被导入的时候，会自动发布一个log给客户端然后load。如果是no，用户必须手动redis-check-aof修复AOF文件才可以。</span>
+aof-load-truncated <span class="token function">yes</span>
+
+<span class="token comment">################################ LUA SCRIPTING ###############################</span>
+<span class="token comment"># 如果达到最大时间限制（毫秒），redis会记个log，然后返回error。</span>
+<span class="token comment"># 当一个脚本超过了最大时限。</span>
+<span class="token comment"># 只有SCRIPT KILL和SHUTDOWN NOSAVE可以用。</span>
+<span class="token comment"># 第一个可以杀没有调write命令的东西。要是已经调用了write，只能用第二个命令杀。</span>
+lua-time-limit <span class="token number">5000</span>
+
+<span class="token comment">################################ REDIS CLUSTER ###############################</span>
+<span class="token comment"># 集群开关，默认是不开启集群模式。</span>
+<span class="token comment"># cluster-enabled yes</span>
+
+<span class="token comment"># 集群配置文件的名称，每个节点都有一个集群相关的配置文件，持久化保存集群的信息。</span>
+<span class="token comment"># 这个文件并不需要手动配置，这个配置文件有Redis生成并更新，每个Redis集群节点需要一个单独的配置文件，</span>
+<span class="token comment"># 请确保与实例运行的系统中配置文件名称不冲突</span>
+<span class="token comment"># cluster-config-file nodes-6379.conf</span>
+
+<span class="token comment"># 节点互连超时的阀值。集群节点超时毫秒数</span>
+<span class="token comment"># cluster-node-timeout 15000</span>
+
+<span class="token comment"># 在进行故障转移的时候，全部slave都会请求申请为master，但是有些slave可能与master断开连接一段时间了，</span>
+<span class="token comment"># 导致数据过于陈旧，这样的slave不应该被提升为master。该参数就是用来判断slave节点与master断线的时间是否过长。判断方法是：</span>
+<span class="token comment"># 比较slave断开连接的时间和(node-timeout * slave-validity-factor) + repl-ping-slave-period</span>
+<span class="token comment"># 如果节点超时时间为三十秒, 并且slave-validity-factor为10,假设默认的repl-ping-slave-period是10秒，</span>
+<span class="token comment"># 即如果超过310秒slave将不会尝试进行故障转移 </span>
+<span class="token comment"># cluster-slave-validity-factor 10</span>
+
+<span class="token comment"># master的slave数量大于该值，slave才能迁移到其他孤立master上，</span>
+<span class="token comment"># 如这个参数若被设为2，那么只有当一个主节点拥有2 个可工作的从节点时，它的一个从节点会尝试迁移。</span>
+<span class="token comment"># cluster-migration-barrier 1</span>
+
+<span class="token comment"># 默认情况下，集群全部的slot有节点负责，集群状态才为ok，才能提供服务。</span>
+<span class="token comment"># 设置为no，可以在slot没有全部分配的时候提供服务。</span>
+<span class="token comment"># 不建议打开该配置，这样会造成分区的时候，小分区的master一直在接受写请求，而造成很长时间数据不一致。</span>
+<span class="token comment"># cluster-require-full-coverage yes</span>
+
+<span class="token comment">################################## SLOW LOG ###################################</span>
+<span class="token comment">###slog log是用来记录redis运行中执行比较慢的命令耗时。当命令的执行超过了指定时间，就记录在slow log中，slog log保存在内存中，所以没有IO操作。</span>
+<span class="token comment">#执行时间比slowlog-log-slower-than大的请求记录到slowlog里面，单位是微秒，所以1000000就是1秒。注意，负数时间会禁用慢查询日志，而0则会强制记录所有命令。</span>
+slowlog-log-slower-than <span class="token number">10000</span>
+
+<span class="token comment">#慢查询日志长度。当一个新的命令被写进日志的时候，最老的那个记录会被删掉。这个长度没有限制。只要有足够的内存就行。你可以通过 SLOWLOG RESET 来释放内存。</span>
+slowlog-max-len <span class="token number">128</span>
+
+<span class="token comment">################################ LATENCY MONITOR ##############################</span>
+<span class="token comment">#延迟监控功能是用来监控redis中执行比较缓慢的一些操作，用LATENCY打印redis实例在跑命令时的耗时图表。只记录大于等于下边设置的值的操作。0的话，就是关闭监视。默认延迟监控功能是关闭的，如果你需要打开，也可以通过CONFIG SET命令动态设置。</span>
+latency-monitor-threshold <span class="token number">0</span>
+
+<span class="token comment">############################# EVENT NOTIFICATION ##############################</span>
+<span class="token comment">#键空间通知使得客户端可以通过订阅频道或模式，来接收那些以某种方式改动了 Redis 数据集的事件。因为开启键空间通知功能需要消耗一些 CPU ，所以在默认配置下，该功能处于关闭状态。</span>
+<span class="token comment">#notify-keyspace-events 的参数可以是以下字符的任意组合，它指定了服务器该发送哪些类型的通知：</span>
+<span class="token comment">##K 键空间通知，所有通知以 __keyspace@__ 为前缀</span>
+<span class="token comment">##E 键事件通知，所有通知以 __keyevent@__ 为前缀</span>
+<span class="token comment">##g DEL 、 EXPIRE 、 RENAME 等类型无关的通用命令的通知</span>
+<span class="token comment">##$ 字符串命令的通知</span>
+<span class="token comment">##l 列表命令的通知</span>
+<span class="token comment">##s 集合命令的通知</span>
+<span class="token comment">##h 哈希命令的通知</span>
+<span class="token comment">##z 有序集合命令的通知</span>
+<span class="token comment">##x 过期事件：每当有过期键被删除时发送</span>
+<span class="token comment">##e 驱逐(evict)事件：每当有键因为 maxmemory 政策而被删除时发送</span>
+<span class="token comment">##A 参数 g$lshzxe 的别名</span>
+<span class="token comment">#输入的参数中至少要有一个 K 或者 E，否则的话，不管其余的参数是什么，都不会有任何 通知被分发。详细使用可以参考http://redis.io/topics/notifications</span>
+
+notify-keyspace-events <span class="token string">"KEA"</span>
+
+<span class="token comment">############################### ADVANCED CONFIG ###############################</span>
+<span class="token comment"># 数据量小于等于hash-max-ziplist-entries的用ziplist，大于hash-max-ziplist-entries用hash</span>
+hash-max-ziplist-entries <span class="token number">512</span>
+<span class="token comment"># value大小小于等于hash-max-ziplist-value的用ziplist，大于hash-max-ziplist-value用hash。</span>
+hash-max-ziplist-value <span class="token number">64</span>
+
+<span class="token comment"># 数据量小于等于list-max-ziplist-entries用ziplist，大于list-max-ziplist-entries用list。</span>
+list-max-ziplist-entries <span class="token number">512</span>
+<span class="token comment"># value大小小于等于list-max-ziplist-value的用ziplist，大于list-max-ziplist-value用list。</span>
+list-max-ziplist-value <span class="token number">64</span>
+
+<span class="token comment"># 数据量小于等于set-max-intset-entries用iniset，大于set-max-intset-entries用set。</span>
+set-max-intset-entries <span class="token number">512</span>
+
+<span class="token comment"># 数据量小于等于zset-max-ziplist-entries用ziplist，大于zset-max-ziplist-entries用zset。</span>
+zset-max-ziplist-entries <span class="token number">128</span>
+<span class="token comment"># value大小小于等于zset-max-ziplist-value用ziplist，大于zset-max-ziplist-value用zset。</span>
+zset-max-ziplist-value <span class="token number">64</span>
+
+<span class="token comment"># value大小小于等于hll-sparse-max-bytes使用稀疏数据结构（sparse），</span>
+<span class="token comment"># 大于hll-sparse-max-bytes使用稠密的数据结构（dense）。</span>
+<span class="token comment"># 一个比16000大的value是几乎没用的，建议的value大概为3000。</span>
+<span class="token comment"># 如果对CPU要求不高，对空间要求较高的，建议设置到10000左右。</span>
+hll-sparse-max-bytes <span class="token number">3000</span>
+
+<span class="token comment"># Redis将在每100毫秒时使用1毫秒的CPU时间来对redis的hash表进行重新hash，可以降低内存的使用。</span>
+<span class="token comment"># 当你的使用场景中，有非常严格的实时性需要，不能够接受Redis时不时的对请求有2毫秒的延迟的话，把这项配置为no。</span>
+<span class="token comment"># 如果没有这么严格的实时性要求，可以设置为yes，以便能够尽可能快的释放内存。</span>
+activerehashing <span class="token function">yes</span>
+
+<span class="token comment"># 对客户端输出缓冲进行限制可以强迫那些不从服务器读取数据的客户端断开连接，用来强制关闭传输缓慢的客户端。</span>
+<span class="token comment"># 对于normal client，第一个0表示取消hard limit，第二个0和第三个0表示取消soft limit，normal client默认取消限制，因为如果没有寻问，他们是不会接收数据的。</span>
+client-output-buffer-limit normal <span class="token number">0</span> <span class="token number">0</span> <span class="token number">0</span>
+<span class="token comment"># 对于slave client和MONITER client，如果client-output-buffer一旦超过256mb，又或者超过64mb持续60秒，那么服务器就会立即断开客户端连接。</span>
+client-output-buffer-limit slave 256mb 64mb <span class="token number">60</span>
+<span class="token comment"># 对于pubsub client，如果client-output-buffer一旦超过32mb，又或者超过8mb持续60秒，那么服务器就会立即断开客户端连接。</span>
+client-output-buffer-limit pubsub 32mb 8mb <span class="token number">60</span>
+
+<span class="token comment"># redis执行任务的频率为1s除以hz。</span>
+hz <span class="token number">10</span>
+
+<span class="token comment"># 在aof重写的时候，如果打开了aof-rewrite-incremental-fsync开关，系统会每32MB执行一次fsync。这对于把文件写入磁盘是有帮助的，可以避免过大的延迟峰值。</span>
+aof-rewrite-incremental-fsync <span class="token function">yes</span>
+</code></pre>
+      <h2 id="精品文章"><a class="anchor" aria-hidden="true" tabindex="-1" href="#精品文章"><span class="octicon octicon-link"></span></a>精品文章</h2>
+      <ul>
+        <li><a href="https://mp.weixin.qq.com/s/BoLsVKYyu8yRXZbxd1uuQw">史上最全Redis高可用技术解决方案大全</a></li>
+        <li><a href="http://blog.huangz.me/diary/2016/redis-4-outline.html">Redis 4.0 新功能简介</a></li>
+        <li><a href="http://blog.huangz.me/diary/2016/how-to-learn-redis.html">Redis 学习路线</a></li>
+        <li><a href="https://mp.weixin.qq.com/s/TBCEwLVAXdsTszRVpXhVug">Redis架构之防雪崩设计：网站不宕机背后的兵法</a></li>
+        <li><a href="https://cachecloud.github.io/2017/02/16/Redis%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/">Redis的内存优化</a></li>
+        <li><a href="https://zhuoroger.github.io/2016/08/20/redis-monitor-and-alarm/">细说Redis监控和告警</a></li>
+        <li><a href="https://github.com/sohutv/cachecloud">搜狐视频(sohu tv)Redis私有云平台</a></li>
+        <li><a href="https://mp.weixin.qq.com/s?__biz=MzA5NzkxMzg1Nw==&#x26;mid=2653159795&#x26;idx=1&#x26;sn=10264108e1da670774b4b53a1e6dbbe4&#x26;scene=0">优酷土豆的Redis服务平台化之路</a></li>
+        <li><a href="https://mp.weixin.qq.com/s?__biz=MzA3MzYwNjQ3NA==&#x26;mid=2651296671&#x26;idx=1&#x26;sn=366de50a6787963517ff6e096c9d1643&#x26;scene=2&#x26;srcid=0601j5sEtcRyw9TtehhXW0Ix&#x26;from=timeline&#x26;isappinstalled=0#wechat_redirect">这可能是最全的 Redis 集群方案介绍了</a></li>
+        <li><a href="https://mp.weixin.qq.com/s?__biz=MzAwNTg2MDUyMw==&#x26;mid=2247483661&#x26;idx=1&#x26;sn=c924b3a2b098c4211b0044de180a1c0e">如何实现高可用的redis集群</a></li>
+      </ul>
+    </div>
+    <div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/Redis/README.md" href="https://github.com/jaywcjlove/handbook/edit/master/Redis/README.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a>
+      <div class="copyright">Copyright © 2021. All rights reserved.</div>
+    </div>
+  </body>
+</html>
