@@ -1,0 +1,15 @@
+{
+  "name": "handbook",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/build.mjs"
+  },
+  "author": "jaywcjlove",
+  "license": "MIT",
+  "homepage": "https://jaywcjlove.github.io/handbook",
+  "devDependencies": {
+    "markdown-to-html-cli": "3.1.3",
+    "recursive-readdir-files": "2.0.7"
+  }
+}

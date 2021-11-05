@@ -1,5 +1,23 @@
-md/
-node_modules/
+build
+md
+node_modules
+package-lock.json
+
 .DS_Store
 .cache
-.rdoc-dist
+.vscode
+.idea
+.snap
+.env
+
+*.bak
+*.tem
+*.temp
+#.swp
+*.*~
+~*.*
+
+# IDEA
+*.iml
+*.ipr
+*.iws
