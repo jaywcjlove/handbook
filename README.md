@@ -104,7 +104,7 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - [搜集React/Vue/Angular组件库和后台管理平台模板](https://github.com/jaywcjlove/awesome-uikit)
 - **[思维导图来学习 Javascript 基础知识★★★★](Javascript/)**
 - [轻量高效的开源JavaScript插件和库★★★★★](Javascript/轻量高效的开源JavaScript插件和库.md)
-- [一些正则表达式随记](Javascript/一些正则表达式随记.md)
+- [一些正则表达式随记](https://github.com/jaywcjlove/regexp-example)
 - [web开发的框架Backbone.js手册](http://jaywcjlove.github.io/handbook/index.html)
 - [前端工程师也需要zsh](http://mp.weixin.qq.com/s?__biz=MzAwNzgxMjYzMA==&mid=401433562&idx=1&sn=1ca074b0629463f37a777a2b96aa98af)
 - [使用Node.js制作命令行工具学习教程](https://github.com/jaywcjlove/wcj)
