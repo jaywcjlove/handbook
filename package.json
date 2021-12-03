@@ -9,7 +9,7 @@
   "license": "MIT",
   "homepage": "https://jaywcjlove.github.io/handbook",
   "devDependencies": {
-    "markdown-to-html-cli": "3.2.2",
+    "markdown-to-html-cli": "3.2.3",
     "recursive-readdir-files": "2.0.7"
   }
 }
