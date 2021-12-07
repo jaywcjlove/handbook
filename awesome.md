@@ -68,6 +68,7 @@
 - [PackagePhobia](https://packagephobia.com/) 查找向项目添加新开发依赖项的成本。
 - [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件。
 - [anvaka](https://npm.anvaka.com/) npm 依赖的可视化
+- [Skypack](https://www.skypack.dev) 无需安装和构建工具即可加载优化的 npm 包。
 
 ## 工具
 
