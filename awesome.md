@@ -58,6 +58,7 @@
 - [swagger](https://swagger.io) 一款RESTful 接口的文档在线自动生成+功能测试功能软件。
 - [swagger editor](https://editor.swagger.io/) 在线版编辑器。
 - [EditCSV Online](https://www.editcsvonline.com/) 一个编辑 CSV 文件的在线工具。
+- [html-md](https://devtool.tech/html-md) 在线小工具，将网页转成 Markdown 代码。
 
 ## npm
 
