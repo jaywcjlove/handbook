@@ -137,6 +137,7 @@
 - [GitHub Skyline](https://skyline.github.com) GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图。
 - [Github Chart API](https://ghchart.rshah.org/) 将您的 GitHub 图表嵌入到您想要的任何 HTML 中。
 - [Repobeats](https://repobeats.axiom.co/) 在 GitHub 仓库的 README 文件里面，加入图形化的项目数据统计。
+- [GitHub Wrapped](https://www.githubtrends.io/) 网页工具将你过去一年的 GitHub 活动，创建成一张图表
 
 ## 办公类应用
 
