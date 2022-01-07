@@ -60,6 +60,7 @@
 - [swagger editor](https://editor.swagger.io/) 在线版编辑器。
 - [EditCSV Online](https://www.editcsvonline.com/) 一个编辑 CSV 文件的在线工具。
 - [html-md](https://devtool.tech/html-md) 在线小工具，将网页转成 Markdown 代码。
+- [PPTist](https://github.com/pipipi-pikachu/PPTist) 一个 PPT 网页应用，还原了大部分 PowerPoint 常用功能，支持 PPT 的在线编辑、演示和导出。
 
 ## npm
 
