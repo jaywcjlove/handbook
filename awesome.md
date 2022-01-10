@@ -3,8 +3,10 @@
 ## 排行榜统计
 
 - [TIOBE编程语言排行榜★★★](http://www.tiobe.com/tiobe-index/)
-- [PYPL流行程序设计语言](https://pypl.github.io/PYPL.html)
+- [JavaScript Rising Stars★★★](https://risingstars.js.org)
 - [JavaScript各种工具统计★★★](https://stateofjs.com/)
+- [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
+- [PYPL流行程序设计语言](https://pypl.github.io/PYPL.html)
 - [Statcounter统计浏览器市场份额](http://gs.statcounter.com/)
 - [百度统计浏览器市场份额](https://tongji.baidu.com/data/browser)
 - [浏览器占有率排行](https://www.netmarketshare.com/browser-market-share.aspx)
@@ -16,10 +18,7 @@
 - [Gitstar Ranking](https://gitstar-ranking.com)
 - [Githuber.cn星榜](https://githuber.cn/)
 - [GitHub中文社区各种排行榜](https://www.githubs.cn/)
-- [DiyCode Github Ranking](https://www.diycode.cc/trends)
-- [JavaScript Rising Stars](https://risingstars.js.org)
 - [比项目较过去12个月在 GitHub 上增加的星标数](https://bestofjs.org/)
-- [通过GitHub平台了解编程语言的使用★★★](http://githut.info/)
 - [Web框架性能测试排名](https://www.techempower.com/benchmarks/) 
 
 ## 徽章
