@@ -107,6 +107,7 @@
 - [JSON Generator](https://next.json-generator.com) 生成虚拟 JSON 数据的在线工具
 - [QuickType](https://app.quicktype.io/) 即时解析任何语言的JSON
 - [OneDev](https://github.com/theonedev/onedev) 类似于 GitHub/GitLab，可以自己架设
+- [replit](https://replit.com/) 编码、创建和一起学习
 
 ## 免费托管服务工具
 
