@@ -131,20 +131,20 @@ enabled=1
 " class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
       <p>为 YApi 初始数据库</p>
       <pre class="language-js"><code class="language-js">use yapi <span class="token comment">// 创建yapi数据库 </span>
-db<span class="token punctuation">.</span><span class="token property-access">wong</span><span class="token punctuation">.</span><span class="token method function property-access">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"name"</span><span class="token operator">:</span><span class="token string">"kenny wong"</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// 插入一条数据，将在数据库列表中展示</span>
+db<span class="token punctuation">.</span><span class="token property-access">wong</span><span class="token punctuation">.</span><span class="token method function property-access">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string-property property">"name"</span><span class="token operator">:</span><span class="token string">"kenny wong"</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// 插入一条数据，将在数据库列表中展示</span>
 show dbs <span class="token comment">// 查看所有数据库</span>
 db<span class="token punctuation">.</span><span class="token method function property-access">addUser</span><span class="token punctuation">(</span><span class="token string">'yapi'</span><span class="token punctuation">,</span><span class="token string">'yapi321'</span><span class="token punctuation">)</span> <span class="token comment">// 老的，数据库加用户的命令</span>
 
 <span class="token comment">// 新的数据库添加用户命令</span>
 db<span class="token punctuation">.</span><span class="token method function property-access">createUser</span><span class="token punctuation">(</span>
   <span class="token punctuation">{</span>
-    user<span class="token operator">:</span> <span class="token string">"yapi"</span><span class="token punctuation">,</span>
-    pwd<span class="token operator">:</span> <span class="token string">"yapi321"</span><span class="token punctuation">,</span>
-    roles<span class="token operator">:</span>
+    <span class="token literal-property property">user</span><span class="token operator">:</span> <span class="token string">"yapi"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">pwd</span><span class="token operator">:</span> <span class="token string">"yapi321"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">roles</span><span class="token operator">:</span>
     <span class="token punctuation">[</span>
       <span class="token punctuation">{</span>
-        role<span class="token operator">:</span> <span class="token string">"userAdminAnyDatabase"</span><span class="token punctuation">,</span>
-        db<span class="token operator">:</span> <span class="token string">"yapi"</span>
+        <span class="token literal-property property">role</span><span class="token operator">:</span> <span class="token string">"userAdminAnyDatabase"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">db</span><span class="token operator">:</span> <span class="token string">"yapi"</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">}</span>
@@ -252,7 +252,7 @@ npm install --production --registry https://registry.npmmirror.com # 安装依�
         <li>启动服务</li>
       </ol>
       <pre class="language-bash"><code class="language-bash"><span class="token comment"># 后台启动，输出日志yapi.log</span>
-node server/app.js <span class="token operator">>></span> yapi.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&#x26;1</span> <span class="token operator">&#x26;</span> 
+<span class="token function">node</span> server/app.js <span class="token operator">>></span> yapi.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&#x26;1</span> <span class="token operator">&#x26;</span> 
 <span class="token comment"># 启动服务器后，请访问 127.0.0.1:{config.json配置的端口}，初次运行会有个编译的过程，请耐心等候</span>
 <span class="token comment"># 127.0.0.1:3011</span>
 </code><div onclick="copied(this)" data-code="# 后台启动，输出日志yapi.log
