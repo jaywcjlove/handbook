@@ -442,7 +442,9 @@ padding-top: 5px;
         <li><a href="http://www.getnetgoing.com/HTTP-403.html">Help for HTTP error 403: “Forbidden”</a></li>
         <li><a href="https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">实用的 RESTful API 最佳实践</a></li>
       </ul>
-      <script>function copied(target, str) {
+      <script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
+function copied(target, str) {
 target.classList.add('active');
 copyTextToClipboard(target.dataset.code, function() {
 setTimeout(() => {
@@ -450,7 +452,6 @@ target.classList.remove('active');
 }, 2000);
 });
 }</script>
-      <script src="https://unpkg.com/@uiw/copy-to-clipboard/dist/copy-to-clipboard.umd.js"></script>
     </div>
     <div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/other/HTTP-Status-codes.md" href="https://github.com/jaywcjlove/handbook/edit/master/other/HTTP-Status-codes.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a>
       <div class="copyright">Copyright © 2021. All rights reserved.</div>

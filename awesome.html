@@ -122,6 +122,7 @@ padding-top: 5px;
         <li><a href="https://github.com/GoogleChromeLabs/squoosh">Squoosh</a> 在浏览器中使用一流的编解码器无损压缩图片。</li>
         <li><a href="https://david.li/paint/">Fluid Paint</a> 网页画板工具，可以定制笔刷，产生刷油漆的流体效果，非常精美</li>
         <li><a href="https://iconmaker.app/">IconMaker</a> 应用程序图标 Favicons 图标生成器和调整器</li>
+        <li><a href="https://pengfeiw.github.io/minicode/react-paint">React Paint</a> 使用 React 实现的开源 Windows 画板。</li>
       </ul>
       <h2 id="在线数据库建模工具"><a class="anchor" aria-hidden="true" tabindex="-1" href="#在线数据库建模工具"><span class="octicon octicon-link"></span></a>在线数据库建模工具</h2>
       <ul>
@@ -249,7 +250,9 @@ padding-top: 5px;
       <ul>
         <li><a href="https://www.acwifi.net/">无线路由器使用分享与评测对比</a></li>
       </ul>
-      <script>function copied(target, str) {
+      <script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
+function copied(target, str) {
 target.classList.add('active');
 copyTextToClipboard(target.dataset.code, function() {
 setTimeout(() => {
@@ -257,7 +260,6 @@ target.classList.remove('active');
 }, 2000);
 });
 }</script>
-      <script src="https://unpkg.com/@uiw/copy-to-clipboard/dist/copy-to-clipboard.umd.js"></script>
     </div>
     <div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/awesome.md" href="https://github.com/jaywcjlove/handbook/edit/master/awesome.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a>
       <div class="copyright">Copyright © 2021. All rights reserved.</div>
