@@ -26,6 +26,7 @@
 - [开源项目的质量元数据标记](http://shields.io/#/)
 - [快速徽章生成服务](https://badgen.net/)
 - [固定状态徽章](https://github.com/jaywcjlove/sb)
+- [快速生成技能徽章](https://github.com/tandpfun/skill-icons) 
 
 ## 在线作图
 
