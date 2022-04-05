@@ -1,10 +1,48 @@
+[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-header-bg: #3a3a3a8f;
+  --color-header-border: #323232;
+  --color-hover: #ffffff30;
+}
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-header-bg: #ffffff52;
+  --color-header-border: #d3d3d3;
+  --color-hover: #f2f2f2;
+}
+
+@media screen and (max-width: 1140px) {
+  .header .inner {
+    justify-content: center !important;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+dark-mode {
+  top: 5px !important;
+  font-size: 14px;
+}
+
+markdown-style {
+  margin-top: 78px !important;
+}
+
+github-corners {
+  width: 32px !important;
+  height: 32px;
+  right: 0;
+}
+
 .header {
   position: fixed;
   width: 100%;
   background: #fff;
   backdrop-filter: saturate(180%) blur(0.4rem);
-  background-color: rgba(255,255,255,0.55);
-  border-bottom: 1px solid #00000014;
+  background-color: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-header-border);
   z-index: 99;
   top: 0;
 }
@@ -25,15 +63,10 @@
   align-items: center;
   font-size: 16px;
   font-weight: bold;
-  color: #333;
 }
 .header .logo img {
   height: 26px;
   display: block;
-}
-
-.markdown-body {
-  margin-top: 78px;
 }
 
 .footer {
@@ -41,7 +74,7 @@
   margin: 0 auto;
   text-align: center;
   padding: 0 0 110px 0;
-  border-top: 1px solid hsla(210,18%,87%,1);
+  border-top: 1px solid var(--color-header-border);
   padding-top: 18px;
 }
 
