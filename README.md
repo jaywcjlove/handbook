@@ -1,4 +1,5 @@
-# 笔记/搜集/摘录/实践
+笔记/搜集/摘录/实践
+===
 
 放置我的笔记、搜集、摘录、实践，保持好奇心。这里就是个随记，涉猎技术知识点广而不精，不能保证正确，看文需谨慎，后果很严重。
 
@@ -124,6 +125,16 @@ Redis是一个开源的，先进的 key-value 存储可用于构建高性能的�
 - [谷歌(Google)镜像](https://github.com/jaywcjlove/google)
 - [Lua5.3中文手册](other/Lua5.3.md)
 
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/jaywcjlove/handbook/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/handbook/CONTRIBUTORS.svg" />
+</a>
+
+Made with [github-action-contributors](https://github.com/jaywcjlove/github-action-contributors).
 
 [hot Icon]: https://jaywcjlove.github.io/sb/ico/min-hot.svg "Hot"
 [OSS Icon]: https://jaywcjlove.github.io/sb/ico/min-oss.svg "Open source ui componet on Github"
