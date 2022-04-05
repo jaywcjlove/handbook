@@ -19,442 +19,683 @@
  - handbook">
     <meta keywords="example,handbook">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-    <style>body { margin: 0; }.markdown-body { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; max-width: 960px; margin: 28px auto 60px auto; padding: 8px; color: #24292f; background-color: #ffffff; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word;}.markdown-body .octicon { display: inline-block; fill: currentColor; vertical-align: text-bottom;}.markdown-body pre { position: relative;}.markdown-body pre .copied { visibility: hidden; display: flex; position: absolute; cursor: pointer; color: #a5afbb; top: 6px; right: 6px; border-radius: 5px; background: #e3e3e3; padding: 6px; font-size: 12px; transition: all .3s;}.markdown-body pre:hover .copied { visibility: visible;}.markdown-body pre:hover .copied:hover { background: #4caf50; color: #fff;}.markdown-body pre:hover .copied:active,.markdown-body pre .copied.active { background: #2e9b33; color: #fff;}.markdown-body pre .copied .octicon-copy { display: block;}.markdown-body pre .copied .octicon-check { display: none;}.markdown-body pre .active .octicon-copy { display: none;}.markdown-body pre .active .octicon-check { display: block;}.markdown-body .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block;}.markdown-body .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer;}.markdown-body .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important;}.markdown-body details.octicon-video:not([open])>*:not(summary) { display: none !important;}.markdown-body details.octicon-video:not([open]) > summary { border-bottom: 0 !important;}.markdown-body .octicon-video summary > svg + span { margin: 4px !important;}.markdown-body h1:hover a.anchor .octicon-link:before,.markdown-body h2:hover a.anchor .octicon-link:before,.markdown-body h3:hover a.anchor .octicon-link:before,.markdown-body h4:hover a.anchor .octicon-link:before,.markdown-body h5:hover a.anchor .octicon-link:before,.markdown-body h6:hover a.anchor .octicon-link:before { width: 16px; height: 16px; content: ' '; display: inline-block; background-color: currentColor; -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>"); mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");}.markdown-body a.anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1; min-width: 16px;}.markdown-body a.anchor:focus { outline: none;}.markdown-body h1:hover a.anchor,.markdown-body h2:hover a.anchor,.markdown-body h3:hover a.anchor,.markdown-body h4:hover a.anchor,.markdown-body h5:hover a.anchor,.markdown-body h6:hover a.anchor { text-decoration: none;}.markdown-body h1:hover a.anchor .octicon-link,.markdown-body h2:hover a.anchor .octicon-link,.markdown-body h3:hover a.anchor .octicon-link,.markdown-body h4:hover a.anchor .octicon-link,.markdown-body h5:hover a.anchor .octicon-link,.markdown-body h6:hover a.anchor .octicon-link { visibility: visible;}.markdown-body details,.markdown-body figcaption,.markdown-body figure { display: block;}.markdown-body summary { display: list-item;}.markdown-body a { background-color: transparent; color: #0969da; text-decoration: none;}.markdown-body a:active,.markdown-body a:hover { outline-width: 0;}.markdown-body abbr[title] { border-bottom: none; -webkit-text-decoration: underline dotted; text-decoration: underline dotted;}.markdown-body b,.markdown-body strong { font-weight: 600;}.markdown-body dfn { font-style: italic;}.markdown-body h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body mark { background-color: #ff0; color: #24292f;}.markdown-body small { font-size: 90%;}.markdown-body sub,.markdown-body sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}.markdown-body sub { bottom: -0.25em;}.markdown-body sup { top: -0.5em;}.markdown-body img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: #ffffff;}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp { font-family: monospace,monospace; font-size: 1em;}.markdown-body figure { margin: 1em 40px;}.markdown-body hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid hsla(210,18%,87%,1); height: .25em; padding: 0; margin: 24px 0; background-color: #d0d7de; border: 0;}.markdown-body html [type=button],.markdown-body [type=reset],.markdown-body [type=submit] { -webkit-appearance: button;}.markdown-body [type=button]::-moz-focus-inner,.markdown-body [type=reset]::-moz-focus-inner,.markdown-body [type=submit]::-moz-focus-inner { border-style: none; padding: 0;}.markdown-body [type=button]:-moz-focusring,.markdown-body [type=reset]:-moz-focusring,.markdown-body [type=submit]:-moz-focusring { outline: 1px dotted ButtonText;}.markdown-body [type=checkbox],.markdown-body [type=radio] { box-sizing: border-box; padding: 0;}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button { height: auto;}.markdown-body [type=search] { -webkit-appearance: textfield; outline-offset: -2px;}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration { -webkit-appearance: none;}.markdown-body ::-webkit-input-placeholder { color: inherit; opacity: .54;}.markdown-body ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit;}.markdown-body a:hover { text-decoration: underline;}.markdown-body hr::before { display: table; content: "";}.markdown-body hr::after { display: table; clear: both; content: "";}.markdown-body table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto;}.markdown-body td,.markdown-body th { padding: 0;}.markdown-body details summary { cursor: pointer;}.markdown-body details:not([open])>*:not(summary) { display: none !important;}.markdown-body kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: #24292f; vertical-align: middle; background-color: #f6f8fa; border: solid 1px rgba(175,184,193,0.2); border-bottom-color: rgba(175,184,193,0.2); border-radius: 6px; box-shadow: inset 0 -1px 0 rgba(175,184,193,0.2);}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25;}.markdown-body h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid hsla(210,18%,87%,1);}.markdown-body h3 { font-weight: 600; font-size: 1.25em;}.markdown-body h4 { font-weight: 600; font-size: 1em;}.markdown-body h5 { font-weight: 600; font-size: .875em;}.markdown-body h6 { font-weight: 600; font-size: .85em; color: #57606a;}.markdown-body p { margin-top: 0; margin-bottom: 10px;}.markdown-body blockquote { margin: 0; padding: 0 1em; color: #57606a; border-left: .25em solid #d0d7de;}.markdown-body ul,.markdown-body ol { margin-top: 0; margin-bottom: 0; padding-left: 2em;}.markdown-body ol ol,.markdown-body ul ol { list-style-type: lower-roman;}.markdown-body ul ul ol,.markdown-body ul ol ol,.markdown-body ol ul ol,.markdown-body ol ol ol { list-style-type: lower-alpha;}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul { margin-top: 0; margin-bottom: 0;}.markdown-body dd { margin-left: 0;}.markdown-body tt,.markdown-body code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px;}.markdown-body pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; word-wrap: normal;}.markdown-body :-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::-ms-input-placeholder { color: #6e7781; opacity: 1;}.markdown-body ::placeholder { color: #6e7781; opacity: 1;}.markdown-body [data-catalyst] { display: block;}.markdown-body g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em;}.markdown-body g-emoji img { width: 1em; height: 1em;}.markdown-body::before { display: table; content: "";}.markdown-body::after { display: table; clear: both; content: "";}.markdown-body>*:first-child { margin-top: 0 !important;}.markdown-body>*:last-child { margin-bottom: 0 !important;}.markdown-body a:not([href]) { color: inherit; text-decoration: none;}.markdown-body .absent { color: #cf222e;}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details { margin-top: 0; margin-bottom: 16px;}.markdown-body blockquote>:first-child { margin-top: 0;}.markdown-body blockquote>:last-child { margin-bottom: 0;}.markdown-body sup>a::before { content: "[";}.markdown-body sup>a::after { content: "]";}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link { color: #24292f; vertical-align: middle; visibility: hidden;}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code { padding: 0 .2em; font-size: inherit;}.markdown-body ul.no-list,.markdown-body ol.no-list { padding: 0; list-style-type: none;}.markdown-body ol[type="1"] { list-style-type: decimal;}.markdown-body ol[type=a] { list-style-type: lower-alpha;}.markdown-body ol[type=i] { list-style-type: lower-roman;}.markdown-body div>ol:not([type]) { list-style-type: decimal;}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul { margin-top: 0; margin-bottom: 0;}.markdown-body li>p { margin-top: 16px;}.markdown-body li+li { margin-top: .25em;}.markdown-body dl { padding: 0;}.markdown-body dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600;}.markdown-body dl dd { padding: 0 16px; margin-bottom: 16px;}.markdown-body table th { font-weight: 600;}.markdown-body table th,.markdown-body table td { padding: 6px 13px; border: 1px solid #d0d7de;}.markdown-body table tr { background-color: #ffffff; border-top: 1px solid hsla(210,18%,87%,1);}.markdown-body table tr:nth-child(2n) { background-color: #f6f8fa;}.markdown-body table img { background-color: transparent;}.markdown-body img[align=right] { padding-left: 20px;}.markdown-body img[align=left] { padding-right: 20px;}.markdown-body .emoji { max-width: none; vertical-align: text-top; background-color: transparent;}.markdown-body span.frame { display: block; overflow: hidden;}.markdown-body span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid #d0d7de;}.markdown-body span.frame span img { display: block; float: left;}.markdown-body span.frame span span { display: block; padding: 5px 0 0; clear: both; color: #24292f;}.markdown-body span.align-center { display: block; overflow: hidden; clear: both;}.markdown-body span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center;}.markdown-body span.align-center span img { margin: 0 auto; text-align: center;}.markdown-body span.align-right { display: block; overflow: hidden; clear: both;}.markdown-body span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right;}.markdown-body span.align-right span img { margin: 0; text-align: right;}.markdown-body span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden;}.markdown-body span.float-left span { margin: 13px 0 0;}.markdown-body span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden;}.markdown-body span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right;}.markdown-body code,.markdown-body tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: rgba(175,184,193,0.2); border-radius: 6px;}.markdown-body code br,.markdown-body tt br { display: none;}.markdown-body del code { text-decoration: inherit;}.markdown-body pre code { font-size: 100%;}.markdown-body pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0;}.markdown-body .highlight { margin-bottom: 16px;}.markdown-body .highlight pre { margin-bottom: 0; word-break: normal;}.markdown-body pre code { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: #f6f8fa; border-radius: 6px;}.markdown-body pre code,.markdown-body pre tt { display: block; margin: 0; word-wrap: normal; border: 0;}.markdown-body .csv-data td,.markdown-body .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap;}.markdown-body .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: #ffffff; border: 0;}.markdown-body .csv-data tr { border-top: 0;}.markdown-body .csv-data th { font-weight: 600; background: #f6f8fa; border-top: 0;}.markdown-body .footnotes { font-size: 12px; color: #57606a; border-top: 1px solid #d0d7de;}.markdown-body .footnotes ol { padding-left: 16px;}.markdown-body .footnotes li { position: relative;}.markdown-body .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid #0969da; border-radius: 6px;}.markdown-body .footnotes li:target { color: #24292f;}.markdown-body .footnotes .data-footnote-backref g-emoji { font-family: monospace;}.markdown-body [hidden] { display: none !important;}.markdown-body ::-webkit-calendar-picker-indicator { filter: invert(50%);}/** language color **/.markdown-body .token.tag .attr-value { color: #032f62;}.markdown-body .token.property,.markdown-body .token.tag,.markdown-body .token.boolean,.markdown-body .token.number,.markdown-body .token.function-name,.markdown-body .token.constant,.markdown-body .token.symbol,.markdown-body .token.deleted { color: #0060c9;}.markdown-body .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] { color: black;}.markdown-body code[class*="language-"] .token.selector,.markdown-body code[class*="language-"] .token.string,.markdown-body code[class*="language-"] .token.attr-name,.markdown-body code[class*="language-"] .token.content,.markdown-body code[class*="language-"] .token.char,.markdown-body code[class*="language-"] .token.class-name,.markdown-body code[class*="language-"] .token.function,.markdown-body code[class*="language-"] .token.builtin { color: #6f42c1;}.markdown-body code[class*="language-"] .token.inserted { color: #22863a; background-color: #f0fff4;}.markdown-body code[class*="language-"] .token.deleted { color: #b31d28; background-color: #ffeef0;}.markdown-body code[class*="language-"] .code-block { color: #032f62;}.markdown-body code[class*="language-"] .token.comment,.markdown-body code[class*="language-"] .token.block-comment,.markdown-body code[class*="language-"] .token.prolog,.markdown-body code[class*="language-"] .token.doctype,.markdown-body code[class*="language-"] .token.cdata { color: #7D8B99;}.markdown-body code[class*="language-"] .token.punctuation { color: #a0a0a0;}.markdown-body code[class*="language-"] .token.operator,.markdown-body code[class*="language-"] .token.entity,.markdown-body code[class*="language-"] .token.variable { color: #d73a49; background: rgba(255, 255, 255, 0.5);}.markdown-body code[class*="language-"] .token.url { color: #0027ff;}.markdown-body code[class*="language-"] .token.atrule,.markdown-body code[class*="language-"] .token.attr-value { color: #004698;}.markdown-body code[class*="language-"] .token.keyword { color: #d63200;}.markdown-body code[class*="language-"] .token.regex,.markdown-body code[class*="language-"] .token.important { color: #e90;}.markdown-body code[class*="language-"] .token.string { color: #0a53c1;}</style>
-    <style>.header {
-position: fixed;
-width: 100%;
-background: #fff;
-backdrop-filter: saturate(180%) blur(0.4rem);
-background-color: rgba(255,255,255,0.55);
-border-bottom: 1px solid #00000014;
-z-index: 99;
-top: 0;
+    <style>[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-header-bg: #3a3a3a8f;
+  --color-header-border: #323232;
+  --color-hover: #ffffff30;
 }
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-header-bg: #ffffff52;
+  --color-header-border: #d3d3d3;
+  --color-hover: #f2f2f2;
+}
+
+@media screen and (max-width: 1140px) {
+  .header .inner {
+    justify-content: center !important;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+dark-mode {
+  top: 5px !important;
+  font-size: 14px;
+}
+
+markdown-style {
+  margin-top: 78px !important;
+}
+
+github-corners {
+  width: 32px !important;
+  height: 32px;
+  right: 0;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  backdrop-filter: saturate(180%) blur(0.4rem);
+  background-color: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-header-border);
+  z-index: 99;
+  top: 0;
+}
+
 .header .inner {
-max-width: 960px;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
-padding: 5px 0;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
 }
+
 .header .logo {
-margin-right: 10px;
+  margin-right: 10px;
 }
 .header .title {
-display: flex;
-align-items: center;
-font-size: 16px;
-font-weight: bold;
-color: #333;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
 }
 .header .logo img {
-height: 26px;
-display: block;
+  height: 26px;
+  display: block;
 }
-.markdown-body {
-margin-top: 78px;
-}
+
 .footer {
-max-width: 960px;
-margin: 0 auto;
-text-align: center;
-padding: 0 0 110px 0;
-border-top: 1px solid hsla(210,18%,87%,1);
-padding-top: 18px;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 0 110px 0;
+  border-top: 1px solid var(--color-header-border);
+  padding-top: 18px;
 }
+
 .footer a {
-font-size: 14px;
-text-decoration: initial;
-color: #3f51b5;
+  font-size: 14px;
+  text-decoration: initial;
+  color: #3f51b5;
 }
+
 .footer a:hover {
-color:#009688;
-text-decoration: underline;
+  color:#009688;
+  text-decoration: underline;
 }
+
 .footer a + a {
-margin-left: 10px;
+  margin-left: 10px;
 }
+
 .footer .copyright {
-color: #596068;
-font-size: 14px;
-padding-top: 5px;
+  color: #596068;
+  font-size: 14px;
+  padding-top: 5px;
 }</style>
   </head>
-  <body id="totop">
-    <header class="header">
-      <article class="inner"><a class="logo" href="../index.html"><img src="data:image/png;base64,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" alt="handbook logo"></a>
-        <div class="title">handbook</div>
-        <nav class="nav"></nav>
-      </article>
-    </header><a aria-label="View source on GitHub" target="__blank" class="github-corner" href="https://github.com/jaywcjlove/handbook.git"><svg width="54" height="54" viewBox="0 0 250 250" aria-hidden="true" style="fill: rgb(32, 34, 37); color: rgb(255, 255, 255); position: fixed; z-index: 99999; border: 0px; top: 0px; right: 0px;">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-        <path style="transform-origin: 130px 106px;" class="octo-arm" fill="currentColor" d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"></path>
-        <path class="octo-body" fill="currentColor" d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"></path>
-      </svg></a>
-    <div class="markdown-body">
-      <h2 id="常见httpftpwebsocket错误代码大全"><a class="anchor" aria-hidden="true" tabindex="-1" href="#常见httpftpwebsocket错误代码大全"><span class="octicon octicon-link"></span></a>常见HTTP/FTP/WebSocket错误代码大全</h2>
-      <p>
-        <img src="img_http/Fetching_a_page.png" alt="">
-      </p>
-      <h1 id="目录"><a class="anchor" aria-hidden="true" tabindex="-1" href="#目录"><span class="octicon octicon-link"></span></a>目录</h1><!-- TOC -->
-      <ul>
-        <li><a href="#http">HTTP</a>
-          <ul>
-            <li><a href="#1xx%E6%B6%88%E6%81%AF">1xx消息</a></li>
-            <li><a href="#2xx%E6%88%90%E5%8A%9F">2xx成功</a></li>
-            <li><a href="#3xx%E9%87%8D%E5%AE%9A%E5%90%91">3xx重定向</a></li>
-            <li><a href="#4xx%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF">4xx客户端错误</a></li>
-            <li><a href="#5xx%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF">5xx服务器错误</a></li>
-          </ul>
-        </li>
-        <li><a href="#ftp">FTP</a>
-          <ul>
-            <li><a href="#1xx%E5%88%9D%E6%AD%A5">1xx初步</a></li>
-            <li><a href="#2xx%E5%AE%8C%E6%88%90">2xx完成</a></li>
-            <li><a href="#3xx%E4%B8%AD%E9%97%B4">3xx中间</a></li>
-            <li><a href="#4xx%E7%9E%AC%E6%80%81%E5%90%A6%E5%AE%9A">4xx瞬态否定</a></li>
-          </ul>
-        </li>
-        <li><a href="#5xx%E6%B0%B8%E4%B9%85%E6%80%A7%E5%90%A6%E5%AE%9A">5xx永久性否定</a></li>
-        <li><a href="#6xx%E5%8F%97%E4%BF%9D%E6%8A%A4">6xx受保护</a></li>
-        <li><a href="#websockets%E7%8A%B6%E6%80%81%E7%A0%81">WebSockets状态码</a></li>
-        <li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
-      </ul><!-- /TOC -->
-      <h2 id="rest-api"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rest-api"><span class="octicon octicon-link"></span></a>Rest API</h2>
-      <ul>
-        <li>200 返回成功，GET、PUT 或 DELETE 请求成功。</li>
-        <li>204 无内容，POST 请求成功。</li>
-        <li>301 永久重定向。</li>
-        <li>302/307 临时重定向。</li>
-        <li>304 未修改，自上次请求以来。</li>
-        <li>331 用户名正确，需要密码。</li>
-        <li>332 需要登录帐户。</li>
-        <li>400 错误请求，缺少 API 请求的必需属性。</li>
-        <li>401 未授权，无效凭据进行身份验证将。</li>
-        <li>403 禁地，该请求不被允许。</li>
-        <li>404 未找到，无法访问资源</li>
-        <li>405 方法不允许，不支持该请求。</li>
-        <li>409 冲突，冲突资源已存在。</li>
-        <li>412 该请求被拒绝。</li>
-        <li>422 无法处理，无法处理该实体。</li>
-        <li>429 请求过多，用户超出了应用速率限制。</li>
-        <li>500 服务器错误，在处理请求时，服务器出现问题。</li>
-        <li>530 未登录。</li>
-      </ul>
-      <h2 id="http"><a class="anchor" aria-hidden="true" tabindex="-1" href="#http"><span class="octicon octicon-link"></span></a>HTTP</h2>
-      <h3 id="1xx消息"><a class="anchor" aria-hidden="true" tabindex="-1" href="#1xx消息"><span class="octicon octicon-link"></span></a>1xx消息</h3>
-      <p><em>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。 这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。</em></p>
-      <ul>
-        <li>100 - 客户端应当继续发送请求</li>
-        <li>101 - 切换协议</li>
-        <li>102 - 处理将被继续执行</li>
-      </ul>
-      <h3 id="2xx成功"><a class="anchor" aria-hidden="true" tabindex="-1" href="#2xx成功"><span class="octicon octicon-link"></span></a>2xx成功</h3>
-      <p><em>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</em></p>
-      <ul>
-        <li>200 - （成功）请求已成功，请求所希望的响应头或数据体将随此响应返回。</li>
-        <li>201 - （已创建）请求成功且服务器已创建了新的资源。。</li>
-        <li>202 - （已接受）服务器已接受了请求，但尚未对其进行处理。</li>
-        <li>203 - （非授权信息）服务器已成功处理了请求，但返回了可能来自另一来源的信息。</li>
-        <li>204 - （无内容）服务器成功处理了请求，但未返回任何内容。</li>
-        <li>205 - （重置内容）服务器成功处理了请求，但未返回任何内容。</li>
-        <li>206 - （部分内容）服务器成功处理了部分 GET 请求。</li>
-      </ul>
-      <h3 id="3xx重定向"><a class="anchor" aria-hidden="true" tabindex="-1" href="#3xx重定向"><span class="octicon octicon-link"></span></a>3xx重定向</h3>
-      <p><em>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。按照HTTP/1.0版规范的建议，浏览器不应自动访问超过5次的重定向。对重定向一般是由浏览器来控制重定向的次数，重定向会导致客户端不必要的资源消耗</em></p>
-      <ul>
-        <li>300 - 多重选择，被请求的资源有一系列可供选择的回馈信息。</li>
-        <li>301 - 永久移除，被请求的资源已永久移动到新位置。</li>
-        <li>302 - 临时移动，请求的资源现在临时从不同的URI响应请求。</li>
-        <li>303 - 查看其他位置，对应当前请求的响应可以在另一个URI上被找到，而且客户端应当采用GET的方式访问那个资源。</li>
-        <li>304 - 未修改。自从上次请求后，请求的网页未被修改过。服务器返回此响应时，不会返回网页内容。</li>
-        <li>305 - 使用代理，被请求的资源必须通过指定的代理才能被访问。</li>
-        <li><del>306</del> - 临时重定向，在最新版的规范中，306状态码已经不再被使用。</li>
-        <li>307 - 临时重定向。</li>
-      </ul>
-      <h3 id="4xx客户端错误"><a class="anchor" aria-hidden="true" tabindex="-1" href="#4xx客户端错误"><span class="octicon octicon-link"></span></a>4xx客户端错误</h3>
-      <p><em>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。</em></p>
-      <ul>
-        <li>400 - 错误的请求。</li>
-        <li>401 - 访问被拒绝。</li>
-        <li>402 - 付款要求。</li>
-        <li>403 - 禁止访问
-          <ul>
-            <li>403.1 - 执行访问被禁止。</li>
-            <li>403.2 - 读访问被禁止。</li>
-            <li>403.3 - 写访问被禁止。</li>
-            <li>403.4 - 要求 SSL。</li>
-            <li>403.5 - 要求 SSL 128。</li>
-            <li>403.6 - IP 地址被拒绝。</li>
-            <li>403.7 - 要求客户端证书。</li>
-            <li>403.8 - 站点访问被拒绝。</li>
-            <li>403.9 - 用户数过多。</li>
-            <li>403.10 - 配置无效。</li>
-            <li>403.11 - 密码更改。</li>
-            <li>403.12 - 拒绝访问映射表。</li>
-            <li>403.13 - 客户端证书被吊销。</li>
-            <li>403.14 - 拒绝目录列表。</li>
-            <li>403.15 - 超出客户端访问许可。</li>
-            <li>403.16 - 客户端证书不受信任或无效。</li>
-            <li>403.17 - 客户端证书已过期或尚未生效。</li>
-            <li>403.18 - 在当前的应用程序池中不能执行所请求的 URL。</li>
-            <li>403.19 - 不能为这个应用程序池中的客户端执行 CGI。</li>
-            <li>403.20 - Passport 登录失败。</li>
-          </ul>
-        </li>
-        <li>404 - 未找到。
-          <ul>
-            <li>404.0 -（无） – 没有找到文件或目录。</li>
-            <li>404.1 - 无法在所请求的端口上访问 Web 站点。</li>
-            <li>404.2 - Web 服务扩展锁定策略阻止本请求。</li>
-            <li>404.3 - MIME 映射策略阻止本请求。</li>
-          </ul>
-        </li>
-        <li>405 - 用来访问本页面的 HTTP 谓词不被允许（方法不被允许）</li>
-        <li>406 - 客户端浏览器不接受所请求页面的 MIME 类型。</li>
-        <li>407 - 要求进行代理身份验证。</li>
-        <li>408 - 请求超时。</li>
-        <li>409 - 由于和被请求的资源的当前状态之间存在冲突，请求无法完成。</li>
-        <li>410 - 被请求的资源在服务器上已经不再可用，而且没有任何已知的转发地址。</li>
-        <li>411 - 服务器拒绝在没有定义Content-Length头的情况下接受请求。</li>
-        <li>412 - 前提条件失败。</li>
-        <li>413 – 请求实体太大。</li>
-        <li>414 - 请求 URI 太长。</li>
-        <li>415 – 不支持的媒体类型。</li>
-        <li>416 – 所请求的范围无法满足。</li>
-        <li>417 – 执行失败。</li>
-        <li>418 – 本操作码是在1998年作为IETF的传统<a href="http://www.baike.com/wiki/%E6%81%B6%E6%90%9ERFC">愚人节笑话</a>。</li>
-        <li>421 – 从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。</li>
-        <li>422 – 请求格式正确，但是由于含有语义错误，无法响应。</li>
-        <li>423 – 当前资源被锁定。</li>
-        <li>424 – 由于之前的某个请求发生的错误，导致当前请求失败。</li>
-        <li>425 – 无序的集合。</li>
-        <li>426 – 客户端应当切换到TLS/1.0。</li>
-        <li>451 – （由IETF在2015核准后新增加）该访问因法律的要求而被拒绝。</li>
-      </ul>
-      <h3 id="5xx服务器错误"><a class="anchor" aria-hidden="true" tabindex="-1" href="#5xx服务器错误"><span class="octicon octicon-link"></span></a>5xx服务器错误</h3>
-      <p><em>这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。</em></p>
-      <ul>
-        <li>500 - 内部服务器错误。</li>
-        <li>501 - 尚未实施，页眉值指定了未实现的配置。</li>
-        <li>502 - 错误网关，Web 服务器用作网关或代理服务器时收到了无效响应。</li>
-        <li>503 - 服务不可用，这个错误代码为 IIS 6.0 所专用。</li>
-        <li>504 - 网关超时，服务器作为网关或代理，未及时从上游服务器接收请求。</li>
-        <li>505 - HTTP 版本不受支持，服务器不支持请求中所使用的 HTTP 协议版本。</li>
-        <li>506 - 服务器没有正确配置。</li>
-        <li>507 - 存储空间不足。服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。</li>
-        <li>509 - 带宽超过限制。这不是一个官方的状态码，但是仍被广泛使用。</li>
-        <li>510 - 没有扩展，获取资源所需要的策略并没有被满足。</li>
-      </ul>
-      <h2 id="ftp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ftp"><span class="octicon octicon-link"></span></a>FTP</h2>
-      <h3 id="1xx初步"><a class="anchor" aria-hidden="true" tabindex="-1" href="#1xx初步"><span class="octicon octicon-link"></span></a>1xx初步</h3>
-      <p><em>肯定的初步答复，这些状态代码指示一项操作已经成功开始，但客户端希望在继续操作新命令前得到另一个答复。</em></p>
-      <ul>
-        <li>110 重新启动标记答复。</li>
-        <li>120 服务已就绪，在 nnn 分钟后开始。</li>
-        <li>125 数据连接已打开，正在开始传输。</li>
-        <li>150 文件状态正常，准备打开数据连接。</li>
-      </ul>
-      <h3 id="2xx完成"><a class="anchor" aria-hidden="true" tabindex="-1" href="#2xx完成"><span class="octicon octicon-link"></span></a>2xx完成</h3>
-      <p><em>肯定的完成答复，一项操作已经成功完成。客户端可以执行新命令。</em></p>
-      <ul>
-        <li>200 命令确定。</li>
-        <li>202 未执行命令，站点上的命令过多。</li>
-        <li>211 系统状态，或系统帮助答复。</li>
-        <li>212 目录状态。</li>
-        <li>213 文件状态。</li>
-        <li>214 帮助消息。</li>
-        <li>215 NAME 系统类型，其中，NAME 是 Assigned Numbers 文档中所列的正式系统名称。</li>
-        <li>220 服务就绪，可以执行新用户的请求。</li>
-        <li>221 服务关闭控制连接。如果适当，请注销。</li>
-        <li>225 数据连接打开，没有进行中的传输。</li>
-        <li>226 关闭数据连接。请求的文件操作已成功（例如，传输文件或放弃文件）。</li>
-        <li>227 进入被动模式 (h1,h2,h3,h4,p1,p2)。</li>
-        <li>230 用户已登录，继续进行。</li>
-        <li>250 请求的文件操作正确，已完成。</li>
-        <li>257 已创建“PATHNAME”。</li>
-      </ul>
-      <h3 id="3xx中间"><a class="anchor" aria-hidden="true" tabindex="-1" href="#3xx中间"><span class="octicon octicon-link"></span></a>3xx中间</h3>
-      <p><em>肯定的中间答复，该命令已成功，但服务器需要更多来自客户端的信息以完成对请求的处理。</em></p>
-      <ul>
-        <li>331 用户名正确，需要密码。</li>
-        <li>332 需要登录帐户。</li>
-        <li>350 请求的文件操作正在等待进一步的信息。</li>
-      </ul>
-      <h3 id="4xx瞬态否定"><a class="anchor" aria-hidden="true" tabindex="-1" href="#4xx瞬态否定"><span class="octicon octicon-link"></span></a>4xx瞬态否定</h3>
-      <p><em>瞬态否定的完成答复，该命令不成功，但错误是暂时的。如果客户端重试命令，可能会执行成功。</em></p>
-      <ul>
-        <li>421 服务不可用，正在关闭控制连接。如果服务确定它必须关闭，将向任何命令发送这一应答。</li>
-        <li>425 无法打开数据连接。</li>
-        <li>426 Connection closed; transfer aborted.</li>
-        <li>450 未执行请求的文件操作。文件不可用（例如，文件繁忙）。</li>
-        <li>451 请求的操作异常终止：正在处理本地错误。</li>
-        <li>452 未执行请求的操作。系统存储空间不够。</li>
-      </ul>
-      <h2 id="5xx永久性否定"><a class="anchor" aria-hidden="true" tabindex="-1" href="#5xx永久性否定"><span class="octicon octicon-link"></span></a>5xx永久性否定</h2>
-      <p><em>永久性否定的完成答复，该命令不成功，错误是永久性的。如果客户端重试命令，将再次出现同样的错误。</em></p>
-      <ul>
-        <li>500 语法错误，命令无法识别。这可能包括诸如命令行太长之类的错误。</li>
-        <li>501 在参数中有语法错误。</li>
-        <li>502 未执行命令。</li>
-        <li>503 错误的命令序列。</li>
-        <li>504 未执行该参数的命令。</li>
-        <li>530 未登录。</li>
-        <li>532 存储文件需要帐户。</li>
-        <li>550 未执行请求的操作。文件不可用（例如，未找到文件，没有访问权限）。</li>
-        <li>551 请求的操作异常终止：未知的页面类型。</li>
-        <li>552 请求的文件操作异常终止：超出存储分配（对于当前目录或数据集）。</li>
-        <li>553 未执行请求的操作。不允许的文件名。</li>
-      </ul>
-      <h2 id="6xx受保护"><a class="anchor" aria-hidden="true" tabindex="-1" href="#6xx受保护"><span class="octicon octicon-link"></span></a>6xx受保护</h2>
-      <ul>
-        <li>600 Series，Replies regarding confidentiality and integrity</li>
-        <li>631 Integrity protected reply.</li>
-        <li>632 Confidentiality and integrity protected reply.</li>
-        <li>633 Confidentiality protected reply.</li>
-      </ul>
-      <h2 id="websockets状态码"><a class="anchor" aria-hidden="true" tabindex="-1" href="#websockets状态码"><span class="octicon octicon-link"></span></a>WebSockets状态码</h2>
-      <p><em>WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客户端。它在 WebSocket 对象的 onclose 事件监听器中使用。服务端发送的关闭码，以下为已分配的状态码。</em></p>
-      <table>
-        <thead>
-          <tr>
-            <th>状态码</th>
-            <th>名称</th>
-            <th>描述</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>0–999</td>
-            <td>-</td>
-            <td>保留段, 未使用。</td>
-          </tr>
-          <tr>
-            <td>1000</td>
-            <td>CLOSE_NORMAL</td>
-            <td>正常关闭; 无论为何目的而创建, 该链接都已成功完成任务。</td>
-          </tr>
-          <tr>
-            <td>1001</td>
-            <td>CLOSE_GOING_AWAY</td>
-            <td>终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开。</td>
-          </tr>
-          <tr>
-            <td>1002</td>
-            <td>CLOSE_PROTOCOL_ERROR</td>
-            <td>由于协议错误而中断连接。</td>
-          </tr>
-          <tr>
-            <td>1003</td>
-            <td>CLOSE_UNSUPPORTED</td>
-            <td>由于接收到不允许的数据类型而断开连接 (如仅接收文本数据的终端接收到了二进制数据)。</td>
-          </tr>
-          <tr>
-            <td>1004</td>
-            <td>-</td>
-            <td>保留。 其意义可能会在未来定义。</td>
-          </tr>
-          <tr>
-            <td>1005</td>
-            <td>CLOSE_NO_STATUS</td>
-            <td>保留。 表示没有收到预期的状态码。</td>
-          </tr>
-          <tr>
-            <td>1006</td>
-            <td>CLOSE_ABNORMAL</td>
-            <td>保留。 用于期望收到状态码时连接非正常关闭 (也就是说, 没有发送关闭帧)。</td>
-          </tr>
-          <tr>
-            <td>1007</td>
-            <td>Unsupported Data</td>
-            <td>由于收到了格式不符的数据而断开连接 (如文本消息中包含了非 UTF-8 数据)。</td>
-          </tr>
-          <tr>
-            <td>1008</td>
-            <td>Policy Violation</td>
-            <td>由于收到不符合约定的数据而断开连接。 这是一个通用状态码, 用于不适合使用 1003 和 1009 状态码的场景。</td>
-          </tr>
-          <tr>
-            <td>1009</td>
-            <td>CLOSE_TOO_LARGE</td>
-            <td>由于收到过大的数据帧而断开连接。</td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Missing Extension</td>
-            <td>客户端期望服务器商定一个或多个拓展, 但服务器没有处理, 因此客户端断开连接。</td>
-          </tr>
-          <tr>
-            <td>1011</td>
-            <td>Internal Error</td>
-            <td>客户端由于遇到没有预料的情况阻止其完成请求, 因此服务端断开连接。</td>
-          </tr>
-          <tr>
-            <td>1012</td>
-            <td>Service Restart</td>
-            <td>服务器由于重启而断开连接。 [Ref]</td>
-          </tr>
-          <tr>
-            <td>1013</td>
-            <td>Try Again Later</td>
-            <td>服务器由于临时原因断开连接, 如服务器过载因此断开一部分客户端连接。 [Ref]</td>
-          </tr>
-          <tr>
-            <td>1014</td>
-            <td>-</td>
-            <td>由 WebSocket 标准保留以便未来使用。</td>
-          </tr>
-          <tr>
-            <td>1015</td>
-            <td>TLS Handshake</td>
-            <td>保留。 表示连接由于无法完成 TLS 握手而关闭 (例如无法验证服务器证书)。</td>
-          </tr>
-          <tr>
-            <td>1016–1999</td>
-            <td>-</td>
-            <td>由 WebSocket 标准保留以便未来使用。</td>
-          </tr>
-          <tr>
-            <td>2000–2999</td>
-            <td>-</td>
-            <td>由 WebSocket 拓展保留使用。</td>
-          </tr>
-          <tr>
-            <td>3000–3999</td>
-            <td>-</td>
-            <td>可以由库或框架使用。 不应由应用使用。 可以在 IANA 注册, 先到先得。</td>
-          </tr>
-          <tr>
-            <td>4000–4999</td>
-            <td>-</td>
-            <td>可以由应用使用。</td>
-          </tr>
-        </tbody>
-      </table>
-      <h2 id="参考资料"><a class="anchor" aria-hidden="true" tabindex="-1" href="#参考资料"><span class="octicon octicon-link"></span></a>参考资料</h2>
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP状态码列表</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes">FTP状态码列表</a></li>
-        <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent">MDN CloseEvent</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages">HTTP 404</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes">List of FTP server return codes</a></li>
-        <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview">HTTP概述</a></li>
-        <li><a href="http://www.getnetgoing.com/HTTP-403.html">Help for HTTP error 403: “Forbidden”</a></li>
-        <li><a href="https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">实用的 RESTful API 最佳实践</a></li>
-      </ul>
-      <script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
+  <body id="totop"><header class="header"><article class="inner"><a class="logo" href="../index.html"><img src="data:image/png;base64,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" alt="handbook logo"></a><div class="title">handbook</div><nav class="nav"></nav></article></header><script type="module">const GITHUB_CORNERS_TEMPLATE = document.createElement("template");
+GITHUB_CORNERS_TEMPLATE.innerHTML = `
+<style>
+:host a:hover .octo-arm { animation: octocat-wave 560ms ease-in-out; }
+@keyframes octocat-wave {
+  0%, 100% { transform: rotate(0); }
+  20%, 60% { transform: rotate(-25deg); }
+  40%, 80% { transform: rotate(10deg); }
+}
+@media (max-width:500px) {
+  :host a:hover .octo-arm { animation: none; }
+  :host .octo-arm { animation: octocat-wave 560ms ease-in-out; }
+}
+:host svg { z-index: 99; position: fixed; border: 0px; top: 0px; }
+</style>
+<svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
+  <a xlink:href="https://github.com/uiwjs/react-github-corners" target="_blank" rel="nofollow sponsored" style="fill: rgb(21, 21, 19); color: rgb(255, 255, 255);">
+    <g>
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" class="octo-arm" style="transform-origin: 130px 106px;"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+    </g>
+  </a>
+</svg>
+`;
+export class GithubCorners extends HTMLElement {
+    constructor() {
+        super();
+        this.right = '0';
+        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow.appendChild(this.ownerDocument.importNode(GITHUB_CORNERS_TEMPLATE.content, true));
+        this.update();
+    }
+    static get observedAttributes() {
+        return ['style', 'z-index', 'target', 'height', 'width', 'href', 'color', 'fill', 'position', 'top', 'left', 'right', 'bottom', 'transform'];
+    }
+    setAttr(name, value) {
+        const svg = this.shadow.querySelector('svg');
+        if (/(href)/.test(name.toLocaleLowerCase())) {
+            svg.lastElementChild.setAttribute('xlink:href', value);
+        }
+        else if (/(color|fill)/.test(name.toLocaleLowerCase())) {
+            svg.firstElementChild.style[name] = value;
+        }
+        else if (/(z-index|position|top|left|right|bottom|transform)/.test(name.toLocaleLowerCase())) {
+            svg.style[name] = value;
+        }
+        else {
+            svg.setAttribute(name, value);
+        }
+    }
+    update() {
+        ;
+        [...this.getAttributeNames(), 'right'].forEach((name) => {
+            const value = this.getAttribute(name) || this[name] || '';
+            this.setAttr(name, value);
+        });
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue) {
+            this.setAttr(name, newValue);
+        }
+    }
+}
+customElements.define('github-corners', GithubCorners);</script><github-corners target="__blank" position="fixed" z-index="999" href="https://github.com/jaywcjlove/handbook.git"></github-corners><dark-mode permanent style="position: fixed; top: 8px; left: 10px; z-index: 999;" dark="Dark" light="Light"></dark-mode><script>const t=document;const e="_dark_mode_theme_";const s="permanent";const o="colorschemechange";const i="permanentcolorscheme";const h="light";const r="dark";const n=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){const t=this.getAttribute(e);return t===null?"":t},set(t){this.setAttribute(e,t)}})};const c=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){return this.hasAttribute(e)},set(t){if(t){this.setAttribute(e,"")}else{this.removeAttribute(e)}}})};class a extends HTMLElement{static get observedAttributes(){return["mode",h,r,s]}LOCAL_NANE=e;constructor(){super();this.t()}connectedCallback(){n(this,"mode");n(this,r);n(this,h);c(this,s);const a=localStorage.getItem(e);if(a&&[h,r].includes(a)){this.mode=a;this.permanent=true}if(this.permanent&&!a){localStorage.setItem(e,this.mode)}const l=[h,r].includes(a);if(this.permanent&&a){this.o()}else{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){this.mode=r;this.o()}if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches){this.mode=h;this.o()}}if(!this.permanent&&!l){window.matchMedia("(prefers-color-scheme: light)").onchange=t=>{this.mode=t.matches?h:r;this.o()};window.matchMedia("(prefers-color-scheme: dark)").onchange=t=>{this.mode=t.matches?r:h;this.o()}}const d=new MutationObserver(((s,h)=>{this.mode=t.documentElement.dataset.colorMode;if(this.permanent&&l){localStorage.setItem(e,this.mode);this.i(i,{permanent:this.permanent})}this.h();this.i(o,{colorScheme:this.mode})}));d.observe(t.documentElement,{attributes:true});this.i(o,{colorScheme:this.mode});this.h()}attributeChangedCallback(t,s,o){if(t==="mode"&&s!==o&&[h,r].includes(o)){const t=localStorage.getItem(e);if(this.mode===t){this.mode=o;this.h();this.o()}else if(this.mode&&this.mode!==t){this.h();this.o()}}else if((t===h||t===r)&&s!==o){this.h()}if(t==="permanent"&&typeof this.permanent==="boolean"){this.permanent?localStorage.setItem(e,this.mode):localStorage.removeItem(e)}}o(){t.documentElement.setAttribute("data-color-mode",this.mode)}h(){this.icon.textContent=this.mode===h?"🌒":"🌞";this.text.textContent=this.mode===h?this.getAttribute(r):this.getAttribute(h)}t(){var s=this.attachShadow({mode:"open"});this.label=t.createElement("span");this.label.setAttribute("class","wrapper");this.label.onclick=()=>{this.mode=this.mode===h?r:h;if(this.permanent){localStorage.setItem(e,this.mode)}this.o();this.h()};s.appendChild(this.label);this.icon=t.createElement("span");this.label.appendChild(this.icon);this.text=t.createElement("span");this.label.appendChild(this.text);const o=`
+[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-theme-bg: #0d1117;
+  --color-theme-text: #c9d1d9;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}
+
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-theme-bg: #fff;
+  --color-theme-text: #24292f;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}`;const i="_dark_mode_style_";const n=t.getElementById(i);if(!n){var c=t.createElement("style");c.id=i;c.textContent=o;t.head.appendChild(c)}var a=t.createElement("style");a.textContent=`
+    .wrapper { cursor: pointer; user-select: none; position: relative; }
+    .wrapper > span + span { margin-left: .4rem; }
+    `;s.appendChild(a)}i(t,e){this.dispatchEvent(new CustomEvent(t,{bubbles:true,composed:true,detail:e}))}}customElements.define("dark-mode",a);</script><script>const __TEMPLATE__ = document.createElement('template');
+__TEMPLATE__.innerHTML = `
+<style>
+
+markdown-style h1:hover a.anchor .octicon-link:before,
+markdown-style h2:hover a.anchor .octicon-link:before,
+markdown-style h3:hover a.anchor .octicon-link:before,
+markdown-style h4:hover a.anchor .octicon-link:before,
+markdown-style h5:hover a.anchor .octicon-link:before,
+markdown-style h6:hover a.anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+markdown-style[theme*='light'] { --color-prettylights-syntax-comment: #6e7781; --color-prettylights-syntax-constant: #0550ae; --color-prettylights-syntax-entity: #8250df; --color-prettylights-syntax-storage-modifier-import: #24292f; --color-prettylights-syntax-entity-tag: #116329; --color-prettylights-syntax-keyword: #cf222e; --color-prettylights-syntax-string: #0a3069; --color-prettylights-syntax-variable: #953800; --color-prettylights-syntax-brackethighlighter-unmatched: #82071e; --color-prettylights-syntax-invalid-illegal-text: #f6f8fa; --color-prettylights-syntax-invalid-illegal-bg: #82071e; --color-prettylights-syntax-carriage-return-text: #f6f8fa; --color-prettylights-syntax-carriage-return-bg: #cf222e; --color-prettylights-syntax-string-regexp: #116329; --color-prettylights-syntax-markup-list: #3b2300; --color-prettylights-syntax-markup-heading: #0550ae; --color-prettylights-syntax-markup-italic: #24292f; --color-prettylights-syntax-markup-bold: #24292f; --color-prettylights-syntax-markup-deleted-text: #82071e; --color-prettylights-syntax-markup-deleted-bg: #FFEBE9; --color-prettylights-syntax-markup-inserted-text: #116329; --color-prettylights-syntax-markup-inserted-bg: #dafbe1; --color-prettylights-syntax-markup-changed-text: #953800; --color-prettylights-syntax-markup-changed-bg: #ffd8b5; --color-prettylights-syntax-markup-ignored-text: #eaeef2; --color-prettylights-syntax-markup-ignored-bg: #0550ae; --color-prettylights-syntax-meta-diff-range: #8250df; --color-prettylights-syntax-brackethighlighter-angle: #57606a; --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f; --color-prettylights-syntax-constant-other-reference-link: #0a3069; --color-fg-default: #24292f; --color-fg-muted: #57606a; --color-fg-subtle: #6e7781; --color-canvas-default: #ffffff; --color-canvas-subtle: #f6f8fa; --color-border-default: #d0d7de; --color-border-muted: hsla(210,18%,87%,1); --color-neutral-muted: rgba(175,184,193,0.2); --color-accent-fg: #0969da; --color-accent-emphasis: #0969da; --color-attention-subtle: #fff8c5; --color-danger-fg: #cf222e; } markdown-style[theme*='dark'] { --color-prettylights-syntax-comment: #8b949e; --color-prettylights-syntax-constant: #79c0ff; --color-prettylights-syntax-entity: #d2a8ff; --color-prettylights-syntax-storage-modifier-import: #c9d1d9; --color-prettylights-syntax-entity-tag: #7ee787; --color-prettylights-syntax-keyword: #ff7b72; --color-prettylights-syntax-string: #a5d6ff; --color-prettylights-syntax-variable: #ffa657; --color-prettylights-syntax-brackethighlighter-unmatched: #f85149; --color-prettylights-syntax-invalid-illegal-text: #f0f6fc; --color-prettylights-syntax-invalid-illegal-bg: #8e1519; --color-prettylights-syntax-carriage-return-text: #f0f6fc; --color-prettylights-syntax-carriage-return-bg: #b62324; --color-prettylights-syntax-string-regexp: #7ee787; --color-prettylights-syntax-markup-list: #f2cc60; --color-prettylights-syntax-markup-heading: #1f6feb; --color-prettylights-syntax-markup-italic: #c9d1d9; --color-prettylights-syntax-markup-bold: #c9d1d9; --color-prettylights-syntax-markup-deleted-text: #ffdcd7; --color-prettylights-syntax-markup-deleted-bg: #67060c; --color-prettylights-syntax-markup-inserted-text: #aff5b4; --color-prettylights-syntax-markup-inserted-bg: #033a16; --color-prettylights-syntax-markup-changed-text: #ffdfb6; --color-prettylights-syntax-markup-changed-bg: #5a1e02; --color-prettylights-syntax-markup-ignored-text: #c9d1d9; --color-prettylights-syntax-markup-ignored-bg: #1158c7; --color-prettylights-syntax-meta-diff-range: #d2a8ff; --color-prettylights-syntax-brackethighlighter-angle: #8b949e; --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58; --color-prettylights-syntax-constant-other-reference-link: #a5d6ff; --color-fg-default: #c9d1d9; --color-fg-muted: #8b949e; --color-fg-subtle: #484f58; --color-canvas-default: #0d1117; --color-canvas-subtle: #161b22; --color-border-default: #30363d; --color-border-muted: #21262d; --color-neutral-muted: rgba(110,118,129,0.4); --color-accent-fg: #58a6ff; --color-accent-emphasis: #1f6feb; --color-attention-subtle: rgba(187,128,9,0.15); --color-danger-fg: #f85149; } markdown-style { display: block; -webkit-text-size-adjust: 100%; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: var(--color-fg-default); background-color: var(--color-canvas-default); } markdown-style details, markdown-style figcaption, markdown-style figure { display: block; } markdown-style summary { display: list-item; } markdown-style [hidden] { display: none !important; } markdown-style a { background-color: transparent; color: var(--color-accent-fg); text-decoration: none; } markdown-style a:active, markdown-style a:hover { outline-width: 0; } markdown-style abbr[title] { border-bottom: none; text-decoration: underline dotted; } markdown-style b, markdown-style strong { font-weight: 600; } markdown-style dfn { font-style: italic; } markdown-style h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid var(--color-border-muted); } markdown-style mark { background-color: var(--color-attention-subtle); color: var(--color-text-primary); } markdown-style small { font-size: 90%; } markdown-style sub, markdown-style sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } markdown-style sub { bottom: -0.25em; } markdown-style sup { top: -0.5em; } markdown-style img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: var(--color-canvas-default); } markdown-style code, markdown-style kbd, markdown-style pre, markdown-style samp { font-family: monospace,monospace; font-size: 1em; } markdown-style figure { margin: 1em 40px; } markdown-style hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid var(--color-border-muted); height: .25em; padding: 0; margin: 24px 0; background-color: var(--color-border-default); border: 0; } markdown-style input { font: inherit; margin: 0; overflow: visible; font-family: inherit; font-size: inherit; line-height: inherit; } markdown-style [type=button], markdown-style [type=reset], markdown-style [type=submit] { -webkit-appearance: button; } markdown-style [type=button]::-moz-focus-inner, markdown-style [type=reset]::-moz-focus-inner, markdown-style [type=submit]::-moz-focus-inner { border-style: none; padding: 0; } markdown-style [type=button]:-moz-focusring, markdown-style [type=reset]:-moz-focusring, markdown-style [type=submit]:-moz-focusring { outline: 1px dotted ButtonText; } markdown-style [type=checkbox], markdown-style [type=radio] { box-sizing: border-box; padding: 0; } markdown-style [type=number]::-webkit-inner-spin-button, markdown-style [type=number]::-webkit-outer-spin-button { height: auto; } markdown-style [type=search] { -webkit-appearance: textfield; outline-offset: -2px; } markdown-style [type=search]::-webkit-search-cancel-button, markdown-style [type=search]::-webkit-search-decoration { -webkit-appearance: none; } markdown-style ::-webkit-input-placeholder { color: inherit; opacity: .54; } markdown-style ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; } markdown-style a:hover { text-decoration: underline; } markdown-style hr::before { display: table; content: ""; } markdown-style hr::after { display: table; clear: both; content: ""; } markdown-style table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; } markdown-style td, markdown-style th { padding: 0; } markdown-style details summary { cursor: pointer; } markdown-style details:not([open])>*:not(summary) { display: none !important; } markdown-style kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: var(--color-fg-default); vertical-align: middle; background-color: var(--color-canvas-subtle); border: solid 1px var(--color-neutral-muted); border-bottom-color: var(--color-neutral-muted); border-radius: 6px; box-shadow: inset 0 -1px 0 var(--color-neutral-muted); } markdown-style h1, markdown-style h2, markdown-style h3, markdown-style h4, markdown-style h5, markdown-style h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; } markdown-style h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid var(--color-border-muted); } markdown-style h3 { font-weight: 600; font-size: 1.25em; } markdown-style h4 { font-weight: 600; font-size: 1em; } markdown-style h5 { font-weight: 600; font-size: .875em; } markdown-style h6 { font-weight: 600; font-size: .85em; color: var(--color-fg-muted); } markdown-style p { margin-top: 0; margin-bottom: 10px; } markdown-style blockquote { margin: 0; padding: 0 1em; color: var(--color-fg-muted); border-left: .25em solid var(--color-border-default); } markdown-style ul, markdown-style ol { margin-top: 0; margin-bottom: 0; padding-left: 2em; } markdown-style ol ol, markdown-style ul ol { list-style-type: lower-roman; } markdown-style ul ul ol, markdown-style ul ol ol, markdown-style ol ul ol, markdown-style ol ol ol { list-style-type: lower-alpha; } markdown-style dd { margin-left: 0; } markdown-style tt, markdown-style code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; } markdown-style pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; word-wrap: normal; } markdown-style .octicon { display: inline-block; overflow: visible !important; vertical-align: text-bottom; fill: currentColor; } markdown-style ::placeholder { color: var(--color-fg-subtle); opacity: 1; } markdown-style input::-webkit-outer-spin-button, markdown-style input::-webkit-inner-spin-button { margin: 0; -webkit-appearance: none; appearance: none; }
+markdown-style .token.comment, markdown-style .token.prolog, markdown-style .token.doctype, markdown-style .token.cdata { color: var(--color-prettylights-syntax-comment); } markdown-style .token.namespace { opacity: 0.7; } markdown-style .token.tag, markdown-style .token.selector, markdown-style .token.constant, markdown-style .token.symbol, markdown-style .token.deleted { color: var(--color-prettylights-syntax-entity-tag); } markdown-style .token.maybe-class-name { color: var(--color-prettylights-syntax-variable); } markdown-style .token.property-access, markdown-style .token.operator, markdown-style .token.boolean, markdown-style .token.number, markdown-style .token.selector markdown-style .token.class, markdown-style .token.attr-name, markdown-style .token.string, markdown-style .token.char, markdown-style .token.builtin { color: var(--color-prettylights-syntax-constant); } markdown-style .token.deleted { color: var(--color-prettylights-syntax-markup-deleted-text); } markdown-style .token.property { color: var(--color-prettylights-syntax-constant); } markdown-style .token.punctuation { color: var(--color-prettylights-syntax-markup-bold); } markdown-style .token.function { color: var(--color-prettylights-syntax-entity); } markdown-style .code-line .token.deleted { background-color: var(--color-prettylights-syntax-markup-deleted-bg); } markdown-style .token.inserted { color: var(--color-prettylights-syntax-markup-inserted-text); } markdown-style .code-line .token.inserted { background-color: var(--color-prettylights-syntax-markup-inserted-bg); } markdown-style .token.variable { color: var(--color-prettylights-syntax-constant); } markdown-style .token.entity, markdown-style .token.url, .language-css markdown-style .token.string, .style markdown-style .token.string { color: var(--color-prettylights-syntax-string); } markdown-style .token.color, markdown-style .token.atrule, markdown-style .token.attr-value, markdown-style .token.function, markdown-style .token.class-name { color: var(--color-prettylights-syntax-string); } markdown-style .token.rule, markdown-style .token.regex, markdown-style .token.important, markdown-style .token.keyword { color: var(--color-prettylights-syntax-keyword); } markdown-style .token.coord { color: var(--color-prettylights-syntax-meta-diff-range); } markdown-style .token.important, markdown-style .token.bold { font-weight: bold; } markdown-style .token.italic { font-style: italic; } markdown-style .token.entity { cursor: help; } markdown-style [data-catalyst] { display: block; }
+markdown-style g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em; } markdown-style g-emoji img { width: 1em; height: 1em; } markdown-style::before { display: table; content: ""; } markdown-style::after { display: table; clear: both; content: ""; } markdown-style>*:first-child { margin-top: 0 !important; } markdown-style>*:last-child { margin-bottom: 0 !important; } markdown-style a:not([href]) { color: inherit; text-decoration: none; } markdown-style .absent { color: var(--color-danger-fg); } markdown-style .anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1; } markdown-style .anchor:focus { outline: none; } markdown-style p, markdown-style blockquote, markdown-style ul, markdown-style ol, markdown-style dl, markdown-style table, markdown-style pre, markdown-style details { margin-top: 0; margin-bottom: 16px; } markdown-style blockquote>:first-child { margin-top: 0; } markdown-style blockquote>:last-child { margin-bottom: 0; } markdown-style sup>a::before { content: "["; } markdown-style sup>a::after { content: "]"; } markdown-style h1 .octicon-link, markdown-style h2 .octicon-link, markdown-style h3 .octicon-link, markdown-style h4 .octicon-link, markdown-style h5 .octicon-link, markdown-style h6 .octicon-link { color: var(--color-fg-default); vertical-align: middle; visibility: hidden; } markdown-style h1:hover .anchor, markdown-style h2:hover .anchor, markdown-style h3:hover .anchor, markdown-style h4:hover .anchor, markdown-style h5:hover .anchor, markdown-style h6:hover .anchor { text-decoration: none; } markdown-style h1:hover .anchor .octicon-link, markdown-style h2:hover .anchor .octicon-link, markdown-style h3:hover .anchor .octicon-link, markdown-style h4:hover .anchor .octicon-link, markdown-style h5:hover .anchor .octicon-link, markdown-style h6:hover .anchor .octicon-link { visibility: visible; } markdown-style h1 tt, markdown-style h1 code, markdown-style h2 tt, markdown-style h2 code, markdown-style h3 tt, markdown-style h3 code, markdown-style h4 tt, markdown-style h4 code, markdown-style h5 tt, markdown-style h5 code, markdown-style h6 tt, markdown-style h6 code { padding: 0 .2em; font-size: inherit; } markdown-style ul.no-list, markdown-style ol.no-list { padding: 0; list-style-type: none; } markdown-style ol[type="1"] { list-style-type: decimal; } markdown-style ol[type=a] { list-style-type: lower-alpha; } markdown-style ol[type=i] { list-style-type: lower-roman; } markdown-style div>ol:not([type]) { list-style-type: decimal; } markdown-style ul ul, markdown-style ul ol, markdown-style ol ol, markdown-style ol ul { margin-top: 0; margin-bottom: 0; } markdown-style li>p { margin-top: 16px; } markdown-style li+li { margin-top: .25em; } markdown-style dl { padding: 0; } markdown-style dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600; } markdown-style dl dd { padding: 0 16px; margin-bottom: 16px; } markdown-style table th { font-weight: 600; } markdown-style table th, markdown-style table td { padding: 6px 13px; border: 1px solid var(--color-border-default); } markdown-style table tr { background-color: var(--color-canvas-default); border-top: 1px solid var(--color-border-muted); } markdown-style table tr:nth-child(2n) { background-color: var(--color-canvas-subtle); } markdown-style table img { background-color: transparent; } markdown-style img[align=right] { padding-left: 20px; } markdown-style img[align=left] { padding-right: 20px; } markdown-style .emoji { max-width: none; vertical-align: text-top; background-color: transparent; } markdown-style span.frame { display: block; overflow: hidden; } markdown-style span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid var(--color-border-default); } markdown-style span.frame span img { display: block; float: left; } markdown-style span.frame span span { display: block; padding: 5px 0 0; clear: both; color: var(--color-fg-default); } markdown-style span.align-center { display: block; overflow: hidden; clear: both; } markdown-style span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center; } markdown-style span.align-center span img { margin: 0 auto; text-align: center; } markdown-style span.align-right { display: block; overflow: hidden; clear: both; } markdown-style span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right; } markdown-style span.align-right span img { margin: 0; text-align: right; } markdown-style span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; } markdown-style span.float-left span { margin: 13px 0 0; } markdown-style span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; } markdown-style span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right; } markdown-style code, markdown-style tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: var(--color-neutral-muted); border-radius: 6px; } markdown-style code br, markdown-style tt br { display: none; } markdown-style del code { text-decoration: inherit; } markdown-style pre code { font-size: 100%; } markdown-style pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0; } markdown-style .highlight { margin-bottom: 16px; } markdown-style .highlight pre { margin-bottom: 0; word-break: normal; } markdown-style .highlight pre, markdown-style pre { position: relative; padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: var(--color-canvas-subtle); border-radius: 6px; } markdown-style pre code, markdown-style pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } markdown-style .csv-data td, markdown-style .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap; } markdown-style .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: var(--color-canvas-default); border: 0; } markdown-style .csv-data tr { border-top: 0; } markdown-style .csv-data th { font-weight: 600; background: var(--color-canvas-subtle); border-top: 0; } markdown-style .footnotes { font-size: 12px; color: var(--color-fg-muted); border-top: 1px solid var(--color-border-default); } markdown-style .footnotes ol { padding-left: 16px; } markdown-style .footnotes li { position: relative; } markdown-style .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid var(--color-accent-emphasis); border-radius: 6px; } markdown-style .footnotes li:target { color: var(--color-fg-default); } markdown-style .footnotes .data-footnote-backref g-emoji { font-family: monospace; } markdown-style .task-list-item { list-style-type: none; } markdown-style .task-list-item label { font-weight: 400; } markdown-style .task-list-item.enabled label { cursor: pointer; } markdown-style .task-list-item+.task-list-item { margin-top: 3px; } markdown-style .task-list-item .handle { display: none; } markdown-style .task-list-item-checkbox, markdown-style input[type="checkbox"] { margin: 0 .2em .25em -1.6em; vertical-align: middle; } markdown-style .contains-task-list:dir(rtl) .task-list-item-checkbox, markdown-style .contains-task-list:dir(rtl) input[type="checkbox"] { margin: 0 -1.6em .25em .2em; } markdown-style ::-webkit-calendar-picker-indicator { filter: invert(50%); }
+</style>
+<slot></slot>
+`;
+class MarkdownStyle extends HTMLElement {
+    constructor() {
+        super();
+        this.initTheme = this.getAttribute('theme');
+        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow.appendChild(__TEMPLATE__.content.cloneNode(true));
+        this.setTheme();
+        const style = Array.prototype.slice
+            .call(this.shadow.children)
+            .find((item) => item.tagName === 'STYLE');
+        if (style) {
+            const id = '__MARKDOWN_STYLE__';
+            const findStyle = document.getElementById(id);
+            if (!findStyle) {
+                style.id = id;
+                document.head.append(style);
+            }
+        }
+    }
+    setTheme() {
+        if (!this.initTheme) {
+            const { colorMode } = document.documentElement.dataset;
+            this.theme = colorMode;
+            if (this.theme === 'undefined') {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    this.theme = 'dark';
+                }
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                    this.theme = 'light';
+                }
+            }
+        }
+    }
+    connectedCallback() {
+        this.installStringReflection('theme');
+        if (!this.initTheme) {
+            this.setTheme();
+            const observer = new MutationObserver((mutationsList, observer) => {
+                this.theme = document.documentElement.dataset.colorMode;
+                this.setTheme();
+            });
+            // Start observing the target node with the above configuration
+            observer.observe(document.documentElement, { attributes: true });
+            window.matchMedia('(prefers-color-scheme: light)').onchange = (event) => {
+                this.theme = event.matches ? 'light' : 'dark';
+                this.setTheme();
+            };
+            window.matchMedia('(prefers-color-scheme: dark)').onchange = (event) => {
+                this.theme = event.matches ? 'dark' : 'light';
+                this.setTheme();
+            };
+        }
+    }
+    /**
+     * See https://html.spec.whatwg.org/multipage/common-dom-interfaces.html
+     * #reflecting-content-attributes-in-idl-attributes.
+     */
+    installStringReflection(attrName, propName = attrName) {
+        Object.defineProperty(this, propName, {
+            enumerable: true,
+            get() {
+                const value = this.getAttribute(attrName);
+                return value === null ? '' : value;
+            },
+            set(v) {
+                this.setAttribute(attrName, v);
+            },
+        });
+    }
+}
+customElements.define('markdown-style', MarkdownStyle);
+</script><markdown-style style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px" class="markdown-body">
+    <h2 id="常见httpftpwebsocket错误代码大全"><a class="anchor" aria-hidden="true" tabindex="-1" href="#常见httpftpwebsocket错误代码大全"><span class="octicon octicon-link"></span></a>常见HTTP/FTP/WebSocket错误代码大全</h2>
+    <p>
+      <img src="img_http/Fetching_a_page.png" alt="">
+    </p>
+    <h1 id="目录"><a class="anchor" aria-hidden="true" tabindex="-1" href="#目录"><span class="octicon octicon-link"></span></a>目录</h1><!-- TOC -->
+    <ul>
+      <li><a href="#http">HTTP</a>
+        <ul>
+          <li><a href="#1xx%E6%B6%88%E6%81%AF">1xx消息</a></li>
+          <li><a href="#2xx%E6%88%90%E5%8A%9F">2xx成功</a></li>
+          <li><a href="#3xx%E9%87%8D%E5%AE%9A%E5%90%91">3xx重定向</a></li>
+          <li><a href="#4xx%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF">4xx客户端错误</a></li>
+          <li><a href="#5xx%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF">5xx服务器错误</a></li>
+        </ul>
+      </li>
+      <li><a href="#ftp">FTP</a>
+        <ul>
+          <li><a href="#1xx%E5%88%9D%E6%AD%A5">1xx初步</a></li>
+          <li><a href="#2xx%E5%AE%8C%E6%88%90">2xx完成</a></li>
+          <li><a href="#3xx%E4%B8%AD%E9%97%B4">3xx中间</a></li>
+          <li><a href="#4xx%E7%9E%AC%E6%80%81%E5%90%A6%E5%AE%9A">4xx瞬态否定</a></li>
+        </ul>
+      </li>
+      <li><a href="#5xx%E6%B0%B8%E4%B9%85%E6%80%A7%E5%90%A6%E5%AE%9A">5xx永久性否定</a></li>
+      <li><a href="#6xx%E5%8F%97%E4%BF%9D%E6%8A%A4">6xx受保护</a></li>
+      <li><a href="#websockets%E7%8A%B6%E6%80%81%E7%A0%81">WebSockets状态码</a></li>
+      <li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+    </ul><!-- /TOC -->
+    <h2 id="rest-api"><a class="anchor" aria-hidden="true" tabindex="-1" href="#rest-api"><span class="octicon octicon-link"></span></a>Rest API</h2>
+    <ul>
+      <li>200 返回成功，GET、PUT 或 DELETE 请求成功。</li>
+      <li>204 无内容，POST 请求成功。</li>
+      <li>301 永久重定向。</li>
+      <li>302/307 临时重定向。</li>
+      <li>304 未修改，自上次请求以来。</li>
+      <li>331 用户名正确，需要密码。</li>
+      <li>332 需要登录帐户。</li>
+      <li>400 错误请求，缺少 API 请求的必需属性。</li>
+      <li>401 未授权，无效凭据进行身份验证将。</li>
+      <li>403 禁地，该请求不被允许。</li>
+      <li>404 未找到，无法访问资源</li>
+      <li>405 方法不允许，不支持该请求。</li>
+      <li>409 冲突，冲突资源已存在。</li>
+      <li>412 该请求被拒绝。</li>
+      <li>422 无法处理，无法处理该实体。</li>
+      <li>429 请求过多，用户超出了应用速率限制。</li>
+      <li>500 服务器错误，在处理请求时，服务器出现问题。</li>
+      <li>530 未登录。</li>
+    </ul>
+    <h2 id="http"><a class="anchor" aria-hidden="true" tabindex="-1" href="#http"><span class="octicon octicon-link"></span></a>HTTP</h2>
+    <h3 id="1xx消息"><a class="anchor" aria-hidden="true" tabindex="-1" href="#1xx消息"><span class="octicon octicon-link"></span></a>1xx消息</h3>
+    <p><em>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。 这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。</em></p>
+    <ul>
+      <li>100 - 客户端应当继续发送请求</li>
+      <li>101 - 切换协议</li>
+      <li>102 - 处理将被继续执行</li>
+    </ul>
+    <h3 id="2xx成功"><a class="anchor" aria-hidden="true" tabindex="-1" href="#2xx成功"><span class="octicon octicon-link"></span></a>2xx成功</h3>
+    <p><em>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</em></p>
+    <ul>
+      <li>200 - （成功）请求已成功，请求所希望的响应头或数据体将随此响应返回。</li>
+      <li>201 - （已创建）请求成功且服务器已创建了新的资源。。</li>
+      <li>202 - （已接受）服务器已接受了请求，但尚未对其进行处理。</li>
+      <li>203 - （非授权信息）服务器已成功处理了请求，但返回了可能来自另一来源的信息。</li>
+      <li>204 - （无内容）服务器成功处理了请求，但未返回任何内容。</li>
+      <li>205 - （重置内容）服务器成功处理了请求，但未返回任何内容。</li>
+      <li>206 - （部分内容）服务器成功处理了部分 GET 请求。</li>
+    </ul>
+    <h3 id="3xx重定向"><a class="anchor" aria-hidden="true" tabindex="-1" href="#3xx重定向"><span class="octicon octicon-link"></span></a>3xx重定向</h3>
+    <p><em>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。按照HTTP/1.0版规范的建议，浏览器不应自动访问超过5次的重定向。对重定向一般是由浏览器来控制重定向的次数，重定向会导致客户端不必要的资源消耗</em></p>
+    <ul>
+      <li>300 - 多重选择，被请求的资源有一系列可供选择的回馈信息。</li>
+      <li>301 - 永久移除，被请求的资源已永久移动到新位置。</li>
+      <li>302 - 临时移动，请求的资源现在临时从不同的URI响应请求。</li>
+      <li>303 - 查看其他位置，对应当前请求的响应可以在另一个URI上被找到，而且客户端应当采用GET的方式访问那个资源。</li>
+      <li>304 - 未修改。自从上次请求后，请求的网页未被修改过。服务器返回此响应时，不会返回网页内容。</li>
+      <li>305 - 使用代理，被请求的资源必须通过指定的代理才能被访问。</li>
+      <li><del>306</del> - 临时重定向，在最新版的规范中，306状态码已经不再被使用。</li>
+      <li>307 - 临时重定向。</li>
+    </ul>
+    <h3 id="4xx客户端错误"><a class="anchor" aria-hidden="true" tabindex="-1" href="#4xx客户端错误"><span class="octicon octicon-link"></span></a>4xx客户端错误</h3>
+    <p><em>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。</em></p>
+    <ul>
+      <li>400 - 错误的请求。</li>
+      <li>401 - 访问被拒绝。</li>
+      <li>402 - 付款要求。</li>
+      <li>403 - 禁止访问
+        <ul>
+          <li>403.1 - 执行访问被禁止。</li>
+          <li>403.2 - 读访问被禁止。</li>
+          <li>403.3 - 写访问被禁止。</li>
+          <li>403.4 - 要求 SSL。</li>
+          <li>403.5 - 要求 SSL 128。</li>
+          <li>403.6 - IP 地址被拒绝。</li>
+          <li>403.7 - 要求客户端证书。</li>
+          <li>403.8 - 站点访问被拒绝。</li>
+          <li>403.9 - 用户数过多。</li>
+          <li>403.10 - 配置无效。</li>
+          <li>403.11 - 密码更改。</li>
+          <li>403.12 - 拒绝访问映射表。</li>
+          <li>403.13 - 客户端证书被吊销。</li>
+          <li>403.14 - 拒绝目录列表。</li>
+          <li>403.15 - 超出客户端访问许可。</li>
+          <li>403.16 - 客户端证书不受信任或无效。</li>
+          <li>403.17 - 客户端证书已过期或尚未生效。</li>
+          <li>403.18 - 在当前的应用程序池中不能执行所请求的 URL。</li>
+          <li>403.19 - 不能为这个应用程序池中的客户端执行 CGI。</li>
+          <li>403.20 - Passport 登录失败。</li>
+        </ul>
+      </li>
+      <li>404 - 未找到。
+        <ul>
+          <li>404.0 -（无） – 没有找到文件或目录。</li>
+          <li>404.1 - 无法在所请求的端口上访问 Web 站点。</li>
+          <li>404.2 - Web 服务扩展锁定策略阻止本请求。</li>
+          <li>404.3 - MIME 映射策略阻止本请求。</li>
+        </ul>
+      </li>
+      <li>405 - 用来访问本页面的 HTTP 谓词不被允许（方法不被允许）</li>
+      <li>406 - 客户端浏览器不接受所请求页面的 MIME 类型。</li>
+      <li>407 - 要求进行代理身份验证。</li>
+      <li>408 - 请求超时。</li>
+      <li>409 - 由于和被请求的资源的当前状态之间存在冲突，请求无法完成。</li>
+      <li>410 - 被请求的资源在服务器上已经不再可用，而且没有任何已知的转发地址。</li>
+      <li>411 - 服务器拒绝在没有定义Content-Length头的情况下接受请求。</li>
+      <li>412 - 前提条件失败。</li>
+      <li>413 – 请求实体太大。</li>
+      <li>414 - 请求 URI 太长。</li>
+      <li>415 – 不支持的媒体类型。</li>
+      <li>416 – 所请求的范围无法满足。</li>
+      <li>417 – 执行失败。</li>
+      <li>418 – 本操作码是在1998年作为IETF的传统<a href="http://www.baike.com/wiki/%E6%81%B6%E6%90%9ERFC">愚人节笑话</a>。</li>
+      <li>421 – 从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。</li>
+      <li>422 – 请求格式正确，但是由于含有语义错误，无法响应。</li>
+      <li>423 – 当前资源被锁定。</li>
+      <li>424 – 由于之前的某个请求发生的错误，导致当前请求失败。</li>
+      <li>425 – 无序的集合。</li>
+      <li>426 – 客户端应当切换到TLS/1.0。</li>
+      <li>451 – （由IETF在2015核准后新增加）该访问因法律的要求而被拒绝。</li>
+    </ul>
+    <h3 id="5xx服务器错误"><a class="anchor" aria-hidden="true" tabindex="-1" href="#5xx服务器错误"><span class="octicon octicon-link"></span></a>5xx服务器错误</h3>
+    <p><em>这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。</em></p>
+    <ul>
+      <li>500 - 内部服务器错误。</li>
+      <li>501 - 尚未实施，页眉值指定了未实现的配置。</li>
+      <li>502 - 错误网关，Web 服务器用作网关或代理服务器时收到了无效响应。</li>
+      <li>503 - 服务不可用，这个错误代码为 IIS 6.0 所专用。</li>
+      <li>504 - 网关超时，服务器作为网关或代理，未及时从上游服务器接收请求。</li>
+      <li>505 - HTTP 版本不受支持，服务器不支持请求中所使用的 HTTP 协议版本。</li>
+      <li>506 - 服务器没有正确配置。</li>
+      <li>507 - 存储空间不足。服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。</li>
+      <li>509 - 带宽超过限制。这不是一个官方的状态码，但是仍被广泛使用。</li>
+      <li>510 - 没有扩展，获取资源所需要的策略并没有被满足。</li>
+    </ul>
+    <h2 id="ftp"><a class="anchor" aria-hidden="true" tabindex="-1" href="#ftp"><span class="octicon octicon-link"></span></a>FTP</h2>
+    <h3 id="1xx初步"><a class="anchor" aria-hidden="true" tabindex="-1" href="#1xx初步"><span class="octicon octicon-link"></span></a>1xx初步</h3>
+    <p><em>肯定的初步答复，这些状态代码指示一项操作已经成功开始，但客户端希望在继续操作新命令前得到另一个答复。</em></p>
+    <ul>
+      <li>110 重新启动标记答复。</li>
+      <li>120 服务已就绪，在 nnn 分钟后开始。</li>
+      <li>125 数据连接已打开，正在开始传输。</li>
+      <li>150 文件状态正常，准备打开数据连接。</li>
+    </ul>
+    <h3 id="2xx完成"><a class="anchor" aria-hidden="true" tabindex="-1" href="#2xx完成"><span class="octicon octicon-link"></span></a>2xx完成</h3>
+    <p><em>肯定的完成答复，一项操作已经成功完成。客户端可以执行新命令。</em></p>
+    <ul>
+      <li>200 命令确定。</li>
+      <li>202 未执行命令，站点上的命令过多。</li>
+      <li>211 系统状态，或系统帮助答复。</li>
+      <li>212 目录状态。</li>
+      <li>213 文件状态。</li>
+      <li>214 帮助消息。</li>
+      <li>215 NAME 系统类型，其中，NAME 是 Assigned Numbers 文档中所列的正式系统名称。</li>
+      <li>220 服务就绪，可以执行新用户的请求。</li>
+      <li>221 服务关闭控制连接。如果适当，请注销。</li>
+      <li>225 数据连接打开，没有进行中的传输。</li>
+      <li>226 关闭数据连接。请求的文件操作已成功（例如，传输文件或放弃文件）。</li>
+      <li>227 进入被动模式 (h1,h2,h3,h4,p1,p2)。</li>
+      <li>230 用户已登录，继续进行。</li>
+      <li>250 请求的文件操作正确，已完成。</li>
+      <li>257 已创建“PATHNAME”。</li>
+    </ul>
+    <h3 id="3xx中间"><a class="anchor" aria-hidden="true" tabindex="-1" href="#3xx中间"><span class="octicon octicon-link"></span></a>3xx中间</h3>
+    <p><em>肯定的中间答复，该命令已成功，但服务器需要更多来自客户端的信息以完成对请求的处理。</em></p>
+    <ul>
+      <li>331 用户名正确，需要密码。</li>
+      <li>332 需要登录帐户。</li>
+      <li>350 请求的文件操作正在等待进一步的信息。</li>
+    </ul>
+    <h3 id="4xx瞬态否定"><a class="anchor" aria-hidden="true" tabindex="-1" href="#4xx瞬态否定"><span class="octicon octicon-link"></span></a>4xx瞬态否定</h3>
+    <p><em>瞬态否定的完成答复，该命令不成功，但错误是暂时的。如果客户端重试命令，可能会执行成功。</em></p>
+    <ul>
+      <li>421 服务不可用，正在关闭控制连接。如果服务确定它必须关闭，将向任何命令发送这一应答。</li>
+      <li>425 无法打开数据连接。</li>
+      <li>426 Connection closed; transfer aborted.</li>
+      <li>450 未执行请求的文件操作。文件不可用（例如，文件繁忙）。</li>
+      <li>451 请求的操作异常终止：正在处理本地错误。</li>
+      <li>452 未执行请求的操作。系统存储空间不够。</li>
+    </ul>
+    <h2 id="5xx永久性否定"><a class="anchor" aria-hidden="true" tabindex="-1" href="#5xx永久性否定"><span class="octicon octicon-link"></span></a>5xx永久性否定</h2>
+    <p><em>永久性否定的完成答复，该命令不成功，错误是永久性的。如果客户端重试命令，将再次出现同样的错误。</em></p>
+    <ul>
+      <li>500 语法错误，命令无法识别。这可能包括诸如命令行太长之类的错误。</li>
+      <li>501 在参数中有语法错误。</li>
+      <li>502 未执行命令。</li>
+      <li>503 错误的命令序列。</li>
+      <li>504 未执行该参数的命令。</li>
+      <li>530 未登录。</li>
+      <li>532 存储文件需要帐户。</li>
+      <li>550 未执行请求的操作。文件不可用（例如，未找到文件，没有访问权限）。</li>
+      <li>551 请求的操作异常终止：未知的页面类型。</li>
+      <li>552 请求的文件操作异常终止：超出存储分配（对于当前目录或数据集）。</li>
+      <li>553 未执行请求的操作。不允许的文件名。</li>
+    </ul>
+    <h2 id="6xx受保护"><a class="anchor" aria-hidden="true" tabindex="-1" href="#6xx受保护"><span class="octicon octicon-link"></span></a>6xx受保护</h2>
+    <ul>
+      <li>600 Series，Replies regarding confidentiality and integrity</li>
+      <li>631 Integrity protected reply.</li>
+      <li>632 Confidentiality and integrity protected reply.</li>
+      <li>633 Confidentiality protected reply.</li>
+    </ul>
+    <h2 id="websockets状态码"><a class="anchor" aria-hidden="true" tabindex="-1" href="#websockets状态码"><span class="octicon octicon-link"></span></a>WebSockets状态码</h2>
+    <p><em>WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客户端。它在 WebSocket 对象的 onclose 事件监听器中使用。服务端发送的关闭码，以下为已分配的状态码。</em></p>
+    <table>
+      <thead>
+        <tr>
+          <th>状态码</th>
+          <th>名称</th>
+          <th>描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0–999</td>
+          <td>-</td>
+          <td>保留段, 未使用。</td>
+        </tr>
+        <tr>
+          <td>1000</td>
+          <td>CLOSE_NORMAL</td>
+          <td>正常关闭; 无论为何目的而创建, 该链接都已成功完成任务。</td>
+        </tr>
+        <tr>
+          <td>1001</td>
+          <td>CLOSE_GOING_AWAY</td>
+          <td>终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开。</td>
+        </tr>
+        <tr>
+          <td>1002</td>
+          <td>CLOSE_PROTOCOL_ERROR</td>
+          <td>由于协议错误而中断连接。</td>
+        </tr>
+        <tr>
+          <td>1003</td>
+          <td>CLOSE_UNSUPPORTED</td>
+          <td>由于接收到不允许的数据类型而断开连接 (如仅接收文本数据的终端接收到了二进制数据)。</td>
+        </tr>
+        <tr>
+          <td>1004</td>
+          <td>-</td>
+          <td>保留。 其意义可能会在未来定义。</td>
+        </tr>
+        <tr>
+          <td>1005</td>
+          <td>CLOSE_NO_STATUS</td>
+          <td>保留。 表示没有收到预期的状态码。</td>
+        </tr>
+        <tr>
+          <td>1006</td>
+          <td>CLOSE_ABNORMAL</td>
+          <td>保留。 用于期望收到状态码时连接非正常关闭 (也就是说, 没有发送关闭帧)。</td>
+        </tr>
+        <tr>
+          <td>1007</td>
+          <td>Unsupported Data</td>
+          <td>由于收到了格式不符的数据而断开连接 (如文本消息中包含了非 UTF-8 数据)。</td>
+        </tr>
+        <tr>
+          <td>1008</td>
+          <td>Policy Violation</td>
+          <td>由于收到不符合约定的数据而断开连接。 这是一个通用状态码, 用于不适合使用 1003 和 1009 状态码的场景。</td>
+        </tr>
+        <tr>
+          <td>1009</td>
+          <td>CLOSE_TOO_LARGE</td>
+          <td>由于收到过大的数据帧而断开连接。</td>
+        </tr>
+        <tr>
+          <td>1010</td>
+          <td>Missing Extension</td>
+          <td>客户端期望服务器商定一个或多个拓展, 但服务器没有处理, 因此客户端断开连接。</td>
+        </tr>
+        <tr>
+          <td>1011</td>
+          <td>Internal Error</td>
+          <td>客户端由于遇到没有预料的情况阻止其完成请求, 因此服务端断开连接。</td>
+        </tr>
+        <tr>
+          <td>1012</td>
+          <td>Service Restart</td>
+          <td>服务器由于重启而断开连接。 [Ref]</td>
+        </tr>
+        <tr>
+          <td>1013</td>
+          <td>Try Again Later</td>
+          <td>服务器由于临时原因断开连接, 如服务器过载因此断开一部分客户端连接。 [Ref]</td>
+        </tr>
+        <tr>
+          <td>1014</td>
+          <td>-</td>
+          <td>由 WebSocket 标准保留以便未来使用。</td>
+        </tr>
+        <tr>
+          <td>1015</td>
+          <td>TLS Handshake</td>
+          <td>保留。 表示连接由于无法完成 TLS 握手而关闭 (例如无法验证服务器证书)。</td>
+        </tr>
+        <tr>
+          <td>1016–1999</td>
+          <td>-</td>
+          <td>由 WebSocket 标准保留以便未来使用。</td>
+        </tr>
+        <tr>
+          <td>2000–2999</td>
+          <td>-</td>
+          <td>由 WebSocket 拓展保留使用。</td>
+        </tr>
+        <tr>
+          <td>3000–3999</td>
+          <td>-</td>
+          <td>可以由库或框架使用。 不应由应用使用。 可以在 IANA 注册, 先到先得。</td>
+        </tr>
+        <tr>
+          <td>4000–4999</td>
+          <td>-</td>
+          <td>可以由应用使用。</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="参考资料"><a class="anchor" aria-hidden="true" tabindex="-1" href="#参考资料"><span class="octicon octicon-link"></span></a>参考资料</h2>
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP状态码列表</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes">FTP状态码列表</a></li>
+      <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent">MDN CloseEvent</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages">HTTP 404</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes">List of FTP server return codes</a></li>
+      <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview">HTTP概述</a></li>
+      <li><a href="http://www.getnetgoing.com/HTTP-403.html">Help for HTTP error 403: “Forbidden”</a></li>
+      <li><a href="https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">实用的 RESTful API 最佳实践</a></li>
+    </ul>
+  <style>.markdown-body pre .copied {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  color: #a5afbb;
+  top: 6px;
+  right: 6px;
+  border-radius: 5px;
+  background: #82828226;
+  padding: 6px;
+  font-size: 12px;
+  transition: all .3s;
+}
+.markdown-body pre .copied:not(.active) {
+  visibility: hidden;
+}
+.markdown-body pre:hover .copied {
+  visibility: visible;
+}
+.markdown-body pre:hover .copied:hover {
+  background: #4caf50;
+  color: #fff;
+}
+.markdown-body pre:hover .copied:active,
+.markdown-body pre .copied.active {
+  background: #2e9b33;
+  color: #fff;
+}
+.markdown-body pre .copied .octicon-copy {
+  display: block;
+}
+.markdown-body pre .copied .octicon-check {
+  display: none;
+}
+.markdown-body pre .active .octicon-copy {
+  display: none;
+}
+.markdown-body pre .active .octicon-check {
+  display: block;
+}</style><script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
+
 function copied(target, str) {
-target.classList.add('active');
-copyTextToClipboard(target.dataset.code, function() {
-setTimeout(() => {
-target.classList.remove('active');
-}, 2000);
-});
-}</script>
-    </div>
-    <div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/other/HTTP-Status-codes.md" href="https://github.com/jaywcjlove/handbook/edit/master/other/HTTP-Status-codes.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a>
-      <div class="copyright">Copyright © 2021. All rights reserved.</div>
-    </div>
-  </body>
+  target.classList.add('active');
+  copyTextToClipboard(target.dataset.code, function() {
+    setTimeout(() => {
+      target.classList.remove('active');
+    }, 2000);
+  });
+}</script></markdown-style><div class="footer"><a data-edit target="__blank" title="https://github.com/jaywcjlove/handbook/edit/master/other/HTTP-Status-codes.md" href="https://github.com/jaywcjlove/handbook/edit/master/other/HTTP-Status-codes.md">编辑当前页面</a><a target="__blank" href="https://jaywcjlove.gitee.io/handbook/">国内镜像站点 🇨🇳</a><a target="__blank" href="https://github.com/jaywcjlove/handbook">Github</a><a target="__blank" href="https://gitee.com/jaywcjlove/handbook">Gitee</a><div class="copyright">Copyright © 2021. All rights reserved.</div></div></body>
 </html>
