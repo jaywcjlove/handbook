@@ -83,6 +83,7 @@
 - [Squoosh](https://squoosh.app/) 在浏览器中使用最佳的编解码器缩小图像。
 - [bestofjs](https://github.com/bestofjs/bestofjs-webui) 展示了项目 Star 数变化的日历色块图。[demo](https://bestofjs.org/)
 - [Ascii艺术图片](http://www.asciiworld.com/top6_ascii_art.html) 可以生成字符串“图片”
+- [Graffiti](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20) 字母生成生成字符串“图片”
 - [专门拍摄推动计算机革命的开源程序员的肖像](http://facesofopensource.com/)
 - [一个演示汉字笔画顺序的 JS 库](https://github.com/chanind/hanzi-writer)
 - [AsciiMath](http://asciimath.org/) 简单易用的数学公式转换工具  [![Open-Source Software][OSS Icon]](https://github.com/asciimath/asciimathml)
