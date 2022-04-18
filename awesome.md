@@ -170,6 +170,7 @@
 - [Is Apple silicon ready?](https://isapplesiliconready.com/for/developer/) 查询 Apple M1 相关软件支持情况
 - [UIColor.io](https://www.uicolor.io) 将十六进制和RGB颜色转换为 UIColor
 - [asciinema](https://asciinema.org/) 命令行录制工具
+- [yaml-to-jsonschema](https://jsonformatter.org/yaml-to-jsonschema) yaml 生成 schema
 
 ## 一些网站
 
