@@ -10,6 +10,6 @@
   "homepage": "https://jaywcjlove.github.io/handbook",
   "devDependencies": {
     "markdown-to-html-cli": "~3.4.7",
-    "recursive-readdir-files": "~2.0.7"
+    "recursive-readdir-files": "~2.2.0"
   }
 }
