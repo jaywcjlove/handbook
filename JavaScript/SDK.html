@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轻量高效的开源JavaScript插件和库 handbook </title>
+  
+  <meta name="description" content="轻量高效的开源JavaScript插件和库">
+  
+  
+  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+  
+  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650525383348">
+  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650525383348">
+  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650525383348">
+  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650525383348">
+  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650525383348">
+  
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+  
+  <script src="../js/copy.js"></script>
+  <script src="../js/dark-mode.js"></script>
+  <script src="../js/markdown-style.js"></script>
+</head>
+<body>
+<header class="header">
+  <article class="inner warpper">
+    <a class="logo" href="../index.html">
+      
+        <img alt="handbook logo" src="data:image/png;base64,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">
+      
+      <span class="title">handbook</span>
+    </a>
+    <div class="content">
+      <ul class="menu">
+        
+        <li>
+          <a href="../index.html" target="" class=""> Home </a>
+        </li>
+        
+        <li>
+          <a href="../awesome.html" target="" class=""> Awesome </a>
+        </li>
+        
+        <li>
+          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
+        </li>
+        
+      </ul>
+      
+        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      
+      <dark-mode permanent></dark-mode>
+    </div>
+  </article>
+</header>
+
+<div class="warpper-content warpper sidebar ">
+  
+<div class="sidebar-border">
+  <aside class="sidebar" role="navigation">
+    <div>
+    
+      
+        <label>JavaScript</label>
+      
+    
+      
+        <a href="RegExp.html" class="">一些正则表达式随记</a>
+      
+    
+      
+        <a href="SDK.html" class="active">开源 JS 插件和库</a>
+      
+    
+      
+        <a href="nodejs.html" class="">NodeJS 包搜集</a>
+      
+    
+      
+        <a href="思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+      
+    
+      
+        <label>Redis</label>
+      
+    
+      
+        <a href="../Redis/index.html" class="">快速入门 Redis</a>
+      
+    
+      
+        <label>Android</label>
+      
+    
+      
+        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+      
+    
+      
+        <label>CentOS</label>
+      
+    
+      
+        <a href="../CentOS/CentOS.html" class="">CentOS 常用命令</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+      
+    
+      
+        <a href="../CentOS/常用基础命令.html" class="">常用基础命令</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+      
+    
+      
+        <a href="../CentOS/Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+      
+    
+      
+        <a href="../CentOS/Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+      
+    
+      
+        <a href="../CentOS/Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+      
+    
+      
+        <a href="../CentOS/Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+      
+    
+      
+        <a href="../CentOS/Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+      
+    
+      
+        <a href="../CentOS/Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+      
+    
+      
+        <a href="../CentOS/Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+      
+    
+      
+        <a href="../CentOS/Rocket.Chat.html" class="">Rocket.Chat</a>
+      
+    
+      
+        <a href="../CentOS/Ruby安装.html" class="">Ruby 安装</a>
+      
+    
+      
+        <a href="../CentOS/samba.html" class="">Samba 安装</a>
+      
+    
+      
+        <a href="../CentOS/在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+      
+    
+      
+        <a href="../CentOS/Java.html" class="">安装 Java</a>
+      
+    
+      
+        <a href="../CentOS/部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+      
+    
+      
+        <a href="../CentOS/搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+      
+    
+      
+        <a href="../CentOS/部署YApi平台.html" class="">部署 YApi 平台</a>
+      
+    
+      
+        <a href="../CentOS/openstack.html" class="">搭建 OpenStack</a>
+      
+    
+      
+        <a href="../CentOS/pip.html" class="">安装 pip 工具</a>
+      
+    
+      
+        <a href="../CentOS/修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+      
+    
+      
+        <a href="../CentOS/尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+      
+    
+      
+        <a href="../CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+      
+    
+      
+        <a href="../CentOS/svn.html" class="">安装使用 svn</a>
+      
+    
+      
+        <a href="../CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+      
+    
+      
+        <label>其它</label>
+      
+    
+      
+        <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
+      
+    
+      
+        <a href="../other/google.html" class="">谷歌(Google)镜像</a>
+      
+    
+      
+        <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+      
+    
+      
+        <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+      
+    
+      
+        <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+      
+    
+      
+        <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+      
+    
+      
+        <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
+      
+    
+      
+        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+      
+    
+      
+        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+      
+    
+    </div>
+  </aside>
+</div>
+
+  <markdown-style>
+    <h1 id="轻量高效的开源javascript插件和库"><a aria-hidden="true" tabindex="-1" href="#轻量高效的开源javascript插件和库" class="anchor"><span class="icon icon-link"></span></a>轻量高效的开源JavaScript插件和库</h1>
+
+<h2 id="图片"><a aria-hidden="true" tabindex="-1" href="#图片" class="anchor"><span class="icon icon-link"></span></a>图片</h2>
+<ul>
+<li><a href="https://github.com/feimosi/baguetteBox.js">baguetteBox.js</a> - 是一个简单易用的响应式图像灯箱效果脚本。<a href="https://feimosi.github.io/baguetteBox.js/">demo</a></li>
+<li><a href="https://github.com/sachinchoolur/lightgallery.js">Lightgallery.js</a> - 是一个功能齐全的JavaScript图像灯箱插件。<a href="https://sachinchoolur.github.io/lightgallery.js/">demo</a></li>
+<li><a href="https://github.com/fengyuanchen/viewerjs">viewerjs</a> - 是一个图像预览插件。<a href="https://fengyuanchen.github.io/viewerjs/">demo</a></li>
+<li><a href="https://github.com/fengyuanchen/cropperjs">cropperjs</a> - 是一个图片编辑器插件。<a href="https://fengyuanchen.github.io/cropperjs/">demo</a></li>
+<li><a href="https://github.com/fengyuanchen/photo-editor">photo-editor</a> - 是一个本地图片编辑器插件。<a href="https://fengyuanchen.github.io/photo-editor/">demo</a></li>
+<li><a href="https://github.com/dinbror/blazy/">blazy.js</a> - 是一个懒惰加载插件。<a href="http://dinbror.dk/blazy/">demo</a></li>
+<li><a href="https://github.com/naptha/tesseract.js">tesseract.js</a> - 可以从图像中获取几乎任何语言的单词。<a href="http://tesseract.projectnaptha.com/">demo</a></li>
+</ul>
+<h2 id="布局"><a aria-hidden="true" tabindex="-1" href="#布局" class="anchor"><span class="icon icon-link"></span></a>布局</h2>
+<ul>
+<li><a href="https://github.com/corbindavenport/superembed.js">SuperEmbed.js</a> - 是一个Javascript库，可检测出网页上的内嵌视频并使他们能够变成响应式元素。<a href="https://jsfiddle.net/h6x04LuL/">demo</a></li>
+<li><a href="https://github.com/jlmakes/scrollreveal">ScrollReveal</a> - ScrollReveal插件使用户能够无比轻松地创建桌面和移动浏览器的网页滚动动画。<a href="https://scrollrevealjs.org/">demo</a></li>
+<li><a href="https://github.com/callmecavs/bricks.js">Bricks.js</a> - 是一款超快的用于固定宽度元素的“砖石”布局生成器。<a href="http://callmecavs.com/bricks.js/">demo</a></li>
+</ul>
+<h2 id="轮播图"><a aria-hidden="true" tabindex="-1" href="#轮播图" class="anchor"><span class="icon icon-link"></span></a>轮播图</h2>
+<ul>
+<li><a href="https://github.com/thebird/Swipe">Swipe</a> - 准确的触摸滑块。<a href="http://thebird.github.io/Swipe/">demo</a></li>
+<li><a href="https://github.com/meandmax/lory/">Lory</a> -  是一个由 Vanilla JavaScript 编写的拥有触摸功能的简约滑块。<a href="http://meandmax.github.io/lory/">demo</a></li>
+<li><a href="https://github.com/feimosi/baguetteBox.js">baguetteBox.js</a> -  是一个简单、易用的响应式 Lightbox 图片库，它支持移动端上触滑动手势操作，无依赖。<a href="https://feimosi.github.io/baguetteBox.js/">demo</a></li>
+</ul>
+<h2 id="弹出层"><a aria-hidden="true" tabindex="-1" href="#弹出层" class="anchor"><span class="icon icon-link"></span></a>弹出层</h2>
+<ul>
+<li><a href="https://github.com/FezVrasta/popper.js">Popper.js</a> - 是一个轻量级的库用于管理工具提示和弹窗效果。<a href="https://popper.js.org/">demo</a></li>
+<li><a href="https://github.com/limonte/sweetalert2">SweetAlert2</a> - 是一个颜值很高而且可以自定义的警告弹出窗口插件，可以代替Javascript的弹出窗口。<a href="https://limonte.github.io/sweetalert2/">demo</a></li>
+<li><a href="https://github.com/aui/artDialog">artDialog</a> - 是一个经典、优雅的网页对话框控件。<a href="http://aui.github.io/artDialog/doc/index.html">demo</a></li>
+<li><a href="https://github.com/sentsin/layer">layer</a> - 是一个web弹层组件。<a href="http://layer.layui.com">demo</a></li>
+</ul>
+<h2 id="音频视频"><a aria-hidden="true" tabindex="-1" href="#音频视频" class="anchor"><span class="icon icon-link"></span></a>音频视频</h2>
+<ul>
+<li><a href="https://github.com/mahdif/loud-links">Loud Links</a> - 是一个轻量级的JavaScript库用于添加交互声音到您的站点。<a href="http://loudlinks.rocks/#examples">demo</a></li>
+<li><a href="https://github.com/Bilibili/flv.js">flv.js</a> - B 站 HTML5 播放器内核开源。</li>
+<li><a href="https://github.com/mahdif/loud-links/">Loud Links</a> - 是一个轻量级 JavaScript 库，用于向您的网站添加交互音频。。<a href="https://loudlinks.rocks/">demo</a></li>
+</ul>
+<h2 id="编辑器"><a aria-hidden="true" tabindex="-1" href="#编辑器" class="anchor"><span class="icon icon-link"></span></a>编辑器</h2>
+<ul>
+<li><a href="https://github.com/yabwe/medium-editor">MediumEditor</a> - 仿Medium.com的所见即所得在线编辑器工具栏。<a href="https://yabwe.github.io/medium-editor/">demo</a></li>
+<li><a href="https://github.com/yabwe/medium-editor">Substance</a> - 是一个基于Web的内容自定义编辑器。<a href="http://substance.io/examples/">demo</a></li>
+<li><a href="https://github.com/ccampbell/rainbow">rainbows</a> - 是一个轻量级的代码高亮库(2.5kb)。<a href="https://craig.is/making/rainbows">demo</a></li>
+<li><a href="https://github.com/sofish/pen">pen</a> - 是一个Markdown编辑器工具。<a href="http://sofish.github.io/pen">demo</a></li>
+<li><a href="https://github.com/ajaxorg/ace">aceAce</a>（Ajax.org Cloud9 Editor）。<a href="https://ace.c9.io/">demo</a></li>
+<li><a href="https://github.com/codemirror/CodeMirror">CodeMirror</a>浏览器端的代码编辑器。<a href="http://codemirror.net/">demo</a></li>
+<li><a href="https://github.com/ariya/esprima">esprima</a>用于综合分析的 ECMAScript 解析器。<a href="https://yabwe.github.io/medium-editor/">demo</a></li>
+<li><a href="https://github.com/quilljs/quill">quill</a>一个带有 API 的跨浏览器富文本编辑器。(<a href="http://quilljs.com/">demo</a>)</li>
+<li><a href="https://github.com/ckeditor/ckeditor-releases">ckeditor-releases</a> 适用于每个人的 web 文本编辑器。<a href="http://ckeditor.com/demo">demo</a></li>
+<li><a href="https://github.com/lepture/editor">editor</a> 一个 markdown 编辑器，但仍在开发中。<a href="http://lab.lepture.com/editor/">demo</a></li>
+<li><a href="https://github.com/OscarGodson/EpicEditor">EpicEditor</a> 一个可嵌入的 js Markdown的编辑器，拥有全屏编辑、即时预览、自动保存草稿和离线支持等功能。<a href="http://epiceditor.com">demo</a></li>
+<li><a href="https://github.com/josdejong/jsoneditor">jsoneditor</a> 查看、编辑和格式化 JSON 的 web 工具。<a href="http://jsoneditoronline.org/">demo</a></li>
+<li><a href="https://github.com/coolwanglu/vim.js">vim.js</a>  拥有持久化 ~/.vimrc 的 Vim 编辑器的 JavaScript 移植版本。<a href="http://coolwanglu.github.io/vim.js/emterpreter/vim.html">demo</a></li>
+<li><a href="https://github.com/neilj/Squire">Squire</a> HTML5 富文本编辑器。<a href="http://neilj.github.io/Squire/">demo</a></li>
+<li><a href="https://github.com/tinymce/tinymce">TinyMCE</a> JavaScript 富文本编辑器。<a href="https://www.tinymce.com/">demo</a></li>
+<li><a href="https://github.com/basecamp/trix">trix</a> 由 Basecamp 制作，适用于每天写作的富文本编辑器。<a href="https://trix-editor.org/">demo</a></li>
+<li><a href="https://github.com/pandao/editor.md">Editor.md</a> 由 Basecamp 制作，适用于每天写作的富文本编辑器。<a href="https://trix-editor.org/">demo</a></li>
+</ul>
+<h2 id="字符串"><a aria-hidden="true" tabindex="-1" href="#字符串" class="anchor"><span class="icon icon-link"></span></a>字符串</h2>
+<ul>
+<li><a href="https://github.com/EvandroLG/selecting">selecting</a> - 一个允许你获取用户选定文本的库。</li>
+<li><a href="https://github.com/jprichardson/string.js">string.js</a> - 额外的 JavaScript 字符串方法。<a href="http://stringjs.com/">demo</a></li>
+<li><a href="https://github.com/mathiasbynens/he">he</a> - 健壮的 HTML 实体编码/解码器。</li>
+<li><a href="https://github.com/sindresorhus/multiline">multiline</a> - 多行字符串。</li>
+<li><a href="https://github.com/sindresorhus/query-string">query-string</a> - 解析和字符串化 URL 查询字符串。</li>
+<li><a href="https://github.com/medialize/URI.js/">URI.js</a> - URL 操作库。<a href="http://medialize.github.io/URI.js/">demo</a></li>
+<li><a href="https://github.com/Mikhus/jsurl">jsurl</a> - 轻量的 URL 操作库。</li>
+<li><a href="https://github.com/alexei/sprintf.js">sprintf.js</a> - 实现字符串格式化。</li>
+<li><a href="https://github.com/snd/url-pattern">url-pattern</a> - 让 url 和其它字符串进行比正则表达式匹配更简单。字符串和数据可相互转化。</li>
+<li><a href="https://github.com/adamwdraper/Numeral-js">Numeral.js</a> - 格式化和操作数字的 JS 库。 <a href="http://numeraljs.com/">demo</a></li>
+</ul>
+<h2 id="表单"><a aria-hidden="true" tabindex="-1" href="#表单" class="anchor"><span class="icon icon-link"></span></a>表单</h2>
+<ul>
+<li><a href="https://github.com/jaywcjlove/validator.js">validator.js</a> - 轻量级的JavaScript表单验证，字符串验证。<a href="http://jaywcjlove.github.io/validator.js">demo</a></li>
+<li><a href="https://github.com/javve/list.js">List.js</a> - 是一个轻量级的为列表、表格或其他任何HTMLL标签增加了搜索，排序，过滤器和灵活性等元素。<a href="http://listjs.com/">demo</a></li>
+<li><a href="https://github.com/algolia/places/">Algolia Places</a> - 是一个能让你在网页轻易实现搜索栏自动完成功能。<a href="https://community.algolia.com/places/">demo</a></li>
+<li><a href="https://github.com/nosir/cleave.js">Cleave.js</a> - 是一个会在你输入时格式化你的<code>&#x3C;input/></code>标签里面的内容。<a href="http://nosir.github.io/cleave.js/">demo</a></li>
+<li><a href="https://github.com/sofish/validator.js">validator.js</a> - 是一个简单、轻量级，但功能强大的 Validator 组件。<a href="http://sofish.github.io/validator.js/">demo</a></li>
+<li><a href="https://github.com/mzabriskie/axios">axios</a> - 是一个基于浏览器和node的HTTP请求库，绿色环保只有12kb。</li>
+</ul>
+<h2 id="存储"><a aria-hidden="true" tabindex="-1" href="#存储" class="anchor"><span class="icon icon-link"></span></a>存储</h2>
+<ul>
+<li><a href="https://github.com/jaywcjlove/store.js">store.js</a> - 本地存储localstorage的封装，提供简单的API。<a href="http://jaywcjlove.github.io/store.js">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/cookie.js">cookie.js</a> - 对操作cookie的封装，提供简单的AIP 兼容IE6。<a href="http://jaywcjlove.github.io/cookie.js">demo</a></li>
+<li><a href="https://github.com/marcuswestin/store.js">store.js</a> - 为所有浏览器封装了LocalStorage，隐秘地使用localStorage、globalStorage和用户数据。</li>
+<li><a href="https://github.com/mozilla/localForage">localForage</a> - 改善后的离线存储。封装了IndexedDB、WebSQL和localStorage。<a href="https://localforage.github.io/localForage">demo</a></li>
+<li><a href="https://github.com/zendesk/cross-storage">cross-storage</a> - 获得权限后，能跨域名本地存储。</li>
+<li><a href="https://github.com/addyosmani/basket.js">basket.js</a> - 用 localStorage 加载和缓存脚本的资源加载器。<a href="https://addyosmani.com/basket.js/">demo</a></li>
+<li><a href="https://github.com/nodeca/bag.js">bag.js</a> - 可以缓存脚本和加载资源，增加了键值对接口和对localStorage/websql/indexedDB 的支持。</li>
+<li><a href="https://github.com/Wisembly/basil.js">basil.js</a> - 智能的 JavaScript 数据持久层库。</li>
+<li><a href="https://github.com/ScottHamper/Cookies">Cookies</a> - 客户端 Cookie 操作库。</li>
+<li><a href="https://github.com/aaronpowell/db.js/">DB.js</a> - 基于 Promise 的、封装了 IndexedDB 的库。<a href="http://aaronpowell.github.io/db.js/">demo</a></li>
+<li><a href="https://github.com/brianleroux/lawnchair/">lawnchair.js</a> - 简单的客户端 JSON 存储。<a href="http://brian.io/lawnchair/">demo</a></li>
+</ul>
+<h2 id="动画"><a aria-hidden="true" tabindex="-1" href="#动画" class="anchor"><span class="icon icon-link"></span></a>动画</h2>
+<ul>
+<li><a href="https://github.com/juliangarnier/anime">anime.js</a> - 是一个灵活轻便的JavaScript动画库。<a href="http://codepen.io/collection/XLebem/">demo</a></li>
+<li><a href="https://github.com/mrdoob/three.js">three.js</a> - 是一个JS 3D库。<a href="https://threejs.org/">demo</a></li>
+<li><a href="https://github.com/ConnorAtherton/loaders.css">loaders.css</a> - CSS 动画加载效果。<a href="https://connoratherton.com/loaders">demo</a></li>
+<li><a href="https://github.com/IanLunn/Hover">Hover.css</a> - 一款基于 CSS3 的悬停特效合集。<a href="http://ianlunn.github.io/Hover/">demo</a></li>
+<li><a href="https://github.com/h5bp/Effeckt.css">Effeckt.css</a> - 一个包含众多精妙的 CSS3 切换和动画效果库。<a href="http://h5bp.github.io/Effeckt.css/">demo</a></li>
+<li><a href="https://github.com/miniMAC/magic">Magic Animations</a> - 一个独特的 CSS3 动画特效包。<a href="https://minimamente.com/example/magic_animations/">demo</a></li>
+<li><a href="https://github.com/grayghostvisuals/transformicons">Transformicons</a> - 一个结合 SVG、CSS 和 HTML 技术，让图标、按钮和符号具有变种（特殊）动画效果的库。<a href="http://www.transformicons.com/">demo</a></li>
+<li><a href="https://github.com/tobiasahlin/SpinKit">SpinKit</a> - 一款  CSS 加载动画合集，可高度自定义动画效果。<a href="http://tobiasahlin.com/spinkit/">demo</a></li>
+<li><a href="https://github.com/d3/d3-ease">d3-ease</a> - 这是一个让动画更为平滑的 Easing 库。</li>
+<li><a href="https://github.com/janpaepke/ScrollMagic">ScrollMagic</a> - 一个用来创建魔幻滚动交互的 JavaScript 库，可以像使用进度条一样使用滚动条。<a href="http://scrollmagic.io/">demo</a></li>
+<li><a href="https://github.com/jlmakes/scrollreveal">ScrollReveal</a> - 一款页面滚动显示动画，可以播放一次也可以播放无限次，能让页面更加有趣，更吸引用户眼球。。<a href="https://scrollrevealjs.org/">demo</a></li>
+<li><a href="https://github.com/dixonandmoe/rellax">RELLAX.js</a> - 是一款主打轻量级的纯 JavaScript 视差效果库。<a href="https://dixonandmoe.com/rellax/">demo</a></li>
+<li><a href="https://github.com/inorganik/CountUp.js">CountUp.js</a> - 可以用来快速创建以一种更有趣的动画方式显示数值数据。<a href="https://inorganik.github.io/countUp.js/">demo</a></li>
+<li><a href="http://dynamicsjs.com/">Dynamics.js</a> - 可以创建物理运动动画效果 JavaScript 库。<a href="https://github.com/michaelvillar/dynamics.js">demo</a></li>
+<li><a href="https://github.com/legomushroom/mojs">Mojs</a> - 一个拥有极简的声明式 API ，能够轻松掌控运动轨迹，为运动图形而生的工具库。<a href="http://mojs.io/">demo</a></li>
+<li><a href="https://github.com/joshwcomeau/react-flip-move">React FLIP Move</a> - 一个翻转移动的库，旨在解决当列表的顺序发生变化时，项目列表动画化的问题。<a href="http://joshwcomeau.github.io/react-flip-move/examples/#/shuffle?_k=og3e8m">demo</a></li>
+<li><a href="https://github.com/tweenjs/tween.js">tween.js</a> - 是一个JS 平滑动画库。<a href="http://tweenjs.github.io/tween.js/examples/12_graphs_custom_functions.html">demo</a></li>
+<li><a href="https://github.com/mattboldt/typed.js">Typed.js</a> - 是一个JS 打字动画库。<a href="https://mattboldt.com/typed.js/">demo</a></li>
+<li><a href="https://github.com/maxwellito/vivus">vivus</a> - JavaScript库，使SVG绘制动画。<a href="http://maxwellito.github.io/vivus/">demo</a></li>
+<li><a href="https://github.com/christinecha/choreographer-js">Choreographer-js</a> - 是一个用于处理复杂动画的简单库。<a href="https://christinecha.github.io/choreographer-js/">demo</a></li>
+<li><a href="https://github.com/minirefresh/minirefresh">minirefresh</a> - 优雅的H5下拉刷新。零依赖。<a href="https://minirefresh.github.io/minirefresh-doc/minirefresh-doc/guid/guid_effect.html">demo</a></li>
+</ul>
+<h2 id="时间"><a aria-hidden="true" tabindex="-1" href="#时间" class="anchor"><span class="icon icon-link"></span></a>时间</h2>
+<ul>
+<li><a href="https://github.com/xx45/dayjs">Day.js</a> - 是一个轻量的 JavaScript 时间日期处理库。</li>
+<li><a href="https://github.com/iamkun/dayjs">dayjs</a> 只有2KB日期库，替代Moment.js，具有相同的现代API。</li>
+<li><a href="https://github.com/moment/moment">moment</a> - 是一个日期处理类库,用于解析、检验、操作、以及显示日期。<a href="http://momentjs.com">demo</a></li>
+<li><a href="https://github.com/date-fns/date-fns">date-fns</a> - 现代JavaScript日期实用程序库。<a href="https://date-fns.org/">demo</a></li>
+<li><a href="https://github.com/moment/luxon">luxon</a> - 在JS中使用日期和时间的库。<a href="https://moment.github.io/luxon/">demo</a></li>
+<li><a href="https://github.com/sbstjn/timesheet.js">timesheet.js</a> - 是一个时间展示片段插件。<a href="https://sbstjn.github.io/timesheet.js">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/date.js">date.js</a> - 是一个格式化时间、过去时间展示、解决因时区变更插件。</li>
+<li><a href="https://github.com/hustcc/timeago.js">timeago.js</a> - 格式化时间显示多久以前的插件。 <a href="http://timeago.org/">demo</a></li>
+<li><a href="https://github.com/bevacqua/rome">rome</a> - 可定制的日期（和时间）选择器。无依赖，可选 UI。 <a href="https://bevacqua.github.io/rome/">demo</a></li>
+<li><a href="https://github.com/moment/moment-timezone">moment-timezone</a> - 基于 moment.js 的时区库。<a href="http://momentjs.com/timezone">demo</a></li>
+<li><a href="https://github.com/MatthewMueller/date">date</a> - 拥有人性化的 Date() 方法。<a href="http://matthewmueller.github.io/date/">demo</a></li>
+<li><a href="https://github.com/rauchg/ms.js">ms.js</a> - 小巧的毫秒转换工具。</li>
+</ul>
+<h2 id="其它"><a aria-hidden="true" tabindex="-1" href="#其它" class="anchor"><span class="icon icon-link"></span></a>其它</h2>
+<ul>
+<li><a href="https://github.com/jaywcjlove/hotkeys">hotkeys</a> - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。<a href="http://jaywcjlove.github.io/hotkeys/">demo</a></li>
+<li><a href="https://github.com/kaimallea/isMobile">isMobile</a> - 一个检测移动设备的简单JS库。</li>
+<li><a href="https://github.com/zenorocha/clipboard.js">clipboard.js</a> - 现代复制到剪贴板。没有Flash，gzip压缩只有3KB 。<a href="https://clipboardjs.com/">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/onlinenetwork">translater.js</a> - 这是一个利用HTML注释的页面翻译解决方案。<a href="https://jaywcjlove.github.io/translater.js/">demo</a></li>
+<li><a href="https://github.com/russellgoldenberg/scrollama">scrollama</a> - 为 Scrollytelling 开发的现代、轻量级的 JavaScript 库。<a href="https://russellgoldenberg.github.io/scrollama/basic">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/translater.js">Push.js</a> - 是一个跨浏览器的Javascript桌面通知插件。<a href="http://nickersoft.github.io/push.js/">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/onlinenetwork">onlinenetwork</a> - js判断是否断网了。</li>
+<li><a href="https://github.com/jaywcjlove/iNotify">iNotify</a> - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。<a href="http://jaywcjlove.github.io/iNotify">demo</a></li>
+<li><a href="https://github.com/naptha/tesseract.js">tesseract.js</a> - 是一个文字识别转换，可以运行在浏览器和服务器NodeJS上。<a href="http://tesseract.projectnaptha.com/">demo</a></li>
+<li><a href="http://github.com/Leaflet/Leaflet">Leaflet.js</a> - 是一个开源的移动友好交互式地图 JavaScript 库。体积仅有 33 KB。<a href="http://leafletjs.com/">demo</a></li>
+<li><a href="https://github.com/osrec/currencyFormatter.js/">CurrencyFormatter.js</a> - 是一款简单纯JS格式化155种不同国家货币格式库，gzip压缩后仅7KB。<a href="https://osrec.github.io/currencyFormatter.js/">demo</a></li>
+<li><a href="https://github.com/osrec/currencyFormatter.js/">Feature.js</a> - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。<a href="hhttp://featurejs.com/">demo</a></li>
+<li><a href="https://github.com/sindresorhus/screenfull.js">screenfull.js</a> -  极小、跨平台的 JavaScript 全屏插件。<a href="https://sindresorhus.com/screenfull.js/">demo</a></li>
+</ul>
+<h2 id="图表"><a aria-hidden="true" tabindex="-1" href="#图表" class="anchor"><span class="icon icon-link"></span></a>图表</h2>
+<ul>
+<li><a href="https://github.com/nhnent/tui.chart">TOAST UI Chart</a> - 提供了直方图、折线图、散点图、饼图、热力图等多种类型格式的图表，兼容 IE8+ <a href="http://ui.toast.com/tui-chart/">demo</a></li>
+<li><a href="https://github.com/chartjs/Chart.js">Chart.js</a> - Simple HTML5 Charts using the <code>&#x3C;canvas></code> tag <a href="http://www.chartjs.org/">demo</a></li>
+<li><a href="https://github.com/ecomfe/echarts">ECharts</a> - A powerful, interactive charting and visualization library for browser  <a href="http://echarts.baidu.com/">demo</a></li>
+<li><a href="https://github.com/d3/d3">D3</a> - Bring data to life with SVG, Canvas and HTML. <a href="https://d3js.org">demo</a></li>
+<li><a href="https://github.com/frappe/charts">Frappe Charts</a> - Bring data to life with SVG, Canvas and HTML. <a href="https://frappe.github.io/charts/">demo</a></li>
+<li><a href="https://github.com/gionkunz/chartist-js">Chartist.js</a> - Simple responsive charts. <a href="http://gionkunz.github.io/chartist-js/">demo</a></li>
+<li><a href="https://github.com/recharts/recharts">Recharts</a> - Simple responsive charts. <a href="http://recharts.org/#/en-US/">demo</a></li>
+</ul>
+<h2 id="加载器"><a aria-hidden="true" tabindex="-1" href="#加载器" class="anchor"><span class="icon icon-link"></span></a>加载器</h2>
+<ul>
+<li><a href="https://github.com/requirejs/requirejs">requirejs</a> - JS模块化工具</li>
+<li><a href="https://github.com/seajs/seajs">SeaJS</a> - JavaScript模块加载框架</li>
+<li><a href="https://github.com/muicss/loadjs">loadjs</a> - JavaScript模块加载框架</li>
+<li><a href="https://github.com/ecomfe/esl">ESL</a> - 浏览器端AMD标准加载器</li>
+</ul>
+<h2 id="构建工具"><a aria-hidden="true" tabindex="-1" href="#构建工具" class="anchor"><span class="icon icon-link"></span></a>构建工具</h2>
+<ul>
+<li><a href="https://github.com/webpack/webpack">webpack</a> - 前端构建工具</li>
+<li><a href="https://github.com/gulpjs/gulp">Gulp</a> - 自动化构建工具</li>
+<li><a href="https://github.com/babel/babel">Babel</a> - 下一代JavasScript语法编译器</li>
+<li><a href="https://github.com/postcss/postcss">PostCSS</a> - 利用JS插件转换CSS样式的工具</li>
+<li><a href="https://github.com/gruntjs/grunt">Grunt</a> - JavaScript世界的构建工具</li>
+<li><a href="https://github.com/rollup/rollup">rollup.js</a> - JS模块打包器</li>
+<li><a href="https://github.com/FormidableLabs/webpack-dashboard">webpack-dashboard</a> - webpack开发服务器的CLI仪表板</li>
+<li><a href="https://github.com/google/traceur-compiler">traceur-compiler</a> - 支持ES6的JS编译器</li>
+<li><a href="https://github.com/brunch/brunch">brunch</a> - 超快的HTML5构建工具</li>
+<li><a href="https://github.com/geuis/helium-css">Helium-css</a> - 显示网站中未使用的CSS</li>
+</ul>
+<h2 id="测试"><a aria-hidden="true" tabindex="-1" href="#测试" class="anchor"><span class="icon icon-link"></span></a>测试</h2>
+<ul>
+<li><a href="https://github.com/mochajs/mocha">mocha</a> - JavaScript 测试框架</li>
+<li><a href="https://github.com/eslint/eslint">ESLint</a> - JavaScript代码检查工具</li>
+<li><a href="https://github.com/jshint/jshint">JSHint</a> - JavaScript语法和风格检查工具</li>
+<li><a href="https://github.com/casperjs/casperjs">casperjs</a> - 开源的导航脚本处理和测试工具</li>
+<li><a href="https://github.com/nightwatchjs/nightwatch">Nightwatch</a> - 用户界面自动化测试框架</li>
+<li><a href="https://github.com/gotwarlost/istanbul">istanbul</a> - JS代码覆盖工具</li>
+<li><a href="https://github.com/theintern/intern">intern</a> - JavaScript测试系统</li>
+<li><a href="https://github.com/bestiejs/benchmark.js">benchmark.js</a> - 强大的JavaScript基准库</li>
+<li><a href="https://github.com/alexfernandez/loadtest">loadtest</a> - HTTP或WebSockets URL的负载测试</li>
+<li><a href="https://github.com/tntim96/JSCover">JSCover</a> - JavaScript代码覆盖测量工具</li>
+</ul>
+<h2 id="包管理器"><a aria-hidden="true" tabindex="-1" href="#包管理器" class="anchor"><span class="icon icon-link"></span></a>包管理器</h2>
+<ul>
+<li><a href="https://github.com/yarnpkg/yarn">yarn</a> - 新的 Hadoop 资源管理器</li>
+<li><a href="https://github.com/bower/bower">bower</a> - web包管理器</li>
+<li><a href="https://github.com/npm/npm">npm</a> - NodeJS包安装的管理模块</li>
+<li><a href="https://github.com/720kb/ndm">ndm</a> - npm桌面管理器</li>
+</ul>
+<h2 id="cdn"><a aria-hidden="true" tabindex="-1" href="#cdn" class="anchor"><span class="icon icon-link"></span></a>CDN</h2>
+<ul>
+<li><a href="https://cdnjs.com">https://cdnjs.com</a></li>
+<li><a href="http://cdnjs.net">http://cdnjs.net</a></li>
+<li><a href="http://www.jsdelivr.com">http://www.jsdelivr.com</a></li>
+<li><a href="http://unpkg.com">http://unpkg.com</a></li>
+<li><a href="http://rawgit.com">http://rawgit.com</a></li>
+<li><a href="http://staticfile.org">http://staticfile.org</a></li>
+<li><a href="http://www.bootcdn.cn">http://www.bootcdn.cn</a></li>
+<li><a href="http://cdn.baomitu.com">http://cdn.baomitu.com</a></li>
+<li><a href="http://lib.sinaapp.com">http://lib.sinaapp.com</a></li>
+<li><a href="http://cdn.code.baidu.com">http://cdn.code.baidu.com</a></li>
+<li><a href="http://jscdn.upai.com">http://jscdn.upai.com</a></li>
+<li><a href="https://www.asp.net/ajax/cdn">https://www.asp.net/ajax/cdn</a></li>
+<li><a href="http://libs.sun0769.com">http://libs.sun0769.com</a></li>
+<li><a href="https://css.net">https://css.net</a></li>
+<li><a href="https://developers.google.com/speed/libraries/">https://developers.google.com/speed/libraries/</a></li>
+</ul>
+    
+
+<footer class="article-footer warpper">
+  <section>
+    
+    <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/JavaScript/SDK.md" class="edit-button" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+      </svg>
+      <span>Edit this page on GitHub</span>
+    </a>
+    
+    <span class="atime">2022/04/21</span>
+    
+  </section>
+  
+  
+<div class="previous">
+  
+  <a class="prev" href="RegExp.html">
+    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+    </svg>
+    <span>
+      一些正则表达式随记
+    </span>
+  </a>
+  
+  
+  <a class="next" href="nodejs.html">
+    <span>
+      NodeJS 包搜集
+    </span>
+    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+    </svg>
+  </a>
+  
+</div>
+
+</footer>
+
+  </markdown-style>
+  
+<nav class="tocs">
+  <aside class="inner toc"></aside>
+</nav>
+
+
+<script src="../js/tocbot.min.js?v=4.18.2"></script>
+<script>
+tocbot.init({
+  tocSelector: 'aside.inner',
+  contentSelector: 'markdown-style',
+  positionFixedSelector: 'aside.inner',
+  headingSelector: 'h1, h2, h3, h4',
+  collapseDepth: 2,
+
+  includeHtml: true,
+  includeTitleTags: false,
+  hasInnerContainers: true,
+  onClick: (e) => { console.log('you clicked a link', e) },
+  headingsOffset: 40,
+  scrollSmoothOffset: -40,
+});
+</script>
+
+</div>
+
+
+<div class="footer warpper">
+  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
+Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.10.6
+
+</div>
+
+</body>
+</html>

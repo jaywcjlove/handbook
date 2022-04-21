@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CentOS7安装使用svn handbook </title>
+  
+  <meta name="description" content="OK 这样就完成了安装。下面是SVN的配置：">
+  
+  
+  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+  
+  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650525384775">
+  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650525384775">
+  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650525384775">
+  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650525384775">
+  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650525384775">
+  
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+  
+  <script src="../js/copy.js"></script>
+  <script src="../js/dark-mode.js"></script>
+  <script src="../js/markdown-style.js"></script>
+</head>
+<body>
+<header class="header">
+  <article class="inner warpper">
+    <a class="logo" href="../index.html">
+      
+        <img alt="handbook logo" src="data:image/png;base64,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">
+      
+      <span class="title">handbook</span>
+    </a>
+    <div class="content">
+      <ul class="menu">
+        
+        <li>
+          <a href="../index.html" target="" class=""> Home </a>
+        </li>
+        
+        <li>
+          <a href="../awesome.html" target="" class=""> Awesome </a>
+        </li>
+        
+        <li>
+          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
+        </li>
+        
+      </ul>
+      
+        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      
+      <dark-mode permanent></dark-mode>
+    </div>
+  </article>
+</header>
+
+<div class="warpper-content warpper sidebar ">
+  
+<div class="sidebar-border">
+  <aside class="sidebar" role="navigation">
+    <div>
+    
+      
+        <label>JavaScript</label>
+      
+    
+      
+        <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+      
+    
+      
+        <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+      
+    
+      
+        <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+      
+    
+      
+        <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+      
+    
+      
+        <label>Redis</label>
+      
+    
+      
+        <a href="../Redis/index.html" class="">快速入门 Redis</a>
+      
+    
+      
+        <label>Android</label>
+      
+    
+      
+        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+      
+    
+      
+        <label>CentOS</label>
+      
+    
+      
+        <a href="CentOS.html" class="">CentOS 常用命令</a>
+      
+    
+      
+        <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+      
+    
+      
+        <a href="常用基础命令.html" class="">常用基础命令</a>
+      
+    
+      
+        <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+      
+    
+      
+        <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+      
+    
+      
+        <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+      
+    
+      
+        <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+      
+    
+      
+        <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+      
+    
+      
+        <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+      
+    
+      
+        <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+      
+    
+      
+        <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+      
+    
+      
+        <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+      
+    
+      
+        <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+      
+    
+      
+        <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+      
+    
+      
+        <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
+      
+    
+      
+        <a href="Ruby安装.html" class="">Ruby 安装</a>
+      
+    
+      
+        <a href="samba.html" class="">Samba 安装</a>
+      
+    
+      
+        <a href="在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+      
+    
+      
+        <a href="Java.html" class="">安装 Java</a>
+      
+    
+      
+        <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+      
+    
+      
+        <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+      
+    
+      
+        <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
+      
+    
+      
+        <a href="openstack.html" class="">搭建 OpenStack</a>
+      
+    
+      
+        <a href="pip.html" class="">安装 pip 工具</a>
+      
+    
+      
+        <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+      
+    
+      
+        <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+      
+    
+      
+        <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+      
+    
+      
+        <a href="svn.html" class="active">安装使用 svn</a>
+      
+    
+      
+        <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+      
+    
+      
+        <label>其它</label>
+      
+    
+      
+        <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
+      
+    
+      
+        <a href="../other/google.html" class="">谷歌(Google)镜像</a>
+      
+    
+      
+        <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+      
+    
+      
+        <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+      
+    
+      
+        <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+      
+    
+      
+        <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+      
+    
+      
+        <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
+      
+    
+      
+        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+      
+    
+      
+        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+      
+    
+    </div>
+  </aside>
+</div>
+
+  <markdown-style>
+    <h1 id="centos7安装使用svn"><a aria-hidden="true" tabindex="-1" href="#centos7安装使用svn" class="anchor"><span class="icon icon-link"></span></a>CentOS7安装使用svn</h1>
+
+<h2 id="安装部署"><a aria-hidden="true" tabindex="-1" href="#安装部署" class="anchor"><span class="icon icon-link"></span></a>安装部署</h2>
+<h3 id="安装svn"><a aria-hidden="true" tabindex="-1" href="#安装svn" class="anchor"><span class="icon icon-link"></span></a>安装SVN</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">yum <span class="token function">install</span> httpd subversion mod_dav_svn
+</span><span class="code-line"><span class="token function">rpm</span> -ql subvserion <span class="token comment"># 查看 subversion 安装位置</span>
+</span></code><div onclick="copied(this)" data-code="yum install httpd subversion mod_dav_svn
+rpm -ql subvserion # 查看 subversion 安装位置
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>OK 这样就完成了安装。下面是SVN的配置：</p>
+<h3 id="验证安装"><a aria-hidden="true" tabindex="-1" href="#验证安装" class="anchor"><span class="icon icon-link"></span></a>验证安装</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">svnserve --version
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># svnserve，版本 1.7.14 (r1542130)</span>
+</span><span class="code-line"><span class="token comment">#    编译于 Aug 23 2017，20:43:38</span>
+</span><span class="code-line"><span class="token comment"># </span>
+</span><span class="code-line"><span class="token comment"># 版权所有 (C) 2013 Apache 软件基金会。</span>
+</span><span class="code-line"><span class="token comment"># 此软件包含了许多人的贡献，请查看文件 NOTICE 以获得更多信息。</span>
+</span><span class="code-line"><span class="token comment"># Subversion 是开放源代码软件，请参阅 http://subversion.apache.org/ 站点。</span>
+</span><span class="code-line"><span class="token comment"># </span>
+</span><span class="code-line"><span class="token comment"># 下列版本库后端(FS) 模块可用:</span>
+</span><span class="code-line"><span class="token comment"># </span>
+</span><span class="code-line"><span class="token comment"># * fs_base : 模块只能操作BDB版本库。</span>
+</span><span class="code-line"><span class="token comment"># * fs_fs : 模块与文本文件(FSFS)版本库一起工作。</span>
+</span><span class="code-line"><span class="token comment"># </span>
+</span><span class="code-line"><span class="token comment"># Cyrus SASL 认证可用。</span>
+</span></code><div onclick="copied(this)" data-code="svnserve --version
+
+# svnserve，版本 1.7.14 (r1542130)
+#    编译于 Aug 23 2017，20:43:38
+# 
+# 版权所有 (C) 2013 Apache 软件基金会。
+# 此软件包含了许多人的贡献，请查看文件 NOTICE 以获得更多信息。
+# Subversion 是开放源代码软件，请参阅 http://subversion.apache.org/ 站点。
+# 
+# 下列版本库后端(FS) 模块可用:
+# 
+# * fs_base : 模块只能操作BDB版本库。
+# * fs_fs : 模块与文本文件(FSFS)版本库一起工作。
+# 
+# Cyrus SASL 认证可用。
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h2 id="代码库创建"><a aria-hidden="true" tabindex="-1" href="#代码库创建" class="anchor"><span class="icon icon-link"></span></a>代码库创建</h2>
+<p>SVN软件安装完成后还需要建立SVN库</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">mkdir</span> -p /opt/svn/repo
+</span><span class="code-line">svnadmin create /opt/svn/repo
+</span></code><div onclick="copied(this)" data-code="mkdir -p /opt/svn/repo
+svnadmin create /opt/svn/repo
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>执行上面的命令后，自动建立<code>repo</code>库，查看<code>/opt/svn/repo</code> 文件夹发现包含了conf, db,format,hooks, locks, README.txt等文件，说明一个SVN库已经建立。</p>
+<h2 id="配置用户"><a aria-hidden="true" tabindex="-1" href="#配置用户" class="anchor"><span class="icon icon-link"></span></a>配置用户</h2>
+<p>在<code>/source/svn/【项目文件】/conf</code>目录下有三个文件：</p>
+<ul>
+<li><code>passwd</code> ： 里面保存用户信息，基本格式为：user = passwd</li>
+<li><code>authz</code> ： 里面保存用户的分组信息，以及每个组的访问权限</li>
+<li><code>svnserve.conf</code> ： 里面保存服务器的基本配置（下面介绍）</li>
+</ul>
+<h3 id="添加用户"><a aria-hidden="true" tabindex="-1" href="#添加用户" class="anchor"><span class="icon icon-link"></span></a>添加用户</h3>
+<p>在 <code>passwd</code> 文件中添加用户。</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token punctuation">[</span>users<span class="token punctuation">]</span>
+</span><span class="code-line">harry <span class="token operator">=</span> harry123
+</span><span class="code-line">sally <span class="token operator">=</span> sally123
+</span><span class="code-line">wcj <span class="token operator">=</span> wcj123
+</span></code><div onclick="copied(this)" data-code="[users]
+harry = harry123
+sally = sally123
+wcj = wcj123
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="配置用户权限"><a aria-hidden="true" tabindex="-1" href="#配置用户权限" class="anchor"><span class="icon icon-link"></span></a>配置用户权限</h3>
+<p>在 <code>authz</code> 文件中配置用户权限。</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token punctuation">[</span>groups<span class="token punctuation">]</span>
+</span><span class="code-line">admin <span class="token operator">=</span> harry,sally
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 该项目的权限配置</span>
+</span><span class="code-line"><span class="token punctuation">[</span>/<span class="token punctuation">]</span>
+</span><span class="code-line">@admin<span class="token operator">=</span>rw      <span class="token comment"># admin分组配置读写权限（实际中可以增加只读分组）</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token assign-left variable">wcj</span><span class="token operator">=</span>rw <span class="token comment"># wcj   # 用户的权限为读写</span>
+</span><span class="code-line">* <span class="token operator">=</span> r          <span class="token comment"># 其他用户的权限为只读</span>
+</span></code><div onclick="copied(this)" data-code="[groups]
+admin = harry,sally
+
+# 该项目的权限配置
+[/]
+@admin=rw      # admin分组配置读写权限（实际中可以增加只读分组）
+
+wcj=rw # wcj   # 用户的权限为读写
+* = r          # 其他用户的权限为只读
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="svnserveconf配置"><a aria-hidden="true" tabindex="-1" href="#svnserveconf配置" class="anchor"><span class="icon icon-link"></span></a>svnserve.conf配置</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token punctuation">[</span>general<span class="token punctuation">]</span>
+</span><span class="code-line"><span class="token comment"># 匿名用户权限（none：拒绝， write：读写， read：只读权限）</span>
+</span><span class="code-line">anon-access <span class="token operator">=</span> none
+</span><span class="code-line">auth-access <span class="token operator">=</span> <span class="token function">write</span>
+</span><span class="code-line">
+</span><span class="code-line">authz-db <span class="token operator">=</span> authz
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 这个配置我给删除了，多数教程填写工程 /opt/svn/repo 目录</span>
+</span><span class="code-line"><span class="token comment"># 我测试没有什么卵用</span>
+</span><span class="code-line"><span class="token comment"># realm = My First Repository</span>
+</span></code><div onclick="copied(this)" data-code="[general]
+# 匿名用户权限（none：拒绝， write：读写， read：只读权限）
+anon-access = none
+auth-access = write
+
+authz-db = authz
+
+# 这个配置我给删除了，多数教程填写工程 /opt/svn/repo 目录
+# 我测试没有什么卵用
+# realm = My First Repository
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h2 id="启动svn"><a aria-hidden="true" tabindex="-1" href="#启动svn" class="anchor"><span class="icon icon-link"></span></a>启动svn</h2>
+<h3 id="配置防火墙端口"><a aria-hidden="true" tabindex="-1" href="#配置防火墙端口" class="anchor"><span class="icon icon-link"></span></a>配置防火墙端口</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">vi</span> /etc/sysconfig/iptables
+</span><span class="code-line"><span class="token comment"># 添加以下内容：</span>
+</span><span class="code-line">-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="token number">3690</span> -j ACCEPT
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 或者下面方式</span>
+</span><span class="code-line"><span class="token comment"># 开启3690端口的命令，在终端输入以下命令：</span>
+</span><span class="code-line">iptables -I INPUT -i eth0 -p tcp --dport <span class="token number">3690</span> -j ACCEPT
+</span><span class="code-line">iptables -I OUTPUT -o eth0 -p tcp --sport <span class="token number">3690</span> -j ACCEPT
+</span><span class="code-line"><span class="token comment"># 保存后重启防火墙</span>
+</span><span class="code-line"><span class="token function">service</span> iptables save
+</span><span class="code-line"><span class="token function">service</span> iptables restart
+</span></code><div onclick="copied(this)" data-code="vi /etc/sysconfig/iptables
+# 添加以下内容：
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3690 -j ACCEPT
+
+# 或者下面方式
+# 开启3690端口的命令，在终端输入以下命令：
+iptables -I INPUT -i eth0 -p tcp --dport 3690 -j ACCEPT
+iptables -I OUTPUT -o eth0 -p tcp --sport 3690 -j ACCEPT
+# 保存后重启防火墙
+service iptables save
+service iptables restart
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="启动svn-1"><a aria-hidden="true" tabindex="-1" href="#启动svn-1" class="anchor"><span class="icon icon-link"></span></a>启动SVN</h3>
+<blockquote>
+<p>注意，创建的工程<code>repo</code> 启动指定目录为<code>/opt/svn</code> 而不是 <del><code>/opt/svn/repo</code></del>
+这里是非常深的坑哦。</p>
+</blockquote>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">svnserve -d -r /opt/svn
+</span></code><div onclick="copied(this)" data-code="svnserve -d -r /opt/svn
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="启动报警告"><a aria-hidden="true" tabindex="-1" href="#启动报警告" class="anchor"><span class="icon icon-link"></span></a>启动报警告</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">svnserve -d -r /opt/svn
+</span><span class="code-line">svnserve: warning: cannot <span class="token builtin class-name">set</span> LC_CTYPE locale
+</span><span class="code-line">svnserve: warning: environment variable LC_CTYPE is UTF-8
+</span><span class="code-line">svnserve: warning: please check that your locale name is correct
+</span></code><div onclick="copied(this)" data-code="svnserve -d -r /opt/svn
+svnserve: warning: cannot set LC_CTYPE locale
+svnserve: warning: environment variable LC_CTYPE is UTF-8
+svnserve: warning: please check that your locale name is correct
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>解决方法</p>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token builtin class-name">echo</span> <span class="token string">"export LC_ALL=C"</span> <span class="token operator">>></span> /etc/profile
+</span></code><div onclick="copied(this)" data-code="echo &#x22;export LC_ALL=C&#x22; >> /etc/profile
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="查看svn进程"><a aria-hidden="true" tabindex="-1" href="#查看svn进程" class="anchor"><span class="icon icon-link"></span></a>查看SVN进程</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span> svn<span class="token operator">|</span><span class="token function">grep</span> -v <span class="token function">grep</span>
+</span><span class="code-line"><span class="token comment"># root     24394     1  0 23:32 ?        00:00:00 svnserve -d -r /opt/svn</span>
+</span></code><div onclick="copied(this)" data-code="ps -ef|grep svn|grep -v grep
+# root     24394     1  0 23:32 ?        00:00:00 svnserve -d -r /opt/svn
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="检测svn-端口"><a aria-hidden="true" tabindex="-1" href="#检测svn-端口" class="anchor"><span class="icon icon-link"></span></a>检测SVN 端口</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">netstat</span> -ln <span class="token operator">|</span><span class="token function">grep</span> <span class="token number">3690</span>
+</span><span class="code-line">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:3690            <span class="token number">0.0</span>.0.0:*               LISTEN
+</span></code><div onclick="copied(this)" data-code="netstat -ln |grep 3690
+tcp        0      0 0.0.0.0:3690            0.0.0.0:*               LISTEN
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="停止重启svn"><a aria-hidden="true" tabindex="-1" href="#停止重启svn" class="anchor"><span class="icon icon-link"></span></a>停止重启SVN</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">killall</span> svnserve <span class="token comment"># 停止</span>
+</span><span class="code-line">svnserve -d -r /opt/svn <span class="token comment"># 启动</span>
+</span></code><div onclick="copied(this)" data-code="killall svnserve # 停止
+svnserve -d -r /opt/svn # 启动
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h2 id="简单svn命令"><a aria-hidden="true" tabindex="-1" href="#简单svn命令" class="anchor"><span class="icon icon-link"></span></a>简单SVN命令</h2>
+<h3 id="下载克隆项目"><a aria-hidden="true" tabindex="-1" href="#下载克隆项目" class="anchor"><span class="icon icon-link"></span></a>下载克隆项目</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 下载项目</span>
+</span><span class="code-line">svn checkout <span class="token string">'url'</span>
+</span><span class="code-line"><span class="token comment"># 简写</span>
+</span><span class="code-line">svn co <span class="token string">'url'</span>
+</span><span class="code-line"><span class="token comment"># 实例</span>
+</span><span class="code-line">svn checkout path（path是服务器上的目录）
+</span><span class="code-line">svn checkout svn://192.168.1.1/pro/domain
+</span></code><div onclick="copied(this)" data-code="# 下载项目
+svn checkout &#x27;url&#x27;
+# 简写
+svn co &#x27;url&#x27;
+# 实例
+svn checkout path（path是服务器上的目录）
+svn checkout svn://192.168.1.1/pro/domain
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="添加"><a aria-hidden="true" tabindex="-1" href="#添加" class="anchor"><span class="icon icon-link"></span></a>添加</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 添加指定文件或目录</span>
+</span><span class="code-line">svn <span class="token function">add</span> <span class="token string">'file'</span>或<span class="token string">'dir'</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 添加所有目录文件</span>
+</span><span class="code-line">svn <span class="token function">add</span> *
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 创建纳入版本目录</span>
+</span><span class="code-line">svn <span class="token function">mkdir</span> -m <span class="token string">'commit message'</span> <span class="token string">'url/dir'</span>
+</span></code><div onclick="copied(this)" data-code="# 添加指定文件或目录
+svn add &#x27;file&#x27;或&#x27;dir&#x27;
+
+# 添加所有目录文件
+svn add *
+
+# 创建纳入版本目录
+svn mkdir -m &#x27;commit message&#x27; &#x27;url/dir&#x27;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="删除"><a aria-hidden="true" tabindex="-1" href="#删除" class="anchor"><span class="icon icon-link"></span></a>删除</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">删除指定文件
+</span><span class="code-line">svn delete <span class="token string">'file'</span>
+</span><span class="code-line">推荐组合
+</span><span class="code-line">svn delete <span class="token string">'file name'</span>
+</span><span class="code-line">svn commit -m <span class="token string">'delete file name'</span>
+</span></code><div onclick="copied(this)" data-code="删除指定文件
+svn delete &#x27;file&#x27;
+推荐组合
+svn delete &#x27;file name&#x27;
+svn commit -m &#x27;delete file name&#x27;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="提交修改"><a aria-hidden="true" tabindex="-1" href="#提交修改" class="anchor"><span class="icon icon-link"></span></a>提交修改</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 提交指定文件</span>
+</span><span class="code-line">svn commit -m <span class="token string">'commit message'</span> <span class="token string">'file'</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 提交所有文件</span>
+</span><span class="code-line">svn commit -m <span class="token string">'commit message'</span>
+</span><span class="code-line"><span class="token comment"># 简写</span>
+</span><span class="code-line">svn ci -m
+</span></code><div onclick="copied(this)" data-code="# 提交指定文件
+svn commit -m &#x27;commit message&#x27; &#x27;file&#x27;
+
+# 提交所有文件
+svn commit -m &#x27;commit message&#x27;
+# 简写
+svn ci -m
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="查看状态"><a aria-hidden="true" tabindex="-1" href="#查看状态" class="anchor"><span class="icon icon-link"></span></a>查看状态</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 查看文件或目录状态</span>
+</span><span class="code-line">svn status <span class="token string">'file'</span>或<span class="token string">'dir'</span>
+</span><span class="code-line"><span class="token comment"># 简写</span>
+</span><span class="code-line">svn st <span class="token string">'file'</span>或<span class="token string">'dir'</span>
+</span></code><div onclick="copied(this)" data-code="# 查看文件或目录状态
+svn status &#x27;file&#x27;或&#x27;dir&#x27;
+# 简写
+svn st &#x27;file&#x27;或&#x27;dir&#x27;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>正常状态不显示</p>
+<blockquote>
+<p>?：不在svn的控制中<br>
+M：内容被修改<br>
+C：发生冲突<br>
+A：预定加入到版本库<br>
+K：被锁定</p>
+</blockquote>
+<h3 id="查看日志"><a aria-hidden="true" tabindex="-1" href="#查看日志" class="anchor"><span class="icon icon-link"></span></a>查看日志</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 看指定文件日志</span>
+</span><span class="code-line">svn log <span class="token string">'file'</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 查看指定文件详细信息</span>
+</span><span class="code-line">svn info <span class="token string">'file'</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 查看指定目录文件列表</span>
+</span><span class="code-line">svn list <span class="token string">'dir'</span>
+</span></code><div onclick="copied(this)" data-code="# 看指定文件日志
+svn log &#x27;file&#x27;
+
+# 查看指定文件详细信息
+svn info &#x27;file&#x27;
+
+# 查看指定目录文件列表
+svn list &#x27;dir&#x27;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="更新"><a aria-hidden="true" tabindex="-1" href="#更新" class="anchor"><span class="icon icon-link"></span></a>更新</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 更新指定文件</span>
+</span><span class="code-line">svn update <span class="token string">'file'</span>
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 更新所有文件</span>
+</span><span class="code-line">svn update
+</span></code><div onclick="copied(this)" data-code="# 更新指定文件
+svn update &#x27;file&#x27;
+
+# 更新所有文件
+svn update
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="锁定"><a aria-hidden="true" tabindex="-1" href="#锁定" class="anchor"><span class="icon icon-link"></span></a>锁定</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 加锁指定文件</span>
+</span><span class="code-line">svn lock -m <span class="token string">'commit message'</span> <span class="token string">'file'</span>  
+</span><span class="code-line">
+</span><span class="code-line"><span class="token comment"># 解锁指定文件</span>
+</span><span class="code-line">svn unlock <span class="token string">'file'</span>
+</span></code><div onclick="copied(this)" data-code="# 加锁指定文件
+svn lock -m &#x27;commit message&#x27; &#x27;file&#x27;  
+
+# 解锁指定文件
+svn unlock &#x27;file&#x27;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="比较差异"><a aria-hidden="true" tabindex="-1" href="#比较差异" class="anchor"><span class="icon icon-link"></span></a>比较差异</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">比较指定文件差异
+</span><span class="code-line">svn <span class="token function">diff</span> <span class="token string">'file'</span>  
+</span><span class="code-line">
+</span><span class="code-line">对指定文件的版本1和版本2比较差异
+</span><span class="code-line">svn <span class="token function">diff</span> -r version1:version2 <span class="token string">'file'</span>  
+</span></code><div onclick="copied(this)" data-code="比较指定文件差异
+svn diff &#x27;file&#x27;  
+
+对指定文件的版本1和版本2比较差异
+svn diff -r version1:version2 &#x27;file&#x27;  
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="分支"><a aria-hidden="true" tabindex="-1" href="#分支" class="anchor"><span class="icon icon-link"></span></a>分支</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">从分支A新建出一个分支B
+</span><span class="code-line">svn copy branchA branchB -m <span class="token string">'commit message'</span>    
+</span></code><div onclick="copied(this)" data-code="从分支A新建出一个分支B
+svn copy branchA branchB -m &#x27;commit message&#x27;    
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="解决冲突"><a aria-hidden="true" tabindex="-1" href="#解决冲突" class="anchor"><span class="icon icon-link"></span></a>解决冲突</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">svn resolved 
+</span><span class="code-line"><span class="token comment"># 产生冲突是，会生成三个新的文件，</span>
+</span><span class="code-line"><span class="token comment"># svn resolved除了删除冲突文件，</span>
+</span><span class="code-line"><span class="token comment"># 还修正了一些记录在工作拷贝管理区域的记录数据</span>
+</span></code><div onclick="copied(this)" data-code="svn resolved 
+# 产生冲突是，会生成三个新的文件，
+# svn resolved除了删除冲突文件，
+# 还修正了一些记录在工作拷贝管理区域的记录数据
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="帮助"><a aria-hidden="true" tabindex="-1" href="#帮助" class="anchor"><span class="icon icon-link"></span></a>帮助</h3>
+<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">svn <span class="token builtin class-name">help</span>    
+</span></code><div onclick="copied(this)" data-code="svn help    
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+    
+
+<footer class="article-footer warpper">
+  <section>
+    
+    <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/svn.md" class="edit-button" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+      </svg>
+      <span>Edit this page on GitHub</span>
+    </a>
+    
+    <span class="atime">2022/04/21</span>
+    
+  </section>
+  
+  
+<div class="previous">
+  
+  <a class="prev" href="使用免费SSL证书让网站支持HTTPS访问.html">
+    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+    </svg>
+    <span>
+      使用免费 SSL 证书支持 HTTPS 访问
+    </span>
+  </a>
+  
+  
+  <a class="next" href="管理远程会话screen工具.html">
+    <span>
+      管理远程会话screen工具
+    </span>
+    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+    </svg>
+  </a>
+  
+</div>
+
+</footer>
+
+  </markdown-style>
+  
+<nav class="tocs">
+  <aside class="inner toc"></aside>
+</nav>
+
+
+<script src="../js/tocbot.min.js?v=4.18.2"></script>
+<script>
+tocbot.init({
+  tocSelector: 'aside.inner',
+  contentSelector: 'markdown-style',
+  positionFixedSelector: 'aside.inner',
+  headingSelector: 'h1, h2, h3, h4',
+  collapseDepth: 2,
+
+  includeHtml: true,
+  includeTitleTags: false,
+  hasInnerContainers: true,
+  onClick: (e) => { console.log('you clicked a link', e) },
+  headingsOffset: 40,
+  scrollSmoothOffset: -40,
+});
+</script>
+
+</div>
+
+
+<div class="footer warpper">
+  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
+Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.10.6
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常见HTTP/FTP/WebSocket错误代码大全 handbook </title>
+  
+  <meta name="description" content="常见HTTP/FTP/WebSocket错误代码大全">
+  
+  
+  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+  
+  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650525385184">
+  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650525385184">
+  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650525385184">
+  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650525385184">
+  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650525385184">
+  
+    <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+  
+  <script src="../js/copy.js"></script>
+  <script src="../js/dark-mode.js"></script>
+  <script src="../js/markdown-style.js"></script>
+</head>
+<body>
+<header class="header">
+  <article class="inner warpper">
+    <a class="logo" href="../index.html">
+      
+        <img alt="handbook logo" src="data:image/png;base64,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">
+      
+      <span class="title">handbook</span>
+    </a>
+    <div class="content">
+      <ul class="menu">
+        
+        <li>
+          <a href="../index.html" target="" class=""> Home </a>
+        </li>
+        
+        <li>
+          <a href="../awesome.html" target="" class=""> Awesome </a>
+        </li>
+        
+        <li>
+          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
+        </li>
+        
+      </ul>
+      
+        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      
+      <dark-mode permanent></dark-mode>
+    </div>
+  </article>
+</header>
+
+<div class="warpper-content warpper sidebar ">
+  
+<div class="sidebar-border">
+  <aside class="sidebar" role="navigation">
+    <div>
+    
+      
+        <label>JavaScript</label>
+      
+    
+      
+        <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+      
+    
+      
+        <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+      
+    
+      
+        <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+      
+    
+      
+        <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+      
+    
+      
+        <label>Redis</label>
+      
+    
+      
+        <a href="../Redis/index.html" class="">快速入门 Redis</a>
+      
+    
+      
+        <label>Android</label>
+      
+    
+      
+        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+      
+    
+      
+        <label>CentOS</label>
+      
+    
+      
+        <a href="../CentOS/CentOS.html" class="">CentOS 常用命令</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+      
+    
+      
+        <a href="../CentOS/常用基础命令.html" class="">常用基础命令</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+      
+    
+      
+        <a href="../CentOS/CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+      
+    
+      
+        <a href="../CentOS/Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+      
+    
+      
+        <a href="../CentOS/Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+      
+    
+      
+        <a href="../CentOS/Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+      
+    
+      
+        <a href="../CentOS/Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+      
+    
+      
+        <a href="../CentOS/Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+      
+    
+      
+        <a href="../CentOS/Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+      
+    
+      
+        <a href="../CentOS/Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+      
+    
+      
+        <a href="../CentOS/Rocket.Chat.html" class="">Rocket.Chat</a>
+      
+    
+      
+        <a href="../CentOS/Ruby安装.html" class="">Ruby 安装</a>
+      
+    
+      
+        <a href="../CentOS/samba.html" class="">Samba 安装</a>
+      
+    
+      
+        <a href="../CentOS/在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+      
+    
+      
+        <a href="../CentOS/Java.html" class="">安装 Java</a>
+      
+    
+      
+        <a href="../CentOS/部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+      
+    
+      
+        <a href="../CentOS/搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+      
+    
+      
+        <a href="../CentOS/部署YApi平台.html" class="">部署 YApi 平台</a>
+      
+    
+      
+        <a href="../CentOS/openstack.html" class="">搭建 OpenStack</a>
+      
+    
+      
+        <a href="../CentOS/pip.html" class="">安装 pip 工具</a>
+      
+    
+      
+        <a href="../CentOS/修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+      
+    
+      
+        <a href="../CentOS/尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+      
+    
+      
+        <a href="../CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+      
+    
+      
+        <a href="../CentOS/svn.html" class="">安装使用 svn</a>
+      
+    
+      
+        <a href="../CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+      
+    
+      
+        <label>其它</label>
+      
+    
+      
+        <a href="weixin-public-account.html" class="">公众账号推荐</a>
+      
+    
+      
+        <a href="google.html" class="">谷歌(Google)镜像</a>
+      
+    
+      
+        <a href="离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+      
+    
+      
+        <a href="通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+      
+    
+      
+        <a href="github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+      
+    
+      
+        <a href="HTTP-status-codes.html" class="active">常见HTTP/FTP错误代码大全</a>
+      
+    
+      
+        <a href="Lua5.3.html" class="">Lua 5.3 文档</a>
+      
+    
+      
+        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+      
+    
+      
+        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+      
+    
+    </div>
+  </aside>
+</div>
+
+  <markdown-style>
+    <h1 id="常见httpftpwebsocket错误代码大全"><a aria-hidden="true" tabindex="-1" href="#常见httpftpwebsocket错误代码大全" class="anchor"><span class="icon icon-link"></span></a>常见HTTP/FTP/WebSocket错误代码大全</h1>
+<p><img src="img_http/Fetching_a_page.png" alt=""></p>
+
+<h2 id="rest-api"><a aria-hidden="true" tabindex="-1" href="#rest-api" class="anchor"><span class="icon icon-link"></span></a>Rest API</h2>
+<ul>
+<li>200 返回成功，GET、PUT 或 DELETE 请求成功。</li>
+<li>204 无内容，POST 请求成功。</li>
+<li>301 永久重定向。</li>
+<li>302/307 临时重定向。</li>
+<li>304 未修改，自上次请求以来。</li>
+<li>331 用户名正确，需要密码。</li>
+<li>332 需要登录帐户。</li>
+<li>400 错误请求，缺少 API 请求的必需属性。</li>
+<li>401 未授权，无效凭据进行身份验证将。</li>
+<li>403 禁地，该请求不被允许。</li>
+<li>404 未找到，无法访问资源</li>
+<li>405 方法不允许，不支持该请求。</li>
+<li>409 冲突，冲突资源已存在。</li>
+<li>412 该请求被拒绝。</li>
+<li>422 无法处理，无法处理该实体。</li>
+<li>429 请求过多，用户超出了应用速率限制。</li>
+<li>500 服务器错误，在处理请求时，服务器出现问题。</li>
+<li>530 未登录。</li>
+</ul>
+<h2 id="http"><a aria-hidden="true" tabindex="-1" href="#http" class="anchor"><span class="icon icon-link"></span></a>HTTP</h2>
+<h3 id="1xx消息"><a aria-hidden="true" tabindex="-1" href="#1xx消息" class="anchor"><span class="icon icon-link"></span></a>1xx消息</h3>
+<p><em>这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。 这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。</em></p>
+<ul>
+<li>100 - 客户端应当继续发送请求</li>
+<li>101 - 切换协议</li>
+<li>102 - 处理将被继续执行</li>
+</ul>
+<h3 id="2xx成功"><a aria-hidden="true" tabindex="-1" href="#2xx成功" class="anchor"><span class="icon icon-link"></span></a>2xx成功</h3>
+<p><em>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</em></p>
+<ul>
+<li>200 - （成功）请求已成功，请求所希望的响应头或数据体将随此响应返回。</li>
+<li>201 - （已创建）请求成功且服务器已创建了新的资源。。</li>
+<li>202 - （已接受）服务器已接受了请求，但尚未对其进行处理。</li>
+<li>203 - （非授权信息）服务器已成功处理了请求，但返回了可能来自另一来源的信息。</li>
+<li>204 - （无内容）服务器成功处理了请求，但未返回任何内容。</li>
+<li>205 - （重置内容）服务器成功处理了请求，但未返回任何内容。</li>
+<li>206 - （部分内容）服务器成功处理了部分 GET 请求。</li>
+</ul>
+<h3 id="3xx重定向"><a aria-hidden="true" tabindex="-1" href="#3xx重定向" class="anchor"><span class="icon icon-link"></span></a>3xx重定向</h3>
+<p><em>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。按照HTTP/1.0版规范的建议，浏览器不应自动访问超过5次的重定向。对重定向一般是由浏览器来控制重定向的次数，重定向会导致客户端不必要的资源消耗</em></p>
+<ul>
+<li>300 - 多重选择，被请求的资源有一系列可供选择的回馈信息。</li>
+<li>301 - 永久移除，被请求的资源已永久移动到新位置。</li>
+<li>302 - 临时移动，请求的资源现在临时从不同的URI响应请求。</li>
+<li>303 - 查看其他位置，对应当前请求的响应可以在另一个URI上被找到，而且客户端应当采用GET的方式访问那个资源。</li>
+<li>304 - 未修改。自从上次请求后，请求的网页未被修改过。服务器返回此响应时，不会返回网页内容。</li>
+<li>305 - 使用代理，被请求的资源必须通过指定的代理才能被访问。</li>
+<li><del>306</del> - 临时重定向，在最新版的规范中，306状态码已经不再被使用。</li>
+<li>307 - 临时重定向。</li>
+</ul>
+<h3 id="4xx客户端错误"><a aria-hidden="true" tabindex="-1" href="#4xx客户端错误" class="anchor"><span class="icon icon-link"></span></a>4xx客户端错误</h3>
+<p><em>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。</em></p>
+<ul>
+<li>400 - 错误的请求。</li>
+<li>401 - 访问被拒绝。</li>
+<li>402 - 付款要求。</li>
+<li>403 - 禁止访问
+<ul>
+<li>403.1 - 执行访问被禁止。</li>
+<li>403.2 - 读访问被禁止。</li>
+<li>403.3 - 写访问被禁止。</li>
+<li>403.4 - 要求 SSL。</li>
+<li>403.5 - 要求 SSL 128。</li>
+<li>403.6 - IP 地址被拒绝。</li>
+<li>403.7 - 要求客户端证书。</li>
+<li>403.8 - 站点访问被拒绝。</li>
+<li>403.9 - 用户数过多。</li>
+<li>403.10 - 配置无效。</li>
+<li>403.11 - 密码更改。</li>
+<li>403.12 - 拒绝访问映射表。</li>
+<li>403.13 - 客户端证书被吊销。</li>
+<li>403.14 - 拒绝目录列表。</li>
+<li>403.15 - 超出客户端访问许可。</li>
+<li>403.16 - 客户端证书不受信任或无效。</li>
+<li>403.17 - 客户端证书已过期或尚未生效。</li>
+<li>403.18 - 在当前的应用程序池中不能执行所请求的 URL。</li>
+<li>403.19 - 不能为这个应用程序池中的客户端执行 CGI。</li>
+<li>403.20 - Passport 登录失败。</li>
+</ul>
+</li>
+<li>404 - 未找到。
+<ul>
+<li>404.0 -（无） – 没有找到文件或目录。</li>
+<li>404.1 - 无法在所请求的端口上访问 Web 站点。</li>
+<li>404.2 - Web 服务扩展锁定策略阻止本请求。</li>
+<li>404.3 - MIME 映射策略阻止本请求。</li>
+</ul>
+</li>
+<li>405 - 用来访问本页面的 HTTP 谓词不被允许（方法不被允许）</li>
+<li>406 - 客户端浏览器不接受所请求页面的 MIME 类型。</li>
+<li>407 - 要求进行代理身份验证。</li>
+<li>408 - 请求超时。</li>
+<li>409 - 由于和被请求的资源的当前状态之间存在冲突，请求无法完成。</li>
+<li>410 - 被请求的资源在服务器上已经不再可用，而且没有任何已知的转发地址。</li>
+<li>411 - 服务器拒绝在没有定义Content-Length头的情况下接受请求。</li>
+<li>412 - 前提条件失败。</li>
+<li>413 – 请求实体太大。</li>
+<li>414 - 请求 URI 太长。</li>
+<li>415 – 不支持的媒体类型。</li>
+<li>416 – 所请求的范围无法满足。</li>
+<li>417 – 执行失败。</li>
+<li>418 – 本操作码是在1998年作为IETF的传统<a href="http://www.baike.com/wiki/%E6%81%B6%E6%90%9ERFC">愚人节笑话</a>。</li>
+<li>421 – 从当前客户端所在的IP地址到服务器的连接数超过了服务器许可的最大范围。</li>
+<li>422 – 请求格式正确，但是由于含有语义错误，无法响应。</li>
+<li>423 – 当前资源被锁定。</li>
+<li>424 – 由于之前的某个请求发生的错误，导致当前请求失败。</li>
+<li>425 – 无序的集合。</li>
+<li>426 – 客户端应当切换到TLS/1.0。</li>
+<li>451 – （由IETF在2015核准后新增加）该访问因法律的要求而被拒绝。</li>
+</ul>
+<h3 id="5xx服务器错误"><a aria-hidden="true" tabindex="-1" href="#5xx服务器错误" class="anchor"><span class="icon icon-link"></span></a>5xx服务器错误</h3>
+<p><em>这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。</em></p>
+<ul>
+<li>500 - 内部服务器错误。</li>
+<li>501 - 尚未实施，页眉值指定了未实现的配置。</li>
+<li>502 - 错误网关，Web 服务器用作网关或代理服务器时收到了无效响应。</li>
+<li>503 - 服务不可用，这个错误代码为 IIS 6.0 所专用。</li>
+<li>504 - 网关超时，服务器作为网关或代理，未及时从上游服务器接收请求。</li>
+<li>505 - HTTP 版本不受支持，服务器不支持请求中所使用的 HTTP 协议版本。</li>
+<li>506 - 服务器没有正确配置。</li>
+<li>507 - 存储空间不足。服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。</li>
+<li>509 - 带宽超过限制。这不是一个官方的状态码，但是仍被广泛使用。</li>
+<li>510 - 没有扩展，获取资源所需要的策略并没有被满足。</li>
+</ul>
+<h2 id="ftp"><a aria-hidden="true" tabindex="-1" href="#ftp" class="anchor"><span class="icon icon-link"></span></a>FTP</h2>
+<h3 id="1xx初步"><a aria-hidden="true" tabindex="-1" href="#1xx初步" class="anchor"><span class="icon icon-link"></span></a>1xx初步</h3>
+<p><em>肯定的初步答复，这些状态代码指示一项操作已经成功开始，但客户端希望在继续操作新命令前得到另一个答复。</em></p>
+<ul>
+<li>110 重新启动标记答复。</li>
+<li>120 服务已就绪，在 nnn 分钟后开始。</li>
+<li>125 数据连接已打开，正在开始传输。</li>
+<li>150 文件状态正常，准备打开数据连接。</li>
+</ul>
+<h3 id="2xx完成"><a aria-hidden="true" tabindex="-1" href="#2xx完成" class="anchor"><span class="icon icon-link"></span></a>2xx完成</h3>
+<p><em>肯定的完成答复，一项操作已经成功完成。客户端可以执行新命令。</em></p>
+<ul>
+<li>200 命令确定。</li>
+<li>202 未执行命令，站点上的命令过多。</li>
+<li>211 系统状态，或系统帮助答复。</li>
+<li>212 目录状态。</li>
+<li>213 文件状态。</li>
+<li>214 帮助消息。</li>
+<li>215 NAME 系统类型，其中，NAME 是 Assigned Numbers 文档中所列的正式系统名称。</li>
+<li>220 服务就绪，可以执行新用户的请求。</li>
+<li>221 服务关闭控制连接。如果适当，请注销。</li>
+<li>225 数据连接打开，没有进行中的传输。</li>
+<li>226 关闭数据连接。请求的文件操作已成功（例如，传输文件或放弃文件）。</li>
+<li>227 进入被动模式 (h1,h2,h3,h4,p1,p2)。</li>
+<li>230 用户已登录，继续进行。</li>
+<li>250 请求的文件操作正确，已完成。</li>
+<li>257 已创建“PATHNAME”。</li>
+</ul>
+<h3 id="3xx中间"><a aria-hidden="true" tabindex="-1" href="#3xx中间" class="anchor"><span class="icon icon-link"></span></a>3xx中间</h3>
+<p><em>肯定的中间答复，该命令已成功，但服务器需要更多来自客户端的信息以完成对请求的处理。</em></p>
+<ul>
+<li>331 用户名正确，需要密码。</li>
+<li>332 需要登录帐户。</li>
+<li>350 请求的文件操作正在等待进一步的信息。</li>
+</ul>
+<h3 id="4xx瞬态否定"><a aria-hidden="true" tabindex="-1" href="#4xx瞬态否定" class="anchor"><span class="icon icon-link"></span></a>4xx瞬态否定</h3>
+<p><em>瞬态否定的完成答复，该命令不成功，但错误是暂时的。如果客户端重试命令，可能会执行成功。</em></p>
+<ul>
+<li>421 服务不可用，正在关闭控制连接。如果服务确定它必须关闭，将向任何命令发送这一应答。</li>
+<li>425 无法打开数据连接。</li>
+<li>426 Connection closed; transfer aborted.</li>
+<li>450 未执行请求的文件操作。文件不可用（例如，文件繁忙）。</li>
+<li>451 请求的操作异常终止：正在处理本地错误。</li>
+<li>452 未执行请求的操作。系统存储空间不够。</li>
+</ul>
+<h2 id="5xx永久性否定"><a aria-hidden="true" tabindex="-1" href="#5xx永久性否定" class="anchor"><span class="icon icon-link"></span></a>5xx永久性否定</h2>
+<p><em>永久性否定的完成答复，该命令不成功，错误是永久性的。如果客户端重试命令，将再次出现同样的错误。</em></p>
+<ul>
+<li>500 语法错误，命令无法识别。这可能包括诸如命令行太长之类的错误。</li>
+<li>501 在参数中有语法错误。</li>
+<li>502 未执行命令。</li>
+<li>503 错误的命令序列。</li>
+<li>504 未执行该参数的命令。</li>
+<li>530 未登录。</li>
+<li>532 存储文件需要帐户。</li>
+<li>550 未执行请求的操作。文件不可用（例如，未找到文件，没有访问权限）。</li>
+<li>551 请求的操作异常终止：未知的页面类型。</li>
+<li>552 请求的文件操作异常终止：超出存储分配（对于当前目录或数据集）。</li>
+<li>553 未执行请求的操作。不允许的文件名。</li>
+</ul>
+<h2 id="6xx受保护"><a aria-hidden="true" tabindex="-1" href="#6xx受保护" class="anchor"><span class="icon icon-link"></span></a>6xx受保护</h2>
+<ul>
+<li>600 Series，Replies regarding confidentiality and integrity</li>
+<li>631 Integrity protected reply.</li>
+<li>632 Confidentiality and integrity protected reply.</li>
+<li>633 Confidentiality protected reply.</li>
+</ul>
+<h2 id="websockets状态码"><a aria-hidden="true" tabindex="-1" href="#websockets状态码" class="anchor"><span class="icon icon-link"></span></a>WebSockets状态码</h2>
+<p><em>WebSockets 的CloseEvent 会在连接关闭时发送给使用 WebSockets 的客户端。它在 WebSocket 对象的 onclose 事件监听器中使用。服务端发送的关闭码，以下为已分配的状态码。</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>状态码</th><th>名称</th><th>描述</th></tr></thead><tbody><tr><td>0–999</td><td>-</td><td>保留段, 未使用。</td></tr><tr><td>1000</td><td>CLOSE_NORMAL</td><td>正常关闭; 无论为何目的而创建, 该链接都已成功完成任务。</td></tr><tr><td>1001</td><td>CLOSE_GOING_AWAY</td><td>终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开。</td></tr><tr><td>1002</td><td>CLOSE_PROTOCOL_ERROR</td><td>由于协议错误而中断连接。</td></tr><tr><td>1003</td><td>CLOSE_UNSUPPORTED</td><td>由于接收到不允许的数据类型而断开连接 (如仅接收文本数据的终端接收到了二进制数据)。</td></tr><tr><td>1004</td><td>-</td><td>保留。 其意义可能会在未来定义。</td></tr><tr><td>1005</td><td>CLOSE_NO_STATUS</td><td>保留。  表示没有收到预期的状态码。</td></tr><tr><td>1006</td><td>CLOSE_ABNORMAL</td><td>保留。 用于期望收到状态码时连接非正常关闭 (也就是说, 没有发送关闭帧)。</td></tr><tr><td>1007</td><td>Unsupported Data</td><td>由于收到了格式不符的数据而断开连接 (如文本消息中包含了非 UTF-8 数据)。</td></tr><tr><td>1008</td><td>Policy Violation</td><td>由于收到不符合约定的数据而断开连接。 这是一个通用状态码, 用于不适合使用 1003 和 1009 状态码的场景。</td></tr><tr><td>1009</td><td>CLOSE_TOO_LARGE</td><td>由于收到过大的数据帧而断开连接。</td></tr><tr><td>1010</td><td>Missing Extension</td><td>客户端期望服务器商定一个或多个拓展, 但服务器没有处理, 因此客户端断开连接。</td></tr><tr><td>1011</td><td>Internal Error</td><td>客户端由于遇到没有预料的情况阻止其完成请求, 因此服务端断开连接。</td></tr><tr><td>1012</td><td>Service Restart</td><td>服务器由于重启而断开连接。 [Ref]</td></tr><tr><td>1013</td><td>Try Again Later</td><td>服务器由于临时原因断开连接, 如服务器过载因此断开一部分客户端连接。 [Ref]</td></tr><tr><td>1014</td><td>-</td><td>由 WebSocket 标准保留以便未来使用。</td></tr><tr><td>1015</td><td>TLS Handshake</td><td>保留。 表示连接由于无法完成 TLS 握手而关闭 (例如无法验证服务器证书)。</td></tr><tr><td>1016–1999</td><td>-</td><td>由 WebSocket 标准保留以便未来使用。</td></tr><tr><td>2000–2999</td><td>-</td><td>由 WebSocket 拓展保留使用。</td></tr><tr><td>3000–3999</td><td>-</td><td>可以由库或框架使用。 不应由应用使用。 可以在 IANA 注册, 先到先得。</td></tr><tr><td>4000–4999</td><td>-</td><td>可以由应用使用。</td></tr></tbody></table>
+<h2 id="参考资料"><a aria-hidden="true" tabindex="-1" href="#参考资料" class="anchor"><span class="icon icon-link"></span></a>参考资料</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP状态码列表</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes">FTP状态码列表</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent">MDN CloseEvent</a></li>
+<li><a href="https://en.wikipedia.org/wiki/HTTP_404#Custom_error_pages">HTTP 404</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_FTP_server_return_codes">List of FTP server return codes</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Overview">HTTP概述</a></li>
+<li><a href="http://www.getnetgoing.com/HTTP-403.html">Help for HTTP error 403: “Forbidden”</a></li>
+<li><a href="https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">实用的 RESTful API 最佳实践</a></li>
+</ul>
+    
+
+<footer class="article-footer warpper">
+  <section>
+    
+    <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/other/HTTP-status-codes.md" class="edit-button" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+      </svg>
+      <span>Edit this page on GitHub</span>
+    </a>
+    
+    <span class="atime">2022/04/21</span>
+    
+  </section>
+  
+  
+<div class="previous">
+  
+  <a class="prev" href="github-oraganizations.html">
+    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+    </svg>
+    <span>
+      国内互联网公司的开源项目汇总
+    </span>
+  </a>
+  
+  
+  <a class="next" href="Lua5.3.html">
+    <span>
+      Lua 5.3 文档
+    </span>
+    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+    </svg>
+  </a>
+  
+</div>
+
+</footer>
+
+  </markdown-style>
+  
+<nav class="tocs">
+  <aside class="inner toc"></aside>
+</nav>
+
+
+<script src="../js/tocbot.min.js?v=4.18.2"></script>
+<script>
+tocbot.init({
+  tocSelector: 'aside.inner',
+  contentSelector: 'markdown-style',
+  positionFixedSelector: 'aside.inner',
+  headingSelector: 'h1, h2, h3, h4',
+  collapseDepth: 2,
+
+  includeHtml: true,
+  includeTitleTags: false,
+  hasInnerContainers: true,
+  onClick: (e) => { console.log('you clicked a link', e) },
+  headingsOffset: 40,
+  scrollSmoothOffset: -40,
+});
+</script>
+
+</div>
+
+
+<div class="footer warpper">
+  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
+Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.10.6
+
+</div>
+
+</body>
+</html>
