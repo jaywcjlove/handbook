@@ -5,50 +5,56 @@ on:
       - master
 
 jobs:
-  Build:
+  build:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
-      
-      - run: npm install
-      - run: node scripts/build.mjs
+          node-version: 16
 
+      - run: npm install
+      - run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+      
       - name: Generate Contributors Images
         uses: jaywcjlove/github-action-contributors@main
         with:
           filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
-          output: build/CONTRIBUTORS.svg
+          output: dist/CONTRIBUTORS.svg
           avatarSize: 42
 
       - name: Create Tag
         id: create_tag
         uses: jaywcjlove/create-tag-action@v1.3.6
         with:
-          package-path: package.json
+          package-path: ./package.json
 
       - name: get tag version
         id: tag_version
         uses: jaywcjlove/changelog-generator@v1.5.3
 
-      - name: Deploy
+      - name: Deploy Website
         uses: peaceiris/actions-gh-pages@v3
         with:
-          commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-            
+          commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
       - name: Generate Changelog
         id: changelog
         uses: jaywcjlove/changelog-generator@v1.5.3
         with:
-          head-ref: ${{steps.create_tag.outputs.version}}
-          filter-author: (renovate-bot|Renovate Bot)
-          filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+          filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
 
       - name: Create Release
         uses: ncipollo/release-action@v1
@@ -59,7 +65,6 @@ jobs:
           tag: ${{ steps.create_tag.outputs.version }}
           body: |
             Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/jaywcjlove/handbook/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
-            
-            Comparing Changes: ${{ steps.changelog.outputs.compareurl }} 
+            Comparing Changes: ${{ steps.changelog.outputs.compareurl }}  
 
             ${{ steps.changelog.outputs.changelog }}

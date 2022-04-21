@@ -1,5 +1,7 @@
-React-native Android环境搭建.md
----
+React Native Android 环境搭建
+===
+
+<!--idoc:ignore:start-->
 
 ## 目录
 
@@ -18,6 +20,8 @@ React-native Android环境搭建.md
 - [各种报错](#各种报错)
 - [参考资料](#参考资料)
 
+<!--idoc:ignore:end-->
+
 ## 基础安装
 
 ### 安装Homebrew
@@ -31,7 +35,7 @@ Homebrew是Mac OSX的包管理器，我们需要通过Homebrew安装开发React 
 $ brew install node
 ```
 
-### 安装watchman
+### 安装 watchman
 
 watchman是Facebook用于监视JavaScript文件改动的开源项目。
 
@@ -208,6 +212,43 @@ Execution failed for task ':react-native-update:compileReleaseNdk'.
 ```
 
 解决方法：[下载安装NDK和相关工具](https://developer.android.com/ndk/guides/index.html#download-ndk)，菜单进入 **Tools > Android > SDK Manager** 在选项卡中选择 **SDK Tools**，选择 **LLDB**, **CMake**, 和 **NDK** 勾选，点击 **Apply** 进行下载安装。
+
+## Mac 完整卸载 Android Studio
+
+1、卸载Android Studio，在终端(terminal)执行以下命令：
+
+```bash 
+rm -rf /Applications/Android\ Studio.app
+rm -rf ~/Library/Preferences/AndroidStudio*
+rm -rf ~/Library/Application\ Support/AndroidStudio*
+rm -rf ~/Library/Logs/AndroidStudio*
+rm -rf ~/Library/Logs/AndroidStudio
+rm -rf ~/Library/Caches/AndroidStudio*
+```
+
+2、删除Projects
+
+```bash 
+rm -rf ~/AndroidStudioProjects
+```
+
+3、删除gradle
+
+```bash 
+rm -rf ~/.gradle
+```
+
+4、卸载Android Virtual Devices(AVDs) and *.keystore.
+
+```bash
+rm -rf ~/.android
+```
+
+5、删除Android SDK Tools
+
+```bash 
+rm -rf ~/Library/Android*
+```
 
 ## 参考资料
 

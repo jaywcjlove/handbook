@@ -1,15 +1,28 @@
 {
-  "name": "handbook",
-  "version": "1.0.0",
+  "$schema": "https://json.schemastore.org/package.json",
   "private": true,
-  "scripts": {
-    "start": "node scripts/build.mjs"
-  },
+  "name": "handbook",
+  "description": "放置我的笔记、搜集、摘录、实践，保持好奇心。看文需谨慎，后果很严重。",
+  "version": "1.0.0",
   "author": "jaywcjlove",
   "license": "MIT",
-  "homepage": "https://jaywcjlove.github.io/handbook",
-  "devDependencies": {
-    "markdown-to-html-cli": "~3.4.7",
-    "recursive-readdir-files": "~2.0.7"
+  "scripts": {
+    "start": "idoc --watch",
+    "build": "idoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/handbook"
+  },
+  "keywords": [
+    "handbook",
+    "笔记",
+    "搜集",
+    "摘录",
+    "实践",
+    "tutorial"
+  ],
+  "dependencies": {
+    "idoc": "^1.10.6"
   }
 }
