@@ -162,7 +162,7 @@
 - [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST。
 - [NginxConfig](https://nginxconfig.io/) Nginx配置在线极速生成“神器” [Github](https://github.com/digitalocean/nginxconfig.io)
 - [i18ns](https://i18ns.com/) 一个免费的i18n翻译搜索引擎
-- [TableConvert](https://tableconvert.com/) Markdown表格编辑器，可通过导入json、csv、excel、html table生成Markdown表格。
+- [TableConvert](https://tableconvert.com/) Markdown表格编辑器，可通过导入json/csv/excel/html table生成Markdown表格。
 - [Chronologic Versioning](https://chronver.org/) 基于时间版本控制规范
 - [semver](https://semver.org/lang/zh-CN/) 语义化版本 2.0.0 语义化版本规范
 - [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
