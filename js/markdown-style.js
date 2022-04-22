@@ -540,14 +540,14 @@ markdown-style .absent {
   color: var(--color-danger-fg);
 }
 
-markdown-style .anchor {
+markdown-style a.anchor {
   float: left;
   padding-right: 4px;
   margin-left: -20px;
   line-height: 1;
 }
 
-markdown-style .anchor:focus {
+markdown-style a.anchor:focus {
   outline: none;
 }
 
