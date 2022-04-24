@@ -55,7 +55,7 @@
 ## 搜集整理
 
 - **[70多个公众账号推荐，助你了解程序员的世界★★★★★](./docs/other/weixin-public-account.md)**
-- **[常见HTTP/FTP/WebSockets状态码大全★★★★★](./docs/other/HTTP-status-codes.mdd)**
+- **[常见HTTP/FTP/WebSockets状态码大全★★★★★](./docs/other/HTTP-status-codes.md)**
 - [国内互联网公司的开源项目及Github地址汇总](./docs/other/github-oraganizations.md)
 - [通过代理工具提高Github Clone速度](./docs/other/%E9%80%9A%E8%BF%87%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7%E6%8F%90%E9%AB%98Github%20Clone%E9%80%9F%E5%BA%A6.md)
 - [谷歌(Google)镜像](https://github.com/jaywcjlove/google)
