@@ -92,7 +92,16 @@
   preventClickHandle('markdown-style a.anchor[href*="#"][aria-hidden]');
   preventClickHandle('.tocs aside.inner.toc a.tocs-link');
 
+  function updateSiderBarScroll() {
+    const siderBar = document.querySelector(".sidebar[role*='navigation']");
+    const siderAnchor = document.querySelector(".sidebar[role*='navigation'] a[class*='active']");
+    if (siderAnchor) {
+      siderBar.scrollTop = siderAnchor.offsetTop;
+    }
+  }
+
   const timer = setTimeout(() => {
+    updateSiderBarScroll();
     updateScroll();
     updateAnchor();
     tocsCollapse()

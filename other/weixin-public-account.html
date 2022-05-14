@@ -1,1132 +1,516 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>公众账号推荐 handbook </title>
-  
-  <meta name="description" content="这里推荐一些优质的并且更新频繁的微信公众账号，助你了解码农的世界，了解一线 IT 技术、 IT 行业和IT 资讯寻找同道中人。你我同行，每天迈出一小步，不断 get 新的装逼技能！这里有技术文章、工具、教程、热点资讯...">
-  
-  
-  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
-  
-  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650812453892">
-  
-  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650812453892">
-  
-  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650812453892">
-  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650812453892">
-  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650812453892">
-  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众账号推荐 handbook</title>
+    <meta name="description" content="这里推荐一些优质的并且更新频繁的微信公众账号，助你了解码农的世界，了解一线 IT 技术、 IT 行业和IT 资讯寻找同道中人。你我同行，每天迈出一小步，不断 get 新的装逼技能！这里有技术文章、工具、教程、热点资讯...">
+    <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+    <link rel="stylesheet" type="text/css" href="../css/main.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/media.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/demo-preview.css?v=1.21.1">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <script src="../js/copy.js"></script>
-  <script src="../js/dark-mode.js"></script>
-  <script src="../js/markdown-style.js"></script>
-</head>
-<body id="idoctotop">
-  <a href="#idoctotop" class="gototop">top</a>
-<header class="header">
-  <article class="inner warpper">
-    <a class="logo" href="../index.html">
-      
-        <img alt="handbook logo" src="data:image/png;base64,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">
-      
-      <span class="title">handbook</span>
-    </a>
-    <div class="content">
-      <ul class="menu">
-        
-        <li>
-          <a href="../index.html" target="" class=""> Home </a>
-        </li>
-        
-        <li>
-          <a href="../awesome.html" target="" class=""> Awesome </a>
-        </li>
-        
-        <li>
-          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
-        </li>
-        
-      </ul>
-      
-        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-      
-      <dark-mode permanent></dark-mode>
+    <script src="../js/copy.js?v=1.21.1"></script>
+    <script src="../js/dark-mode.js?v=1.21.1"></script>
+    <script src="../js/markdown-style.js?v=1.21.1"></script>
+  </head>
+  <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
+    <header class="header">
+      <article class="inner warpper"><a class="logo" href="../index.html"><img alt="handbook logo" src="data:image/png;base64,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">
+<span class="title">handbook</span></a>
+        <div class="content">
+          <ul class="menu">
+            <li><a href="../index.html" target="" class="">Home</a></li>
+            <li><a href="../awesome.html" target="" class="">Awesome</a></li>
+            <li><a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class="">🇨🇳</a></li>
+          </ul><a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg></a>
+          <dark-mode permanent=""></dark-mode>
+        </div>
+      </article>
+    </header>
+    <div class="warpper-content warpper sidebar">
+      <div class="sidebar-border">
+        <aside class="sidebar" role="navigation">
+          <div>
+            <label>JavaScript</label>
+            <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+            <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+            <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+            <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+            <label>Redis</label>
+            <a href="../Redis/index.html" class="">快速入门 Redis</a>
+            <label>Android</label>
+            <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+            <label>CentOS</label>
+            <a href="../CentOS/CentOS.html" class="">CentOS 常用命令</a>
+            <a href="../CentOS/CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+            <a href="../CentOS/常用基础命令.html" class="">常用基础命令</a>
+            <a href="../CentOS/CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+            <a href="../CentOS/CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+            <a href="../CentOS/CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+            <a href="../CentOS/CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+            <a href="../CentOS/Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+            <a href="../CentOS/Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+            <a href="../CentOS/Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+            <a href="../CentOS/Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+            <a href="../CentOS/Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+            <a href="../CentOS/Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+            <a href="../CentOS/Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+            <a href="../CentOS/Rocket.Chat.html" class="">Rocket.Chat</a>
+            <a href="../CentOS/Ruby安装.html" class="">Ruby 安装</a>
+            <a href="../CentOS/samba.html" class="">Samba 安装</a>
+            <a href="../CentOS/在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+            <a href="../CentOS/Java.html" class="">安装 Java</a>
+            <a href="../CentOS/部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+            <a href="../CentOS/搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+            <a href="../CentOS/部署YApi平台.html" class="">部署 YApi 平台</a>
+            <a href="../CentOS/openstack.html" class="">搭建 OpenStack</a>
+            <a href="../CentOS/pip.html" class="">安装 pip 工具</a>
+            <a href="../CentOS/修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+            <a href="../CentOS/尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+            <a href="../CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+            <a href="../CentOS/svn.html" class="">安装使用 svn</a>
+            <a href="../CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>其它</label>
+            <a href="weixin-public-account.html" class="active">公众账号推荐</a>
+            <a href="google.html" class="">谷歌(Google)镜像</a>
+            <a href="离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+            <a href="通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+            <a href="github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+            <a href="HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+            <a href="Lua5.3.html" class="">Lua 5.3 文档</a>
+            <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+            <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+          </div>
+        </aside>
+      </div>
+      <markdown-style>
+        <h1 id="公众账号推荐"><a aria-hidden="true" tabindex="-1" href="#公众账号推荐" class="anchor"><span class="icon icon-link"></span></a>公众账号推荐</h1>
+        <p>这里推荐一些优质的并且更新频繁的微信公众账号，助你了解码农的世界，了解一线 IT 技术、 IT 行业和IT 资讯寻找同道中人。你我同行，每天迈出一小步，不断 get 新的装逼技能！这里有技术文章、工具、教程、热点资讯...</p>
+        <p>获取二维码方法：<code>http://open.weixin.qq.com/qr/code?username=公众账号</code>，例如：<a href="http://open.weixin.qq.com/qr/code?username=jsdigs">JSdig</a></p>
+        <h2 id="业界资讯"><a aria-hidden="true" tabindex="-1" href="#业界资讯" class="anchor"><span class="icon icon-link"></span></a>业界资讯</h2>
+        <h3 id="infoq"><a aria-hidden="true" tabindex="-1" href="#infoq" class="anchor"><span class="icon icon-link"></span></a>InfoQ</h3>
+        <p>微信号: <code>infoqchina</code>，有内容的技术社区媒体</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=infoqchina"><img src="img/infoqchina.jpg" alt=""></a></p>
+        <h3 id="36氪"><a aria-hidden="true" tabindex="-1" href="#36氪" class="anchor"><span class="icon icon-link"></span></a>36氪</h3>
+        <p>微信号: <code>wow36kr</code>，有内容的技术社区媒体</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=wow36kr"><img src="img/wow36kr.jpg" alt=""></a></p>
+        <h3 id="极客公园"><a aria-hidden="true" tabindex="-1" href="#极客公园" class="anchor"><span class="icon icon-link"></span></a>极客公园</h3>
+        <p>微信号: <code>geekpark</code>，科技创新者的大本营。汇聚优秀的产品报道、评测视频和高质量的线下活动。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=geekpark"><img src="img/geekpark.jpg" alt=""></a></p>
+        <h3 id="腾讯开源"><a aria-hidden="true" tabindex="-1" href="#腾讯开源" class="anchor"><span class="icon icon-link"></span></a>腾讯开源</h3>
+        <p>微信号: <code>tencentopen</code>，腾讯官方开源动态、开发经验分享。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=tencentopen"><img src="img/tencentopen.jpg" alt=""></a></p>
+        <h2 id="全栈"><a aria-hidden="true" tabindex="-1" href="#全栈" class="anchor"><span class="icon icon-link"></span></a>全栈</h2>
+        <h3 id="程序员的那些事"><a aria-hidden="true" tabindex="-1" href="#程序员的那些事" class="anchor"><span class="icon icon-link"></span></a>程序员的那些事</h3>
+        <p>微信号: <code>iProgrammer</code>，「程序员的那些事」是最受欢迎的程序员、IT 技术和 IT 行业相关的微信公众号之一，分享 IT 技术资讯、经典文章和书籍、热门课程、高薪职位、职场和趣文，传播极客精神，更有难得一见的 IT 相亲活动。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=iProgrammer"><img src="img/iProgrammer.jpg" alt=""></a></p>
+        <h3 id="全栈开发者中心"><a aria-hidden="true" tabindex="-1" href="#全栈开发者中心" class="anchor"><span class="icon icon-link"></span></a>全栈开发者中心</h3>
+        <p>微信号: <code>admin10000_com</code>，全栈开发者，也叫全端工程师，指同时具备 Web前端，后端，移动端的能力，掌握多种编程语言，并能利用多种技能独立完成产品的人。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=admin10000_com"><img src="img/admin10000_com.jpg" alt=""></a></p>
+        <h3 id="算法爱好者"><a aria-hidden="true" tabindex="-1" href="#算法爱好者" class="anchor"><span class="icon icon-link"></span></a>算法爱好者</h3>
+        <p>微信号: <code>AlgorithmFans</code>，算法是程序员的内功！「算法爱好者」专注分享算法相关文章、工具资源和算法题，帮程序员修炼内功。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=AlgorithmFans"><img src="img/AlgorithmFans.jpg" alt=""></a></p>
+        <h3 id="算法与数学之美"><a aria-hidden="true" tabindex="-1" href="#算法与数学之美" class="anchor"><span class="icon icon-link"></span></a>算法与数学之美</h3>
+        <p>微信号: <code>MathAndAlgorithm</code>，交流思想，分享知识，碰撞火花，包容自己！</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=MathAndAlgorithm"><img src="img/MathAndAlgorithm.jpg" alt=""></a></p>
+        <h3 id="appzone"><a aria-hidden="true" tabindex="-1" href="#appzone" class="anchor"><span class="icon icon-link"></span></a>APPZone</h3>
+        <p>微信号：<code>App_Zone</code>，关注最新技术动向、煮鸡汤、推荐高逼格应用等精选内容。一切的一切只为遇见未来最好的你</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=App_Zone"><img src="img/APPZone.jpg" alt=""></a></p>
+        <h3 id="技术最前线"><a aria-hidden="true" tabindex="-1" href="#技术最前线" class="anchor"><span class="icon icon-link"></span></a>技术最前线</h3>
+        <p>微信号: <code>TopITNews</code>，「技术最前线」是伯乐头条的官方微信公众号，专注分享 IT 最新技术和业界动态。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=TopITNews"><img src="img/TopITNews.jpg" alt=""></a></p>
+        <h3 id="互联网技术联盟"><a aria-hidden="true" tabindex="-1" href="#互联网技术联盟" class="anchor"><span class="icon icon-link"></span></a>互联网技术联盟</h3>
+        <p>微信号: <code>ita1024K</code>，ITA1024-业界顶级技术分享系列活动</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=ita1024K"><img src="img/ita1024K.jpg" alt=""></a></p>
+        <h3 id="互联网er的早读课"><a aria-hidden="true" tabindex="-1" href="#互联网er的早读课" class="anchor"><span class="icon icon-link"></span></a>互联网er的早读课</h3>
+        <p>微信号: <code>zaoduke</code>，专注互联网产品、用研、交互、设计、运营等领域精选内容。信息爆炸的时代，每天用心去读一篇文章，也许胜过你的走马观花。每早八点，我们等你。<a href="http://reynold.cn">http://reynold.cn</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=zaoduke"><img src="img/zaoduke.jpg" alt=""></a></p>
+        <h2 id="操作系统"><a aria-hidden="true" tabindex="-1" href="#操作系统" class="anchor"><span class="icon icon-link"></span></a>操作系统</h2>
+        <h3 id="linux爱好者"><a aria-hidden="true" tabindex="-1" href="#linux爱好者" class="anchor"><span class="icon icon-link"></span></a>Linux爱好者</h3>
+        <p>微信号: <code>LinuxHub</code>，「Linux爱好者」专注分享 Linux 开发和运维相关资讯、工具资源、使用技巧、热门课程、高薪职位和经典书籍等。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=LinuxHub"><img src="img/LinuxHub.jpg" alt=""></a></p>
+        <h3 id="linux内核之旅"><a aria-hidden="true" tabindex="-1" href="#linux内核之旅" class="anchor"><span class="icon icon-link"></span></a>Linux内核之旅</h3>
+        <p>微信号: <code>LinuxKernelTravel</code>，Linux内核之旅</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=LinuxKernelTravel"><img src="img/LinuxKernelTravel.jpg" alt=""></a></p>
+        <h3 id="老马说编程"><a aria-hidden="true" tabindex="-1" href="#老马说编程" class="anchor"><span class="icon icon-link"></span></a>老马说编程</h3>
+        <p>微信号: <code>laoma_shuo</code>，从入门到高级, 深入浅出, 老马和你一起探索编程及计算机技术的本质, 篇篇原创, 用心写作。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=laoma_shuo"><img src="img/laoma_shuo.jpg" alt=""></a></p>
+        <h2 id="应用系统"><a aria-hidden="true" tabindex="-1" href="#应用系统" class="anchor"><span class="icon icon-link"></span></a>应用系统</h2>
+        <h3 id="可靠分布式系统"><a aria-hidden="true" tabindex="-1" href="#可靠分布式系统" class="anchor"><span class="icon icon-link"></span></a>可靠分布式系统</h3>
+        <p>微信号: <code>gh_8ae86125f17b</code>，Concentrate on Reliable-Distributed-System,Providing BigData-Technology-Solution.</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_8ae86125f17b"><img src="img/gh_8ae86125f17b.jpg" alt=""></a></p>
+        <h3 id="架构师之路"><a aria-hidden="true" tabindex="-1" href="#架构师之路" class="anchor"><span class="icon icon-link"></span></a>架构师之路</h3>
+        <p>微信号: <code>gh_10a6b96351a9</code>，坚持撰写接地气的架构文章 | 通往架构师之路，悠远而漫长，一路上，我们同行。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_10a6b96351a9"><img src="img/gh_10a6b96351a9.jpg" alt=""></a></p>
+        <h3 id="聊聊架构"><a aria-hidden="true" tabindex="-1" href="#聊聊架构" class="anchor"><span class="icon icon-link"></span></a>聊聊架构</h3>
+        <p>微信号: <code>archtime</code>，在这里煮酒聊架构。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=archtime"><img src="img/archtime.jpg" alt=""></a></p>
+        <h3 id="高可用架构"><a aria-hidden="true" tabindex="-1" href="#高可用架构" class="anchor"><span class="icon icon-link"></span></a>高可用架构</h3>
+        <p>微信号: <code>ArchNotes</code>，高可用架构公众号。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=ArchNotes"><img src="img/ArchNotes.jpg" alt=""></a></p>
+        <h3 id="cloudman"><a aria-hidden="true" tabindex="-1" href="#cloudman" class="anchor"><span class="icon icon-link"></span></a>CloudMan</h3>
+        <p>微信号: <code>cloudman6</code>，云计算深度实践者;定期发布《每天5分钟玩转OpenStack》教程;让 OpenStack 不再难学!。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=cloudman6"><img src="img/cloudman6.jpg" alt=""></a></p>
+        <h2 id="编程语言"><a aria-hidden="true" tabindex="-1" href="#编程语言" class="anchor"><span class="icon icon-link"></span></a>编程语言</h2>
+        <h3 id="python开发者"><a aria-hidden="true" tabindex="-1" href="#python开发者" class="anchor"><span class="icon icon-link"></span></a>Python开发者</h3>
+        <p>微信号: <code>PythonCoder</code>，人生苦短，我用 Python。Python 越来越受广大程序员的喜爱。「Python开发者」是最受欢迎的、专注分享 Python 技术的微信公众号，主要分享 Python 、大数据、机器学习相关资讯、技术文章、工具资源、热门教程和高薪职位等。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=PythonCoder"><img src="img/PythonCoder.jpg" alt=""></a></p>
+        <h3 id="node全栈"><a aria-hidden="true" tabindex="-1" href="#node全栈" class="anchor"><span class="icon icon-link"></span></a>Node全栈</h3>
+        <p>微信号: <code>nodeonly</code>，一个全栈程序员的世界，关注最新开源技术架构，编程实践，敏捷开发，当然偶尔也会有我给朋友们的解惑文章，欢迎关注，欢迎提问</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=nodeonly"><img src="img/nodeonly.jpg" alt=""></a></p>
+        <h3 id="css魔法"><a aria-hidden="true" tabindex="-1" href="#css魔法" class="anchor"><span class="icon icon-link"></span></a>CSS魔法</h3>
+        <p>微信号: <code>cssmagic_wx</code>，前端进阶，你我同行。每天迈出一小步，不断收获新技能！</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=cssmagic_wx"><img src="img/cssmagic_wx.jpg" alt=""></a></p>
+        <h3 id="go中国"><a aria-hidden="true" tabindex="-1" href="#go中国" class="anchor"><span class="icon icon-link"></span></a>Go中国</h3>
+        <p>微信号: <code>golangchina</code>，golang语言相关的资讯推送</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=golangchina"><img src="img/golangchina.jpg" alt=""></a></p>
+        <h3 id="你假笨"><a aria-hidden="true" tabindex="-1" href="#你假笨" class="anchor"><span class="icon icon-link"></span></a>你假笨</h3>
+        <p>微信号: <code>lovestblog</code>，码农的一片净土，在这里围绕JVM为你分享一些自己的学习经历，碰到的经典性能案例及调优经验，有新的文章一般都会同步到个人博客www.lovestblog.cn</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=lovestblog"><img src="img/lovestblog.jpg" alt=""></a></p>
+        <h3 id="importnew"><a aria-hidden="true" tabindex="-1" href="#importnew" class="anchor"><span class="icon icon-link"></span></a>ImportNew</h3>
+        <p>微信号: <code>ImportNew</code>，「ImportNew」是最受欢迎的、专注 Java 技术分享的微信公众号。分享 Java 技术动态、基础技术、进阶技能、架构设计、经典书籍、热门课程和高薪职位等。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=ImportNew"><img src="img/ImportNew.jpg" alt=""></a></p>
+        <h2 id="前端开发"><a aria-hidden="true" tabindex="-1" href="#前端开发" class="anchor"><span class="icon icon-link"></span></a>前端开发</h2>
+        <h3 id="前端早读课"><a aria-hidden="true" tabindex="-1" href="#前端早读课" class="anchor"><span class="icon icon-link"></span></a>前端早读课</h3>
+        <p>微信号: <code>FeZaoDuKe</code>，关注前端，产品设计。 每天5点半推送1篇相关文章到公众号，我们不创造内容，我们只是优秀内容的搬运者。 坚持每天阅读，每天进步一点点</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=FeZaoDuKe"><img src="img/FeZaoDuKe.jpg" alt=""></a></p>
+        <h3 id="前端之巅"><a aria-hidden="true" tabindex="-1" href="#前端之巅" class="anchor"><span class="icon icon-link"></span></a>前端之巅</h3>
+        <p>微信号: <code>frontshow</code>，关注前端发展，分享一线技术。不断学习，不断进步，登上前端之巅！</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=frontshow"><img src="img/frontshow.jpg" alt=""></a></p>
+        <h3 id="前端大全"><a aria-hidden="true" tabindex="-1" href="#前端大全" class="anchor"><span class="icon icon-link"></span></a>前端大全</h3>
+        <p>微信号: <code>FrontDev</code>，「前端大全」专注分享 Web 前端相关的内容，包括 JavaScript、CSS 和 HTML5 相关资讯、工具资源、使用技巧、热门课程、高薪职位和经典书籍等。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=FrontDev"><img src="img/FrontDev.jpg" alt=""></a></p>
+        <h3 id="前端开发知识"><a aria-hidden="true" tabindex="-1" href="#前端开发知识" class="anchor"><span class="icon icon-link"></span></a>前端开发知识</h3>
+        <p>微信号: <code>web-bear</code>，提供关于web前端开发中html5、js、css3、nodejs的有趣、最新、最酷的知识</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=web-bear"><img src="img/web-bear.jpg" alt=""></a></p>
+        <h3 id="jsdig"><a aria-hidden="true" tabindex="-1" href="#jsdig" class="anchor"><span class="icon icon-link"></span></a>JSdig</h3>
+        <p>微信号: <code>jsdigs</code>，JSdig分享挖掘js相关技术文章、工具、教程、热点资讯等。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=jsdigs"><img src="img/jsdigs.jpg" alt=""></a></p>
+        <h3 id="前端开发-1"><a aria-hidden="true" tabindex="-1" href="#前端开发-1" class="anchor"><span class="icon icon-link"></span></a>前端开发</h3>
+        <p>微信号: <code>qianduan1024</code>，分享Web前端开发中HTML5、JavaScript、CSS3编程学习知识</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=qianduan1024"><img src="img/qianduan1024.jpg" alt=""></a></p>
+        <h3 id="前端外刊评论"><a aria-hidden="true" tabindex="-1" href="#前端外刊评论" class="anchor"><span class="icon icon-link"></span></a>前端外刊评论</h3>
+        <p>微信号: <code>FrontendMagazine</code>，最新、最前沿的前端资讯，最有深入、最干前端相关的技术译文。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=FrontendMagazine"><img src="img/FrontendMagazine.jpg" alt=""></a></p>
+        <h3 id="ddfe"><a aria-hidden="true" tabindex="-1" href="#ddfe" class="anchor"><span class="icon icon-link"></span></a>DDFE</h3>
+        <p>微信号: <code>gh_24b9dae85adf</code>，滴滴前端技术分享 - 推荐国内外前沿、优秀的技术内容，包含 Nodejs、工程自动化、编译器、新技术方向等</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_24b9dae85adf"><img src="img/DDFE.jpg" alt=""></a></p>
+        <h3 id="w3cplus"><a aria-hidden="true" tabindex="-1" href="#w3cplus" class="anchor"><span class="icon icon-link"></span></a>W3cplus</h3>
+        <p>微信号: <code>w3cplus_12</code>，W3CPLUS是一个前端爱好者的家园，W3CPLUS努力打造最优秀的web 前端学习的站点。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=w3cplus_12"><img src="img/w3cplus_12.jpg" alt=""></a></p>
+        <h3 id="前端这么大我想去看看"><a aria-hidden="true" tabindex="-1" href="#前端这么大我想去看看" class="anchor"><span class="icon icon-link"></span></a>前端这么大我想去看看</h3>
+        <p>微信号: <code>feworld</code>，讲讲那些前端圈有趣的故事。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=feworld"><img src="img/feworld.jpg" alt=""></a></p>
+        <h2 id="移动开发"><a aria-hidden="true" tabindex="-1" href="#移动开发" class="anchor"><span class="icon icon-link"></span></a>移动开发</h2>
+        <h3 id="江清清"><a aria-hidden="true" tabindex="-1" href="#江清清" class="anchor"><span class="icon icon-link"></span></a>江清清</h3>
+        <p>微信号: <code>codedev123</code>，每天推送分享移动开发技术(Android/iOS)，React Native技术文章，项目管理，程序猿日常点滴以及精品技术资讯文章。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=codedev123"><img src="img/codedev123.jpg" alt=""></a></p>
+        <h3 id="移动开发前线"><a aria-hidden="true" tabindex="-1" href="#移动开发前线" class="anchor"><span class="icon icon-link"></span></a>移动开发前线</h3>
+        <p>微信号: <code>bornmobile</code>，专注于分享移动开发前沿和一线技术。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=bornmobile"><img src="img/bornmobile.jpg" alt=""></a></p>
+        <h3 id="ios开发"><a aria-hidden="true" tabindex="-1" href="#ios开发" class="anchor"><span class="icon icon-link"></span></a>iOS开发</h3>
+        <p>微信号: <code>iOSDevTip</code>，最新iOS、iPhone资讯，万名iOS开发者、swift开发、果粉聚集，参与技术讨论，整理开发技巧，分享创业经验！享受生活、热爱编程！</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=iOSDevTip"><img src="img/iOSDevTip.jpg" alt=""></a></p>
+        <h3 id="ios开发美学"><a aria-hidden="true" tabindex="-1" href="#ios开发美学" class="anchor"><span class="icon icon-link"></span></a>iOS开发美学</h3>
+        <p>微信号: <code>iOSkfmx</code>，「iOS开发美学」是iOS移动端开发第一交流平台，将定期推送开发过程中需掌握的知识点及一些开发技巧，帮助您掌握核心iOS上架开发技术。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=iOSkfmx"><img src="img/iOSkfmx.jpg" alt=""></a></p>
+        <h3 id="ios开发精选"><a aria-hidden="true" tabindex="-1" href="#ios开发精选" class="anchor"><span class="icon icon-link"></span></a>IOS开发精选</h3>
+        <p>微信号: <code>iOSDevelopment</code>，旨在提供最前沿iOS技术文章，xcode开发工具使用技巧，最新iOS开源代码汇编，以及国外技术网站论坛介绍，每天为大家提供最有价值的开发信息。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=iOSDevelopment"><img src="img/iOSDevelopment.jpg" alt=""></a></p>
+        <h3 id="安卓开发精选"><a aria-hidden="true" tabindex="-1" href="#安卓开发精选" class="anchor"><span class="icon icon-link"></span></a>安卓开发精选</h3>
+        <p>微信号: <code>androidpd</code>，伯乐在线旗下账号专注分享安卓开发相关资讯、经典技术文章、App 设计与推广、热门课程、高薪职位和经典书籍等</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=androidpd"><img src="img/androidpd.jpg" alt=""></a></p>
+        <h3 id="吴小龙同学"><a aria-hidden="true" tabindex="-1" href="#吴小龙同学" class="anchor"><span class="icon icon-link"></span></a>吴小龙同学</h3>
+        <p>微信号: <code>gh_f86c241826a6</code>，不止于技术分享，还有诗和远方~</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_f86c241826a6"><img src="img/gh_f86c241826a6.jpg" alt=""></a></p>
+        <h2 id="数据库"><a aria-hidden="true" tabindex="-1" href="#数据库" class="anchor"><span class="icon icon-link"></span></a>数据库</h2>
+        <h3 id="数据库开发"><a aria-hidden="true" tabindex="-1" href="#数据库开发" class="anchor"><span class="icon icon-link"></span></a>数据库开发</h3>
+        <p>微信号: <code>DBDevs</code>，「数据库开发」专注分享数据库和运维相关行业动态、工具资源、经典文章、热门课程、高薪职位和经典书籍等。文章内容涉及各种主流 DB 的最佳实践、数据库基础知识、性能优化、数据安全等。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=DBDevs"><img src="img/DBDevs.jpg" alt=""></a></p>
+        <h3 id="数据库开发-1"><a aria-hidden="true" tabindex="-1" href="#数据库开发-1" class="anchor"><span class="icon icon-link"></span></a>数据库开发</h3>
+        <p>微信号: <code>iMySQL_WX</code>，叶金荣，ORACLE MySQL ACE，专注MySQL十余年，分享MySQL技术及工作心得。 个人站点：<a href="http://imysql.com%EF%BC%8CQQ%E7%BE%A4%EF%BC%9A272675472%E3%80%82">http://imysql.com，QQ群：272675472。</a> ACMUG（<a href="http://acmug.com%EF%BC%89%E5%AE%98%E6%96%B9%E6%8C%87%E5%AE%9A%E8%BF%90%E8%90%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%82">http://acmug.com）官方指定运营公众号。</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=iMySQL_WX"><img src="img/iMySQL_WX.jpg" alt=""></a></p>
+        <h2 id="技术团队"><a aria-hidden="true" tabindex="-1" href="#技术团队" class="anchor"><span class="icon icon-link"></span></a>技术团队</h2>
+        <h3 id="谷歌开发者"><a aria-hidden="true" tabindex="-1" href="#谷歌开发者" class="anchor"><span class="icon icon-link"></span></a>谷歌开发者</h3>
+        <p>微信号: <code>Google_Developers</code>，Google中国官方账号。汇集Android; Chrome; Angular等移动和网络开发技术、Google Play和AdMob等开发者成长、优化和变现平台。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=Google_Developers"><img src="img/Google_Developers.jpg" alt=""></a></p>
+        <h3 id="淘宝前端团队"><a aria-hidden="true" tabindex="-1" href="#淘宝前端团队" class="anchor"><span class="icon icon-link"></span></a>淘宝前端团队</h3>
+        <p>微信号: <code>taobaofed</code>，前端的世界一直在变化着，在各种熟悉的语言进化中迅速的化学反应。也许你和我们一样，对前端的理解也在不断刷新。欢迎你和我们一起，在淘宝这个丰富多彩、包罗万象的平台上，发现无限的潜力。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=taobaofed"><img src="img/taobaofed.jpg" alt=""></a></p>
+        <h3 id="奇舞周刊"><a aria-hidden="true" tabindex="-1" href="#奇舞周刊" class="anchor"><span class="icon icon-link"></span></a>奇舞周刊</h3>
+        <p>微信号: <code>gh_ffb279ea1674</code>，《奇舞周刊》是由奇舞团维护的前端技术周刊。每周五向大家推送前端技术文章。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_ffb279ea1674"><img src="img/gh_ffb279ea1674.jpg" alt=""></a></p>
+        <h3 id="微信移动客户端团队"><a aria-hidden="true" tabindex="-1" href="#微信移动客户端团队" class="anchor"><span class="icon icon-link"></span></a>微信移动客户端团队</h3>
+        <p>微信号: <code>WeMobileDev</code>，微信移动客户端开发团队官号，分享微信在Android、iOS、Mac、Winphone、Windows等平台的开发经验、前沿技术，以及一些鲜为人知的小故事。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=WeMobileDev"><img src="img/WeMobileDev.jpg" alt=""></a></p>
+        <h3 id="美团点评技术团队"><a aria-hidden="true" tabindex="-1" href="#美团点评技术团队" class="anchor"><span class="icon icon-link"></span></a>美团点评技术团队</h3>
+        <p>微信号: <code>meituantech</code>，美团点评技术团队是美团、大众点评多个研发组织的统称，负责支撑和驱动美团大众点评多个业务的发展。该公众账号将面向互联网开发／产品从业者，提供我们研发及部分产品岗位的招聘信息，发布优质原厂技术内容或者相关活动。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=meituantech"><img src="img/meituantech.jpg" alt=""></a></p>
+        <h3 id="百度mux"><a aria-hidden="true" tabindex="-1" href="#百度mux" class="anchor"><span class="icon icon-link"></span></a>百度MUX</h3>
+        <p>微信号: <code>BaiduMUX</code>，百度MUX一直坚持以用户为中心，以创造优秀的产品体验为终极使命，践行“简单极致”的设计理念。我们时刻关注行业动态，总结成长心得，与你分享设计点滴！</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=BaiduMUX"><img src="img/BaiduMUX.jpg" alt=""></a></p>
+        <h3 id="腾讯mxd"><a aria-hidden="true" tabindex="-1" href="#腾讯mxd" class="anchor"><span class="icon icon-link"></span></a>腾讯MXD</h3>
+        <p>微信号: <code>tx_mxd</code>，腾讯MXD是腾讯移动互联网事业部官方设计团队。致力于提升移动设备上的用户体验。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=tx_mxd"><img src="img/tx_mxd.jpg" alt=""></a></p>
+        <h3 id="qq音乐技术团队"><a aria-hidden="true" tabindex="-1" href="#qq音乐技术团队" class="anchor"><span class="icon icon-link"></span></a>QQ音乐技术团队</h3>
+        <p>微信号: <code>-</code>，QQ音乐开发团队公众帐号。关注技术分享与交流。</p>
+        <h3 id="qq空间终端开发团队"><a aria-hidden="true" tabindex="-1" href="#qq空间终端开发团队" class="anchor"><span class="icon icon-link"></span></a>QQ空间终端开发团队</h3>
+        <p>微信号: <code>qzonemobiledev</code>，QQ空间终端开发团队官方账号，分享QQ空间在Android、iOS、H5等平台的开发经验、技术实践以及一些围绕技术研发的话题。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=qzonemobiledev"><img src="img/qzonemobiledev.jpg" alt=""></a></p>
+        <h3 id="ddapp"><a aria-hidden="true" tabindex="-1" href="#ddapp" class="anchor"><span class="icon icon-link"></span></a>DDApp</h3>
+        <p>微信号: <code>gh_01e6cb205409</code>，滴滴客户端App架构团队账号，分享iOS、Android等平台的开发经验、技术探索等有趣话题。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_01e6cb205409"><img src="img/gh_01e6cb205409.jpg" alt=""></a></p>
+        <h3 id="百度大ue讲堂"><a aria-hidden="true" tabindex="-1" href="#百度大ue讲堂" class="anchor"><span class="icon icon-link"></span></a>百度大UE讲堂</h3>
+        <p>微信号: <code>baidudauejiangtang</code>，“我们不培养美工，我们只培养一流的设计师”！【百度大UE讲堂】是百度用户体验部（大UE）推出的精品在线设计课程栏目，集结300名一线设计师，从工具到设计理念，亲自带你从菜鸟快速晋级为设计大咖！</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=baidudauejiangtang"><img src="img/baidudauejiangtang.jpg" alt=""></a></p>
+        <h2 id="官方网站"><a aria-hidden="true" tabindex="-1" href="#官方网站" class="anchor"><span class="icon icon-link"></span></a>官方网站</h2>
+        <h3 id="segmentfault"><a aria-hidden="true" tabindex="-1" href="#segmentfault" class="anchor"><span class="icon icon-link"></span></a>SegmentFault</h3>
+        <p>微信号: <code>gh_f0737a722782</code>，<a href="http://www.sf.gg">SegmentFault</a>开发者社区，是中国年轻开发者喜爱的极客社区，我们为开发者提供最纯粹的技术交流和分享平台。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_f0737a722782"><img src="img/SegmentFault.jpg" alt=""></a></p>
+        <h3 id="开源中国"><a aria-hidden="true" tabindex="-1" href="#开源中国" class="anchor"><span class="icon icon-link"></span></a>开源中国</h3>
+        <p>微信号: <code>oschina2013</code>，OSChina 开源中国 官方微信账号</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=oschina2013"><img src="img/oschina2013.jpg" alt=""></a></p>
+        <h3 id="极客学院官网"><a aria-hidden="true" tabindex="-1" href="#极客学院官网" class="anchor"><span class="icon icon-link"></span></a>极客学院官网</h3>
+        <p>微信号: <code>jikexueyuan00</code>，极客学院官方帐号，最新课程、活动发布。欢迎大家反馈问题哟^_^</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=jikexueyuan00"><img src="img/jikexueyuan00.jpg" alt=""></a></p>
+        <h3 id="w3ctech"><a aria-hidden="true" tabindex="-1" href="#w3ctech" class="anchor"><span class="icon icon-link"></span></a>w3ctech</h3>
+        <p>微信号: <code>gh_229345f1b408</code>，w3ctech是中国最大的知名前端技术社区，网站为：<a href="http://www.w3ctech.com">http://www.w3ctech.com</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=gh_229345f1b408"><img src="img/gh_229345f1b408.jpg" alt=""></a></p>
+        <h3 id="扣钉coding"><a aria-hidden="true" tabindex="-1" href="#扣钉coding" class="anchor"><span class="icon icon-link"></span></a>扣钉Coding</h3>
+        <p>微信号: <code>coding_net</code>，提供代码托管，运行空间，质量控制，项目管理等功能，为开发者提供技术讨论和协作的平台。关注新浪微博@Coding，联系我们请邮件至：<a href="mailto:link@coding.net">link@coding.net</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=coding_net"><img src="img/coding_net.jpg" alt=""></a></p>
+        <h3 id="前端乱炖"><a aria-hidden="true" tabindex="-1" href="#前端乱炖" class="anchor"><span class="icon icon-link"></span></a>前端乱炖</h3>
+        <p>微信号: <code>htmljs</code>，<a href="http://www.html-js.com">http://www.html-js.com</a> 国内最专业的前端原创知识内容社区。本公众号定期推送优选文章，谢谢关注。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=htmljs"><img src="img/htmljs.jpg" alt=""></a></p>
+        <h3 id="凹凸实验室"><a aria-hidden="true" tabindex="-1" href="#凹凸实验室" class="anchor"><span class="icon icon-link"></span></a>凹凸实验室</h3>
+        <p>微信号: <code>AOTULabs</code>，<a href="https://aotu.io/">https://aotu.io/</a> 无折腾不为乐 - 我们爱生活，爱设计，爱技术，爱创作，喜欢闹腾。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=AOTULabs"><img src="img/AOTULabs.jpg" alt=""></a></p>
+        <h3 id="慕课网imooc订阅号"><a aria-hidden="true" tabindex="-1" href="#慕课网imooc订阅号" class="anchor"><span class="icon icon-link"></span></a>慕课网imooc订阅号</h3>
+        <p>微信号: <code>imooc--com</code>，免费的IT技术视频学习、分享网站。可以学习在线编程、前端开发技术、Python、JAVA、C++、安卓开发等互联网技术。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=imooc--com"><img src="img/imooc--com.jpg" alt=""></a></p>
+        <h3 id="前端观察非测试"><a aria-hidden="true" tabindex="-1" href="#前端观察非测试" class="anchor"><span class="icon icon-link"></span></a>前端观察非测试</h3>
+        <p>微信号: <code>iqianduan</code>，前端观察官方微信<a href="https://www.qianduan.net/">https://www.qianduan.net/</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=iqianduan"><img src="img/iqianduan.jpg" alt=""></a></p>
+        <h3 id="脚本之家"><a aria-hidden="true" tabindex="-1" href="#脚本之家" class="anchor"><span class="icon icon-link"></span></a>脚本之家</h3>
+        <p>微信号: <code>jb51net</code>，脚本之家(jb51.net)是国内专业的网站建设资源、脚本编程学习类网站，以后将为大家分享更多有用的信息，希望大家多多支持宣传。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=jb51net"><img src="img/jb51net.jpg" alt=""></a></p>
+        <h3 id="开发者头条"><a aria-hidden="true" tabindex="-1" href="#开发者头条" class="anchor"><span class="icon icon-link"></span></a>开发者头条</h3>
+        <p>微信号: <code>kaifazhetoutiao</code>，程序员的首选阅读分享平台 | 官方应用下载地址：<a href="http://toutiao.io/download">http://toutiao.io/download</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=kaifazhetoutiao"><img src="img/kaifazhetoutiao.jpg" alt=""></a></p>
+        <h3 id="伯乐在线"><a aria-hidden="true" tabindex="-1" href="#伯乐在线" class="anchor"><span class="icon icon-link"></span></a>伯乐在线</h3>
+        <p>微信号: <code>jobbole</code>，关注职业资讯；学习各类职业感悟、心得和经验分享，扩大职业视野；体会求职、工作和创业的历程 - 就在JobBole.com 伯乐在线</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=jobbole"><img src="img/jobbole.jpg" alt=""></a></p>
+        <h3 id="csdn"><a aria-hidden="true" tabindex="-1" href="#csdn" class="anchor"><span class="icon icon-link"></span></a>CSDN</h3>
+        <p>微信号: <code>CSDNnews</code>，CSDN精彩内容每日推荐。我们关注IT产品研发背后的那些人、技术和故事。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=CSDNnews"><img src="img/CSDNnews.jpg" alt=""></a></p>
+        <h3 id="宁皓网"><a aria-hidden="true" tabindex="-1" href="#宁皓网" class="anchor"><span class="icon icon-link"></span></a>宁皓网</h3>
+        <p>微信号: <code>ninghao8080</code>，生活，摄影，旅行，Web 技术 ：）</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=ninghao8080"><img src="img/ninghao8080.jpg" alt=""></a></p>
+        <h3 id="it名人"><a aria-hidden="true" tabindex="-1" href="#it名人" class="anchor"><span class="icon icon-link"></span></a>IT名人</h3>
+        <h3 id="小道消息"><a aria-hidden="true" tabindex="-1" href="#小道消息" class="anchor"><span class="icon icon-link"></span></a>小道消息</h3>
+        <p>微信号: <code>aboutDesigner</code>，分享精选的设计相关文章、案例和行业动态。同时，也会不定期推荐设计教程、高薪职位和设计相关的优秀工具。<br>帐号主体: 冯大辉 @Fenng <a href="http://weibo.com/u/1577826897">微博</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=aboutDesigner"><img src="img/aboutDesigner.jpg" alt=""></a></p>
+        <h3 id="caoz的梦呓"><a aria-hidden="true" tabindex="-1" href="#caoz的梦呓" class="anchor"><span class="icon icon-link"></span></a>caoz的梦呓</h3>
+        <p>微信号: <code>caozsay</code>，caoz的心得与分享，只此一家，别无分号。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=caozsay"><img src="img/caozsay.jpg" alt=""></a></p>
+        <h3 id="产品犬舍"><a aria-hidden="true" tabindex="-1" href="#产品犬舍" class="anchor"><span class="icon icon-link"></span></a>产品犬舍</h3>
+        <p>微信号: <code>thepmdog</code>，汪汪，汪。目前微博上最活跃最知名最资深的产品经理纯银的微信公众号。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=thepmdog"><img src="img/thepmdog.jpg" alt=""></a></p>
+        <h3 id="鬼脚七"><a aria-hidden="true" tabindex="-1" href="#鬼脚七" class="anchor"><span class="icon icon-link"></span></a>鬼脚七</h3>
+        <p>微信号: <code>taobaoguijiaoqi</code>，鬼脚七，真名文德，自媒体人。做自己，爱生活！<br>来自新浪微博认证资料：一淘搜索、淘宝搜索产品负责人鬼脚七(文德) @淘宝鬼脚七 <a href="http://weibo.com/u/3987566895">微博</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=taobaoguijiaoqi"><img src="img/taobaoguijiaoqi.jpg" alt=""></a></p>
+        <h3 id="justjavac"><a aria-hidden="true" tabindex="-1" href="#justjavac" class="anchor"><span class="icon icon-link"></span></a>justjavac</h3>
+        <p>微信号: <code>justjavac-blog</code>，一房两人三餐四季，快意人生<a href="http://weibo.com/u/1361535293">微博</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=justjavac-blog"><img src="img/justjavac-blog.jpg" alt=""></a></p>
+        <h3 id="phodal"><a aria-hidden="true" tabindex="-1" href="#phodal" class="anchor"><span class="icon icon-link"></span></a>phodal</h3>
+        <p>微信号: <code>phodal-weixin</code>，待我代码编成，娶你为妻可好 @花仲马 <a href="http://weibo.com/u/1533917471">微博</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=phodal-weixin"><img src="img/phodal-weixin.jpg" alt=""></a></p>
+        <h3 id="苏生不惑"><a aria-hidden="true" tabindex="-1" href="#苏生不惑" class="anchor"><span class="icon icon-link"></span></a>苏生不惑</h3>
+        <p>微信号: <code>darenzhuzhou</code>，一房两人三餐四季，快意人生。<a href="http://weibo.com/u/2717930601">微博</a></p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=darenzhuzhou"><img src="img/darenzhuzhou.jpg" alt=""></a></p>
+        <h3 id="showmeshell"><a aria-hidden="true" tabindex="-1" href="#showmeshell" class="anchor"><span class="icon icon-link"></span></a>ShowMeShell</h3>
+        <p>微信号: <code>ShowMeShell</code>，关注国外内安全研究趋势，介绍国内外会议前沿技术热点，分享前沿二进制系统安全研究成果。<a href="http://weibo.com/u/2214340953?is_hot=1">微博</a><br>腾讯科恩实验室高级研究员. Pwn2Own 2016 OSX Category Winner. Mobile Pwn2Own 2016 Android Category Winner.</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=ShowMeShell"><img src="img/ShowMeShell.jpg" alt=""></a></p>
+        <h2 id="设计"><a aria-hidden="true" tabindex="-1" href="#设计" class="anchor"><span class="icon icon-link"></span></a>设计</h2>
+        <h3 id="设计的那些事"><a aria-hidden="true" tabindex="-1" href="#设计的那些事" class="anchor"><span class="icon icon-link"></span></a>设计的那些事</h3>
+        <p>微信号: <code>WebNotes</code>，在这里，我想为你呈现一幅中国互联网的清明上河图。<br>冯大辉 @Fenng</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=WebNotes"><img src="img/WebNotes.jpg" alt=""></a></p>
+        <h3 id="ixdc"><a aria-hidden="true" tabindex="-1" href="#ixdc" class="anchor"><span class="icon icon-link"></span></a>IXDC</h3>
+        <p>微信号: <code>ixdcorg</code>，IxDC由广州美术学院设计学院、香港理工大学设计学院、网易、腾讯、华为、中国电信、中国移动、金山等单位联合发起。是全国第一个受政府认可和领导的交互设计专业委员会，致力于引领中国交互设计行业发展。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=ixdcorg"><img src="img/ixdcorg.jpg" alt=""></a></p>
+        <h3 id="腾讯isux"><a aria-hidden="true" tabindex="-1" href="#腾讯isux" class="anchor"><span class="icon icon-link"></span></a>腾讯ISUX</h3>
+        <p>微信号: <code>tencent_isux</code>，腾讯社交用户体验设计，简称ISUX (Internet Social User Experience)，是腾讯核心设计团队， 负责腾讯社交网络相关产品的用户体验设计与研究。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=tencent_isux"><img src="img/tencent_isux.jpg" alt=""></a></p>
+        <h3 id="腾讯cdc体验设计"><a aria-hidden="true" tabindex="-1" href="#腾讯cdc体验设计" class="anchor"><span class="icon icon-link"></span></a>腾讯CDC体验设计</h3>
+        <p>微信号: <code>tx_cdc</code>，关注于互联网视觉设计、交互设计、用户研究、前端开发。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=tx_cdc"><img src="img/tx_cdc.jpg" alt=""></a></p>
+        <h3 id="ui设计达人"><a aria-hidden="true" tabindex="-1" href="#ui设计达人" class="anchor"><span class="icon icon-link"></span></a>UI设计达人</h3>
+        <p>微信号: <code>BestUIDesign</code>，分享 UI 设计精选文章、案例、行业趋势、课程和书籍。</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=BestUIDesign"><img src="img/BestUIDesign.jpg" alt=""></a></p>
+        <h3 id="ui设计达人秀"><a aria-hidden="true" tabindex="-1" href="#ui设计达人秀" class="anchor"><span class="icon icon-link"></span></a>UI设计达人秀</h3>
+        <p>微信号: <code>UI-DRX</code>，这里有最前沿的UI资讯，在这一起分享优秀设计（包括网页设计，web设计，平面设计，游戏设计，手机界面等等）</p>
+        <p><a href="http://open.weixin.qq.com/qr/code?username=UI-DRX"><img src="img/UI-DRX.jpg" alt=""></a></p>
+        <div class="previous"><a class="prev" href="../CentOS/管理远程会话screen工具.html"><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+              <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+            </svg>
+<span>管理远程会话screen工具
+</span></a><a class="next" href="google.html"><span>谷歌(Google)镜像
+</span><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+              <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+            </svg></a></div>
+        <section class="article-footer"><a href="https://github.com/jaywcjlove/handbook/blob/master/docs/other/weixin-public-account.md" class="edit-button" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+<span>Edit this page on GitHub</span>
+</a><span class="atime">2022/05/14</span></section>
+      </markdown-style>
+      <nav class="tocs">
+        <aside class="inner toc">
+          <ol class="tocs-list">
+            <li><a href="#业界资讯" class="tocs-link">业界资讯</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#infoq" class="tocs-link">InfoQ</a></li>
+                <li><a href="#36氪" class="tocs-link">36氪</a></li>
+                <li><a href="#极客公园" class="tocs-link">极客公园</a></li>
+                <li><a href="#腾讯开源" class="tocs-link">腾讯开源</a></li>
+              </ol>
+            </li>
+            <li><a href="#全栈" class="tocs-link">全栈</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#程序员的那些事" class="tocs-link">程序员的那些事</a></li>
+                <li><a href="#全栈开发者中心" class="tocs-link">全栈开发者中心</a></li>
+                <li><a href="#算法爱好者" class="tocs-link">算法爱好者</a></li>
+                <li><a href="#算法与数学之美" class="tocs-link">算法与数学之美</a></li>
+                <li><a href="#appzone" class="tocs-link">APPZone</a></li>
+                <li><a href="#技术最前线" class="tocs-link">技术最前线</a></li>
+                <li><a href="#互联网技术联盟" class="tocs-link">互联网技术联盟</a></li>
+                <li><a href="#互联网er的早读课" class="tocs-link">互联网er的早读课</a></li>
+              </ol>
+            </li>
+            <li><a href="#操作系统" class="tocs-link">操作系统</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#linux爱好者" class="tocs-link">Linux爱好者</a></li>
+                <li><a href="#linux内核之旅" class="tocs-link">Linux内核之旅</a></li>
+                <li><a href="#老马说编程" class="tocs-link">老马说编程</a></li>
+              </ol>
+            </li>
+            <li><a href="#应用系统" class="tocs-link">应用系统</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#可靠分布式系统" class="tocs-link">可靠分布式系统</a></li>
+                <li><a href="#架构师之路" class="tocs-link">架构师之路</a></li>
+                <li><a href="#聊聊架构" class="tocs-link">聊聊架构</a></li>
+                <li><a href="#高可用架构" class="tocs-link">高可用架构</a></li>
+                <li><a href="#cloudman" class="tocs-link">CloudMan</a></li>
+              </ol>
+            </li>
+            <li><a href="#编程语言" class="tocs-link">编程语言</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#python开发者" class="tocs-link">Python开发者</a></li>
+                <li><a href="#node全栈" class="tocs-link">Node全栈</a></li>
+                <li><a href="#css魔法" class="tocs-link">CSS魔法</a></li>
+                <li><a href="#go中国" class="tocs-link">Go中国</a></li>
+                <li><a href="#你假笨" class="tocs-link">你假笨</a></li>
+                <li><a href="#importnew" class="tocs-link">ImportNew</a></li>
+              </ol>
+            </li>
+            <li><a href="#前端开发" class="tocs-link">前端开发</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#前端早读课" class="tocs-link">前端早读课</a></li>
+                <li><a href="#前端之巅" class="tocs-link">前端之巅</a></li>
+                <li><a href="#前端大全" class="tocs-link">前端大全</a></li>
+                <li><a href="#前端开发知识" class="tocs-link">前端开发知识</a></li>
+                <li><a href="#jsdig" class="tocs-link">JSdig</a></li>
+                <li><a href="#前端开发-1" class="tocs-link">前端开发</a></li>
+                <li><a href="#前端外刊评论" class="tocs-link">前端外刊评论</a></li>
+                <li><a href="#ddfe" class="tocs-link">DDFE</a></li>
+                <li><a href="#w3cplus" class="tocs-link">W3cplus</a></li>
+                <li><a href="#前端这么大我想去看看" class="tocs-link">前端这么大我想去看看</a></li>
+              </ol>
+            </li>
+            <li><a href="#移动开发" class="tocs-link">移动开发</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#江清清" class="tocs-link">江清清</a></li>
+                <li><a href="#移动开发前线" class="tocs-link">移动开发前线</a></li>
+                <li><a href="#ios开发" class="tocs-link">iOS开发</a></li>
+                <li><a href="#ios开发美学" class="tocs-link">iOS开发美学</a></li>
+                <li><a href="#ios开发精选" class="tocs-link">IOS开发精选</a></li>
+                <li><a href="#安卓开发精选" class="tocs-link">安卓开发精选</a></li>
+                <li><a href="#吴小龙同学" class="tocs-link">吴小龙同学</a></li>
+              </ol>
+            </li>
+            <li><a href="#数据库" class="tocs-link">数据库</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#数据库开发" class="tocs-link">数据库开发</a></li>
+                <li><a href="#数据库开发-1" class="tocs-link">数据库开发</a></li>
+              </ol>
+            </li>
+            <li><a href="#技术团队" class="tocs-link">技术团队</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#谷歌开发者" class="tocs-link">谷歌开发者</a></li>
+                <li><a href="#淘宝前端团队" class="tocs-link">淘宝前端团队</a></li>
+                <li><a href="#奇舞周刊" class="tocs-link">奇舞周刊</a></li>
+                <li><a href="#微信移动客户端团队" class="tocs-link">微信移动客户端团队</a></li>
+                <li><a href="#美团点评技术团队" class="tocs-link">美团点评技术团队</a></li>
+                <li><a href="#百度mux" class="tocs-link">百度MUX</a></li>
+                <li><a href="#腾讯mxd" class="tocs-link">腾讯MXD</a></li>
+                <li><a href="#qq音乐技术团队" class="tocs-link">QQ音乐技术团队</a></li>
+                <li><a href="#qq空间终端开发团队" class="tocs-link">QQ空间终端开发团队</a></li>
+                <li><a href="#ddapp" class="tocs-link">DDApp</a></li>
+                <li><a href="#百度大ue讲堂" class="tocs-link">百度大UE讲堂</a></li>
+              </ol>
+            </li>
+            <li><a href="#官方网站" class="tocs-link">官方网站</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#segmentfault" class="tocs-link">SegmentFault</a></li>
+                <li><a href="#开源中国" class="tocs-link">开源中国</a></li>
+                <li><a href="#极客学院官网" class="tocs-link">极客学院官网</a></li>
+                <li><a href="#w3ctech" class="tocs-link">w3ctech</a></li>
+                <li><a href="#扣钉coding" class="tocs-link">扣钉Coding</a></li>
+                <li><a href="#前端乱炖" class="tocs-link">前端乱炖</a></li>
+                <li><a href="#凹凸实验室" class="tocs-link">凹凸实验室</a></li>
+                <li><a href="#慕课网imooc订阅号" class="tocs-link">慕课网imooc订阅号</a></li>
+                <li><a href="#前端观察非测试" class="tocs-link">前端观察非测试</a></li>
+                <li><a href="#脚本之家" class="tocs-link">脚本之家</a></li>
+                <li><a href="#开发者头条" class="tocs-link">开发者头条</a></li>
+                <li><a href="#伯乐在线" class="tocs-link">伯乐在线</a></li>
+                <li><a href="#csdn" class="tocs-link">CSDN</a></li>
+                <li><a href="#宁皓网" class="tocs-link">宁皓网</a></li>
+                <li><a href="#it名人" class="tocs-link">IT名人</a></li>
+                <li><a href="#小道消息" class="tocs-link">小道消息</a></li>
+                <li><a href="#caoz的梦呓" class="tocs-link">caoz的梦呓</a></li>
+                <li><a href="#产品犬舍" class="tocs-link">产品犬舍</a></li>
+                <li><a href="#鬼脚七" class="tocs-link">鬼脚七</a></li>
+                <li><a href="#justjavac" class="tocs-link">justjavac</a></li>
+                <li><a href="#phodal" class="tocs-link">phodal</a></li>
+                <li><a href="#苏生不惑" class="tocs-link">苏生不惑</a></li>
+                <li><a href="#showmeshell" class="tocs-link">ShowMeShell</a></li>
+              </ol>
+            </li>
+            <li><a href="#设计" class="tocs-link">设计</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#设计的那些事" class="tocs-link">设计的那些事</a></li>
+                <li><a href="#ixdc" class="tocs-link">IXDC</a></li>
+                <li><a href="#腾讯isux" class="tocs-link">腾讯ISUX</a></li>
+                <li><a href="#腾讯cdc体验设计" class="tocs-link">腾讯CDC体验设计</a></li>
+                <li><a href="#ui设计达人" class="tocs-link">UI设计达人</a></li>
+                <li><a href="#ui设计达人秀" class="tocs-link">UI设计达人秀</a></li>
+              </ol>
+            </li>
+          </ol>
+        </aside>
+      </nav>
     </div>
-  </article>
-</header>
-
-<div class="warpper-content warpper sidebar ">
-  
-<div class="sidebar-border">
-  <aside class="sidebar" role="navigation">
-    <div>
-    
-      
-        <label>JavaScript</label>
-      
-    
-      
-        <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
-      
-    
-      
-        <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
-      
-    
-      
-        <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
-      
-    
-      
-        <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
-      
-    
-      
-        <label>Redis</label>
-      
-    
-      
-        <a href="../Redis/index.html" class="">快速入门 Redis</a>
-      
-    
-      
-        <label>Android</label>
-      
-    
-      
-        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
-      
-    
-      
-        <label>CentOS</label>
-      
-    
-      
-        <a href="../CentOS/CentOS.html" class="">CentOS 常用命令</a>
-      
-    
-      
-        <a href="../CentOS/CentOS7网络配置.html" class="">CentOS7 网络配置</a>
-      
-    
-      
-        <a href="../CentOS/常用基础命令.html" class="">常用基础命令</a>
-      
-    
-      
-        <a href="../CentOS/CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
-      
-    
-      
-        <a href="../CentOS/CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
-      
-    
-      
-        <a href="../CentOS/CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
-      
-    
-      
-        <a href="../CentOS/CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
-      
-    
-      
-        <a href="../CentOS/Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
-      
-    
-      
-        <a href="../CentOS/Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
-      
-    
-      
-        <a href="../CentOS/Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
-      
-    
-      
-        <a href="../CentOS/Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
-      
-    
-      
-        <a href="../CentOS/Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
-      
-    
-      
-        <a href="../CentOS/Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
-      
-    
-      
-        <a href="../CentOS/Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
-      
-    
-      
-        <a href="../CentOS/Rocket.Chat.html" class="">Rocket.Chat</a>
-      
-    
-      
-        <a href="../CentOS/Ruby安装.html" class="">Ruby 安装</a>
-      
-    
-      
-        <a href="../CentOS/samba.html" class="">Samba 安装</a>
-      
-    
-      
-        <a href="../CentOS/在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
-      
-    
-      
-        <a href="../CentOS/Java.html" class="">安装 Java</a>
-      
-    
-      
-        <a href="../CentOS/部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
-      
-    
-      
-        <a href="../CentOS/搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
-      
-    
-      
-        <a href="../CentOS/部署YApi平台.html" class="">部署 YApi 平台</a>
-      
-    
-      
-        <a href="../CentOS/openstack.html" class="">搭建 OpenStack</a>
-      
-    
-      
-        <a href="../CentOS/pip.html" class="">安装 pip 工具</a>
-      
-    
-      
-        <a href="../CentOS/修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
-      
-    
-      
-        <a href="../CentOS/尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
-      
-    
-      
-        <a href="../CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
-      
-    
-      
-        <a href="../CentOS/svn.html" class="">安装使用 svn</a>
-      
-    
-      
-        <a href="../CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
-      
-    
-      
-        <label>其它</label>
-      
-    
-      
-        <a href="weixin-public-account.html" class="active">公众账号推荐</a>
-      
-    
-      
-        <a href="google.html" class="">谷歌(Google)镜像</a>
-      
-    
-      
-        <a href="离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
-      
-    
-      
-        <a href="通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
-      
-    
-      
-        <a href="github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
-      
-    
-      
-        <a href="HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
-      
-    
-      
-        <a href="Lua5.3.html" class="">Lua 5.3 文档</a>
-      
-    
-      
-        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
-      
-    
-      
-        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
-      
-    
-    </div>
-  </aside>
-</div>
-
-  <markdown-style>
-    <h1 id="公众账号推荐"><a aria-hidden="true" tabindex="-1" href="#公众账号推荐" class="anchor"><span class="icon icon-link"></span></a>公众账号推荐</h1>
-<p>这里推荐一些优质的并且更新频繁的微信公众账号，助你了解码农的世界，了解一线 IT 技术、 IT 行业和IT 资讯寻找同道中人。你我同行，每天迈出一小步，不断 get 新的装逼技能！这里有技术文章、工具、教程、热点资讯...</p>
-<p>获取二维码方法：<code>http://open.weixin.qq.com/qr/code?username=公众账号</code>，例如：<a href="http://open.weixin.qq.com/qr/code?username=jsdigs">JSdig</a></p>
-
-<h2 id="业界资讯"><a aria-hidden="true" tabindex="-1" href="#业界资讯" class="anchor"><span class="icon icon-link"></span></a>业界资讯</h2>
-<h3 id="infoq"><a aria-hidden="true" tabindex="-1" href="#infoq" class="anchor"><span class="icon icon-link"></span></a>InfoQ</h3>
-<p>微信号: <code>infoqchina</code>，有内容的技术社区媒体</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=infoqchina"><img src="img/infoqchina.jpg" alt=""></a></p>
-<h3 id="36氪"><a aria-hidden="true" tabindex="-1" href="#36氪" class="anchor"><span class="icon icon-link"></span></a>36氪</h3>
-<p>微信号: <code>wow36kr</code>，有内容的技术社区媒体</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=wow36kr"><img src="img/wow36kr.jpg" alt=""></a></p>
-<h3 id="极客公园"><a aria-hidden="true" tabindex="-1" href="#极客公园" class="anchor"><span class="icon icon-link"></span></a>极客公园</h3>
-<p>微信号: <code>geekpark</code>，科技创新者的大本营。汇聚优秀的产品报道、评测视频和高质量的线下活动。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=geekpark"><img src="img/geekpark.jpg" alt=""></a></p>
-<h3 id="腾讯开源"><a aria-hidden="true" tabindex="-1" href="#腾讯开源" class="anchor"><span class="icon icon-link"></span></a>腾讯开源</h3>
-<p>微信号: <code>tencentopen</code>，腾讯官方开源动态、开发经验分享。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=tencentopen"><img src="img/tencentopen.jpg" alt=""></a></p>
-<h2 id="全栈"><a aria-hidden="true" tabindex="-1" href="#全栈" class="anchor"><span class="icon icon-link"></span></a>全栈</h2>
-<h3 id="程序员的那些事"><a aria-hidden="true" tabindex="-1" href="#程序员的那些事" class="anchor"><span class="icon icon-link"></span></a>程序员的那些事</h3>
-<p>微信号: <code>iProgrammer</code>，「程序员的那些事」是最受欢迎的程序员、IT 技术和 IT 行业相关的微信公众号之一，分享 IT 技术资讯、经典文章和书籍、热门课程、高薪职位、职场和趣文，传播极客精神，更有难得一见的 IT 相亲活动。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=iProgrammer"><img src="img/iProgrammer.jpg" alt=""></a></p>
-<h3 id="全栈开发者中心"><a aria-hidden="true" tabindex="-1" href="#全栈开发者中心" class="anchor"><span class="icon icon-link"></span></a>全栈开发者中心</h3>
-<p>微信号: <code>admin10000_com</code>，全栈开发者，也叫全端工程师，指同时具备 Web前端，后端，移动端的能力，掌握多种编程语言，并能利用多种技能独立完成产品的人。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=admin10000_com"><img src="img/admin10000_com.jpg" alt=""></a></p>
-<h3 id="算法爱好者"><a aria-hidden="true" tabindex="-1" href="#算法爱好者" class="anchor"><span class="icon icon-link"></span></a>算法爱好者</h3>
-<p>微信号: <code>AlgorithmFans</code>，算法是程序员的内功！「算法爱好者」专注分享算法相关文章、工具资源和算法题，帮程序员修炼内功。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=AlgorithmFans"><img src="img/AlgorithmFans.jpg" alt=""></a></p>
-<h3 id="算法与数学之美"><a aria-hidden="true" tabindex="-1" href="#算法与数学之美" class="anchor"><span class="icon icon-link"></span></a>算法与数学之美</h3>
-<p>微信号: <code>MathAndAlgorithm</code>，交流思想，分享知识，碰撞火花，包容自己！</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=MathAndAlgorithm"><img src="img/MathAndAlgorithm.jpg" alt=""></a></p>
-<h3 id="appzone"><a aria-hidden="true" tabindex="-1" href="#appzone" class="anchor"><span class="icon icon-link"></span></a>APPZone</h3>
-<p>微信号：<code>App_Zone</code>，关注最新技术动向、煮鸡汤、推荐高逼格应用等精选内容。一切的一切只为遇见未来最好的你</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=App_Zone"><img src="img/APPZone.jpg" alt=""></a></p>
-<h3 id="技术最前线"><a aria-hidden="true" tabindex="-1" href="#技术最前线" class="anchor"><span class="icon icon-link"></span></a>技术最前线</h3>
-<p>微信号: <code>TopITNews</code>，「技术最前线」是伯乐头条的官方微信公众号，专注分享 IT 最新技术和业界动态。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=TopITNews"><img src="img/TopITNews.jpg" alt=""></a></p>
-<h3 id="互联网技术联盟"><a aria-hidden="true" tabindex="-1" href="#互联网技术联盟" class="anchor"><span class="icon icon-link"></span></a>互联网技术联盟</h3>
-<p>微信号: <code>ita1024K</code>，ITA1024-业界顶级技术分享系列活动</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=ita1024K"><img src="img/ita1024K.jpg" alt=""></a></p>
-<h3 id="互联网er的早读课"><a aria-hidden="true" tabindex="-1" href="#互联网er的早读课" class="anchor"><span class="icon icon-link"></span></a>互联网er的早读课</h3>
-<p>微信号: <code>zaoduke</code>，专注互联网产品、用研、交互、设计、运营等领域精选内容。信息爆炸的时代，每天用心去读一篇文章，也许胜过你的走马观花。每早八点，我们等你。<a href="http://reynold.cn">http://reynold.cn</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=zaoduke"><img src="img/zaoduke.jpg" alt=""></a></p>
-<h2 id="操作系统"><a aria-hidden="true" tabindex="-1" href="#操作系统" class="anchor"><span class="icon icon-link"></span></a>操作系统</h2>
-<h3 id="linux爱好者"><a aria-hidden="true" tabindex="-1" href="#linux爱好者" class="anchor"><span class="icon icon-link"></span></a>Linux爱好者</h3>
-<p>微信号: <code>LinuxHub</code>，「Linux爱好者」专注分享 Linux 开发和运维相关资讯、工具资源、使用技巧、热门课程、高薪职位和经典书籍等。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=LinuxHub"><img src="img/LinuxHub.jpg" alt=""></a></p>
-<h3 id="linux内核之旅"><a aria-hidden="true" tabindex="-1" href="#linux内核之旅" class="anchor"><span class="icon icon-link"></span></a>Linux内核之旅</h3>
-<p>微信号: <code>LinuxKernelTravel</code>，Linux内核之旅</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=LinuxKernelTravel"><img src="img/LinuxKernelTravel.jpg" alt=""></a></p>
-<h3 id="老马说编程"><a aria-hidden="true" tabindex="-1" href="#老马说编程" class="anchor"><span class="icon icon-link"></span></a>老马说编程</h3>
-<p>微信号: <code>laoma_shuo</code>，从入门到高级, 深入浅出, 老马和你一起探索编程及计算机技术的本质, 篇篇原创, 用心写作。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=laoma_shuo"><img src="img/laoma_shuo.jpg" alt=""></a></p>
-<h2 id="应用系统"><a aria-hidden="true" tabindex="-1" href="#应用系统" class="anchor"><span class="icon icon-link"></span></a>应用系统</h2>
-<h3 id="可靠分布式系统"><a aria-hidden="true" tabindex="-1" href="#可靠分布式系统" class="anchor"><span class="icon icon-link"></span></a>可靠分布式系统</h3>
-<p>微信号: <code>gh_8ae86125f17b</code>，Concentrate on Reliable-Distributed-System,Providing BigData-Technology-Solution.</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_8ae86125f17b"><img src="img/gh_8ae86125f17b.jpg" alt=""></a></p>
-<h3 id="架构师之路"><a aria-hidden="true" tabindex="-1" href="#架构师之路" class="anchor"><span class="icon icon-link"></span></a>架构师之路</h3>
-<p>微信号: <code>gh_10a6b96351a9</code>，坚持撰写接地气的架构文章 | 通往架构师之路，悠远而漫长，一路上，我们同行。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_10a6b96351a9"><img src="img/gh_10a6b96351a9.jpg" alt=""></a></p>
-<h3 id="聊聊架构"><a aria-hidden="true" tabindex="-1" href="#聊聊架构" class="anchor"><span class="icon icon-link"></span></a>聊聊架构</h3>
-<p>微信号: <code>archtime</code>，在这里煮酒聊架构。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=archtime"><img src="img/archtime.jpg" alt=""></a></p>
-<h3 id="高可用架构"><a aria-hidden="true" tabindex="-1" href="#高可用架构" class="anchor"><span class="icon icon-link"></span></a>高可用架构</h3>
-<p>微信号: <code>ArchNotes</code>，高可用架构公众号。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=ArchNotes"><img src="img/ArchNotes.jpg" alt=""></a></p>
-<h3 id="cloudman"><a aria-hidden="true" tabindex="-1" href="#cloudman" class="anchor"><span class="icon icon-link"></span></a>CloudMan</h3>
-<p>微信号: <code>cloudman6</code>，云计算深度实践者;定期发布《每天5分钟玩转OpenStack》教程;让 OpenStack 不再难学!。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=cloudman6"><img src="img/cloudman6.jpg" alt=""></a></p>
-<h2 id="编程语言"><a aria-hidden="true" tabindex="-1" href="#编程语言" class="anchor"><span class="icon icon-link"></span></a>编程语言</h2>
-<h3 id="python开发者"><a aria-hidden="true" tabindex="-1" href="#python开发者" class="anchor"><span class="icon icon-link"></span></a>Python开发者</h3>
-<p>微信号: <code>PythonCoder</code>，人生苦短，我用 Python。Python 越来越受广大程序员的喜爱。「Python开发者」是最受欢迎的、专注分享 Python 技术的微信公众号，主要分享 Python 、大数据、机器学习相关资讯、技术文章、工具资源、热门教程和高薪职位等。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=PythonCoder"><img src="img/PythonCoder.jpg" alt=""></a></p>
-<h3 id="node全栈"><a aria-hidden="true" tabindex="-1" href="#node全栈" class="anchor"><span class="icon icon-link"></span></a>Node全栈</h3>
-<p>微信号: <code>nodeonly</code>，一个全栈程序员的世界，关注最新开源技术架构，编程实践，敏捷开发，当然偶尔也会有我给朋友们的解惑文章，欢迎关注，欢迎提问</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=nodeonly"><img src="img/nodeonly.jpg" alt=""></a></p>
-<h3 id="css魔法"><a aria-hidden="true" tabindex="-1" href="#css魔法" class="anchor"><span class="icon icon-link"></span></a>CSS魔法</h3>
-<p>微信号: <code>cssmagic_wx</code>，前端进阶，你我同行。每天迈出一小步，不断收获新技能！</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=cssmagic_wx"><img src="img/cssmagic_wx.jpg" alt=""></a></p>
-<h3 id="go中国"><a aria-hidden="true" tabindex="-1" href="#go中国" class="anchor"><span class="icon icon-link"></span></a>Go中国</h3>
-<p>微信号: <code>golangchina</code>，golang语言相关的资讯推送</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=golangchina"><img src="img/golangchina.jpg" alt=""></a></p>
-<h3 id="你假笨"><a aria-hidden="true" tabindex="-1" href="#你假笨" class="anchor"><span class="icon icon-link"></span></a>你假笨</h3>
-<p>微信号: <code>lovestblog</code>，码农的一片净土，在这里围绕JVM为你分享一些自己的学习经历，碰到的经典性能案例及调优经验，有新的文章一般都会同步到个人博客www.lovestblog.cn</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=lovestblog"><img src="img/lovestblog.jpg" alt=""></a></p>
-<h3 id="importnew"><a aria-hidden="true" tabindex="-1" href="#importnew" class="anchor"><span class="icon icon-link"></span></a>ImportNew</h3>
-<p>微信号: <code>ImportNew</code>，「ImportNew」是最受欢迎的、专注 Java 技术分享的微信公众号。分享 Java 技术动态、基础技术、进阶技能、架构设计、经典书籍、热门课程和高薪职位等。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=ImportNew"><img src="img/ImportNew.jpg" alt=""></a></p>
-<h2 id="前端开发"><a aria-hidden="true" tabindex="-1" href="#前端开发" class="anchor"><span class="icon icon-link"></span></a>前端开发</h2>
-<h3 id="前端早读课"><a aria-hidden="true" tabindex="-1" href="#前端早读课" class="anchor"><span class="icon icon-link"></span></a>前端早读课</h3>
-<p>微信号: <code>FeZaoDuKe</code>，关注前端，产品设计。  每天5点半推送1篇相关文章到公众号，我们不创造内容，我们只是优秀内容的搬运者。  坚持每天阅读，每天进步一点点</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=FeZaoDuKe"><img src="img/FeZaoDuKe.jpg" alt=""></a></p>
-<h3 id="前端之巅"><a aria-hidden="true" tabindex="-1" href="#前端之巅" class="anchor"><span class="icon icon-link"></span></a>前端之巅</h3>
-<p>微信号: <code>frontshow</code>，关注前端发展，分享一线技术。不断学习，不断进步，登上前端之巅！</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=frontshow"><img src="img/frontshow.jpg" alt=""></a></p>
-<h3 id="前端大全"><a aria-hidden="true" tabindex="-1" href="#前端大全" class="anchor"><span class="icon icon-link"></span></a>前端大全</h3>
-<p>微信号: <code>FrontDev</code>，「前端大全」专注分享 Web 前端相关的内容，包括 JavaScript、CSS 和 HTML5 相关资讯、工具资源、使用技巧、热门课程、高薪职位和经典书籍等。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=FrontDev"><img src="img/FrontDev.jpg" alt=""></a></p>
-<h3 id="前端开发知识"><a aria-hidden="true" tabindex="-1" href="#前端开发知识" class="anchor"><span class="icon icon-link"></span></a>前端开发知识</h3>
-<p>微信号: <code>web-bear</code>，提供关于web前端开发中html5、js、css3、nodejs的有趣、最新、最酷的知识</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=web-bear"><img src="img/web-bear.jpg" alt=""></a></p>
-<h3 id="jsdig"><a aria-hidden="true" tabindex="-1" href="#jsdig" class="anchor"><span class="icon icon-link"></span></a>JSdig</h3>
-<p>微信号: <code>jsdigs</code>，JSdig分享挖掘js相关技术文章、工具、教程、热点资讯等。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=jsdigs"><img src="img/jsdigs.jpg" alt=""></a></p>
-<h3 id="前端开发-1"><a aria-hidden="true" tabindex="-1" href="#前端开发-1" class="anchor"><span class="icon icon-link"></span></a>前端开发</h3>
-<p>微信号: <code>qianduan1024</code>，分享Web前端开发中HTML5、JavaScript、CSS3编程学习知识</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=qianduan1024"><img src="img/qianduan1024.jpg" alt=""></a></p>
-<h3 id="前端外刊评论"><a aria-hidden="true" tabindex="-1" href="#前端外刊评论" class="anchor"><span class="icon icon-link"></span></a>前端外刊评论</h3>
-<p>微信号: <code>FrontendMagazine</code>，最新、最前沿的前端资讯，最有深入、最干前端相关的技术译文。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=FrontendMagazine"><img src="img/FrontendMagazine.jpg" alt=""></a></p>
-<h3 id="ddfe"><a aria-hidden="true" tabindex="-1" href="#ddfe" class="anchor"><span class="icon icon-link"></span></a>DDFE</h3>
-<p>微信号: <code>gh_24b9dae85adf</code>，滴滴前端技术分享 - 推荐国内外前沿、优秀的技术内容，包含 Nodejs、工程自动化、编译器、新技术方向等</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_24b9dae85adf"><img src="img/DDFE.jpg" alt=""></a></p>
-<h3 id="w3cplus"><a aria-hidden="true" tabindex="-1" href="#w3cplus" class="anchor"><span class="icon icon-link"></span></a>W3cplus</h3>
-<p>微信号: <code>w3cplus_12</code>，W3CPLUS是一个前端爱好者的家园，W3CPLUS努力打造最优秀的web 前端学习的站点。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=w3cplus_12"><img src="img/w3cplus_12.jpg" alt=""></a></p>
-<h3 id="前端这么大我想去看看"><a aria-hidden="true" tabindex="-1" href="#前端这么大我想去看看" class="anchor"><span class="icon icon-link"></span></a>前端这么大我想去看看</h3>
-<p>微信号: <code>feworld</code>，讲讲那些前端圈有趣的故事。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=feworld"><img src="img/feworld.jpg" alt=""></a></p>
-<h2 id="移动开发"><a aria-hidden="true" tabindex="-1" href="#移动开发" class="anchor"><span class="icon icon-link"></span></a>移动开发</h2>
-<h3 id="江清清"><a aria-hidden="true" tabindex="-1" href="#江清清" class="anchor"><span class="icon icon-link"></span></a>江清清</h3>
-<p>微信号: <code>codedev123</code>，每天推送分享移动开发技术(Android/iOS)，React Native技术文章，项目管理，程序猿日常点滴以及精品技术资讯文章。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=codedev123"><img src="img/codedev123.jpg" alt=""></a></p>
-<h3 id="移动开发前线"><a aria-hidden="true" tabindex="-1" href="#移动开发前线" class="anchor"><span class="icon icon-link"></span></a>移动开发前线</h3>
-<p>微信号: <code>bornmobile</code>，专注于分享移动开发前沿和一线技术。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=bornmobile"><img src="img/bornmobile.jpg" alt=""></a></p>
-<h3 id="ios开发"><a aria-hidden="true" tabindex="-1" href="#ios开发" class="anchor"><span class="icon icon-link"></span></a>iOS开发</h3>
-<p>微信号: <code>iOSDevTip</code>，最新iOS、iPhone资讯，万名iOS开发者、swift开发、果粉聚集，参与技术讨论，整理开发技巧，分享创业经验！享受生活、热爱编程！</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=iOSDevTip"><img src="img/iOSDevTip.jpg" alt=""></a></p>
-<h3 id="ios开发美学"><a aria-hidden="true" tabindex="-1" href="#ios开发美学" class="anchor"><span class="icon icon-link"></span></a>iOS开发美学</h3>
-<p>微信号: <code>iOSkfmx</code>，「iOS开发美学」是iOS移动端开发第一交流平台，将定期推送开发过程中需掌握的知识点及一些开发技巧，帮助您掌握核心iOS上架开发技术。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=iOSkfmx"><img src="img/iOSkfmx.jpg" alt=""></a></p>
-<h3 id="ios开发精选"><a aria-hidden="true" tabindex="-1" href="#ios开发精选" class="anchor"><span class="icon icon-link"></span></a>IOS开发精选</h3>
-<p>微信号: <code>iOSDevelopment</code>，旨在提供最前沿iOS技术文章，xcode开发工具使用技巧，最新iOS开源代码汇编，以及国外技术网站论坛介绍，每天为大家提供最有价值的开发信息。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=iOSDevelopment"><img src="img/iOSDevelopment.jpg" alt=""></a></p>
-<h3 id="安卓开发精选"><a aria-hidden="true" tabindex="-1" href="#安卓开发精选" class="anchor"><span class="icon icon-link"></span></a>安卓开发精选</h3>
-<p>微信号: <code>androidpd</code>，伯乐在线旗下账号专注分享安卓开发相关资讯、经典技术文章、App 设计与推广、热门课程、高薪职位和经典书籍等</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=androidpd"><img src="img/androidpd.jpg" alt=""></a></p>
-<h3 id="吴小龙同学"><a aria-hidden="true" tabindex="-1" href="#吴小龙同学" class="anchor"><span class="icon icon-link"></span></a>吴小龙同学</h3>
-<p>微信号: <code>gh_f86c241826a6</code>，不止于技术分享，还有诗和远方~</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_f86c241826a6"><img src="img/gh_f86c241826a6.jpg" alt=""></a></p>
-<h2 id="数据库"><a aria-hidden="true" tabindex="-1" href="#数据库" class="anchor"><span class="icon icon-link"></span></a>数据库</h2>
-<h3 id="数据库开发"><a aria-hidden="true" tabindex="-1" href="#数据库开发" class="anchor"><span class="icon icon-link"></span></a>数据库开发</h3>
-<p>微信号: <code>DBDevs</code>，「数据库开发」专注分享数据库和运维相关行业动态、工具资源、经典文章、热门课程、高薪职位和经典书籍等。文章内容涉及各种主流 DB 的最佳实践、数据库基础知识、性能优化、数据安全等。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=DBDevs"><img src="img/DBDevs.jpg" alt=""></a></p>
-<h3 id="数据库开发-1"><a aria-hidden="true" tabindex="-1" href="#数据库开发-1" class="anchor"><span class="icon icon-link"></span></a>数据库开发</h3>
-<p>微信号: <code>iMySQL_WX</code>，叶金荣，ORACLE MySQL ACE，专注MySQL十余年，分享MySQL技术及工作心得。 个人站点：<a href="http://imysql.com%EF%BC%8CQQ%E7%BE%A4%EF%BC%9A272675472%E3%80%82">http://imysql.com，QQ群：272675472。</a> ACMUG（<a href="http://acmug.com%EF%BC%89%E5%AE%98%E6%96%B9%E6%8C%87%E5%AE%9A%E8%BF%90%E8%90%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E3%80%82">http://acmug.com）官方指定运营公众号。</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=iMySQL_WX"><img src="img/iMySQL_WX.jpg" alt=""></a></p>
-<h2 id="技术团队"><a aria-hidden="true" tabindex="-1" href="#技术团队" class="anchor"><span class="icon icon-link"></span></a>技术团队</h2>
-<h3 id="谷歌开发者"><a aria-hidden="true" tabindex="-1" href="#谷歌开发者" class="anchor"><span class="icon icon-link"></span></a>谷歌开发者</h3>
-<p>微信号: <code>Google_Developers</code>，Google中国官方账号。汇集Android; Chrome; Angular等移动和网络开发技术、Google Play和AdMob等开发者成长、优化和变现平台。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=Google_Developers"><img src="img/Google_Developers.jpg" alt=""></a></p>
-<h3 id="淘宝前端团队"><a aria-hidden="true" tabindex="-1" href="#淘宝前端团队" class="anchor"><span class="icon icon-link"></span></a>淘宝前端团队</h3>
-<p>微信号: <code>taobaofed</code>，前端的世界一直在变化着，在各种熟悉的语言进化中迅速的化学反应。也许你和我们一样，对前端的理解也在不断刷新。欢迎你和我们一起，在淘宝这个丰富多彩、包罗万象的平台上，发现无限的潜力。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=taobaofed"><img src="img/taobaofed.jpg" alt=""></a></p>
-<h3 id="奇舞周刊"><a aria-hidden="true" tabindex="-1" href="#奇舞周刊" class="anchor"><span class="icon icon-link"></span></a>奇舞周刊</h3>
-<p>微信号: <code>gh_ffb279ea1674</code>，《奇舞周刊》是由奇舞团维护的前端技术周刊。每周五向大家推送前端技术文章。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_ffb279ea1674"><img src="img/gh_ffb279ea1674.jpg" alt=""></a></p>
-<h3 id="微信移动客户端团队"><a aria-hidden="true" tabindex="-1" href="#微信移动客户端团队" class="anchor"><span class="icon icon-link"></span></a>微信移动客户端团队</h3>
-<p>微信号: <code>WeMobileDev</code>，微信移动客户端开发团队官号，分享微信在Android、iOS、Mac、Winphone、Windows等平台的开发经验、前沿技术，以及一些鲜为人知的小故事。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=WeMobileDev"><img src="img/WeMobileDev.jpg" alt=""></a></p>
-<h3 id="美团点评技术团队"><a aria-hidden="true" tabindex="-1" href="#美团点评技术团队" class="anchor"><span class="icon icon-link"></span></a>美团点评技术团队</h3>
-<p>微信号: <code>meituantech</code>，美团点评技术团队是美团、大众点评多个研发组织的统称，负责支撑和驱动美团大众点评多个业务的发展。该公众账号将面向互联网开发／产品从业者，提供我们研发及部分产品岗位的招聘信息，发布优质原厂技术内容或者相关活动。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=meituantech"><img src="img/meituantech.jpg" alt=""></a></p>
-<h3 id="百度mux"><a aria-hidden="true" tabindex="-1" href="#百度mux" class="anchor"><span class="icon icon-link"></span></a>百度MUX</h3>
-<p>微信号: <code>BaiduMUX</code>，百度MUX一直坚持以用户为中心，以创造优秀的产品体验为终极使命，践行“简单极致”的设计理念。我们时刻关注行业动态，总结成长心得，与你分享设计点滴！</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=BaiduMUX"><img src="img/BaiduMUX.jpg" alt=""></a></p>
-<h3 id="腾讯mxd"><a aria-hidden="true" tabindex="-1" href="#腾讯mxd" class="anchor"><span class="icon icon-link"></span></a>腾讯MXD</h3>
-<p>微信号: <code>tx_mxd</code>，腾讯MXD是腾讯移动互联网事业部官方设计团队。致力于提升移动设备上的用户体验。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=tx_mxd"><img src="img/tx_mxd.jpg" alt=""></a></p>
-<h3 id="qq音乐技术团队"><a aria-hidden="true" tabindex="-1" href="#qq音乐技术团队" class="anchor"><span class="icon icon-link"></span></a>QQ音乐技术团队</h3>
-<p>微信号: <code>-</code>，QQ音乐开发团队公众帐号。关注技术分享与交流。</p>
-<h3 id="qq空间终端开发团队"><a aria-hidden="true" tabindex="-1" href="#qq空间终端开发团队" class="anchor"><span class="icon icon-link"></span></a>QQ空间终端开发团队</h3>
-<p>微信号: <code>qzonemobiledev</code>，QQ空间终端开发团队官方账号，分享QQ空间在Android、iOS、H5等平台的开发经验、技术实践以及一些围绕技术研发的话题。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=qzonemobiledev"><img src="img/qzonemobiledev.jpg" alt=""></a></p>
-<h3 id="ddapp"><a aria-hidden="true" tabindex="-1" href="#ddapp" class="anchor"><span class="icon icon-link"></span></a>DDApp</h3>
-<p>微信号: <code>gh_01e6cb205409</code>，滴滴客户端App架构团队账号，分享iOS、Android等平台的开发经验、技术探索等有趣话题。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_01e6cb205409"><img src="img/gh_01e6cb205409.jpg" alt=""></a></p>
-<h3 id="百度大ue讲堂"><a aria-hidden="true" tabindex="-1" href="#百度大ue讲堂" class="anchor"><span class="icon icon-link"></span></a>百度大UE讲堂</h3>
-<p>微信号: <code>baidudauejiangtang</code>，“我们不培养美工，我们只培养一流的设计师”！【百度大UE讲堂】是百度用户体验部（大UE）推出的精品在线设计课程栏目，集结300名一线设计师，从工具到设计理念，亲自带你从菜鸟快速晋级为设计大咖！</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=baidudauejiangtang"><img src="img/baidudauejiangtang.jpg" alt=""></a></p>
-<h2 id="官方网站"><a aria-hidden="true" tabindex="-1" href="#官方网站" class="anchor"><span class="icon icon-link"></span></a>官方网站</h2>
-<h3 id="segmentfault"><a aria-hidden="true" tabindex="-1" href="#segmentfault" class="anchor"><span class="icon icon-link"></span></a>SegmentFault</h3>
-<p>微信号: <code>gh_f0737a722782</code>，<a href="http://www.sf.gg">SegmentFault</a>开发者社区，是中国年轻开发者喜爱的极客社区，我们为开发者提供最纯粹的技术交流和分享平台。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_f0737a722782"><img src="img/SegmentFault.jpg" alt=""></a></p>
-<h3 id="开源中国"><a aria-hidden="true" tabindex="-1" href="#开源中国" class="anchor"><span class="icon icon-link"></span></a>开源中国</h3>
-<p>微信号: <code>oschina2013</code>，OSChina 开源中国 官方微信账号</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=oschina2013"><img src="img/oschina2013.jpg" alt=""></a></p>
-<h3 id="极客学院官网"><a aria-hidden="true" tabindex="-1" href="#极客学院官网" class="anchor"><span class="icon icon-link"></span></a>极客学院官网</h3>
-<p>微信号: <code>jikexueyuan00</code>，极客学院官方帐号，最新课程、活动发布。欢迎大家反馈问题哟^_^</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=jikexueyuan00"><img src="img/jikexueyuan00.jpg" alt=""></a></p>
-<h3 id="w3ctech"><a aria-hidden="true" tabindex="-1" href="#w3ctech" class="anchor"><span class="icon icon-link"></span></a>w3ctech</h3>
-<p>微信号: <code>gh_229345f1b408</code>，w3ctech是中国最大的知名前端技术社区，网站为：<a href="http://www.w3ctech.com">http://www.w3ctech.com</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=gh_229345f1b408"><img src="img/gh_229345f1b408.jpg" alt=""></a></p>
-<h3 id="扣钉coding"><a aria-hidden="true" tabindex="-1" href="#扣钉coding" class="anchor"><span class="icon icon-link"></span></a>扣钉Coding</h3>
-<p>微信号: <code>coding_net</code>，提供代码托管，运行空间，质量控制，项目管理等功能，为开发者提供技术讨论和协作的平台。关注新浪微博@Coding，联系我们请邮件至：<a href="mailto:link@coding.net">link@coding.net</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=coding_net"><img src="img/coding_net.jpg" alt=""></a></p>
-<h3 id="前端乱炖"><a aria-hidden="true" tabindex="-1" href="#前端乱炖" class="anchor"><span class="icon icon-link"></span></a>前端乱炖</h3>
-<p>微信号: <code>htmljs</code>，<a href="http://www.html-js.com">http://www.html-js.com</a> 国内最专业的前端原创知识内容社区。本公众号定期推送优选文章，谢谢关注。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=htmljs"><img src="img/htmljs.jpg" alt=""></a></p>
-<h3 id="凹凸实验室"><a aria-hidden="true" tabindex="-1" href="#凹凸实验室" class="anchor"><span class="icon icon-link"></span></a>凹凸实验室</h3>
-<p>微信号: <code>AOTULabs</code>，<a href="https://aotu.io/">https://aotu.io/</a> 无折腾不为乐 - 我们爱生活，爱设计，爱技术，爱创作，喜欢闹腾。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=AOTULabs"><img src="img/AOTULabs.jpg" alt=""></a></p>
-<h3 id="慕课网imooc订阅号"><a aria-hidden="true" tabindex="-1" href="#慕课网imooc订阅号" class="anchor"><span class="icon icon-link"></span></a>慕课网imooc订阅号</h3>
-<p>微信号: <code>imooc--com</code>，免费的IT技术视频学习、分享网站。可以学习在线编程、前端开发技术、Python、JAVA、C++、安卓开发等互联网技术。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=imooc--com"><img src="img/imooc--com.jpg" alt=""></a></p>
-<h3 id="前端观察非测试"><a aria-hidden="true" tabindex="-1" href="#前端观察非测试" class="anchor"><span class="icon icon-link"></span></a>前端观察非测试</h3>
-<p>微信号: <code>iqianduan</code>，前端观察官方微信<a href="https://www.qianduan.net/">https://www.qianduan.net/</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=iqianduan"><img src="img/iqianduan.jpg" alt=""></a></p>
-<h3 id="脚本之家"><a aria-hidden="true" tabindex="-1" href="#脚本之家" class="anchor"><span class="icon icon-link"></span></a>脚本之家</h3>
-<p>微信号: <code>jb51net</code>，脚本之家(jb51.net)是国内专业的网站建设资源、脚本编程学习类网站，以后将为大家分享更多有用的信息，希望大家多多支持宣传。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=jb51net"><img src="img/jb51net.jpg" alt=""></a></p>
-<h3 id="开发者头条"><a aria-hidden="true" tabindex="-1" href="#开发者头条" class="anchor"><span class="icon icon-link"></span></a>开发者头条</h3>
-<p>微信号: <code>kaifazhetoutiao</code>，程序员的首选阅读分享平台 | 官方应用下载地址：<a href="http://toutiao.io/download">http://toutiao.io/download</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=kaifazhetoutiao"><img src="img/kaifazhetoutiao.jpg" alt=""></a></p>
-<h3 id="伯乐在线"><a aria-hidden="true" tabindex="-1" href="#伯乐在线" class="anchor"><span class="icon icon-link"></span></a>伯乐在线</h3>
-<p>微信号: <code>jobbole</code>，关注职业资讯；学习各类职业感悟、心得和经验分享，扩大职业视野；体会求职、工作和创业的历程 - 就在JobBole.com 伯乐在线</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=jobbole"><img src="img/jobbole.jpg" alt=""></a></p>
-<h3 id="csdn"><a aria-hidden="true" tabindex="-1" href="#csdn" class="anchor"><span class="icon icon-link"></span></a>CSDN</h3>
-<p>微信号: <code>CSDNnews</code>，CSDN精彩内容每日推荐。我们关注IT产品研发背后的那些人、技术和故事。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=CSDNnews"><img src="img/CSDNnews.jpg" alt=""></a></p>
-<h3 id="宁皓网"><a aria-hidden="true" tabindex="-1" href="#宁皓网" class="anchor"><span class="icon icon-link"></span></a>宁皓网</h3>
-<p>微信号: <code>ninghao8080</code>，生活，摄影，旅行，Web 技术 ：）</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=ninghao8080"><img src="img/ninghao8080.jpg" alt=""></a></p>
-<h3 id="it名人"><a aria-hidden="true" tabindex="-1" href="#it名人" class="anchor"><span class="icon icon-link"></span></a>IT名人</h3>
-<h3 id="小道消息"><a aria-hidden="true" tabindex="-1" href="#小道消息" class="anchor"><span class="icon icon-link"></span></a>小道消息</h3>
-<p>微信号: <code>aboutDesigner</code>，分享精选的设计相关文章、案例和行业动态。同时，也会不定期推荐设计教程、高薪职位和设计相关的优秀工具。<br>
-帐号主体: 冯大辉 @Fenng <a href="http://weibo.com/u/1577826897">微博</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=aboutDesigner"><img src="img/aboutDesigner.jpg" alt=""></a></p>
-<h3 id="caoz的梦呓"><a aria-hidden="true" tabindex="-1" href="#caoz的梦呓" class="anchor"><span class="icon icon-link"></span></a>caoz的梦呓</h3>
-<p>微信号: <code>caozsay</code>，caoz的心得与分享，只此一家，别无分号。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=caozsay"><img src="img/caozsay.jpg" alt=""></a></p>
-<h3 id="产品犬舍"><a aria-hidden="true" tabindex="-1" href="#产品犬舍" class="anchor"><span class="icon icon-link"></span></a>产品犬舍</h3>
-<p>微信号: <code>thepmdog</code>，汪汪，汪。目前微博上最活跃最知名最资深的产品经理纯银的微信公众号。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=thepmdog"><img src="img/thepmdog.jpg" alt=""></a></p>
-<h3 id="鬼脚七"><a aria-hidden="true" tabindex="-1" href="#鬼脚七" class="anchor"><span class="icon icon-link"></span></a>鬼脚七</h3>
-<p>微信号: <code>taobaoguijiaoqi</code>，鬼脚七，真名文德，自媒体人。做自己，爱生活！<br>
-来自新浪微博认证资料：一淘搜索、淘宝搜索产品负责人鬼脚七(文德) @淘宝鬼脚七 <a href="http://weibo.com/u/3987566895">微博</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=taobaoguijiaoqi"><img src="img/taobaoguijiaoqi.jpg" alt=""></a></p>
-<h3 id="justjavac"><a aria-hidden="true" tabindex="-1" href="#justjavac" class="anchor"><span class="icon icon-link"></span></a>justjavac</h3>
-<p>微信号: <code>justjavac-blog</code>，一房两人三餐四季，快意人生<a href="http://weibo.com/u/1361535293">微博</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=justjavac-blog"><img src="img/justjavac-blog.jpg" alt=""></a></p>
-<h3 id="phodal"><a aria-hidden="true" tabindex="-1" href="#phodal" class="anchor"><span class="icon icon-link"></span></a>phodal</h3>
-<p>微信号: <code>phodal-weixin</code>，待我代码编成，娶你为妻可好 @花仲马 <a href="http://weibo.com/u/1533917471">微博</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=phodal-weixin"><img src="img/phodal-weixin.jpg" alt=""></a></p>
-<h3 id="苏生不惑"><a aria-hidden="true" tabindex="-1" href="#苏生不惑" class="anchor"><span class="icon icon-link"></span></a>苏生不惑</h3>
-<p>微信号: <code>darenzhuzhou</code>，一房两人三餐四季，快意人生。<a href="http://weibo.com/u/2717930601">微博</a></p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=darenzhuzhou"><img src="img/darenzhuzhou.jpg" alt=""></a></p>
-<h3 id="showmeshell"><a aria-hidden="true" tabindex="-1" href="#showmeshell" class="anchor"><span class="icon icon-link"></span></a>ShowMeShell</h3>
-<p>微信号: <code>ShowMeShell</code>，关注国外内安全研究趋势，介绍国内外会议前沿技术热点，分享前沿二进制系统安全研究成果。<a href="http://weibo.com/u/2214340953?is_hot=1">微博</a><br>
-腾讯科恩实验室高级研究员. Pwn2Own 2016 OSX Category Winner. Mobile Pwn2Own 2016 Android Category Winner.</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=ShowMeShell"><img src="img/ShowMeShell.jpg" alt=""></a></p>
-<h2 id="设计"><a aria-hidden="true" tabindex="-1" href="#设计" class="anchor"><span class="icon icon-link"></span></a>设计</h2>
-<h3 id="设计的那些事"><a aria-hidden="true" tabindex="-1" href="#设计的那些事" class="anchor"><span class="icon icon-link"></span></a>设计的那些事</h3>
-<p>微信号: <code>WebNotes</code>，在这里，我想为你呈现一幅中国互联网的清明上河图。<br>
-冯大辉 @Fenng</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=WebNotes"><img src="img/WebNotes.jpg" alt=""></a></p>
-<h3 id="ixdc"><a aria-hidden="true" tabindex="-1" href="#ixdc" class="anchor"><span class="icon icon-link"></span></a>IXDC</h3>
-<p>微信号: <code>ixdcorg</code>，IxDC由广州美术学院设计学院、香港理工大学设计学院、网易、腾讯、华为、中国电信、中国移动、金山等单位联合发起。是全国第一个受政府认可和领导的交互设计专业委员会，致力于引领中国交互设计行业发展。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=ixdcorg"><img src="img/ixdcorg.jpg" alt=""></a></p>
-<h3 id="腾讯isux"><a aria-hidden="true" tabindex="-1" href="#腾讯isux" class="anchor"><span class="icon icon-link"></span></a>腾讯ISUX</h3>
-<p>微信号: <code>tencent_isux</code>，腾讯社交用户体验设计，简称ISUX (Internet Social User Experience)，是腾讯核心设计团队， 负责腾讯社交网络相关产品的用户体验设计与研究。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=tencent_isux"><img src="img/tencent_isux.jpg" alt=""></a></p>
-<h3 id="腾讯cdc体验设计"><a aria-hidden="true" tabindex="-1" href="#腾讯cdc体验设计" class="anchor"><span class="icon icon-link"></span></a>腾讯CDC体验设计</h3>
-<p>微信号: <code>tx_cdc</code>，关注于互联网视觉设计、交互设计、用户研究、前端开发。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=tx_cdc"><img src="img/tx_cdc.jpg" alt=""></a></p>
-<h3 id="ui设计达人"><a aria-hidden="true" tabindex="-1" href="#ui设计达人" class="anchor"><span class="icon icon-link"></span></a>UI设计达人</h3>
-<p>微信号: <code>BestUIDesign</code>，分享 UI 设计精选文章、案例、行业趋势、课程和书籍。</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=BestUIDesign"><img src="img/BestUIDesign.jpg" alt=""></a></p>
-<h3 id="ui设计达人秀"><a aria-hidden="true" tabindex="-1" href="#ui设计达人秀" class="anchor"><span class="icon icon-link"></span></a>UI设计达人秀</h3>
-<p>微信号: <code>UI-DRX</code>，这里有最前沿的UI资讯，在这一起分享优秀设计（包括网页设计，web设计，平面设计，游戏设计，手机界面等等）</p>
-<p><a href="http://open.weixin.qq.com/qr/code?username=UI-DRX"><img src="img/UI-DRX.jpg" alt=""></a></p>
-    
-
-<div class="previous">
-  
-  <a class="prev" href="../CentOS/管理远程会话screen工具.html">
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
-      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
-    </svg>
-    <span>
-      管理远程会话screen工具
-    </span>
-  </a>
-  
-  
-  <a class="next" href="google.html">
-    <span>
-      谷歌(Google)镜像
-    </span>
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
-      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
-    </svg>
-  </a>
-  
-</div>
-
-
-
-<section class="article-footer">
-  <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/other/weixin-public-account.md" class="edit-button" target="_blank" rel="noopener noreferrer">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-    </svg>
-    <span>Edit this page on GitHub</span>
-  </a>
-  
-  <span class="atime">2022/04/24</span>
-  
-</section>
-
-  </markdown-style>
-  
-<nav class="tocs">
-  <aside class="inner toc">
-    <ol class="tocs-list">
-    
-      <li>
-        <a href="#业界资讯" class="tocs-link">业界资讯</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#infoq" class="tocs-link">InfoQ</a>
-                
-              </li>
-            
-              <li>
-                <a href="#36氪" class="tocs-link">36氪</a>
-                
-              </li>
-            
-              <li>
-                <a href="#极客公园" class="tocs-link">极客公园</a>
-                
-              </li>
-            
-              <li>
-                <a href="#腾讯开源" class="tocs-link">腾讯开源</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#全栈" class="tocs-link">全栈</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#程序员的那些事" class="tocs-link">程序员的那些事</a>
-                
-              </li>
-            
-              <li>
-                <a href="#全栈开发者中心" class="tocs-link">全栈开发者中心</a>
-                
-              </li>
-            
-              <li>
-                <a href="#算法爱好者" class="tocs-link">算法爱好者</a>
-                
-              </li>
-            
-              <li>
-                <a href="#算法与数学之美" class="tocs-link">算法与数学之美</a>
-                
-              </li>
-            
-              <li>
-                <a href="#appzone" class="tocs-link">APPZone</a>
-                
-              </li>
-            
-              <li>
-                <a href="#技术最前线" class="tocs-link">技术最前线</a>
-                
-              </li>
-            
-              <li>
-                <a href="#互联网技术联盟" class="tocs-link">互联网技术联盟</a>
-                
-              </li>
-            
-              <li>
-                <a href="#互联网er的早读课" class="tocs-link">互联网er的早读课</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#操作系统" class="tocs-link">操作系统</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#linux爱好者" class="tocs-link">Linux爱好者</a>
-                
-              </li>
-            
-              <li>
-                <a href="#linux内核之旅" class="tocs-link">Linux内核之旅</a>
-                
-              </li>
-            
-              <li>
-                <a href="#老马说编程" class="tocs-link">老马说编程</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#应用系统" class="tocs-link">应用系统</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#可靠分布式系统" class="tocs-link">可靠分布式系统</a>
-                
-              </li>
-            
-              <li>
-                <a href="#架构师之路" class="tocs-link">架构师之路</a>
-                
-              </li>
-            
-              <li>
-                <a href="#聊聊架构" class="tocs-link">聊聊架构</a>
-                
-              </li>
-            
-              <li>
-                <a href="#高可用架构" class="tocs-link">高可用架构</a>
-                
-              </li>
-            
-              <li>
-                <a href="#cloudman" class="tocs-link">CloudMan</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#编程语言" class="tocs-link">编程语言</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#python开发者" class="tocs-link">Python开发者</a>
-                
-              </li>
-            
-              <li>
-                <a href="#node全栈" class="tocs-link">Node全栈</a>
-                
-              </li>
-            
-              <li>
-                <a href="#css魔法" class="tocs-link">CSS魔法</a>
-                
-              </li>
-            
-              <li>
-                <a href="#go中国" class="tocs-link">Go中国</a>
-                
-              </li>
-            
-              <li>
-                <a href="#你假笨" class="tocs-link">你假笨</a>
-                
-              </li>
-            
-              <li>
-                <a href="#importnew" class="tocs-link">ImportNew</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#前端开发" class="tocs-link">前端开发</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#前端早读课" class="tocs-link">前端早读课</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端之巅" class="tocs-link">前端之巅</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端大全" class="tocs-link">前端大全</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端开发知识" class="tocs-link">前端开发知识</a>
-                
-              </li>
-            
-              <li>
-                <a href="#jsdig" class="tocs-link">JSdig</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端开发-1" class="tocs-link">前端开发</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端外刊评论" class="tocs-link">前端外刊评论</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ddfe" class="tocs-link">DDFE</a>
-                
-              </li>
-            
-              <li>
-                <a href="#w3cplus" class="tocs-link">W3cplus</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端这么大我想去看看" class="tocs-link">前端这么大我想去看看</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#移动开发" class="tocs-link">移动开发</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#江清清" class="tocs-link">江清清</a>
-                
-              </li>
-            
-              <li>
-                <a href="#移动开发前线" class="tocs-link">移动开发前线</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ios开发" class="tocs-link">iOS开发</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ios开发美学" class="tocs-link">iOS开发美学</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ios开发精选" class="tocs-link">IOS开发精选</a>
-                
-              </li>
-            
-              <li>
-                <a href="#安卓开发精选" class="tocs-link">安卓开发精选</a>
-                
-              </li>
-            
-              <li>
-                <a href="#吴小龙同学" class="tocs-link">吴小龙同学</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#数据库" class="tocs-link">数据库</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#数据库开发" class="tocs-link">数据库开发</a>
-                
-              </li>
-            
-              <li>
-                <a href="#数据库开发-1" class="tocs-link">数据库开发</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#技术团队" class="tocs-link">技术团队</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#谷歌开发者" class="tocs-link">谷歌开发者</a>
-                
-              </li>
-            
-              <li>
-                <a href="#淘宝前端团队" class="tocs-link">淘宝前端团队</a>
-                
-              </li>
-            
-              <li>
-                <a href="#奇舞周刊" class="tocs-link">奇舞周刊</a>
-                
-              </li>
-            
-              <li>
-                <a href="#微信移动客户端团队" class="tocs-link">微信移动客户端团队</a>
-                
-              </li>
-            
-              <li>
-                <a href="#美团点评技术团队" class="tocs-link">美团点评技术团队</a>
-                
-              </li>
-            
-              <li>
-                <a href="#百度mux" class="tocs-link">百度MUX</a>
-                
-              </li>
-            
-              <li>
-                <a href="#腾讯mxd" class="tocs-link">腾讯MXD</a>
-                
-              </li>
-            
-              <li>
-                <a href="#qq音乐技术团队" class="tocs-link">QQ音乐技术团队</a>
-                
-              </li>
-            
-              <li>
-                <a href="#qq空间终端开发团队" class="tocs-link">QQ空间终端开发团队</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ddapp" class="tocs-link">DDApp</a>
-                
-              </li>
-            
-              <li>
-                <a href="#百度大ue讲堂" class="tocs-link">百度大UE讲堂</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#官方网站" class="tocs-link">官方网站</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#segmentfault" class="tocs-link">SegmentFault</a>
-                
-              </li>
-            
-              <li>
-                <a href="#开源中国" class="tocs-link">开源中国</a>
-                
-              </li>
-            
-              <li>
-                <a href="#极客学院官网" class="tocs-link">极客学院官网</a>
-                
-              </li>
-            
-              <li>
-                <a href="#w3ctech" class="tocs-link">w3ctech</a>
-                
-              </li>
-            
-              <li>
-                <a href="#扣钉coding" class="tocs-link">扣钉Coding</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端乱炖" class="tocs-link">前端乱炖</a>
-                
-              </li>
-            
-              <li>
-                <a href="#凹凸实验室" class="tocs-link">凹凸实验室</a>
-                
-              </li>
-            
-              <li>
-                <a href="#慕课网imooc订阅号" class="tocs-link">慕课网imooc订阅号</a>
-                
-              </li>
-            
-              <li>
-                <a href="#前端观察非测试" class="tocs-link">前端观察非测试</a>
-                
-              </li>
-            
-              <li>
-                <a href="#脚本之家" class="tocs-link">脚本之家</a>
-                
-              </li>
-            
-              <li>
-                <a href="#开发者头条" class="tocs-link">开发者头条</a>
-                
-              </li>
-            
-              <li>
-                <a href="#伯乐在线" class="tocs-link">伯乐在线</a>
-                
-              </li>
-            
-              <li>
-                <a href="#csdn" class="tocs-link">CSDN</a>
-                
-              </li>
-            
-              <li>
-                <a href="#宁皓网" class="tocs-link">宁皓网</a>
-                
-              </li>
-            
-              <li>
-                <a href="#it名人" class="tocs-link">IT名人</a>
-                
-              </li>
-            
-              <li>
-                <a href="#小道消息" class="tocs-link">小道消息</a>
-                
-              </li>
-            
-              <li>
-                <a href="#caoz的梦呓" class="tocs-link">caoz的梦呓</a>
-                
-              </li>
-            
-              <li>
-                <a href="#产品犬舍" class="tocs-link">产品犬舍</a>
-                
-              </li>
-            
-              <li>
-                <a href="#鬼脚七" class="tocs-link">鬼脚七</a>
-                
-              </li>
-            
-              <li>
-                <a href="#justjavac" class="tocs-link">justjavac</a>
-                
-              </li>
-            
-              <li>
-                <a href="#phodal" class="tocs-link">phodal</a>
-                
-              </li>
-            
-              <li>
-                <a href="#苏生不惑" class="tocs-link">苏生不惑</a>
-                
-              </li>
-            
-              <li>
-                <a href="#showmeshell" class="tocs-link">ShowMeShell</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#设计" class="tocs-link">设计</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#设计的那些事" class="tocs-link">设计的那些事</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ixdc" class="tocs-link">IXDC</a>
-                
-              </li>
-            
-              <li>
-                <a href="#腾讯isux" class="tocs-link">腾讯ISUX</a>
-                
-              </li>
-            
-              <li>
-                <a href="#腾讯cdc体验设计" class="tocs-link">腾讯CDC体验设计</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ui设计达人" class="tocs-link">UI设计达人</a>
-                
-              </li>
-            
-              <li>
-                <a href="#ui设计达人秀" class="tocs-link">UI设计达人秀</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-    </ol>
-  </aside>
-</nav>
-
-
-<script src="../js/tocbot.js?v=1.0.0"></script>
-
-</div>
-
-
-<div class="footer warpper">
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.13.7
-
-</div>
-
-</body>
+    <script src="../js/demo-preview.js?v=1.21.1"></script>
+    <div class="footer warpper">Released under the MIT License. Copyright © 2022 Kenny Wong<br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.21.1</div>
+    <script src="../js/tocbot.js?v=1.21.1"></script>
+  </body>
 </html>

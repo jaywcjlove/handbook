@@ -1,352 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>在5分钟内搭建企业内部私有npm仓库 handbook </title>
-  
-  <meta name="description" content="下面通过三种方法来搭建公司私有npm仓库，每种方式都有自己的优势。">
-  
-  
-  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
-  
-  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650812452442">
-  
-  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650812452442">
-  
-  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650812452442">
-  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650812452442">
-  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650812452442">
-  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在5分钟内搭建企业内部私有npm仓库 handbook</title>
+    <meta name="description" content="下面通过三种方法来搭建公司私有npm仓库，每种方式都有自己的优势。">
+    <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+    <link rel="stylesheet" type="text/css" href="../css/main.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/media.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/demo-preview.css?v=1.21.1">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <script src="../js/copy.js"></script>
-  <script src="../js/dark-mode.js"></script>
-  <script src="../js/markdown-style.js"></script>
-</head>
-<body id="idoctotop">
-  <a href="#idoctotop" class="gototop">top</a>
-<header class="header">
-  <article class="inner warpper">
-    <a class="logo" href="../index.html">
-      
-        <img alt="handbook logo" src="data:image/png;base64,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">
-      
-      <span class="title">handbook</span>
-    </a>
-    <div class="content">
-      <ul class="menu">
-        
-        <li>
-          <a href="../index.html" target="" class=""> Home </a>
-        </li>
-        
-        <li>
-          <a href="../awesome.html" target="" class=""> Awesome </a>
-        </li>
-        
-        <li>
-          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
-        </li>
-        
-      </ul>
-      
-        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-      
-      <dark-mode permanent></dark-mode>
-    </div>
-  </article>
-</header>
-
-<div class="warpper-content warpper sidebar ">
-  
-<div class="sidebar-border">
-  <aside class="sidebar" role="navigation">
-    <div>
-    
-      
-        <label>JavaScript</label>
-      
-    
-      
-        <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
-      
-    
-      
-        <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
-      
-    
-      
-        <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
-      
-    
-      
-        <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
-      
-    
-      
-        <label>Redis</label>
-      
-    
-      
-        <a href="../Redis/index.html" class="">快速入门 Redis</a>
-      
-    
-      
-        <label>Android</label>
-      
-    
-      
-        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
-      
-    
-      
-        <label>CentOS</label>
-      
-    
-      
-        <a href="CentOS.html" class="">CentOS 常用命令</a>
-      
-    
-      
-        <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
-      
-    
-      
-        <a href="常用基础命令.html" class="">常用基础命令</a>
-      
-    
-      
-        <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
-      
-    
-      
-        <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
-      
-    
-      
-        <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
-      
-    
-      
-        <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
-      
-    
-      
-        <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
-      
-    
-      
-        <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
-      
-    
-      
-        <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
-      
-    
-      
-        <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
-      
-    
-      
-        <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
-      
-    
-      
-        <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
-      
-    
-      
-        <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
-      
-    
-      
-        <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
-      
-    
-      
-        <a href="Ruby安装.html" class="">Ruby 安装</a>
-      
-    
-      
-        <a href="samba.html" class="">Samba 安装</a>
-      
-    
-      
-        <a href="在5分钟内搭建企业内部私有npm仓库.html" class="active">搭建私有 npm 仓库</a>
-      
-    
-      
-        <a href="Java.html" class="">安装 Java</a>
-      
-    
-      
-        <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
-      
-    
-      
-        <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
-      
-    
-      
-        <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
-      
-    
-      
-        <a href="openstack.html" class="">搭建 OpenStack</a>
-      
-    
-      
-        <a href="pip.html" class="">安装 pip 工具</a>
-      
-    
-      
-        <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
-      
-    
-      
-        <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
-      
-    
-      
-        <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
-      
-    
-      
-        <a href="svn.html" class="">安装使用 svn</a>
-      
-    
-      
-        <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
-      
-    
-      
-        <label>其它</label>
-      
-    
-      
-        <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
-      
-    
-      
-        <a href="../other/google.html" class="">谷歌(Google)镜像</a>
-      
-    
-      
-        <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
-      
-    
-      
-        <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
-      
-    
-      
-        <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
-      
-    
-      
-        <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
-      
-    
-      
-        <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
-      
-    
-      
-        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
-      
-    
-      
-        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
-      
-    
-    </div>
-  </aside>
-</div>
-
-  <markdown-style>
-    <h1 id="在5分钟内搭建企业内部私有npm仓库"><a aria-hidden="true" tabindex="-1" href="#在5分钟内搭建企业内部私有npm仓库" class="anchor"><span class="icon icon-link"></span></a>在5分钟内搭建企业内部私有npm仓库</h1>
-<p>下面通过三种方法来搭建公司私有npm仓库，每种方式都有自己的优势。</p>
-<blockquote>
-<p>Node.js >= 6.11.3，我的Node版本：node v8.2.1<br>
-Linux or OSX，我的系统版本：CentOS Linux release 7.2.1511 (Core)</p>
-</blockquote>
-<p>注意 ⚠️： 现在 Gitlab v13.7.x 自带私有仓库，只需要开启 <code>Container Registry</code></p>
-<h1 id="目录"><a aria-hidden="true" tabindex="-1" href="#目录" class="anchor"><span class="icon icon-link"></span></a>目录</h1>
-
-<h2 id="cnpm搭建"><a aria-hidden="true" tabindex="-1" href="#cnpm搭建" class="anchor"><span class="icon icon-link"></span></a>cnpm搭建</h2>
-<p><a href="https://github.com/cnpm/cnpmjs.org">cnpmjs.org</a></p>
-<h3 id="安装"><a aria-hidden="true" tabindex="-1" href="#安装" class="anchor"><span class="icon icon-link"></span></a>安装</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -g --build-from-source cnpmjs.org cnpm sqlite3
-</span><span class="code-line"><span class="token comment"># 如果报错或者警告通过下面方式安装</span>
-</span><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -g --unsafe-perm --verbose --build-from-source cnpmjs.org cnpm sqlite3
-</span></code><div onclick="copied(this)" data-code="npm install -g --build-from-source cnpmjs.org cnpm sqlite3
+    <script src="../js/copy.js?v=1.21.1"></script>
+    <script src="../js/dark-mode.js?v=1.21.1"></script>
+    <script src="../js/markdown-style.js?v=1.21.1"></script>
+  </head>
+  <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
+    <header class="header">
+      <article class="inner warpper"><a class="logo" href="../index.html"><img alt="handbook logo" src="data:image/png;base64,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">
+<span class="title">handbook</span></a>
+        <div class="content">
+          <ul class="menu">
+            <li><a href="../index.html" target="" class="">Home</a></li>
+            <li><a href="../awesome.html" target="" class="">Awesome</a></li>
+            <li><a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class="">🇨🇳</a></li>
+          </ul><a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg></a>
+          <dark-mode permanent=""></dark-mode>
+        </div>
+      </article>
+    </header>
+    <div class="warpper-content warpper sidebar">
+      <div class="sidebar-border">
+        <aside class="sidebar" role="navigation">
+          <div>
+            <label>JavaScript</label>
+            <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+            <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+            <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+            <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+            <label>Redis</label>
+            <a href="../Redis/index.html" class="">快速入门 Redis</a>
+            <label>Android</label>
+            <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+            <label>CentOS</label>
+            <a href="CentOS.html" class="">CentOS 常用命令</a>
+            <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+            <a href="常用基础命令.html" class="">常用基础命令</a>
+            <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+            <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+            <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+            <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+            <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+            <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+            <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+            <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+            <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+            <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+            <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+            <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
+            <a href="Ruby安装.html" class="">Ruby 安装</a>
+            <a href="samba.html" class="">Samba 安装</a>
+            <a href="在5分钟内搭建企业内部私有npm仓库.html" class="active">搭建私有 npm 仓库</a>
+            <a href="Java.html" class="">安装 Java</a>
+            <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+            <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+            <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
+            <a href="openstack.html" class="">搭建 OpenStack</a>
+            <a href="pip.html" class="">安装 pip 工具</a>
+            <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+            <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+            <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+            <a href="svn.html" class="">安装使用 svn</a>
+            <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>其它</label>
+            <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
+            <a href="../other/google.html" class="">谷歌(Google)镜像</a>
+            <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+            <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+            <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+            <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+            <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
+            <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+            <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+          </div>
+        </aside>
+      </div>
+      <markdown-style>
+        <h1 id="在5分钟内搭建企业内部私有npm仓库"><a aria-hidden="true" tabindex="-1" href="#在5分钟内搭建企业内部私有npm仓库" class="anchor"><span class="icon icon-link"></span></a>在5分钟内搭建企业内部私有npm仓库</h1>
+        <p>下面通过三种方法来搭建公司私有npm仓库，每种方式都有自己的优势。</p>
+        <blockquote>
+          <p>Node.js >= 6.11.3，我的Node版本：node v8.2.1<br>Linux or OSX，我的系统版本：CentOS Linux release 7.2.1511 (Core)</p>
+        </blockquote>
+        <p>注意 ⚠️： 现在 Gitlab v13.7.x 自带私有仓库，只需要开启 <code>Container Registry</code></p>
+        <h1 id="目录"><a aria-hidden="true" tabindex="-1" href="#目录" class="anchor"><span class="icon icon-link"></span></a>目录</h1>
+        <h2 id="cnpm搭建"><a aria-hidden="true" tabindex="-1" href="#cnpm搭建" class="anchor"><span class="icon icon-link"></span></a>cnpm搭建</h2>
+        <p><a href="https://github.com/cnpm/cnpmjs.org">cnpmjs.org</a></p>
+        <h3 id="安装"><a aria-hidden="true" tabindex="-1" href="#安装" class="anchor"><span class="icon icon-link"></span></a>安装</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">npm</span> <span class="token function">install</span> -g --build-from-source cnpmjs.org cnpm sqlite3
+</span><span class="code-line line-number" line="2"><span class="token comment"># 如果报错或者警告通过下面方式安装</span>
+</span><span class="code-line line-number" line="3"><span class="token function">npm</span> <span class="token function">install</span> -g --unsafe-perm --verbose --build-from-source cnpmjs.org cnpm sqlite3
+</span></code><input type="hidden" value="npm install -g --build-from-source cnpmjs.org cnpm sqlite3
 # 如果报错或者警告通过下面方式安装
 npm install -g --unsafe-perm --verbose --build-from-source cnpmjs.org cnpm sqlite3
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>如果安装不流畅通过下面形式安装：</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -g --build-from-source <span class="token punctuation">\</span>
-</span><span class="code-line">  --registry<span class="token operator">=</span>https://registry.npm.taobao.org <span class="token punctuation">\</span>
-</span><span class="code-line">  --disturl<span class="token operator">=</span>https://npm.taobao.org/mirrors/node <span class="token punctuation">\</span>
-</span><span class="code-line">  cnpmjs.org cnpm sqlite3
-</span></code><div onclick="copied(this)" data-code="npm install -g --build-from-source \
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>如果安装不流畅通过下面形式安装：</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">npm</span> <span class="token function">install</span> -g --build-from-source <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="2">  --registry<span class="token operator">=</span>https://registry.npm.taobao.org <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="3">  --disturl<span class="token operator">=</span>https://npm.taobao.org/mirrors/node <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="4">  cnpmjs.org cnpm sqlite3
+</span></code><input type="hidden" value="npm install -g --build-from-source \
   --registry=https://registry.npm.taobao.org \
   --disturl=https://npm.taobao.org/mirrors/node \
   cnpmjs.org cnpm sqlite3
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>如果报警告或者安装错误，请添加参数<code>--unsafe-perm --verbose</code></p>
-<h3 id="启动并配置服务"><a aria-hidden="true" tabindex="-1" href="#启动并配置服务" class="anchor"><span class="icon icon-link"></span></a>启动并配置服务</h3>
-<blockquote>
-<p>管理员：<code>myname,othername</code><br>
-范围：<code>my-company-name,other-name</code><br>
-默认端口：7001-registry, 7002-web</p>
-</blockquote>
-<p>启动服务</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">$ <span class="token function">nohup</span> cnpmjs.org start --admins<span class="token operator">=</span><span class="token string">'myname,othername'</span> <span class="token punctuation">\</span>
-</span><span class="code-line">  --scopes<span class="token operator">=</span><span class="token string">'@my-company-name,@other-name'</span> <span class="token operator">&#x26;</span>
-</span></code><div onclick="copied(this)" data-code="$ nohup cnpmjs.org start --admins=&#x27;myname,othername&#x27; \
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>如果报警告或者安装错误，请添加参数<code>--unsafe-perm --verbose</code></p>
+        <h3 id="启动并配置服务"><a aria-hidden="true" tabindex="-1" href="#启动并配置服务" class="anchor"><span class="icon icon-link"></span></a>启动并配置服务</h3>
+        <blockquote>
+          <p>管理员：<code>myname,othername</code><br>范围：<code>my-company-name,other-name</code><br>默认端口：7001-registry, 7002-web</p>
+        </blockquote>
+        <p>启动服务</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">nohup</span> cnpmjs.org start --admins<span class="token operator">=</span><span class="token string">'myname,othername'</span> <span class="token punctuation">\</span>
+</span><span class="code-line line-number" line="2">  --scopes<span class="token operator">=</span><span class="token string">'@my-company-name,@other-name'</span> <span class="token operator">&#x26;</span>
+</span></code><input type="hidden" value="$ nohup cnpmjs.org start --admins=&#x27;myname,othername&#x27; \
   --scopes=&#x27;@my-company-name,@other-name&#x27; &#x26;
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="设置注册地址"><a aria-hidden="true" tabindex="-1" href="#设置注册地址" class="anchor"><span class="icon icon-link"></span></a>设置注册地址</h3>
-<p>将cnpm默认注册地址更改为私有注册地址</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">cnpm <span class="token builtin class-name">set</span> registry http://localhost:7001
-</span></code><div onclick="copied(this)" data-code="cnpm set registry http://localhost:7001
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="登录cnpm"><a aria-hidden="true" tabindex="-1" href="#登录cnpm" class="anchor"><span class="icon icon-link"></span></a>登录cnpm</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">$ cnpm login
-</span><span class="code-line">Username: myname
-</span><span class="code-line">Password: ***
-</span><span class="code-line">Email: <span class="token punctuation">(</span>this IS public<span class="token punctuation">)</span> test@test.com
-</span></code><div onclick="copied(this)" data-code="$ cnpm login
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="设置注册地址"><a aria-hidden="true" tabindex="-1" href="#设置注册地址" class="anchor"><span class="icon icon-link"></span></a>设置注册地址</h3>
+        <p>将cnpm默认注册地址更改为私有注册地址</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">cnpm <span class="token builtin class-name">set</span> registry http://localhost:7001
+</span></code><input type="hidden" value="cnpm set registry http://localhost:7001
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="登录cnpm"><a aria-hidden="true" tabindex="-1" href="#登录cnpm" class="anchor"><span class="icon icon-link"></span></a>登录cnpm</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ cnpm login
+</span><span class="code-line line-number" line="2">Username: myname
+</span><span class="code-line line-number" line="3">Password: ***
+</span><span class="code-line line-number" line="4">Email: <span class="token punctuation">(</span>this IS public<span class="token punctuation">)</span> test@test.com
+</span></code><input type="hidden" value="$ cnpm login
 Username: myname
 Password: ***
 Email: (this IS public) test@test.com
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="包上传到私有仓库"><a aria-hidden="true" tabindex="-1" href="#包上传到私有仓库" class="anchor"><span class="icon icon-link"></span></a>包上传到私有仓库</h3>
-<p>新建项目</p>
-<pre><code class="code-highlight"><span class="code-line">$ cd /tmp
-</span><span class="code-line">$ mkdir helloworld &#x26;&#x26; cd helloworld
-</span><span class="code-line">$ cnpm init
-</span><span class="code-line">name: (helloworld) @my-company-name/helloworld
-</span><span class="code-line">version: (1.0.0)
-</span><span class="code-line">
-</span><span class="code-line">{
-</span><span class="code-line">  "name": "@my-company-name/helloworld",
-</span><span class="code-line">  "version": "1.0.0",
-</span><span class="code-line">  "description": "my first scoped package",
-</span><span class="code-line">  "main": "index.js",
-</span><span class="code-line">  "scripts": {
-</span><span class="code-line">    "test": "echo \"Error: no test specified\" &#x26;&#x26; exit 1"
-</span><span class="code-line">  },
-</span><span class="code-line">  "author": "",
-</span><span class="code-line">  "license": "ISC"
-</span><span class="code-line">}
-</span></code><div onclick="copied(this)" data-code="$ cd /tmp
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="包上传到私有仓库"><a aria-hidden="true" tabindex="-1" href="#包上传到私有仓库" class="anchor"><span class="icon icon-link"></span></a>包上传到私有仓库</h3>
+        <p>新建项目</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">$ cd /tmp
+</span><span class="code-line line-number" line="2">$ mkdir helloworld &#x26;&#x26; cd helloworld
+</span><span class="code-line line-number" line="3">$ cnpm init
+</span><span class="code-line line-number" line="4">name: (helloworld) @my-company-name/helloworld
+</span><span class="code-line line-number" line="5">version: (1.0.0)
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7">{
+</span><span class="code-line line-number" line="8">  "name": "@my-company-name/helloworld",
+</span><span class="code-line line-number" line="9">  "version": "1.0.0",
+</span><span class="code-line line-number" line="10">  "description": "my first scoped package",
+</span><span class="code-line line-number" line="11">  "main": "index.js",
+</span><span class="code-line line-number" line="12">  "scripts": {
+</span><span class="code-line line-number" line="13">    "test": "echo \"Error: no test specified\" &#x26;&#x26; exit 1"
+</span><span class="code-line line-number" line="14">  },
+</span><span class="code-line line-number" line="15">  "author": "",
+</span><span class="code-line line-number" line="16">  "license": "ISC"
+</span><span class="code-line line-number" line="17">}
+</span></code><input type="hidden" value="$ cd /tmp
 $ mkdir helloworld &#x26;&#x26; cd helloworld
 $ cnpm init
 name: (helloworld) @my-company-name/helloworld
@@ -363,51 +180,51 @@ version: (1.0.0)
   &#x22;author&#x22;: &#x22;&#x22;,
   &#x22;license&#x22;: &#x22;ISC&#x22;
 }
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>上传到私有仓库</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">$ cnpm publish
-</span><span class="code-line">+ @my-company-name/helloworld@1.0.0
-</span></code><div onclick="copied(this)" data-code="$ cnpm publish
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>上传到私有仓库</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ cnpm publish
+</span><span class="code-line line-number" line="2">+ @my-company-name/helloworld@1.0.0
+</span></code><input type="hidden" value="$ cnpm publish
 + @my-company-name/helloworld@1.0.0
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="查看预览包"><a aria-hidden="true" tabindex="-1" href="#查看预览包" class="anchor"><span class="icon icon-link"></span></a>查看预览包</h3>
-<p>浏览器中预览</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">open</span> http://localhost:7002/@my-company-name/helloworld
-</span></code><div onclick="copied(this)" data-code="open http://localhost:7002/@my-company-name/helloworld
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>使用<code>cnpm</code>预览</p>
-<pre><code class="code-highlight"><span class="code-line">cnpm info
-</span></code><div onclick="copied(this)" data-code="cnpm info
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="安装-1"><a aria-hidden="true" tabindex="-1" href="#安装-1" class="anchor"><span class="icon icon-link"></span></a>安装</h3>
-<p>所有公共包都可直接使用<code>cnpm</code>安装</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">cnpm <span class="token function">install</span> hotkeys-js
-</span></code><div onclick="copied(this)" data-code="cnpm install hotkeys-js
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="通过verdaccio搭建"><a aria-hidden="true" tabindex="-1" href="#通过verdaccio搭建" class="anchor"><span class="icon icon-link"></span></a>通过verdaccio搭建</h2>
-<p><a href="https://github.com/verdaccio/verdaccio">verdaccio</a> 是一个轻量级的私有npm代理注册。（<a href="https://github.com/rlidwka/sinopia">sinopia</a> fork）</p>
-<h3 id="安装-2"><a aria-hidden="true" tabindex="-1" href="#安装-2" class="anchor"><span class="icon icon-link"></span></a>安装</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 使用 npm 安装</span>
-</span><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span>
-</span><span class="code-line">
-</span><span class="code-line"><span class="token comment"># 使用 yarn 安装</span>
-</span><span class="code-line"><span class="token function">yarn</span> global <span class="token function">add</span> verdaccio
-</span></code><div onclick="copied(this)" data-code="# 使用 npm 安装
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="查看预览包"><a aria-hidden="true" tabindex="-1" href="#查看预览包" class="anchor"><span class="icon icon-link"></span></a>查看预览包</h3>
+        <p>浏览器中预览</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">open</span> http://localhost:7002/@my-company-name/helloworld
+</span></code><input type="hidden" value="open http://localhost:7002/@my-company-name/helloworld
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>使用<code>cnpm</code>预览</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">cnpm info
+</span></code><input type="hidden" value="cnpm info
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="安装-1"><a aria-hidden="true" tabindex="-1" href="#安装-1" class="anchor"><span class="icon icon-link"></span></a>安装</h3>
+        <p>所有公共包都可直接使用<code>cnpm</code>安装</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">cnpm <span class="token function">install</span> hotkeys-js
+</span></code><input type="hidden" value="cnpm install hotkeys-js
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="通过verdaccio搭建"><a aria-hidden="true" tabindex="-1" href="#通过verdaccio搭建" class="anchor"><span class="icon icon-link"></span></a>通过verdaccio搭建</h2>
+        <p><a href="https://github.com/verdaccio/verdaccio">verdaccio</a> 是一个轻量级的私有npm代理注册。（<a href="https://github.com/rlidwka/sinopia">sinopia</a> fork）</p>
+        <h3 id="安装-2"><a aria-hidden="true" tabindex="-1" href="#安装-2" class="anchor"><span class="icon icon-link"></span></a>安装</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 使用 npm 安装</span>
+</span><span class="code-line line-number" line="2"><span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token comment"># 使用 yarn 安装</span>
+</span><span class="code-line line-number" line="5"><span class="token function">yarn</span> global <span class="token function">add</span> verdaccio
+</span></code><input type="hidden" value="# 使用 npm 安装
 npm install -g npm
 
 # 使用 yarn 安装
 yarn global add verdaccio
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="启动服务"><a aria-hidden="true" tabindex="-1" href="#启动服务" class="anchor"><span class="icon icon-link"></span></a>启动服务</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">verdaccio -l <span class="token number">192.168</span>.188.224:4873 <span class="token operator">>></span> verdaccio.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&#x26;1</span> <span class="token operator">&#x26;</span>
-</span><span class="code-line">verdaccio <span class="token operator">>></span> verdaccio.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&#x26;1</span> <span class="token operator">&#x26;</span> <span class="token comment"># 后台启动并写入日志</span>
-</span><span class="code-line">
-</span><span class="code-line"><span class="token comment"># Verdaccio doesn't need superuser privileges. Don't run it under root.</span>
-</span><span class="code-line"><span class="token comment"># warn --- config file  - /root/.config/verdaccio/config.yaml</span>
-</span><span class="code-line"><span class="token comment"># warn --- http address - http://localhost:4873/ - verdaccio/2.3.6</span>
-</span><span class="code-line">
-</span><span class="code-line">verdaccio --listen <span class="token number">4000</span> --config ./config.yaml <span class="token comment"># 指定配置启动</span>
-</span></code><div onclick="copied(this)" data-code="verdaccio -l 192.168.188.224:4873 >> verdaccio.log 2>&#x26;1 &#x26;
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="启动服务"><a aria-hidden="true" tabindex="-1" href="#启动服务" class="anchor"><span class="icon icon-link"></span></a>启动服务</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">verdaccio -l <span class="token number">192.168</span>.188.224:4873 <span class="token operator">>></span> verdaccio.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&#x26;1</span> <span class="token operator">&#x26;</span>
+</span><span class="code-line line-number" line="2">verdaccio <span class="token operator">>></span> verdaccio.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&#x26;1</span> <span class="token operator">&#x26;</span> <span class="token comment"># 后台启动并写入日志</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token comment"># Verdaccio doesn't need superuser privileges. Don't run it under root.</span>
+</span><span class="code-line line-number" line="5"><span class="token comment"># warn --- config file  - /root/.config/verdaccio/config.yaml</span>
+</span><span class="code-line line-number" line="6"><span class="token comment"># warn --- http address - http://localhost:4873/ - verdaccio/2.3.6</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8">verdaccio --listen <span class="token number">4000</span> --config ./config.yaml <span class="token comment"># 指定配置启动</span>
+</span></code><input type="hidden" value="verdaccio -l 192.168.188.224:4873 >> verdaccio.log 2>&#x26;1 &#x26;
 verdaccio >> verdaccio.log 2>&#x26;1 &#x26; # 后台启动并写入日志
 
 # Verdaccio doesn&#x27;t need superuser privileges. Don&#x27;t run it under root.
@@ -415,79 +232,78 @@ verdaccio >> verdaccio.log 2>&#x26;1 &#x26; # 后台启动并写入日志
 # warn --- http address - http://localhost:4873/ - verdaccio/2.3.6
 
 verdaccio --listen 4000 --config ./config.yaml # 指定配置启动
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="添加用户登录"><a aria-hidden="true" tabindex="-1" href="#添加用户登录" class="anchor"><span class="icon icon-link"></span></a>添加用户/登录</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> adduser --registry  http://localhost:4873
-</span></code><div onclick="copied(this)" data-code="npm adduser --registry  http://localhost:4873
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="上传私有包"><a aria-hidden="true" tabindex="-1" href="#上传私有包" class="anchor"><span class="icon icon-link"></span></a>上传私有包</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> publish --registry http://localhost:4873
-</span></code><div onclick="copied(this)" data-code="npm publish --registry http://localhost:4873
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="本地配置注册地址"><a aria-hidden="true" tabindex="-1" href="#本地配置注册地址" class="anchor"><span class="icon icon-link"></span></a>本地配置注册地址</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> config list -l <span class="token comment"># 查看默认配置</span>
-</span><span class="code-line"><span class="token comment"># 将默认地址 https://registry.npmjs.org/ 改成私有地址</span>
-</span><span class="code-line"><span class="token function">npm</span> <span class="token builtin class-name">set</span> registry http://localhost:4873
-</span><span class="code-line"><span class="token comment"># 如果您使用HTTPS，请添加适当的CA信息</span>
-</span><span class="code-line"><span class="token comment">#（“null”表示从操作系统获取CA列表）</span>
-</span><span class="code-line">$ <span class="token function">npm</span> <span class="token builtin class-name">set</span> ca null
-</span></code><div onclick="copied(this)" data-code="npm config list -l # 查看默认配置
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="添加用户登录"><a aria-hidden="true" tabindex="-1" href="#添加用户登录" class="anchor"><span class="icon icon-link"></span></a>添加用户/登录</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">npm</span> adduser --registry  http://localhost:4873
+</span></code><input type="hidden" value="npm adduser --registry  http://localhost:4873
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="上传私有包"><a aria-hidden="true" tabindex="-1" href="#上传私有包" class="anchor"><span class="icon icon-link"></span></a>上传私有包</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">npm</span> publish --registry http://localhost:4873
+</span></code><input type="hidden" value="npm publish --registry http://localhost:4873
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="本地配置注册地址"><a aria-hidden="true" tabindex="-1" href="#本地配置注册地址" class="anchor"><span class="icon icon-link"></span></a>本地配置注册地址</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">npm</span> config list -l <span class="token comment"># 查看默认配置</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># 将默认地址 https://registry.npmjs.org/ 改成私有地址</span>
+</span><span class="code-line line-number" line="3"><span class="token function">npm</span> <span class="token builtin class-name">set</span> registry http://localhost:4873
+</span><span class="code-line line-number" line="4"><span class="token comment"># 如果您使用HTTPS，请添加适当的CA信息</span>
+</span><span class="code-line line-number" line="5"><span class="token comment">#（“null”表示从操作系统获取CA列表）</span>
+</span><span class="code-line line-number" line="6">$ <span class="token function">npm</span> <span class="token builtin class-name">set</span> ca null
+</span></code><input type="hidden" value="npm config list -l # 查看默认配置
 # 将默认地址 https://registry.npmjs.org/ 改成私有地址
 npm set registry http://localhost:4873
 # 如果您使用HTTPS，请添加适当的CA信息
 #（“null”表示从操作系统获取CA列表）
 $ npm set ca null
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="git仓库当私有npm"><a aria-hidden="true" tabindex="-1" href="#git仓库当私有npm" class="anchor"><span class="icon icon-link"></span></a>Git仓库当私有npm</h2>
-<p>这个方法得益于，npm提供的的丰富安装方法。通过下面方法安装：</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">npm</span> i -S git+ssh://git@git.showgold.cn:npm/hello.git
-</span><span class="code-line">
-</span><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -S git+ssh://git@github.com:npm/npm.git<span class="token comment">#v1.0.27</span>
-</span><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -S git+ssh://git@github.com:npm/npm<span class="token comment">#semver:^5.0</span>
-</span><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -S git+https://isaacs@github.com/npm/npm.git
-</span><span class="code-line"><span class="token function">npm</span> <span class="token function">install</span> -S git://github.com/npm/npm.git<span class="token comment">#v1.0.27</span>
-</span></code><div onclick="copied(this)" data-code="npm i -S git+ssh://git@git.showgold.cn:npm/hello.git
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="git仓库当私有npm"><a aria-hidden="true" tabindex="-1" href="#git仓库当私有npm" class="anchor"><span class="icon icon-link"></span></a>Git仓库当私有npm</h2>
+        <p>这个方法得益于，npm提供的的丰富安装方法。通过下面方法安装：</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">npm</span> i -S git+ssh://git@git.showgold.cn:npm/hello.git
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token function">npm</span> <span class="token function">install</span> -S git+ssh://git@github.com:npm/npm.git<span class="token comment">#v1.0.27</span>
+</span><span class="code-line line-number" line="4"><span class="token function">npm</span> <span class="token function">install</span> -S git+ssh://git@github.com:npm/npm<span class="token comment">#semver:^5.0</span>
+</span><span class="code-line line-number" line="5"><span class="token function">npm</span> <span class="token function">install</span> -S git+https://isaacs@github.com/npm/npm.git
+</span><span class="code-line line-number" line="6"><span class="token function">npm</span> <span class="token function">install</span> -S git://github.com/npm/npm.git<span class="token comment">#v1.0.27</span>
+</span></code><input type="hidden" value="npm i -S git+ssh://git@git.showgold.cn:npm/hello.git
 
 npm install -S git+ssh://git@github.com:npm/npm.git#v1.0.27
 npm install -S git+ssh://git@github.com:npm/npm#semver:^5.0
 npm install -S git+https://isaacs@github.com/npm/npm.git
 npm install -S git://github.com/npm/npm.git#v1.0.27
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>⚠️ 上面安装需要注意：你的工程一定是在某一个组下面建立，方便管理，在生成你的包的时候<code>package.json</code>中的<code>name</code>一定要带上范围</p>
-<h3 id="建立一个私有模块"><a aria-hidden="true" tabindex="-1" href="#建立一个私有模块" class="anchor"><span class="icon icon-link"></span></a>建立一个私有模块</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 假设你建立了一个Git仓库，先克隆下来</span>
-</span><span class="code-line"><span class="token function">git</span> clone http://git.your-inc.com/companyfe/hello-private.git
-</span><span class="code-line">
-</span><span class="code-line"><span class="token comment"># 生成 `package.json` 配置, 注意限定 `@scope` 范围</span>
-</span><span class="code-line"><span class="token function">npm</span> init --scope<span class="token operator">=</span>companyfe
-</span><span class="code-line"><span class="token comment"># 提交到仓库</span>
-</span><span class="code-line"><span class="token function">git</span> push origin master
-</span></code><div onclick="copied(this)" data-code="# 假设你建立了一个Git仓库，先克隆下来
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>⚠️ 上面安装需要注意：你的工程一定是在某一个组下面建立，方便管理，在生成你的包的时候<code>package.json</code>中的<code>name</code>一定要带上范围</p>
+        <h3 id="建立一个私有模块"><a aria-hidden="true" tabindex="-1" href="#建立一个私有模块" class="anchor"><span class="icon icon-link"></span></a>建立一个私有模块</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 假设你建立了一个Git仓库，先克隆下来</span>
+</span><span class="code-line line-number" line="2"><span class="token function">git</span> clone http://git.your-inc.com/companyfe/hello-private.git
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token comment"># 生成 `package.json` 配置, 注意限定 `@scope` 范围</span>
+</span><span class="code-line line-number" line="5"><span class="token function">npm</span> init --scope<span class="token operator">=</span>companyfe
+</span><span class="code-line line-number" line="6"><span class="token comment"># 提交到仓库</span>
+</span><span class="code-line line-number" line="7"><span class="token function">git</span> push origin master
+</span></code><input type="hidden" value="# 假设你建立了一个Git仓库，先克隆下来
 git clone http://git.your-inc.com/companyfe/hello-private.git
 
 # 生成 &#x60;package.json&#x60; 配置, 注意限定 &#x60;@scope&#x60; 范围
 npm init --scope=companyfe
 # 提交到仓库
 git push origin master
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>⚠️ 将得到如下依赖，注意：</p>
-<blockquote>
-<p><code>name</code>字段必须限定范围，一般为 GitLab group 的名字, 例如 <code>@companyfe</code>, 那么 <code>name</code> 为: <code>@companyfe/hello-private</code>。<br>
-<code>private</code> 设为 <code>true</code> 防止将私有模块上传到公网上去，需要手动设置一下。</p>
-</blockquote>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line"><span class="token punctuation">{</span>
-</span><span class="code-line">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"@companyfe/hello-private"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.1"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"index.js"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"private"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-</span><span class="code-line">    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &#x26;&#x26; exit 1"</span>
-</span><span class="code-line">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"kenny wang &#x3C;wowohoo@qq.com> (http://wangchujiang.com)"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"ISC"</span>
-</span><span class="code-line"><span class="token punctuation">}</span>
-</span></code><div onclick="copied(this)" data-code="{
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>⚠️ 将得到如下依赖，注意：</p>
+        <blockquote>
+          <p><code>name</code>字段必须限定范围，一般为 GitLab group 的名字, 例如 <code>@companyfe</code>, 那么 <code>name</code> 为: <code>@companyfe/hello-private</code>。<br><code>private</code> 设为 <code>true</code> 防止将私有模块上传到公网上去，需要手动设置一下。</p>
+        </blockquote>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"@companyfe/hello-private"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.1"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"index.js"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"private"</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="7">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="8">    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &#x26;&#x26; exit 1"</span>
+</span><span class="code-line line-number" line="9">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="10">  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"kenny wang &#x3C;wowohoo@qq.com> (http://wangchujiang.com)"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="11">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"ISC"</span>
+</span><span class="code-line line-number" line="12"><span class="token punctuation">}</span>
+</span></code><input type="hidden" value="{
   &#x22;name&#x22;: &#x22;@companyfe/hello-private&#x22;,
   &#x22;version&#x22;: &#x22;1.0.1&#x22;,
   &#x22;description&#x22;: &#x22;&#x22;,
@@ -499,34 +315,34 @@ git push origin master
   &#x22;author&#x22;: &#x22;kenny wang <wowohoo@qq.com> (http://wangchujiang.com)&#x22;,
   &#x22;license&#x22;: &#x22;ISC&#x22;
 }
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="安装使用私有模块"><a aria-hidden="true" tabindex="-1" href="#安装使用私有模块" class="anchor"><span class="icon icon-link"></span></a>安装使用私有模块</h3>
-<p>跟安装开源的模块一样, 使用 <code>npm install</code> 安装依赖即可. 私有模块会安装在 <code>@scope</code> 的子文件夹中, 例如: <code>node_modules/@companyfe/hello-private</code>.</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token comment"># 基础安装</span>
-</span><span class="code-line"><span class="token function">npm</span> i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git
-</span><span class="code-line"><span class="token comment"># 带版本信息的，必须通过 git 打 tag</span>
-</span><span class="code-line"><span class="token function">npm</span> i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git<span class="token comment">#v1.2.0</span>
-</span></code><div onclick="copied(this)" data-code="# 基础安装
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="安装使用私有模块"><a aria-hidden="true" tabindex="-1" href="#安装使用私有模块" class="anchor"><span class="icon icon-link"></span></a>安装使用私有模块</h3>
+        <p>跟安装开源的模块一样, 使用 <code>npm install</code> 安装依赖即可. 私有模块会安装在 <code>@scope</code> 的子文件夹中, 例如: <code>node_modules/@companyfe/hello-private</code>.</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 基础安装</span>
+</span><span class="code-line line-number" line="2"><span class="token function">npm</span> i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git
+</span><span class="code-line line-number" line="3"><span class="token comment"># 带版本信息的，必须通过 git 打 tag</span>
+</span><span class="code-line line-number" line="4"><span class="token function">npm</span> i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git<span class="token comment">#v1.2.0</span>
+</span></code><input type="hidden" value="# 基础安装
 npm i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git
 # 带版本信息的，必须通过 git 打 tag
 npm i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git#v1.2.0
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>将得到如下依赖</p>
-<pre class="language-json"><code class="language-json code-highlight"><span class="code-line"><span class="token punctuation">{</span>
-</span><span class="code-line">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"helloworld"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"index.js"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-</span><span class="code-line">    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &#x26;&#x26; exit 1"</span>
-</span><span class="code-line">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-</span><span class="code-line">    <span class="token property">"@companyfe/hello-private"</span><span class="token operator">:</span> <span class="token string">"git+ssh://git@git.your-inc.com/companyfe/hello-private.git#v1.2.0"</span>
-</span><span class="code-line">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"kenny wang &#x3C;wowohoo@qq.com> (http://wangchujiang.com)"</span><span class="token punctuation">,</span>
-</span><span class="code-line">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"ISC"</span>
-</span><span class="code-line"><span class="token punctuation">}</span>
-</span></code><div onclick="copied(this)" data-code="{
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>将得到如下依赖</p>
+        <pre class="language-json"><code class="language-json code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="2">  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"helloworld"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="3">  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="4">  <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="5">  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"index.js"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="6">  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="7">    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"echo \"Error: no test specified\" &#x26;&#x26; exit 1"</span>
+</span><span class="code-line line-number" line="8">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="9">  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="10">    <span class="token property">"@companyfe/hello-private"</span><span class="token operator">:</span> <span class="token string">"git+ssh://git@git.your-inc.com/companyfe/hello-private.git#v1.2.0"</span>
+</span><span class="code-line line-number" line="11">  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="12">  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"kenny wang &#x3C;wowohoo@qq.com> (http://wangchujiang.com)"</span><span class="token punctuation">,</span>
+</span><span class="code-line line-number" line="13">  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"ISC"</span>
+</span><span class="code-line line-number" line="14"><span class="token punctuation">}</span>
+</span></code><input type="hidden" value="{
   &#x22;name&#x22;: &#x22;helloworld&#x22;,
   &#x22;version&#x22;: &#x22;1.0.0&#x22;,
   &#x22;description&#x22;: &#x22;&#x22;,
@@ -540,195 +356,75 @@ npm i -S git+ssh://git@git.your-inc.com/companyfe/hello-private.git#v1.2.0
   &#x22;author&#x22;: &#x22;kenny wang <wowohoo@qq.com> (http://wangchujiang.com)&#x22;,
   &#x22;license&#x22;: &#x22;ISC&#x22;
 }
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>使用私有模块</p>
-<pre class="language-js"><code class="language-js code-highlight"><span class="code-line"><span class="token keyword">var</span> hello <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@companyfe/hello-private'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span></code><div onclick="copied(this)" data-code="var hello = require(&#x27;@companyfe/hello-private&#x27;);
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="优劣势"><a aria-hidden="true" tabindex="-1" href="#优劣势" class="anchor"><span class="icon icon-link"></span></a>优劣势</h3>
-<p>不好的地方是，使用 <code>npm update</code> 是无法更新私有模块，想更新只能重新安装一次。好处是不用搭建服务。</p>
-<h2 id="其它工具"><a aria-hidden="true" tabindex="-1" href="#其它工具" class="anchor"><span class="icon icon-link"></span></a>其它工具</h2>
-<ul>
-<li><a href="https://github.com/cevio/cpm">cpm</a> 一套轻量化的 NPM 私有源管理程序</li>
-</ul>
-<h2 id="参考资料"><a aria-hidden="true" tabindex="-1" href="#参考资料" class="anchor"><span class="icon icon-link"></span></a>参考资料</h2>
-<ul>
-<li><a href="https://docs.npmjs.com/misc/registry#can-i-run-my-own-private-registry">Can I run my own private registry?</a></li>
-</ul>
-    
-
-<div class="previous">
-  
-  <a class="prev" href="samba.html">
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
-      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
-    </svg>
-    <span>
-      Samba 安装
-    </span>
-  </a>
-  
-  
-  <a class="next" href="Java.html">
-    <span>
-      安装 Java
-    </span>
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
-      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
-    </svg>
-  </a>
-  
-</div>
-
-
-
-<section class="article-footer">
-  <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/在5分钟内搭建企业内部私有npm仓库.md" class="edit-button" target="_blank" rel="noopener noreferrer">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-    </svg>
-    <span>Edit this page on GitHub</span>
-  </a>
-  
-  <span class="atime">2022/04/24</span>
-  
-</section>
-
-  </markdown-style>
-  
-<nav class="tocs">
-  <aside class="inner toc">
-    <ol class="tocs-list">
-    
-      <li>
-        <a href="#cnpm搭建" class="tocs-link">cnpm搭建</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#安装" class="tocs-link">安装</a>
-                
-              </li>
-            
-              <li>
-                <a href="#启动并配置服务" class="tocs-link">启动并配置服务</a>
-                
-              </li>
-            
-              <li>
-                <a href="#设置注册地址" class="tocs-link">设置注册地址</a>
-                
-              </li>
-            
-              <li>
-                <a href="#登录cnpm" class="tocs-link">登录cnpm</a>
-                
-              </li>
-            
-              <li>
-                <a href="#包上传到私有仓库" class="tocs-link">包上传到私有仓库</a>
-                
-              </li>
-            
-              <li>
-                <a href="#查看预览包" class="tocs-link">查看预览包</a>
-                
-              </li>
-            
-              <li>
-                <a href="#安装-1" class="tocs-link">安装</a>
-                
-              </li>
-            
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>使用私有模块</p>
+        <pre class="language-js"><code class="language-js code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">var</span> hello <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@companyfe/hello-private'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></code><input type="hidden" value="var hello = require(&#x27;@companyfe/hello-private&#x27;);
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="优劣势"><a aria-hidden="true" tabindex="-1" href="#优劣势" class="anchor"><span class="icon icon-link"></span></a>优劣势</h3>
+        <p>不好的地方是，使用 <code>npm update</code> 是无法更新私有模块，想更新只能重新安装一次。好处是不用搭建服务。</p>
+        <h2 id="其它工具"><a aria-hidden="true" tabindex="-1" href="#其它工具" class="anchor"><span class="icon icon-link"></span></a>其它工具</h2>
+        <ul>
+          <li><a href="https://github.com/cevio/cpm">cpm</a> 一套轻量化的 NPM 私有源管理程序</li>
+        </ul>
+        <h2 id="参考资料"><a aria-hidden="true" tabindex="-1" href="#参考资料" class="anchor"><span class="icon icon-link"></span></a>参考资料</h2>
+        <ul>
+          <li><a href="https://docs.npmjs.com/misc/registry#can-i-run-my-own-private-registry">Can I run my own private registry?</a></li>
+        </ul>
+        <div class="previous"><a class="prev" href="samba.html"><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+              <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+            </svg>
+<span>Samba 安装
+</span></a><a class="next" href="Java.html"><span>安装 Java
+</span><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+              <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+            </svg></a></div>
+        <section class="article-footer"><a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/在5分钟内搭建企业内部私有npm仓库.md" class="edit-button" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+<span>Edit this page on GitHub</span>
+</a><span class="atime">2022/05/14</span></section>
+      </markdown-style>
+      <nav class="tocs">
+        <aside class="inner toc">
+          <ol class="tocs-list">
+            <li><a href="#cnpm搭建" class="tocs-link">cnpm搭建</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#安装" class="tocs-link">安装</a></li>
+                <li><a href="#启动并配置服务" class="tocs-link">启动并配置服务</a></li>
+                <li><a href="#设置注册地址" class="tocs-link">设置注册地址</a></li>
+                <li><a href="#登录cnpm" class="tocs-link">登录cnpm</a></li>
+                <li><a href="#包上传到私有仓库" class="tocs-link">包上传到私有仓库</a></li>
+                <li><a href="#查看预览包" class="tocs-link">查看预览包</a></li>
+                <li><a href="#安装-1" class="tocs-link">安装</a></li>
+              </ol>
+            </li>
+            <li><a href="#通过verdaccio搭建" class="tocs-link">通过verdaccio搭建</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#安装-2" class="tocs-link">安装</a></li>
+                <li><a href="#启动服务" class="tocs-link">启动服务</a></li>
+                <li><a href="#添加用户登录" class="tocs-link">添加用户/登录</a></li>
+                <li><a href="#上传私有包" class="tocs-link">上传私有包</a></li>
+                <li><a href="#本地配置注册地址" class="tocs-link">本地配置注册地址</a></li>
+              </ol>
+            </li>
+            <li><a href="#git仓库当私有npm" class="tocs-link">Git仓库当私有npm</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#建立一个私有模块" class="tocs-link">建立一个私有模块</a></li>
+                <li><a href="#安装使用私有模块" class="tocs-link">安装使用私有模块</a></li>
+                <li><a href="#优劣势" class="tocs-link">优劣势</a></li>
+              </ol>
+            </li>
+            <li><a href="#其它工具" class="tocs-link">其它工具</a></li>
+            <li><a href="#参考资料" class="tocs-link">参考资料</a></li>
           </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#通过verdaccio搭建" class="tocs-link">通过verdaccio搭建</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#安装-2" class="tocs-link">安装</a>
-                
-              </li>
-            
-              <li>
-                <a href="#启动服务" class="tocs-link">启动服务</a>
-                
-              </li>
-            
-              <li>
-                <a href="#添加用户登录" class="tocs-link">添加用户/登录</a>
-                
-              </li>
-            
-              <li>
-                <a href="#上传私有包" class="tocs-link">上传私有包</a>
-                
-              </li>
-            
-              <li>
-                <a href="#本地配置注册地址" class="tocs-link">本地配置注册地址</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#git仓库当私有npm" class="tocs-link">Git仓库当私有npm</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#建立一个私有模块" class="tocs-link">建立一个私有模块</a>
-                
-              </li>
-            
-              <li>
-                <a href="#安装使用私有模块" class="tocs-link">安装使用私有模块</a>
-                
-              </li>
-            
-              <li>
-                <a href="#优劣势" class="tocs-link">优劣势</a>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#其它工具" class="tocs-link">其它工具</a>
-        
-      </li>
-    
-      <li>
-        <a href="#参考资料" class="tocs-link">参考资料</a>
-        
-      </li>
-    
-    </ol>
-  </aside>
-</nav>
-
-
-<script src="../js/tocbot.js?v=1.0.0"></script>
-
-</div>
-
-
-<div class="footer warpper">
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.13.7
-
-</div>
-
-</body>
+        </aside>
+      </nav>
+    </div>
+    <script src="../js/demo-preview.js?v=1.21.1"></script>
+    <div class="footer warpper">Released under the MIT License. Copyright © 2022 Kenny Wong<br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.21.1</div>
+    <script src="../js/tocbot.js?v=1.21.1"></script>
+  </body>
 </html>

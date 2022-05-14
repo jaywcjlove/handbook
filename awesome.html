@@ -1,574 +1,306 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> handbook </title>
-  
-  
-  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
-  
-  <link rel="stylesheet" type="text/css" href="css/main.css?v=1650812450423">
-  
-  <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1650812450423">
-  
-  <link rel="stylesheet" type="text/css" href="css/media.css?v=1650812450423">
-  <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1650812450423">
-  <link rel="stylesheet" type="text/css" href="css/copy.css?v=1650812450423">
-  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>handbook</title>
+    <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+    <link rel="stylesheet" type="text/css" href="css/main.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="css/media.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="css/copy.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="css/demo-preview.css?v=1.21.1">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <script src="js/copy.js"></script>
-  <script src="js/dark-mode.js"></script>
-  <script src="js/markdown-style.js"></script>
-</head>
-<body id="idoctotop">
-  <a href="#idoctotop" class="gototop">top</a>
-<header class="header">
-  <article class="inner warpper">
-    <a class="logo" href="index.html">
-      
-        <img alt="handbook logo" src="data:image/png;base64,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">
-      
-      <span class="title">handbook</span>
-    </a>
-    <div class="content">
-      <ul class="menu">
-        
-        <li>
-          <a href="index.html" target="" class=""> Home </a>
-        </li>
-        
-        <li>
-          <a href="awesome.html" target="" class=""> Awesome </a>
-        </li>
-        
-        <li>
-          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
-        </li>
-        
-      </ul>
-      
-        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-      
-      <dark-mode permanent></dark-mode>
+    <script src="js/copy.js?v=1.21.1"></script>
+    <script src="js/dark-mode.js?v=1.21.1"></script>
+    <script src="js/markdown-style.js?v=1.21.1"></script>
+  </head>
+  <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
+    <header class="header">
+      <article class="inner warpper"><a class="logo" href="index.html"><img alt="handbook logo" src="data:image/png;base64,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">
+<span class="title">handbook</span></a>
+        <div class="content">
+          <ul class="menu">
+            <li><a href="index.html" target="" class="">Home</a></li>
+            <li><a href="awesome.html" target="" class="active">Awesome</a></li>
+            <li><a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class="">🇨🇳</a></li>
+          </ul><a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg></a>
+          <dark-mode permanent=""></dark-mode>
+        </div>
+      </article>
+    </header>
+    <div class="warpper-content warpper sidebar">
+      <div class="sidebar-border">
+        <aside class="sidebar" role="navigation">
+          <div>
+            <label>JavaScript</label>
+            <a href="JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+            <a href="JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+            <a href="JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+            <a href="JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+            <label>Redis</label>
+            <a href="Redis/index.html" class="">快速入门 Redis</a>
+            <label>Android</label>
+            <a href="Android/react-native.html" class="">React Native Android 环境搭建</a>
+            <label>CentOS</label>
+            <a href="CentOS/CentOS.html" class="">CentOS 常用命令</a>
+            <a href="CentOS/CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+            <a href="CentOS/常用基础命令.html" class="">常用基础命令</a>
+            <a href="CentOS/CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+            <a href="CentOS/CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+            <a href="CentOS/CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+            <a href="CentOS/CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+            <a href="CentOS/Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+            <a href="CentOS/Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+            <a href="CentOS/Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+            <a href="CentOS/Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+            <a href="CentOS/Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+            <a href="CentOS/Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+            <a href="CentOS/Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+            <a href="CentOS/Rocket.Chat.html" class="">Rocket.Chat</a>
+            <a href="CentOS/Ruby安装.html" class="">Ruby 安装</a>
+            <a href="CentOS/samba.html" class="">Samba 安装</a>
+            <a href="CentOS/在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+            <a href="CentOS/Java.html" class="">安装 Java</a>
+            <a href="CentOS/部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+            <a href="CentOS/搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+            <a href="CentOS/部署YApi平台.html" class="">部署 YApi 平台</a>
+            <a href="CentOS/openstack.html" class="">搭建 OpenStack</a>
+            <a href="CentOS/pip.html" class="">安装 pip 工具</a>
+            <a href="CentOS/修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+            <a href="CentOS/尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+            <a href="CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+            <a href="CentOS/svn.html" class="">安装使用 svn</a>
+            <a href="CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>其它</label>
+            <a href="other/weixin-public-account.html" class="">公众账号推荐</a>
+            <a href="other/google.html" class="">谷歌(Google)镜像</a>
+            <a href="other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+            <a href="other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+            <a href="other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+            <a href="other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+            <a href="other/Lua5.3.html" class="">Lua 5.3 文档</a>
+            <a href="Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+            <a href="Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+          </div>
+        </aside>
+      </div>
+      <markdown-style>
+        <h2 id="排行榜统计"><a aria-hidden="true" tabindex="-1" href="#排行榜统计" class="anchor"><span class="icon icon-link"></span></a>排行榜统计</h2>
+        <ul>
+          <li><a href="http://www.tiobe.com/tiobe-index/">TIOBE编程语言排行榜★★★</a></li>
+          <li><a href="https://risingstars.js.org">JavaScript Rising Stars★★★</a></li>
+          <li><a href="https://stateofjs.com/">JavaScript各种工具统计★★★</a></li>
+          <li><a href="http://githut.info/">通过GitHub平台了解编程语言的使用★★★</a></li>
+          <li><a href="https://pypl.github.io/PYPL.html">PYPL流行程序设计语言</a></li>
+          <li><a href="http://gs.statcounter.com/">Statcounter统计浏览器市场份额</a></li>
+          <li><a href="https://tongji.baidu.com/data/browser">百度统计浏览器市场份额</a></li>
+          <li><a href="https://www.netmarketshare.com/browser-market-share.aspx">浏览器占有率排行</a></li>
+          <li><a href="https://browserslist.dev/">显示兼容浏览器的页面</a></li>
+          <li><a href="https://insights.stackoverflow.com/survey/">Stack Overflow 年度开发者调查</a></li>
+          <li><a href="https://github.com/trending">Github Trending</a></li>
+          <li><a href="http://www.githubrank.com/"><del>Github Follower排行榜</del></a></li>
+          <li><a href="http://jaywcjlove.github.io/github-rank/">Github中国用户排名，仓库排名趋势榜</a></li>
+          <li><a href="https://gitstar-ranking.com">Gitstar Ranking</a></li>
+          <li><a href="https://githuber.cn/">Githuber.cn星榜</a></li>
+          <li><a href="https://www.githubs.cn/">GitHub中文社区各种排行榜</a></li>
+          <li><a href="https://bestofjs.org/">比项目较过去12个月在 GitHub 上增加的星标数</a></li>
+          <li><a href="https://www.techempower.com/benchmarks/">Web框架性能测试排名</a></li>
+        </ul>
+        <h2 id="徽章"><a aria-hidden="true" tabindex="-1" href="#徽章" class="anchor"><span class="icon icon-link"></span></a>徽章</h2>
+        <ul>
+          <li><a href="http://shields.io/#/">开源项目的质量元数据标记</a></li>
+          <li><a href="https://badgen.net/">快速徽章生成服务</a></li>
+          <li><a href="https://github.com/jaywcjlove/sb">固定状态徽章</a></li>
+          <li><a href="https://github.com/tandpfun/skill-icons">快速生成技能徽章</a></li>
+          <li><a href="https://github.com/ntkme/github-buttons">非官方 github:按钮</a></li>
+        </ul>
+        <h2 id="在线作图"><a aria-hidden="true" tabindex="-1" href="#在线作图" class="anchor"><span class="icon icon-link"></span></a>在线作图</h2>
+        <ul>
+          <li><a href="https://www.processon.com/">ProcessOn</a> 支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等</li>
+          <li><a href="https://www.draw.io">draw.io</a> 免费的在线图表软件，用于制作流程图，流程图，组织结构图，UML，ER和网络图</li>
+          <li><a href="https://www.pixelartcss.com/">Pixel Art to CSS</a> 是一个在线像素风绘图工具 <a href="https://github.com/jvalen/pixel-art-react"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
+          <li><a href="https://codeimg.io/">codeimg.io</a> 把源代码变成漂亮的图片的工具。</li>
+          <li><a href="https://www.codepng.app/">Codepng</a> 代码片段转为美观的图片。</li>
+          <li><a href="https://ray.so/">ray.so</a> 可以生成漂亮的代码截图，颜色、阴影、背景都可以调整。</li>
+          <li><a href="https://chalk.ist/">Chalk.ist</a> 为您的源代码创建漂亮的图像。<a href="https://github.com/Idered/chalk.ist"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
+          <li><a href="https://pixlr.com/x">Pixlr X</a> 基于 Canvas 和 WebGL 的在线图像编辑器。</li>
+          <li><a href="https://terrastruct.com/">Terrastruct</a> 一个在线的架构图、流程图工具。</li>
+          <li><a href="https://github.com/excalidraw/excalidraw">Excalidraw</a> 非常简单易用的白板绘图开源工具</li>
+          <li><a href="https://formito.com/tools/favicon">Free Favicon Maker</a> 在线制作 SVG 格式的 Favicon。</li>
+          <li><a href="https://github.com/GoogleChromeLabs/squoosh">Squoosh</a> 在浏览器中使用一流的编解码器无损压缩图片。</li>
+          <li><a href="https://david.li/paint/">Fluid Paint</a> 网页画板工具，可以定制笔刷，产生刷油漆的流体效果，非常精美</li>
+          <li><a href="https://iconmaker.app/">IconMaker</a> 应用程序图标 Favicons 图标生成器和调整器</li>
+          <li><a href="https://pengfeiw.github.io/minicode/react-paint">React Paint</a> 使用 React 实现的开源 Windows 画板。</li>
+        </ul>
+        <h2 id="在线数据库建模工具"><a aria-hidden="true" tabindex="-1" href="#在线数据库建模工具" class="anchor"><span class="icon icon-link"></span></a>在线数据库建模工具</h2>
+        <ul>
+          <li><a href="https://sqldbm.com/">SQL DBM</a> 在线数据库建模</li>
+          <li><a href="https://vertabelo.com/">Vertabelo</a> 在线数据库建模</li>
+          <li><a href="https://www.dbdesigner.net/">DB Designer</a> 在线数据库建模</li>
+        </ul>
+        <h2 id="文档工具"><a aria-hidden="true" tabindex="-1" href="#文档工具" class="anchor"><span class="icon icon-link"></span></a>文档工具</h2>
+        <ul>
+          <li><a href="https://github.com/esdoc/esdoc">ESDoc</a> ESDoc是JavaScript的文档生成器。</li>
+          <li><a href="https://github.com/apidoc/apidoc">apiDoc</a> 生成RESTful Web API文档。</li>
+          <li><a href="https://github.com/jsdoc3/jsdoc">jsdoc</a> 用于JavaScript的API文档生成器。</li>
+          <li><a href="https://github.com/TypeStrong/typedoc">typedoc</a> TypeScript 项目的文档生成器。</li>
+          <li><a href="https://swagger.io">swagger</a> 一款RESTful 接口的文档在线自动生成+功能测试功能软件。</li>
+          <li><a href="https://editor.swagger.io/">swagger editor</a> 在线版编辑器。</li>
+          <li><a href="https://www.editcsvonline.com/">EditCSV Online</a> 一个编辑 CSV 文件的在线工具。</li>
+          <li><a href="https://devtool.tech/html-md">html-md</a> 在线小工具，将网页转成 Markdown 代码。</li>
+          <li><a href="https://github.com/pipipi-pikachu/PPTist">PPTist</a> 一个 PPT 网页应用，还原了大部分 PowerPoint 常用功能，支持 PPT 的在线编辑、演示和导出。</li>
+        </ul>
+        <h2 id="npm"><a aria-hidden="true" tabindex="-1" href="#npm" class="anchor"><span class="icon icon-link"></span></a>npm</h2>
+        <ul>
+          <li><a href="https://npm-stat.com/">下载NPM包的统计信息</a></li>
+          <li><a href="https://www.npmtrends.com">NPM包下载趋势榜对比</a></li>
+          <li><a href="http://www.npmtrends.com/">比较npm包下载，计数随时间的变化</a></li>
+          <li><a href="https://bundlephobia.com/">BundlePhobia</a> 查看添加 npm 软件包的成本。</li>
+          <li><a href="https://packagephobia.com/">PackagePhobia</a> 查找向项目添加新开发依赖项的成本。</li>
+          <li><a href="https://npmview.now.sh/">npmview</a> 让你查看 npm 模块里面包含了什么文件。</li>
+          <li><a href="https://npm.anvaka.com/">anvaka</a> npm 依赖的可视化</li>
+          <li><a href="https://www.skypack.dev">Skypack</a> 无需安装和构建工具即可加载优化的 npm 包。</li>
+          <li><a href="https://packagequality.com/">Package Quality</a> 包的质量测量，最初用于 npm。</li>
+        </ul>
+        <h2 id="工具"><a aria-hidden="true" tabindex="-1" href="#工具" class="anchor"><span class="icon icon-link"></span></a>工具</h2>
+        <ul>
+          <li><a href="https://github.com/lrsjng/pagemap">pagemap</a> 在网页插入迷你的页面缩略导航图，可以点击这个图的不同部分，实现快速导航。</li>
+          <li><a href="https://github.com/nbedos/termtosvg">termtosvg</a> 将你的终端会话录制成一个单独的 SVG 动画。</li>
+          <li><a href="https://iching.codes/">Nodle-I-Ching</a> 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 <a href="https://github.com/NodleCode/Nodle-I-Ching"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
+          <li><a href="https://squoosh.app/">Squoosh</a> 在浏览器中使用最佳的编解码器缩小图像。</li>
+          <li><a href="https://github.com/bestofjs/bestofjs-webui">bestofjs</a> 展示了项目 Star 数变化的日历色块图。<a href="https://bestofjs.org/">demo</a></li>
+          <li><a href="http://www.asciiworld.com/top6_ascii_art.html">Ascii艺术图片</a> 可以生成字符串“图片”</li>
+          <li><a href="https://patorjk.com/software/taag/#p=display&#x26;f=Graffiti&#x26;t=Type%20Something%20">Graffiti</a> 字母生成生成字符串“图片”</li>
+          <li><a href="http://facesofopensource.com/">专门拍摄推动计算机革命的开源程序员的肖像</a></li>
+          <li><a href="https://github.com/chanind/hanzi-writer">一个演示汉字笔画顺序的 JS 库</a></li>
+          <li><a href="http://asciimath.org/">AsciiMath</a> 简单易用的数学公式转换工具 <a href="https://github.com/asciimath/asciimathml"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
+          <li><a href="https://doka.photo/">doka</a> 一个使用 WebGL 技术搭建的在线图像编辑器，使用非常流畅。</li>
+          <li><a href="https://www.publisheet.com/">Publisheet</a> Excel 表格转为网页表格的在线工具。</li>
+          <li><a href="https://dbdiagram.io">dbdiagram</a> 在线数据库关系图设计工具。</li>
+          <li><a href="https://cubic-bezier.com/">cubic-bezier</a></li>
+          <li><a href="https://www.jasondavies.com/animated-bezier/">Animated Bézier Curves</a></li>
+          <li><a href="https://easings.net/cn">easings</a> 缓动函数速查表</li>
+          <li><a href="https://animista.net">Animista</a> 网页 CSS 动画工具，可自由配置各种动画特效，并生成代码。</li>
+          <li><a href="http://www.qiuziti.com/">求字体</a> 字体识别与搜索</li>
+          <li><a href="http://colorjs.github.io/color-space/">color-space</a> 颜色转化工具。</li>
+          <li><a href="https://www.trackawesomelist.com/">Track Awesome List</a> 追踪每个 Awesome 清单的更新，可以及时查看每天新增哪些资源。</li>
+        </ul>
+        <h2 id="在线代码编辑"><a aria-hidden="true" tabindex="-1" href="#在线代码编辑" class="anchor"><span class="icon icon-link"></span></a>在线代码编辑</h2>
+        <ul>
+          <li><a href="https://codepen.io/">codepen</a> 在线编辑器</li>
+          <li><a href="https://stackblitz.com/">stackblitz</a> 在线编辑器</li>
+          <li><a href="https://codesandbox.io/">codesandbox</a> 在线编辑器</li>
+          <li><a href="https://jsfiddle.net">jsfiddle</a> 在线编辑器</li>
+          <li><a href="https://runjs.cn/">runjs</a> 在线编辑器</li>
+          <li><a href="https://jsbin.com/">JS Bin</a> 在线编辑器</li>
+          <li><a href="http://jsrun.net">jsrun</a> 在线编辑器，支持多种语言</li>
+          <li><a href="https://next.json-generator.com">JSON Generator</a> 生成虚拟 JSON 数据的在线工具</li>
+          <li><a href="https://app.quicktype.io/">QuickType</a> 即时解析任何语言的JSON</li>
+          <li><a href="https://github.com/theonedev/onedev">OneDev</a> 类似于 GitHub/GitLab，可以自己架设</li>
+          <li><a href="https://replit.com/">replit</a> 编码、创建和一起学习</li>
+          <li><a href="https://runkit.com/">runkit</a></li>
+          <li><a href="https://webcomponents.dev/">Web Components</a></li>
+        </ul>
+        <h2 id="免费托管服务工具"><a aria-hidden="true" tabindex="-1" href="#免费托管服务工具" class="anchor"><span class="icon icon-link"></span></a>免费托管服务工具</h2>
+        <ul>
+          <li><a href="https://www.openshift.com/">OPENSHIFT</a></li>
+          <li><a href="http://www.openode.io/">opeNode</a></li>
+          <li><a href="http://www.heroku.com">Heroku</a></li>
+          <li><a href="https://vercel.com/">Vercel</a></li>
+          <li><a href="https://glitch.com">Glitch</a></li>
+        </ul>
+        <h2 id="正则表达式工具"><a aria-hidden="true" tabindex="-1" href="#正则表达式工具" class="anchor"><span class="icon icon-link"></span></a>正则表达式工具</h2>
+        <ul>
+          <li><a href="https://regexr.com/">https://regexr.com/</a> <a href="https://github.com/gskinner/regexr/"><code>Github</code></a></li>
+          <li><a href="https://regex101.com/">https://regex101.com/</a></li>
+          <li><a href="https://regexper.com/">https://regexper.com/</a></li>
+          <li><a href="http://myregexp.com/">http://myregexp.com/</a></li>
+          <li><a href="https://ihateregex.io/">https://ihateregex.io/</a> <a href="https://github.com/geongeorge/i-hate-regex"><code>Github</code></a></li>
+        </ul>
+        <h2 id="github"><a aria-hidden="true" tabindex="-1" href="#github" class="anchor"><span class="icon icon-link"></span></a>Github</h2>
+        <ul>
+          <li><a href="http://git-awards.com/">git-awards</a> 发现您在GitHub上的排名。</li>
+          <li><a href="https://github.com/timqian/star-history">star-history</a> 帮助用户查看 GitHub 项目 star 数目的历史。</li>
+          <li><a href="https://github.com/caarlos0/starcharts">starcharts</a> 可以查看 GitHub 仓库的 Star 变化情况，生成折线图。</li>
+          <li><a href="https://github.com/showcases/programming-languages/">programming-languages</a> 在GitHub上积极开发的编程语言列表</li>
+          <li><a href="https://github.com/showcases/front-end-javascript-frameworks">GitHub，前端JavaScript框架</a></li>
+          <li><a href="https://gitignore.io/">gitignore.io</a> 生成 gitignore 文件的网站。</li>
+          <li><a href="https://github.com/anuraghazra/github-readme-stats">GitHub Readme Stats</a> 为您的 Github 自述文件动态生成的统计信息。</li>
+          <li><a href="https://github.com/ryo-ma/github-profile-trophy">GitHub Profile Trophy</a> 为您的 Github 自述文件动态生成档案奖杯。</li>
+          <li><a href="http://toolwa.com/github/">GitHub 加速下载</a></li>
+          <li><a href="https://skyline.github.com">GitHub Skyline</a> GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图。</li>
+          <li><a href="https://ghchart.rshah.org/">Github Chart API</a> 将您的 GitHub 图表嵌入到您想要的任何 HTML 中。</li>
+          <li><a href="https://repobeats.axiom.co/">Repobeats</a> 在 GitHub 仓库的 README 文件里面，加入图形化的项目数据统计。</li>
+          <li><a href="https://www.githubtrends.io/">GitHub Wrapped</a> 网页工具将你过去一年的 GitHub 活动，创建成一张图表</li>
+          <li><a href="https://contrib.rocks/">contrib.rocks</a> 为贡献者列表生成动态图片 URL 以显示它！</li>
+        </ul>
+        <h2 id="办公类应用"><a aria-hidden="true" tabindex="-1" href="#办公类应用" class="anchor"><span class="icon icon-link"></span></a>办公类应用</h2>
+        <ul>
+          <li><a href="https://github.com/OpenVidu/openvidu">OpenVidu</a> 开源的视频会议软件，使用 WebRTC 技术。</li>
+          <li><a href="https://github.com/bigbluebutton/bigbluebutton">BigBlueButton</a> 开源的远程教育软件，也可用作视频会议。</li>
+          <li><a href="https://github.com/oldboyxx/jira_clone">Jira clone</a> 使用 React + Node.js 写的项目管理工具 Jira 的克隆。</li>
+        </ul>
+        <h2 id="其它"><a aria-hidden="true" tabindex="-1" href="#其它" class="anchor"><span class="icon icon-link"></span></a>其它</h2>
+        <ul>
+          <li><a href="https://www.foldnfly.com">foldnfly</a> 收集纸飞机折纸方法的网站，目前有40种纸飞机。</li>
+          <li><a href="http://aqicn.org">aqicn</a> 实时空气质量指数地图.</li>
+          <li><a href="https://github.com/fkling/astexplorer">AST explorer</a> 在编辑器中检查生成的AST。</li>
+          <li><a href="https://nginxconfig.io/">NginxConfig</a> Nginx配置在线极速生成“神器” <a href="https://github.com/digitalocean/nginxconfig.io">Github</a></li>
+          <li><a href="https://i18ns.com/">i18ns</a> 一个免费的i18n翻译搜索引擎</li>
+          <li><a href="https://tableconvert.com/">TableConvert</a> Markdown表格编辑器，导入json/csv/excel/html 生成 Markdown 表格。</li>
+          <li><a href="https://chronver.org/">Chronologic Versioning</a> 基于时间版本控制规范</li>
+          <li><a href="https://semver.org/lang/zh-CN/">semver</a> 语义化版本 2.0.0 语义化版本规范</li>
+          <li><a href="https://mathpix.com/">Snip</a> 将打印的数学公式转成 LaTex 代码的工具。</li>
+          <li><a href="https://github.com/mayeaux/nodetube">NodeTube</a> 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。</li>
+          <li><a href="https://nodesign.dev/">nodesign</a> 设计工具收集</li>
+          <li><a href="https://isapplesiliconready.com/for/developer/">Is Apple silicon ready?</a> 查询 Apple M1 相关软件支持情况</li>
+          <li><a href="https://www.uicolor.io">UIColor.io</a> 将十六进制和RGB颜色转换为 UIColor</li>
+          <li><a href="https://asciinema.org/">asciinema</a> 命令行录制工具</li>
+          <li><a href="https://jsonformatter.org/yaml-to-jsonschema">yaml-to-jsonschema</a> yaml 生成 schema</li>
+        </ul>
+        <h2 id="一些网站"><a aria-hidden="true" tabindex="-1" href="#一些网站" class="anchor"><span class="icon icon-link"></span></a>一些网站</h2>
+        <ul>
+          <li><a href="https://www.acwifi.net/">无线路由器使用分享与评测对比</a></li>
+        </ul>
+        <div class="previous"><span></span><a class="next" href="JavaScript/RegExp.html"><span>一些正则表达式随记
+</span><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+              <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+            </svg></a></div>
+        <section class="article-footer"><a href="https://github.com/jaywcjlove/handbook/blob/master/docs/awesome.md" class="edit-button" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+<span>Edit this page on GitHub</span>
+</a><span class="atime">2022/05/14</span></section>
+      </markdown-style>
+      <nav class="tocs">
+        <aside class="inner toc">
+          <ol class="tocs-list">
+            <li><a href="#排行榜统计" class="tocs-link">排行榜统计</a></li>
+            <li><a href="#徽章" class="tocs-link">徽章</a></li>
+            <li><a href="#在线作图" class="tocs-link">在线作图</a></li>
+            <li><a href="#在线数据库建模工具" class="tocs-link">在线数据库建模工具</a></li>
+            <li><a href="#文档工具" class="tocs-link">文档工具</a></li>
+            <li><a href="#npm" class="tocs-link">npm</a></li>
+            <li><a href="#工具" class="tocs-link">工具</a></li>
+            <li><a href="#在线代码编辑" class="tocs-link">在线代码编辑</a></li>
+            <li><a href="#免费托管服务工具" class="tocs-link">免费托管服务工具</a></li>
+            <li><a href="#正则表达式工具" class="tocs-link">正则表达式工具</a></li>
+            <li><a href="#github" class="tocs-link">Github</a></li>
+            <li><a href="#办公类应用" class="tocs-link">办公类应用</a></li>
+            <li><a href="#其它" class="tocs-link">其它</a></li>
+            <li><a href="#一些网站" class="tocs-link">一些网站</a></li>
+          </ol>
+        </aside>
+      </nav>
     </div>
-  </article>
-</header>
-
-<div class="warpper-content warpper sidebar ">
-  
-<div class="sidebar-border">
-  <aside class="sidebar" role="navigation">
-    <div>
-    
-      
-        <label>JavaScript</label>
-      
-    
-      
-        <a href="JavaScript/RegExp.html" class="">一些正则表达式随记</a>
-      
-    
-      
-        <a href="JavaScript/SDK.html" class="">开源 JS 插件和库</a>
-      
-    
-      
-        <a href="JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
-      
-    
-      
-        <a href="JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
-      
-    
-      
-        <label>Redis</label>
-      
-    
-      
-        <a href="Redis/index.html" class="">快速入门 Redis</a>
-      
-    
-      
-        <label>Android</label>
-      
-    
-      
-        <a href="Android/react-native.html" class="">React Native Android 环境搭建</a>
-      
-    
-      
-        <label>CentOS</label>
-      
-    
-      
-        <a href="CentOS/CentOS.html" class="">CentOS 常用命令</a>
-      
-    
-      
-        <a href="CentOS/CentOS7网络配置.html" class="">CentOS7 网络配置</a>
-      
-    
-      
-        <a href="CentOS/常用基础命令.html" class="">常用基础命令</a>
-      
-    
-      
-        <a href="CentOS/CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
-      
-    
-      
-        <a href="CentOS/CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
-      
-    
-      
-        <a href="CentOS/CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
-      
-    
-      
-        <a href="CentOS/CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
-      
-    
-      
-        <a href="CentOS/Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
-      
-    
-      
-        <a href="CentOS/Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
-      
-    
-      
-        <a href="CentOS/Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
-      
-    
-      
-        <a href="CentOS/Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
-      
-    
-      
-        <a href="CentOS/Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
-      
-    
-      
-        <a href="CentOS/Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
-      
-    
-      
-        <a href="CentOS/Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
-      
-    
-      
-        <a href="CentOS/Rocket.Chat.html" class="">Rocket.Chat</a>
-      
-    
-      
-        <a href="CentOS/Ruby安装.html" class="">Ruby 安装</a>
-      
-    
-      
-        <a href="CentOS/samba.html" class="">Samba 安装</a>
-      
-    
-      
-        <a href="CentOS/在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
-      
-    
-      
-        <a href="CentOS/Java.html" class="">安装 Java</a>
-      
-    
-      
-        <a href="CentOS/部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
-      
-    
-      
-        <a href="CentOS/搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
-      
-    
-      
-        <a href="CentOS/部署YApi平台.html" class="">部署 YApi 平台</a>
-      
-    
-      
-        <a href="CentOS/openstack.html" class="">搭建 OpenStack</a>
-      
-    
-      
-        <a href="CentOS/pip.html" class="">安装 pip 工具</a>
-      
-    
-      
-        <a href="CentOS/修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
-      
-    
-      
-        <a href="CentOS/尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
-      
-    
-      
-        <a href="CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
-      
-    
-      
-        <a href="CentOS/svn.html" class="">安装使用 svn</a>
-      
-    
-      
-        <a href="CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
-      
-    
-      
-        <label>其它</label>
-      
-    
-      
-        <a href="other/weixin-public-account.html" class="">公众账号推荐</a>
-      
-    
-      
-        <a href="other/google.html" class="">谷歌(Google)镜像</a>
-      
-    
-      
-        <a href="other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
-      
-    
-      
-        <a href="other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
-      
-    
-      
-        <a href="other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
-      
-    
-      
-        <a href="other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
-      
-    
-      
-        <a href="other/Lua5.3.html" class="">Lua 5.3 文档</a>
-      
-    
-      
-        <a href="Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
-      
-    
-      
-        <a href="Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
-      
-    
-    </div>
-  </aside>
-</div>
-
-  <markdown-style>
-    <h2 id="排行榜统计"><a aria-hidden="true" tabindex="-1" href="#排行榜统计" class="anchor"><span class="icon icon-link"></span></a>排行榜统计</h2>
-<ul>
-<li><a href="http://www.tiobe.com/tiobe-index/">TIOBE编程语言排行榜★★★</a></li>
-<li><a href="https://risingstars.js.org">JavaScript Rising Stars★★★</a></li>
-<li><a href="https://stateofjs.com/">JavaScript各种工具统计★★★</a></li>
-<li><a href="http://githut.info/">通过GitHub平台了解编程语言的使用★★★</a></li>
-<li><a href="https://pypl.github.io/PYPL.html">PYPL流行程序设计语言</a></li>
-<li><a href="http://gs.statcounter.com/">Statcounter统计浏览器市场份额</a></li>
-<li><a href="https://tongji.baidu.com/data/browser">百度统计浏览器市场份额</a></li>
-<li><a href="https://www.netmarketshare.com/browser-market-share.aspx">浏览器占有率排行</a></li>
-<li><a href="https://browserslist.dev/">显示兼容浏览器的页面</a></li>
-<li><a href="https://insights.stackoverflow.com/survey/">Stack Overflow 年度开发者调查</a></li>
-<li><a href="https://github.com/trending">Github Trending</a></li>
-<li><a href="http://www.githubrank.com/"><del>Github Follower排行榜</del></a></li>
-<li><a href="http://jaywcjlove.github.io/github-rank/">Github中国用户排名，仓库排名趋势榜</a></li>
-<li><a href="https://gitstar-ranking.com">Gitstar Ranking</a></li>
-<li><a href="https://githuber.cn/">Githuber.cn星榜</a></li>
-<li><a href="https://www.githubs.cn/">GitHub中文社区各种排行榜</a></li>
-<li><a href="https://bestofjs.org/">比项目较过去12个月在 GitHub 上增加的星标数</a></li>
-<li><a href="https://www.techempower.com/benchmarks/">Web框架性能测试排名</a></li>
-</ul>
-<h2 id="徽章"><a aria-hidden="true" tabindex="-1" href="#徽章" class="anchor"><span class="icon icon-link"></span></a>徽章</h2>
-<ul>
-<li><a href="http://shields.io/#/">开源项目的质量元数据标记</a></li>
-<li><a href="https://badgen.net/">快速徽章生成服务</a></li>
-<li><a href="https://github.com/jaywcjlove/sb">固定状态徽章</a></li>
-<li><a href="https://github.com/tandpfun/skill-icons">快速生成技能徽章</a></li>
-<li><a href="https://github.com/ntkme/github-buttons">非官方 github:按钮</a></li>
-</ul>
-<h2 id="在线作图"><a aria-hidden="true" tabindex="-1" href="#在线作图" class="anchor"><span class="icon icon-link"></span></a>在线作图</h2>
-<ul>
-<li><a href="https://www.processon.com/">ProcessOn</a> 支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等</li>
-<li><a href="https://www.draw.io">draw.io</a> 免费的在线图表软件，用于制作流程图，流程图，组织结构图，UML，ER和网络图</li>
-<li><a href="https://www.pixelartcss.com/">Pixel Art to CSS</a> 是一个在线像素风绘图工具 <a href="https://github.com/jvalen/pixel-art-react"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
-<li><a href="https://codeimg.io/">codeimg.io</a> 把源代码变成漂亮的图片的工具。</li>
-<li><a href="https://www.codepng.app/">Codepng</a> 代码片段转为美观的图片。</li>
-<li><a href="https://ray.so/">ray.so</a> 可以生成漂亮的代码截图，颜色、阴影、背景都可以调整。</li>
-<li><a href="https://chalk.ist/">Chalk.ist</a> 为您的源代码创建漂亮的图像。<a href="https://github.com/Idered/chalk.ist"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
-<li><a href="https://pixlr.com/x">Pixlr X</a> 基于 Canvas 和 WebGL 的在线图像编辑器。</li>
-<li><a href="https://terrastruct.com/">Terrastruct</a> 一个在线的架构图、流程图工具。</li>
-<li><a href="https://github.com/excalidraw/excalidraw">Excalidraw</a> 非常简单易用的白板绘图开源工具</li>
-<li><a href="https://formito.com/tools/favicon">Free Favicon Maker</a> 在线制作 SVG 格式的 Favicon。</li>
-<li><a href="https://github.com/GoogleChromeLabs/squoosh">Squoosh</a> 在浏览器中使用一流的编解码器无损压缩图片。</li>
-<li><a href="https://david.li/paint/">Fluid Paint</a> 网页画板工具，可以定制笔刷，产生刷油漆的流体效果，非常精美</li>
-<li><a href="https://iconmaker.app/">IconMaker</a> 应用程序图标 Favicons 图标生成器和调整器</li>
-<li><a href="https://pengfeiw.github.io/minicode/react-paint">React Paint</a> 使用 React 实现的开源 Windows 画板。</li>
-</ul>
-<h2 id="在线数据库建模工具"><a aria-hidden="true" tabindex="-1" href="#在线数据库建模工具" class="anchor"><span class="icon icon-link"></span></a>在线数据库建模工具</h2>
-<ul>
-<li><a href="https://sqldbm.com/">SQL DBM</a> 在线数据库建模</li>
-<li><a href="https://vertabelo.com/">Vertabelo</a> 在线数据库建模</li>
-<li><a href="https://www.dbdesigner.net/">DB Designer</a> 在线数据库建模</li>
-</ul>
-<h2 id="文档工具"><a aria-hidden="true" tabindex="-1" href="#文档工具" class="anchor"><span class="icon icon-link"></span></a>文档工具</h2>
-<ul>
-<li><a href="https://github.com/esdoc/esdoc">ESDoc</a> ESDoc是JavaScript的文档生成器。</li>
-<li><a href="https://github.com/apidoc/apidoc">apiDoc</a> 生成RESTful Web API文档。</li>
-<li><a href="https://github.com/jsdoc3/jsdoc">jsdoc</a> 用于JavaScript的API文档生成器。</li>
-<li><a href="https://github.com/TypeStrong/typedoc">typedoc</a> TypeScript 项目的文档生成器。</li>
-<li><a href="https://swagger.io">swagger</a> 一款RESTful 接口的文档在线自动生成+功能测试功能软件。</li>
-<li><a href="https://editor.swagger.io/">swagger editor</a> 在线版编辑器。</li>
-<li><a href="https://www.editcsvonline.com/">EditCSV Online</a> 一个编辑 CSV 文件的在线工具。</li>
-<li><a href="https://devtool.tech/html-md">html-md</a> 在线小工具，将网页转成 Markdown 代码。</li>
-<li><a href="https://github.com/pipipi-pikachu/PPTist">PPTist</a> 一个 PPT 网页应用，还原了大部分 PowerPoint 常用功能，支持 PPT 的在线编辑、演示和导出。</li>
-</ul>
-<h2 id="npm"><a aria-hidden="true" tabindex="-1" href="#npm" class="anchor"><span class="icon icon-link"></span></a>npm</h2>
-<ul>
-<li><a href="https://npm-stat.com/">下载NPM包的统计信息</a></li>
-<li><a href="https://www.npmtrends.com">NPM包下载趋势榜对比</a></li>
-<li><a href="http://www.npmtrends.com/">比较npm包下载，计数随时间的变化</a></li>
-<li><a href="https://bundlephobia.com/">BundlePhobia</a> 查看添加 npm 软件包的成本。</li>
-<li><a href="https://packagephobia.com/">PackagePhobia</a> 查找向项目添加新开发依赖项的成本。</li>
-<li><a href="https://npmview.now.sh/">npmview</a> 让你查看 npm 模块里面包含了什么文件。</li>
-<li><a href="https://npm.anvaka.com/">anvaka</a> npm 依赖的可视化</li>
-<li><a href="https://www.skypack.dev">Skypack</a> 无需安装和构建工具即可加载优化的 npm 包。</li>
-<li><a href="https://packagequality.com/">Package Quality</a> 包的质量测量，最初用于 npm。</li>
-</ul>
-<h2 id="工具"><a aria-hidden="true" tabindex="-1" href="#工具" class="anchor"><span class="icon icon-link"></span></a>工具</h2>
-<ul>
-<li><a href="https://github.com/lrsjng/pagemap">pagemap</a> 在网页插入迷你的页面缩略导航图，可以点击这个图的不同部分，实现快速导航。</li>
-<li><a href="https://github.com/nbedos/termtosvg">termtosvg</a> 将你的终端会话录制成一个单独的 SVG 动画。</li>
-<li><a href="https://iching.codes/">Nodle-I-Ching</a> 中国古代《易经》的六十四卦象，作为二维码的图像，编码和解码库 <a href="https://github.com/NodleCode/Nodle-I-Ching"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
-<li><a href="https://squoosh.app/">Squoosh</a> 在浏览器中使用最佳的编解码器缩小图像。</li>
-<li><a href="https://github.com/bestofjs/bestofjs-webui">bestofjs</a> 展示了项目 Star 数变化的日历色块图。<a href="https://bestofjs.org/">demo</a></li>
-<li><a href="http://www.asciiworld.com/top6_ascii_art.html">Ascii艺术图片</a> 可以生成字符串“图片”</li>
-<li><a href="https://patorjk.com/software/taag/#p=display&#x26;f=Graffiti&#x26;t=Type%20Something%20">Graffiti</a> 字母生成生成字符串“图片”</li>
-<li><a href="http://facesofopensource.com/">专门拍摄推动计算机革命的开源程序员的肖像</a></li>
-<li><a href="https://github.com/chanind/hanzi-writer">一个演示汉字笔画顺序的 JS 库</a></li>
-<li><a href="http://asciimath.org/">AsciiMath</a> 简单易用的数学公式转换工具  <a href="https://github.com/asciimath/asciimathml"><img src="https://jaywcjlove.github.io/sb/ico/min-oss.svg" alt="Open-Source Software" title="Open source ui componet on Github"></a></li>
-<li><a href="https://doka.photo/">doka</a> 一个使用 WebGL 技术搭建的在线图像编辑器，使用非常流畅。</li>
-<li><a href="https://www.publisheet.com/">Publisheet</a> Excel 表格转为网页表格的在线工具。</li>
-<li><a href="https://dbdiagram.io">dbdiagram</a> 在线数据库关系图设计工具。</li>
-<li><a href="https://cubic-bezier.com/">cubic-bezier</a></li>
-<li><a href="https://www.jasondavies.com/animated-bezier/">Animated Bézier Curves</a></li>
-<li><a href="https://easings.net/cn">easings</a> 缓动函数速查表</li>
-<li><a href="https://animista.net">Animista</a> 网页 CSS 动画工具，可自由配置各种动画特效，并生成代码。</li>
-<li><a href="http://www.qiuziti.com/">求字体</a> 字体识别与搜索</li>
-<li><a href="http://colorjs.github.io/color-space/">color-space</a> 颜色转化工具。</li>
-<li><a href="https://www.trackawesomelist.com/">Track Awesome List</a> 追踪每个 Awesome 清单的更新，可以及时查看每天新增哪些资源。</li>
-</ul>
-<h2 id="在线代码编辑"><a aria-hidden="true" tabindex="-1" href="#在线代码编辑" class="anchor"><span class="icon icon-link"></span></a>在线代码编辑</h2>
-<ul>
-<li><a href="https://codepen.io/">codepen</a> 在线编辑器</li>
-<li><a href="https://stackblitz.com/">stackblitz</a> 在线编辑器</li>
-<li><a href="https://codesandbox.io/">codesandbox</a> 在线编辑器</li>
-<li><a href="https://jsfiddle.net">jsfiddle</a> 在线编辑器</li>
-<li><a href="https://runjs.cn/">runjs</a> 在线编辑器</li>
-<li><a href="https://jsbin.com/">JS Bin</a> 在线编辑器</li>
-<li><a href="http://jsrun.net">jsrun</a> 在线编辑器，支持多种语言</li>
-<li><a href="https://next.json-generator.com">JSON Generator</a> 生成虚拟 JSON 数据的在线工具</li>
-<li><a href="https://app.quicktype.io/">QuickType</a> 即时解析任何语言的JSON</li>
-<li><a href="https://github.com/theonedev/onedev">OneDev</a> 类似于 GitHub/GitLab，可以自己架设</li>
-<li><a href="https://replit.com/">replit</a> 编码、创建和一起学习</li>
-<li><a href="https://runkit.com/">runkit</a></li>
-<li><a href="https://webcomponents.dev/">Web Components</a></li>
-</ul>
-<h2 id="免费托管服务工具"><a aria-hidden="true" tabindex="-1" href="#免费托管服务工具" class="anchor"><span class="icon icon-link"></span></a>免费托管服务工具</h2>
-<ul>
-<li><a href="https://www.openshift.com/">OPENSHIFT</a></li>
-<li><a href="http://www.openode.io/">opeNode</a></li>
-<li><a href="http://www.heroku.com">Heroku</a></li>
-<li><a href="https://vercel.com/">Vercel</a></li>
-<li><a href="https://glitch.com">Glitch</a></li>
-</ul>
-<h2 id="正则表达式工具"><a aria-hidden="true" tabindex="-1" href="#正则表达式工具" class="anchor"><span class="icon icon-link"></span></a>正则表达式工具</h2>
-<ul>
-<li><a href="https://regexr.com/">https://regexr.com/</a> <a href="https://github.com/gskinner/regexr/"><code>Github</code></a></li>
-<li><a href="https://regex101.com/">https://regex101.com/</a></li>
-<li><a href="https://regexper.com/">https://regexper.com/</a></li>
-<li><a href="http://myregexp.com/">http://myregexp.com/</a></li>
-<li><a href="https://ihateregex.io/">https://ihateregex.io/</a> <a href="https://github.com/geongeorge/i-hate-regex"><code>Github</code></a></li>
-</ul>
-<h2 id="github"><a aria-hidden="true" tabindex="-1" href="#github" class="anchor"><span class="icon icon-link"></span></a>Github</h2>
-<ul>
-<li><a href="http://git-awards.com/">git-awards</a> 发现您在GitHub上的排名。</li>
-<li><a href="https://github.com/timqian/star-history">star-history</a> 帮助用户查看 GitHub 项目 star 数目的历史。</li>
-<li><a href="https://github.com/caarlos0/starcharts">starcharts</a> 可以查看 GitHub 仓库的 Star 变化情况，生成折线图。</li>
-<li><a href="https://github.com/showcases/programming-languages/">programming-languages</a> 在GitHub上积极开发的编程语言列表</li>
-<li><a href="https://github.com/showcases/front-end-javascript-frameworks">GitHub，前端JavaScript框架</a></li>
-<li><a href="https://gitignore.io/">gitignore.io</a> 生成 gitignore 文件的网站。</li>
-<li><a href="https://github.com/anuraghazra/github-readme-stats">GitHub Readme Stats</a> 为您的 Github 自述文件动态生成的统计信息。</li>
-<li><a href="https://github.com/ryo-ma/github-profile-trophy">GitHub Profile Trophy</a> 为您的 Github 自述文件动态生成档案奖杯。</li>
-<li><a href="http://toolwa.com/github/">GitHub 加速下载</a></li>
-<li><a href="https://skyline.github.com">GitHub Skyline</a> GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图。</li>
-<li><a href="https://ghchart.rshah.org/">Github Chart API</a> 将您的 GitHub 图表嵌入到您想要的任何 HTML 中。</li>
-<li><a href="https://repobeats.axiom.co/">Repobeats</a> 在 GitHub 仓库的 README 文件里面，加入图形化的项目数据统计。</li>
-<li><a href="https://www.githubtrends.io/">GitHub Wrapped</a> 网页工具将你过去一年的 GitHub 活动，创建成一张图表</li>
-<li><a href="https://contrib.rocks/">contrib.rocks</a> 为贡献者列表生成动态图片 URL 以显示它！</li>
-</ul>
-<h2 id="办公类应用"><a aria-hidden="true" tabindex="-1" href="#办公类应用" class="anchor"><span class="icon icon-link"></span></a>办公类应用</h2>
-<ul>
-<li><a href="https://github.com/OpenVidu/openvidu">OpenVidu</a> 开源的视频会议软件，使用 WebRTC 技术。</li>
-<li><a href="https://github.com/bigbluebutton/bigbluebutton">BigBlueButton</a> 开源的远程教育软件，也可用作视频会议。</li>
-<li><a href="https://github.com/oldboyxx/jira_clone">Jira clone</a> 使用 React + Node.js 写的项目管理工具 Jira 的克隆。</li>
-</ul>
-<h2 id="其它"><a aria-hidden="true" tabindex="-1" href="#其它" class="anchor"><span class="icon icon-link"></span></a>其它</h2>
-<ul>
-<li><a href="https://www.foldnfly.com">foldnfly</a> 收集纸飞机折纸方法的网站，目前有40种纸飞机。</li>
-<li><a href="http://aqicn.org">aqicn</a> 实时空气质量指数地图.</li>
-<li><a href="https://github.com/fkling/astexplorer">AST explorer</a> 在编辑器中检查生成的AST。</li>
-<li><a href="https://nginxconfig.io/">NginxConfig</a> Nginx配置在线极速生成“神器” <a href="https://github.com/digitalocean/nginxconfig.io">Github</a></li>
-<li><a href="https://i18ns.com/">i18ns</a> 一个免费的i18n翻译搜索引擎</li>
-<li><a href="https://tableconvert.com/">TableConvert</a> Markdown表格编辑器，导入json/csv/excel/html 生成 Markdown 表格。</li>
-<li><a href="https://chronver.org/">Chronologic Versioning</a> 基于时间版本控制规范</li>
-<li><a href="https://semver.org/lang/zh-CN/">semver</a> 语义化版本 2.0.0 语义化版本规范</li>
-<li><a href="https://mathpix.com/">Snip</a> 将打印的数学公式转成 LaTex 代码的工具。</li>
-<li><a href="https://github.com/mayeaux/nodetube">NodeTube</a> 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。</li>
-<li><a href="https://nodesign.dev/">nodesign</a> 设计工具收集</li>
-<li><a href="https://isapplesiliconready.com/for/developer/">Is Apple silicon ready?</a> 查询 Apple M1 相关软件支持情况</li>
-<li><a href="https://www.uicolor.io">UIColor.io</a> 将十六进制和RGB颜色转换为 UIColor</li>
-<li><a href="https://asciinema.org/">asciinema</a> 命令行录制工具</li>
-<li><a href="https://jsonformatter.org/yaml-to-jsonschema">yaml-to-jsonschema</a> yaml 生成 schema</li>
-</ul>
-<h2 id="一些网站"><a aria-hidden="true" tabindex="-1" href="#一些网站" class="anchor"><span class="icon icon-link"></span></a>一些网站</h2>
-<ul>
-<li><a href="https://www.acwifi.net/">无线路由器使用分享与评测对比</a></li>
-</ul>
-    
-
-<div class="previous">
-  
-    <span></span>
-  
-  
-  <a class="next" href="JavaScript/RegExp.html">
-    <span>
-      一些正则表达式随记
-    </span>
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
-      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
-    </svg>
-  </a>
-  
-</div>
-
-
-
-<section class="article-footer">
-  <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/awesome.md" class="edit-button" target="_blank" rel="noopener noreferrer">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-    </svg>
-    <span>Edit this page on GitHub</span>
-  </a>
-  
-  <span class="atime">2022/04/24</span>
-  
-</section>
-
-  </markdown-style>
-  
-<nav class="tocs">
-  <aside class="inner toc">
-    <ol class="tocs-list">
-    
-      <li>
-        <a href="#排行榜统计" class="tocs-link">排行榜统计</a>
-        
-      </li>
-    
-      <li>
-        <a href="#徽章" class="tocs-link">徽章</a>
-        
-      </li>
-    
-      <li>
-        <a href="#在线作图" class="tocs-link">在线作图</a>
-        
-      </li>
-    
-      <li>
-        <a href="#在线数据库建模工具" class="tocs-link">在线数据库建模工具</a>
-        
-      </li>
-    
-      <li>
-        <a href="#文档工具" class="tocs-link">文档工具</a>
-        
-      </li>
-    
-      <li>
-        <a href="#npm" class="tocs-link">npm</a>
-        
-      </li>
-    
-      <li>
-        <a href="#工具" class="tocs-link">工具</a>
-        
-      </li>
-    
-      <li>
-        <a href="#在线代码编辑" class="tocs-link">在线代码编辑</a>
-        
-      </li>
-    
-      <li>
-        <a href="#免费托管服务工具" class="tocs-link">免费托管服务工具</a>
-        
-      </li>
-    
-      <li>
-        <a href="#正则表达式工具" class="tocs-link">正则表达式工具</a>
-        
-      </li>
-    
-      <li>
-        <a href="#github" class="tocs-link">Github</a>
-        
-      </li>
-    
-      <li>
-        <a href="#办公类应用" class="tocs-link">办公类应用</a>
-        
-      </li>
-    
-      <li>
-        <a href="#其它" class="tocs-link">其它</a>
-        
-      </li>
-    
-      <li>
-        <a href="#一些网站" class="tocs-link">一些网站</a>
-        
-      </li>
-    
-    </ol>
-  </aside>
-</nav>
-
-
-<script src="js/tocbot.js?v=1.0.0"></script>
-
-</div>
-
-
-<div class="footer warpper">
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.13.7
-
-</div>
-
-</body>
+    <script src="js/demo-preview.js?v=1.21.1"></script>
+    <div class="footer warpper">Released under the MIT License. Copyright © 2022 Kenny Wong<br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.21.1</div>
+    <script src="js/tocbot.js?v=1.21.1"></script>
+  </body>
 </html>

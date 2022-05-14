@@ -700,6 +700,7 @@ markdown-style table tr:nth-child(2n) {
 
 markdown-style table img {
   background-color: transparent;
+  vertical-align: middle;
 }
 
 markdown-style img[align=right] {

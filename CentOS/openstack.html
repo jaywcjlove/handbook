@@ -1,312 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CentOS7 搭建 OpenStack handbook </title>
-  
-  <meta name="description" content="OpenStack：OpenStack是一个由NASA和Rackspace合作研发并发起的，以Apache许可证授权的自由软件和开放源代码项目。项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack通过各种">
-  
-  
-  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
-  
-  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650812452229">
-  
-  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650812452229">
-  
-  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650812452229">
-  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650812452229">
-  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650812452229">
-  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CentOS7 搭建 OpenStack handbook</title>
+    <meta name="description" content="OpenStack：OpenStack是一个由NASA和Rackspace合作研发并发起的，以Apache许可证授权的自由软件和开放源代码项目。项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack通过各种">
+    <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+    <link rel="stylesheet" type="text/css" href="../css/main.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/media.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/demo-preview.css?v=1.21.1">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <script src="../js/copy.js"></script>
-  <script src="../js/dark-mode.js"></script>
-  <script src="../js/markdown-style.js"></script>
-</head>
-<body id="idoctotop">
-  <a href="#idoctotop" class="gototop">top</a>
-<header class="header">
-  <article class="inner warpper">
-    <a class="logo" href="../index.html">
-      
-        <img alt="handbook logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAEIlJREFUeF7tnXtwVNUdx3/n7kIe8sgTNEjLTMeAUrVUKB0U0f6D1ZkKCqhBJKDSdjplHEnW6B8l0hZIQKBaq+KMQDvTOhYfnY5jpU7rg9pp0Y5aSysKA4SEAJJNIJjdkN3TOWuigcnuub97727u2fu9MzuJ7ve8vt/72XPP2XCvIBxwAA6kdUDAGzgAB9I7AEBwdsCBDA4AEJwecACA4ByAA84cwAzizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMAQDizDeUCogDACQgQWOYzhwAIM58Q6mAOABAAhI0hunMgawC0tTU9DgRLRRCVDrrHqtUBxFFiSj1U0rZYVlWRzKZVP+v3bKsViJqi8fjbX19fa2NjY1JVu0BFG/atKlMSlmRSCQqhRAVRFQhpVRZqt9TP6WUJUR0wcBLCDHweyhHlm1PJBI7Hnzwwdez0V7WAGlubpbZ6LCHdbYLIVqllB8JIfZIKfcUFha+s3LlyriHbfi6qrVr16oTf6plWZcR0VQhxGUKAAWDekkpc3WSu/bJsqypdXV1e11XdF4FWQFkw4YNm6WU93nd2RzV94GCxbIsBc0/IpHIezlqN6vNrFu3blIoFLpOSjmjHwQFRC5m9qyOa1DleyKRyLe8biwrgDQ3N6vLmSqvOztM9Z0moreklLuFEO/29fW9+9BDD50cpr7YbnYACCKaLYS4RkpZbbuwoUIhxJX19fUfeNn9bAHi98srxx4KIRJSyn9KKV+TUu5qaGjY7bgyjwtu3LhxbjKZnNsPxAyPqzehuusikcgbXnYUgLh3U31i7VKwPPDAA392Xx2vhqampuuFEDcS0U1EdCmvdN6pAYifI5VSfqJgIaJXe3p6djU2Nsay0d/169fPCoVCN0opFRTfyEYbJtZpWdacurq6N73sO2YQL908ty61Q5aaWWKxmIJFbT+7Opqbm+8honuJyPPFqKuO+aRw3gBSX1/vuaXxeJx6e3tJ/Tz/d/XfPT09FI1Gv3glEgnP+5ChwhNEtFMIsbO+vv4v3IabmpqWWJb1AynlLG5Zrr6goICKioqouLj4nJ+D/9/g35U+V8ezzz5LLS0taZtLJpNzGhoazJ9BsgEIN6Surq5zgFHwHD16NAVSNg8hxG4p5c5wOLzz/vvvV7t9aY/169cvUmAQ0fXZ6FNZWRmNHz8+9brwwgtTP0eOHJmNpjypUwcIEV0biUTe8qSx/kqG5RLLD4CkM/HkyZPU2tpKR44cSf3s7Oz00u/BdXUR0fPJZHJnQ0PDK4Pf2LBhw81SSgXGDV41rk78iRMnpl4mwDDUuAGIV2eDh/UoYNra2lIvNb2rmSYLxx4i+lgIsU9K+V0imum2DQVEVVVV6jVp0iSaMGGC2yqHvbwOEMuyZtfV1Xm67Y4ZhBn74cOH6dChQ3Tw4EFqb29nls6uvKKigqqrq1MwXHzxxRQOh7PbYI5r1wGSTCZne/29FABxEfKxY8dSsAwA46IqV0UnT55MAy9XFfm8sA4QIromEon8zcthABCP3FSXXvv370+91CyT7WNgtpgyZQqVl5dnuzlf1A9AfBGD+04cP36cDhw4kIJFrV28PNR64oorrkjNGEE7dICEQqGrV61a9baXvrieQQp2nKq2pLxKyuQXia058fTqTJ308y6Wl+aquhQgChQFjALH6aFmjOnTp9Pll1/utArjy+kAeX70nGfeL6xOfVEiRfLt8MiC98/UjDrmZuCuACnY3rlREK06vwNrjm/N2KcgATLYCHXpNXAZZnc3LBQK0cyZM2nGjBm+/o7CzUlot6wOkKdLb6aWEePPr25rrLbk+3bbOF/nGJDC7Z1p/2IXgOjj2Lt3L3344YepBX66Q31jvWDBgtT3FjiIHAKSsi5WW+LoXHdUqHBH53MkaWG60ACIvdP57NmztGXLlrRitV1bU1Njr7IAqNwAIokeideW1HFtYgNSsL3za4JI/dVq2gOA2IsBgNjzaUClB2QetYwYl7ZSKazJ8aVj9nFaZQNStCM6X0rxAgDh2Dy0FoDwPNQBsrV0Hh3JAIggUdNTO/Z3nFbZgBRuizaSEBl3qTCD2IsAgNjzye4MogOEpHw4tqy0kdMqAOG45bEWgPAMdTuDABCe38OuBiC8CAAIzy/j1QCEF6EOkKdK51PriAx3MsIlFs/w4VYDEF4CAITnl/FqAMKLEIDw/DJeDUB4EWoBKZtPrWFcYvFc9bEagPDC0QHyZNl8agMgPFP9rAYgvHQACM8v49UAhBehHpBbqC2snsyQ5sAuFs/w4VYDEF4CAITnl/FqAMKLUAfIE2W30FHMIDxT/awGILx0AAjPL+PVAIQXIQDp92vfvn3U3d3Nc8+HanWPqlGjRqXtmReAqNulqpfpx0UXXUTqlenQA3IrHQ1nuMNLvizSAcjnp4mdf1EIQL5E6okyAGLUByVmEPtxeTGD/KrsVmrHDGLf9OFWAhD7CQCQQV7pbvuDSyxcYg2Flm4NghnE/geSL5SYQezH4M0MsoDaw2XpG8Ui3X4guVACEPsuewHI42UL6FhQALFvrX+V6tkcudjmPX1aPcrd7GP06NGut3kDA4jZUdvvvRffg9hvzXylbg0CQMzP+JwRABBeoACE55fxagDCi1AHyC/LFtLxcGn+L9J5tpmrBiC87AAIzy/j1QCEFyEA4fllvBqA8CIEIDy/jFcDEF6EOkAeK1tIJ7AG4ZnqZzUA4aUDQHh+Ga8GILwI9YAsohPhEuxi8Wz1rxqA8LLRAlK+iE6EAAjPVR+rAQgvHADC88t4NQDhRagD5NHyRfQpZhCeqX5WAxBeOgCE55fxagDCixCA8PwyXg1AeBHqAbmNPg2NxS4Wz1b/qgEILxsdIL8ov41OAhCeqX5WAxBeOgCE55fxagDCixCA8PwyXg1AeBECEJ5fxqsBCC9CHSBbym+njtAYLNJ5tvpXDUB42QCQfr/y4WbMaijqTh25uKsJ7zTzr9rtzasDM4Pgzoqfn8S4efW5MGMG6fcDgACQoeY5HSCby2+naBDWIAAEgACQDJfCAASAOAPkDoqGRuf/LhYAASAABDMIebHNiydMfXkibS7HDOLfPcoheoa7u9uPy4u7u28qv4M6g3CJlQ8P8Bw4NbL9PUhQvFJ+6naxAgOI/c8ds5VeXGKZ7QCv93pAaqgzlP6pwpQvD9Dh2WauGoDwsgMgPL+MVwMQXoQ6QB4pr6EuzCA8U/2sBiC8dLSAVNRQl4VLLJ6rPlYDEF44WkAwg/AM9bsagPAS0gKCGYRnqN/VAISXkA6QjRWL6ZR1Qf7/qQnPNnPVAISXHQDh+WW8GoDwIgQgPL+MVwMQXoQAhOeX8WoAwotQB8iGisV0GmsQnql+VgMQXjp6QO6k01YxFuk8W/2rBiC8bAAIzy/j1QCEFyEA4fllvBqA8CIEIDy/jFcDEF6EOkCaK+6kbqxBeKb6WQ1AeOnoAVlC3VYRFuk8W/2rBiC8bAAIzy/j1QCEFyEA4fllvBqA8CLUAdJUsYTO4BKLZ6qf1QCElw4A4fllvBqA8CIEIDy/jFcDEF6EekDuojNWIXaxeLb6Vw1AeNnoAFlfcRd9FgRA8ACdz08cu88H4Z1m/lW7fYBOYADBzat5gOTDB4oXtx4FIP798BuyZ7g3r/3AAMggr+rr6zM6hxkEM8hQJ4huDbKuYin1WAX5v0gHIAAEgGSYQwAIAHEESOVS6hGYQexf2A6zEmsQ+wF4sQZZB0DsG+4HJQCxnwIAYSzSg/JQGC++KAyKV+r00S3S11YupVgQLrHsf+6YrfQCELMd4PVeD0gtxcTI/N/F4tlmrhqA8LIDIDy/jFcDEF6EAITnl/FqAMKLUAfIzytrKY5LLJ6pflYDEF46AITnl/FqAMKLUA/IMoqLEVik82z1rxqA8LIBIDy/jFcDEF6EOkB+VrmMejGD8Ez1sxqA8NIBIDy/jFcDEF6EAITnl/FqAMKLUA/IcuoVYSzSebb6Vw1AeNnoAPlp5XI6C0B4pvpZDUB46QAQnl/GqwEIL0IAwvPLeDUA4UUIQHh+Ga8GILwI9YDcTWdFCIt0nq3+VQMQXjY6QNZU3k19AIRnqp/VAISXDgDh+WW8GoDwIgQgPL+MVwMQXoQAhOeX8WoAwotQB8jDlXdTAmsQnql+VgMQXjp6QO6hhLCwi8Wz1b9qAMLLBoDw/DJeDUB4EQIQnl/GqwEIL0IdII3j7qEk4RKL56qP1QCEFw4A4fllvBqA8CIEIDy/jFcDEF6EekDupSQJ7GLxbPWvGoDwstEBsnrcvSQBCM9UP6sBCC+dwAAya9YsnjN5qi4tLaWXX3457eiqqqpo2rRpFI1G89QB3rBaWlpIvdIdeTOD8GwJrrqgoIDi8XhwDWCOHIAwDYM8WA6sHreCZKYhS/lwbFlpI8eVDEv+oasp3BZtJCFWZ2pkzfGtnD5ACwc8ceAn41ZkrgeAeOIzKjHUAWMAWdz1Kk2OHzLUZnTbRAc6QmNoS/ntZswg03v+S987/ZaJPqPPhjqwu/hK2jVqphmAqF5OjR+g27peM9RudNskB2zBoQbklzXIgLlFMk7lfV0UpoRJfmetr8qLS+MHqbr3sKM2Ph45kfaPnEBtIyodlc+3QupRB9HQaOrJ9OjnwYP2GyD5FohX4/lm7COad+oNVnUvjZlD/yqczCoD8XkOABBzTolZn/2bbuj+u60O/2H0tfRu0RRbWogyOJALQAq2Re8TQmxGEO4dUBsZakMj06EWnuoaG4d7B6SkH8aXlTzJqYn9RWHRts6FUtBznEagTe/Aks5X6JLeof++yPbiEwbbckAkrat7lo9525a4X8QGpHh751VJonc4jUCb3gG1kbGi4yUqT3SdI1LrDbXuwOGZA/tiZ3qvoh+N6+bUyAZEVV60LfqoFOLHnIagTe9AVd+ntKLjRbL6/5LofwVfpd+OnQvLvHRAyutjy0pf51bpCBDViJ2/yeJ2Jsj6ge+NWkaMp+0lN2V+UlKQjXIwdinEyvjSsY85KJrpn1/pqyt65tQsaSWXE4lvE8mp+hJQZHJg9mfv0fuFl9Ap6wIY5d6B16VaCoTEU/ElYz9xWp3jGcRpg/lSrnBH559IkinXQaditSVj88X7XI4DgDh0u/A3p2ZTIvmmw+K5LeZg/z+3HfRvawDERTYF26MvChLzXFSRg6LiP7HasV/PQUN52QQAcRFr8Y7otKQULxHRV1xUk9WiQtKinmUlv89qI3lcOQBxGW7hM53fIYv+SETFLqvyvDjgcG8pAHHvIRX9OnpLUorFQtK1RFThQZXOq5B0jAT9VUh6ATOHcxsHSgIQ9x6eU0PqsitJw7JjlLRGdPQuHfWBx0MKdHUAJNDxY/A6BwCIziG8H2gHAEig48fgdQ4AEJ1DeD/QDgCQQMePwescACA6h/B+oB0AIIGOH4PXOQBAdA7h/UA7AEACHT8Gr3MAgOgcwvuBdgCABDp+DF7nAADROYT3A+0AAAl0/Bi8zgEAonMI7wfaAQAS6PgxeJ0DAETnEN4PtAMAJNDxY/A6BwCIziG8H2gH/g8LPRyq8vuk8QAAAABJRU5ErkJggg==">
-      
-      <span class="title">handbook</span>
-    </a>
-    <div class="content">
-      <ul class="menu">
-        
-        <li>
-          <a href="../index.html" target="" class=""> Home </a>
-        </li>
-        
-        <li>
-          <a href="../awesome.html" target="" class=""> Awesome </a>
-        </li>
-        
-        <li>
-          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
-        </li>
-        
-      </ul>
-      
-        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-      
-      <dark-mode permanent></dark-mode>
-    </div>
-  </article>
-</header>
-
-<div class="warpper-content warpper sidebar ">
-  
-<div class="sidebar-border">
-  <aside class="sidebar" role="navigation">
-    <div>
-    
-      
-        <label>JavaScript</label>
-      
-    
-      
-        <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
-      
-    
-      
-        <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
-      
-    
-      
-        <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
-      
-    
-      
-        <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
-      
-    
-      
-        <label>Redis</label>
-      
-    
-      
-        <a href="../Redis/index.html" class="">快速入门 Redis</a>
-      
-    
-      
-        <label>Android</label>
-      
-    
-      
-        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
-      
-    
-      
-        <label>CentOS</label>
-      
-    
-      
-        <a href="CentOS.html" class="">CentOS 常用命令</a>
-      
-    
-      
-        <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
-      
-    
-      
-        <a href="常用基础命令.html" class="">常用基础命令</a>
-      
-    
-      
-        <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
-      
-    
-      
-        <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
-      
-    
-      
-        <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
-      
-    
-      
-        <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
-      
-    
-      
-        <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
-      
-    
-      
-        <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
-      
-    
-      
-        <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
-      
-    
-      
-        <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
-      
-    
-      
-        <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
-      
-    
-      
-        <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
-      
-    
-      
-        <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
-      
-    
-      
-        <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
-      
-    
-      
-        <a href="Ruby安装.html" class="">Ruby 安装</a>
-      
-    
-      
-        <a href="samba.html" class="">Samba 安装</a>
-      
-    
-      
-        <a href="在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
-      
-    
-      
-        <a href="Java.html" class="">安装 Java</a>
-      
-    
-      
-        <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
-      
-    
-      
-        <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
-      
-    
-      
-        <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
-      
-    
-      
-        <a href="openstack.html" class="active">搭建 OpenStack</a>
-      
-    
-      
-        <a href="pip.html" class="">安装 pip 工具</a>
-      
-    
-      
-        <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
-      
-    
-      
-        <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
-      
-    
-      
-        <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
-      
-    
-      
-        <a href="svn.html" class="">安装使用 svn</a>
-      
-    
-      
-        <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
-      
-    
-      
-        <label>其它</label>
-      
-    
-      
-        <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
-      
-    
-      
-        <a href="../other/google.html" class="">谷歌(Google)镜像</a>
-      
-    
-      
-        <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
-      
-    
-      
-        <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
-      
-    
-      
-        <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
-      
-    
-      
-        <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
-      
-    
-      
-        <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
-      
-    
-      
-        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
-      
-    
-      
-        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
-      
-    
-    </div>
-  </aside>
-</div>
-
-  <markdown-style>
-    <h1 id="centos7-搭建-openstack"><a aria-hidden="true" tabindex="-1" href="#centos7-搭建-openstack" class="anchor"><span class="icon icon-link"></span></a>CentOS7 搭建 OpenStack</h1>
-
-<h2 id="概念简介"><a aria-hidden="true" tabindex="-1" href="#概念简介" class="anchor"><span class="icon icon-link"></span></a>概念简介</h2>
-<p><strong>OpenStack</strong>：OpenStack是一个由NASA和Rackspace合作研发并发起的，以Apache许可证授权的自由软件和开放源代码项目。项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供API以进行集成。OpenStack是用Python编程语言编写的。</p>
-<p><strong>DevStack</strong>：可以自动安装OpenStack的工具。</p>
-<p><strong>OpenStack核心项目</strong>：OpenStack是由很多核心项目组合在一起的。</p>
-<p><strong>计算(Compute)</strong>：Nova。一套控制器，用于为单个用户或使用群组管理虚拟机实例的整个生命周期，根据用户需求来提供虚拟服务。负责虚拟机创建、开机、关机、挂起、暂停、调整、迁移、重启、销毁等操作，配置CPU、内存等信息规格。自Austin版本集成到项目中。</p>
-<p><strong>对象存储(Object Storage)</strong>：Swift。一套用于在大规模可扩展系统中通过内置冗余及高容错机制实现对象存储的系统，允许进行存储或者检索文件。可为Glance提供镜像存储，为Cinder提供卷备份服务。自Austin版本集成到项目中。</p>
-<p><strong>镜像服务(Image Service)</strong>：Glance。一套虚拟机镜像查找及检索系统，支持多种虚拟机镜像格式(AKI、AMI、ARI、ISO、QCOW2、Raw、VDI、VHD、VMDK)，有创建上传镜像、删除镜像、编辑镜像基本信息的功能。自Bexar版本集成到项目中。</p>
-<p><strong>身份服务(Identity Service)</strong>：Keystone。为OpenStack其他服务提供身份验证、服务规则和服务令牌的功能，管理Domains、Projects、Users、Groups、Roles。自Essex版本集成到项目中。</p>
-<p><strong>网络&#x26;地址管理(Network）</strong>：Neutron。提供云计算的网络虚拟化技术，为OpenStack其他服务提供网络连接服务。为用户提供接口，可以定义Network、Subnet、Router，配置DHCP、DNS、负载均衡、L3服务，网络支持GRE、VLAN。插件架构支持许多主流的网络厂家和技术，如OpenvSwitch。自Folsom版本集成到项目中。</p>
-<p><strong>块存储(Block Storage)</strong>：Cinder。为运行实例提供稳定的数据块存储服务，它的插件驱动架构有利于块设备的创建和管理，如创建卷、删除卷，在实例上挂载和卸载卷。自Folsom版本集成到项目中。</p>
-<p><strong>UI 界面(Dashboard)</strong>：Horizon。OpenStack中各种服务的Web管理门户，用于简化用户对服务的操作，例如：启动实例、分配IP地址、配置访问控制等。自Essex版本集成到项目中。</p>
-<p><strong>pip</strong>：是一个Python包管理工具，主要是用于安装 PyPI 上的软件包，DevStack安装OpenStack的时候会使用到这个工具。</p>
-<h2 id="安装"><a aria-hidden="true" tabindex="-1" href="#安装" class="anchor"><span class="icon icon-link"></span></a>安装</h2>
-<pre><code class="code-highlight"><span class="code-line">wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
-</span><span class="code-line">rpm -ivh rdo-release.rpm
-</span><span class="code-line">
-</span><span class="code-line">yum install -y openstack-packstack
-</span><span class="code-line">yum -y update
-</span><span class="code-line">
-</span><span class="code-line"># 接下来一键安装OpenStack，--install-hosts参数需要输入你的IP地址
-</span><span class="code-line">packstack --install-hosts=your_ip; # 提示输入的时候输入你的密码，等待安装完成即可。
-</span><span class="code-line">packstack --allinone
-</span><span class="code-line">
-</span><span class="code-line"># 输出结果
-</span><span class="code-line">You will find full trace in log /var/tmp/packstack/20170113-125411-kkk_H3/manifests/192.168.188.127_controller.pp.log
-</span><span class="code-line">Please check log file /var/tmp/packstack/20170113-125411-kkk_H3/openstack-setup.log for more information
-</span><span class="code-line">Additional information:
-</span><span class="code-line"> * A new answerfile was created in: /root/packstack-answers-20170113-125412.txt
-</span><span class="code-line"> * Time synchronization installation was skipped. Please note that unsynchronized time on server instances might be problem for some OpenStack components.
-</span><span class="code-line"> * File /root/keystonerc_admin has been created on OpenStack client host 192.168.188.127. To use the command line tools you need to source the file.
-</span><span class="code-line"> * To access the OpenStack Dashboard browse to http://192.168.188.127/dashboard .
-</span><span class="code-line">Please, find your login credentials stored in the keystonerc_admin in your home directory.
-</span><span class="code-line"> * To use Nagios, browse to http://192.168.188.127/nagios username: nagiosadmin, password: de7af5954a834f89
-</span><span class="code-line"># reboot 重启机器
-</span></code><div onclick="copied(this)" data-code="wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
+    <script src="../js/copy.js?v=1.21.1"></script>
+    <script src="../js/dark-mode.js?v=1.21.1"></script>
+    <script src="../js/markdown-style.js?v=1.21.1"></script>
+  </head>
+  <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
+    <header class="header">
+      <article class="inner warpper"><a class="logo" href="../index.html"><img alt="handbook logo" src="data:image/png;base64,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">
+<span class="title">handbook</span></a>
+        <div class="content">
+          <ul class="menu">
+            <li><a href="../index.html" target="" class="">Home</a></li>
+            <li><a href="../awesome.html" target="" class="">Awesome</a></li>
+            <li><a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class="">🇨🇳</a></li>
+          </ul><a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg></a>
+          <dark-mode permanent=""></dark-mode>
+        </div>
+      </article>
+    </header>
+    <div class="warpper-content warpper sidebar">
+      <div class="sidebar-border">
+        <aside class="sidebar" role="navigation">
+          <div>
+            <label>JavaScript</label>
+            <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+            <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+            <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+            <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+            <label>Redis</label>
+            <a href="../Redis/index.html" class="">快速入门 Redis</a>
+            <label>Android</label>
+            <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+            <label>CentOS</label>
+            <a href="CentOS.html" class="">CentOS 常用命令</a>
+            <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+            <a href="常用基础命令.html" class="">常用基础命令</a>
+            <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+            <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+            <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+            <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+            <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+            <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+            <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+            <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+            <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+            <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+            <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+            <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
+            <a href="Ruby安装.html" class="">Ruby 安装</a>
+            <a href="samba.html" class="">Samba 安装</a>
+            <a href="在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+            <a href="Java.html" class="">安装 Java</a>
+            <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+            <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+            <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
+            <a href="openstack.html" class="active">搭建 OpenStack</a>
+            <a href="pip.html" class="">安装 pip 工具</a>
+            <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+            <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+            <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+            <a href="svn.html" class="">安装使用 svn</a>
+            <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>其它</label>
+            <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
+            <a href="../other/google.html" class="">谷歌(Google)镜像</a>
+            <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+            <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+            <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+            <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+            <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
+            <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+            <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+          </div>
+        </aside>
+      </div>
+      <markdown-style>
+        <h1 id="centos7-搭建-openstack"><a aria-hidden="true" tabindex="-1" href="#centos7-搭建-openstack" class="anchor"><span class="icon icon-link"></span></a>CentOS7 搭建 OpenStack</h1>
+        <h2 id="概念简介"><a aria-hidden="true" tabindex="-1" href="#概念简介" class="anchor"><span class="icon icon-link"></span></a>概念简介</h2>
+        <p><strong>OpenStack</strong>：OpenStack是一个由NASA和Rackspace合作研发并发起的，以Apache许可证授权的自由软件和开放源代码项目。项目目标是提供实施简单、可大规模扩展、丰富、标准统一的云计算管理平台。OpenStack通过各种互补的服务提供了基础设施即服务（IaaS）的解决方案，每个服务提供API以进行集成。OpenStack是用Python编程语言编写的。</p>
+        <p><strong>DevStack</strong>：可以自动安装OpenStack的工具。</p>
+        <p><strong>OpenStack核心项目</strong>：OpenStack是由很多核心项目组合在一起的。</p>
+        <p><strong>计算(Compute)</strong>：Nova。一套控制器，用于为单个用户或使用群组管理虚拟机实例的整个生命周期，根据用户需求来提供虚拟服务。负责虚拟机创建、开机、关机、挂起、暂停、调整、迁移、重启、销毁等操作，配置CPU、内存等信息规格。自Austin版本集成到项目中。</p>
+        <p><strong>对象存储(Object Storage)</strong>：Swift。一套用于在大规模可扩展系统中通过内置冗余及高容错机制实现对象存储的系统，允许进行存储或者检索文件。可为Glance提供镜像存储，为Cinder提供卷备份服务。自Austin版本集成到项目中。</p>
+        <p><strong>镜像服务(Image Service)</strong>：Glance。一套虚拟机镜像查找及检索系统，支持多种虚拟机镜像格式(AKI、AMI、ARI、ISO、QCOW2、Raw、VDI、VHD、VMDK)，有创建上传镜像、删除镜像、编辑镜像基本信息的功能。自Bexar版本集成到项目中。</p>
+        <p><strong>身份服务(Identity Service)</strong>：Keystone。为OpenStack其他服务提供身份验证、服务规则和服务令牌的功能，管理Domains、Projects、Users、Groups、Roles。自Essex版本集成到项目中。</p>
+        <p><strong>网络&#x26;地址管理(Network）</strong>：Neutron。提供云计算的网络虚拟化技术，为OpenStack其他服务提供网络连接服务。为用户提供接口，可以定义Network、Subnet、Router，配置DHCP、DNS、负载均衡、L3服务，网络支持GRE、VLAN。插件架构支持许多主流的网络厂家和技术，如OpenvSwitch。自Folsom版本集成到项目中。</p>
+        <p><strong>块存储(Block Storage)</strong>：Cinder。为运行实例提供稳定的数据块存储服务，它的插件驱动架构有利于块设备的创建和管理，如创建卷、删除卷，在实例上挂载和卸载卷。自Folsom版本集成到项目中。</p>
+        <p><strong>UI 界面(Dashboard)</strong>：Horizon。OpenStack中各种服务的Web管理门户，用于简化用户对服务的操作，例如：启动实例、分配IP地址、配置访问控制等。自Essex版本集成到项目中。</p>
+        <p><strong>pip</strong>：是一个Python包管理工具，主要是用于安装 PyPI 上的软件包，DevStack安装OpenStack的时候会使用到这个工具。</p>
+        <h2 id="安装"><a aria-hidden="true" tabindex="-1" href="#安装" class="anchor"><span class="icon icon-link"></span></a>安装</h2>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
+</span><span class="code-line line-number" line="2">rpm -ivh rdo-release.rpm
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4">yum install -y openstack-packstack
+</span><span class="code-line line-number" line="5">yum -y update
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"># 接下来一键安装OpenStack，--install-hosts参数需要输入你的IP地址
+</span><span class="code-line line-number" line="8">packstack --install-hosts=your_ip; # 提示输入的时候输入你的密码，等待安装完成即可。
+</span><span class="code-line line-number" line="9">packstack --allinone
+</span><span class="code-line line-number" line="10">
+</span><span class="code-line line-number" line="11"># 输出结果
+</span><span class="code-line line-number" line="12">You will find full trace in log /var/tmp/packstack/20170113-125411-kkk_H3/manifests/192.168.188.127_controller.pp.log
+</span><span class="code-line line-number" line="13">Please check log file /var/tmp/packstack/20170113-125411-kkk_H3/openstack-setup.log for more information
+</span><span class="code-line line-number" line="14">Additional information:
+</span><span class="code-line line-number" line="15"> * A new answerfile was created in: /root/packstack-answers-20170113-125412.txt
+</span><span class="code-line line-number" line="16"> * Time synchronization installation was skipped. Please note that unsynchronized time on server instances might be problem for some OpenStack components.
+</span><span class="code-line line-number" line="17"> * File /root/keystonerc_admin has been created on OpenStack client host 192.168.188.127. To use the command line tools you need to source the file.
+</span><span class="code-line line-number" line="18"> * To access the OpenStack Dashboard browse to http://192.168.188.127/dashboard .
+</span><span class="code-line line-number" line="19">Please, find your login credentials stored in the keystonerc_admin in your home directory.
+</span><span class="code-line line-number" line="20"> * To use Nagios, browse to http://192.168.188.127/nagios username: nagiosadmin, password: de7af5954a834f89
+</span><span class="code-line line-number" line="21"># reboot 重启机器
+</span></code><input type="hidden" value="wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
 
 yum install -y openstack-packstack
@@ -327,163 +147,167 @@ Additional information:
 Please, find your login credentials stored in the keystonerc_admin in your home directory.
  * To use Nagios, browse to http://192.168.188.127/nagios username: nagiosadmin, password: de7af5954a834f89
 # reboot 重启机器
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="安装mitaka"><a aria-hidden="true" tabindex="-1" href="#安装mitaka" class="anchor"><span class="icon icon-link"></span></a>安装Mitaka</h2>
-<p>执行下列命令安装RDO库<a href="https://www.rdoproject.org/install/quickstart/">RDO官网</a></p>
-<pre><code class="code-highlight"><span class="code-line">yum install https://rdoproject.org/repos/rdo-release.rpm
-</span><span class="code-line">yum reinstall -y http://rdo.fedorapeople.org/rdo-release.rpm
-</span></code><div onclick="copied(this)" data-code="yum install https://rdoproject.org/repos/rdo-release.rpm
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="安装mitaka"><a aria-hidden="true" tabindex="-1" href="#安装mitaka" class="anchor"><span class="icon icon-link"></span></a>安装Mitaka</h2>
+        <p>执行下列命令安装RDO库<a href="https://www.rdoproject.org/install/quickstart/">RDO官网</a></p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">yum install https://rdoproject.org/repos/rdo-release.rpm
+</span><span class="code-line line-number" line="2">yum reinstall -y http://rdo.fedorapeople.org/rdo-release.rpm
+</span></code><input type="hidden" value="yum install https://rdoproject.org/repos/rdo-release.rpm
 yum reinstall -y http://rdo.fedorapeople.org/rdo-release.rpm
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>安装CentOS openstack RPM repository</p>
-<pre><code class="code-highlight"><span class="code-line">yum install centos-release-openstack-mitaka
-</span><span class="code-line">
-</span><span class="code-line"># 最新的版本
-</span><span class="code-line">yum install -y centos-release-openstack-newton
-</span></code><div onclick="copied(this)" data-code="yum install centos-release-openstack-mitaka
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>安装CentOS openstack RPM repository</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">yum install centos-release-openstack-mitaka
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"># 最新的版本
+</span><span class="code-line line-number" line="4">yum install -y centos-release-openstack-newton
+</span></code><input type="hidden" value="yum install centos-release-openstack-mitaka
 
 # 最新的版本
 yum install -y centos-release-openstack-newton
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>更新系统包</p>
-<pre><code class="code-highlight"><span class="code-line">yum update -y
-</span></code><div onclick="copied(this)" data-code="yum update -y
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>安装packstack工具</p>
-<pre><code class="code-highlight"><span class="code-line">yum install -y openstack-packstack
-</span></code><div onclick="copied(this)" data-code="yum install -y openstack-packstack
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>安装openstack newton版本</p>
-<pre><code class="code-highlight"><span class="code-line">packstack --allinone
-</span></code><div onclick="copied(this)" data-code="packstack --allinone
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>执行这一步之后会花费一些时间</p>
-<h2 id="卸载"><a aria-hidden="true" tabindex="-1" href="#卸载" class="anchor"><span class="icon icon-link"></span></a>卸载</h2>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">yum list installed <span class="token operator">|</span> <span class="token function">grep</span> @openstack- <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{ print $1 }'</span> <span class="token operator">|</span> <span class="token function">xargs</span> yum -y remove
-</span></code><div onclick="copied(this)" data-code="yum list installed | grep @openstack- | awk &#x27;{ print $1 }&#x27; | xargs yum -y remove
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="登陆dashboard"><a aria-hidden="true" tabindex="-1" href="#登陆dashboard" class="anchor"><span class="icon icon-link"></span></a>登陆Dashboard</h2>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">cat</span> /root/keystonerc_admin 
-</span><span class="code-line">
-</span><span class="code-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_USERNAME</span><span class="token operator">=</span>admin
-</span><span class="code-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_TENANT_NAME</span><span class="token operator">=</span>admin
-</span><span class="code-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_PASSWORD</span><span class="token operator">=</span>d6433394e15f4175
-</span><span class="code-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_AUTH_URL</span><span class="token operator">=</span>http://10.1.199.8:35357/v2.0/
-</span><span class="code-line"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PS1</span></span><span class="token operator">=</span><span class="token string">'[\u@\h \W(keystone_admin)]\$ '</span>
-</span></code><div onclick="copied(this)" data-code="cat /root/keystonerc_admin 
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>更新系统包</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">yum update -y
+</span></code><input type="hidden" value="yum update -y
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>安装packstack工具</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">yum install -y openstack-packstack
+</span></code><input type="hidden" value="yum install -y openstack-packstack
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>安装openstack newton版本</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">packstack --allinone
+</span></code><input type="hidden" value="packstack --allinone
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>执行这一步之后会花费一些时间</p>
+        <h2 id="卸载"><a aria-hidden="true" tabindex="-1" href="#卸载" class="anchor"><span class="icon icon-link"></span></a>卸载</h2>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum list installed <span class="token operator">|</span> <span class="token function">grep</span> @openstack- <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{ print $1 }'</span> <span class="token operator">|</span> <span class="token function">xargs</span> yum -y remove
+</span></code><input type="hidden" value="yum list installed | grep @openstack- | awk &#x27;{ print $1 }&#x27; | xargs yum -y remove
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="登陆dashboard"><a aria-hidden="true" tabindex="-1" href="#登陆dashboard" class="anchor"><span class="icon icon-link"></span></a>登陆Dashboard</h2>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">cat</span> /root/keystonerc_admin 
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_USERNAME</span><span class="token operator">=</span>admin
+</span><span class="code-line line-number" line="4"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_TENANT_NAME</span><span class="token operator">=</span>admin
+</span><span class="code-line line-number" line="5"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_PASSWORD</span><span class="token operator">=</span>d6433394e15f4175
+</span><span class="code-line line-number" line="6"><span class="token builtin class-name">export</span> <span class="token assign-left variable">OS_AUTH_URL</span><span class="token operator">=</span>http://10.1.199.8:35357/v2.0/
+</span><span class="code-line line-number" line="7"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PS1</span></span><span class="token operator">=</span><span class="token string">'[\u@\h \W(keystone_admin)]\$ '</span>
+</span></code><input type="hidden" value="cat /root/keystonerc_admin 
 
 export OS_USERNAME=admin
 export OS_TENANT_NAME=admin
 export OS_PASSWORD=d6433394e15f4175
 export OS_AUTH_URL=http://10.1.199.8:35357/v2.0/
 export PS1=&#x27;[\u@\h \W(keystone_admin)]\$ &#x27;
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="错误处理"><a aria-hidden="true" tabindex="-1" href="#错误处理" class="anchor"><span class="icon icon-link"></span></a>错误处理</h2>
-<h3 id="devstack部署openstack遇到rdo源配置问题及解决办法"><a aria-hidden="true" tabindex="-1" href="#devstack部署openstack遇到rdo源配置问题及解决办法" class="anchor"><span class="icon icon-link"></span></a>devstack部署openstack遇到rdo源配置问题及解决办法</h3>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">yum <span class="token function">install</span> http://rdo.fedorapeople.org/rdo-release.rpm
-</span><span class="code-line">无法打开 http://rdo.fedorapeople.org/rdo-release.rpm ，跳过。
-</span><span class="code-line">错误：无须任何处理
-</span></code><div onclick="copied(this)" data-code="yum install http://rdo.fedorapeople.org/rdo-release.rpm
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="错误处理"><a aria-hidden="true" tabindex="-1" href="#错误处理" class="anchor"><span class="icon icon-link"></span></a>错误处理</h2>
+        <h3 id="devstack部署openstack遇到rdo源配置问题及解决办法"><a aria-hidden="true" tabindex="-1" href="#devstack部署openstack遇到rdo源配置问题及解决办法" class="anchor"><span class="icon icon-link"></span></a>devstack部署openstack遇到rdo源配置问题及解决办法</h3>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> http://rdo.fedorapeople.org/rdo-release.rpm
+</span><span class="code-line line-number" line="2">无法打开 http://rdo.fedorapeople.org/rdo-release.rpm ，跳过。
+</span><span class="code-line line-number" line="3">错误：无须任何处理
+</span></code><input type="hidden" value="yum install http://rdo.fedorapeople.org/rdo-release.rpm
 无法打开 http://rdo.fedorapeople.org/rdo-release.rpm ，跳过。
 错误：无须任何处理
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>解决办法</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">wget</span> --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
-</span><span class="code-line"><span class="token function">rpm</span> -ivh rdo-release.rpm
-</span></code><div onclick="copied(this)" data-code="wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>解决办法</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
+</span><span class="code-line line-number" line="2"><span class="token function">rpm</span> -ivh rdo-release.rpm
+</span></code><input type="hidden" value="wget --no-check-certificate http://rdo.fedorapeople.org/rdo-release.rpm
 rpm -ivh rdo-release.rpm
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="端口被占用"><a aria-hidden="true" tabindex="-1" href="#端口被占用" class="anchor"><span class="icon icon-link"></span></a>端口被占用</h3>
-<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line"><span class="token comment"># 查看到80端口</span>
-</span><span class="code-line"><span class="token function">netstat</span> -lnp<span class="token operator">|</span><span class="token function">grep</span> <span class="token number">80</span>
-</span><span class="code-line">
-</span><span class="code-line">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:80              <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">27906</span>/nginx: master
-</span><span class="code-line">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:6080            <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">32437</span>/python2
-</span><span class="code-line">unix  <span class="token number">2</span>      <span class="token punctuation">[</span> ACC <span class="token punctuation">]</span>     STREAM     LISTENING     <span class="token number">21680</span>    <span class="token number">2003</span>/master          public/flush
-</span><span class="code-line">unix  <span class="token number">2</span>      <span class="token punctuation">[</span> ACC <span class="token punctuation">]</span>     STREAM     LISTENING     <span class="token number">13380</span>    <span class="token number">1</span>/systemd            /run/lvm/lvmetad.sock
-</span></code><div onclick="copied(this)" data-code="# 查看到80端口
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="端口被占用"><a aria-hidden="true" tabindex="-1" href="#端口被占用" class="anchor"><span class="icon icon-link"></span></a>端口被占用</h3>
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 查看到80端口</span>
+</span><span class="code-line line-number" line="2"><span class="token function">netstat</span> -lnp<span class="token operator">|</span><span class="token function">grep</span> <span class="token number">80</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:80              <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">27906</span>/nginx: master
+</span><span class="code-line line-number" line="5">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:6080            <span class="token number">0.0</span>.0.0:*               LISTEN      <span class="token number">32437</span>/python2
+</span><span class="code-line line-number" line="6">unix  <span class="token number">2</span>      <span class="token punctuation">[</span> ACC <span class="token punctuation">]</span>     STREAM     LISTENING     <span class="token number">21680</span>    <span class="token number">2003</span>/master          public/flush
+</span><span class="code-line line-number" line="7">unix  <span class="token number">2</span>      <span class="token punctuation">[</span> ACC <span class="token punctuation">]</span>     STREAM     LISTENING     <span class="token number">13380</span>    <span class="token number">1</span>/systemd            /run/lvm/lvmetad.sock
+</span></code><input type="hidden" value="# 查看到80端口
 netstat -lnp|grep 80
 
 tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      27906/nginx: master
 tcp        0      0 0.0.0.0:6080            0.0.0.0:*               LISTEN      32437/python2
 unix  2      [ ACC ]     STREAM     LISTENING     21680    2003/master          public/flush
 unix  2      [ ACC ]     STREAM     LISTENING     13380    1/systemd            /run/lvm/lvmetad.sock
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>杀掉或者停用服务</p>
-<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line"><span class="token function">kill</span> -9 <span class="token number">27906</span>
-</span></code><div onclick="copied(this)" data-code="kill -9 27906
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<pre><code class="code-highlight"><span class="code-line">warning: /var/cache/yum/x86_64/7/openstack-newton/packages/hiera-1.3.4-5.el7.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 764429e6: NOKEY2.4 MB  00:00:53 ETA
-</span><span class="code-line">hiera-1.3.4-5.el7.noarch.rpm 的公钥尚未安装
-</span></code><div onclick="copied(this)" data-code="warning: /var/cache/yum/x86_64/7/openstack-newton/packages/hiera-1.3.4-5.el7.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 764429e6: NOKEY2.4 MB  00:00:53 ETA
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>杀掉或者停用服务</p>
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">kill</span> -9 <span class="token number">27906</span>
+</span></code><input type="hidden" value="kill -9 27906
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">warning: /var/cache/yum/x86_64/7/openstack-newton/packages/hiera-1.3.4-5.el7.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 764429e6: NOKEY2.4 MB  00:00:53 ETA
+</span><span class="code-line line-number" line="2">hiera-1.3.4-5.el7.noarch.rpm 的公钥尚未安装
+</span></code><input type="hidden" value="warning: /var/cache/yum/x86_64/7/openstack-newton/packages/hiera-1.3.4-5.el7.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 764429e6: NOKEY2.4 MB  00:00:53 ETA
 hiera-1.3.4-5.el7.noarch.rpm 的公钥尚未安装
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<pre><code class="code-highlight"><span class="code-line">ERROR : Error appeared during Puppet run: 192.168.188.127_controller.pp
-</span><span class="code-line">Error: Could not prefetch nova_flavor provider 'openstack': Command: 'openstack ["flavor", "list", "--quiet", "--format", "csv", ["--long", "--all"]]' has been running for more than 40 seconds (tried 4, for a total of 170 seconds)
-</span></code><div onclick="copied(this)" data-code="ERROR : Error appeared during Puppet run: 192.168.188.127_controller.pp
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">ERROR : Error appeared during Puppet run: 192.168.188.127_controller.pp
+</span><span class="code-line line-number" line="2">Error: Could not prefetch nova_flavor provider 'openstack': Command: 'openstack ["flavor", "list", "--quiet", "--format", "csv", ["--long", "--all"]]' has been running for more than 40 seconds (tried 4, for a total of 170 seconds)
+</span></code><input type="hidden" value="ERROR : Error appeared during Puppet run: 192.168.188.127_controller.pp
 Error: Could not prefetch nova_flavor provider &#x27;openstack&#x27;: Command: &#x27;openstack [&#x22;flavor&#x22;, &#x22;list&#x22;, &#x22;--quiet&#x22;, &#x22;--format&#x22;, &#x22;csv&#x22;, [&#x22;--long&#x22;, &#x22;--all&#x22;]]&#x27; has been running for more than 40 seconds (tried 4, for a total of 170 seconds)
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="日志"><a aria-hidden="true" tabindex="-1" href="#日志" class="anchor"><span class="icon icon-link"></span></a>日志</h2>
-<p>OpenStack通过生成大量日志信息来帮助排查系统安装运行期间出现的问题，接下来介绍几个常见服务的相关日志位置。</p>
-<h3 id="nova日志"><a aria-hidden="true" tabindex="-1" href="#nova日志" class="anchor"><span class="icon icon-link"></span></a>Nova日志</h3>
-<p>OpenStack计算服务日志位于/var/log/nova，默认权限拥有者是nova用户。需要注意的是，并不是每台服务器上都包含所有的日志文件,例如nova-compute.log仅在计算节点生成。</p>
-<ul>
-<li>nova-compute.log：虚拟机实例在启动和运行中产生的日志</li>
-<li>nova-network.log：关于网络状态、分配、路由和安全组的日志</li>
-<li>nova-manage.log：运行nova-manage命令时产生的日志</li>
-<li>nova-scheduler.log：有关调度的，分配任务给节点以及消息队列的相关日志</li>
-<li>nova-objectstore.log：镜像相关的日志</li>
-<li>nova-api.log：用户与OpenStack交互以及OpenStack组件间交互的消息相关日志</li>
-<li>nova-cert.log：nova-cert过程的相关日志</li>
-<li>nova-console.log：关于nova-console的VNC服务的详细信息</li>
-<li>nova-consoleauth.log：关于nova-console服务的验证细节</li>
-<li>nova-dhcpbridge.log：与dhckbridge服务先关的网络信息</li>
-</ul>
-<h3 id="dashboard日志"><a aria-hidden="true" tabindex="-1" href="#dashboard日志" class="anchor"><span class="icon icon-link"></span></a>Dashboard日志</h3>
-<p>Dashboard是一个DJango的web应用程序，默认运行在Apache服务器上，相应的运行日志也都记录在Apache的日志中，用户可以在<code>/var/log/apache2/</code>中查看。</p>
-<h3 id="存储日志"><a aria-hidden="true" tabindex="-1" href="#存储日志" class="anchor"><span class="icon icon-link"></span></a>存储日志</h3>
-<p>对象存储Swift默认日志写到syslog中，在Ubuntu系统中，可以通过/var/log/syslog查看，在其他系统中，可能位于/var/log/messages中。
-块存储Cinder产生的日志默认存放在/var/log/cinder目录中</p>
-<ul>
-<li>cinder-api.log：关于cinder-api服务的细节</li>
-<li>cinder-scheduler.log：关于cinder调度服务的操作的细节</li>
-<li>cinder-volume.log：与cinder卷服务相关的日志项</li>
-</ul>
-<p>Keystone日志</p>
-<p>身份认证Keystone服务的日志记录在/var/log/keystone/keystone.log中。</p>
-<h3 id="glance日志"><a aria-hidden="true" tabindex="-1" href="#glance日志" class="anchor"><span class="icon icon-link"></span></a>Glance日志</h3>
-<p>镜像服务Glance的日志默认存放在/var/log/glance目录中</p>
-<ul>
-<li>api.log：Glance API相关的日志</li>
-<li>registry.log：Glance registry服务相关的日志
-根据日志配置的不同，会保存诸如元信息更新和访问记录这些信息。</li>
-</ul>
-<h3 id="neutron日志"><a aria-hidden="true" tabindex="-1" href="#neutron日志" class="anchor"><span class="icon icon-link"></span></a>Neutron日志</h3>
-<p>网络服务Neutron的日志默认存放在/var/log/neutron目录中</p>
-<ul>
-<li>dhcp-agent.log：关于dhcp-agent的日志</li>
-<li>l3-agent.log：与l3代理及其功能相关的日志</li>
-<li>metadata-agent.log：通过neutron代理给Nova元数据服务的相关日志</li>
-<li>openvswitch-agent.log：与openvswitch相关操作的日志项，在具体实现OpenStack网络时，如果使用了不同的插件，就会有相应的日志文件名</li>
-<li>server.log：与Neutron API服务相关的日志</li>
-</ul>
-<h3 id="改变日志级别"><a aria-hidden="true" tabindex="-1" href="#改变日志级别" class="anchor"><span class="icon icon-link"></span></a>改变日志级别</h3>
-<p>每个OpenStack服务的默认日志级别均为警告级（Warning），该级别的日志对于了解运行中系统的状态或者基本的错误定位已经够用，但是有时候需要上调日志级别来帮助诊断问题，或者下调日志级别以减少日志噪声。由于各个服务的日志设置方式类似，因此这里就以Nova服务为例。</p>
-<h4 id="设置nova服务的日志级别"><a aria-hidden="true" tabindex="-1" href="#设置nova服务的日志级别" class="anchor"><span class="icon icon-link"></span></a>设置Nova服务的日志级别</h4>
-<pre><code class="code-highlight"><span class="code-line">vi /etc/nova/logging.conf 
-</span></code><div onclick="copied(this)" data-code="vi /etc/nova/logging.conf 
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>将列出的服务的日志级别修改为DEBUG、INFO或WARNING</p>
-<pre><code class="code-highlight"><span class="code-line">[logger_root]
-</span><span class="code-line">level = WARNING
-</span><span class="code-line">handlers = null
-</span><span class="code-line">
-</span><span class="code-line">[logger_nova]
-</span><span class="code-line">level = INFO
-</span><span class="code-line">handlers = stderr
-</span><span class="code-line">qualname = nova
-</span><span class="code-line">......
-</span></code><div onclick="copied(this)" data-code="[logger_root]
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="日志"><a aria-hidden="true" tabindex="-1" href="#日志" class="anchor"><span class="icon icon-link"></span></a>日志</h2>
+        <p>OpenStack通过生成大量日志信息来帮助排查系统安装运行期间出现的问题，接下来介绍几个常见服务的相关日志位置。</p>
+        <h3 id="nova日志"><a aria-hidden="true" tabindex="-1" href="#nova日志" class="anchor"><span class="icon icon-link"></span></a>Nova日志</h3>
+        <p>OpenStack计算服务日志位于/var/log/nova，默认权限拥有者是nova用户。需要注意的是，并不是每台服务器上都包含所有的日志文件,例如nova-compute.log仅在计算节点生成。</p>
+        <ul>
+          <li>nova-compute.log：虚拟机实例在启动和运行中产生的日志</li>
+          <li>nova-network.log：关于网络状态、分配、路由和安全组的日志</li>
+          <li>nova-manage.log：运行nova-manage命令时产生的日志</li>
+          <li>nova-scheduler.log：有关调度的，分配任务给节点以及消息队列的相关日志</li>
+          <li>nova-objectstore.log：镜像相关的日志</li>
+          <li>nova-api.log：用户与OpenStack交互以及OpenStack组件间交互的消息相关日志</li>
+          <li>nova-cert.log：nova-cert过程的相关日志</li>
+          <li>nova-console.log：关于nova-console的VNC服务的详细信息</li>
+          <li>nova-consoleauth.log：关于nova-console服务的验证细节</li>
+          <li>nova-dhcpbridge.log：与dhckbridge服务先关的网络信息</li>
+        </ul>
+        <h3 id="dashboard日志"><a aria-hidden="true" tabindex="-1" href="#dashboard日志" class="anchor"><span class="icon icon-link"></span></a>Dashboard日志</h3>
+        <p>Dashboard是一个DJango的web应用程序，默认运行在Apache服务器上，相应的运行日志也都记录在Apache的日志中，用户可以在<code>/var/log/apache2/</code>中查看。</p>
+        <h3 id="存储日志"><a aria-hidden="true" tabindex="-1" href="#存储日志" class="anchor"><span class="icon icon-link"></span></a>存储日志</h3>
+        <p>
+          对象存储Swift默认日志写到syslog中，在Ubuntu系统中，可以通过/var/log/syslog查看，在其他系统中，可能位于/var/log/messages中。
+          块存储Cinder产生的日志默认存放在/var/log/cinder目录中
+        </p>
+        <ul>
+          <li>cinder-api.log：关于cinder-api服务的细节</li>
+          <li>cinder-scheduler.log：关于cinder调度服务的操作的细节</li>
+          <li>cinder-volume.log：与cinder卷服务相关的日志项</li>
+        </ul>
+        <p>Keystone日志</p>
+        <p>身份认证Keystone服务的日志记录在/var/log/keystone/keystone.log中。</p>
+        <h3 id="glance日志"><a aria-hidden="true" tabindex="-1" href="#glance日志" class="anchor"><span class="icon icon-link"></span></a>Glance日志</h3>
+        <p>镜像服务Glance的日志默认存放在/var/log/glance目录中</p>
+        <ul>
+          <li>api.log：Glance API相关的日志</li>
+          <li>
+            registry.log：Glance registry服务相关的日志
+            根据日志配置的不同，会保存诸如元信息更新和访问记录这些信息。
+          </li>
+        </ul>
+        <h3 id="neutron日志"><a aria-hidden="true" tabindex="-1" href="#neutron日志" class="anchor"><span class="icon icon-link"></span></a>Neutron日志</h3>
+        <p>网络服务Neutron的日志默认存放在/var/log/neutron目录中</p>
+        <ul>
+          <li>dhcp-agent.log：关于dhcp-agent的日志</li>
+          <li>l3-agent.log：与l3代理及其功能相关的日志</li>
+          <li>metadata-agent.log：通过neutron代理给Nova元数据服务的相关日志</li>
+          <li>openvswitch-agent.log：与openvswitch相关操作的日志项，在具体实现OpenStack网络时，如果使用了不同的插件，就会有相应的日志文件名</li>
+          <li>server.log：与Neutron API服务相关的日志</li>
+        </ul>
+        <h3 id="改变日志级别"><a aria-hidden="true" tabindex="-1" href="#改变日志级别" class="anchor"><span class="icon icon-link"></span></a>改变日志级别</h3>
+        <p>每个OpenStack服务的默认日志级别均为警告级（Warning），该级别的日志对于了解运行中系统的状态或者基本的错误定位已经够用，但是有时候需要上调日志级别来帮助诊断问题，或者下调日志级别以减少日志噪声。由于各个服务的日志设置方式类似，因此这里就以Nova服务为例。</p>
+        <h4 id="设置nova服务的日志级别"><a aria-hidden="true" tabindex="-1" href="#设置nova服务的日志级别" class="anchor"><span class="icon icon-link"></span></a>设置Nova服务的日志级别</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">vi /etc/nova/logging.conf 
+</span></code><input type="hidden" value="vi /etc/nova/logging.conf 
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>将列出的服务的日志级别修改为DEBUG、INFO或WARNING</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">[logger_root]
+</span><span class="code-line line-number" line="2">level = WARNING
+</span><span class="code-line line-number" line="3">handlers = null
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5">[logger_nova]
+</span><span class="code-line line-number" line="6">level = INFO
+</span><span class="code-line line-number" line="7">handlers = stderr
+</span><span class="code-line line-number" line="8">qualname = nova
+</span><span class="code-line line-number" line="9">......
+</span></code><input type="hidden" value="[logger_root]
 level = WARNING
 handlers = null
 
@@ -492,95 +316,95 @@ level = INFO
 handlers = stderr
 qualname = nova
 ......
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h4 id="设置其他openstack服务中的日志级别"><a aria-hidden="true" tabindex="-1" href="#设置其他openstack服务中的日志级别" class="anchor"><span class="icon icon-link"></span></a>设置其他OpenStack服务中的日志级别</h4>
-<p>其他服务（如Glance和Keystone）目前都在它们的主配置文件中设置了日志级别颗，例如/etc/glance/glance-api.conf。可以通过修改这些文件中对应设置来将日志级别调整到INFO和DEBUG：</p>
-<pre><code class="code-highlight"><span class="code-line">[DEFAULT]
-</span><span class="code-line">#set INFO log level output
-</span><span class="code-line">verbose = False
-</span><span class="code-line">
-</span><span class="code-line">#set DEBUG log level output
-</span><span class="code-line">debug = False
-</span></code><div onclick="copied(this)" data-code="[DEFAULT]
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h4 id="设置其他openstack服务中的日志级别"><a aria-hidden="true" tabindex="-1" href="#设置其他openstack服务中的日志级别" class="anchor"><span class="icon icon-link"></span></a>设置其他OpenStack服务中的日志级别</h4>
+        <p>其他服务（如Glance和Keystone）目前都在它们的主配置文件中设置了日志级别颗，例如/etc/glance/glance-api.conf。可以通过修改这些文件中对应设置来将日志级别调整到INFO和DEBUG：</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">[DEFAULT]
+</span><span class="code-line line-number" line="2">#set INFO log level output
+</span><span class="code-line line-number" line="3">verbose = False
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5">#set DEBUG log level output
+</span><span class="code-line line-number" line="6">debug = False
+</span></code><input type="hidden" value="[DEFAULT]
 #set INFO log level output
 verbose = False
 
 #set DEBUG log level output
 debug = False
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="服务管理"><a aria-hidden="true" tabindex="-1" href="#服务管理" class="anchor"><span class="icon icon-link"></span></a>服务管理</h2>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">systemctl stop httpd
-</span><span class="code-line">systemctl start httpd
-</span></code><div onclick="copied(this)" data-code="systemctl stop httpd
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="服务管理"><a aria-hidden="true" tabindex="-1" href="#服务管理" class="anchor"><span class="icon icon-link"></span></a>服务管理</h2>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">systemctl stop httpd
+</span><span class="code-line line-number" line="2">systemctl start httpd
+</span></code><input type="hidden" value="systemctl stop httpd
 systemctl start httpd
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="重启-neutron-服务"><a aria-hidden="true" tabindex="-1" href="#重启-neutron-服务" class="anchor"><span class="icon icon-link"></span></a>重启 Neutron 服务</h3>
-<h4 id="控制节点"><a aria-hidden="true" tabindex="-1" href="#控制节点" class="anchor"><span class="icon icon-link"></span></a>控制节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openstack-nova-api restart
-</span><span class="code-line">service openstack-nova-scheduler restart
-</span><span class="code-line">service openstack-nova-conductor restart
-</span><span class="code-line">service neutron-server restart
-</span></code><div onclick="copied(this)" data-code="service openstack-nova-api restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="重启-neutron-服务"><a aria-hidden="true" tabindex="-1" href="#重启-neutron-服务" class="anchor"><span class="icon icon-link"></span></a>重启 Neutron 服务</h3>
+        <h4 id="控制节点"><a aria-hidden="true" tabindex="-1" href="#控制节点" class="anchor"><span class="icon icon-link"></span></a>控制节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-nova-api restart
+</span><span class="code-line line-number" line="2">service openstack-nova-scheduler restart
+</span><span class="code-line line-number" line="3">service openstack-nova-conductor restart
+</span><span class="code-line line-number" line="4">service neutron-server restart
+</span></code><input type="hidden" value="service openstack-nova-api restart
 service openstack-nova-scheduler restart
 service openstack-nova-conductor restart
 service neutron-server restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h4 id="网络节点"><a aria-hidden="true" tabindex="-1" href="#网络节点" class="anchor"><span class="icon icon-link"></span></a>网络节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openvswitch restart
-</span><span class="code-line">service neutron-openvswitch-agent restart（fuel控制节点默认stop）
-</span><span class="code-line">service neutron-l3-agent restart（fuel控制节点默认stop）
-</span><span class="code-line">service neutron-dhcp-agent restart（fuel控制节点默认stop）
-</span><span class="code-line">service neutron-metadata-agent restart（fuel控制节点默认stop）
-</span></code><div onclick="copied(this)" data-code="service openvswitch restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h4 id="网络节点"><a aria-hidden="true" tabindex="-1" href="#网络节点" class="anchor"><span class="icon icon-link"></span></a>网络节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openvswitch restart
+</span><span class="code-line line-number" line="2">service neutron-openvswitch-agent restart（fuel控制节点默认stop）
+</span><span class="code-line line-number" line="3">service neutron-l3-agent restart（fuel控制节点默认stop）
+</span><span class="code-line line-number" line="4">service neutron-dhcp-agent restart（fuel控制节点默认stop）
+</span><span class="code-line line-number" line="5">service neutron-metadata-agent restart（fuel控制节点默认stop）
+</span></code><input type="hidden" value="service openvswitch restart
 service neutron-openvswitch-agent restart（fuel控制节点默认stop）
 service neutron-l3-agent restart（fuel控制节点默认stop）
 service neutron-dhcp-agent restart（fuel控制节点默认stop）
 service neutron-metadata-agent restart（fuel控制节点默认stop）
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h4 id="计算节点"><a aria-hidden="true" tabindex="-1" href="#计算节点" class="anchor"><span class="icon icon-link"></span></a>计算节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service neutron-openvswitch-agent restart
-</span><span class="code-line">service openvswitch restart
-</span></code><div onclick="copied(this)" data-code="service neutron-openvswitch-agent restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h4 id="计算节点"><a aria-hidden="true" tabindex="-1" href="#计算节点" class="anchor"><span class="icon icon-link"></span></a>计算节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service neutron-openvswitch-agent restart
+</span><span class="code-line line-number" line="2">service openvswitch restart
+</span></code><input type="hidden" value="service neutron-openvswitch-agent restart
 service openvswitch restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="重启cinder服务"><a aria-hidden="true" tabindex="-1" href="#重启cinder服务" class="anchor"><span class="icon icon-link"></span></a>重启cinder服务</h3>
-<h4 id="存储节点"><a aria-hidden="true" tabindex="-1" href="#存储节点" class="anchor"><span class="icon icon-link"></span></a>存储节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openstack-cinder-api restart
-</span><span class="code-line">service openstack-cinder-scheduler restart
-</span></code><div onclick="copied(this)" data-code="service openstack-cinder-api restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="重启cinder服务"><a aria-hidden="true" tabindex="-1" href="#重启cinder服务" class="anchor"><span class="icon icon-link"></span></a>重启cinder服务</h3>
+        <h4 id="存储节点"><a aria-hidden="true" tabindex="-1" href="#存储节点" class="anchor"><span class="icon icon-link"></span></a>存储节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-cinder-api restart
+</span><span class="code-line line-number" line="2">service openstack-cinder-scheduler restart
+</span></code><input type="hidden" value="service openstack-cinder-api restart
 service openstack-cinder-scheduler restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h4 id="存储节点-1"><a aria-hidden="true" tabindex="-1" href="#存储节点-1" class="anchor"><span class="icon icon-link"></span></a>存储节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openstack-cinder-volume restart
-</span></code><div onclick="copied(this)" data-code="service openstack-cinder-volume restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="重启glance服务"><a aria-hidden="true" tabindex="-1" href="#重启glance服务" class="anchor"><span class="icon icon-link"></span></a>重启glance服务</h3>
-<pre><code class="code-highlight"><span class="code-line">service openstack-glance-api restart
-</span><span class="code-line">service openstack-glance-registry restart
-</span></code><div onclick="copied(this)" data-code="service openstack-glance-api restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h4 id="存储节点-1"><a aria-hidden="true" tabindex="-1" href="#存储节点-1" class="anchor"><span class="icon icon-link"></span></a>存储节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-cinder-volume restart
+</span></code><input type="hidden" value="service openstack-cinder-volume restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="重启glance服务"><a aria-hidden="true" tabindex="-1" href="#重启glance服务" class="anchor"><span class="icon icon-link"></span></a>重启glance服务</h3>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-glance-api restart
+</span><span class="code-line line-number" line="2">service openstack-glance-registry restart
+</span></code><input type="hidden" value="service openstack-glance-api restart
 service openstack-glance-registry restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="重启swift服务"><a aria-hidden="true" tabindex="-1" href="#重启swift服务" class="anchor"><span class="icon icon-link"></span></a>重启Swift服务</h3>
-<h4 id="控制节点-1"><a aria-hidden="true" tabindex="-1" href="#控制节点-1" class="anchor"><span class="icon icon-link"></span></a>控制节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openstack-swift-proxy restart
-</span><span class="code-line">service memcached restart
-</span></code><div onclick="copied(this)" data-code="service openstack-swift-proxy restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="重启swift服务"><a aria-hidden="true" tabindex="-1" href="#重启swift服务" class="anchor"><span class="icon icon-link"></span></a>重启Swift服务</h3>
+        <h4 id="控制节点-1"><a aria-hidden="true" tabindex="-1" href="#控制节点-1" class="anchor"><span class="icon icon-link"></span></a>控制节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-swift-proxy restart
+</span><span class="code-line line-number" line="2">service memcached restart
+</span></code><input type="hidden" value="service openstack-swift-proxy restart
 service memcached restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h4 id="存储节点-2"><a aria-hidden="true" tabindex="-1" href="#存储节点-2" class="anchor"><span class="icon icon-link"></span></a>存储节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openstack-swift-account restart
-</span><span class="code-line">service openstack-swift-account-auditor restart
-</span><span class="code-line">service openstack-swift-account-reaper restart
-</span><span class="code-line">service openstack-swift-account-replicator restart
-</span><span class="code-line">service openstack-swift-container restart
-</span><span class="code-line">service openstack-swift-container-auditor restart
-</span><span class="code-line">service openstack-swift-container-replicator restart
-</span><span class="code-line">service openstack-swift-container-updater restart
-</span><span class="code-line">service openstack-swift-object restart
-</span><span class="code-line">service openstack-swift-object-auditor restart
-</span><span class="code-line">service openstack-swift-object-replicator restart
-</span><span class="code-line">service openstack-swift-object-updater restart
-</span></code><div onclick="copied(this)" data-code="service openstack-swift-account restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h4 id="存储节点-2"><a aria-hidden="true" tabindex="-1" href="#存储节点-2" class="anchor"><span class="icon icon-link"></span></a>存储节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-swift-account restart
+</span><span class="code-line line-number" line="2">service openstack-swift-account-auditor restart
+</span><span class="code-line line-number" line="3">service openstack-swift-account-reaper restart
+</span><span class="code-line line-number" line="4">service openstack-swift-account-replicator restart
+</span><span class="code-line line-number" line="5">service openstack-swift-container restart
+</span><span class="code-line line-number" line="6">service openstack-swift-container-auditor restart
+</span><span class="code-line line-number" line="7">service openstack-swift-container-replicator restart
+</span><span class="code-line line-number" line="8">service openstack-swift-container-updater restart
+</span><span class="code-line line-number" line="9">service openstack-swift-object restart
+</span><span class="code-line line-number" line="10">service openstack-swift-object-auditor restart
+</span><span class="code-line line-number" line="11">service openstack-swift-object-replicator restart
+</span><span class="code-line line-number" line="12">service openstack-swift-object-updater restart
+</span></code><input type="hidden" value="service openstack-swift-account restart
 service openstack-swift-account-auditor restart
 service openstack-swift-account-reaper restart
 service openstack-swift-account-replicator restart
@@ -592,300 +416,123 @@ service openstack-swift-object restart
 service openstack-swift-object-auditor restart
 service openstack-swift-object-replicator restart
 service openstack-swift-object-updater restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h3 id="重启nova服务"><a aria-hidden="true" tabindex="-1" href="#重启nova服务" class="anchor"><span class="icon icon-link"></span></a>重启Nova服务</h3>
-<h4 id="控制节点-2"><a aria-hidden="true" tabindex="-1" href="#控制节点-2" class="anchor"><span class="icon icon-link"></span></a>控制节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service openstack-nova-api restart
-</span><span class="code-line">service openstack-nova-cert restart
-</span><span class="code-line">service openstack-nova-consoleauth restart
-</span><span class="code-line">service openstack-nova-scheduler restart
-</span><span class="code-line">service openstack-nova-conductor restart
-</span><span class="code-line">service openstack-nova-novncproxy restart
-</span></code><div onclick="copied(this)" data-code="service openstack-nova-api restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h3 id="重启nova服务"><a aria-hidden="true" tabindex="-1" href="#重启nova服务" class="anchor"><span class="icon icon-link"></span></a>重启Nova服务</h3>
+        <h4 id="控制节点-2"><a aria-hidden="true" tabindex="-1" href="#控制节点-2" class="anchor"><span class="icon icon-link"></span></a>控制节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service openstack-nova-api restart
+</span><span class="code-line line-number" line="2">service openstack-nova-cert restart
+</span><span class="code-line line-number" line="3">service openstack-nova-consoleauth restart
+</span><span class="code-line line-number" line="4">service openstack-nova-scheduler restart
+</span><span class="code-line line-number" line="5">service openstack-nova-conductor restart
+</span><span class="code-line line-number" line="6">service openstack-nova-novncproxy restart
+</span></code><input type="hidden" value="service openstack-nova-api restart
 service openstack-nova-cert restart
 service openstack-nova-consoleauth restart
 service openstack-nova-scheduler restart
 service openstack-nova-conductor restart
 service openstack-nova-novncproxy restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h4 id="计算节点-1"><a aria-hidden="true" tabindex="-1" href="#计算节点-1" class="anchor"><span class="icon icon-link"></span></a>计算节点</h4>
-<pre><code class="code-highlight"><span class="code-line">service libvirtd restart
-</span><span class="code-line">service openstack-nova-compute restart
-</span></code><div onclick="copied(this)" data-code="service libvirtd restart
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h4 id="计算节点-1"><a aria-hidden="true" tabindex="-1" href="#计算节点-1" class="anchor"><span class="icon icon-link"></span></a>计算节点</h4>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">service libvirtd restart
+</span><span class="code-line line-number" line="2">service openstack-nova-compute restart
+</span></code><input type="hidden" value="service libvirtd restart
 service openstack-nova-compute restart
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="参考知识"><a aria-hidden="true" tabindex="-1" href="#参考知识" class="anchor"><span class="icon icon-link"></span></a>参考知识</h2>
-<ul>
-<li><a href="http://www.infocool.net/kb/OpenStack/201609/187078.htmldddAA">在 CentOS7.2 上安装 OpenStack Liberty 版</a></li>
-<li><a href="http://www.trystack.cn/Articles/openstack-deployment.html">OpenStack部署都有哪些方式</a></li>
-<li><a href="http://promisejohn.github.io/2015/05/07/HelloOpenstack/">Openstack安装部署</a></li>
-<li><a href="http://www.chenshake.com/centos-6-4-rdo-test/">CentOS 6.4 RDO测试</a></li>
-<li><a href="http://linuxpitstop.com/openstack-mitaka-rdo-on-centos-7/">Install And Configure OpenStack Mitaka RDO On CentOS 7</a></li>
-<li><a href="http://www.chenshake.com/openstack-havana-dashboard-to-test-and-use/#i">OpenStack Havana Dashboard测试和使用</a></li>
-<li><a href="http://cloudman.cc/">OpenStack安装视频教程</a></li>
-<li><a href="https://www.ustack.com/blog/install-openstack-in-10mins/#OpenStack-3/">10分钟安装OpenStack</a></li>
-<li><a href="http://download.cirros-cloud.net/0.3.4/">cirros镜像下载</a></li>
-<li><a href="http://blog.csdn.net/qq_20154221/article/details/51586537">制作openstack镜像win7.qcow2（centos/ubuntu/win镜像分享）</a> 镜像密码均为 intel@123</li>
-</ul>
-    
-
-<div class="previous">
-  
-  <a class="prev" href="部署YApi平台.html">
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
-      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
-    </svg>
-    <span>
-      部署 YApi 平台
-    </span>
-  </a>
-  
-  
-  <a class="next" href="pip.html">
-    <span>
-      安装 pip 工具
-    </span>
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
-      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
-    </svg>
-  </a>
-  
-</div>
-
-
-
-<section class="article-footer">
-  <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/openstack.md" class="edit-button" target="_blank" rel="noopener noreferrer">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-    </svg>
-    <span>Edit this page on GitHub</span>
-  </a>
-  
-  <span class="atime">2022/04/24</span>
-  
-</section>
-
-  </markdown-style>
-  
-<nav class="tocs">
-  <aside class="inner toc">
-    <ol class="tocs-list">
-    
-      <li>
-        <a href="#概念简介" class="tocs-link">概念简介</a>
-        
-      </li>
-    
-      <li>
-        <a href="#安装" class="tocs-link">安装</a>
-        
-      </li>
-    
-      <li>
-        <a href="#安装mitaka" class="tocs-link">安装Mitaka</a>
-        
-      </li>
-    
-      <li>
-        <a href="#卸载" class="tocs-link">卸载</a>
-        
-      </li>
-    
-      <li>
-        <a href="#登陆dashboard" class="tocs-link">登陆Dashboard</a>
-        
-      </li>
-    
-      <li>
-        <a href="#错误处理" class="tocs-link">错误处理</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#devstack部署openstack遇到rdo源配置问题及解决办法" class="tocs-link">devstack部署openstack遇到rdo源配置问题及解决办法</a>
-                
-              </li>
-            
-              <li>
-                <a href="#端口被占用" class="tocs-link">端口被占用</a>
-                
-              </li>
-            
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="参考知识"><a aria-hidden="true" tabindex="-1" href="#参考知识" class="anchor"><span class="icon icon-link"></span></a>参考知识</h2>
+        <ul>
+          <li><a href="http://www.infocool.net/kb/OpenStack/201609/187078.htmldddAA">在 CentOS7.2 上安装 OpenStack Liberty 版</a></li>
+          <li><a href="http://www.trystack.cn/Articles/openstack-deployment.html">OpenStack部署都有哪些方式</a></li>
+          <li><a href="http://promisejohn.github.io/2015/05/07/HelloOpenstack/">Openstack安装部署</a></li>
+          <li><a href="http://www.chenshake.com/centos-6-4-rdo-test/">CentOS 6.4 RDO测试</a></li>
+          <li><a href="http://linuxpitstop.com/openstack-mitaka-rdo-on-centos-7/">Install And Configure OpenStack Mitaka RDO On CentOS 7</a></li>
+          <li><a href="http://www.chenshake.com/openstack-havana-dashboard-to-test-and-use/#i">OpenStack Havana Dashboard测试和使用</a></li>
+          <li><a href="http://cloudman.cc/">OpenStack安装视频教程</a></li>
+          <li><a href="https://www.ustack.com/blog/install-openstack-in-10mins/#OpenStack-3/">10分钟安装OpenStack</a></li>
+          <li><a href="http://download.cirros-cloud.net/0.3.4/">cirros镜像下载</a></li>
+          <li><a href="http://blog.csdn.net/qq_20154221/article/details/51586537">制作openstack镜像win7.qcow2（centos/ubuntu/win镜像分享）</a> 镜像密码均为 intel@123</li>
+        </ul>
+        <div class="previous"><a class="prev" href="部署YApi平台.html"><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+              <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+            </svg>
+<span>部署 YApi 平台
+</span></a><a class="next" href="pip.html"><span>安装 pip 工具
+</span><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+              <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+            </svg></a></div>
+        <section class="article-footer"><a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/openstack.md" class="edit-button" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+<span>Edit this page on GitHub</span>
+</a><span class="atime">2022/05/14</span></section>
+      </markdown-style>
+      <nav class="tocs">
+        <aside class="inner toc">
+          <ol class="tocs-list">
+            <li><a href="#概念简介" class="tocs-link">概念简介</a></li>
+            <li><a href="#安装" class="tocs-link">安装</a></li>
+            <li><a href="#安装mitaka" class="tocs-link">安装Mitaka</a></li>
+            <li><a href="#卸载" class="tocs-link">卸载</a></li>
+            <li><a href="#登陆dashboard" class="tocs-link">登陆Dashboard</a></li>
+            <li><a href="#错误处理" class="tocs-link">错误处理</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#devstack部署openstack遇到rdo源配置问题及解决办法" class="tocs-link">devstack部署openstack遇到rdo源配置问题及解决办法</a></li>
+                <li><a href="#端口被占用" class="tocs-link">端口被占用</a></li>
+              </ol>
+            </li>
+            <li><a href="#日志" class="tocs-link">日志</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#nova日志" class="tocs-link">Nova日志</a></li>
+                <li><a href="#dashboard日志" class="tocs-link">Dashboard日志</a></li>
+                <li><a href="#存储日志" class="tocs-link">存储日志</a></li>
+                <li><a href="#glance日志" class="tocs-link">Glance日志</a></li>
+                <li><a href="#neutron日志" class="tocs-link">Neutron日志</a></li>
+                <li><a href="#改变日志级别" class="tocs-link">改变日志级别</a>
+                  <ol class="tocs-list is-collapsed">
+                    <li><a href="#设置nova服务的日志级别" class="tocs-link">设置Nova服务的日志级别</a></li>
+                    <li><a href="#设置其他openstack服务中的日志级别" class="tocs-link">设置其他OpenStack服务中的日志级别</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li><a href="#服务管理" class="tocs-link">服务管理</a>
+              <ol class="tocs-list is-collapsed">
+                <li><a href="#重启-neutron-服务" class="tocs-link">重启 Neutron 服务</a>
+                  <ol class="tocs-list is-collapsed">
+                    <li><a href="#控制节点" class="tocs-link">控制节点</a></li>
+                    <li><a href="#网络节点" class="tocs-link">网络节点</a></li>
+                    <li><a href="#计算节点" class="tocs-link">计算节点</a></li>
+                  </ol>
+                </li>
+                <li><a href="#重启cinder服务" class="tocs-link">重启cinder服务</a>
+                  <ol class="tocs-list is-collapsed">
+                    <li><a href="#存储节点" class="tocs-link">存储节点</a></li>
+                    <li><a href="#存储节点-1" class="tocs-link">存储节点</a></li>
+                  </ol>
+                </li>
+                <li><a href="#重启glance服务" class="tocs-link">重启glance服务</a></li>
+                <li><a href="#重启swift服务" class="tocs-link">重启Swift服务</a>
+                  <ol class="tocs-list is-collapsed">
+                    <li><a href="#控制节点-1" class="tocs-link">控制节点</a></li>
+                    <li><a href="#存储节点-2" class="tocs-link">存储节点</a></li>
+                  </ol>
+                </li>
+                <li><a href="#重启nova服务" class="tocs-link">重启Nova服务</a>
+                  <ol class="tocs-list is-collapsed">
+                    <li><a href="#控制节点-2" class="tocs-link">控制节点</a></li>
+                    <li><a href="#计算节点-1" class="tocs-link">计算节点</a></li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+            <li><a href="#参考知识" class="tocs-link">参考知识</a></li>
           </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#日志" class="tocs-link">日志</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#nova日志" class="tocs-link">Nova日志</a>
-                
-              </li>
-            
-              <li>
-                <a href="#dashboard日志" class="tocs-link">Dashboard日志</a>
-                
-              </li>
-            
-              <li>
-                <a href="#存储日志" class="tocs-link">存储日志</a>
-                
-              </li>
-            
-              <li>
-                <a href="#glance日志" class="tocs-link">Glance日志</a>
-                
-              </li>
-            
-              <li>
-                <a href="#neutron日志" class="tocs-link">Neutron日志</a>
-                
-              </li>
-            
-              <li>
-                <a href="#改变日志级别" class="tocs-link">改变日志级别</a>
-                
-                  <ol class="tocs-list is-collapsed">
-                    
-                      <li>
-                        <a href="#设置nova服务的日志级别" class="tocs-link">设置Nova服务的日志级别</a>
-                        
-                      </li>
-                    
-                      <li>
-                        <a href="#设置其他openstack服务中的日志级别" class="tocs-link">设置其他OpenStack服务中的日志级别</a>
-                        
-                      </li>
-                    
-                  </ol>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#服务管理" class="tocs-link">服务管理</a>
-        
-          <ol class="tocs-list is-collapsed">
-            
-              <li>
-                <a href="#重启-neutron-服务" class="tocs-link">重启 Neutron 服务</a>
-                
-                  <ol class="tocs-list is-collapsed">
-                    
-                      <li>
-                        <a href="#控制节点" class="tocs-link">控制节点</a>
-                        
-                      </li>
-                    
-                      <li>
-                        <a href="#网络节点" class="tocs-link">网络节点</a>
-                        
-                      </li>
-                    
-                      <li>
-                        <a href="#计算节点" class="tocs-link">计算节点</a>
-                        
-                      </li>
-                    
-                  </ol>
-                
-              </li>
-            
-              <li>
-                <a href="#重启cinder服务" class="tocs-link">重启cinder服务</a>
-                
-                  <ol class="tocs-list is-collapsed">
-                    
-                      <li>
-                        <a href="#存储节点" class="tocs-link">存储节点</a>
-                        
-                      </li>
-                    
-                      <li>
-                        <a href="#存储节点-1" class="tocs-link">存储节点</a>
-                        
-                      </li>
-                    
-                  </ol>
-                
-              </li>
-            
-              <li>
-                <a href="#重启glance服务" class="tocs-link">重启glance服务</a>
-                
-              </li>
-            
-              <li>
-                <a href="#重启swift服务" class="tocs-link">重启Swift服务</a>
-                
-                  <ol class="tocs-list is-collapsed">
-                    
-                      <li>
-                        <a href="#控制节点-1" class="tocs-link">控制节点</a>
-                        
-                      </li>
-                    
-                      <li>
-                        <a href="#存储节点-2" class="tocs-link">存储节点</a>
-                        
-                      </li>
-                    
-                  </ol>
-                
-              </li>
-            
-              <li>
-                <a href="#重启nova服务" class="tocs-link">重启Nova服务</a>
-                
-                  <ol class="tocs-list is-collapsed">
-                    
-                      <li>
-                        <a href="#控制节点-2" class="tocs-link">控制节点</a>
-                        
-                      </li>
-                    
-                      <li>
-                        <a href="#计算节点-1" class="tocs-link">计算节点</a>
-                        
-                      </li>
-                    
-                  </ol>
-                
-              </li>
-            
-          </ol>
-        
-      </li>
-    
-      <li>
-        <a href="#参考知识" class="tocs-link">参考知识</a>
-        
-      </li>
-    
-    </ol>
-  </aside>
-</nav>
-
-
-<script src="../js/tocbot.js?v=1.0.0"></script>
-
-</div>
-
-
-<div class="footer warpper">
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.13.7
-
-</div>
-
-</body>
+        </aside>
+      </nav>
+    </div>
+    <script src="../js/demo-preview.js?v=1.21.1"></script>
+    <div class="footer warpper">Released under the MIT License. Copyright © 2022 Kenny Wong<br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.21.1</div>
+    <script src="../js/tocbot.js?v=1.21.1"></script>
+  </body>
 </html>

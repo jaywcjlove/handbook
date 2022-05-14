@@ -23,6 +23,7 @@
 body {
   margin: 0;
   font-size: 14px;
+  font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
 a {
@@ -162,7 +163,7 @@ a.gototop:hover {
   font-weight: bold;
 }
 .header .menu a {
-  padding: 1px 7px;
+  padding: 3px 7px;
   font-size: 14px;
   border-radius: 2px;
 }
@@ -218,9 +219,6 @@ section.article-footer .atime {
 .previous a {
   display: flex;
   align-items: center;
-}
-.previous a svg {
-  margin-top: 1px;
 }
 .previous a.prev svg {
   margin-right: 3px;

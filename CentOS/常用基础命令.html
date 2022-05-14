@@ -1,305 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>常用基础命令 handbook </title>
-  
-  <meta name="description" content="sudo chmod 755 -R node 修改目录权限sudo lsof -nP -iTCP -sTCP:LISTEN 查看本地服务ps -ef | grep websocket 查看websocket进程ps aux | grep m">
-  
-  
-  <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
-  
-  <link rel="stylesheet" type="text/css" href="../css/main.css?v=1650812452542">
-  
-  <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1650812452542">
-  
-  <link rel="stylesheet" type="text/css" href="../css/media.css?v=1650812452542">
-  <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1650812452542">
-  <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1650812452542">
-  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用基础命令 handbook</title>
+    <meta name="description" content="sudo chmod 755 -R node 修改目录权限sudo lsof -nP -iTCP -sTCP:LISTEN 查看本地服务ps -ef | grep websocket 查看websocket进程ps aux | grep m">
+    <meta name="keywords" content="handbook,笔记,搜集,摘录,实践,tutorial">
+    <link rel="stylesheet" type="text/css" href="../css/main.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/tocbot.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/media.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/sidebar.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/copy.css?v=1.21.1">
+    <link rel="stylesheet" type="text/css" href="../css/demo-preview.css?v=1.21.1">
     <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <script src="../js/copy.js"></script>
-  <script src="../js/dark-mode.js"></script>
-  <script src="../js/markdown-style.js"></script>
-</head>
-<body id="idoctotop">
-  <a href="#idoctotop" class="gototop">top</a>
-<header class="header">
-  <article class="inner warpper">
-    <a class="logo" href="../index.html">
-      
-        <img alt="handbook logo" src="data:image/png;base64,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">
-      
-      <span class="title">handbook</span>
-    </a>
-    <div class="content">
-      <ul class="menu">
-        
-        <li>
-          <a href="../index.html" target="" class=""> Home </a>
-        </li>
-        
-        <li>
-          <a href="../awesome.html" target="" class=""> Awesome </a>
-        </li>
-        
-        <li>
-          <a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class=""> 🇨🇳 </a>
-        </li>
-        
-      </ul>
-      
-        <a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-      
-      <dark-mode permanent></dark-mode>
-    </div>
-  </article>
-</header>
-
-<div class="warpper-content warpper sidebar ">
-  
-<div class="sidebar-border">
-  <aside class="sidebar" role="navigation">
-    <div>
-    
-      
-        <label>JavaScript</label>
-      
-    
-      
-        <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
-      
-    
-      
-        <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
-      
-    
-      
-        <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
-      
-    
-      
-        <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
-      
-    
-      
-        <label>Redis</label>
-      
-    
-      
-        <a href="../Redis/index.html" class="">快速入门 Redis</a>
-      
-    
-      
-        <label>Android</label>
-      
-    
-      
-        <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
-      
-    
-      
-        <label>CentOS</label>
-      
-    
-      
-        <a href="CentOS.html" class="">CentOS 常用命令</a>
-      
-    
-      
-        <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
-      
-    
-      
-        <a href="常用基础命令.html" class="active">常用基础命令</a>
-      
-    
-      
-        <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
-      
-    
-      
-        <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
-      
-    
-      
-        <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
-      
-    
-      
-        <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
-      
-    
-      
-        <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
-      
-    
-      
-        <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
-      
-    
-      
-        <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
-      
-    
-      
-        <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
-      
-    
-      
-        <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
-      
-    
-      
-        <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
-      
-    
-      
-        <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
-      
-    
-      
-        <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
-      
-    
-      
-        <a href="Ruby安装.html" class="">Ruby 安装</a>
-      
-    
-      
-        <a href="samba.html" class="">Samba 安装</a>
-      
-    
-      
-        <a href="在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
-      
-    
-      
-        <a href="Java.html" class="">安装 Java</a>
-      
-    
-      
-        <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
-      
-    
-      
-        <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
-      
-    
-      
-        <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
-      
-    
-      
-        <a href="openstack.html" class="">搭建 OpenStack</a>
-      
-    
-      
-        <a href="pip.html" class="">安装 pip 工具</a>
-      
-    
-      
-        <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
-      
-    
-      
-        <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
-      
-    
-      
-        <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
-      
-    
-      
-        <a href="svn.html" class="">安装使用 svn</a>
-      
-    
-      
-        <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
-      
-    
-      
-        <label>其它</label>
-      
-    
-      
-        <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
-      
-    
-      
-        <a href="../other/google.html" class="">谷歌(Google)镜像</a>
-      
-    
-      
-        <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
-      
-    
-      
-        <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
-      
-    
-      
-        <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
-      
-    
-      
-        <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
-      
-    
-      
-        <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
-      
-    
-      
-        <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
-      
-    
-      
-        <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
-      
-    
-    </div>
-  </aside>
-</div>
-
-  <markdown-style>
-    <h1 id="常用基础命令"><a aria-hidden="true" tabindex="-1" href="#常用基础命令" class="anchor"><span class="icon icon-link"></span></a>常用基础命令</h1>
-<p><a href="https://github.com/jaywcjlove/linux-command">已放入 linux-command 仓库中维护</a></p>
-<h1 id="其它命令"><a aria-hidden="true" tabindex="-1" href="#其它命令" class="anchor"><span class="icon icon-link"></span></a>其它命令</h1>
-<p><code>sudo chmod 755 -R node</code> 修改目录权限<br>
-<code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br>
-<code>ps -ef | grep websocket</code> 查看websocket进程<br>
-<code>ps aux | grep mysql</code> 查看mysql进程<br>
-<code>sudo kill 443</code> 杀掉进程</p>
-<h1 id="给目录权限"><a aria-hidden="true" tabindex="-1" href="#给目录权限" class="anchor"><span class="icon icon-link"></span></a>给目录权限</h1>
-<p><code>sudo chmod -R 777 目录</code></p>
-<h1 id="搜索"><a aria-hidden="true" tabindex="-1" href="#搜索" class="anchor"><span class="icon icon-link"></span></a>搜索</h1>
-<p><code>find path -option [-print] [-exec -ok command] { }\;</code></p>
-<ul>
-<li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
-<li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
-<li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>'command' { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
-<li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
-</ul>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">$ <span class="token function">find</span> ~ -name <span class="token string">"*.txt"</span>  -print   <span class="token comment">#在$HOME中查.txt文件并显示</span>
-</span><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">"*.txt"</span>  -print
-</span><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">"[A-Z]*"</span> -print   <span class="token comment">#查以大写字母开头的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> /etc -name <span class="token string">"host*"</span>  -print  <span class="token comment">#查以host开头的文件</span>
-</span><span class="code-line"><span class="token comment"># 查以两个小写字母和两个数字开头的txt文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span>   -name   <span class="token string">"[a-z][a-z][0–9][0–9].txt"</span> -print   
-</span><span class="code-line">$ ind <span class="token builtin class-name">.</span> -perm   <span class="token number">755</span>   -print
-</span><span class="code-line">$ ind <span class="token builtin class-name">.</span> -perm -007   -exec <span class="token function">ls</span> -l <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>   <span class="token comment">#查所有用户都可读写执行的文件同-perm 777</span>
-</span><span class="code-line">$ ind <span class="token builtin class-name">.</span> -type d   -print
-</span><span class="code-line">$ ind <span class="token builtin class-name">.</span> <span class="token operator">!</span>  -type d   -print 
-</span><span class="code-line">$ ind <span class="token builtin class-name">.</span> -type l   -print
-</span></code><div onclick="copied(this)" data-code="$ find ~ -name &#x22;*.txt&#x22;  -print   #在$HOME中查.txt文件并显示
+    <script src="../js/copy.js?v=1.21.1"></script>
+    <script src="../js/dark-mode.js?v=1.21.1"></script>
+    <script src="../js/markdown-style.js?v=1.21.1"></script>
+  </head>
+  <body id="idoctotop"><a href="#idoctotop" class="gototop">top</a>
+    <header class="header">
+      <article class="inner warpper"><a class="logo" href="../index.html"><img alt="handbook logo" src="data:image/png;base64,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">
+<span class="title">handbook</span></a>
+        <div class="content">
+          <ul class="menu">
+            <li><a href="../index.html" target="" class="">Home</a></li>
+            <li><a href="../awesome.html" target="" class="">Awesome</a></li>
+            <li><a href="https://jaywcjlove.gitee.io/handbook/" target="__blank" class="">🇨🇳</a></li>
+          </ul><a href="https://github.com/jaywcjlove/handbook" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg></a>
+          <dark-mode permanent=""></dark-mode>
+        </div>
+      </article>
+    </header>
+    <div class="warpper-content warpper sidebar">
+      <div class="sidebar-border">
+        <aside class="sidebar" role="navigation">
+          <div>
+            <label>JavaScript</label>
+            <a href="../JavaScript/RegExp.html" class="">一些正则表达式随记</a>
+            <a href="../JavaScript/SDK.html" class="">开源 JS 插件和库</a>
+            <a href="../JavaScript/nodejs.html" class="">NodeJS 包搜集</a>
+            <a href="../JavaScript/思维导图来学习 Javascript 基础知识.html" class="">基础知识(思维导图)</a>
+            <label>Redis</label>
+            <a href="../Redis/index.html" class="">快速入门 Redis</a>
+            <label>Android</label>
+            <a href="../Android/react-native.html" class="">React Native Android 环境搭建</a>
+            <label>CentOS</label>
+            <a href="CentOS.html" class="">CentOS 常用命令</a>
+            <a href="CentOS7网络配置.html" class="">CentOS7 网络配置</a>
+            <a href="常用基础命令.html" class="active">常用基础命令</a>
+            <a href="CentOS7安装KVM虚拟机详解.html" class="">安装 KVM 虚拟机详解</a>
+            <a href="CentOS7更换yum软件镜像源.html" class="">更换 yum 软件镜像源</a>
+            <a href="CentOS7安装维护Gitlab.html" class="">安装维护 GitLab</a>
+            <a href="CentOS7安装配置vsftp搭建FTP.html" class="">安装搭建 FTP</a>
+            <a href="Centos7安装编译Node.html" class="">Centos7安装编译Node</a>
+            <a href="Elasticsearch安装维护.html" class="">Elasticsearch安装维护</a>
+            <a href="Frp内网穿透搭建.html" class="">Frp内网穿透搭建</a>
+            <a href="Linux添加、删除用户和用户组.html" class="">Linux添加、删除用户和用户组</a>
+            <a href="Mac使用NFS连接CentOS上的共享文件夹.html" class="">Mac使用NFS连接CentOS上的共享文件夹</a>
+            <a href="Mac下制作CentOS7启动盘.html" class="">Mac下制作CentOS7启动盘</a>
+            <a href="Python2升级到Python3.html" class="">Python2 升级到 Python3</a>
+            <a href="Rocket.Chat.html" class="">Rocket.Chat</a>
+            <a href="Ruby安装.html" class="">Ruby 安装</a>
+            <a href="samba.html" class="">Samba 安装</a>
+            <a href="在5分钟内搭建企业内部私有npm仓库.html" class="">搭建私有 npm 仓库</a>
+            <a href="Java.html" class="">安装 Java</a>
+            <a href="部署Seafile搭建自己的网盘.html" class="">部署 Seafile 搭建自己的网盘</a>
+            <a href="搭建Shadowsocks服务器.html" class="">搭建 Shadowsocks 服务器</a>
+            <a href="部署YApi平台.html" class="">部署 YApi 平台</a>
+            <a href="openstack.html" class="">搭建 OpenStack</a>
+            <a href="pip.html" class="">安装 pip 工具</a>
+            <a href="修改ssh端口号的方法.html" class="">修改 ssh 端口号的方法</a>
+            <a href="尝试在CentOS7.2上编译安装Swift.html" class="">在CentOS 上编译安装 Swift</a>
+            <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
+            <a href="svn.html" class="">安装使用 svn</a>
+            <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>其它</label>
+            <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
+            <a href="../other/google.html" class="">谷歌(Google)镜像</a>
+            <a href="../other/离线预览各种前端文档网站.html" class="">离线预览前端文档</a>
+            <a href="../other/通过代理工具提高Github Clone速度.html" class="">提高 Github Clone 速度</a>
+            <a href="../other/github-oraganizations.html" class="">国内互联网公司的开源项目汇总</a>
+            <a href="../other/HTTP-status-codes.html" class="">常见HTTP/FTP错误代码大全</a>
+            <a href="../other/Lua5.3.html" class="">Lua 5.3 文档</a>
+            <a href="../Shortcuts/Sketch.html" class="">Sketch 设计软件快捷键</a>
+            <a href="../Shortcuts/bash.html" class="">命令行工具bash快捷键</a>
+          </div>
+        </aside>
+      </div>
+      <markdown-style>
+        <h1 id="常用基础命令"><a aria-hidden="true" tabindex="-1" href="#常用基础命令" class="anchor"><span class="icon icon-link"></span></a>常用基础命令</h1>
+        <p><a href="https://github.com/jaywcjlove/linux-command">已放入 linux-command 仓库中维护</a></p>
+        <h1 id="其它命令"><a aria-hidden="true" tabindex="-1" href="#其它命令" class="anchor"><span class="icon icon-link"></span></a>其它命令</h1>
+        <p><code>sudo chmod 755 -R node</code> 修改目录权限<br><code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br><code>ps -ef | grep websocket</code> 查看websocket进程<br><code>ps aux | grep mysql</code> 查看mysql进程<br><code>sudo kill 443</code> 杀掉进程</p>
+        <h1 id="给目录权限"><a aria-hidden="true" tabindex="-1" href="#给目录权限" class="anchor"><span class="icon icon-link"></span></a>给目录权限</h1>
+        <p><code>sudo chmod -R 777 目录</code></p>
+        <h1 id="搜索"><a aria-hidden="true" tabindex="-1" href="#搜索" class="anchor"><span class="icon icon-link"></span></a>搜索</h1>
+        <p><code>find path -option [-print] [-exec -ok command] { }\;</code></p>
+        <ul>
+          <li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
+          <li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
+          <li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>'command' { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
+          <li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
+        </ul>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> ~ -name <span class="token string">"*.txt"</span>  -print   <span class="token comment">#在$HOME中查.txt文件并显示</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">"*.txt"</span>  -print
+</span><span class="code-line line-number" line="3">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">"[A-Z]*"</span> -print   <span class="token comment">#查以大写字母开头的文件</span>
+</span><span class="code-line line-number" line="4">$ <span class="token function">find</span> /etc -name <span class="token string">"host*"</span>  -print  <span class="token comment">#查以host开头的文件</span>
+</span><span class="code-line line-number" line="5"><span class="token comment"># 查以两个小写字母和两个数字开头的txt文件</span>
+</span><span class="code-line line-number" line="6">$ <span class="token function">find</span> <span class="token builtin class-name">.</span>   -name   <span class="token string">"[a-z][a-z][0–9][0–9].txt"</span> -print   
+</span><span class="code-line line-number" line="7">$ ind <span class="token builtin class-name">.</span> -perm   <span class="token number">755</span>   -print
+</span><span class="code-line line-number" line="8">$ ind <span class="token builtin class-name">.</span> -perm -007   -exec <span class="token function">ls</span> -l <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>   <span class="token comment">#查所有用户都可读写执行的文件同-perm 777</span>
+</span><span class="code-line line-number" line="9">$ ind <span class="token builtin class-name">.</span> -type d   -print
+</span><span class="code-line line-number" line="10">$ ind <span class="token builtin class-name">.</span> <span class="token operator">!</span>  -type d   -print 
+</span><span class="code-line line-number" line="11">$ ind <span class="token builtin class-name">.</span> -type l   -print
+</span></code><input type="hidden" value="$ find ~ -name &#x22;*.txt&#x22;  -print   #在$HOME中查.txt文件并显示
 $ find . -name &#x22;*.txt&#x22;  -print
 $ find . -name &#x22;[A-Z]*&#x22; -print   #查以大写字母开头的文件
 $ find /etc -name &#x22;host*&#x22;  -print  #查以host开头的文件
@@ -310,122 +127,128 @@ $ ind . -perm -007   -exec ls -l {} \;   #查所有用户都可读写执行的�
 $ ind . -type d   -print
 $ ind . !  -type d   -print 
 $ ind . -type l   -print
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h1 id="ls"><a aria-hidden="true" tabindex="-1" href="#ls" class="anchor"><span class="icon icon-link"></span></a>ls</h1>
-<blockquote>
-<p>类似于dos下的dir命令</p>
-</blockquote>
-<p>ls最常用的参数有三个： -a -l -F。</p>
-<p>ls –a</p>
-<p>Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -
-a除了显示一般文件名外，连隐藏文件也会显示出来。
-ls –l
-该参数显示更详细的文件信息。
-ls –F
-使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
-<h1 id="cd"><a aria-hidden="true" tabindex="-1" href="#cd" class="anchor"><span class="icon icon-link"></span></a>cd</h1>
-<blockquote>
-<p>用于切换用户当前工作目录</p>
-</blockquote>
-<p>cd aaa 进入aaa目录
-cd    命令后不指定目录，会切换到当前用户的home 目录
-cd ~   作用同cd后不指定目录，切换到当前用户的home 目录
-cd -   命令后跟一个减号，则会退回到切换前的目录
-cd ..   返回到当前目录下的上一级目录</p>
-<h1 id="pwd"><a aria-hidden="true" tabindex="-1" href="#pwd" class="anchor"><span class="icon icon-link"></span></a>pwd</h1>
-<blockquote>
-<p>用于显示用户当前工作目录</p>
-</blockquote>
-<h1 id="mkdir-和-rmdir"><a aria-hidden="true" tabindex="-1" href="#mkdir-和-rmdir" class="anchor"><span class="icon icon-link"></span></a>mkdir 和 rmdir</h1>
-<blockquote>
-<p>midir:创建目录 / rmdir:删除目录</p>
-</blockquote>
-<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
-<p>如下：</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token function">mkdir</span> -p <span class="token number">1</span>/2/3
-</span><span class="code-line"><span class="token function">rmdir</span> -p <span class="token number">1</span>/2/3 
-</span></code><div onclick="copied(this)" data-code="mkdir -p 1/2/3
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h1 id="ls"><a aria-hidden="true" tabindex="-1" href="#ls" class="anchor"><span class="icon icon-link"></span></a>ls</h1>
+        <blockquote>
+          <p>类似于dos下的dir命令</p>
+        </blockquote>
+        <p>ls最常用的参数有三个： -a -l -F。</p>
+        <p>ls –a</p>
+        <p>
+          Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -
+          a除了显示一般文件名外，连隐藏文件也会显示出来。
+          ls –l
+          该参数显示更详细的文件信息。
+          ls –F
+          使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。
+        </p>
+        <h1 id="cd"><a aria-hidden="true" tabindex="-1" href="#cd" class="anchor"><span class="icon icon-link"></span></a>cd</h1>
+        <blockquote>
+          <p>用于切换用户当前工作目录</p>
+        </blockquote>
+        <p>
+          cd aaa 进入aaa目录
+          cd 命令后不指定目录，会切换到当前用户的home 目录
+          cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录
+          cd - 命令后跟一个减号，则会退回到切换前的目录
+          cd .. 返回到当前目录下的上一级目录
+        </p>
+        <h1 id="pwd"><a aria-hidden="true" tabindex="-1" href="#pwd" class="anchor"><span class="icon icon-link"></span></a>pwd</h1>
+        <blockquote>
+          <p>用于显示用户当前工作目录</p>
+        </blockquote>
+        <h1 id="mkdir-和-rmdir"><a aria-hidden="true" tabindex="-1" href="#mkdir-和-rmdir" class="anchor"><span class="icon icon-link"></span></a>mkdir 和 rmdir</h1>
+        <blockquote>
+          <p>midir:创建目录 / rmdir:删除目录</p>
+        </blockquote>
+        <p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
+        <p>如下：</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">mkdir</span> -p <span class="token number">1</span>/2/3
+</span><span class="code-line line-number" line="2"><span class="token function">rmdir</span> -p <span class="token number">1</span>/2/3 
+</span></code><input type="hidden" value="mkdir -p 1/2/3
 rmdir -p 1/2/3 
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h2 id="mkdir循环创建目录"><a aria-hidden="true" tabindex="-1" href="#mkdir循环创建目录" class="anchor"><span class="icon icon-link"></span></a>mkdir循环创建目录</h2>
-<p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory">How do I make multiple directories at once in a directory?</a></p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line"><span class="token keyword">for</span> <span class="token for-or-select variable">char</span> <span class="token keyword">in</span> <span class="token punctuation">{</span>A<span class="token punctuation">..</span>Z<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-</span><span class="code-line">    <span class="token function">mkdir</span> <span class="token variable">$char</span>
-</span><span class="code-line"><span class="token keyword">done</span>
-</span><span class="code-line">
-</span><span class="code-line"><span class="token keyword">for</span> <span class="token for-or-select variable">num</span> <span class="token keyword">in</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-</span><span class="code-line">    <span class="token function">mkdir</span> <span class="token variable">$num</span>
-</span><span class="code-line"><span class="token keyword">done</span>
-</span></code><div onclick="copied(this)" data-code="for char in {A..Z}; do
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h2 id="mkdir循环创建目录"><a aria-hidden="true" tabindex="-1" href="#mkdir循环创建目录" class="anchor"><span class="icon icon-link"></span></a>mkdir循环创建目录</h2>
+        <p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory">How do I make multiple directories at once in a directory?</a></p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token keyword">for</span> <span class="token for-or-select variable">char</span> <span class="token keyword">in</span> <span class="token punctuation">{</span>A<span class="token punctuation">..</span>Z<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+</span><span class="code-line line-number" line="2">    <span class="token function">mkdir</span> <span class="token variable">$char</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">done</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token keyword">for</span> <span class="token for-or-select variable">num</span> <span class="token keyword">in</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+</span><span class="code-line line-number" line="6">    <span class="token function">mkdir</span> <span class="token variable">$num</span>
+</span><span class="code-line line-number" line="7"><span class="token keyword">done</span>
+</span></code><input type="hidden" value="for char in {A..Z}; do
     mkdir $char
 done
 
 for num in {1..100}; do
     mkdir $num
 done
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h1 id="cp"><a aria-hidden="true" tabindex="-1" href="#cp" class="anchor"><span class="icon icon-link"></span></a>cp</h1>
-<blockquote>
-<p>复制命令</p>
-</blockquote>
-<ul>
-<li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
-<li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
-<li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
-<li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
-</ul>
-<h1 id="mv"><a aria-hidden="true" tabindex="-1" href="#mv" class="anchor"><span class="icon icon-link"></span></a>mv</h1>
-<blockquote>
-<p>移动命令</p>
-</blockquote>
-<p>将一个文件移动到另一个目录：mv 1.txt ../test1
-将一个文件在本目录改名：mv 1.txt 2.txt
-将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt</p>
-<h1 id="rm命令"><a aria-hidden="true" tabindex="-1" href="#rm命令" class="anchor"><span class="icon icon-link"></span></a>rm命令</h1>
-<blockquote>
-<p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
-</blockquote>
-<ol>
-<li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
-<li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
-<li>–f：和-i参数相反，-f表示强制删除</li>
-</ol>
-<h1 id="find"><a aria-hidden="true" tabindex="-1" href="#find" class="anchor"><span class="icon icon-link"></span></a>find</h1>
-<blockquote>
-<p>find 查找目录和文件</p>
-</blockquote>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">-name   filename   <span class="token comment">#查找名为filename的文件</span>
-</span><span class="code-line">-perm              <span class="token comment">#按执行权限来查找</span>
-</span><span class="code-line">-user    username  <span class="token comment">#按文件属主来查找</span>
-</span><span class="code-line">-group groupname   <span class="token comment">#按组来查找</span>
-</span><span class="code-line">-mtime   -n +n     <span class="token comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span>
-</span><span class="code-line">-atime    -n +n    <span class="token comment">#按文件访问时间来查GIN: 0px"></span>
-</span><span class="code-line">
-</span><span class="code-line">-ctime    -n +n    <span class="token comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span>
-</span><span class="code-line">
-</span><span class="code-line">-nogroup           <span class="token comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span>
-</span><span class="code-line">-nouser            <span class="token comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span>
-</span><span class="code-line">-newer   f1 <span class="token operator">!</span>f2    <span class="token comment">#找文件，-n指n天以内，+n指n天以前 </span>
-</span><span class="code-line">-ctime    -n +n    <span class="token comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span>
-</span><span class="code-line">-nogroup           <span class="token comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span>
-</span><span class="code-line">-nouser            <span class="token comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span>
-</span><span class="code-line">-newer   f1 <span class="token operator">!</span>f2    <span class="token comment">#查更改时间比f1新但比f2旧的文件</span>
-</span><span class="code-line">-type    b/d/c/p   <span class="token comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span>
-</span><span class="code-line">-size      n<span class="token punctuation">[</span>c<span class="token punctuation">]</span>    <span class="token comment">#查长度为n块[或n字节]的文件</span>
-</span><span class="code-line">-depth             <span class="token comment">#使查找在进入子目录前先行查找完本目录</span>
-</span><span class="code-line">-fstype            <span class="token comment">#查更改时间比f1新但比f2旧的文件</span>
-</span><span class="code-line">-type    b/d/c/p   <span class="token comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span>
-</span><span class="code-line">-size      n<span class="token punctuation">[</span>c<span class="token punctuation">]</span>    <span class="token comment">#查长度为n块[或n字节]的文件</span>
-</span><span class="code-line">-depth             <span class="token comment">#使查找在进入子目录前先行查找完本目录</span>
-</span><span class="code-line">-fstype            <span class="token comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span>
-</span><span class="code-line">-mount             <span class="token comment">#查文件时不跨越文件系统mount点</span>
-</span><span class="code-line">-follow            <span class="token comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span>
-</span><span class="code-line">-cpio %<span class="token punctuation">;</span>           <span class="token comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span>
-</span><span class="code-line">-mount             <span class="token comment">#查文件时不跨越文件系统mount点</span>
-</span><span class="code-line">-follow            <span class="token comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span>
-</span><span class="code-line">-cpio              <span class="token comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span>
-</span><span class="code-line">-prune             <span class="token comment">#忽略某个目录</span>
-</span></code><div onclick="copied(this)" data-code="-name   filename   #查找名为filename的文件
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h1 id="cp"><a aria-hidden="true" tabindex="-1" href="#cp" class="anchor"><span class="icon icon-link"></span></a>cp</h1>
+        <blockquote>
+          <p>复制命令</p>
+        </blockquote>
+        <ul>
+          <li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
+          <li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
+          <li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
+          <li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
+        </ul>
+        <h1 id="mv"><a aria-hidden="true" tabindex="-1" href="#mv" class="anchor"><span class="icon icon-link"></span></a>mv</h1>
+        <blockquote>
+          <p>移动命令</p>
+        </blockquote>
+        <p>
+          将一个文件移动到另一个目录：mv 1.txt ../test1
+          将一个文件在本目录改名：mv 1.txt 2.txt
+          将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt
+        </p>
+        <h1 id="rm命令"><a aria-hidden="true" tabindex="-1" href="#rm命令" class="anchor"><span class="icon icon-link"></span></a>rm命令</h1>
+        <blockquote>
+          <p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
+        </blockquote>
+        <ol>
+          <li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
+          <li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
+          <li>–f：和-i参数相反，-f表示强制删除</li>
+        </ol>
+        <h1 id="find"><a aria-hidden="true" tabindex="-1" href="#find" class="anchor"><span class="icon icon-link"></span></a>find</h1>
+        <blockquote>
+          <p>find 查找目录和文件</p>
+        </blockquote>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">-name   filename   <span class="token comment">#查找名为filename的文件</span>
+</span><span class="code-line line-number" line="2">-perm              <span class="token comment">#按执行权限来查找</span>
+</span><span class="code-line line-number" line="3">-user    username  <span class="token comment">#按文件属主来查找</span>
+</span><span class="code-line line-number" line="4">-group groupname   <span class="token comment">#按组来查找</span>
+</span><span class="code-line line-number" line="5">-mtime   -n +n     <span class="token comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span>
+</span><span class="code-line line-number" line="6">-atime    -n +n    <span class="token comment">#按文件访问时间来查GIN: 0px"></span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8">-ctime    -n +n    <span class="token comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span>
+</span><span class="code-line line-number" line="9">
+</span><span class="code-line line-number" line="10">-nogroup           <span class="token comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span>
+</span><span class="code-line line-number" line="11">-nouser            <span class="token comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span>
+</span><span class="code-line line-number" line="12">-newer   f1 <span class="token operator">!</span>f2    <span class="token comment">#找文件，-n指n天以内，+n指n天以前 </span>
+</span><span class="code-line line-number" line="13">-ctime    -n +n    <span class="token comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span>
+</span><span class="code-line line-number" line="14">-nogroup           <span class="token comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span>
+</span><span class="code-line line-number" line="15">-nouser            <span class="token comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span>
+</span><span class="code-line line-number" line="16">-newer   f1 <span class="token operator">!</span>f2    <span class="token comment">#查更改时间比f1新但比f2旧的文件</span>
+</span><span class="code-line line-number" line="17">-type    b/d/c/p   <span class="token comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span>
+</span><span class="code-line line-number" line="18">-size      n<span class="token punctuation">[</span>c<span class="token punctuation">]</span>    <span class="token comment">#查长度为n块[或n字节]的文件</span>
+</span><span class="code-line line-number" line="19">-depth             <span class="token comment">#使查找在进入子目录前先行查找完本目录</span>
+</span><span class="code-line line-number" line="20">-fstype            <span class="token comment">#查更改时间比f1新但比f2旧的文件</span>
+</span><span class="code-line line-number" line="21">-type    b/d/c/p   <span class="token comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span>
+</span><span class="code-line line-number" line="22">-size      n<span class="token punctuation">[</span>c<span class="token punctuation">]</span>    <span class="token comment">#查长度为n块[或n字节]的文件</span>
+</span><span class="code-line line-number" line="23">-depth             <span class="token comment">#使查找在进入子目录前先行查找完本目录</span>
+</span><span class="code-line line-number" line="24">-fstype            <span class="token comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span>
+</span><span class="code-line line-number" line="25">-mount             <span class="token comment">#查文件时不跨越文件系统mount点</span>
+</span><span class="code-line line-number" line="26">-follow            <span class="token comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span>
+</span><span class="code-line line-number" line="27">-cpio %<span class="token punctuation">;</span>           <span class="token comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span>
+</span><span class="code-line line-number" line="28">-mount             <span class="token comment">#查文件时不跨越文件系统mount点</span>
+</span><span class="code-line line-number" line="29">-follow            <span class="token comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span>
+</span><span class="code-line line-number" line="30">-cpio              <span class="token comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span>
+</span><span class="code-line line-number" line="31">-prune             <span class="token comment">#忽略某个目录</span>
+</span></code><input type="hidden" value="-name   filename   #查找名为filename的文件
 -perm              #按执行权限来查找
 -user    username  #按文件属主来查找
 -group groupname   #按组来查找
@@ -456,55 +279,55 @@ done
 -follow            #如果遇到符号链接文件，就跟踪链接所指的文件
 -cpio              #对匹配的文件使用cpio命令，将他们备份到磁带设备中
 -prune             #忽略某个目录
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>例子：</p>
-<ul>
-<li>~ 代表的是$home目录，</li>
-</ul>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">'*.DS_Store'</span> -type f -delete <span class="token comment"># 删除所有.DS_Store文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -name <span class="token string">"*.txt"</span> -print       <span class="token comment"># 在$HOME中查.txt文件并显示</span>
-</span><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size +1000000c -print     <span class="token comment"># 查长度大于1Mb的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size 100c -print          <span class="token comment"># 查长度为100c的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size +10 -print           <span class="token comment"># 查长度超过期作废10块的文件（1块=512字节）</span>
-</span><span class="code-line">$ <span class="token function">find</span> -name april*                 <span class="token comment"># 在当前目录下查找以april开始的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> -name april* fprint <span class="token function">file</span>     <span class="token comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span>
-</span><span class="code-line">$ <span class="token function">find</span> -name ap* -o -name may*          <span class="token comment"># 查找以ap或may开头的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> /mnt -name tom.txt -ftype vfat   <span class="token comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> /mnt -name t.txt <span class="token operator">!</span> -ftype vfat   <span class="token comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> /tmp -name wa* -type l           <span class="token comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -mtime -2                  <span class="token comment"># 在/home下查最近两天内改动过的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -atime -1                  <span class="token comment"># 查1天之内被存取过的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -mmin +60                  <span class="token comment"># 在/home下查60分钟前改动过的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -amin +30                  <span class="token comment"># 查最近30分钟前被存取过的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -newer tmp.txt             <span class="token comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -anewer tmp.txt            <span class="token comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -used -2                   <span class="token comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -user cnscn                <span class="token comment"># 列出/home目录内属于用户cnscn的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -uid +501                  <span class="token comment"># 列出/home目录内用户的识别码大于501的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -group cnscn               <span class="token comment"># 列出/home内组为cnscn的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -gid <span class="token number">501</span>                   <span class="token comment"># 列出/home内组id为501的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -nouser                    <span class="token comment"># 列出/home内不属于本地用户的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -nogroup                   <span class="token comment"># 列出/home内不属于本地组的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -name tmp.txt -maxdepth <span class="token number">4</span>  <span class="token comment"># 列出/home内的tmp.txt 查时深度最多为3层</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -name tmp.txt -mindepth <span class="token number">3</span>  <span class="token comment"># 从第2层开始查</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -empty                     <span class="token comment"># 查找大小为0的文件或空目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -size   +512k              <span class="token comment"># 查大于512k的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -size   -512k              <span class="token comment"># 查小于512k的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -links   +2                <span class="token comment"># 查硬连接数大于2的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -perm 0700                 <span class="token comment"># 查权限为700的文件或目录</span>
-</span><span class="code-line">$ <span class="token function">find</span> ~ -perm <span class="token number">755</span> -print <span class="token operator">|</span> <span class="token function">more</span>    <span class="token comment"># 查找权限为755的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> /tmp -name tmp.txt -exec <span class="token function">cat</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
-</span><span class="code-line">$ <span class="token function">find</span> /tmp -name tmp.txt ok <span class="token function">rm</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
-</span><span class="code-line">
-</span><span class="code-line">$ <span class="token function">find</span> / -amin    -10      <span class="token comment"># 查找在系统中最后10分钟访问的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -atime   -2       <span class="token comment"># 查找在系统中最后48小时访问的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -empty            <span class="token comment"># 查找在系统中为空的文件或者文件夹</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -group   <span class="token function">cat</span>      <span class="token comment"># 查找在系统中属于 groupcat的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -mmin   -5        <span class="token comment"># 查找在系统中最后5分钟里修改过的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -mtime   -1       <span class="token comment"># 查找在系统中最后24小时里修改过的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -nouser           <span class="token comment"># 查找在系统中属于作废用户的文件</span>
-</span><span class="code-line">$ <span class="token function">find</span> / -user    fred     <span class="token comment"># 查找在系统中属于FRED这个用户的文件</span>
-</span></code><div onclick="copied(this)" data-code="$ find . -name &#x27;*.DS_Store&#x27; -type f -delete # 删除所有.DS_Store文件
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>例子：</p>
+        <ul>
+          <li>~ 代表的是$home目录，</li>
+        </ul>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -name <span class="token string">'*.DS_Store'</span> -type f -delete <span class="token comment"># 删除所有.DS_Store文件</span>
+</span><span class="code-line line-number" line="2">$ <span class="token function">find</span> ~ -name <span class="token string">"*.txt"</span> -print       <span class="token comment"># 在$HOME中查.txt文件并显示</span>
+</span><span class="code-line line-number" line="3">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size +1000000c -print     <span class="token comment"># 查长度大于1Mb的文件</span>
+</span><span class="code-line line-number" line="4">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size 100c -print          <span class="token comment"># 查长度为100c的文件</span>
+</span><span class="code-line line-number" line="5">$ <span class="token function">find</span> <span class="token builtin class-name">.</span> -size +10 -print           <span class="token comment"># 查长度超过期作废10块的文件（1块=512字节）</span>
+</span><span class="code-line line-number" line="6">$ <span class="token function">find</span> -name april*                 <span class="token comment"># 在当前目录下查找以april开始的文件</span>
+</span><span class="code-line line-number" line="7">$ <span class="token function">find</span> -name april* fprint <span class="token function">file</span>     <span class="token comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span>
+</span><span class="code-line line-number" line="8">$ <span class="token function">find</span> -name ap* -o -name may*          <span class="token comment"># 查找以ap或may开头的文件</span>
+</span><span class="code-line line-number" line="9">$ <span class="token function">find</span> /mnt -name tom.txt -ftype vfat   <span class="token comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span>
+</span><span class="code-line line-number" line="10">$ <span class="token function">find</span> /mnt -name t.txt <span class="token operator">!</span> -ftype vfat   <span class="token comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span>
+</span><span class="code-line line-number" line="11">$ <span class="token function">find</span> /tmp -name wa* -type l           <span class="token comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span>
+</span><span class="code-line line-number" line="12">$ <span class="token function">find</span> ~ -mtime -2                  <span class="token comment"># 在/home下查最近两天内改动过的文件</span>
+</span><span class="code-line line-number" line="13">$ <span class="token function">find</span> ~ -atime -1                  <span class="token comment"># 查1天之内被存取过的文件</span>
+</span><span class="code-line line-number" line="14">$ <span class="token function">find</span> ~ -mmin +60                  <span class="token comment"># 在/home下查60分钟前改动过的文件</span>
+</span><span class="code-line line-number" line="15">$ <span class="token function">find</span> ~ -amin +30                  <span class="token comment"># 查最近30分钟前被存取过的文件</span>
+</span><span class="code-line line-number" line="16">$ <span class="token function">find</span> ~ -newer tmp.txt             <span class="token comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span>
+</span><span class="code-line line-number" line="17">$ <span class="token function">find</span> ~ -anewer tmp.txt            <span class="token comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span>
+</span><span class="code-line line-number" line="18">$ <span class="token function">find</span> ~ -used -2                   <span class="token comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span>
+</span><span class="code-line line-number" line="19">$ <span class="token function">find</span> ~ -user cnscn                <span class="token comment"># 列出/home目录内属于用户cnscn的文件或目录</span>
+</span><span class="code-line line-number" line="20">$ <span class="token function">find</span> ~ -uid +501                  <span class="token comment"># 列出/home目录内用户的识别码大于501的文件或目录</span>
+</span><span class="code-line line-number" line="21">$ <span class="token function">find</span> ~ -group cnscn               <span class="token comment"># 列出/home内组为cnscn的文件或目录</span>
+</span><span class="code-line line-number" line="22">$ <span class="token function">find</span> ~ -gid <span class="token number">501</span>                   <span class="token comment"># 列出/home内组id为501的文件或目录</span>
+</span><span class="code-line line-number" line="23">$ <span class="token function">find</span> ~ -nouser                    <span class="token comment"># 列出/home内不属于本地用户的文件或目录</span>
+</span><span class="code-line line-number" line="24">$ <span class="token function">find</span> ~ -nogroup                   <span class="token comment"># 列出/home内不属于本地组的文件或目录</span>
+</span><span class="code-line line-number" line="25">$ <span class="token function">find</span> ~ -name tmp.txt -maxdepth <span class="token number">4</span>  <span class="token comment"># 列出/home内的tmp.txt 查时深度最多为3层</span>
+</span><span class="code-line line-number" line="26">$ <span class="token function">find</span> ~ -name tmp.txt -mindepth <span class="token number">3</span>  <span class="token comment"># 从第2层开始查</span>
+</span><span class="code-line line-number" line="27">$ <span class="token function">find</span> ~ -empty                     <span class="token comment"># 查找大小为0的文件或空目录</span>
+</span><span class="code-line line-number" line="28">$ <span class="token function">find</span> ~ -size   +512k              <span class="token comment"># 查大于512k的文件</span>
+</span><span class="code-line line-number" line="29">$ <span class="token function">find</span> ~ -size   -512k              <span class="token comment"># 查小于512k的文件</span>
+</span><span class="code-line line-number" line="30">$ <span class="token function">find</span> ~ -links   +2                <span class="token comment"># 查硬连接数大于2的文件或目录</span>
+</span><span class="code-line line-number" line="31">$ <span class="token function">find</span> ~ -perm 0700                 <span class="token comment"># 查权限为700的文件或目录</span>
+</span><span class="code-line line-number" line="32">$ <span class="token function">find</span> ~ -perm <span class="token number">755</span> -print <span class="token operator">|</span> <span class="token function">more</span>    <span class="token comment"># 查找权限为755的文件</span>
+</span><span class="code-line line-number" line="33">$ <span class="token function">find</span> /tmp -name tmp.txt -exec <span class="token function">cat</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="34">$ <span class="token function">find</span> /tmp -name tmp.txt ok <span class="token function">rm</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">\</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="35">
+</span><span class="code-line line-number" line="36">$ <span class="token function">find</span> / -amin    -10      <span class="token comment"># 查找在系统中最后10分钟访问的文件</span>
+</span><span class="code-line line-number" line="37">$ <span class="token function">find</span> / -atime   -2       <span class="token comment"># 查找在系统中最后48小时访问的文件</span>
+</span><span class="code-line line-number" line="38">$ <span class="token function">find</span> / -empty            <span class="token comment"># 查找在系统中为空的文件或者文件夹</span>
+</span><span class="code-line line-number" line="39">$ <span class="token function">find</span> / -group   <span class="token function">cat</span>      <span class="token comment"># 查找在系统中属于 groupcat的文件</span>
+</span><span class="code-line line-number" line="40">$ <span class="token function">find</span> / -mmin   -5        <span class="token comment"># 查找在系统中最后5分钟里修改过的文件</span>
+</span><span class="code-line line-number" line="41">$ <span class="token function">find</span> / -mtime   -1       <span class="token comment"># 查找在系统中最后24小时里修改过的文件</span>
+</span><span class="code-line line-number" line="42">$ <span class="token function">find</span> / -nouser           <span class="token comment"># 查找在系统中属于作废用户的文件</span>
+</span><span class="code-line line-number" line="43">$ <span class="token function">find</span> / -user    fred     <span class="token comment"># 查找在系统中属于FRED这个用户的文件</span>
+</span></code><input type="hidden" value="$ find . -name &#x27;*.DS_Store&#x27; -type f -delete # 删除所有.DS_Store文件
 $ find ~ -name &#x22;*.txt&#x22; -print       # 在$HOME中查.txt文件并显示
 $ find . -size +1000000c -print     # 查长度大于1Mb的文件
 $ find . -size 100c -print          # 查长度为100c的文件
@@ -547,66 +370,68 @@ $ find / -mmin   -5        # 查找在系统中最后5分钟里修改过的文�
 $ find / -mtime   -1       # 查找在系统中最后24小时里修改过的文件
 $ find / -nouser           # 查找在系统中属于作废用户的文件
 $ find / -user    fred     # 查找在系统中属于FRED这个用户的文件
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h1 id="dudf命令"><a aria-hidden="true" tabindex="-1" href="#dudf命令" class="anchor"><span class="icon icon-link"></span></a>du、df命令</h1>
-<blockquote>
-<p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
-</blockquote>
-<p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
-<ol>
-<li><code>du -hs</code> 指定目录  查看指定目录的总大小</li>
-<li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
-</ol>
-<p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
-<h1 id="cat命令"><a aria-hidden="true" tabindex="-1" href="#cat命令" class="anchor"><span class="icon icon-link"></span></a>cat命令</h1>
-<blockquote>
-<p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
-</blockquote>
-<ol>
-<li><code>cat file1</code> 显示file1文件内容</li>
-<li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
-<li><code>cat file1 file2 > file3</code> 把file1, file2的内容结合起来，再“重定向（>）”到file3文件中。</li>
-<li><code>></code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用">>"重定向符。</li>
-</ol>
-<p>如果">"左边没有指定文件，如： cat >file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
-<h1 id="echo命令"><a aria-hidden="true" tabindex="-1" href="#echo命令" class="anchor"><span class="icon icon-link"></span></a>echo命令</h1>
-<blockquote>
-<p>echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。
-语法：echo [-ne][字符串]
-功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。</p>
-</blockquote>
-<p>参数：</p>
-<ul>
-<li><code>-n</code> 显示字串时在最后自动换行</li>
-<li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
-<li><code>/a</code> 发出警告声；</li>
-<li><code>/b</code> 删除前一个字符；</li>
-<li><code>/c</code> 最后不加上换行符号；</li>
-<li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
-<li><code>/n</code> 换行且光标移至行首；</li>
-<li><code>/r</code> 光标移至行首，但不换行；</li>
-<li><code>/t</code> 插入tab；</li>
-<li><code>/v</code> 与/f相同；</li>
-<li><code>//</code> 插入/字符；</li>
-<li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
-</ul>
-<p>示例：</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> <span class="token string">"123"</span> <span class="token string">"456"</span>
-</span><span class="code-line"><span class="token number">123</span> <span class="token number">456</span>
-</span><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> <span class="token string">"123/n456"</span>
-</span><span class="code-line"><span class="token number">123</span>/n456
-</span><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123/n456"</span>
-</span><span class="code-line"><span class="token number">123</span>
-</span><span class="code-line"><span class="token number">456</span>
-</span><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -E <span class="token string">"123/n456"</span>
-</span><span class="code-line"><span class="token number">123</span>/n456
-</span><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -E <span class="token string">"123///456"</span>
-</span><span class="code-line"><span class="token number">123</span>//456
-</span><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123///456"</span>
-</span><span class="code-line"><span class="token number">123</span>/456
-</span><span class="code-line">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123/100456"</span>
-</span><span class="code-line"><span class="token number">123</span>@456
-</span></code><div onclick="copied(this)" data-code="kenny@jstest:~/hgd> echo &#x22;123&#x22; &#x22;456&#x22;
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h1 id="dudf命令"><a aria-hidden="true" tabindex="-1" href="#dudf命令" class="anchor"><span class="icon icon-link"></span></a>du、df命令</h1>
+        <blockquote>
+          <p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
+        </blockquote>
+        <p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
+        <ol>
+          <li><code>du -hs</code> 指定目录 查看指定目录的总大小</li>
+          <li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
+        </ol>
+        <p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
+        <h1 id="cat命令"><a aria-hidden="true" tabindex="-1" href="#cat命令" class="anchor"><span class="icon icon-link"></span></a>cat命令</h1>
+        <blockquote>
+          <p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
+        </blockquote>
+        <ol>
+          <li><code>cat file1</code> 显示file1文件内容</li>
+          <li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
+          <li><code>cat file1 file2 > file3</code> 把file1, file2的内容结合起来，再“重定向（>）”到file3文件中。</li>
+          <li><code>></code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用">>"重定向符。</li>
+        </ol>
+        <p>如果">"左边没有指定文件，如： cat >file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
+        <h1 id="echo命令"><a aria-hidden="true" tabindex="-1" href="#echo命令" class="anchor"><span class="icon icon-link"></span></a>echo命令</h1>
+        <blockquote>
+          <p>
+            echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。
+            语法：echo [-ne][字符串]
+            功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。
+          </p>
+        </blockquote>
+        <p>参数：</p>
+        <ul>
+          <li><code>-n</code> 显示字串时在最后自动换行</li>
+          <li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
+          <li><code>/a</code> 发出警告声；</li>
+          <li><code>/b</code> 删除前一个字符；</li>
+          <li><code>/c</code> 最后不加上换行符号；</li>
+          <li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
+          <li><code>/n</code> 换行且光标移至行首；</li>
+          <li><code>/r</code> 光标移至行首，但不换行；</li>
+          <li><code>/t</code> 插入tab；</li>
+          <li><code>/v</code> 与/f相同；</li>
+          <li><code>//</code> 插入/字符；</li>
+          <li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
+        </ul>
+        <p>示例：</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> <span class="token string">"123"</span> <span class="token string">"456"</span>
+</span><span class="code-line line-number" line="2"><span class="token number">123</span> <span class="token number">456</span>
+</span><span class="code-line line-number" line="3">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> <span class="token string">"123/n456"</span>
+</span><span class="code-line line-number" line="4"><span class="token number">123</span>/n456
+</span><span class="code-line line-number" line="5">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123/n456"</span>
+</span><span class="code-line line-number" line="6"><span class="token number">123</span>
+</span><span class="code-line line-number" line="7"><span class="token number">456</span>
+</span><span class="code-line line-number" line="8">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -E <span class="token string">"123/n456"</span>
+</span><span class="code-line line-number" line="9"><span class="token number">123</span>/n456
+</span><span class="code-line line-number" line="10">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -E <span class="token string">"123///456"</span>
+</span><span class="code-line line-number" line="11"><span class="token number">123</span>//456
+</span><span class="code-line line-number" line="12">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123///456"</span>
+</span><span class="code-line line-number" line="13"><span class="token number">123</span>/456
+</span><span class="code-line line-number" line="14">kenny@jstest:~/hgd<span class="token operator">></span> <span class="token builtin class-name">echo</span> -e <span class="token string">"123/100456"</span>
+</span><span class="code-line line-number" line="15"><span class="token number">123</span>@456
+</span></code><input type="hidden" value="kenny@jstest:~/hgd> echo &#x22;123&#x22; &#x22;456&#x22;
 123 456
 kenny@jstest:~/hgd> echo &#x22;123/n456&#x22;
 123/n456
@@ -621,29 +446,31 @@ kenny@jstest:~/hgd> echo -e &#x22;123///456&#x22;
 123/456
 kenny@jstest:~/hgd> echo -e &#x22;123/100456&#x22;
 123@456
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>注意事项：
-在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：
-Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)</p>
-<p>示例如下：</p>
-<pre><code class="code-highlight"><span class="code-line">kenny@jstest:~> echo "`TEST`"
-</span><span class="code-line">-bash: TEST: command not found
-</span><span class="code-line">kenny@jstest:~> echo '`TEST`'
-</span><span class="code-line">`TEST`
-</span><span class="code-line">kenny@jstest:~> echo "$TEST"
-</span><span class="code-line">        
-</span><span class="code-line">kenny@jstest:~> echo '$TEST'
-</span><span class="code-line">$TEST
-</span><span class="code-line">kenny@jstest:~> echo "//TEST"
-</span><span class="code-line">/TEST
-</span><span class="code-line">kenny@jstest:~> echo '//TEST'
-</span><span class="code-line">//TEST
-</span><span class="code-line">kenny@jstest:~> echo "Hello!"
-</span><span class="code-line">echo "Hello"
-</span><span class="code-line">Hello
-</span><span class="code-line">kenny@jstest:~> echo 'Hello!'
-</span><span class="code-line">Hello!
-</span></code><div onclick="copied(this)" data-code="kenny@jstest:~> echo &#x22;&#x60;TEST&#x60;&#x22;
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>
+          注意事项：
+          在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：
+          Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)
+        </p>
+        <p>示例如下：</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">kenny@jstest:~> echo "`TEST`"
+</span><span class="code-line line-number" line="2">-bash: TEST: command not found
+</span><span class="code-line line-number" line="3">kenny@jstest:~> echo '`TEST`'
+</span><span class="code-line line-number" line="4">`TEST`
+</span><span class="code-line line-number" line="5">kenny@jstest:~> echo "$TEST"
+</span><span class="code-line line-number" line="6">        
+</span><span class="code-line line-number" line="7">kenny@jstest:~> echo '$TEST'
+</span><span class="code-line line-number" line="8">$TEST
+</span><span class="code-line line-number" line="9">kenny@jstest:~> echo "//TEST"
+</span><span class="code-line line-number" line="10">/TEST
+</span><span class="code-line line-number" line="11">kenny@jstest:~> echo '//TEST'
+</span><span class="code-line line-number" line="12">//TEST
+</span><span class="code-line line-number" line="13">kenny@jstest:~> echo "Hello!"
+</span><span class="code-line line-number" line="14">echo "Hello"
+</span><span class="code-line line-number" line="15">Hello
+</span><span class="code-line line-number" line="16">kenny@jstest:~> echo 'Hello!'
+</span><span class="code-line line-number" line="17">Hello!
+</span></code><input type="hidden" value="kenny@jstest:~> echo &#x22;&#x60;TEST&#x60;&#x22;
 -bash: TEST: command not found
 kenny@jstest:~> echo &#x27;&#x60;TEST&#x60;&#x27;
 &#x60;TEST&#x60;
@@ -660,80 +487,84 @@ echo &#x22;Hello&#x22;
 Hello
 kenny@jstest:~> echo &#x27;Hello!&#x27;
 Hello!
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h1 id="morelessclear"><a aria-hidden="true" tabindex="-1" href="#morelessclear" class="anchor"><span class="icon icon-link"></span></a>more，less，clear</h1>
-<blockquote>
-<p>more，less命令</p>
-</blockquote>
-<pre><code class="code-highlight"><span class="code-line">这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。
-</span></code><div onclick="copied(this)" data-code="这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>less的常用动作命令：</p>
-<ul>
-<li>回车键 向下移动一行；</li>
-<li><code>y</code> 向上移动一行；</li>
-<li>空格键 向下滚动一屏；</li>
-<li><code>b</code> 向上滚动一屏；</li>
-<li><code>d</code> 向下滚动半屏；</li>
-<li><code>h</code> less的帮助；</li>
-<li><code>u</code> 向上洋动半屏；</li>
-<li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
-<li><code>g</code> 跳到第一行；</li>
-<li><code>G</code> 跳到最后一行；</li>
-<li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
-<li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
-<li><code>v</code> 调用vi编辑器；</li>
-<li><code>q</code> 退出less</li>
-<li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
-<li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
-</ul>
-<h1 id="headtail"><a aria-hidden="true" tabindex="-1" href="#headtail" class="anchor"><span class="icon icon-link"></span></a>head，tail</h1>
-<ul>
-<li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
-<li>tail -f命令可以实时查看文件新增内容。</li>
-</ul>
-<h1 id="wc命令"><a aria-hidden="true" tabindex="-1" href="#wc命令" class="anchor"><span class="icon icon-link"></span></a>wc命令</h1>
-<p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
-<ul>
-<li>-l 统计行数</li>
-<li>-w 统计字数</li>
-<li>-c 统计字节数</li>
-</ul>
-<p>这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。
-行数、字数、字节数、文件名
-如果命令行中没有文件名，则输出中不出现文件名。</p>
-<p>例如：</p>
-<pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line">oracle@hjtest:~<span class="token operator">></span> <span class="token function">wc</span> <span class="token number">1</span>.txt <span class="token number">2</span>.txt
-</span><span class="code-line">  <span class="token number">460</span>  <span class="token number">1679</span> <span class="token number">16353</span> <span class="token number">1</span>.txt
-</span><span class="code-line">  <span class="token number">300</span>  <span class="token number">1095</span> <span class="token number">10665</span> <span class="token number">2</span>.txt
-</span><span class="code-line">  <span class="token number">760</span>  <span class="token number">2774</span> <span class="token number">27018</span> 总用量
-</span><span class="code-line">oracle@hjtest:~<span class="token operator">></span> <span class="token function">wc</span> -l <span class="token number">1</span>.txt
-</span><span class="code-line"><span class="token number">460</span> <span class="token number">1</span>.txt
-</span></code><div onclick="copied(this)" data-code="oracle@hjtest:~> wc 1.txt 2.txt
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h1 id="morelessclear"><a aria-hidden="true" tabindex="-1" href="#morelessclear" class="anchor"><span class="icon icon-link"></span></a>more，less，clear</h1>
+        <blockquote>
+          <p>more，less命令</p>
+        </blockquote>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。
+</span></code><input type="hidden" value="这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>less的常用动作命令：</p>
+        <ul>
+          <li>回车键 向下移动一行；</li>
+          <li><code>y</code> 向上移动一行；</li>
+          <li>空格键 向下滚动一屏；</li>
+          <li><code>b</code> 向上滚动一屏；</li>
+          <li><code>d</code> 向下滚动半屏；</li>
+          <li><code>h</code> less的帮助；</li>
+          <li><code>u</code> 向上洋动半屏；</li>
+          <li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
+          <li><code>g</code> 跳到第一行；</li>
+          <li><code>G</code> 跳到最后一行；</li>
+          <li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
+          <li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
+          <li><code>v</code> 调用vi编辑器；</li>
+          <li><code>q</code> 退出less</li>
+          <li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
+          <li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
+        </ul>
+        <h1 id="headtail"><a aria-hidden="true" tabindex="-1" href="#headtail" class="anchor"><span class="icon icon-link"></span></a>head，tail</h1>
+        <ul>
+          <li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
+          <li>tail -f命令可以实时查看文件新增内容。</li>
+        </ul>
+        <h1 id="wc命令"><a aria-hidden="true" tabindex="-1" href="#wc命令" class="anchor"><span class="icon icon-link"></span></a>wc命令</h1>
+        <p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
+        <ul>
+          <li>-l 统计行数</li>
+          <li>-w 统计字数</li>
+          <li>-c 统计字节数</li>
+        </ul>
+        <p>
+          这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。
+          行数、字数、字节数、文件名
+          如果命令行中没有文件名，则输出中不出现文件名。
+        </p>
+        <p>例如：</p>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">oracle@hjtest:~<span class="token operator">></span> <span class="token function">wc</span> <span class="token number">1</span>.txt <span class="token number">2</span>.txt
+</span><span class="code-line line-number" line="2">  <span class="token number">460</span>  <span class="token number">1679</span> <span class="token number">16353</span> <span class="token number">1</span>.txt
+</span><span class="code-line line-number" line="3">  <span class="token number">300</span>  <span class="token number">1095</span> <span class="token number">10665</span> <span class="token number">2</span>.txt
+</span><span class="code-line line-number" line="4">  <span class="token number">760</span>  <span class="token number">2774</span> <span class="token number">27018</span> 总用量
+</span><span class="code-line line-number" line="5">oracle@hjtest:~<span class="token operator">></span> <span class="token function">wc</span> -l <span class="token number">1</span>.txt
+</span><span class="code-line line-number" line="6"><span class="token number">460</span> <span class="token number">1</span>.txt
+</span></code><input type="hidden" value="oracle@hjtest:~> wc 1.txt 2.txt
   460  1679 16353 1.txt
   300  1095 10665 2.txt
   760  2774 27018 总用量
 oracle@hjtest:~> wc -l 1.txt
 460 1.txt
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
-<h1 id="grep-命令"><a aria-hidden="true" tabindex="-1" href="#grep-命令" class="anchor"><span class="icon icon-link"></span></a>grep 命令</h1>
-<blockquote>
-<p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
-</blockquote>
-<p>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。
-示例：</p>
-<pre><code class="code-highlight"><span class="code-line">$ ls -l | grep '^a'
-</span><span class="code-line">通过管道过滤ls -l输出的内容，只显示以a开头的行。
-</span><span class="code-line">$ grep 'test' d*
-</span><span class="code-line">显示所有以d开头的文件中包含test的行。
-</span><span class="code-line">$ grep 'test' aa bb cc
-</span><span class="code-line">显示在aa，bb，cc文件中匹配test的行。
-</span><span class="code-line">$ grep '[a-z]/{5/}' aa
-</span><span class="code-line">显示所有包含每个字符串至少有5个连续小写字符的字符串的行。
-</span><span class="code-line">$ grep 'w/(es/)t.*/1' aa
-</span><span class="code-line">如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用"/"号进行转义，直接写成'w(es)t.*/1'就可以了。
-</span></code><div onclick="copied(this)" data-code="$ ls -l | grep &#x27;^a&#x27;
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
+        <h1 id="grep-命令"><a aria-hidden="true" tabindex="-1" href="#grep-命令" class="anchor"><span class="icon icon-link"></span></a>grep 命令</h1>
+        <blockquote>
+          <p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
+        </blockquote>
+        <p>
+          grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。
+          示例：
+        </p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">$ ls -l | grep '^a'
+</span><span class="code-line line-number" line="2">通过管道过滤ls -l输出的内容，只显示以a开头的行。
+</span><span class="code-line line-number" line="3">$ grep 'test' d*
+</span><span class="code-line line-number" line="4">显示所有以d开头的文件中包含test的行。
+</span><span class="code-line line-number" line="5">$ grep 'test' aa bb cc
+</span><span class="code-line line-number" line="6">显示在aa，bb，cc文件中匹配test的行。
+</span><span class="code-line line-number" line="7">$ grep '[a-z]/{5/}' aa
+</span><span class="code-line line-number" line="8">显示所有包含每个字符串至少有5个连续小写字符的字符串的行。
+</span><span class="code-line line-number" line="9">$ grep 'w/(es/)t.*/1' aa
+</span><span class="code-line line-number" line="10">如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用"/"号进行转义，直接写成'w(es)t.*/1'就可以了。
+</span></code><input type="hidden" value="$ ls -l | grep &#x27;^a&#x27;
 通过管道过滤ls -l输出的内容，只显示以a开头的行。
 $ grep &#x27;test&#x27; d*
 显示所有以d开头的文件中包含test的行。
@@ -743,46 +574,50 @@ $ grep &#x27;[a-z]/{5/}&#x27; aa
 显示所有包含每个字符串至少有5个连续小写字符的字符串的行。
 $ grep &#x27;w/(es/)t.*/1&#x27; aa
 如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用&#x22;/&#x22;号进行转义，直接写成&#x27;w(es)t.*/1&#x27;就可以了。
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h1 id="manlogout命令"><a aria-hidden="true" tabindex="-1" href="#manlogout命令" class="anchor"><span class="icon icon-link"></span></a>man，logout命令</h1>
-<blockquote>
-<p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
-</blockquote>
-<blockquote>
-<p>logout命令，该命令用于退出系统，与login命令对应。</p>
-</blockquote>
-<h1 id="管道和xargs"><a aria-hidden="true" tabindex="-1" href="#管道和xargs" class="anchor"><span class="icon icon-link"></span></a>管道和xargs</h1>
-<h2 id="管道"><a aria-hidden="true" tabindex="-1" href="#管道" class="anchor"><span class="icon icon-link"></span></a>管道</h2>
-<p>利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。
-注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道
-例子：ls | grep a  查看当前目录下名称包含a的文件或文件夹</p>
-<h2 id="xargs"><a aria-hidden="true" tabindex="-1" href="#xargs" class="anchor"><span class="icon icon-link"></span></a>xargs</h2>
-<p>大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。
-注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去</p>
-<p>例子：</p>
-<ol>
-<li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
-</ol>
-<pre><code class="code-highlight"><span class="code-line">$ find / -name "core" -print | xargs echo "" >/tmp/core.log
-</span></code><div onclick="copied(this)" data-code="$ find / -name &#x22;core&#x22; -print | xargs echo &#x22;&#x22; >/tmp/core.log
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<ol start="2">
-<li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
-</ol>
-<pre><code class="code-highlight"><span class="code-line">$ls | xargs rm
-</span></code><div onclick="copied(this)" data-code="$ls | xargs rm
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-<h1 id="basename-和-dirname"><a aria-hidden="true" tabindex="-1" href="#basename-和-dirname" class="anchor"><span class="icon icon-link"></span></a>basename 和 dirname</h1>
-<p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
-<pre><code class="code-highlight"><span class="code-line">> basename /home/hj/1.txt
-</span><span class="code-line">1.txt
-</span><span class="code-line">> dirname  /home/hj/1.txt
-</span><span class="code-line">/home/hj
-</span><span class="code-line">> basename 1.txt
-</span><span class="code-line">1.txt
-</span><span class="code-line">> dirname 1.txt
-</span><span class="code-line">.
-</span></code><div onclick="copied(this)" data-code="> basename /home/hj/1.txt
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h1 id="manlogout命令"><a aria-hidden="true" tabindex="-1" href="#manlogout命令" class="anchor"><span class="icon icon-link"></span></a>man，logout命令</h1>
+        <blockquote>
+          <p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
+        </blockquote>
+        <blockquote>
+          <p>logout命令，该命令用于退出系统，与login命令对应。</p>
+        </blockquote>
+        <h1 id="管道和xargs"><a aria-hidden="true" tabindex="-1" href="#管道和xargs" class="anchor"><span class="icon icon-link"></span></a>管道和xargs</h1>
+        <h2 id="管道"><a aria-hidden="true" tabindex="-1" href="#管道" class="anchor"><span class="icon icon-link"></span></a>管道</h2>
+        <p>
+          利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。
+          注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道
+          例子：ls | grep a 查看当前目录下名称包含a的文件或文件夹
+        </p>
+        <h2 id="xargs"><a aria-hidden="true" tabindex="-1" href="#xargs" class="anchor"><span class="icon icon-link"></span></a>xargs</h2>
+        <p>
+          大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。
+          注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去
+        </p>
+        <p>例子：</p>
+        <ol>
+          <li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
+        </ol>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">$ find / -name "core" -print | xargs echo "" >/tmp/core.log
+</span></code><input type="hidden" value="$ find / -name &#x22;core&#x22; -print | xargs echo &#x22;&#x22; >/tmp/core.log
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <ol start="2">
+          <li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
+        </ol>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">$ls | xargs rm
+</span></code><input type="hidden" value="$ls | xargs rm
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <h1 id="basename-和-dirname"><a aria-hidden="true" tabindex="-1" href="#basename-和-dirname" class="anchor"><span class="icon icon-link"></span></a>basename 和 dirname</h1>
+        <p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
+        <pre><code class="code-highlight"><span class="code-line line-number" line="1">> basename /home/hj/1.txt
+</span><span class="code-line line-number" line="2">1.txt
+</span><span class="code-line line-number" line="3">> dirname  /home/hj/1.txt
+</span><span class="code-line line-number" line="4">/home/hj
+</span><span class="code-line line-number" line="5">> basename 1.txt
+</span><span class="code-line line-number" line="6">1.txt
+</span><span class="code-line line-number" line="7">> dirname 1.txt
+</span><span class="code-line line-number" line="8">.
+</span></code><input type="hidden" value="> basename /home/hj/1.txt
 1.txt
 > dirname  /home/hj/1.txt
 /home/hj
@@ -790,84 +625,35 @@ $ grep &#x27;w/(es/)t.*/1&#x27; aa
 1.txt
 > dirname 1.txt
 .
-" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-    
-
-<div class="previous">
-  
-  <a class="prev" href="CentOS7网络配置.html">
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
-      <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
-    </svg>
-    <span>
-      CentOS7 网络配置
-    </span>
-  </a>
-  
-  
-  <a class="next" href="CentOS7安装KVM虚拟机详解.html">
-    <span>
-      安装 KVM 虚拟机详解
-    </span>
-    <svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
-      <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
-      <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
-    </svg>
-  </a>
-  
-</div>
-
-
-
-<section class="article-footer">
-  <a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/常用基础命令.md" class="edit-button" target="_blank" rel="noopener noreferrer">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-    </svg>
-    <span>Edit this page on GitHub</span>
-  </a>
-  
-  <span class="atime">2022/04/24</span>
-  
-</section>
-
-  </markdown-style>
-  
-<nav class="tocs">
-  <aside class="inner toc">
-    <ol class="tocs-list">
-    
-      <li>
-        <a href="#mkdir循环创建目录" class="tocs-link">mkdir循环创建目录</a>
-        
-      </li>
-    
-      <li>
-        <a href="#管道" class="tocs-link">管道</a>
-        
-      </li>
-    
-      <li>
-        <a href="#xargs" class="tocs-link">xargs</a>
-        
-      </li>
-    
-    </ol>
-  </aside>
-</nav>
-
-
-<script src="../js/tocbot.js?v=1.0.0"></script>
-
-</div>
-
-
-<div class="footer warpper">
-  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
-Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.13.7
-
-</div>
-
-</body>
+"><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+        <div class="previous"><a class="prev" href="CentOS7网络配置.html"><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667z"></path>
+              <path d="M512 864c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z"></path>
+            </svg>
+<span>CentOS7 网络配置
+</span></a><a class="next" href="CentOS7安装KVM虚拟机详解.html"><span>安装 KVM 虚拟机详解
+</span><svg viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">
+              <path d="M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666z"></path>
+              <path d="M864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z"></path>
+            </svg></a></div>
+        <section class="article-footer"><a href="https://github.com/jaywcjlove/handbook/blob/master/docs/CentOS/常用基础命令.md" class="edit-button" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+<span>Edit this page on GitHub</span>
+</a><span class="atime">2022/05/14</span></section>
+      </markdown-style>
+      <nav class="tocs">
+        <aside class="inner toc">
+          <ol class="tocs-list">
+            <li><a href="#mkdir循环创建目录" class="tocs-link">mkdir循环创建目录</a></li>
+            <li><a href="#管道" class="tocs-link">管道</a></li>
+            <li><a href="#xargs" class="tocs-link">xargs</a></li>
+          </ol>
+        </aside>
+      </nav>
+    </div>
+    <script src="../js/demo-preview.js?v=1.21.1"></script>
+    <div class="footer warpper">Released under the MIT License. Copyright © 2022 Kenny Wong<br>Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.21.1</div>
+    <script src="../js/tocbot.js?v=1.21.1"></script>
+  </body>
 </html>
