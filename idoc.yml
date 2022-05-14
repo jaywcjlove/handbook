@@ -1,3 +1,7 @@
+cacheFileStat: true
+
+homepage: https://wangchujiang.com/handbook/
+
 menus:
   Home: index.html
   Awesome: awesome.html
