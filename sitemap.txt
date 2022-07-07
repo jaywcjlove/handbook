@@ -25,8 +25,8 @@ https://wangchujiang.com/handbook/CentOS/Python2%E5%8D%87%E7%BA%A7%E5%88%B0Pytho
 https://wangchujiang.com/handbook/CentOS/Rocket.Chat.html
 https://wangchujiang.com/handbook/CentOS/Ruby%E5%AE%89%E8%A3%85.html
 https://wangchujiang.com/handbook/CentOS/openstack.html
-https://wangchujiang.com/handbook/CentOS/samba.html
 https://wangchujiang.com/handbook/CentOS/pip.html
+https://wangchujiang.com/handbook/CentOS/samba.html
 https://wangchujiang.com/handbook/CentOS/svn.html
 https://wangchujiang.com/handbook/CentOS/%E4%BD%BF%E7%94%A8%E5%85%8D%E8%B4%B9SSL%E8%AF%81%E4%B9%A6%E8%AE%A9%E7%BD%91%E7%AB%99%E6%94%AF%E6%8C%81HTTPS%E8%AE%BF%E9%97%AE.html
 https://wangchujiang.com/handbook/CentOS/%E4%BF%AE%E6%94%B9ssh%E7%AB%AF%E5%8F%A3%E5%8F%B7%E7%9A%84%E6%96%B9%E6%B3%95.html
