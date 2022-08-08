@@ -77,6 +77,7 @@
 - [Skypack](https://www.skypack.dev) 无需安装和构建工具即可加载优化的 npm 包。
 - [Package Quality](https://packagequality.com/) 包的质量测量，最初用于 npm。
 - [npm charts](https://npmcharts.com/) 比较 npm 包的下载趋势
+- [NodeICO](https://nodei.co/) Package badges.
 
 ## 工具
 
