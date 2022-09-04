@@ -77,6 +77,8 @@
             <a href="../CentOS/使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="../CentOS/svn.html" class="">安装使用 svn</a>
             <a href="../CentOS/管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="weixin-public-account.html" class="">公众账号推荐</a>
             <a href="google.html" class="">谷歌(Google)镜像</a>
@@ -188,35 +190,35 @@
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>对于一元操作符（取负、求长度、位反）， 元方法调用的时候，第二个参数是个哑元，其值等于第一个参数。 这样处理仅仅是为了简化 <code>Lua</code> 的内部实现 （这样处理可以让所有的操作都和二元操作一致）， 这个行为有可能在将来的版本中移除。 （使用这个额外参数的行为都是不确定的。）</p>
         <p>"add": + 操作。 如果任何不是数字的值（包括不能转换为数字的字符串）做加法， <code>Lua</code> 就会尝试调用元方法。 首先、<code>Lua</code> 检查第一个操作数（即使它是合法的）， 如果这个操作数没有为 <code>__add</code> 事件定义元方法， <code>Lua</code> 就会接着检查第二个操作数。 一旦 Lua 找到了元方法， 它将把两个操作数作为参数传入元方法， 元方法的结果（调整为单个值）作为这个操作的结果。 如果找不到元方法，将抛出一个错误。</p>
-        <pre><code class="language-sh code-highlight"><span class="code-line line-number" line="1">"sub": "-" 操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="2">"mul": "*" 操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="3">"div": "/" 操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="4">"mod": "%" 操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="5">"pow": "^" （次方）操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="6">"unm": "-" （取负）操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="7">"idiv": "//" （向下取整除法）操作。 行为和 "add" 操作类似。
-</span><span class="code-line line-number" line="8">"band": "&#x26; "（按位与）操作。 行为和 "add" 操作类似， 不同的是 Lua 会在任何一个操作数无法转换为整数时 （参见 §3.4.3）尝试取元方法。
-</span><span class="code-line line-number" line="9">"bor": "| "（按位或）操作。 行为和 "band" 操作类似。
-</span><span class="code-line line-number" line="10">"bxor":" ~" （按位异或）操作。 行为和 "band" 操作类似。
-</span><span class="code-line line-number" line="11">"bnot":" ~" （按位非）操作。 行为和 "band" 操作类似。
-</span><span class="code-line line-number" line="12">"shl": "&#x3C;&#x3C;" （左移）操作。 行为和 "band" 操作类似。
-</span><span class="code-line line-number" line="13">"shr": ">>" （右移）操作。 行为和 "band" 操作类似。
-</span><span class="code-line line-number" line="14">"concat": ".." （连接）操作。 行为和 "add" 操作类似， 不同的是 Lua 
+        <pre class="language-sh"><code class="language-sh code-highlight"><span class="code-line line-number" line="1"><span class="token string">"sub"</span><span class="token builtin class-name">:</span> <span class="token string">"-"</span> 操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="2"><span class="token string">"mul"</span><span class="token builtin class-name">:</span> <span class="token string">"*"</span> 操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="3"><span class="token string">"div"</span><span class="token builtin class-name">:</span> <span class="token string">"/"</span> 操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="4"><span class="token string">"mod"</span><span class="token builtin class-name">:</span> <span class="token string">"%"</span> 操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="5"><span class="token string">"pow"</span><span class="token builtin class-name">:</span> <span class="token string">"^"</span> （次方）操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="6"><span class="token string">"unm"</span><span class="token builtin class-name">:</span> <span class="token string">"-"</span> （取负）操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="7"><span class="token string">"idiv"</span><span class="token builtin class-name">:</span> <span class="token string">"//"</span> （向下取整除法）操作。 行为和 <span class="token string">"add"</span> 操作类似。
+</span><span class="code-line line-number" line="8"><span class="token string">"band"</span><span class="token builtin class-name">:</span> <span class="token string">"&#x26; "</span>（按位与）操作。 行为和 <span class="token string">"add"</span> 操作类似， 不同的是 Lua 会在任何一个操作数无法转换为整数时 （参见 §3.4.3）尝试取元方法。
+</span><span class="code-line line-number" line="9"><span class="token string">"bor"</span><span class="token builtin class-name">:</span> <span class="token string">"| "</span>（按位或）操作。 行为和 <span class="token string">"band"</span> 操作类似。
+</span><span class="code-line line-number" line="10"><span class="token string">"bxor"</span><span class="token builtin class-name">:</span><span class="token string">" ~"</span> （按位异或）操作。 行为和 <span class="token string">"band"</span> 操作类似。
+</span><span class="code-line line-number" line="11"><span class="token string">"bnot"</span><span class="token builtin class-name">:</span><span class="token string">" ~"</span> （按位非）操作。 行为和 <span class="token string">"band"</span> 操作类似。
+</span><span class="code-line line-number" line="12"><span class="token string">"shl"</span><span class="token builtin class-name">:</span> <span class="token string">"&#x3C;&#x3C;"</span> （左移）操作。 行为和 <span class="token string">"band"</span> 操作类似。
+</span><span class="code-line line-number" line="13"><span class="token string">"shr"</span><span class="token builtin class-name">:</span> <span class="token string">">>"</span> （右移）操作。 行为和 <span class="token string">"band"</span> 操作类似。
+</span><span class="code-line line-number" line="14"><span class="token string">"concat"</span><span class="token builtin class-name">:</span> <span class="token string">".."</span> （连接）操作。 行为和 <span class="token string">"add"</span> 操作类似， 不同的是 Lua 
 </span><span class="code-line line-number" line="15">在任何操作数即不是一个字符串 也不是数字（数字总能转换为对应的字符串）的情况下尝试元方法。
-</span><span class="code-line line-number" line="16">"len": "#" （取长度）操作。 如果对象不是字符串，Lua 会尝试它的元方法。 如果有元方法，则调用它并将对象以参数形式传入， 而返回值（被调整为单个）则作为结果。 如果对象是一张表且没有元方法， Lua 使用表的取长度操作（参见 §3.4.7）。 其它情况，均抛出错误。
-</span><span class="code-line line-number" line="17">"eq": "==" （等于）操作。 和 "add" 操作行为类似， 不同的是 Lua 仅在两个值都是表或都是完全用户数据 且它们不是同一个对象时才尝试元方法。 调用的结果总会被转换为布尔量。
-</span><span class="code-line line-number" line="18">"lt": "&#x3C;" （小于）操作。 和 "add" 操作行为类似， 不同的是 Lua 仅在两个值不全为整数也不全为字符串时才尝试元方法。 调用的结果总会被转换为布尔量。
-</span><span class="code-line line-number" line="19">"le": "&#x3C;=" （小于等于）操作。 和其它操作不同， 小于等于操作可能用到两个不同的事件。 首先，像 "lt" 操作的行为那样，Lua 在两个操作数中查找 "__le" 元方法。 如果一个元方法都找不到，就会再次查找 "__lt" 事件， 它会假设 "a &#x3C;= b" 等价于 "not (b &#x3C; a)"。 而其它比较操作符类似，其结果会被转换为布尔量。
-</span><span class="code-line line-number" line="20">"index": 索引 table[key]。 当 table 不是表或是表 table 中不存在 key 这个键时，这个事件被触发。 此时，会读出 table 相应的元方法。
+</span><span class="code-line line-number" line="16"><span class="token string">"len"</span><span class="token builtin class-name">:</span> <span class="token string">"#"</span> （取长度）操作。 如果对象不是字符串，Lua 会尝试它的元方法。 如果有元方法，则调用它并将对象以参数形式传入， 而返回值（被调整为单个）则作为结果。 如果对象是一张表且没有元方法， Lua 使用表的取长度操作（参见 §3.4.7）。 其它情况，均抛出错误。
+</span><span class="code-line line-number" line="17"><span class="token string">"eq"</span><span class="token builtin class-name">:</span> <span class="token string">"=="</span> （等于）操作。 和 <span class="token string">"add"</span> 操作行为类似， 不同的是 Lua 仅在两个值都是表或都是完全用户数据 且它们不是同一个对象时才尝试元方法。 调用的结果总会被转换为布尔量。
+</span><span class="code-line line-number" line="18"><span class="token string">"lt"</span><span class="token builtin class-name">:</span> <span class="token string">"&#x3C;"</span> （小于）操作。 和 <span class="token string">"add"</span> 操作行为类似， 不同的是 Lua 仅在两个值不全为整数也不全为字符串时才尝试元方法。 调用的结果总会被转换为布尔量。
+</span><span class="code-line line-number" line="19"><span class="token string">"le"</span><span class="token builtin class-name">:</span> <span class="token string">"&#x3C;="</span> （小于等于）操作。 和其它操作不同， 小于等于操作可能用到两个不同的事件。 首先，像 <span class="token string">"lt"</span> 操作的行为那样，Lua 在两个操作数中查找 <span class="token string">"__le"</span> 元方法。 如果一个元方法都找不到，就会再次查找 <span class="token string">"__lt"</span> 事件， 它会假设 <span class="token string">"a &#x3C;= b"</span> 等价于 <span class="token string">"not (b &#x3C; a)"</span>。 而其它比较操作符类似，其结果会被转换为布尔量。
+</span><span class="code-line line-number" line="20"><span class="token string">"index"</span><span class="token builtin class-name">:</span> 索引 table<span class="token punctuation">[</span>key<span class="token punctuation">]</span>。 当 table 不是表或是表 table 中不存在 key 这个键时，这个事件被触发。 此时，会读出 table 相应的元方法。
 </span><span class="code-line line-number" line="21">尽管名字取成这样， 这个事件的元方法其实可以是一个函数也可以是一张表。 如果它是一个函数，则以 table 和 key 作为参数调用它。 如果它是一张表，最终的结果就是以 key 取索引这张表的结果。 （这个索引过程是走常规的流程，而不是直接索引， 所以这次索引有可能引发另一次元方法。）
 </span><span class="code-line line-number" line="22">
-</span><span class="code-line line-number" line="23">"newindex": 索引赋值 table[key] = value 。 和索引事件类似，它发生在 table 不是表或是表 table 中不存在 key 这个键的时候。 此时，会读出 table 相应的元方法。
+</span><span class="code-line line-number" line="23"><span class="token string">"newindex"</span><span class="token builtin class-name">:</span> 索引赋值 table<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value 。 和索引事件类似，它发生在 table 不是表或是表 table 中不存在 key 这个键的时候。 此时，会读出 table 相应的元方法。
 </span><span class="code-line line-number" line="24">同索引过程那样， 这个事件的元方法即可以是函数，也可以是一张表。 如果是一个函数， 则以 table、 key、以及 value 为参数传入。 如果是一张表， Lua 对这张表做索引赋值操作。 （这个索引过程是走常规的流程，而不是直接索引赋值， 所以这次索引赋值有可能引发另一次元方法。）
 </span><span class="code-line line-number" line="25">
 </span><span class="code-line line-number" line="26">
-</span><span class="code-line line-number" line="27">一旦有了 "newindex" 元方法， Lua 就不再做最初的赋值操作。 （如果有必要，在元方法内部可以调用 rawset 来做赋值。）
+</span><span class="code-line line-number" line="27">一旦有了 <span class="token string">"newindex"</span> 元方法， Lua 就不再做最初的赋值操作。 （如果有必要，在元方法内部可以调用 rawset 来做赋值。）
 </span><span class="code-line line-number" line="28">
-</span><span class="code-line line-number" line="29">"call": 函数调用操作 func(args)。 当 Lua 尝试调用一个非函数的值的时候会触发这个事件 （即 func 不是一个函数）。 查找 func 的元方法， 如果找得到，就调用这个元方法， func 作为第一个参数传入，原来调用的参数（args）后依次排在后面。
+</span><span class="code-line line-number" line="29"><span class="token string">"call"</span><span class="token builtin class-name">:</span> 函数调用操作 func<span class="token punctuation">(</span>args<span class="token punctuation">)</span>。 当 Lua 尝试调用一个非函数的值的时候会触发这个事件 （即 func 不是一个函数）。 查找 func 的元方法， 如果找得到，就调用这个元方法， func 作为第一个参数传入，原来调用的参数（args）后依次排在后面。
 </span></code><input type="hidden" value="&#x22;sub&#x22;: &#x22;-&#x22; 操作。 行为和 &#x22;add&#x22; 操作类似。
 &#x22;mul&#x22;: &#x22;*&#x22; 操作。 行为和 &#x22;add&#x22; 操作类似。
 &#x22;div&#x22;: &#x22;/&#x22; 操作。 行为和 &#x22;add&#x22; 操作类似。
@@ -3953,7 +3955,7 @@ unop ::= &#x27;-&#x27; | not | &#x27;#&#x27; | &#x27;~&#x27;
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

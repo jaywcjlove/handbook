@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -125,7 +127,7 @@
 </span></code><input type="hidden" value="$ sudo dd if=/Volumes/Untitled\ 1/CentOS-7-x86_64-Everything-1511.iso of=/dev/disk5 bs=1m
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>使用brew安装pv工具，之后使用以下的命令来实现进度条的显示</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> <span class="token function">pv</span> -cN <span class="token builtin class-name">source</span> <span class="token operator">&#x3C;</span> /Users/kacperwang/Downloads/CentOS-7-x86_64-Everything-1511.iso <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">dd</span> <span class="token assign-left variable">of</span><span class="token operator">=</span>/dev/disk2 <span class="token assign-left variable">bs</span><span class="token operator">=</span>4m
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> <span class="token function">pv</span> <span class="token parameter variable">-cN</span> <span class="token builtin class-name">source</span> <span class="token operator">&#x3C;</span> /Users/kacperwang/Downloads/CentOS-7-x86_64-Everything-1511.iso <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">dd</span> <span class="token assign-left variable">of</span><span class="token operator">=</span>/dev/disk2 <span class="token assign-left variable">bs</span><span class="token operator">=</span>4m
 </span><span class="code-line line-number" line="2"><span class="token comment">## 显示下面进度</span>
 </span><span class="code-line line-number" line="3">source:  <span class="token number">5</span>.2GiB <span class="token number">5</span>:11:41 <span class="token punctuation">[</span> 503KiB/s<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span><span class="token operator">></span>       <span class="token punctuation">]</span> <span class="token number">71</span>% ETA <span class="token number">2</span>:01:56
 </span></code><input type="hidden" value="sudo pv -cN source < /Users/kacperwang/Downloads/CentOS-7-x86_64-Everything-1511.iso | sudo dd of=/dev/disk2 bs=4m
@@ -134,7 +136,7 @@ source:  5.2GiB 5:11:41 [ 503KiB/s] [=====================>       ] 71% ETA 2:01
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="查看磁盘进度"><a aria-hidden="true" tabindex="-1" href="#查看磁盘进度" class="anchor"><span class="icon icon-link"></span></a>查看磁盘进度</h2>
         <p>可以用iostat命令查看磁盘写入状态，进度。</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ iostat -w <span class="token number">5</span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">$ iostat <span class="token parameter variable">-w</span> <span class="token number">5</span>
 </span><span class="code-line line-number" line="2">              disk0               disk2               disk3       cpu    load average
 </span><span class="code-line line-number" line="3">    KB/t  tps  MB/s     KB/t  tps  MB/s     KB/t  tps  MB/s  us sy <span class="token function">id</span>   1m   5m   15m
 </span><span class="code-line line-number" line="4">   <span class="token number">20.65</span>   <span class="token number">21</span>  <span class="token number">0.42</span>   <span class="token number">131.00</span>    <span class="token number">0</span>  <span class="token number">0.00</span>   <span class="token number">278.80</span>    <span class="token number">0</span>  <span class="token number">0.00</span>   <span class="token number">4</span>  <span class="token number">3</span> <span class="token number">93</span>  <span class="token number">2.31</span> <span class="token number">2.05</span> <span class="token number">2.02</span>
@@ -153,7 +155,7 @@ source:  5.2GiB 5:11:41 [ 503KiB/s] [=====================>       ] 71% ETA 2:01
 </span><span class="code-line line-number" line="2">brew <span class="token function">install</span> <span class="token function">pv</span>
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4"><span class="token comment"># 刻监控克隆的进度</span>
-</span><span class="code-line line-number" line="5"><span class="token function">pv</span> -cN <span class="token builtin class-name">source</span> <span class="token operator">&#x3C;</span> xxx.img <span class="token operator">|</span> <span class="token function">dd</span> <span class="token assign-left variable">of</span><span class="token operator">=</span>/dev/rdisk2 <span class="token assign-left variable">bs</span><span class="token operator">=</span>4m​
+</span><span class="code-line line-number" line="5"><span class="token function">pv</span> <span class="token parameter variable">-cN</span> <span class="token builtin class-name">source</span> <span class="token operator">&#x3C;</span> xxx.img <span class="token operator">|</span> <span class="token function">dd</span> <span class="token assign-left variable">of</span><span class="token operator">=</span>/dev/rdisk2 <span class="token assign-left variable">bs</span><span class="token operator">=</span>4m​
 </span></code><input type="hidden" value="# 安装pv
 brew install pv
 
@@ -180,7 +182,7 @@ Disk /dev/disk2 ejected
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

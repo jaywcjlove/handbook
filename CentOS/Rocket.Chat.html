@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -102,17 +104,17 @@
         </p>
         <h2 id="安装依赖步骤"><a aria-hidden="true" tabindex="-1" href="#安装依赖步骤" class="anchor"><span class="icon icon-link"></span></a>安装依赖步骤</h2>
         <p>添加epel存储库并更新所有内容。</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum -y <span class="token function">install</span> epel-release <span class="token operator">&#x26;&#x26;</span> yum -y update
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token parameter variable">-y</span> <span class="token function">install</span> epel-release <span class="token operator">&#x26;&#x26;</span> yum <span class="token parameter variable">-y</span> update
 </span></code><input type="hidden" value="yum -y install epel-release &#x26;&#x26; yum -y update
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>一般情况下，新系统自带<code>curl</code>工具，没有的话你需要安装，后面会用到，如下：</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> -y <span class="token function">curl</span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> <span class="token parameter variable">-y</span> <span class="token function">curl</span>
 </span></code><input type="hidden" value="yum install -y curl
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>安装 <code>node.js</code> 和 <code>npm</code></p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> -y nodejs <span class="token function">npm</span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> <span class="token parameter variable">-y</span> nodejs <span class="token function">npm</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># node版本很重要需要安装`n`来切换版本</span>
-</span><span class="code-line line-number" line="3"><span class="token function">npm</span> <span class="token function">install</span> -g inherits n
+</span><span class="code-line line-number" line="3"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> inherits n
 </span><span class="code-line line-number" line="4"><span class="token comment"># 切换node版本, 很重要</span>
 </span><span class="code-line line-number" line="5">n <span class="token number">4.8</span>.4
 </span></code><input type="hidden" value="yum install -y nodejs npm
@@ -143,7 +145,7 @@ gpgcheck=0
 enabled=1
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>安装图形库以及<code>Mongodb</code>数据库</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> -y GraphicsMagick mongodb-org-server mongodb-org gcc-c++
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> <span class="token parameter variable">-y</span> GraphicsMagick mongodb-org-server mongodb-org gcc-c++
 </span></code><input type="hidden" value="yum install -y GraphicsMagick mongodb-org-server mongodb-org gcc-c++
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>提前配置数据库</p>
@@ -169,7 +171,7 @@ service mongod restart
         <h2 id="安装rocketchat"><a aria-hidden="true" tabindex="-1" href="#安装rocketchat" class="anchor"><span class="icon icon-link"></span></a>安装Rocket.Chat</h2>
         <p>安装的时候记得前面加上<code>sudo</code></p>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token builtin class-name">cd</span> /opt
-</span><span class="code-line line-number" line="2"><span class="token function">curl</span> -L https://download.rocket.chat/stable -o rocket.chat.tgz
+</span><span class="code-line line-number" line="2"><span class="token function">curl</span> <span class="token parameter variable">-L</span> https://download.rocket.chat/stable <span class="token parameter variable">-o</span> rocket.chat.tgz
 </span><span class="code-line line-number" line="3"><span class="token comment"># 解压 rocket.chat.tgz</span>
 </span><span class="code-line line-number" line="4"><span class="token function">tar</span> zxvf rocket.chat.tgz
 </span><span class="code-line line-number" line="5"><span class="token function">mv</span> bundle Rocket.Chat
@@ -218,7 +220,7 @@ export MONGO_URL=mongodb://localhost:27017/rocketchat
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">node</span> main.js
 </span></code><input type="hidden" value="node main.js
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">meteor <span class="token function">npm</span> <span class="token function">install</span> --save bcrypt
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">meteor <span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">--save</span> bcrypt
 </span></code><input type="hidden" value="meteor npm install --save bcrypt
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>使用上面的连接地址 <code>http://127.0.0.1:3000/</code>在浏览器中打开，点击<code>注册新账号</code>，输入<code>管理员姓名</code>，<code>电子邮件</code>，<code>两次密码</code>，如下：</p>
@@ -283,7 +285,7 @@ WantedBy=multi-user.target
 </span><span class="code-line line-number" line="3"><span class="token comment"># 进入安装目录</span>
 </span><span class="code-line line-number" line="4"><span class="token builtin class-name">cd</span> /opt/
 </span><span class="code-line line-number" line="5"><span class="token comment"># 删除Rocket.Chat目录，删除前记得备份哦</span>
-</span><span class="code-line line-number" line="6"><span class="token function">rm</span> -rf Rocket.Chat
+</span><span class="code-line line-number" line="6"><span class="token function">rm</span> <span class="token parameter variable">-rf</span> Rocket.Chat
 </span></code><input type="hidden" value="# 停止服务
 systemctl stop rocketchat.service
 # 进入安装目录
@@ -357,13 +359,13 @@ yum install libstdc++-4.8.5-16.el7_4.1.i686
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> yum <span class="token function">install</span> libmpc-devel mpfr-devel gmp-devel
 </span><span class="code-line line-number" line="2">
 </span><span class="code-line line-number" line="3"><span class="token builtin class-name">cd</span> ~/Downloads
-</span><span class="code-line line-number" line="4"><span class="token function">curl</span> ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.bz2 -O
+</span><span class="code-line line-number" line="4"><span class="token function">curl</span> ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.bz2 <span class="token parameter variable">-O</span>
 </span><span class="code-line line-number" line="5"><span class="token function">tar</span> xvfj gcc-4.9.2.tar.bz2
 </span><span class="code-line line-number" line="6">
 </span><span class="code-line line-number" line="7"><span class="token builtin class-name">cd</span> gcc-4.9.2
 </span><span class="code-line line-number" line="8">./configure --disable-multilib --enable-languages<span class="token operator">=</span>c,c++
 </span><span class="code-line line-number" line="9"><span class="token comment"># 处理过程非常长 搞了两个多小时</span>
-</span><span class="code-line line-number" line="10"><span class="token function">make</span> -j <span class="token number">4</span>
+</span><span class="code-line line-number" line="10"><span class="token function">make</span> <span class="token parameter variable">-j</span> <span class="token number">4</span>
 </span><span class="code-line line-number" line="11"><span class="token function">make</span> <span class="token function">install</span>
 </span><span class="code-line line-number" line="12">
 </span><span class="code-line line-number" line="13"><span class="token comment"># 用最新的libstdc++.so.6替换旧的</span>
@@ -397,7 +399,7 @@ sudo cp /usr/local/lib64/libstdc++.so.6 /lib64/
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

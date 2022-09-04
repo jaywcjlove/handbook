@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -94,8 +96,8 @@
         <h1 id="centos7中修改ssh端口号的方法"><a aria-hidden="true" tabindex="-1" href="#centos7中修改ssh端口号的方法" class="anchor"><span class="icon icon-link"></span></a>Centos7中修改ssh端口号的方法</h1>
         <p>使用场景，公司一个公网IP，两台服务器，所以尝试使用修改ssh端口号的方法，来链接不同的服务器。</p>
         <h2 id="查看端口"><a aria-hidden="true" tabindex="-1" href="#查看端口" class="anchor"><span class="icon icon-link"></span></a>查看端口</h2>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">netstat</span> -tnlp           <span class="token comment"># 查看端口</span>
-</span><span class="code-line line-number" line="2"><span class="token function">netstat</span> -tnlp <span class="token operator">|</span><span class="token function">grep</span> <span class="token function">ssh</span> <span class="token comment"># 查看ssh端口</span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">netstat</span> <span class="token parameter variable">-tnlp</span>           <span class="token comment"># 查看端口</span>
+</span><span class="code-line line-number" line="2"><span class="token function">netstat</span> <span class="token parameter variable">-tnlp</span> <span class="token operator">|</span><span class="token function">grep</span> <span class="token function">ssh</span> <span class="token comment"># 查看ssh端口</span>
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:22    <span class="token number">0.0</span>.0.0:*       LISTEN      <span class="token number">986</span>/sshd
 </span><span class="code-line line-number" line="5">tcp6       <span class="token number">0</span>      <span class="token number">0</span> :::22         :::*            LISTEN      <span class="token number">986</span>/sshd
@@ -116,13 +118,13 @@ Port 2211       # 下面添加这一行
         <p>修改SELinux</p>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 修改SELinux</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># 使用以下命令查看当前SElinux 允许的ssh端口：</span>
-</span><span class="code-line line-number" line="3">semanage port -l <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
+</span><span class="code-line line-number" line="3">semanage port <span class="token parameter variable">-l</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
 </span><span class="code-line line-number" line="4">
 </span><span class="code-line line-number" line="5"><span class="token comment"># 添加2211端口到 SELinux</span>
-</span><span class="code-line line-number" line="6">semanage port -a -t ssh_port_t -p tcp <span class="token number">2211</span>
+</span><span class="code-line line-number" line="6">semanage port <span class="token parameter variable">-a</span> <span class="token parameter variable">-t</span> ssh_port_t <span class="token parameter variable">-p</span> tcp <span class="token number">2211</span>
 </span><span class="code-line line-number" line="7">
 </span><span class="code-line line-number" line="8"><span class="token comment"># 然后确认一下是否添加进去</span>
-</span><span class="code-line line-number" line="9">semanage port -l <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
+</span><span class="code-line line-number" line="9">semanage port <span class="token parameter variable">-l</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
 </span><span class="code-line line-number" line="10">
 </span><span class="code-line line-number" line="11"><span class="token comment"># 如果成功会输出</span>
 </span><span class="code-line line-number" line="12">ssh_port_t       tcp    <span class="token number">2211</span>, <span class="token number">22</span>
@@ -146,7 +148,7 @@ ssh_port_t       tcp    2211, 22
         <p>不过上述方法仅仅是在ssh中设置端口,还要在防火墙firewalld中放行才是</p>
         <h3 id="另一种方法"><a aria-hidden="true" tabindex="-1" href="#另一种方法" class="anchor"><span class="icon icon-link"></span></a>另一种方法</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 还有一种办法直接关掉， 执行下面三条命令</span>
-</span><span class="code-line line-number" line="2"><span class="token function">sed</span> -i <span class="token string">'s/SELINUX=enforcing/SELINUX=disabled/'</span> /etc/selinux/config
+</span><span class="code-line line-number" line="2"><span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token string">'s/SELINUX=enforcing/SELINUX=disabled/'</span> /etc/selinux/config
 </span><span class="code-line line-number" line="3"><span class="token function">grep</span> <span class="token assign-left variable">SELINUX</span><span class="token operator">=</span>disabled /etc/selinux/config
 </span><span class="code-line line-number" line="4">setenforce <span class="token number">0</span>
 </span></code><input type="hidden" value="# 还有一种办法直接关掉， 执行下面三条命令
@@ -156,16 +158,16 @@ setenforce 0
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="修改防火墙"><a aria-hidden="true" tabindex="-1" href="#修改防火墙" class="anchor"><span class="icon icon-link"></span></a>修改防火墙</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 编辑文件/etc/sysconfig/iptables 添加下面这行</span>
-</span><span class="code-line line-number" line="2">-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="token number">2211</span> -j ACCEPT
+</span><span class="code-line line-number" line="2"><span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> NEW <span class="token parameter variable">-m</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">2211</span> <span class="token parameter variable">-j</span> ACCEPT
 </span></code><input type="hidden" value="# 编辑文件/etc/sysconfig/iptables 添加下面这行
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 2211 -j ACCEPT
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>也可下面方法</p>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 防火墙中开启端口2211</span>
-</span><span class="code-line line-number" line="2">firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">2211</span>/tcp --permanent
+</span><span class="code-line line-number" line="2">firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">2211</span>/tcp <span class="token parameter variable">--permanent</span>
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4"><span class="token comment"># 查看2211端口打开情况</span>
-</span><span class="code-line line-number" line="5">firewall-cmd --zone<span class="token operator">=</span>public --query-port<span class="token operator">=</span><span class="token number">2211</span>/tcp
+</span><span class="code-line line-number" line="5">firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --query-port<span class="token operator">=</span><span class="token number">2211</span>/tcp
 </span></code><input type="hidden" value="# 防火墙中开启端口2211
 firewall-cmd --zone=public --add-port=2211/tcp --permanent
 
@@ -200,7 +202,7 @@ systemctl status sshd
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

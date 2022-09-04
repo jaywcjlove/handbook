@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -96,7 +98,7 @@
         <p>1991年，还是大学生的<a href="https://en.wikipedia.org/wiki/Andrew_Tridgell">Andrew Tridgwell</a>，有三台机器，分别是Microsoft的DOS系统、DEC的Digital Unix系统、以及Sun的Unix系统。当时的技术无法让三者共享文件。为此，他开发了samba并将其开源。</p>
         <p>本来改名为smbserver，但是一家商业公司注册了SMBServer商标。他被告知不能使用。于是执行了<code>grep -i '^s.*m.*b' /usr/share/dict/words</code>，从中选择了samba这个词。我觉得这个是一个好想法，以后我也得着么干😄。</p>
         <h1 id="安装"><a aria-hidden="true" tabindex="-1" href="#安装" class="anchor"><span class="icon icon-link"></span></a>安装</h1>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum -y <span class="token function">install</span> samba samba-client samba-common
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token parameter variable">-y</span> <span class="token function">install</span> samba samba-client samba-common
 </span></code><input type="hidden" value="yum -y install samba samba-client samba-common
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h1 id="修改-samba-的配置文件"><a aria-hidden="true" tabindex="-1" href="#修改-samba-的配置文件" class="anchor"><span class="icon icon-link"></span></a>修改 samba 的配置文件</h1>
@@ -355,7 +357,7 @@ disable spoolss = yes
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

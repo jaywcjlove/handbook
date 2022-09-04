@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="active">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -110,11 +112,11 @@ chmod a+x certbot-auto
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="申请证书"><a aria-hidden="true" tabindex="-1" href="#申请证书" class="anchor"><span class="icon icon-link"></span></a>申请证书</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 注xxx.com请根据自己的域名自行更改</span>
-</span><span class="code-line line-number" line="2">./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d <span class="token string">"*.xxx.com"</span> --manual --preferred-challenges dns-01 certonly
+</span><span class="code-line line-number" line="2">./certbot-auto <span class="token parameter variable">--server</span> https://acme-v02.api.letsencrypt.org/directory <span class="token parameter variable">-d</span> <span class="token string">"*.xxx.com"</span> <span class="token parameter variable">--manual</span> --preferred-challenges dns-01 certonly
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4"><span class="token comment"># 如需把主域名也增加到证书的覆盖范围，请在开始申请证书步骤的那个指令把主域名也加上`-d "xxx.com"`，如下：</span>
 </span><span class="code-line line-number" line="5"><span class="token comment"># 需要注意的是，这样的话需要修改两次解析记录</span>
-</span><span class="code-line line-number" line="6">./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d <span class="token string">"*.xxx.com"</span> -d <span class="token string">"xxx.com"</span> --manual --preferred-challenges dns-01 certonly
+</span><span class="code-line line-number" line="6">./certbot-auto <span class="token parameter variable">--server</span> https://acme-v02.api.letsencrypt.org/directory <span class="token parameter variable">-d</span> <span class="token string">"*.xxx.com"</span> <span class="token parameter variable">-d</span> <span class="token string">"xxx.com"</span> <span class="token parameter variable">--manual</span> --preferred-challenges dns-01 certonly
 </span></code><input type="hidden" value="# 注xxx.com请根据自己的域名自行更改
 ./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d &#x22;*.xxx.com&#x22; --manual --preferred-challenges dns-01 certonly
 
@@ -289,7 +291,7 @@ IMPORTANT NOTES:
         <p>看到 <code>Congratulations</code> 你就大功告成了！</p>
         <h3 id="续期https证书"><a aria-hidden="true" tabindex="-1" href="#续期https证书" class="anchor"><span class="icon icon-link"></span></a>续期HTTPS证书</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">certbot-auto renew
-</span><span class="code-line line-number" line="2">certbot-auto delete -d chat.xxx.cn <span class="token comment"># 删除证书</span>
+</span><span class="code-line line-number" line="2">certbot-auto delete <span class="token parameter variable">-d</span> chat.xxx.cn <span class="token comment"># 删除证书</span>
 </span><span class="code-line line-number" line="3">./certbot-auto delete --cert-name xxx.com <span class="token comment"># 删除证书重新生成</span>
 </span></code><input type="hidden" value="certbot-auto renew
 certbot-auto delete -d chat.xxx.cn # 删除证书
@@ -297,7 +299,7 @@ certbot-auto delete -d chat.xxx.cn # 删除证书
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>⚠️ 注意这里会有升级操作，并且有安装 Python 包，有时候会非常慢，不要停止，停止操作可能会造成麻烦。</p>
         <h3 id="查看证书过期时间"><a aria-hidden="true" tabindex="-1" href="#查看证书过期时间" class="anchor"><span class="icon icon-link"></span></a>查看证书过期时间</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">openssl x509 -noout -dates -in /etc/letsencrypt/live/<span class="token operator">&#x3C;</span>你的域名<span class="token operator">></span>/cert.pem
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">openssl x509 <span class="token parameter variable">-noout</span> <span class="token parameter variable">-dates</span> <span class="token parameter variable">-in</span> /etc/letsencrypt/live/<span class="token operator">&#x3C;</span>你的域名<span class="token operator">></span>/cert.pem
 </span></code><input type="hidden" value="openssl x509 -noout -dates -in /etc/letsencrypt/live/<你的域名>/cert.pem
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>简单的查看方法</p>
@@ -345,13 +347,13 @@ certbot-auto delete -d chat.xxx.cn # 删除证书
 cd /etc/yum.repos.d/
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>如果不存在可以直接安装</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> yum <span class="token function">install</span> epel-release -y
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> yum <span class="token function">install</span> epel-release <span class="token parameter variable">-y</span>
 </span></code><input type="hidden" value="sudo yum install epel-release -y
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="安装签发证书工具"><a aria-hidden="true" tabindex="-1" href="#安装签发证书工具" class="anchor"><span class="icon icon-link"></span></a>安装签发证书工具</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> yum <span class="token function">install</span> certbot-nginx -y
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> yum <span class="token function">install</span> certbot-nginx <span class="token parameter variable">-y</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># 查看版本</span>
-</span><span class="code-line line-number" line="3">certbot --version
+</span><span class="code-line line-number" line="3">certbot <span class="token parameter variable">--version</span>
 </span><span class="code-line line-number" line="4"><span class="token comment"># certbot 0.21.1</span>
 </span></code><input type="hidden" value="sudo yum install certbot-nginx -y
 # 查看版本
@@ -360,7 +362,7 @@ certbot --version
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="申请证书-1"><a aria-hidden="true" tabindex="-1" href="#申请证书-1" class="anchor"><span class="icon icon-link"></span></a>申请证书</h3>
         <h4 id="报nginx命令不存在错误"><a aria-hidden="true" tabindex="-1" href="#报nginx命令不存在错误" class="anchor"><span class="icon icon-link"></span></a>报nginx命令不存在错误</h4>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> certbot --nginx
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> certbot <span class="token parameter variable">--nginx</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># Saving debug log to /var/log/letsencrypt/letsencrypt.log</span>
 </span><span class="code-line line-number" line="3"><span class="token comment"># The nginx plugin is not working; there may be problems with your existing configuration.</span>
 </span><span class="code-line line-number" line="4"><span class="token comment"># The error was: NoInstallationError()</span>
@@ -378,13 +380,13 @@ which nginx # 查看目录
 yum info nginx
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>解决方法</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ln</span> -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
-</span><span class="code-line line-number" line="2"><span class="token function">ln</span> -s /usr/local/nginx/conf/ /etc/nginx
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ln</span> <span class="token parameter variable">-s</span> /usr/local/nginx/sbin/nginx /usr/bin/nginx
+</span><span class="code-line line-number" line="2"><span class="token function">ln</span> <span class="token parameter variable">-s</span> /usr/local/nginx/conf/ /etc/nginx
 </span></code><input type="hidden" value="ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
 ln -s /usr/local/nginx/conf/ /etc/nginx
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h4 id="报nginx配置文件目录不对错误"><a aria-hidden="true" tabindex="-1" href="#报nginx配置文件目录不对错误" class="anchor"><span class="icon icon-link"></span></a>报nginx配置文件目录不对错误</h4>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> certbot --nginx
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> certbot <span class="token parameter variable">--nginx</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># Saving debug log to /var/log/letsencrypt/letsencrypt.log</span>
 </span><span class="code-line line-number" line="3"><span class="token comment"># Error while running nginx -c /etc/nginx/nginx.conf -t.</span>
 </span><span class="code-line line-number" line="4">
@@ -407,14 +409,14 @@ ln -s /usr/local/nginx/conf/ /etc/nginx
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># nginx 默认配置文件目录不 /etc/nginx/ 目录下，</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># 需要拷贝/usr/local/nginx/conf目录下的全部文件</span>
 </span><span class="code-line line-number" line="3"><span class="token comment"># 复制到/etc/nginx/目录下</span>
-</span><span class="code-line line-number" line="4"><span class="token function">cp</span> -r /usr/local/nginx/conf/* /etc/nginx/
+</span><span class="code-line line-number" line="4"><span class="token function">cp</span> <span class="token parameter variable">-r</span> /usr/local/nginx/conf/* /etc/nginx/
 </span><span class="code-line line-number" line="5">
 </span><span class="code-line line-number" line="6"><span class="token comment"># 编辑开机启动将所有目录换成/etc/nginx/</span>
 </span><span class="code-line line-number" line="7"><span class="token function">vim</span> /lib/systemd/system/nginx.service
 </span><span class="code-line line-number" line="8"><span class="token function">cp</span> /lib/systemd/system/nginx.service<span class="token punctuation">{</span>,.bak<span class="token punctuation">}</span>
 </span><span class="code-line line-number" line="9">
 </span><span class="code-line line-number" line="10"><span class="token comment"># 测试配置是否正确</span>
-</span><span class="code-line line-number" line="11">nginx -t -c /etc/nginx/nginx.conf
+</span><span class="code-line line-number" line="11">nginx <span class="token parameter variable">-t</span> <span class="token parameter variable">-c</span> /etc/nginx/nginx.conf
 </span></code><input type="hidden" value="# nginx 默认配置文件目录不 /etc/nginx/ 目录下，
 # 需要拷贝/usr/local/nginx/conf目录下的全部文件
 # 复制到/etc/nginx/目录下
@@ -439,7 +441,7 @@ nginx -t -c /etc/nginx/nginx.conf
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h4 id="正式申请申请证书"><a aria-hidden="true" tabindex="-1" href="#正式申请申请证书" class="anchor"><span class="icon icon-link"></span></a>正式申请申请证书</h4>
         <p>首先运行证书生成命令，选择你要配置<code>SSL</code>证书的网站，这个是基于你网站已经在<code>nginx</code>中配置好了的情况。</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> certbot --nginx certonly
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> certbot <span class="token parameter variable">--nginx</span> certonly
 </span><span class="code-line line-number" line="2"><span class="token comment"># Saving debug log to /var/log/letsencrypt/letsencrypt.log</span>
 </span><span class="code-line line-number" line="3"><span class="token comment"># Plugins selected: Authenticator nginx, Installer nginx</span>
 </span><span class="code-line line-number" line="4"><span class="token comment"># Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org</span>
@@ -616,7 +618,7 @@ Couldn&#x27;t download https://raw.githubusercontent.com/certbot/certbot/v1.3.0/
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

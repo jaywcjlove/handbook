@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -97,7 +99,7 @@
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 下载Elasticsearch 5.3</span>
 </span><span class="code-line line-number" line="2"><span class="token function">wget</span> https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.3.0.tar.gz
 </span><span class="code-line line-number" line="3"><span class="token comment"># 解压压缩包</span>
-</span><span class="code-line line-number" line="4"><span class="token function">tar</span> -xzf elasticsearch-5.3.0.tar.gz
+</span><span class="code-line line-number" line="4"><span class="token function">tar</span> <span class="token parameter variable">-xzf</span> elasticsearch-5.3.0.tar.gz
 </span><span class="code-line line-number" line="5"><span class="token comment"># 进入解压出来的目录</span>
 </span><span class="code-line line-number" line="6"><span class="token builtin class-name">cd</span> elasticsearch-5.3.0/ 
 </span></code><input type="hidden" value="# 下载Elasticsearch 5.3
@@ -113,7 +115,7 @@ cd elasticsearch-5.3.0/
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 命令行运行</span>
 </span><span class="code-line line-number" line="2">./bin/elasticsearch
 </span><span class="code-line line-number" line="3"><span class="token comment"># 查看日志</span>
-</span><span class="code-line line-number" line="4"><span class="token function">tail</span> -f logs/elasticsearch.log
+</span><span class="code-line line-number" line="4"><span class="token function">tail</span> <span class="token parameter variable">-f</span> logs/elasticsearch.log
 </span></code><input type="hidden" value="# 命令行运行
 ./bin/elasticsearch
 # 查看日志
@@ -125,7 +127,7 @@ tail -f logs/elasticsearch.log
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="全局命令调用"><a aria-hidden="true" tabindex="-1" href="#全局命令调用" class="anchor"><span class="icon icon-link"></span></a>全局命令调用</h2>
         <p>将你下载的目录拷贝到一个特定目录<code>/usr/local</code> 这个目录一般是本地系统管理员，用来自由添加程序的目录。</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">cp</span> -rf elasticsearch-5.3.0 /usr/local/
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">cp</span> <span class="token parameter variable">-rf</span> elasticsearch-5.3.0 /usr/local/
 </span></code><input type="hidden" value="cp -rf elasticsearch-5.3.0 /usr/local/
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>编辑 <code>vim ~/.bash_profile</code> 文件添加下面两行配置。</p>
@@ -137,7 +139,7 @@ export PATH=${ELASTIC_SEARCH}:${PATH}
         <p>上面操作完成记得 <code>source ~/.bash_profile</code> 立即生效。</p>
         <h2 id="作为守护进程启动"><a aria-hidden="true" tabindex="-1" href="#作为守护进程启动" class="anchor"><span class="icon icon-link"></span></a>作为守护进程启动</h2>
         <p>加上 <code>-p</code> 参数将进程id保存到<code>es.pid</code>文本文件里面。</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">elasticsearch -d -p es.pid
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">elasticsearch <span class="token parameter variable">-d</span> <span class="token parameter variable">-p</span> es.pid
 </span></code><input type="hidden" value="elasticsearch -d -p es.pid
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>通过 <code>es.pid</code> 文件中的进程id 将其杀掉</p>
@@ -146,7 +148,7 @@ export PATH=${ELASTIC_SEARCH}:${PATH}
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="命令行中修改配置"><a aria-hidden="true" tabindex="-1" href="#命令行中修改配置" class="anchor"><span class="icon icon-link"></span></a>命令行中修改配置</h2>
         <p>任何<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.3/settings.html">Elasticsearch配置</a>都可以通过命令行修改，但是要遵循elasticsearch的语法，每个参数前面跟上<code>-E</code>，如：</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">elasticsearch -d -Ecluster.name<span class="token operator">=</span>my_cluster -Enode.name<span class="token operator">=</span>node_1
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">elasticsearch <span class="token parameter variable">-d</span> <span class="token parameter variable">-Ecluster.name</span><span class="token operator">=</span>my_cluster <span class="token parameter variable">-Enode.name</span><span class="token operator">=</span>node_1
 </span></code><input type="hidden" value="elasticsearch -d -Ecluster.name=my_cluster -Enode.name=node_1
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="管理"><a aria-hidden="true" tabindex="-1" href="#管理" class="anchor"><span class="icon icon-link"></span></a>管理</h2>
@@ -194,10 +196,10 @@ Elasticsearch -> Indices   -> Types  -> Documents -> Fields
 </span><span class="code-line line-number" line="11"><span class="token function">sudo</span> <span class="token assign-left variable">ES_JAVA_OPTS</span><span class="token operator">=</span><span class="token string">"-Djavax.net.ssl.trustStore=/path/to/trustStore.jks"</span> bin/elasticsearch-plugin <span class="token function">install</span> https://<span class="token punctuation">..</span><span class="token punctuation">..</span>
 </span><span class="code-line line-number" line="12"><span class="token comment"># 某些插件需要更多权限</span>
 </span><span class="code-line line-number" line="13"><span class="token comment"># 这些插件将列出所需的权限，并要求用户进行确认，然后再继续安装。</span>
-</span><span class="code-line line-number" line="14"><span class="token function">sudo</span> bin/elasticsearch-plugin <span class="token function">install</span> --batch <span class="token punctuation">[</span>pluginname<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="14"><span class="token function">sudo</span> bin/elasticsearch-plugin <span class="token function">install</span> <span class="token parameter variable">--batch</span> <span class="token punctuation">[</span>pluginname<span class="token punctuation">]</span>
 </span><span class="code-line line-number" line="15"><span class="token comment"># 如果您的elasticsearch.yml配置文件位于自定义位置，</span>
 </span><span class="code-line line-number" line="16"><span class="token comment"># 则需要在使用插件脚本时指定配置文件的路径。</span>
-</span><span class="code-line line-number" line="17"><span class="token function">sudo</span> bin/elasticsearch-plugin -Epath.conf<span class="token operator">=</span>/path/to/custom/config/dir <span class="token function">install</span> <span class="token operator">&#x3C;</span>plugin name<span class="token operator">></span>
+</span><span class="code-line line-number" line="17"><span class="token function">sudo</span> bin/elasticsearch-plugin <span class="token parameter variable">-Epath.conf</span><span class="token operator">=</span>/path/to/custom/config/dir <span class="token function">install</span> <span class="token operator">&#x3C;</span>plugin name<span class="token operator">></span>
 </span><span class="code-line line-number" line="18"><span class="token comment"># 通过代理安装插件</span>
 </span><span class="code-line line-number" line="19"><span class="token function">sudo</span> <span class="token assign-left variable">ES_JAVA_OPTS</span><span class="token operator">=</span><span class="token string">"-Dhttp.proxyHost=host_name -Dhttp.proxyPort=port_number -Dhttps.proxyHost=host_name -Dhttps.proxyPort=https_port_number"</span> bin/elasticsearch-plugin <span class="token function">install</span> analysis-icu
 </span><span class="code-line line-number" line="20"><span class="token comment"># windows中通过代理安装插件</span>
@@ -272,8 +274,8 @@ http://localhost:9100/
           <p>org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root</p>
         </blockquote>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">groupadd</span> elsearch   <span class="token comment"># 增加es组</span>
-</span><span class="code-line line-number" line="2"><span class="token function">useradd</span> elsearch -g elsearch -p elasticsearch  <span class="token comment"># 增加elsearch用户并附加到elsearch组</span>
-</span><span class="code-line line-number" line="3"><span class="token function">chown</span> -R elsearch:elsearch elasticsearch-5.1.1             <span class="token comment"># 给目录权限</span>
+</span><span class="code-line line-number" line="2"><span class="token function">useradd</span> elsearch <span class="token parameter variable">-g</span> elsearch <span class="token parameter variable">-p</span> elasticsearch  <span class="token comment"># 增加elsearch用户并附加到elsearch组</span>
+</span><span class="code-line line-number" line="3"><span class="token function">chown</span> <span class="token parameter variable">-R</span> elsearch:elsearch elasticsearch-5.1.1             <span class="token comment"># 给目录权限</span>
 </span><span class="code-line line-number" line="4"><span class="token function">su</span> elsearch <span class="token comment"># 使用es用户</span>
 </span></code><input type="hidden" value="groupadd elsearch   # 增加es组
 useradd elsearch -g elsearch -p elasticsearch  # 增加elsearch用户并附加到elsearch组
@@ -312,7 +314,7 @@ ERROR: bootstrap checks failed
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

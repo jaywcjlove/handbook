@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="active">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -95,13 +97,13 @@
         <h2 id="安装部署"><a aria-hidden="true" tabindex="-1" href="#安装部署" class="anchor"><span class="icon icon-link"></span></a>安装部署</h2>
         <h3 id="安装svn"><a aria-hidden="true" tabindex="-1" href="#安装svn" class="anchor"><span class="icon icon-link"></span></a>安装SVN</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">yum <span class="token function">install</span> httpd subversion mod_dav_svn
-</span><span class="code-line line-number" line="2"><span class="token function">rpm</span> -ql subvserion <span class="token comment"># 查看 subversion 安装位置</span>
+</span><span class="code-line line-number" line="2"><span class="token function">rpm</span> <span class="token parameter variable">-ql</span> subvserion <span class="token comment"># 查看 subversion 安装位置</span>
 </span></code><input type="hidden" value="yum install httpd subversion mod_dav_svn
 rpm -ql subvserion # 查看 subversion 安装位置
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>OK 这样就完成了安装。下面是SVN的配置：</p>
         <h3 id="验证安装"><a aria-hidden="true" tabindex="-1" href="#验证安装" class="anchor"><span class="icon icon-link"></span></a>验证安装</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">svnserve --version
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">svnserve <span class="token parameter variable">--version</span>
 </span><span class="code-line line-number" line="2">
 </span><span class="code-line line-number" line="3"><span class="token comment"># svnserve，版本 1.7.14 (r1542130)</span>
 </span><span class="code-line line-number" line="4"><span class="token comment">#    编译于 Aug 23 2017，20:43:38</span>
@@ -134,7 +136,7 @@ rpm -ql subvserion # 查看 subversion 安装位置
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="代码库创建"><a aria-hidden="true" tabindex="-1" href="#代码库创建" class="anchor"><span class="icon icon-link"></span></a>代码库创建</h2>
         <p>SVN软件安装完成后还需要建立SVN库</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">mkdir</span> -p /opt/svn/repo
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /opt/svn/repo
 </span><span class="code-line line-number" line="2">svnadmin create /opt/svn/repo
 </span></code><input type="hidden" value="mkdir -p /opt/svn/repo
 svnadmin create /opt/svn/repo
@@ -205,12 +207,12 @@ authz-db = authz
         <h3 id="配置防火墙端口"><a aria-hidden="true" tabindex="-1" href="#配置防火墙端口" class="anchor"><span class="icon icon-link"></span></a>配置防火墙端口</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">vi</span> /etc/sysconfig/iptables
 </span><span class="code-line line-number" line="2"><span class="token comment"># 添加以下内容：</span>
-</span><span class="code-line line-number" line="3">-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="token number">3690</span> -j ACCEPT
+</span><span class="code-line line-number" line="3"><span class="token parameter variable">-A</span> INPUT <span class="token parameter variable">-m</span> state <span class="token parameter variable">--state</span> NEW <span class="token parameter variable">-m</span> tcp <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">3690</span> <span class="token parameter variable">-j</span> ACCEPT
 </span><span class="code-line line-number" line="4">
 </span><span class="code-line line-number" line="5"><span class="token comment"># 或者下面方式</span>
 </span><span class="code-line line-number" line="6"><span class="token comment"># 开启3690端口的命令，在终端输入以下命令：</span>
-</span><span class="code-line line-number" line="7">iptables -I INPUT -i eth0 -p tcp --dport <span class="token number">3690</span> -j ACCEPT
-</span><span class="code-line line-number" line="8">iptables -I OUTPUT -o eth0 -p tcp --sport <span class="token number">3690</span> -j ACCEPT
+</span><span class="code-line line-number" line="7">iptables <span class="token parameter variable">-I</span> INPUT <span class="token parameter variable">-i</span> eth0 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--dport</span> <span class="token number">3690</span> <span class="token parameter variable">-j</span> ACCEPT
+</span><span class="code-line line-number" line="8">iptables <span class="token parameter variable">-I</span> OUTPUT <span class="token parameter variable">-o</span> eth0 <span class="token parameter variable">-p</span> tcp <span class="token parameter variable">--sport</span> <span class="token number">3690</span> <span class="token parameter variable">-j</span> ACCEPT
 </span><span class="code-line line-number" line="9"><span class="token comment"># 保存后重启防火墙</span>
 </span><span class="code-line line-number" line="10"><span class="token function">service</span> iptables save
 </span><span class="code-line line-number" line="11"><span class="token function">service</span> iptables restart
@@ -233,11 +235,11 @@ service iptables restart
             这里是非常深的坑哦。
           </p>
         </blockquote>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">svnserve -d -r /opt/svn
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">svnserve <span class="token parameter variable">-d</span> <span class="token parameter variable">-r</span> /opt/svn
 </span></code><input type="hidden" value="svnserve -d -r /opt/svn
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="启动报警告"><a aria-hidden="true" tabindex="-1" href="#启动报警告" class="anchor"><span class="icon icon-link"></span></a>启动报警告</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">svnserve -d -r /opt/svn
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">svnserve <span class="token parameter variable">-d</span> <span class="token parameter variable">-r</span> /opt/svn
 </span><span class="code-line line-number" line="2">svnserve: warning: cannot <span class="token builtin class-name">set</span> LC_CTYPE locale
 </span><span class="code-line line-number" line="3">svnserve: warning: environment variable LC_CTYPE is UTF-8
 </span><span class="code-line line-number" line="4">svnserve: warning: please check that your locale name is correct
@@ -251,20 +253,20 @@ svnserve: warning: please check that your locale name is correct
 </span></code><input type="hidden" value="echo &#x22;export LC_ALL=C&#x22; >> /etc/profile
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="查看svn进程"><a aria-hidden="true" tabindex="-1" href="#查看svn进程" class="anchor"><span class="icon icon-link"></span></a>查看SVN进程</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span> svn<span class="token operator">|</span><span class="token function">grep</span> -v <span class="token function">grep</span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span> svn<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token function">grep</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># root     24394     1  0 23:32 ?        00:00:00 svnserve -d -r /opt/svn</span>
 </span></code><input type="hidden" value="ps -ef|grep svn|grep -v grep
 # root     24394     1  0 23:32 ?        00:00:00 svnserve -d -r /opt/svn
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="检测svn-端口"><a aria-hidden="true" tabindex="-1" href="#检测svn-端口" class="anchor"><span class="icon icon-link"></span></a>检测SVN 端口</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">netstat</span> -ln <span class="token operator">|</span><span class="token function">grep</span> <span class="token number">3690</span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">netstat</span> <span class="token parameter variable">-ln</span> <span class="token operator">|</span><span class="token function">grep</span> <span class="token number">3690</span>
 </span><span class="code-line line-number" line="2">tcp        <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">0.0</span>.0.0:3690            <span class="token number">0.0</span>.0.0:*               LISTEN
 </span></code><input type="hidden" value="netstat -ln |grep 3690
 tcp        0      0 0.0.0.0:3690            0.0.0.0:*               LISTEN
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="停止重启svn"><a aria-hidden="true" tabindex="-1" href="#停止重启svn" class="anchor"><span class="icon icon-link"></span></a>停止重启SVN</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">killall</span> svnserve <span class="token comment"># 停止</span>
-</span><span class="code-line line-number" line="2">svnserve -d -r /opt/svn <span class="token comment"># 启动</span>
+</span><span class="code-line line-number" line="2">svnserve <span class="token parameter variable">-d</span> <span class="token parameter variable">-r</span> /opt/svn <span class="token comment"># 启动</span>
 </span></code><input type="hidden" value="killall svnserve # 停止
 svnserve -d -r /opt/svn # 启动
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
@@ -293,7 +295,7 @@ svn checkout svn://192.168.1.1/pro/domain
 </span><span class="code-line line-number" line="5">svn <span class="token function">add</span> *
 </span><span class="code-line line-number" line="6">
 </span><span class="code-line line-number" line="7"><span class="token comment"># 创建纳入版本目录</span>
-</span><span class="code-line line-number" line="8">svn <span class="token function">mkdir</span> -m <span class="token string">'commit message'</span> <span class="token string">'url/dir'</span>
+</span><span class="code-line line-number" line="8">svn <span class="token function">mkdir</span> <span class="token parameter variable">-m</span> <span class="token string">'commit message'</span> <span class="token string">'url/dir'</span>
 </span></code><input type="hidden" value="# 添加指定文件或目录
 svn add &#x27;file&#x27;或&#x27;dir&#x27;
 
@@ -308,7 +310,7 @@ svn mkdir -m &#x27;commit message&#x27; &#x27;url/dir&#x27;
 </span><span class="code-line line-number" line="2">svn delete <span class="token string">'file'</span>
 </span><span class="code-line line-number" line="3">推荐组合
 </span><span class="code-line line-number" line="4">svn delete <span class="token string">'file name'</span>
-</span><span class="code-line line-number" line="5">svn commit -m <span class="token string">'delete file name'</span>
+</span><span class="code-line line-number" line="5">svn commit <span class="token parameter variable">-m</span> <span class="token string">'delete file name'</span>
 </span></code><input type="hidden" value="删除指定文件
 svn delete &#x27;file&#x27;
 推荐组合
@@ -317,12 +319,12 @@ svn commit -m &#x27;delete file name&#x27;
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="提交修改"><a aria-hidden="true" tabindex="-1" href="#提交修改" class="anchor"><span class="icon icon-link"></span></a>提交修改</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 提交指定文件</span>
-</span><span class="code-line line-number" line="2">svn commit -m <span class="token string">'commit message'</span> <span class="token string">'file'</span>
+</span><span class="code-line line-number" line="2">svn commit <span class="token parameter variable">-m</span> <span class="token string">'commit message'</span> <span class="token string">'file'</span>
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4"><span class="token comment"># 提交所有文件</span>
-</span><span class="code-line line-number" line="5">svn commit -m <span class="token string">'commit message'</span>
+</span><span class="code-line line-number" line="5">svn commit <span class="token parameter variable">-m</span> <span class="token string">'commit message'</span>
 </span><span class="code-line line-number" line="6"><span class="token comment"># 简写</span>
-</span><span class="code-line line-number" line="7">svn ci -m
+</span><span class="code-line line-number" line="7">svn ci <span class="token parameter variable">-m</span>
 </span></code><input type="hidden" value="# 提交指定文件
 svn commit -m &#x27;commit message&#x27; &#x27;file&#x27;
 
@@ -377,7 +379,7 @@ svn update
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="锁定"><a aria-hidden="true" tabindex="-1" href="#锁定" class="anchor"><span class="icon icon-link"></span></a>锁定</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 加锁指定文件</span>
-</span><span class="code-line line-number" line="2">svn lock -m <span class="token string">'commit message'</span> <span class="token string">'file'</span>  
+</span><span class="code-line line-number" line="2">svn lock <span class="token parameter variable">-m</span> <span class="token string">'commit message'</span> <span class="token string">'file'</span>  
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4"><span class="token comment"># 解锁指定文件</span>
 </span><span class="code-line line-number" line="5">svn unlock <span class="token string">'file'</span>
@@ -392,7 +394,7 @@ svn unlock &#x27;file&#x27;
 </span><span class="code-line line-number" line="2">svn <span class="token function">diff</span> <span class="token string">'file'</span>  
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4">对指定文件的版本1和版本2比较差异
-</span><span class="code-line line-number" line="5">svn <span class="token function">diff</span> -r version1:version2 <span class="token string">'file'</span>  
+</span><span class="code-line line-number" line="5">svn <span class="token function">diff</span> <span class="token parameter variable">-r</span> version1:version2 <span class="token string">'file'</span>  
 </span></code><input type="hidden" value="比较指定文件差异
 svn diff &#x27;file&#x27;  
 
@@ -401,7 +403,7 @@ svn diff -r version1:version2 &#x27;file&#x27;
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="分支"><a aria-hidden="true" tabindex="-1" href="#分支" class="anchor"><span class="icon icon-link"></span></a>分支</h3>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">从分支A新建出一个分支B
-</span><span class="code-line line-number" line="2">svn copy branchA branchB -m <span class="token string">'commit message'</span>    
+</span><span class="code-line line-number" line="2">svn copy branchA branchB <span class="token parameter variable">-m</span> <span class="token string">'commit message'</span>    
 </span></code><input type="hidden" value="从分支A新建出一个分支B
 svn copy branchA branchB -m &#x27;commit message&#x27;    
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
@@ -433,7 +435,7 @@ svn copy branchA branchB -m &#x27;commit message&#x27;
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -120,9 +122,9 @@ sudo yum install gitlab-ce
           If you are not comfortable installing the repository through a piped script, you can find the entire script here and select and download the package manually and install using
           <a href="https://packages.gitlab.com/gitlab/gitlab-ce">gitlab/gitlab-ce</a>
         </p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">curl</span> -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/6/gitlab-ce-XXX.rpm/download
-</span><span class="code-line line-number" line="2"><span class="token function">curl</span> -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-10.2.2-ce.0.el7.x86_64.rpm/download
-</span><span class="code-line line-number" line="3"><span class="token function">rpm</span> -i gitlab-ce-XXX.rpm
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">curl</span> <span class="token parameter variable">-LJO</span> https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/6/gitlab-ce-XXX.rpm/download
+</span><span class="code-line line-number" line="2"><span class="token function">curl</span> <span class="token parameter variable">-LJO</span> https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-10.2.2-ce.0.el7.x86_64.rpm/download
+</span><span class="code-line line-number" line="3"><span class="token function">rpm</span> <span class="token parameter variable">-i</span> gitlab-ce-XXX.rpm
 </span></code><input type="hidden" value="curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/6/gitlab-ce-XXX.rpm/download
 curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-10.2.2-ce.0.el7.x86_64.rpm/download
 rpm -i gitlab-ce-XXX.rpm
@@ -239,7 +241,7 @@ docker push 192.168.188.211:5008/docker/docker-static-service-template
 </span><span class="code-line line-number" line="8"><span class="token comment"># echo never > /sys/kernel/mm/transparent_hugepage/enabled</span>
 </span><span class="code-line line-number" line="9">
 </span><span class="code-line line-number" line="10"><span class="token comment"># 检查gitlab</span>
-</span><span class="code-line line-number" line="11">gitlab-rake gitlab:check <span class="token assign-left variable">SANITIZE</span><span class="token operator">=</span>true --trace
+</span><span class="code-line line-number" line="11">gitlab-rake gitlab:check <span class="token assign-left variable">SANITIZE</span><span class="token operator">=</span>true <span class="token parameter variable">--trace</span>
 </span><span class="code-line line-number" line="12">gitlab-rake gitlab:check
 </span><span class="code-line line-number" line="13">gitlab-rake gitlab:check <span class="token assign-left variable">SANITIZE</span><span class="token operator">=</span>true
 </span><span class="code-line line-number" line="14"><span class="token comment"># 查看日志</span>
@@ -378,7 +380,7 @@ user.save!
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="自动备份"><a aria-hidden="true" tabindex="-1" href="#自动备份" class="anchor"><span class="icon icon-link"></span></a>自动备份</h3>
         <p>通过crontab使用备份命令实现自动备份</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">crontab</span> -e
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">crontab</span> <span class="token parameter variable">-e</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># 每天2点备份gitlab数据</span>
 </span><span class="code-line line-number" line="3"><span class="token number">0</span> <span class="token number">2</span> * * * /usr/bin/gitlab-rake gitlab:backup:create
 </span><span class="code-line line-number" line="4"><span class="token number">0</span> <span class="token number">2</span> * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create
@@ -450,10 +452,10 @@ sudo gitlab-ctl start
 </span><span class="code-line line-number" line="4"><span class="token function">chmod</span> <span class="token number">700</span> /var/opt/gitlab/backups
 </span><span class="code-line line-number" line="5">
 </span><span class="code-line line-number" line="6"><span class="token comment"># 恢复成功页面报没有权限的错误</span>
-</span><span class="code-line line-number" line="7"><span class="token function">sudo</span> <span class="token function">chown</span> -R git:git /var/opt/gitlab/git-data/repositories
-</span><span class="code-line line-number" line="8"><span class="token function">sudo</span> <span class="token function">chmod</span> -R ug+rwX,o-rwx /var/opt/gitlab/git-data/repositories
-</span><span class="code-line line-number" line="9"><span class="token function">sudo</span> <span class="token function">chmod</span> -R ug-s /var/opt/gitlab/git-data/repositories
-</span><span class="code-line line-number" line="10"><span class="token function">sudo</span> <span class="token function">find</span> /var/opt/gitlab/git-data/repositories -type d -print0 <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">xargs</span> -0 <span class="token function">chmod</span> g+s
+</span><span class="code-line line-number" line="7"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> git:git /var/opt/gitlab/git-data/repositories
+</span><span class="code-line line-number" line="8"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token parameter variable">-R</span> ug+rwX,o-rwx /var/opt/gitlab/git-data/repositories
+</span><span class="code-line line-number" line="9"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token parameter variable">-R</span> ug-s /var/opt/gitlab/git-data/repositories
+</span><span class="code-line line-number" line="10"><span class="token function">sudo</span> <span class="token function">find</span> /var/opt/gitlab/git-data/repositories <span class="token parameter variable">-type</span> d <span class="token parameter variable">-print0</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">xargs</span> <span class="token parameter variable">-0</span> <span class="token function">chmod</span> g+s
 </span></code><input type="hidden" value="# 恢复过程中没有权限
 mkdir /var/opt/gitlab/backups
 chown git /var/opt/gitlab/backups
@@ -466,7 +468,7 @@ sudo chmod -R ug-s /var/opt/gitlab/git-data/repositories
 sudo find /var/opt/gitlab/git-data/repositories -type d -print0 | sudo xargs -0 chmod g+s
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>如果备份文件报没有权限，通过<code>ls -al</code>查看权限是不是<code>git</code>，而不是<code>root</code>，通过下面方式给<code>git</code>用户权限</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> <span class="token function">chown</span> -R git:git 1483533591_2017_01_04_gitlab_backup.tar
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> git:git 1483533591_2017_01_04_gitlab_backup.tar
 </span></code><input type="hidden" value="sudo chown -R git:git 1483533591_2017_01_04_gitlab_backup.tar
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="连接数据库"><a aria-hidden="true" tabindex="-1" href="#连接数据库" class="anchor"><span class="icon icon-link"></span></a>连接数据库</h2>
@@ -866,9 +868,9 @@ server {
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>nginx配置检查和立即生效</p>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 检查配置</span>
-</span><span class="code-line line-number" line="2">/usr/local/nginx/sbin/nginx -tc conf/nginx.conf
+</span><span class="code-line line-number" line="2">/usr/local/nginx/sbin/nginx <span class="token parameter variable">-tc</span> conf/nginx.conf
 </span><span class="code-line line-number" line="3"><span class="token comment"># nginx 重新加载配置</span>
-</span><span class="code-line line-number" line="4">/usr/local/nginx/sbin/nginx -s reload
+</span><span class="code-line line-number" line="4">/usr/local/nginx/sbin/nginx <span class="token parameter variable">-s</span> reload
 </span></code><input type="hidden" value="# 检查配置
 /usr/local/nginx/sbin/nginx -tc conf/nginx.conf
 # nginx 重新加载配置
@@ -904,7 +906,7 @@ sudo gitlab-rake cache:clear RAILS_ENV=production
 </span></code><input type="hidden" value="[crit] 14788#0: *215 open() &#x22;/usr/local/nginx/proxy_temp/5/01/0000000015&#x22; failed (13: Permission denied) while reading upstream
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>以下方式解决</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">chown</span> -R root:root /usr/local/nginx/proxy_temp
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">chown</span> <span class="token parameter variable">-R</span> root:root /usr/local/nginx/proxy_temp
 </span><span class="code-line line-number" line="2"><span class="token comment"># 编辑 nginx.conf</span>
 </span><span class="code-line line-number" line="3"><span class="token function">sudo</span> <span class="token function">vi</span> /usr/local/nginx/conf/nginx.conf
 </span><span class="code-line line-number" line="4"><span class="token comment"># 在第一行添加</span>
@@ -1017,7 +1019,7 @@ Completed 401 Unauthorized in 17ms (ActiveRecord: 2.7ms)
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

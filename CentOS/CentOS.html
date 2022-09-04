@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -98,12 +100,12 @@
         <h1 id="系统配置情况命令"><a aria-hidden="true" tabindex="-1" href="#系统配置情况命令" class="anchor"><span class="icon icon-link"></span></a>系统配置情况命令</h1>
         <h2 id="系统"><a aria-hidden="true" tabindex="-1" href="#系统" class="anchor"><span class="icon icon-link"></span></a>系统</h2>
         <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">cat</span> /etc/redhat-release <span class="token comment"># CentOS 查看系统信息</span>
-</span><span class="code-line line-number" line="2"><span class="token function">uname</span> -a                <span class="token comment"># 查看内核/操作系统/CPU信息</span>
-</span><span class="code-line line-number" line="3"><span class="token function">head</span> -n <span class="token number">1</span> /etc/issue    <span class="token comment"># 查看操作系统版本</span>
+</span><span class="code-line line-number" line="2"><span class="token function">uname</span> <span class="token parameter variable">-a</span>                <span class="token comment"># 查看内核/操作系统/CPU信息</span>
+</span><span class="code-line line-number" line="3"><span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token number">1</span> /etc/issue    <span class="token comment"># 查看操作系统版本</span>
 </span><span class="code-line line-number" line="4"><span class="token function">cat</span> /proc/cpuinfo       <span class="token comment"># 查看CPU信息</span>
 </span><span class="code-line line-number" line="5"><span class="token function">hostname</span>                <span class="token comment"># 查看计算机名</span>
-</span><span class="code-line line-number" line="6">lspci -tv               <span class="token comment"># 列出所有PCI设备</span>
-</span><span class="code-line line-number" line="7">lsusb -tv               <span class="token comment"># 列出所有USB设备</span>
+</span><span class="code-line line-number" line="6">lspci <span class="token parameter variable">-tv</span>               <span class="token comment"># 列出所有PCI设备</span>
+</span><span class="code-line line-number" line="7">lsusb <span class="token parameter variable">-tv</span>               <span class="token comment"># 列出所有USB设备</span>
 </span><span class="code-line line-number" line="8">lsmod                   <span class="token comment"># 列出加载的内核模块</span>
 </span><span class="code-line line-number" line="9"><span class="token function">env</span>                     <span class="token comment"># 查看环境变量</span>
 </span><span class="code-line line-number" line="10">dmidecode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"Product Nmae"</span>   <span class="token comment">#查看服务器型号</span>
@@ -119,20 +121,20 @@ env                     # 查看环境变量
 dmidecode | grep &#x22;Product Nmae&#x22;   #查看服务器型号
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="资源"><a aria-hidden="true" tabindex="-1" href="#资源" class="anchor"><span class="icon icon-link"></span></a>资源</h2>
-        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">free</span> -m                <span class="token comment"># 查看内存使用量和交换区使用量</span>
-</span><span class="code-line line-number" line="2"><span class="token function">df</span> -h                  <span class="token comment"># 查看各分区使用情况</span>
-</span><span class="code-line line-number" line="3"><span class="token function">du</span> -sh <span class="token operator">&#x3C;</span>目录名<span class="token operator">></span>        <span class="token comment"># 查看指定目录的大小</span>
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">free</span> <span class="token parameter variable">-m</span>                <span class="token comment"># 查看内存使用量和交换区使用量</span>
+</span><span class="code-line line-number" line="2"><span class="token function">df</span> <span class="token parameter variable">-h</span>                  <span class="token comment"># 查看各分区使用情况</span>
+</span><span class="code-line line-number" line="3"><span class="token function">du</span> <span class="token parameter variable">-sh</span> <span class="token operator">&#x3C;</span>目录名<span class="token operator">></span>        <span class="token comment"># 查看指定目录的大小</span>
 </span><span class="code-line line-number" line="4"><span class="token function">grep</span> MemTotal /proc/meminfo   <span class="token comment"># 查看内存总量</span>
 </span><span class="code-line line-number" line="5"><span class="token function">grep</span> MemFree /proc/meminfo    <span class="token comment"># 查看空闲内存量</span>
 </span><span class="code-line line-number" line="6"><span class="token function">uptime</span>                 <span class="token comment"># 查看系统运行时间、用户数、负载</span>
 </span><span class="code-line line-number" line="7"><span class="token function">cat</span> /proc/loadavg      <span class="token comment"># 查看系统负载</span>
 </span><span class="code-line line-number" line="8"><span class="token comment"># 查看内存的插槽数，已经使用多少插槽。每条内存多大，已使用内存多大</span>
-</span><span class="code-line line-number" line="9">dmidecode<span class="token operator">|</span><span class="token function">grep</span> -P -A5 <span class="token string">"Memory\s+Device"</span><span class="token operator">|</span><span class="token function">grep</span> Size<span class="token operator">|</span><span class="token function">grep</span> -v Range 
+</span><span class="code-line line-number" line="9">dmidecode<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-P</span> <span class="token parameter variable">-A5</span> <span class="token string">"Memory\s+Device"</span><span class="token operator">|</span><span class="token function">grep</span> Size<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-v</span> Range 
 </span><span class="code-line line-number" line="10"><span class="token comment"># 查看内存支持的最大内存容量</span>
-</span><span class="code-line line-number" line="11">dmidecode<span class="token operator">|</span><span class="token function">grep</span> -P <span class="token string">'Maximum\s+Capacity'</span>
+</span><span class="code-line line-number" line="11">dmidecode<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-P</span> <span class="token string">'Maximum\s+Capacity'</span>
 </span><span class="code-line line-number" line="12"><span class="token comment"># 查看内存的频率</span>
-</span><span class="code-line line-number" line="13">dmidecode<span class="token operator">|</span><span class="token function">grep</span> -A16 <span class="token string">"Memory Device"</span>
-</span><span class="code-line line-number" line="14">dmidecode<span class="token operator">|</span><span class="token function">grep</span> -A16 <span class="token string">"Memory Device"</span><span class="token operator">|</span><span class="token function">grep</span> <span class="token string">'Speed'</span>
+</span><span class="code-line line-number" line="13">dmidecode<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-A16</span> <span class="token string">"Memory Device"</span>
+</span><span class="code-line line-number" line="14">dmidecode<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-A16</span> <span class="token string">"Memory Device"</span><span class="token operator">|</span><span class="token function">grep</span> <span class="token string">'Speed'</span>
 </span></code><input type="hidden" value="free -m                # 查看内存使用量和交换区使用量
 df -h                  # 查看各分区使用情况
 du -sh <目录名>        # 查看指定目录的大小
@@ -149,10 +151,10 @@ dmidecode|grep -A16 &#x22;Memory Device&#x22;
 dmidecode|grep -A16 &#x22;Memory Device&#x22;|grep &#x27;Speed&#x27;
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="磁盘和分区"><a aria-hidden="true" tabindex="-1" href="#磁盘和分区" class="anchor"><span class="icon icon-link"></span></a>磁盘和分区</h2>
-        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">mount</span> <span class="token operator">|</span> <span class="token function">column</span> -t      <span class="token comment"># 查看挂接的分区状态</span>
-</span><span class="code-line line-number" line="2"><span class="token function">fdisk</span> -l               <span class="token comment"># 查看所有分区</span>
-</span><span class="code-line line-number" line="3"><span class="token function">swapon</span> -s              <span class="token comment"># 查看所有交换分区</span>
-</span><span class="code-line line-number" line="4">hdparm -i /dev/hda     <span class="token comment"># 查看磁盘参数(仅适用于IDE设备)</span>
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">mount</span> <span class="token operator">|</span> <span class="token function">column</span> <span class="token parameter variable">-t</span>      <span class="token comment"># 查看挂接的分区状态</span>
+</span><span class="code-line line-number" line="2"><span class="token function">fdisk</span> <span class="token parameter variable">-l</span>               <span class="token comment"># 查看所有分区</span>
+</span><span class="code-line line-number" line="3"><span class="token function">swapon</span> <span class="token parameter variable">-s</span>              <span class="token comment"># 查看所有交换分区</span>
+</span><span class="code-line line-number" line="4">hdparm <span class="token parameter variable">-i</span> /dev/hda     <span class="token comment"># 查看磁盘参数(仅适用于IDE设备)</span>
 </span><span class="code-line line-number" line="5"><span class="token function">dmesg</span> <span class="token operator">|</span> <span class="token function">grep</span> IDE       <span class="token comment"># 查看启动时IDE设备检测状况</span>
 </span></code><input type="hidden" value="mount | column -t      # 查看挂接的分区状态
 fdisk -l               # 查看所有分区
@@ -162,11 +164,11 @@ dmesg | grep IDE       # 查看启动时IDE设备检测状况
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="网络"><a aria-hidden="true" tabindex="-1" href="#网络" class="anchor"><span class="icon icon-link"></span></a>网络</h2>
         <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">ifconfig</span>               <span class="token comment"># 查看所有网络接口的属性</span>
-</span><span class="code-line line-number" line="2">iptables -L            <span class="token comment"># 查看防火墙设置</span>
-</span><span class="code-line line-number" line="3">route -n               <span class="token comment"># 查看路由表</span>
-</span><span class="code-line line-number" line="4"><span class="token function">netstat</span> -lntp          <span class="token comment"># 查看所有监听端口</span>
-</span><span class="code-line line-number" line="5"><span class="token function">netstat</span> -antp          <span class="token comment"># 查看所有已经建立的连接</span>
-</span><span class="code-line line-number" line="6"><span class="token function">netstat</span> -s             <span class="token comment"># 查看网络统计信息</span>
+</span><span class="code-line line-number" line="2">iptables <span class="token parameter variable">-L</span>            <span class="token comment"># 查看防火墙设置</span>
+</span><span class="code-line line-number" line="3">route <span class="token parameter variable">-n</span>               <span class="token comment"># 查看路由表</span>
+</span><span class="code-line line-number" line="4"><span class="token function">netstat</span> <span class="token parameter variable">-lntp</span>          <span class="token comment"># 查看所有监听端口</span>
+</span><span class="code-line line-number" line="5"><span class="token function">netstat</span> <span class="token parameter variable">-antp</span>          <span class="token comment"># 查看所有已经建立的连接</span>
+</span><span class="code-line line-number" line="6"><span class="token function">netstat</span> <span class="token parameter variable">-s</span>             <span class="token comment"># 查看网络统计信息</span>
 </span></code><input type="hidden" value="ifconfig               # 查看所有网络接口的属性
 iptables -L            # 查看防火墙设置
 route -n               # 查看路由表
@@ -175,7 +177,7 @@ netstat -antp          # 查看所有已经建立的连接
 netstat -s             # 查看网络统计信息
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="进程查看"><a aria-hidden="true" tabindex="-1" href="#进程查看" class="anchor"><span class="icon icon-link"></span></a>进程查看</h2>
-        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">ps</span> -ef                 <span class="token comment"># 查看所有进程</span>
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">ps</span> <span class="token parameter variable">-ef</span>                 <span class="token comment"># 查看所有进程</span>
 </span><span class="code-line line-number" line="2"><span class="token function">top</span>                    <span class="token comment"># 实时显示进程状态</span>
 </span></code><input type="hidden" value="ps -ef                 # 查看所有进程
 top                    # 实时显示进程状态
@@ -190,11 +192,11 @@ top                    # 实时显示进程状态
 </span><span class="code-line line-number" line="6">
 </span><span class="code-line line-number" line="7"><span class="token comment"># 将硬件时钟调整为与本地时钟一致</span>
 </span><span class="code-line line-number" line="8">timedatectl set-local-rtc <span class="token number">1</span>
-</span><span class="code-line line-number" line="9">hwclock --systohc --localtime <span class="token comment"># 与上面命令效果一致   </span>
+</span><span class="code-line line-number" line="9">hwclock <span class="token parameter variable">--systohc</span> <span class="token parameter variable">--localtime</span> <span class="token comment"># 与上面命令效果一致   </span>
 </span><span class="code-line line-number" line="10">
 </span><span class="code-line line-number" line="11"><span class="token comment"># 硬件时间设置成 UTC</span>
 </span><span class="code-line line-number" line="12">timedatectl set-local-rtc <span class="token number">1</span>
-</span><span class="code-line line-number" line="13">hwclock --systohc --utc //与上面命令效果一致
+</span><span class="code-line line-number" line="13">hwclock <span class="token parameter variable">--systohc</span> <span class="token parameter variable">--utc</span> //与上面命令效果一致
 </span></code><input type="hidden" value="timedatectl  # 等同于 timedatectl status
 timedatectl set-time &#x22;YYYY-MM-DD HH:MM:SS&#x22;  # 设置时间
 timedatectl list-timezones                  # 列出所有时区
@@ -213,9 +215,9 @@ hwclock --systohc --utc //与上面命令效果一致
         <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">w                         <span class="token comment"># 查看活动用户</span>
 </span><span class="code-line line-number" line="2"><span class="token function">id</span> <span class="token operator">&#x3C;</span>用户名<span class="token operator">></span>                <span class="token comment"># 查看指定用户信息</span>
 </span><span class="code-line line-number" line="3">last                      <span class="token comment"># 查看用户登录日志</span>
-</span><span class="code-line line-number" line="4"><span class="token function">cut</span> -d: -f1 /etc/passwd   <span class="token comment"># 查看系统所有用户</span>
-</span><span class="code-line line-number" line="5"><span class="token function">cut</span> -d: -f1 /etc/group    <span class="token comment"># 查看系统所有组</span>
-</span><span class="code-line line-number" line="6"><span class="token function">crontab</span> -l                <span class="token comment"># 查看当前用户的计划任务</span>
+</span><span class="code-line line-number" line="4"><span class="token function">cut</span> -d: <span class="token parameter variable">-f1</span> /etc/passwd   <span class="token comment"># 查看系统所有用户</span>
+</span><span class="code-line line-number" line="5"><span class="token function">cut</span> -d: <span class="token parameter variable">-f1</span> /etc/group    <span class="token comment"># 查看系统所有组</span>
+</span><span class="code-line line-number" line="6"><span class="token function">crontab</span> <span class="token parameter variable">-l</span>                <span class="token comment"># 查看当前用户的计划任务</span>
 </span></code><input type="hidden" value="w                         # 查看活动用户
 id <用户名>                # 查看指定用户信息
 last                      # 查看用户登录日志
@@ -227,45 +229,45 @@ crontab -l                # 查看当前用户的计划任务
         <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">
 </span><span class="code-line line-number" line="2"><span class="token comment"># 查看网络接口统计数据的，两种发放  </span>
 </span><span class="code-line line-number" line="3"><span class="token function">ip</span> <span class="token function">link</span> <span class="token comment"># 或者下面方法</span>
-</span><span class="code-line line-number" line="4"><span class="token function">ip</span> -s <span class="token function">link</span> 
+</span><span class="code-line line-number" line="4"><span class="token function">ip</span> <span class="token parameter variable">-s</span> <span class="token function">link</span> 
 </span><span class="code-line line-number" line="5">
 </span><span class="code-line line-number" line="6">yum <span class="token function">install</span> net-tools <span class="token comment"># net-tools包提供了ifconfig命令  </span>
-</span><span class="code-line line-number" line="7"><span class="token function">ifconfig</span> -a <span class="token comment"># 查看IP地址  </span>
+</span><span class="code-line line-number" line="7"><span class="token function">ifconfig</span> <span class="token parameter variable">-a</span> <span class="token comment"># 查看IP地址  </span>
 </span><span class="code-line line-number" line="8"><span class="token function">ip</span> addr <span class="token comment"># 查看IP地址   </span>
-</span><span class="code-line line-number" line="9">route -n <span class="token comment"># 使用最快的速度查找主机的路由  </span>
+</span><span class="code-line line-number" line="9">route <span class="token parameter variable">-n</span> <span class="token comment"># 使用最快的速度查找主机的路由  </span>
 </span><span class="code-line line-number" line="10">
 </span><span class="code-line line-number" line="11"><span class="token function">cat</span> /proc/version <span class="token comment"># 查看系统信息  </span>
-</span><span class="code-line line-number" line="12">  <span class="token function">uname</span> -a <span class="token comment"># 方法二  </span>
-</span><span class="code-line line-number" line="13">  <span class="token function">uname</span> -r <span class="token comment">#方法三  </span>
+</span><span class="code-line line-number" line="12">  <span class="token function">uname</span> <span class="token parameter variable">-a</span> <span class="token comment"># 方法二  </span>
+</span><span class="code-line line-number" line="13">  <span class="token function">uname</span> <span class="token parameter variable">-r</span> <span class="token comment">#方法三  </span>
 </span><span class="code-line line-number" line="14">getconf LONG_BIT <span class="token comment"># 查看系统是64位还是32位  </span>
 </span><span class="code-line line-number" line="15">
 </span><span class="code-line line-number" line="16">
-</span><span class="code-line line-number" line="17"><span class="token function">uname</span> -a  <span class="token comment"># 查看内核/操作系统/CPU信息  </span>
-</span><span class="code-line line-number" line="18"><span class="token function">head</span> -n <span class="token number">1</span> /etc/issue  <span class="token comment">#查看操作系统版本  </span>
+</span><span class="code-line line-number" line="17"><span class="token function">uname</span> <span class="token parameter variable">-a</span>  <span class="token comment"># 查看内核/操作系统/CPU信息  </span>
+</span><span class="code-line line-number" line="18"><span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token number">1</span> /etc/issue  <span class="token comment">#查看操作系统版本  </span>
 </span><span class="code-line line-number" line="19"><span class="token function">cat</span> /proc/cpuinfo  <span class="token comment">#查看CPU信息  </span>
 </span><span class="code-line line-number" line="20"><span class="token function">hostname</span>   <span class="token comment">#查看计算机名  </span>
-</span><span class="code-line line-number" line="21">lspci -tv  <span class="token comment">#列出所有PCI设备  </span>
-</span><span class="code-line line-number" line="22">lsusb -tv  <span class="token comment">#列出所有USB设备  </span>
+</span><span class="code-line line-number" line="21">lspci <span class="token parameter variable">-tv</span>  <span class="token comment">#列出所有PCI设备  </span>
+</span><span class="code-line line-number" line="22">lsusb <span class="token parameter variable">-tv</span>  <span class="token comment">#列出所有USB设备  </span>
 </span><span class="code-line line-number" line="23">lsmod  <span class="token comment">#列出加载的内核模块  </span>
 </span><span class="code-line line-number" line="24"><span class="token function">env</span>    <span class="token comment">#查看环境变量  </span>
 </span><span class="code-line line-number" line="25">arch   <span class="token comment"># 显示机器的处理器架构(1)  </span>
-</span><span class="code-line line-number" line="26"><span class="token function">uname</span> -m  <span class="token comment"># 显示机器的处理器架构(2)  </span>
-</span><span class="code-line line-number" line="27"><span class="token function">uname</span> -r  <span class="token comment"># 显示正在使用的内核版本  </span>
-</span><span class="code-line line-number" line="28">dmidecode -q  <span class="token comment"># 显示硬件系统部件  </span>
-</span><span class="code-line line-number" line="29">hdparm -i /dev/hda   <span class="token comment"># 罗列一个磁盘的架构特性  </span>
-</span><span class="code-line line-number" line="30">hdparm -tT /dev/sda  <span class="token comment"># 在磁盘上执行测试性读取操作  </span>
+</span><span class="code-line line-number" line="26"><span class="token function">uname</span> <span class="token parameter variable">-m</span>  <span class="token comment"># 显示机器的处理器架构(2)  </span>
+</span><span class="code-line line-number" line="27"><span class="token function">uname</span> <span class="token parameter variable">-r</span>  <span class="token comment"># 显示正在使用的内核版本  </span>
+</span><span class="code-line line-number" line="28">dmidecode <span class="token parameter variable">-q</span>  <span class="token comment"># 显示硬件系统部件  </span>
+</span><span class="code-line line-number" line="29">hdparm <span class="token parameter variable">-i</span> /dev/hda   <span class="token comment"># 罗列一个磁盘的架构特性  </span>
+</span><span class="code-line line-number" line="30">hdparm <span class="token parameter variable">-tT</span> /dev/sda  <span class="token comment"># 在磁盘上执行测试性读取操作  </span>
 </span><span class="code-line line-number" line="31"><span class="token function">cat</span> /proc/interrupts <span class="token comment"># 显示中断  </span>
 </span><span class="code-line line-number" line="32"><span class="token function">cat</span> /proc/meminfo  <span class="token comment"># 校验内存使用  </span>
 </span><span class="code-line line-number" line="33"><span class="token function">cat</span> /proc/swaps    <span class="token comment"># 显示哪些swap被使用  </span>
 </span><span class="code-line line-number" line="34"><span class="token function">cat</span> /proc/version  <span class="token comment"># 显示内核的版本  </span>
 </span><span class="code-line line-number" line="35"><span class="token function">cat</span> /proc/net/dev  <span class="token comment"># 显示网络适配器及统计  </span>
 </span><span class="code-line line-number" line="36"><span class="token function">cat</span> /proc/mounts   <span class="token comment"># 显示已加载的文件系统  </span>
-</span><span class="code-line line-number" line="37">lspci -tv  <span class="token comment"># 罗列 PCI 设备  </span>
-</span><span class="code-line line-number" line="38">lsusb -tv  <span class="token comment"># 显示 USB 设备  </span>
+</span><span class="code-line line-number" line="37">lspci <span class="token parameter variable">-tv</span>  <span class="token comment"># 罗列 PCI 设备  </span>
+</span><span class="code-line line-number" line="38">lsusb <span class="token parameter variable">-tv</span>  <span class="token comment"># 显示 USB 设备  </span>
 </span><span class="code-line line-number" line="39"><span class="token function">date</span>  <span class="token comment"># 显示系统日期  </span>
 </span><span class="code-line line-number" line="40"><span class="token function">date</span> 041217002007.00  <span class="token comment"># 设置日期和时间 – 月日时分年.秒  </span>
 </span><span class="code-line line-number" line="41"><span class="token function">cal</span> <span class="token number">2007</span>  <span class="token comment"># 显示2007年的日历表  </span>
-</span><span class="code-line line-number" line="42">clock -w  <span class="token comment"># 将时间修改保存到 BIOS </span>
+</span><span class="code-line line-number" line="42">clock <span class="token parameter variable">-w</span>  <span class="token comment"># 将时间修改保存到 BIOS </span>
 </span></code><input type="hidden" value="
 # 查看网络接口统计数据的，两种发放  
 ip link # 或者下面方法
@@ -310,12 +312,12 @@ cal 2007  # 显示2007年的日历表
 clock -w  # 将时间修改保存到 BIOS 
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="系统的关机重启以及登出"><a aria-hidden="true" tabindex="-1" href="#系统的关机重启以及登出" class="anchor"><span class="icon icon-link"></span></a>系统的关机、重启以及登出</h2>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">shutdown</span> -h now <span class="token comment"># 关闭系统(1)   </span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">shutdown</span> <span class="token parameter variable">-h</span> now <span class="token comment"># 关闭系统(1)   </span>
 </span><span class="code-line line-number" line="2">init <span class="token number">0</span> <span class="token comment"># 关闭系统(2)   </span>
 </span><span class="code-line line-number" line="3">telinit <span class="token number">0</span> <span class="token comment"># 关闭系统(3)   </span>
-</span><span class="code-line line-number" line="4"><span class="token function">shutdown</span> -h hours:minutes <span class="token operator">&#x26;</span>  <span class="token comment">#按预定时间关闭系统   </span>
-</span><span class="code-line line-number" line="5"><span class="token function">shutdown</span> -c  <span class="token comment">#取消按预定时间关闭系统   </span>
-</span><span class="code-line line-number" line="6"><span class="token function">shutdown</span> -r now <span class="token comment"># 重启  (1)   </span>
+</span><span class="code-line line-number" line="4"><span class="token function">shutdown</span> <span class="token parameter variable">-h</span> hours:minutes <span class="token operator">&#x26;</span>  <span class="token comment">#按预定时间关闭系统   </span>
+</span><span class="code-line line-number" line="5"><span class="token function">shutdown</span> <span class="token parameter variable">-c</span>  <span class="token comment">#取消按预定时间关闭系统   </span>
+</span><span class="code-line line-number" line="6"><span class="token function">shutdown</span> <span class="token parameter variable">-r</span> now <span class="token comment"># 重启  (1)   </span>
 </span><span class="code-line line-number" line="7"><span class="token function">reboot</span>  <span class="token comment">#重启  (2)   </span>
 </span><span class="code-line line-number" line="8"><span class="token builtin class-name">logout</span> <span class="token comment"># 注销  </span>
 </span></code><input type="hidden" value="shutdown -h now # 关闭系统(1)   
@@ -329,11 +331,11 @@ logout # 注销
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="查看网络配置的命令"><a aria-hidden="true" tabindex="-1" href="#查看网络配置的命令" class="anchor"><span class="icon icon-link"></span></a>查看网络配置的命令</h2>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ifconfig</span> <span class="token comment"># 查看所有网络接口的属性   </span>
-</span><span class="code-line line-number" line="2">iptables -L <span class="token comment"># 查看防火墙设置   </span>
-</span><span class="code-line line-number" line="3">route -n <span class="token comment"># 查看路由表   </span>
-</span><span class="code-line line-number" line="4"><span class="token function">netstat</span> -lntp <span class="token comment"># 查看所有监听端口   </span>
-</span><span class="code-line line-number" line="5"><span class="token function">netstat</span> -antp <span class="token comment"># 查看所有已经建立的连接   </span>
-</span><span class="code-line line-number" line="6"><span class="token function">netstat</span> -s <span class="token comment"># 查看网络统计信息  </span>
+</span><span class="code-line line-number" line="2">iptables <span class="token parameter variable">-L</span> <span class="token comment"># 查看防火墙设置   </span>
+</span><span class="code-line line-number" line="3">route <span class="token parameter variable">-n</span> <span class="token comment"># 查看路由表   </span>
+</span><span class="code-line line-number" line="4"><span class="token function">netstat</span> <span class="token parameter variable">-lntp</span> <span class="token comment"># 查看所有监听端口   </span>
+</span><span class="code-line line-number" line="5"><span class="token function">netstat</span> <span class="token parameter variable">-antp</span> <span class="token comment"># 查看所有已经建立的连接   </span>
+</span><span class="code-line line-number" line="6"><span class="token function">netstat</span> <span class="token parameter variable">-s</span> <span class="token comment"># 查看网络统计信息  </span>
 </span></code><input type="hidden" value="ifconfig # 查看所有网络接口的属性   
 iptables -L # 查看防火墙设置   
 route -n # 查看路由表   
@@ -342,17 +344,17 @@ netstat -antp # 查看所有已经建立的连接
 netstat -s # 查看网络统计信息  
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="查看linux进程"><a aria-hidden="true" tabindex="-1" href="#查看linux进程" class="anchor"><span class="icon icon-link"></span></a>查看linux进程</h2>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ps</span> -aux <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">node</span> <span class="token comment"># 查看`node`进程  </span>
-</span><span class="code-line line-number" line="2"><span class="token function">ps</span> -ef <span class="token comment"># 查看所有进程   </span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">ps</span> <span class="token parameter variable">-aux</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">node</span> <span class="token comment"># 查看`node`进程  </span>
+</span><span class="code-line line-number" line="2"><span class="token function">ps</span> <span class="token parameter variable">-ef</span> <span class="token comment"># 查看所有进程   </span>
 </span><span class="code-line line-number" line="3"><span class="token function">top</span> <span class="token comment"># 实时显示进程状态  </span>
 </span></code><input type="hidden" value="ps -aux | grep node # 查看&#x60;node&#x60;进程  
 ps -ef # 查看所有进程   
 top # 实时显示进程状态  
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="杀进程"><a aria-hidden="true" tabindex="-1" href="#杀进程" class="anchor"><span class="icon icon-link"></span></a>杀进程</h2>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">killall</span> -9 websocket <span class="token comment"># 干掉`websocket`服务进程  </span>
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">killall</span> <span class="token parameter variable">-9</span> websocket <span class="token comment"># 干掉`websocket`服务进程  </span>
 </span><span class="code-line line-number" line="2"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> mysql <span class="token comment"># 查看mysql进程  </span>
-</span><span class="code-line line-number" line="3"><span class="token function">kill</span> -9 <span class="token number">35562</span> <span class="token comment"># 根据进程号杀  </span>
+</span><span class="code-line line-number" line="3"><span class="token function">kill</span> <span class="token parameter variable">-9</span> <span class="token number">35562</span> <span class="token comment"># 根据进程号杀  </span>
 </span></code><input type="hidden" value="killall -9 websocket # 干掉&#x60;websocket&#x60;服务进程  
 ps aux | grep mysql # 查看mysql进程  
 kill -9 35562 # 根据进程号杀  
@@ -361,9 +363,9 @@ kill -9 35562 # 根据进程号杀
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">w <span class="token comment"># 查看活动用户   </span>
 </span><span class="code-line line-number" line="2"><span class="token function">id</span> <span class="token operator">&#x3C;</span>用户名<span class="token operator">></span> <span class="token comment"># 查看指定用户信息   </span>
 </span><span class="code-line line-number" line="3">last <span class="token comment"># 查看用户登录日志   </span>
-</span><span class="code-line line-number" line="4"><span class="token function">cut</span> -d: -f1 /etc/passwd <span class="token comment"># 查看系统所有用户   </span>
-</span><span class="code-line line-number" line="5"><span class="token function">cut</span> -d: -f1 /etc/group <span class="token comment"># 查看系统所有组   </span>
-</span><span class="code-line line-number" line="6"><span class="token function">crontab</span> -l <span class="token comment"># 查看当前用户的计划任务  </span>
+</span><span class="code-line line-number" line="4"><span class="token function">cut</span> -d: <span class="token parameter variable">-f1</span> /etc/passwd <span class="token comment"># 查看系统所有用户   </span>
+</span><span class="code-line line-number" line="5"><span class="token function">cut</span> -d: <span class="token parameter variable">-f1</span> /etc/group <span class="token comment"># 查看系统所有组   </span>
+</span><span class="code-line line-number" line="6"><span class="token function">crontab</span> <span class="token parameter variable">-l</span> <span class="token comment"># 查看当前用户的计划任务  </span>
 </span></code><input type="hidden" value="w # 查看活动用户   
 id <用户名> # 查看指定用户信息   
 last # 查看用户登录日志   
@@ -373,9 +375,9 @@ crontab -l # 查看当前用户的计划任务
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h2 id="log日志查看"><a aria-hidden="true" tabindex="-1" href="#log日志查看" class="anchor"><span class="icon icon-link"></span></a>log日志查看</h2>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">cat</span> /var/log/messages <span class="token comment"># 查询日志的全部内容</span>
-</span><span class="code-line line-number" line="2"><span class="token function">head</span> -5 /var/log/messages <span class="token comment"># 查询日志的前5行</span>
-</span><span class="code-line line-number" line="3"><span class="token function">tail</span> -5 /var/log/messages <span class="token comment"># 查询日志的最新5行</span>
-</span><span class="code-line line-number" line="4"><span class="token function">sed</span> -n <span class="token string">'5,10p'</span> /var/log/messages <span class="token comment"># 查询日志的5到10行</span>
+</span><span class="code-line line-number" line="2"><span class="token function">head</span> <span class="token parameter variable">-5</span> /var/log/messages <span class="token comment"># 查询日志的前5行</span>
+</span><span class="code-line line-number" line="3"><span class="token function">tail</span> <span class="token parameter variable">-5</span> /var/log/messages <span class="token comment"># 查询日志的最新5行</span>
+</span><span class="code-line line-number" line="4"><span class="token function">sed</span> <span class="token parameter variable">-n</span> <span class="token string">'5,10p'</span> /var/log/messages <span class="token comment"># 查询日志的5到10行</span>
 </span></code><input type="hidden" value="cat /var/log/messages # 查询日志的全部内容
 head -5 /var/log/messages # 查询日志的前5行
 tail -5 /var/log/messages # 查询日志的最新5行
@@ -401,7 +403,7 @@ chkconfig –list | grep on # 列出所有启动的系统服务
 </span><span class="code-line line-number" line="7">
 </span><span class="code-line line-number" line="8"><span class="token comment"># 测试安装</span>
 </span><span class="code-line line-number" line="9"><span class="token comment"># 没有用到`gzip`压缩去掉`z`参数</span>
-</span><span class="code-line line-number" line="10">$ <span class="token function">sudo</span> <span class="token function">tar</span> --strip-components <span class="token number">1</span> -xzvf node-v* -C /usr/local
+</span><span class="code-line line-number" line="10">$ <span class="token function">sudo</span> <span class="token function">tar</span> --strip-components <span class="token number">1</span> <span class="token parameter variable">-xzvf</span> node-v* <span class="token parameter variable">-C</span> /usr/local
 </span></code><input type="hidden" value="# 安装下载工具wget
 $ yum install wget
 
@@ -460,7 +462,7 @@ ls
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

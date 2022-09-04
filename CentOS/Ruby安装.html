@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -119,12 +121,12 @@ sudo make install
 </span></code><input type="hidden" value="yum install ruby
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="rvm安装"><a aria-hidden="true" tabindex="-1" href="#rvm安装" class="anchor"><span class="icon icon-link"></span></a>RVM安装</h3>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-</span><span class="code-line line-number" line="2"><span class="token function">curl</span> -sSL https://get.rvm.io <span class="token operator">|</span> <span class="token function">bash</span> -s stable
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1">gpg <span class="token parameter variable">--keyserver</span> hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+</span><span class="code-line line-number" line="2"><span class="token function">curl</span> <span class="token parameter variable">-sSL</span> https://get.rvm.io <span class="token operator">|</span> <span class="token function">bash</span> <span class="token parameter variable">-s</span> stable
 </span><span class="code-line line-number" line="3"><span class="token comment"># 如果上面的连接失败，可以尝试: </span>
-</span><span class="code-line line-number" line="4"><span class="token function">curl</span> -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="token operator">|</span> <span class="token function">bash</span> -s stable
+</span><span class="code-line line-number" line="4"><span class="token function">curl</span> <span class="token parameter variable">-L</span> https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="token operator">|</span> <span class="token function">bash</span> <span class="token parameter variable">-s</span> stable
 </span><span class="code-line line-number" line="5">
-</span><span class="code-line line-number" line="6"><span class="token function">curl</span> -L get.rvm.io <span class="token operator">|</span> <span class="token function">bash</span> -s stable  
+</span><span class="code-line line-number" line="6"><span class="token function">curl</span> <span class="token parameter variable">-L</span> get.rvm.io <span class="token operator">|</span> <span class="token function">bash</span> <span class="token parameter variable">-s</span> stable  
 </span><span class="code-line line-number" line="7"><span class="token builtin class-name">echo</span> <span class="token string">"source /etc/profile.d/rvm.sh"</span> <span class="token operator">>></span> ~/.bashrc <span class="token operator">&#x26;&#x26;</span> <span class="token builtin class-name">source</span> /etc/profile.d/rvm.sh  
 </span><span class="code-line line-number" line="8">
 </span><span class="code-line line-number" line="9"><span class="token comment"># 安装完RVM之后，我们需要使用如下命令设置RVM运行环境。</span>
@@ -147,7 +149,7 @@ sudo make install
 </span><span class="code-line line-number" line="26">
 </span><span class="code-line line-number" line="27">
 </span><span class="code-line line-number" line="28"><span class="token comment"># 这种方式安装</span>
-</span><span class="code-line line-number" line="29"><span class="token function">bash</span> <span class="token operator">&#x3C;</span> <span class="token operator">&#x3C;</span><span class="token punctuation">(</span><span class="token function">curl</span> -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="29"><span class="token function">bash</span> <span class="token operator">&#x3C;</span> <span class="token operator">&#x3C;</span><span class="token punctuation">(</span><span class="token function">curl</span> <span class="token parameter variable">-s</span> https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="token punctuation">)</span>
 </span></code><input type="hidden" value="gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable
 # 如果上面的连接失败，可以尝试: 
@@ -179,7 +181,7 @@ echo &#x22;export rvm_max_time_flag=20&#x22; >> ~/.rvmrc
 bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>最终使用下面方式安装成功的</p>
-        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">curl</span> -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="token operator">|</span> <span class="token function">bash</span> -s stable
+        <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token function">curl</span> <span class="token parameter variable">-L</span> https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer <span class="token operator">|</span> <span class="token function">bash</span> <span class="token parameter variable">-s</span> stable
 </span><span class="code-line line-number" line="2"><span class="token comment"># 安装完RVM之后，我们需要使用如下命令设置RVM运行环境。</span>
 </span><span class="code-line line-number" line="3"><span class="token builtin class-name">source</span> /etc/profile.d/rvm.sh  
 </span></code><input type="hidden" value="curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
@@ -188,10 +190,10 @@ source /etc/profile.d/rvm.sh
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>RVM换淘宝镜像</p>
         <pre class="language-bash"><code class="language-bash code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># For Mac</span>
-</span><span class="code-line line-number" line="2"><span class="token function">sed</span> -i .bak -E <span class="token string">'s!https?://cache.ruby-lang.org/pub/ruby!https://ruby.taobao.org/mirrors/ruby!'</span> <span class="token variable">$rvm_path</span>/config/db
+</span><span class="code-line line-number" line="2"><span class="token function">sed</span> <span class="token parameter variable">-i</span> .bak <span class="token parameter variable">-E</span> <span class="token string">'s!https?://cache.ruby-lang.org/pub/ruby!https://ruby.taobao.org/mirrors/ruby!'</span> <span class="token variable">$rvm_path</span>/config/db
 </span><span class="code-line line-number" line="3">
 </span><span class="code-line line-number" line="4"><span class="token comment"># For Linux</span>
-</span><span class="code-line line-number" line="5"><span class="token function">sed</span> -i -E <span class="token string">'s!https?://cache.ruby-lang.org/pub/ruby!https://ruby.taobao.org/mirrors/ruby!'</span> <span class="token variable">$rvm_path</span>/config/db
+</span><span class="code-line line-number" line="5"><span class="token function">sed</span> <span class="token parameter variable">-i</span> <span class="token parameter variable">-E</span> <span class="token string">'s!https?://cache.ruby-lang.org/pub/ruby!https://ruby.taobao.org/mirrors/ruby!'</span> <span class="token variable">$rvm_path</span>/config/db
 </span></code><input type="hidden" value="# For Mac
 sed -i .bak -E &#x27;s!https?://cache.ruby-lang.org/pub/ruby!https://ruby.taobao.org/mirrors/ruby!&#x27; $rvm_path/config/db
 
@@ -221,7 +223,7 @@ sed -i -E &#x27;s!https?://cache.ruby-lang.org/pub/ruby!https://ruby.taobao.org/
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">

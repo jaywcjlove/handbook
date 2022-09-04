@@ -77,6 +77,8 @@
             <a href="使用免费SSL证书让网站支持HTTPS访问.html" class="">使用免费 SSL 证书支持 HTTPS 访问</a>
             <a href="svn.html" class="">安装使用 svn</a>
             <a href="管理远程会话screen工具.html" class="">管理远程会话screen工具</a>
+            <label>macOS</label>
+            <a href="../macOS/创建 macOS 操作系统的 App 图标文件 icons.html" class="">创建 macOS 操作系统的 App 图标文件 icons</a>
             <label>其它</label>
             <a href="../other/weixin-public-account.html" class="">公众账号推荐</a>
             <a href="../other/google.html" class="">谷歌(Google)镜像</a>
@@ -156,8 +158,8 @@ setenforce 0
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>或者设置SELinux</p>
         <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">
-</span><span class="code-line line-number" line="2">getsebool -a <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ftp</span>
-</span><span class="code-line line-number" line="3">setsebool -P ftpd_full_access on
+</span><span class="code-line line-number" line="2">getsebool <span class="token parameter variable">-a</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ftp</span>
+</span><span class="code-line line-number" line="3">setsebool <span class="token parameter variable">-P</span> ftpd_full_access on
 </span></code><input type="hidden" value="
 getsebool -a | grep ftp
 setsebool -P ftpd_full_access on
@@ -172,8 +174,8 @@ systemctl disable firewalld.service
 #禁止firewall开机启动
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <p>如果你不愿意关闭防火墙，需要防火墙添加FTP服务。</p>
-        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">firewall-cmd --permanent --zone<span class="token operator">=</span>public --add-service<span class="token operator">=</span>ftp
-</span><span class="code-line line-number" line="2">firewall-cmd --reload
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">firewall-cmd <span class="token parameter variable">--permanent</span> <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --add-service<span class="token operator">=</span>ftp
+</span><span class="code-line line-number" line="2">firewall-cmd <span class="token parameter variable">--reload</span>
 </span></code><input type="hidden" value="firewall-cmd --permanent --zone=public --add-service=ftp
 firewall-cmd --reload
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
@@ -316,20 +318,20 @@ connect_timeout=1
         <p>新建系统用户ftpuser，用户目录为<code>/home/vsftpd</code>, 用户登录终端设为/bin/false(即使之不能登录系统)</p>
         <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 方法一</span>
 </span><span class="code-line line-number" line="2"><span class="token comment"># 创建用户 ftpuser 指定 `/home/vsftpd` 目录</span>
-</span><span class="code-line line-number" line="3"><span class="token function">useradd</span> -g root -M -d /home/vsftpd -s /sbin/nologin ftpuser
+</span><span class="code-line line-number" line="3"><span class="token function">useradd</span> <span class="token parameter variable">-g</span> root <span class="token parameter variable">-M</span> <span class="token parameter variable">-d</span> /home/vsftpd <span class="token parameter variable">-s</span> /sbin/nologin ftpuser
 </span><span class="code-line line-number" line="4">
 </span><span class="code-line line-number" line="5"><span class="token comment"># 设置用户 ftpuser 的密码</span>
 </span><span class="code-line line-number" line="6"><span class="token function">passwd</span> ftpuser
 </span><span class="code-line line-number" line="7"><span class="token comment"># 把 /home/vsftpd 的所有权给ftpuser.root</span>
-</span><span class="code-line line-number" line="8"><span class="token function">chown</span> -R ftpuser.root /home/vsftpd
+</span><span class="code-line line-number" line="8"><span class="token function">chown</span> <span class="token parameter variable">-R</span> ftpuser.root /home/vsftpd
 </span><span class="code-line line-number" line="9">
 </span><span class="code-line line-number" line="10"><span class="token comment"># 方法二</span>
-</span><span class="code-line line-number" line="11"><span class="token function">useradd</span> ftpuser -d /home/vsftpd -s /bin/false
-</span><span class="code-line line-number" line="12"><span class="token function">chown</span> ftpuser:ftpuser /home/vsftpd -R 
+</span><span class="code-line line-number" line="11"><span class="token function">useradd</span> ftpuser <span class="token parameter variable">-d</span> /home/vsftpd <span class="token parameter variable">-s</span> /bin/false
+</span><span class="code-line line-number" line="12"><span class="token function">chown</span> ftpuser:ftpuser /home/vsftpd <span class="token parameter variable">-R</span> 
 </span><span class="code-line line-number" line="13">
 </span><span class="code-line line-number" line="14"><span class="token comment"># 如果虚拟用户的宿主用户为www，需要这样设置</span>
 </span><span class="code-line line-number" line="15"><span class="token comment"># www目录是你应用的目录</span>
-</span><span class="code-line line-number" line="16"><span class="token function">chown</span> www:www /home/www -R
+</span><span class="code-line line-number" line="16"><span class="token function">chown</span> www:www /home/www <span class="token parameter variable">-R</span>
 </span></code><input type="hidden" value="# 方法一
 # 创建用户 ftpuser 指定 &#x60;/home/vsftpd&#x60; 目录
 useradd -g root -M -d /home/vsftpd -s /sbin/nologin ftpuser
@@ -371,7 +373,7 @@ hss
 #保存退出
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="生成虚拟用户数据文件"><a aria-hidden="true" tabindex="-1" href="#生成虚拟用户数据文件" class="anchor"><span class="icon icon-link"></span></a>生成虚拟用户数据文件</h3>
-        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">db_load -T -t <span class="token builtin class-name">hash</span> -f /etc/vsftpd/vuser_passwd /etc/vsftpd/vuser_passwd.db
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">db_load <span class="token parameter variable">-T</span> <span class="token parameter variable">-t</span> <span class="token builtin class-name">hash</span> <span class="token parameter variable">-f</span> /etc/vsftpd/vuser_passwd /etc/vsftpd/vuser_passwd.db
 </span><span class="code-line line-number" line="2"><span class="token function">chmod</span> <span class="token number">600</span> /etc/vsftpd/vuser_passwd.db
 </span></code><input type="hidden" value="db_load -T -t hash -f /etc/vsftpd/vuser_passwd /etc/vsftpd/vuser_passwd.db
 chmod 600 /etc/vsftpd/vuser_passwd.db
@@ -400,7 +402,7 @@ anon_other_write_enable=YES   # 允许匿名用户删除和重命名权限(自�
 "><div onclick="copied(this)" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
         <h3 id="创建用户目录"><a aria-hidden="true" tabindex="-1" href="#创建用户目录" class="anchor"><span class="icon icon-link"></span></a>创建用户目录</h3>
         <p>每个用户目录文件夹是有root用户创建的，也就是上面<code>local_root</code>配置目录，其权限应设置为755。因为权限的问题在该文件夹内无法直接上传文件。而如果设置为777则无法访问，这是由于vsftpd的安全性设置。解决上传问题的方法是在local_root文件夹内新建一个upload的文件夹，权限设置为777，可将文件上传到该文件夹。</p>
-        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">mkdir</span> -p /home/vsftpd/hss     <span class="token comment"># 每个用户对于一个目录，创建两个目录“hss”、“wcj”</span>
+        <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> /home/vsftpd/hss     <span class="token comment"># 每个用户对于一个目录，创建两个目录“hss”、“wcj”</span>
 </span><span class="code-line line-number" line="2">
 </span><span class="code-line line-number" line="3"><span class="token comment"># 下面是目录结构</span>
 </span><span class="code-line line-number" line="4">/home/vsftpd
@@ -412,7 +414,7 @@ anon_other_write_enable=YES   # 允许匿名用户删除和重命名权限(自�
 </span><span class="code-line line-number" line="10">
 </span><span class="code-line line-number" line="11">
 </span><span class="code-line line-number" line="12"><span class="token comment"># 赋予其权限</span>
-</span><span class="code-line line-number" line="13"><span class="token function">chmod</span> -R <span class="token number">777</span> /var/vsftpd/hss/upload/
+</span><span class="code-line line-number" line="13"><span class="token function">chmod</span> <span class="token parameter variable">-R</span> <span class="token number">777</span> /var/vsftpd/hss/upload/
 </span><span class="code-line line-number" line="14">
 </span><span class="code-line line-number" line="15"><span class="token comment"># 在/var/ftp下新建一个目录来实现匿名用户上传</span>
 </span><span class="code-line line-number" line="16"><span class="token function">mkdir</span> /var/ftp/upload
@@ -564,7 +566,7 @@ ftp> mput *.txt           # 可以上传多个文件
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
 <span>Edit this page on GitHub</span>
-</a><span class="atime">2022/08/08</span></section>
+</a><span class="atime">2022/09/04</span></section>
       </markdown-style>
       <nav class="tocs">
         <aside class="inner toc">
