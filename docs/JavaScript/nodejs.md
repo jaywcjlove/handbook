@@ -12,7 +12,7 @@ NodeJS 包搜集
 - [has-flag](https://www.npmjs.com/package/has-flag) <img src="https://img.shields.io/jsdelivr/npm/hy/has-flag" height="13" /> 检查argv是否具有特定标志
 - [dargs](https://www.npmjs.com/package/dargs) <img src="https://img.shields.io/jsdelivr/npm/hy/dargs" height="13" /> 反转 minimist。 将选项对象转换为命令行参数数组。
 - [sade](https://github.com/lukeed/sade) <img src="https://img.shields.io/jsdelivr/npm/hy/sade" height="13" /> 用于构建快速、响应迅速且有用的命令行界面 CLI 应用程序！
-- [argparse](https://www.npmjs.com/package/argparse) CLI 参数解析器
+- [argparse](https://www.npmjs.com/package/argparse) <img src="https://img.shields.io/jsdelivr/npm/hy/argparse" height="13" /> CLI 参数解析器
 
 ### 命令行程序解决方案
 
