@@ -16,6 +16,7 @@
 - [~~Github Follower排行榜~~](http://www.githubrank.com/)
 - [Github中国用户排名，仓库排名趋势榜](http://jaywcjlove.github.io/github-rank/)
 - [Gitstar Ranking](https://gitstar-ranking.com)
+- [按语言和位置对每个 GitHub 用户和存储库进行排名](https://stardev.io/)
 - [Githuber.cn星榜](https://githuber.cn/)
 - [GitHub中文社区各种排行榜](https://www.githubs.cn/)
 - [比项目较过去12个月在 GitHub 上增加的星标数](https://bestofjs.org/)
