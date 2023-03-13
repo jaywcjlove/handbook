@@ -69,8 +69,8 @@
 ## npm
 
 - [下载NPM包的统计信息](https://npm-stat.com/)
-- [NPM包下载趋势榜对比](https://www.npmtrends.com)
-- [比较npm包下载，计数随时间的变化](http://www.npmtrends.com/)
+- [比较npm包下载，计数随时间的变化](https://www.npmtrends.com)
+- [NPM包下载趋势榜对比](https://npmcharts.com/)
 - [BundlePhobia](https://bundlephobia.com/) 查看添加 npm 软件包的成本。
 - [PackagePhobia](https://packagephobia.com/) 查找向项目添加新开发依赖项的成本。
 - [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件。
