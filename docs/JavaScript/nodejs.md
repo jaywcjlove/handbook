@@ -13,6 +13,7 @@ NodeJS 包搜集
 - [dargs](https://www.npmjs.com/package/dargs) <img src="https://img.shields.io/jsdelivr/npm/hy/dargs" height="13" /> 反转 minimist。 将选项对象转换为命令行参数数组。
 - [sade](https://github.com/lukeed/sade) <img src="https://img.shields.io/jsdelivr/npm/hy/sade" height="13" /> 用于构建快速、响应迅速且有用的命令行界面 CLI 应用程序！
 - [argparse](https://www.npmjs.com/package/argparse) <img src="https://img.shields.io/jsdelivr/npm/hy/argparse" height="13" /> CLI 参数解析器
+- [meow](https://github.com/sindresorhus/meow) <img src="https://img.shields.io/jsdelivr/npm/hy/meow" height="13" /> CLI 帮助参数解析器
 
 ### 命令行程序解决方案
 
