@@ -35,15 +35,15 @@
 - [ProcessOn](https://www.processon.com/) 支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等
 - [draw.io](https://www.draw.io) 免费的在线图表软件，用于制作流程图，流程图，组织结构图，UML，ER和网络图
 - [Pixel Art to CSS](https://www.pixelartcss.com/) 是一个在线像素风绘图工具 [![Open-Source Software][OSS Icon]](https://github.com/jvalen/pixel-art-react)
-- [codeimg.io](https://codeimg.io/) 把源代码变成漂亮的图片的工具。
-- [Codepng](https://www.codepng.app/) 代码片段转为美观的图片。
+- [codeimg.io](https://codeimg.io/) 把源代码变成漂亮的图片的工具
+- [Codepng](https://www.codepng.app/) 代码片段转为美观的图片
 - [ray.so](https://ray.so/) 可以生成漂亮的代码截图，颜色、阴影、背景都可以调整。
 - [Chalk.ist](https://chalk.ist/) 为您的源代码创建漂亮的图像。[![Open-Source Software][OSS Icon]](https://github.com/Idered/chalk.ist)
 - [Pixlr X](https://pixlr.com/x) 基于 Canvas 和 WebGL 的在线图像编辑器。
 - [Terrastruct](https://terrastruct.com/) 一个在线的架构图、流程图工具。
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
-- [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon。
-- [Squoosh](https://github.com/GoogleChromeLabs/squoosh) 在浏览器中使用一流的编解码器无损压缩图片。
+- [Free Favicon Maker](https://formito.com/tools/favicon) 在线制作 SVG 格式的 Favicon
+- [Squoosh](https://github.com/GoogleChromeLabs/squoosh) 在浏览器中使用一流的编解码器无损压缩图片
 - [Fluid Paint](https://david.li/paint/) 网页画板工具，可以定制笔刷，产生刷油漆的流体效果，非常精美 [![Open-Source Software][OSS Icon]](https://github.com/dli/paint)
 - [IconMaker](https://iconmaker.app/) 应用程序图标 Favicons 图标生成器和调整器
 - [okso](https://okso.app/) 可以画极简草图解释的基本数据结构
@@ -57,29 +57,29 @@
 
 ## 文档工具
 
-- [ESDoc](https://github.com/esdoc/esdoc) ESDoc是JavaScript的文档生成器。
-- [apiDoc](https://github.com/apidoc/apidoc) 生成RESTful Web API文档。
-- [jsdoc](https://github.com/jsdoc3/jsdoc) 用于JavaScript的API文档生成器。
-- [typedoc](https://github.com/TypeStrong/typedoc) TypeScript 项目的文档生成器。
-- [swagger](https://swagger.io) 一款RESTful 接口的文档在线自动生成+功能测试功能软件。
-- [swagger editor](https://editor.swagger.io/) 在线版编辑器。
-- [EditCSV Online](https://www.editcsvonline.com/) 一个编辑 CSV 文件的在线工具。
-- [html-md](https://devtool.tech/html-md) 在线小工具，将网页转成 Markdown 代码。
-- [PPTist](https://github.com/pipipi-pikachu/PPTist) 一个 PPT 网页应用，还原了大部分 PowerPoint 常用功能，支持 PPT 的在线编辑、演示和导出。
+- [ESDoc](https://github.com/esdoc/esdoc) ESDoc是JavaScript的文档生成器
+- [apiDoc](https://github.com/apidoc/apidoc) 生成RESTful Web API文档
+- [jsdoc](https://github.com/jsdoc3/jsdoc) 用于JavaScript的API文档生成器
+- [typedoc](https://github.com/TypeStrong/typedoc) TypeScript 项目的文档生成器
+- [swagger](https://swagger.io) 一款RESTful 接口的文档在线自动生成+功能测试功能软件
+- [swagger editor](https://editor.swagger.io/) 在线版编辑器
+- [EditCSV Online](https://www.editcsvonline.com/) 一个编辑 CSV 文件的在线工具
+- [html-md](https://devtool.tech/html-md) 在线小工具，将网页转成 Markdown 代码
+- [PPTist](https://github.com/pipipi-pikachu/PPTist) 一个 PPT 网页应用，还原了大部分 PowerPoint 常用功能，支持 PPT 的在线编辑、演示和导出
 
 ## npm
 
 - [下载NPM包的统计信息](https://npm-stat.com/)
 - [比较npm包下载，计数随时间的变化](https://www.npmtrends.com)
 - [NPM包下载趋势榜对比](https://npmcharts.com/)
-- [BundlePhobia](https://bundlephobia.com/) 查看添加 npm 软件包的成本。
-- [PackagePhobia](https://packagephobia.com/) 查找向项目添加新开发依赖项的成本。
-- [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件。
+- [BundlePhobia](https://bundlephobia.com/) 查看添加 npm 软件包的成本
+- [PackagePhobia](https://packagephobia.com/) 查找向项目添加新开发依赖项的成本
+- [npmview](https://npmview.now.sh/) 让你查看 npm 模块里面包含了什么文件
 - [anvaka](https://npm.anvaka.com/) npm 依赖的可视化
-- [Skypack](https://www.skypack.dev) 无需安装和构建工具即可加载优化的 npm 包。
-- [Package Quality](https://packagequality.com/) 包的质量测量，最初用于 npm。
+- [Skypack](https://www.skypack.dev) 无需安装和构建工具即可加载优化的 npm 包
+- [Package Quality](https://packagequality.com/) 包的质量测量，最初用于 npm
 - [npm charts](https://npmcharts.com/) 比较 npm 包的下载趋势
-- [NodeICO](https://nodei.co/) Package badges.
+- [NodeICO](https://nodei.co/) Package badges
 - [Pkg Stats](https://www.pkgstats.com/) 快速浏览并发现最佳 npm 包
 
 ## 工具
@@ -141,40 +141,41 @@
 ## Github
 
 - [OSSInsight](https://ossinsight.io/) 开源软件 - 洞察力
-- [git-awards](http://git-awards.com/) 发现您在GitHub上的排名。
-- [star-history](https://github.com/timqian/star-history) 帮助用户查看 GitHub 项目 star 数目的历史。
-- [starcharts](https://github.com/caarlos0/starcharts) 可以查看 GitHub 仓库的 Star 变化情况，生成折线图。
+- [git-awards](http://git-awards.com/) 发现您在GitHub上的排名
+- [star-history](https://github.com/timqian/star-history) 帮助用户查看 GitHub 项目 star 数目的历史
+- [starcharts](https://github.com/caarlos0/starcharts) 可以查看 GitHub 仓库的 Star 变化情况，生成折线图
 - [programming-languages](https://github.com/showcases/programming-languages/) 在GitHub上积极开发的编程语言列表
 - [GitHub，前端JavaScript框架](https://github.com/showcases/front-end-javascript-frameworks)
-- [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站。
-- [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) 为您的 Github 自述文件动态生成的统计信息。
-- [GitHub Profile Trophy](https://github.com/ryo-ma/github-profile-trophy) 为您的 Github 自述文件动态生成档案奖杯。
+- [gitignore.io](https://gitignore.io/) 生成 gitignore 文件的网站
+- [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) 为您的 Github 自述文件动态生成的统计信息
+- [GitHub Profile Trophy](https://github.com/ryo-ma/github-profile-trophy) 为您的 Github 自述文件动态生成档案奖杯
 - [GitHub 加速下载](http://toolwa.com/github/)
-- [GitHub Skyline](https://skyline.github.com) GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图。
-- [Github Chart API](https://ghchart.rshah.org/) 将您的 GitHub 图表嵌入到您想要的任何 HTML 中。
-- [Repobeats](https://repobeats.axiom.co/) 在 GitHub 仓库的 README 文件里面，加入图形化的项目数据统计。
+- [GitHub Skyline](https://skyline.github.com) GitHub 官方出品，将你过去一年的提交统计转成一个三维的直方图
+- [Github Chart API](https://ghchart.rshah.org/) 将您的 GitHub 图表嵌入到您想要的任何 HTML 中
+- [Repobeats](https://repobeats.axiom.co/) 在 GitHub 仓库的 README 文件里面，加入图形化的项目数据统计
 - [GitHub Wrapped](https://www.githubtrends.io/) 网页工具将你过去一年的 GitHub 活动，创建成一张图表
-- [contrib.rocks](https://contrib.rocks/) 为贡献者列表生成动态图片 URL 以显示它！
+- [contrib.rocks](https://contrib.rocks/) 为贡献者列表生成动态图片 URL 以显示它
 - [Green Wall](https://github.com/Codennnn/Green-Wall) 查看某个 GitHub 用户的历年活动日历
+- [GitHub & BitBucket HTML Preview](https://htmlpreview.github.io/) 预览 GitHub 和 BitBucket 仓库中的 HTML 静态文件
 
 ## 办公类应用
 
-- [OpenVidu](https://github.com/OpenVidu/openvidu) 开源的视频会议软件，使用 WebRTC 技术。
-- [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton) 开源的远程教育软件，也可用作视频会议。
-- [Jira clone](https://github.com/oldboyxx/jira_clone) 使用 React + Node.js 写的项目管理工具 Jira 的克隆。
+- [OpenVidu](https://github.com/OpenVidu/openvidu) 开源的视频会议软件，使用 WebRTC 技术
+- [BigBlueButton](https://github.com/bigbluebutton/bigbluebutton) 开源的远程教育软件，也可用作视频会议
+- [Jira clone](https://github.com/oldboyxx/jira_clone) 使用 React + Node.js 写的项目管理工具 Jira 的克隆
 
 ## 其它
 
-- [foldnfly](https://www.foldnfly.com) 收集纸飞机折纸方法的网站，目前有40种纸飞机。
-- [aqicn](http://aqicn.org) 实时空气质量指数地图.
-- [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST。
+- [foldnfly](https://www.foldnfly.com) 收集纸飞机折纸方法的网站，目前有40种纸飞机
+- [aqicn](http://aqicn.org) 实时空气质量指数地图
+- [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST
 - [NginxConfig](https://nginxconfig.io/) Nginx配置在线极速生成“神器” [Github](https://github.com/digitalocean/nginxconfig.io)
 - [i18ns](https://i18ns.com/) 一个免费的i18n翻译搜索引擎
-- [TableConvert](https://tableconvert.com/) Markdown表格编辑器，导入json/csv/excel/html 生成 Markdown 表格。
+- [TableConvert](https://tableconvert.com/) Markdown表格编辑器，导入json/csv/excel/html 生成 Markdown 表格
 - [Chronologic Versioning](https://chronver.org/) 基于时间版本控制规范
 - [semver](https://semver.org/lang/zh-CN/) 语义化版本 2.0.0 语义化版本规范
-- [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具。
-- [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js。
+- [Snip](https://mathpix.com/) 将打印的数学公式转成 LaTex 代码的工具
+- [NodeTube](https://github.com/mayeaux/nodetube) 一个可以自己架设的 Youtube 替代品，可以上传视频在网页观看，基于 Node.js
 - [nodesign](https://nodesign.dev/) 设计工具收集
 - [Is Apple silicon ready?](https://isapplesiliconready.com/for/developer/) 查询 Apple M1 相关软件支持情况
 - [UIColor.io](https://www.uicolor.io) 将十六进制和RGB颜色转换为 UIColor
