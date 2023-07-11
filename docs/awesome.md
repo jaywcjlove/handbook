@@ -24,8 +24,9 @@
 
 ## 徽章
 
-- [开源项目的质量元数据标记](http://shields.io/#/)
-- [快速徽章生成服务](https://badgen.net/)
+- [开源项目的质量元数据标记 shields.io](http://shields.io/#/)
+- [快速徽章生成服务 badgen.net](https://badgen.net/)
+- [版本徽章 fury.io](https://badge.fury.io/for/js)
 - [固定状态徽章](https://github.com/jaywcjlove/sb)
 - [快速生成技能徽章](https://github.com/tandpfun/skill-icons) 
 - [非官方 github:按钮](https://github.com/ntkme/github-buttons)
