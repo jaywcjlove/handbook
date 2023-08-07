@@ -82,6 +82,7 @@
 - [npm charts](https://npmcharts.com/) 比较 npm 包的下载趋势
 - [NodeICO](https://nodei.co/) Package badges
 - [Pkg Stats](https://www.pkgstats.com/) 快速浏览并发现最佳 npm 包
+- [Are the types wrong](https://arethetypeswrong.github.io/) 分析 npm 包的 TypeScript 类型的工具
 
 ## 工具
 
