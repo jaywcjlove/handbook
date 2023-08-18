@@ -83,6 +83,7 @@
 - [NodeICO](https://nodei.co/) Package badges
 - [Pkg Stats](https://www.pkgstats.com/) 快速浏览并发现最佳 npm 包
 - [Are the types wrong](https://arethetypeswrong.github.io/) 分析 npm 包的 TypeScript 类型的工具
+- [npmgraph](https://npmgraph.js.org/) npm 依赖关系的图表/可视化
 
 ## 工具
 
