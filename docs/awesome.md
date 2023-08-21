@@ -185,6 +185,7 @@
 - [asciinema](https://asciinema.org/) 命令行录制工具
 - [yaml-to-jsonschema](https://jsonformatter.org/yaml-to-jsonschema) yaml 生成 schema
 - [Easing Gradients](https://larsenwork.com/easing-gradients/#editor) 非线性颜色和自定义颜色渐变效果编辑小工具
+- [Avatartion](https://www.avatartion.com) 生成个性化的Notion风格的头像
 
 ## 一些网站
 
