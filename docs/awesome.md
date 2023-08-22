@@ -49,6 +49,7 @@
 - [IconMaker](https://iconmaker.app/) 应用程序图标 Favicons 图标生成器和调整器
 - [okso](https://okso.app/) 可以画极简草图解释的基本数据结构
 - [React Paint](https://pengfeiw.github.io/minicode/react-paint) 使用 React 实现的开源 Windows 画板。[![Open-Source Software][OSS Icon]](https://github.com/pengfeiw/react-paint)
+- [Lottielab Drafts](https://www.lottielab.com/) 动画编辑器。能够输出为网页动画格式 Lottie.json 之外，还可以输出为 GIF 和 MP4
 
 ## 在线数据库建模工具
 
