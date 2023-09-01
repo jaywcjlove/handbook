@@ -166,6 +166,14 @@
 - [GitHub & BitBucket HTML Preview](https://htmlpreview.github.io/) 预览 GitHub 和 BitBucket 仓库中的 HTML 静态文件
 - [Gissue](https://gissue.github.io) 下载 Github 项目所有 issue 保存为 `.md` 文件
 
+## SVG 图标
+
+- [IconGo](https://icongo.github.io/) 超过 7万个 svg 图标库
+- [Iconbuddy](https://iconbuddy.app/) 超过 10万个免费 svg 图标库
+- [iconfont](http://iconfont.cn/) 阿里巴巴矢量图标库
+- [Flowbite Icons](https://flowbite.com/icons/) 487 个免费开源 SVG 图标集合
+- [SVG Repo](https://www.svgrepo.com/) 50万+ 开放许可的 SVG 矢量和图标
+
 ## 办公类应用
 
 - [OpenVidu](https://github.com/OpenVidu/openvidu) 开源的视频会议软件，使用 WebRTC 技术
