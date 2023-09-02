@@ -129,6 +129,10 @@
 - [Web Components](https://webcomponents.dev/)
 - [Playcode](https://playcode.io/)
 
+## 前端相关工具
+
+- [EpicEasing](https://epiceasing.com/) 精致的 Easing 动画生成调试预览工具
+
 ## 免费托管服务工具
 
 - [OPENSHIFT](https://www.openshift.com/)
