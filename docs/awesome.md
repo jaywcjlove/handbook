@@ -179,6 +179,7 @@
 - [SVG Repo](https://www.svgrepo.com/) 50万+ 开放许可的 SVG 矢量和图标
 - [macOS Cursors](https://github.com/daviddarnes/mac-cursors) SVG、PNG、PNG@2x 格式的所有 macOS 光标
 - [Yesicon](https://yesicon.app/) 18万枚高品质矢量图标
+- [iconify](https://iconify.design/) 超过 15万 个开源矢量图标
 
 ## 办公类应用
 
