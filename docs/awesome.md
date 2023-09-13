@@ -206,6 +206,7 @@
 - [yaml-to-jsonschema](https://jsonformatter.org/yaml-to-jsonschema) yaml 生成 schema
 - [Easing Gradients](https://larsenwork.com/easing-gradients/#editor) 非线性颜色和自定义颜色渐变效果编辑小工具
 - [Avatartion](https://www.avatartion.com) 生成个性化的Notion风格的头像
+- [Dub](https://dub.co/) 短连接服务开源的 [Github](https://github.com/steven-tey/dub)
 
 ## 一些网站
 
