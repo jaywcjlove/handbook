@@ -21,7 +21,8 @@
 - [Githuber.cn星榜](https://githuber.cn/)
 - [GitHub中文社区各种排行榜](https://www.githubs.cn/)
 - [比项目较过去12个月在 GitHub 上增加的星标数](https://bestofjs.org/)
-- [Web框架性能测试排名](https://www.techempower.com/benchmarks/) 
+- [Web框架性能测试排名](https://www.techempower.com/benchmarks/)
+- [Easy Counter: 统计网站访问次数](https://www.easycounter.com/)
 
 ## 徽章
 
