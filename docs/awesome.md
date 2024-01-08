@@ -75,6 +75,7 @@
 ## npm
 
 - [下载NPM包的统计信息](https://npm-stat.com/)
+- [查看包 npm 统计](https://npm-stat.link/)
 - [比较npm包下载，计数随时间的变化](https://www.npmtrends.com)
 - [NPM包下载趋势榜对比](https://npmcharts.com/)
 - [BundlePhobia](https://bundlephobia.com/) 查看添加 npm 软件包的成本
