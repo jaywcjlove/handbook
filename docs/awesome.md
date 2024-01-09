@@ -19,6 +19,7 @@
 - [Gitstar Ranking](https://gitstar-ranking.com)
 - [按语言和位置对每个 GitHub 用户和存储库进行排名](https://stardev.io/)
 - [Githuber.cn星榜](https://githuber.cn/)
+- [GitHub 星星历史记录](https://star-history.com/)
 - [GitHub中文社区各种排行榜](https://www.githubs.cn/)
 - [比项目较过去12个月在 GitHub 上增加的星标数](https://bestofjs.org/)
 - [Web框架性能测试排名](https://www.techempower.com/benchmarks/)
