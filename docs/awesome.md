@@ -202,6 +202,7 @@
 - [AST explorer](https://github.com/fkling/astexplorer) 在编辑器中检查生成的AST
 - [NginxConfig](https://nginxconfig.io/) Nginx配置在线极速生成“神器” [Github](https://github.com/digitalocean/nginxconfig.io)
 - [i18ns](https://i18ns.com/) 一个免费的i18n翻译搜索引擎
+- [localazy](https://localazy.com/) 翻译变得容易|本地化
 - [TableConvert](https://tableconvert.com/) Markdown表格编辑器，导入json/csv/excel/html 生成 Markdown 表格
 - [Chronologic Versioning](https://chronver.org/) 基于时间版本控制规范
 - [semver](https://semver.org/lang/zh-CN/) 语义化版本 2.0.0 语义化版本规范
