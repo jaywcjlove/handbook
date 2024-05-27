@@ -41,10 +41,6 @@
 - [ProcessOn](https://www.processon.com/) 支持流程图、思维导图、原型图、UML、网络拓扑图、组织结构图等
 - [draw.io](https://www.draw.io) 免费的在线图表软件，用于制作流程图，流程图，组织结构图，UML，ER和网络图
 - [Pixel Art to CSS](https://www.pixelartcss.com/) 是一个在线像素风绘图工具 [![Open-Source Software][OSS Icon]](https://github.com/jvalen/pixel-art-react)
-- [codeimg.io](https://codeimg.io/) 把源代码变成漂亮的图片的工具
-- [Codepng](https://www.codepng.app/) 代码片段转为美观的图片
-- [ray.so](https://ray.so/) 可以生成漂亮的代码截图，颜色、阴影、背景都可以调整。
-- [Chalk.ist](https://chalk.ist/) 为您的源代码创建漂亮的图像。[![Open-Source Software][OSS Icon]](https://github.com/Idered/chalk.ist)
 - [Pixlr X](https://pixlr.com/x) 基于 Canvas 和 WebGL 的在线图像编辑器。
 - [Terrastruct](https://terrastruct.com/) 一个在线的架构图、流程图工具。
 - [Excalidraw](https://github.com/excalidraw/excalidraw) 非常简单易用的白板绘图开源工具
@@ -56,6 +52,18 @@
 - [React Paint](https://pengfeiw.github.io/minicode/react-paint) 使用 React 实现的开源 Windows 画板。[![Open-Source Software][OSS Icon]](https://github.com/pengfeiw/react-paint)
 - [Lottielab Drafts](https://www.lottielab.com/) 动画编辑器。能够输出为网页动画格式 Lottie.json 之外，还可以输出为 GIF 和 MP4
 - [Pixel Map](https://pixelmap.amcharts.com/) 一个世界地图生成器，用于来做一些区域性的数据分析， 和地区分布演示非常方便
+
+## 创建源代码的漂亮图像
+
+- [codeimg.io](https://codeimg.io/) 把源代码变成漂亮的图片的工具
+- [Codepng](https://www.codepng.app/) 代码片段转为美观的图片
+- [ray.so](https://ray.so/) 可以生成漂亮的代码截图，颜色、阴影、背景都可以调整。
+- [Chalk.ist](https://chalk.ist/) 为您的源代码创建漂亮的图像。[![Open-Source Software][OSS Icon]](https://github.com/Idered/chalk.ist)
+- [carbon](https://carbon.now.sh/) 创建并分享源代码的精美图像 [![Open-Source Software][OSS Icon]](https://carbon.now.sh/)
+- [Snappify](https://snappify.com/) 创建令人惊叹的代码演示和视频
+- [Recoded](https://recoded.netlify.app/) 在浏览器中创建精美的代码图像和视频
+- [Code to Img](https://codetoimg.com/) 自定义背景颜色、漂亮的渐变代码图
+- [](https://codekeep.io/screenshot)
 
 ## 在线数据库建模工具
 
