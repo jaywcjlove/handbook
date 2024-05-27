@@ -53,7 +53,7 @@
 - [Lottielab Drafts](https://www.lottielab.com/) 动画编辑器。能够输出为网页动画格式 Lottie.json 之外，还可以输出为 GIF 和 MP4
 - [Pixel Map](https://pixelmap.amcharts.com/) 一个世界地图生成器，用于来做一些区域性的数据分析， 和地区分布演示非常方便
 
-## 创建源代码的漂亮图像
+## 创建漂亮的代码图
 
 - [codeimg.io](https://codeimg.io/) 把源代码变成漂亮的图片的工具
 - [Codepng](https://www.codepng.app/) 代码片段转为美观的图片
