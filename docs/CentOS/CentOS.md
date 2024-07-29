@@ -56,7 +56,7 @@ lspci -tv               # 列出所有PCI设备
 lsusb -tv               # 列出所有USB设备
 lsmod                   # 列出加载的内核模块
 env                     # 查看环境变量
-dmidecode | grep "Product Nmae"   #查看服务器型号
+dmidecode | grep "Product Name"   #查看服务器型号
 ```
 
 ## 资源
