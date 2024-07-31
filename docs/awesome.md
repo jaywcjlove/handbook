@@ -169,6 +169,7 @@
 
 - [StarDev](https://stardev.io) 按语言和位置对每个 GitHub 用户和存储库进行排名
 - [OSSInsight](https://ossinsight.io/) 开源软件 - 洞察力
+- [OpenSource Heroes](https://opensource-heroes.com) 开源英雄
 - [git-awards](http://git-awards.com/) 发现您在GitHub上的排名
 - [star-history](https://github.com/timqian/star-history) 帮助用户查看 GitHub 项目 star 数目的历史
 - [starcharts](https://github.com/caarlos0/starcharts) 可以查看 GitHub 仓库的 Star 变化情况，生成折线图
