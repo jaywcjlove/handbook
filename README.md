@@ -3,7 +3,7 @@
 
 放置我的笔记、搜集、摘录、实践，保持好奇心。这里就是个随记，涉猎技术知识点广而不精，不能保证正确，看文需谨慎，后果很严重。
 
-✦ 欢迎下载我的 macOS 应用程序支持我，谢谢 ✦
+✦ 欢迎下载我的 macOS/iOS 应用程序支持我，谢谢 ✦
 
 <div style="display: inline_block">
   <a target="_blank" href="https://wangchujiang.com/quick-rss/" title="Quick RSS for macOS"><img align="center" alt="Quick RSS" height="50" width="50" src="https://github.com/user-attachments/assets/deb91549-0347-458c-9768-3b0fcb18aebc"></a>
