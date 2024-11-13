@@ -103,6 +103,7 @@
 - [npmgraph](https://npmgraph.js.org/) npm 依赖关系的图表/可视化
 - [pkg-size](https://pkg-size.dev) 确定安装大小和捆绑包大小的新工具，提供包尺寸徽章
 - [Are The Types Wrong](https://arethetypeswrong.github.io/) 用于分析 npm 包的 TypeScript 类型的工具
+- [npmpackage.info](https://npmpackage.info/) 查看 npm 包更详细信息的网站
 
 ## 工具
 
