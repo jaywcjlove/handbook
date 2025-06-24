@@ -56,6 +56,7 @@
 </p>
 
 - [awesome-mac](https://jaywcjlove.github.io/awesome-mac) <img align="bottom" height="13" src="https://img.shields.io/github/stars/jaywcjlove/awesome-mac.svg?label=" /> - 收集分享大量非常好用的Mac应用程序。 [![Open-Source Software][OSS Icon]](https://github.com/jaywcjlove/awesome-mac) ![hot][hot Icon]
+- [Quick Reference](https://github.com/jaywcjlove/reference) <img align="bottom" height="13" src="https://img.shields.io/github/stars/jaywcjlove/reference.svg?label=" /> - 为开发人员分享快速参考备忘清单(速查表)。 [![Open-Source Software][OSS Icon]](https://github.com/jaywcjlove/reference) ![hot][hot Icon]
 - [awesome-uikit](https://github.com/jaywcjlove/awesome-uikit) <img align="bottom" height="13" src="https://img.shields.io/github/stars/jaywcjlove/awesome-uikit.svg?label=" /> - 搜集基于 React/Vue/Angular 的UI组件库管理平台模版。 [![Open-Source Software][OSS Icon]](https://github.com/jaywcjlove/awesome-uikit) ![hot][hot Icon]
 - [bannerjs](https://github.com/jaywcjlove/bannerjs) <img align="bottom" height="13" src="https://img.shields.io/github/stars/jaywcjlove/bannerjs.svg?label=" /> - 获取基于 package.json 的单行/多行注释标题。 [![Open-Source Software][OSS Icon]](https://github.com/jaywcjlove/bannerjs)
 - [cookie.js](https://github.com/jaywcjlove/cookie.js) <img align="bottom" height="13" src="https://img.shields.io/github/stars/jaywcjlove/cookie.js.svg?label=" /> - 轻量级的用于处理浏览器 cookie JS库，没有依赖。 [![Open-Source Software][OSS Icon]](https://github.com/jaywcjlove/cookie.js)
