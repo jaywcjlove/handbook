@@ -12,7 +12,6 @@
   - [seajs](https://github.com/seajs) Web的模块加载程序 ![](https://avatars1.githubusercontent.com/u/12101536?v=4&s=14)
   - [kissyteam](https://github.com/kissyteam) 强大的模块集合 ![](https://avatars3.githubusercontent.com/u/328318?v=4&s=14)
   - [egg](https://github.com/eggjs) Node.js的Web框架框架 ![](https://avatars2.githubusercontent.com/u/15833670?v=4&s=14)
-  
 - [Huawei](https://github.com/Huawei-Hadoop) 华为 ![](https://avatars2.githubusercontent.com/u/539149?v=4&s=14)
 - [Tencent](https://github.com/tencent) 腾讯 Github ![](https://avatars0.githubusercontent.com/u/18461506?v=4&s=14)
   - [Tencent](https://code.csdn.net/tencent) 腾讯 csdn
@@ -40,6 +39,7 @@
 - [TeamStuQ](https://github.com/TeamStuQ) TeamStuQ ![](https://avatars2.githubusercontent.com/u/15888474?v=3&s=14)
 - [稀土](https://github.com/xitu) 稀土 ![](https://avatars1.githubusercontent.com/u/10482599?v=3&s=14)
 - [伯乐在线](https://github.com/jobbole) 伯乐在线 ![](https://avatars1.githubusercontent.com/u/8531823?v=3&s=14)
+- [货拉拉](https://github.com/HuolalaTech) 货拉拉 ![](https://avatars.githubusercontent.com/u/97139676?s=14&v=4)
 - [深度](https://github.com/linuxdeepin) Wuhan Deepin Technology Co.,Ltd. ![](https://avatars3.githubusercontent.com/u/1592697?v=4&s=14)
 - [DNSPod](https://github.com/DNSPod) DNSPod ![](https://avatars3.githubusercontent.com/u/672779?v=4&s=14)
 - [Weibo R&D Open Source Projects](https://github.com/weibocom) 新浪 ![](https://avatars3.githubusercontent.com/u/672779?v=4&s=14)
