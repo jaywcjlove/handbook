@@ -72,6 +72,7 @@
 - [SQL DBM](https://sqldbm.com/) 在线数据库建模
 - [Vertabelo](https://vertabelo.com/) 在线数据库建模
 - [DB Designer](https://www.dbdesigner.net/) 在线数据库建模
+- [SQLable](https://sqlable.com/) 在线 SQL 工具
 
 ## 文档工具
 
@@ -226,6 +227,7 @@
 - [UIColor.io](https://www.uicolor.io) 将十六进制和RGB颜色转换为 UIColor
 - [asciinema](https://asciinema.org/) 命令行录制工具
 - [yaml-to-jsonschema](https://jsonformatter.org/yaml-to-jsonschema) yaml 生成 schema
+- [Yamline](https://yamline.com/) 在线 YAML 工具
 - [Easing Gradients](https://larsenwork.com/easing-gradients/#editor) 非线性颜色和自定义颜色渐变效果编辑小工具
 - [Avatartion](https://www.avatartion.com) 生成个性化的Notion风格的头像
 - [Dub](https://dub.co/) 短连接服务开源的 [Github](https://github.com/steven-tey/dub)
