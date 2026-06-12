@@ -35,6 +35,7 @@
 - [固定状态徽章](https://github.com/jaywcjlove/sb)
 - [快速生成技能徽章](https://github.com/tandpfun/skill-icons) 
 - [非官方 github:按钮](https://github.com/ntkme/github-buttons)
+- [便捷地在 shields.io 徽章上使用 Octicons 图标以及自定义图标、标识](https://github.com/DenverCoder1/custom-icon-badges)
 
 ## 在线作图
 
