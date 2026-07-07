@@ -26,6 +26,7 @@
 - [Web框架性能测试排名](https://www.techempower.com/benchmarks/)
 - [Easy Counter: 统计网站访问次数](https://www.easycounter.com/)
 - [Trendshift 探索开源存储库并找到一些见解](https://trendshift.io/)
+- [𝕏 数据榜单](https://x-track.jedeeai.com/)
 
 ## 徽章
 
